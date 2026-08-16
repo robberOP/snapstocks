@@ -6,9 +6,14 @@ position. This document is the single source of truth for how the site looks,
 how it's organized on disk, and how to extend it without re-deriving decisions
 already made here.
 
-A working build lives in this folder (`/snapstocks`) — open `pages/index.html`
-in a browser to see it. Every token, color and component named below is
-implemented there, not aspirational.
+A working build lives in this folder (`/snapstocks`). Every token, color and
+component named below is implemented there, not aspirational.
+
+**Local preview:** links are root-relative (see §9), so opening
+`index.html` straight off disk (`file://…`) will 404 its own CSS/JS —
+serve the folder instead: `npx serve snapstocks` or
+`python -m http.server --directory snapstocks`, then visit
+`http://localhost:PORT/`.
 
 ---
 
@@ -238,53 +243,60 @@ Stock Analysis templates are) — never inline a raw color.
 ## 8. Folder structure
 
 ```
-snapstocks/
-├── DESIGN.md                     # this file
+snapstocks/                         # Cloudflare Pages project root — deploy this folder as-is
+├── DESIGN.md                       # this file
+├── index.html                      # Home — the actual domain root, "/"
 ├── assets/
 │   ├── css/
-│   │   ├── tokens.css            # ALL color/type/spacing custom properties — edit palette here only
-│   │   ├── base.css              # reset + bare element styles, no component classes
-│   │   ├── layout.css            # nav, page-header, subnav, footer, hero, container/grid shell
-│   │   └── components.css        # cards, KPIs, pills, tables, charts chrome, callouts, empty-state
+│   │   ├── tokens.css              # ALL color/type/spacing custom properties — edit palette here only
+│   │   ├── base.css                # reset + bare element styles, no component classes
+│   │   ├── layout.css              # nav, page-header, subnav, footer, hero, container/grid shell
+│   │   └── components.css          # cards, KPIs, pills, tables, charts chrome, callouts, empty-state
 │   ├── js/
-│   │   ├── nav.js                # mobile drawer open/close (event-delegated, no deps)
-│   │   ├── theme.js               # light/dark toggle, localStorage-persisted
+│   │   ├── nav.js                  # mobile drawer open/close (event-delegated, no deps)
+│   │   ├── theme.js                 # light/dark toggle, localStorage-persisted
 │   │   └── sector-momentum-data.js  # SAMPLE data generator for the two momentum pages
 │   └── img/
-│       └── brand/                # logo/favicon exports go here (currently inline SVG in-page)
+│       └── brand/                  # logo/favicon exports go here (currently inline SVG in-page)
 ├── data/
 │   └── sector_momentum.sample.json  # the data CONTRACT the real pipeline should emit
 ├── partials/
-│   ├── header.html                # canonical nav markup — see "no build step" note below
+│   ├── header.html                  # canonical nav markup — see "no build step" note below
 │   └── footer.html
-└── pages/
-    ├── index.html                 # Home
-    ├── macro-analysis/
-    │   └── index.html             # section landing, "coming soon" (whole section unbuilt)
-    ├── sector-analysis/
-    │   ├── index.html             # section landing — links to the 3 views below
-    │   ├── momentum-chart.html    # quadrant scatter, live
-    │   ├── momentum-table.html    # sortable table, live
-    │   └── rotation.html          # "coming soon" (one sub-page unbuilt, section otherwise live)
-    └── stock-analysis/
-        ├── index.html             # section landing — ticker search/browse
-        ├── fundamentals/
-        │   └── template.html      # screener.in-style snapshot — THE pattern for any ticker
-        └── deep-dive/
-            └── zaggle.html        # narrative report — THE pattern for any deep-dive report
+├── macro-analysis/
+│   └── index.html                   # section landing, "coming soon" (whole section unbuilt)
+├── sector-analysis/
+│   ├── index.html                   # section landing — links to the 3 views below
+│   ├── momentum-chart.html          # quadrant scatter, live
+│   ├── momentum-table.html          # sortable table, live
+│   └── rotation.html                # "coming soon" (one sub-page unbuilt, section otherwise live)
+└── stock-analysis/
+    ├── index.html                   # section landing — ticker search/browse
+    ├── fundamentals/
+    │   └── template.html            # screener.in-style snapshot — THE pattern for any ticker
+    └── deep-dive/
+        └── zaggle.html              # narrative report — THE pattern for any deep-dive report
 ```
+
+Every top-level section folder (`macro-analysis/`, `sector-analysis/`,
+`stock-analysis/`) sits directly under the project root, as siblings of
+`index.html` — there is no `pages/` wrapper. That wrapper existed in an
+earlier draft and was removed specifically so Cloudflare Pages picks up
+`index.html` for the bare domain root without a redirect (see §9).
 
 ### Naming/URL convention
 - One folder per top-level section (`macro-analysis/`, `sector-analysis/`,
   `stock-analysis/`), `kebab-case`, matching the nav label.
 - One folder per **sub-page family** that will have many instances
   (`fundamentals/`, `deep-dive/`) with a real file per instance
-  (`zaggle.html`, `template.html`) — see §9 for how this scales past two
+  (`zaggle.html`, `template.html`) — see §10 for how this scales past two
   stocks.
 - A sub-page that's a single fixed view (`momentum-chart.html`,
   `momentum-table.html`, `rotation.html`) is a flat file directly under its
   section, no extra folder.
 - `index.html` is always the section landing page, never a specific view.
+- **Every internal `href`/`src` is root-relative** (`/assets/css/tokens.css`,
+  `/sector-analysis/index.html`) — never `../`-relative. See §9 for why.
 
 ### No build step, on purpose
 This is currently plain static HTML with `<link>`/`<script>` includes — no
@@ -298,16 +310,49 @@ the cost of manual sync when the nav changes.
 generator off the `reports/` pipeline, whatever the eng team picks), the
 migration is mechanical: `tokens.css`/`base.css`/`layout.css`/`components.css`
 port unchanged, `partials/*.html` become real layout components, and every
-page under `pages/` becomes a route. Nothing about the design system is
-tied to the no-build-step choice.
+top-level `.html` file/folder becomes a route. Nothing about the design
+system is tied to the no-build-step choice.
 
 ---
 
-## 9. How to add a page or sub-page
+## 9. Deployment (Cloudflare Pages)
+
+The site deploys to Cloudflare Pages with **the `snapstocks/` folder as the
+Pages project root** — point the Pages build at this folder (build command:
+none, output directory: `/`). `index.html` sits directly at that root, so
+Cloudflare serves it for the bare domain with no redirect and no extra
+configuration required.
+
+### Why every link is root-relative
+
+Every `href`/`src` across the site points at an absolute, root-relative path
+(`/assets/css/tokens.css`, `/sector-analysis/index.html`) rather than a
+`../`-relative one. This isn't stylistic — `../`-relative paths broke in
+exactly the way you'd expect on a static host once pages sit at different
+folder depths (`index.html` vs.
+`stock-analysis/fundamentals/template.html`, two levels deep): every link
+needed a different number of `../` depending on where the file lived, and
+Cloudflare Pages' clean-URL rewriting (`/foo.html` ↔ `/foo` ↔ `/foo/`)
+changes what "relative to this page" even means. Root-relative paths
+sidestep both problems — the exact same `href="/sector-analysis/index.html"`
+works unmodified from every page, at every depth, regardless of URL
+rewriting. `partials/header.html` and `partials/footer.html` are the
+canonical source for this markup.
+
+### Adding a page under this scheme
+
+Nothing changes about §10 below — copy a sibling page, its `<link>`/`<script>`
+tags and nav markup are already root-relative and portable to any depth.
+Just don't reintroduce a `../`-relative href; if you paste a link from an
+old draft or another project, rootify it first.
+
+---
+
+## 10. How to add a page or sub-page
 
 **A new sub-page inside an existing section** (e.g. a "Sector Heatmap" view
 next to Momentum Chart/Table):
-1. Add the file: `pages/sector-analysis/heatmap.html`, copy an existing
+1. Add the file: `sector-analysis/heatmap.html`, copy an existing
    sibling page as the starting point (same head, same nav/footer markup).
 2. Add one `<a>` to the `.subnav` block in **every** page inside that
    section's `page-header` (all files currently list the same 3 tabs — add a
@@ -319,7 +364,8 @@ next to Momentum Chart/Table):
    today. This keeps the nav honest about what's coming without a broken link.
 
 **A brand-new top-level section** (e.g. future "Screener" or "Watchlist"):
-1. New folder under `pages/`, `kebab-case`.
+1. New folder at the project root, `kebab-case`, as a sibling of
+   `sector-analysis/` etc.
 2. Add its link to `.nav-primary` and `.nav-drawer` in every existing page
    (yes, every page — see §8's build-step note) plus its own `.subnav` once
    it has sub-pages.
@@ -338,7 +384,7 @@ per the data contract implied by the sample markup.
 
 ---
 
-## 10. Motion & "AI-jazzy" elements — used sparingly, on purpose
+## 11. Motion & "AI-jazzy" elements — used sparingly, on purpose
 
 - **Hero mesh glow** (`.hero::before` in `layout.css`): a soft dual radial
   gradient in brand-blue + AI-violet, blurred, `pointer-events: none`, sitting
@@ -357,7 +403,7 @@ per the data contract implied by the sample markup.
 
 ---
 
-## 11. Responsive rules
+## 12. Responsive rules
 
 - Breakpoints used throughout: `900px` (search field hides), `800px`
   (primary nav collapses to hamburger), `700px` (2/3-column grids collapse to
@@ -376,7 +422,7 @@ per the data contract implied by the sample markup.
 
 ---
 
-## 12. Accessibility notes
+## 13. Accessibility notes
 
 - Color is never the only signal: direction uses glyph+color (§4.3), status
   uses icon-dot+label, "coming soon" uses a text badge, not a faded color.
@@ -391,7 +437,7 @@ per the data contract implied by the sample markup.
 
 ---
 
-## 13. Current build status
+## 14. Current build status
 
 | Section | Sub-page | Status |
 |---|---|---|

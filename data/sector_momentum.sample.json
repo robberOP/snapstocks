@@ -1,0 +1,12 @@
+{
+  "_comment": "Data contract for the Sector Analysis > Momentum Chart/Table pages. The live pipeline (reports/sector_momentum) should emit this shape; assets/js/sector-momentum-data.js currently fakes it client-side for the static demo.",
+  "as_of": "2026-08-14T17:30:00+05:30",
+  "periods": ["1d", "2d", "1w", "1m", "3m"],
+  "group": "sector",
+  "rows": [
+    { "name": "Nifty Realty", "ret": { "1d": 1.06, "2d": 1.93, "1w": 4.82, "1m": 9.16, "3m": 14.94 },
+      "vol_ratio": { "1d": 1.28, "2d": 1.24, "1w": 1.28, "1m": 1.09, "3m": 0.93 } },
+    { "name": "Nifty Metal", "ret": { "1d": 0.80, "2d": 1.46, "1w": 3.65, "1m": 6.94, "3m": 11.32 },
+      "vol_ratio": { "1d": 1.22, "2d": 1.19, "1w": 1.22, "1m": 1.06, "3m": 0.92 } }
+  ]
+}

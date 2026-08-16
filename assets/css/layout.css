@@ -1,0 +1,169 @@
+/* =========================================================================
+   SnapStocks — Layout
+   Page shell, top nav, section sub-nav, footer, breadcrumbs.
+   ========================================================================= */
+
+.page-shell { min-height: 100vh; display: flex; flex-direction: column; }
+.content { flex: 1; }
+.container { max-width: var(--content-max); margin: 0 auto; padding: 0 var(--space-5); }
+@media (max-width: 640px) { .container { padding: 0 var(--space-4); } }
+
+/* ---------------- Top nav ---------------- */
+.topnav {
+  position: sticky; top: 0; z-index: 40;
+  height: var(--nav-height);
+  display: flex; align-items: center;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(10px) saturate(1.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+}
+.topnav .container { display: flex; align-items: center; gap: var(--space-6); height: 100%; }
+
+.brand-mark { display: flex; align-items: center; gap: var(--space-2); flex-shrink: 0; }
+.brand-mark .logo-badge {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--brand-500), var(--ai-500) 130%);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0;
+}
+.brand-mark .logo-badge svg { width: 16px; height: 16px; }
+.brand-mark .wordmark { font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; color: var(--text); }
+.brand-mark .wordmark b { color: var(--brand-600); }
+
+.nav-primary { display: flex; align-items: center; gap: var(--space-1); flex: 1; }
+.nav-primary a {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 12px; border-radius: var(--radius-sm);
+  font-size: 0.88rem; font-weight: 600; color: var(--text-secondary);
+  text-decoration: none; white-space: nowrap;
+}
+.nav-primary a:hover { color: var(--text); background: var(--surface-sunken); }
+.nav-primary a[aria-current="page"], .nav-primary a.active {
+  color: var(--brand-700); background: var(--brand-50);
+}
+.nav-primary a .soon-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--ai-500); flex-shrink: 0;
+}
+
+.nav-actions { display: flex; align-items: center; gap: var(--space-3); }
+.nav-search {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--surface-sunken); border: 1px solid var(--border);
+  border-radius: var(--radius-pill); padding: 6px 12px 6px 10px;
+  color: var(--text-muted); font-size: 0.82rem; min-width: 200px;
+}
+.nav-search svg { width: 14px; height: 14px; flex-shrink: 0; }
+.nav-search input { background: none; border: none; outline: none; width: 100%; color: var(--text); }
+.nav-search kbd {
+  font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.nav-toggle {
+  display: none; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: var(--radius-sm);
+  background: transparent; border: 1px solid var(--border); cursor: pointer;
+}
+.nav-toggle svg { width: 18px; height: 18px; color: var(--text); }
+
+@media (max-width: 900px) {
+  .nav-search { display: none; }
+}
+@media (max-width: 800px) {
+  .nav-primary { display: none; }
+  .nav-toggle { display: flex; }
+}
+
+/* Mobile drawer */
+.nav-drawer {
+  display: none;
+  position: fixed; inset: var(--nav-height) 0 0 0; z-index: 39;
+  background: var(--bg); overflow-y: auto;
+  padding: var(--space-5) var(--space-5) var(--space-8);
+}
+.nav-drawer.open { display: block; }
+.nav-drawer a {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 4px; border-bottom: 1px solid var(--border);
+  font-size: 1rem; font-weight: 600; color: var(--text); text-decoration: none;
+}
+.nav-drawer .drawer-sub { padding-left: var(--space-4); }
+.nav-drawer .drawer-sub a { font-size: 0.92rem; font-weight: 500; color: var(--text-secondary); padding: 10px 4px; }
+
+/* ---------------- Page header (per-section hero) ---------------- */
+.page-header {
+  padding: var(--space-6) 0 var(--space-5);
+  border-bottom: 1px solid var(--border);
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--brand-600); margin-bottom: var(--space-2);
+}
+.eyebrow .spark { width: 12px; height: 12px; flex-shrink: 0; color: var(--ai-500); }
+.page-header h1 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); }
+.page-header .dek { margin-top: var(--space-2); font-size: 0.95rem; color: var(--text-secondary); max-width: 68ch; }
+.page-header-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-4); }
+.page-header .as-of { font-size: 0.78rem; color: var(--text-muted); text-align: right; }
+.page-header .as-of b { color: var(--text); }
+
+/* Breadcrumbs */
+.breadcrumbs { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: var(--space-3); }
+.breadcrumbs a { color: var(--text-muted); }
+.breadcrumbs a:hover { color: var(--brand-600); }
+.breadcrumbs .sep { opacity: 0.5; }
+.breadcrumbs .current { color: var(--text-secondary); font-weight: 600; }
+
+/* Section sub-nav (tabs for sub-pages within a section) */
+.subnav { display: flex; gap: var(--space-1); flex-wrap: wrap; margin-top: var(--space-4); }
+.subnav a {
+  padding: 8px 14px; border-radius: var(--radius-pill);
+  font-size: 0.84rem; font-weight: 600; color: var(--text-secondary);
+  border: 1px solid var(--border); background: var(--surface); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+}
+.subnav a:hover { border-color: var(--border-strong); color: var(--text); }
+.subnav a[aria-current="page"] { background: var(--brand-500); border-color: var(--brand-500); color: #fff; }
+.subnav a.disabled { color: var(--text-muted); cursor: default; }
+.subnav a.disabled:hover { border-color: var(--border); color: var(--text-muted); }
+.subnav a .badge-soon {
+  font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  background: var(--ai-500); color: #fff; border-radius: var(--radius-pill); padding: 1px 6px;
+}
+.subnav a[aria-current="page"] .badge-soon { background: rgba(255,255,255,0.25); }
+
+/* Section body spacing */
+.section-body { padding: var(--space-6) 0 var(--space-8); display: flex; flex-direction: column; gap: var(--space-5); }
+
+/* ---------------- Footer ---------------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: var(--space-6) 0;
+  background: var(--surface-sunken);
+}
+.site-footer .container { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: space-between; }
+.site-footer .cols { display: flex; gap: var(--space-7); flex-wrap: wrap; }
+.site-footer h5 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); margin-bottom: var(--space-2); }
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.site-footer a { color: var(--text-secondary); font-size: 0.85rem; }
+.site-footer a:hover { color: var(--brand-600); }
+.site-footer .legal { font-size: 0.76rem; color: var(--text-muted); max-width: 40ch; }
+.site-footer .disclaimer { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--border); font-size: 0.74rem; color: var(--text-muted); }
+
+/* Home hero band with subtle AI mesh */
+.hero {
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-8) 0 var(--space-7);
+}
+.hero::before {
+  content: ""; position: absolute; inset: -20% -10% auto auto; width: 640px; height: 640px;
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--brand-400) 30%, transparent), transparent 60%),
+    radial-gradient(circle at 70% 60%, color-mix(in srgb, var(--ai-500) 22%, transparent), transparent 55%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+.hero .container { position: relative; }

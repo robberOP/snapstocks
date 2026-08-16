@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sector Momentum Chart — SnapStocks</title>
+<meta name="description" content="Sector return vs volume-ratio quadrant, across five timeframes." />
+<link rel="stylesheet" href="../../assets/css/tokens.css" />
+<link rel="stylesheet" href="../../assets/css/base.css" />
+<link rel="stylesheet" href="../../assets/css/layout.css" />
+<link rel="stylesheet" href="../../assets/css/components.css" />
+<style>
+  #quadrant { width: 100%; height: 440px; display: block; }
+  #quadrant .pt { cursor: pointer; }
+  #quadrant .pt circle { transition: r .1s ease; }
+  #quadrant .pt:hover circle, #quadrant .pt:focus circle { r: 9; }
+  #quadrant .axis-label { font-size: 11px; fill: var(--text-muted); }
+  #quadrant .quad-label { font-size: 11px; font-weight: 700; fill: var(--text-muted); letter-spacing: 0.02em; text-transform: uppercase; }
+  #quadrant .tick { font-size: 10px; fill: var(--text-muted); }
+  #quadrant .gridline { stroke: var(--border); stroke-width: 1; }
+  #quadrant .baseline { stroke: var(--border-strong); stroke-width: 1.2; }
+  #quadrant .direct-label { font-size: 11px; font-weight: 700; fill: var(--text); }
+</style>
+</head>
+<body>
+<div class="page-shell">
+
+  <header class="topnav">
+    <div class="container">
+      <a href="../index.html" class="brand-mark">
+        <span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 8-10"/><path d="M15 5h6v6"/></svg></span>
+        <span class="wordmark">Snap<b>Stocks</b></span>
+      </a>
+      <nav class="nav-primary" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="../macro-analysis/index.html">Macro Analysis <span class="soon-dot" title="Coming soon"></span></a>
+        <a href="index.html" aria-current="page">Sector Analysis</a>
+        <a href="../stock-analysis/index.html">Stock Analysis</a>
+      </nav>
+      <div class="nav-actions">
+        <label class="nav-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search ticker or sector…" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="nav-drawer" data-nav-drawer aria-label="Mobile">
+      <a href="../index.html">Home</a>
+      <a href="../macro-analysis/index.html">Macro Analysis <span class="badge-soon">Soon</span></a>
+      <a href="index.html">Sector Analysis</a>
+      <div class="drawer-sub">
+        <a href="momentum-chart.html">— Momentum Chart</a>
+        <a href="momentum-table.html">— Momentum Table</a>
+        <a href="rotation.html">— Rotation Graphs</a>
+      </div>
+      <a href="../stock-analysis/index.html">Stock Analysis</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <div class="page-header">
+      <div class="container">
+        <nav class="breadcrumbs"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Sector Analysis</a><span class="sep">/</span><span class="current">Momentum Chart</span></nav>
+        <div class="page-header-row">
+          <div>
+            <span class="eyebrow"><svg class="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg>Sector Analysis</span>
+            <h1>Sector Momentum — Chart</h1>
+            <p class="dek">Return vs. volume ratio, averaged across each sector's mapped stocks. Sectors in the top-right are leading on both price and participation.</p>
+          </div>
+          <div class="as-of">EOD momentum scan<br/><b>Updated 14 Aug 2026, 17:30 IST</b></div>
+        </div>
+        <nav class="subnav" aria-label="Sector Analysis views">
+          <a href="momentum-chart.html" aria-current="page">Momentum Chart</a>
+          <a href="momentum-table.html">Momentum Table</a>
+          <a href="rotation.html" class="disabled">Rotation Graphs <span class="badge-soon">Soon</span></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="section-body container">
+
+      <div class="kpi-row" id="kpi-row"></div>
+
+      <div class="controls">
+        <div class="seg" id="period-toggle" role="group" aria-label="Timeframe">
+          <button type="button" data-period="1d" aria-pressed="false">1D</button>
+          <button type="button" data-period="2d" aria-pressed="false">2D</button>
+          <button type="button" data-period="1w" aria-pressed="true">1W</button>
+          <button type="button" data-period="1m" aria-pressed="false">1M</button>
+          <button type="button" data-period="3m" aria-pressed="false">3M</button>
+        </div>
+        <div class="search-field" style="flex:1 1 220px; max-width:280px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="search" type="text" placeholder="Filter sectors…" autocomplete="off" />
+        </div>
+        <span class="spacer"></span>
+        <span class="hint">Need exact figures? <a href="momentum-table.html">Open the table view</a>.</span>
+      </div>
+
+      <div class="chart-panel">
+        <div class="card-head">
+          <div>
+            <h2 id="chart-title">1-Week return vs. volume ratio</h2>
+            <p class="desc">Bubble color shows direction; horizontal position is return, vertical position is volume ratio vs. trailing average.</p>
+          </div>
+        </div>
+        <svg id="quadrant" viewBox="0 0 860 440" role="img" aria-labelledby="chart-title"></svg>
+        <div class="legend">
+          <span class="item"><span class="dot" style="background:var(--up)"></span>Positive return</span>
+          <span class="item"><span class="dot" style="background:var(--down)"></span>Negative return</span>
+          <span class="item">Above the dashed line: volume running hot vs. trailing average</span>
+        </div>
+      </div>
+
+      <div class="ai-note">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg></span>
+        <div>
+          <b>Reading the quadrant —</b>
+          <p>Top-right sectors are leading on both price and participation — the strongest confirmation for a long swing setup. Bottom-right sectors are up on thin volume, worth a second look before sizing in. Top-left sectors are building volume without price follow-through yet — early-stage watchlist candidates.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="cols">
+        <div><h5>Analysis</h5><ul><li><a href="../macro-analysis/index.html">Macro Analysis</a></li><li><a href="index.html">Sector Analysis</a></li><li><a href="../stock-analysis/index.html">Stock Analysis</a></li></ul></div>
+        <div><h5>Sector Analysis</h5><ul><li><a href="momentum-chart.html">Momentum Chart</a></li><li><a href="momentum-table.html">Momentum Table</a></li><li><a href="rotation.html">Rotation Graphs</a></li></ul></div>
+        <div><h5>Stock Analysis</h5><ul><li><a href="../stock-analysis/fundamentals/template.html">Fundamentals View</a></li><li><a href="../stock-analysis/deep-dive/zaggle.html">Deep-Dive Reports</a></li></ul></div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div class="chart-tooltip" id="tooltip"></div>
+
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/theme.js"></script>
+<script src="../../assets/js/sector-momentum-data.js"></script>
+<script>
+(function () {
+  var DATA = window.SNAPSTOCKS_SECTOR_MOMENTUM;
+  var period = "1w";
+  var query = "";
+  var svgNS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("quadrant");
+  var tooltip = document.getElementById("tooltip");
+  var W = 860, H = 440, M = { top: 24, right: 28, bottom: 40, left: 48 };
+
+  function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+  function rows() {
+    return DATA.sectors.filter(function (s) { return s.name.toLowerCase().indexOf(query.toLowerCase()) !== -1; });
+  }
+
+  function renderKpis() {
+    var rs = rows();
+    var leaders = rs.filter(function (s) { return s.ret[period] > 0; }).length;
+    var laggards = rs.length - leaders;
+    var avg = rs.reduce(function (a, s) { return a + s.ret[period]; }, 0) / rs.length;
+    var best = rs.slice().sort(function (a, b) { return b.ret[period] - a.ret[period]; })[0];
+    var kpis = [
+      { label: "Sectors advancing", value: leaders + " / " + rs.length, dir: leaders >= laggards ? "up" : "down" },
+      { label: "Avg. sector return", value: (avg >= 0 ? "+" : "") + avg.toFixed(2) + "%", dir: avg >= 0 ? "up" : "down" },
+      { label: "Top sector", value: best ? best.name.replace("Nifty ", "") : "—", dir: best && best.ret[period] >= 0 ? "up" : "down", sub: best ? (best.ret[period] >= 0 ? "+" : "") + best.ret[period].toFixed(2) + "%" : "" },
+      { label: "Breadth", value: leaders > laggards ? "Risk-on" : (leaders < laggards ? "Risk-off" : "Mixed"), dir: leaders > laggards ? "up" : (leaders < laggards ? "down" : "flat") }
+    ];
+    document.getElementById("kpi-row").innerHTML = kpis.map(function (k) {
+      return '<div class="kpi"><span class="label">' + k.label + '</span><span class="value">' + k.value + '</span>' +
+        '<span class="dir ' + k.dir + '">' + dirIcon(k.dir) + (k.sub || (k.dir === "flat" ? "No net lean" : "")) + '</span></div>';
+    }).join("");
+  }
+
+  function dirIcon(dir) {
+    if (dir === "up") return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5l7 9H5z"/></svg>';
+    if (dir === "down") return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 19l-7-9h14z"/></svg>';
+    return '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="3"/></svg>';
+  }
+
+  function renderChart() {
+    var rs = rows();
+    document.getElementById("chart-title").textContent =
+      ({ "1d": "1-Day", "2d": "2-Day", "1w": "1-Week", "1m": "1-Month", "3m": "3-Month" })[period] + " return vs. volume ratio";
+
+    var xs = rs.map(function (s) { return s.ret[period]; });
+    var ys = rs.map(function (s) { return s.vol[period]; });
+    var xMax = Math.max(Math.abs(Math.min.apply(null, xs)), Math.abs(Math.max.apply(null, xs)), 1) * 1.25;
+    var yMin = Math.min(Math.min.apply(null, ys), 0.6) - 0.1;
+    var yMax = Math.max(Math.max.apply(null, ys), 1.4) + 0.1;
+
+    function x(v) { return M.left + (v + xMax) / (2 * xMax) * (W - M.left - M.right); }
+    function y(v) { return H - M.bottom - (v - yMin) / (yMax - yMin) * (H - M.top - M.bottom); }
+
+    var parts = [];
+
+    // quadrant tints
+    var midX = x(0), midY = y(1);
+    parts.push('<rect x="' + midX + '" y="' + M.top + '" width="' + (W - M.right - midX) + '" height="' + (midY - M.top) + '" fill="' + css("--up-tint") + '" opacity="0.5"/>');
+    parts.push('<rect x="' + M.left + '" y="' + M.top + '" width="' + (midX - M.left) + '" height="' + (midY - M.top) + '" fill="' + css("--flat-tint") + '" opacity="0.6"/>');
+    parts.push('<rect x="' + midX + '" y="' + midY + '" width="' + (W - M.right - midX) + '" height="' + (H - M.bottom - midY) + '" fill="' + css("--flat-tint") + '" opacity="0.6"/>');
+    parts.push('<rect x="' + M.left + '" y="' + midY + '" width="' + (midX - M.left) + '" height="' + (H - M.bottom - midY) + '" fill="' + css("--down-tint") + '" opacity="0.5"/>');
+
+    // gridlines (vertical at every quarter of x range)
+    [-1, -0.5, 0.5, 1].forEach(function (f) {
+      var gx = x(xMax * f);
+      parts.push('<line class="gridline" x1="' + gx + '" y1="' + M.top + '" x2="' + gx + '" y2="' + (H - M.bottom) + '"/>');
+    });
+
+    // baselines
+    parts.push('<line class="baseline" x1="' + midX + '" y1="' + M.top + '" x2="' + midX + '" y2="' + (H - M.bottom) + '"/>');
+    parts.push('<line class="baseline" x1="' + M.left + '" y1="' + midY + '" x2="' + (W - M.right) + '" y2="' + midY + '" stroke-dasharray="4 4"/>');
+
+    // axis ticks (x)
+    [-xMax, -xMax / 2, 0, xMax / 2, xMax].forEach(function (v) {
+      parts.push('<text class="tick" x="' + x(v) + '" y="' + (H - M.bottom + 16) + '" text-anchor="middle">' + v.toFixed(1) + '%</text>');
+    });
+    parts.push('<text class="axis-label" x="' + (W / 2) + '" y="' + (H - 6) + '" text-anchor="middle">Return, ' + period.toUpperCase() + '</text>');
+    parts.push('<text class="axis-label" x="14" y="' + (H / 2) + '" text-anchor="middle" transform="rotate(-90 14 ' + (H / 2) + ')">Volume ratio</text>');
+
+    // quadrant labels
+    parts.push('<text class="quad-label" x="' + (W - M.right - 6) + '" y="' + (M.top + 16) + '" text-anchor="end">Leading</text>');
+    parts.push('<text class="quad-label" x="' + (M.left + 6) + '" y="' + (M.top + 16) + '" text-anchor="start">Improving</text>');
+    parts.push('<text class="quad-label" x="' + (W - M.right - 6) + '" y="' + (H - M.bottom - 8) + '" text-anchor="end">Fading</text>');
+    parts.push('<text class="quad-label" x="' + (M.left + 6) + '" y="' + (H - M.bottom - 8) + '" text-anchor="start">Lagging</text>');
+
+    // points, direct-labeling only the 3 best and 3 worst by return
+    var sortedByRet = rs.slice().sort(function (a, b) { return b.ret[period] - a.ret[period]; });
+    var labelSet = {};
+    sortedByRet.slice(0, 3).concat(sortedByRet.slice(-3)).forEach(function (s) { labelSet[s.name] = true; });
+
+    rs.forEach(function (s) {
+      var cx = x(s.ret[period]), cy = y(s.vol[period]);
+      var up = s.ret[period] >= 0;
+      var color = up ? css("--up") : css("--down");
+      var label = labelSet[s.name] ? '<text class="direct-label" x="' + (cx + 10) + '" y="' + (cy + 4) + '">' + s.name.replace("Nifty ", "") + '</text>' : "";
+      parts.push('<g class="pt" tabindex="0" data-name="' + s.name + '" data-ret="' + s.ret[period] + '" data-vol="' + s.vol[period] + '">' +
+        '<circle cx="' + cx + '" cy="' + cy + '" r="7" fill="' + color + '" stroke="' + css("--surface") + '" stroke-width="2"><title>' + s.name + '</title></circle>' + label + '</g>');
+    });
+
+    svg.innerHTML = parts.join("");
+
+    Array.prototype.forEach.call(svg.querySelectorAll(".pt"), function (el) {
+      el.addEventListener("mousemove", function (e) { showTooltip(e, el); });
+      el.addEventListener("mouseleave", hideTooltip);
+      el.addEventListener("focus", function (e) { showTooltip(e, el, true); });
+      el.addEventListener("blur", hideTooltip);
+    });
+  }
+
+  function showTooltip(e, el, atElement) {
+    var name = el.getAttribute("data-name");
+    var ret = parseFloat(el.getAttribute("data-ret"));
+    var vol = parseFloat(el.getAttribute("data-vol"));
+    tooltip.innerHTML = '<div class="name">' + name + '</div>' +
+      '<div class="row"><span>Return</span><b class="' + (ret >= 0 ? "pos" : "neg") + '">' + (ret >= 0 ? "+" : "") + ret.toFixed(2) + '%</b></div>' +
+      '<div class="row"><span>Volume ratio</span><b>' + vol.toFixed(2) + '×</b></div>';
+    tooltip.style.display = "block";
+    var rect = atElement ? el.getBoundingClientRect() : { left: e.clientX, top: e.clientY, width: 0, height: 0 };
+    tooltip.style.left = Math.min(rect.left + rect.width / 2 + 10, window.innerWidth - 190) + "px";
+    tooltip.style.top = Math.max(rect.top - 8, 8) + "px";
+  }
+  function hideTooltip() { tooltip.style.display = "none"; }
+
+  document.getElementById("period-toggle").addEventListener("click", function (e) {
+    var btn = e.target.closest("button");
+    if (!btn) return;
+    period = btn.getAttribute("data-period");
+    Array.prototype.forEach.call(this.querySelectorAll("button"), function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
+    renderKpis(); renderChart();
+  });
+  document.getElementById("search").addEventListener("input", function (e) {
+    query = e.target.value;
+    renderKpis(); renderChart();
+  });
+
+  renderKpis();
+  renderChart();
+  window.addEventListener("resize", renderChart);
+})();
+</script>
+</body>
+</html>

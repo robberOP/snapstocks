@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zaggle Prepaid Ocean Services — Deep-Dive — SnapStocks</title>
+<meta name="description" content="Narrative deep-dive report: business quality, quarterly update log, and bull/base/bear cases for Zaggle." />
+<link rel="stylesheet" href="../../../assets/css/tokens.css" />
+<link rel="stylesheet" href="../../../assets/css/base.css" />
+<link rel="stylesheet" href="../../../assets/css/layout.css" />
+<link rel="stylesheet" href="../../../assets/css/components.css" />
+<style>
+  /* Deep-dive reports use a narrower serif-adjacent reading layout with a
+     sticky table-of-contents — distinct from the data-grid pages, but
+     built from the same tokens. This file is the pattern for every new
+     report under stock-analysis/deep-dive/. */
+  .report-shell { display:grid; grid-template-columns: 220px minmax(0,1fr); gap:0 40px; }
+  @media (max-width:880px){ .report-shell{ grid-template-columns:1fr; } .toc{ display:none; } }
+  .toc { position:sticky; top:calc(var(--nav-height) + 16px); align-self:start; padding-top:2px; }
+  .toc-label { font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); font-weight:700; margin-bottom:8px; }
+  .toc ol { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px; }
+  .toc a { display:flex; gap:8px; padding:6px 8px; border-radius:7px; font-size:0.8rem; color:var(--text-secondary); }
+  .toc a:hover { background:var(--surface-sunken); color:var(--text); text-decoration:none; }
+  .toc a .n { color:var(--text-muted); font-variant-numeric:tabular-nums; min-width:14px; }
+  main.report { min-width:0; }
+  main.report section { margin-bottom:44px; scroll-margin-top:calc(var(--nav-height) + 12px); }
+  .sec-head { display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+  .sec-num { color:var(--brand-600); font-size:0.85rem; font-weight:800; }
+  .sec-dek { color:var(--text-secondary); font-size:0.88rem; margin:6px 0 18px; max-width:70ch; }
+  .lede { font-size:1rem; color:var(--text-secondary); }
+  .case-card { border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface); }
+  .case-card h4 { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px; color:var(--text-muted); }
+  .case-card .px { font-size:1.7rem; font-weight:800; margin-bottom:2px; }
+  .case-card .rng { font-size:0.76rem; color:var(--text-muted); margin-bottom:12px; }
+  .case-card ul { margin:0; padding-left:16px; font-size:0.82rem; color:var(--text-secondary); display:flex; flex-direction:column; gap:5px; }
+  .case-card.bear { border-top:4px solid var(--down); }
+  .case-card.base { border-top:4px solid var(--brand-500); }
+  .case-card.bull { border-top:4px solid var(--up); }
+  .roster { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+  .person { padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface); }
+  .person .name { font-weight:700; font-size:0.9rem; }
+  .person .role { font-size:0.74rem; color:var(--brand-600); font-weight:600; margin:2px 0 6px; }
+  .person .bio { font-size:0.8rem; color:var(--text-secondary); }
+  .cover-chips { display:grid; grid-template-columns:repeat(auto-fit,minmax(126px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius-md); overflow:hidden; margin-top:22px; }
+  .cover-chip { background:var(--surface); padding:13px 15px; }
+  .cover-chip .k { font-size:0.68rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted); }
+  .cover-chip .v { font-size:1.05rem; font-weight:800; margin-top:3px; }
+  .ue-top { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px; }
+  .ue-date { font-weight:800; font-size:0.95rem; }
+  .ue-quarter { font-size:0.76rem; color:var(--text-muted); }
+  .metric-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(135px,1fr)); gap:10px; margin:12px 0 14px; }
+  .metric { padding:10px 12px; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--surface-sunken); }
+  .metric .k { font-size:0.66rem; text-transform:uppercase; color:var(--text-muted); letter-spacing:0.04em; }
+  .metric .v { font-size:1.02rem; font-weight:800; margin-top:2px; }
+  .ue-cols { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; }
+  @media (max-width:640px){ .ue-cols{ grid-template-columns:1fr; } }
+  .ue-col h5 { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; margin:0 0 6px; display:flex; align-items:center; gap:6px; }
+  .ue-col.good h5 { color:var(--up-strong); }
+  .ue-col.bad h5 { color:var(--down-strong); }
+  .ue-col ul { margin:0; padding-left:16px; font-size:0.82rem; color:var(--text-secondary); display:flex; flex-direction:column; gap:5px; }
+  blockquote { margin:16px 0; padding:2px 0 2px 18px; border-left:3px solid var(--brand-400); font-style:italic; font-size:0.95rem; color:var(--text); max-width:68ch; }
+</style>
+</head>
+<body>
+<div class="page-shell">
+
+  <header class="topnav">
+    <div class="container">
+      <a href="../../index.html" class="brand-mark">
+        <span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 8-10"/><path d="M15 5h6v6"/></svg></span>
+        <span class="wordmark">Snap<b>Stocks</b></span>
+      </a>
+      <nav class="nav-primary" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../../macro-analysis/index.html">Macro Analysis <span class="soon-dot" title="Coming soon"></span></a>
+        <a href="../../sector-analysis/index.html">Sector Analysis</a>
+        <a href="../index.html" aria-current="page">Stock Analysis</a>
+      </nav>
+      <div class="nav-actions">
+        <label class="nav-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search ticker or sector…" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="nav-drawer" data-nav-drawer aria-label="Mobile">
+      <a href="../../index.html">Home</a>
+      <a href="../../macro-analysis/index.html">Macro Analysis <span class="badge-soon">Soon</span></a>
+      <a href="../../sector-analysis/index.html">Sector Analysis</a>
+      <a href="../index.html">Stock Analysis</a>
+      <div class="drawer-sub">
+        <a href="../fundamentals/template.html">— Fundamentals</a>
+        <a href="zaggle.html">— Deep-Dive Reports</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="content">
+    <div class="page-header">
+      <div class="container">
+        <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Stock Analysis</a><span class="sep">/</span><span class="current">Zaggle — Deep-Dive</span></nav>
+        <nav class="subnav" aria-label="Stock Analysis views">
+          <a href="../fundamentals/template.html">Fundamentals View</a>
+          <a href="zaggle.html" aria-current="page">Deep-Dive Reports</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="section-body container">
+      <div class="report-shell">
+
+        <!-- ============== Cover ============== -->
+        <div style="grid-column:1/-1; padding-bottom:8px; border-bottom:1px solid var(--border); margin-bottom:8px;">
+          <span class="eyebrow"><svg class="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg>Deep-Dive Report</span>
+          <h1 style="font-size:clamp(1.6rem,4vw,2.3rem); margin-top:6px;">Zaggle: fast-growing, richly priced — the multiple now does the heavy lifting</h1>
+          <p class="dek" style="font-size:1rem; max-width:62ch;">Spend-management SaaS compounding revenue near 30–40% a year on a clean balance sheet. The open question isn't growth, it's whether operating leverage shows up before the multiple needs it to.</p>
+
+          <div class="cover-chips">
+            <div class="cover-chip"><div class="k">CMP</div><div class="v">₹412.60</div></div>
+            <div class="cover-chip"><div class="k">P/E (TTM)</div><div class="v">58.4x</div></div>
+            <div class="cover-chip"><div class="k">Mkt Cap</div><div class="v">₹6,842 Cr</div></div>
+            <div class="cover-chip"><div class="k">1Y Return</div><div class="v" style="color:var(--up-strong);">+18.4%</div></div>
+            <div class="cover-chip"><div class="k">Verdict</div><div class="v" style="color:var(--status-warning);">Mixed</div></div>
+          </div>
+        </div>
+
+        <!-- ============== TOC ============== -->
+        <nav class="toc" aria-label="Report sections">
+          <div class="toc-label">On this page</div>
+          <ol>
+            <li><a href="#latest-update"><span class="n">•</span>Latest Update</a></li>
+            <li><a href="#business"><span class="n">01</span>The Business</a></li>
+            <li><a href="#financials"><span class="n">02</span>Financial Snapshot</a></li>
+            <li><a href="#management"><span class="n">03</span>Management</a></li>
+            <li><a href="#risks"><span class="n">04</span>Key Risks</a></li>
+            <li><a href="#cases"><span class="n">05</span>Bull / Base / Bear</a></li>
+          </ol>
+        </nav>
+
+        <main class="report">
+
+          <!-- ============== Latest update band ============== -->
+          <section id="latest-update">
+            <div class="sec-head">
+              <h2>Latest Update</h2>
+              <span class="pill pill-critical"><span class="d"></span>Live</span>
+            </div>
+            <p class="sec-dek">Appended each time new results or filings land, newest first. The standing analysis below (§01–§05) is left as originally written as of the Q4 FY26 results — read this as a layer on top of it, not a replacement.</p>
+
+            <div class="card card-pad">
+              <div class="ue-top">
+                <span class="ue-date">14 Aug 2026</span>
+                <span class="ue-quarter"><b>Q1 FY27</b> (quarter ended 30 Jun 2026) · unaudited, limited review · released post-market</span>
+                <span class="pill pill-warning"><span class="d"></span>Mixed — cautious near-term</span>
+              </div>
+              <p style="margin-bottom:0;">Growth decelerated faster than guidance issued just three months ago, and the company posted its first year-on-year profit decline this report has tracked. About half the drag looks transitional per management's explanation — but missing fresh guidance in its very first quarter is the headline fact.</p>
+
+              <div class="metric-row">
+                <div class="metric"><div class="k">Revenue</div><div class="v">₹390 Cr</div><div class="dir up" style="font-size:0.74rem;">+17.7% YoY</div></div>
+                <div class="metric"><div class="k">EBITDA Margin</div><div class="v">8.2%</div><div class="dir down" style="font-size:0.74rem;">vs 10.1% Q1FY26</div></div>
+                <div class="metric"><div class="k">Net Profit</div><div class="v">₹17.5 Cr</div><div class="dir down" style="font-size:0.74rem;">&minus;32.9% YoY</div></div>
+                <div class="metric"><div class="k">Cash Profit</div><div class="v">₹30.6 Cr</div><div class="dir down" style="font-size:0.74rem;">&minus;12.4% YoY</div></div>
+              </div>
+
+              <div class="ue-cols">
+                <div class="ue-col good">
+                  <h5><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>What held up</h5>
+                  <ul>
+                    <li>New enterprise logo additions ran ahead of last year's pace.</li>
+                    <li>Net cash position grew despite the profit miss.</li>
+                  </ul>
+                </div>
+                <div class="ue-col bad">
+                  <h5><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>What didn't</h5>
+                  <ul>
+                    <li>Employee costs grew faster than revenue for the first time in six quarters.</li>
+                    <li>Guidance for FY27 margin expansion was quietly walked back.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============== Business ============== -->
+          <section id="business">
+            <div class="sec-head"><span class="sec-num">01</span><h2>The Business</h2></div>
+            <p class="sec-dek">What Zaggle actually sells, and why the unit economics work the way they do.</p>
+            <p class="lede">Zaggle runs a spend-management platform — prepaid cards, expense automation, and rewards infrastructure sold to mid-size and large Indian enterprises on a SaaS-plus-transaction-fee model.</p>
+            <p>Roughly 60% of revenue is subscription/platform fee, recurring and sticky once a company embeds Zaggle into its expense workflow; the remainder is transaction-linked, which is what has driven the recent growth acceleration as card spend volumes scale with each cohort of enterprise clients.</p>
+            <blockquote>"The switching cost isn't the software — it's the finance team's habit. Once expense approval routes through our platform, ripping it out is a project, not a decision." <cite>— Management commentary, Q4 FY26 earnings call</cite></blockquote>
+            <p>The competitive set spans point solutions (expense-only tools) and larger horizontal SaaS platforms bundling spend management as a feature — Zaggle's bet is that a purpose-built platform with card issuance built in beats either.</p>
+          </section>
+
+          <!-- ============== Financial snapshot ============== -->
+          <section id="financials">
+            <div class="sec-head"><span class="sec-num">02</span><h2>Financial Snapshot</h2></div>
+            <p class="sec-dek">Five-year trend — the full quarterly and annual tables live on the <a href="../fundamentals/template.html">Fundamentals page</a>; this is the shape of the story.</p>
+            <div class="table-scroll" style="border:1px solid var(--border); border-radius:var(--radius-md);">
+              <table class="data">
+                <thead><tr><th>FY</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+                <tbody>
+                  <tr><td class="name-cell">Revenue (₹Cr)</td><td>412</td><td>598</td><td>812</td><td>1,081</td><td>1,357</td></tr>
+                  <tr><td class="name-cell">OPM %</td><td>8.3%</td><td>8.7%</td><td>9.6%</td><td>10.3%</td><td>10.8%</td></tr>
+                  <tr><td class="name-cell">Net Profit (₹Cr)</td><td>18</td><td>29</td><td>46</td><td>67</td><td>88</td></tr>
+                  <tr><td class="name-cell">ROE %</td><td>8.1%</td><td>9.3%</td><td>9.8%</td><td>10.6%</td><td>11.2%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="margin-top:14px;">Five straight years of margin expansion is the strongest single data point in the file — it argues the business has real operating leverage, which makes the Q1 FY27 margin dip worth watching rather than dismissing.</p>
+          </section>
+
+          <!-- ============== Management ============== -->
+          <section id="management">
+            <div class="sec-head"><span class="sec-num">03</span><h2>Management</h2></div>
+            <p class="sec-dek">Track record and skin in the game.</p>
+            <div class="roster">
+              <div class="person"><div class="name">Raj Vasant (illustrative)</div><div class="role">Founder &amp; CEO</div><div class="bio">Founded the company in 2011; has not sold shares outside of scheduled ESOP vesting since listing.</div></div>
+              <div class="person"><div class="name">Priya Menon (illustrative)</div><div class="role">CFO</div><div class="bio">Joined FY24 from a listed fintech peer; first full year of guidance under her tenure was Q1 FY27's, which the company missed.</div></div>
+            </div>
+          </section>
+
+          <!-- ============== Risks ============== -->
+          <section id="risks">
+            <div class="sec-head"><span class="sec-num">04</span><h2>Key Risks</h2></div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div class="callout callout-flag"><span class="icon">⚠</span><div><b>Valuation is the biggest single risk</b>At 58x TTM earnings, any growth deceleration gets punished disproportionately — as the post-Q1 FY27 price action already showed.</div></div>
+              <div class="callout callout-note"><span class="icon">◆</span><div><b>Customer concentration is not disclosed granularly</b>Top-10-client revenue share isn't broken out in filings; worth asking about directly if sizing a large position.</div></div>
+              <div class="callout callout-pass"><span class="icon">✓</span><div><b>Balance sheet is not a risk</b>Net cash position and a Debt/Equity of 0.18 mean funding growth is not a constraint.</div></div>
+            </div>
+          </section>
+
+          <!-- ============== Bull / Base / Bear ============== -->
+          <section id="cases">
+            <div class="sec-head"><span class="sec-num">05</span><h2>Bull / Base / Bear</h2></div>
+            <p class="sec-dek">Where the stock plausibly goes from here, 12 months out.</p>
+            <div class="grid-3">
+              <div class="case-card bear">
+                <h4>Bear case</h4>
+                <div class="px" style="color:var(--down-strong);">₹280</div>
+                <div class="rng">&minus;32% from CMP</div>
+                <ul><li>Margin compression continues for 2+ more quarters</li><li>Multiple re-rates toward peer median (34x)</li><li>Growth decelerates below 20%</li></ul>
+              </div>
+              <div class="case-card base">
+                <h4>Base case</h4>
+                <div class="px">₹455</div>
+                <div class="rng">+10% from CMP</div>
+                <ul><li>Margin stabilizes near 10% by Q3 FY27</li><li>Revenue growth settles at 22–26%</li><li>Multiple holds roughly flat</li></ul>
+              </div>
+              <div class="case-card bull">
+                <h4>Bull case</h4>
+                <div class="px" style="color:var(--up-strong);">₹620</div>
+                <div class="rng">+50% from CMP</div>
+                <ul><li>Q1 FY27 margin dip proves transitional</li><li>Operating leverage resumes by FY28</li><li>Multiple re-rates on execution proof</li></ul>
+              </div>
+            </div>
+          </section>
+
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="legal">This report is illustrative sample content demonstrating the SnapStocks deep-dive format. Figures are for design purposes, not investment research.</p>
+    </div>
+  </footer>
+</div>
+<script src="../../../assets/js/nav.js"></script>
+<script src="../../../assets/js/theme.js"></script>
+</body>
+</html>

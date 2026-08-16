@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sector Analysis — SnapStocks</title>
+<meta name="description" content="Sector and industry momentum for the Indian market — chart, table, and rotation views." />
+<link rel="stylesheet" href="../../assets/css/tokens.css" />
+<link rel="stylesheet" href="../../assets/css/base.css" />
+<link rel="stylesheet" href="../../assets/css/layout.css" />
+<link rel="stylesheet" href="../../assets/css/components.css" />
+</head>
+<body>
+<div class="page-shell">
+
+  <header class="topnav">
+    <div class="container">
+      <a href="../index.html" class="brand-mark">
+        <span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 8-10"/><path d="M15 5h6v6"/></svg></span>
+        <span class="wordmark">Snap<b>Stocks</b></span>
+      </a>
+      <nav class="nav-primary" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="../macro-analysis/index.html">Macro Analysis <span class="soon-dot" title="Coming soon"></span></a>
+        <a href="index.html" aria-current="page">Sector Analysis</a>
+        <a href="../stock-analysis/index.html">Stock Analysis</a>
+      </nav>
+      <div class="nav-actions">
+        <label class="nav-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search ticker or sector…" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="nav-drawer" data-nav-drawer aria-label="Mobile">
+      <a href="../index.html">Home</a>
+      <a href="../macro-analysis/index.html">Macro Analysis <span class="badge-soon">Soon</span></a>
+      <a href="index.html">Sector Analysis</a>
+      <div class="drawer-sub">
+        <a href="momentum-chart.html">— Momentum Chart</a>
+        <a href="momentum-table.html">— Momentum Table</a>
+        <a href="rotation.html">— Rotation Graphs</a>
+      </div>
+      <a href="../stock-analysis/index.html">Stock Analysis</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <div class="page-header">
+      <div class="container">
+        <nav class="breadcrumbs"><a href="../index.html">Home</a><span class="sep">/</span><span class="current">Sector Analysis</span></nav>
+        <div class="page-header-row">
+          <div>
+            <span class="eyebrow"><svg class="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg>Sector Analysis</span>
+            <h1>Which sectors and industries are actually moving</h1>
+            <p class="dek">Sector-wise and industry-wise returns, so you can confirm a stock-level setup is backed by group strength before you take the trade.</p>
+          </div>
+          <div class="as-of">Averaged across mapped stocks<br/><b>Updated 14 Aug 2026, 17:30 IST</b></div>
+        </div>
+        <nav class="subnav" aria-label="Sector Analysis views">
+          <a href="momentum-chart.html">Momentum Chart</a>
+          <a href="momentum-table.html">Momentum Table</a>
+          <a href="rotation.html" class="disabled">Rotation Graphs <span class="badge-soon">Soon</span></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="section-body container">
+
+      <div class="nav-grid">
+        <a href="momentum-chart.html" class="card card-link nav-card">
+          <span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="16" r="2"/><circle cx="14" cy="8" r="2"/><circle cx="19" cy="13" r="2"/><path d="M3 3v18h18" opacity="0.35"/></svg></span>
+          <h3>Momentum Chart</h3>
+          <p>A return-vs-volume quadrant — leaders, laggards, and sectors turning either way, plotted across five timeframes.</p>
+          <div class="sub-list"><div class="row"><span>Type</span><span>Scatter / quadrant</span></div><div class="row"><span>Status</span><span class="pill pill-good" style="padding:1px 7px;"><span class="d"></span>Live</span></div></div>
+        </a>
+        <a href="momentum-table.html" class="card card-link nav-card">
+          <span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <h3>Momentum Table</h3>
+          <p>The same dataset, sortable and scannable — every sector's return across five timeframes plus volume ratio, side by side.</p>
+          <div class="sub-list"><div class="row"><span>Type</span><span>Sortable table</span></div><div class="row"><span>Status</span><span class="pill pill-good" style="padding:1px 7px;"><span class="d"></span>Live</span></div></div>
+        </a>
+        <a href="rotation.html" class="card card-link nav-card">
+          <span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 1 3 6.2"/><path d="M4 18v-4h4"/></svg></span>
+          <h3>Rotation Graphs <span class="badge-soon">Coming soon</span></h3>
+          <p>Sector trails over time on the RRG-style quadrant, so you can see rotation from lagging into leading as it happens.</p>
+          <div class="sub-list"><div class="row"><span>Type</span><span>Relative rotation graph</span></div><div class="row"><span>Status</span><span class="badge-soon">Soon</span></div></div>
+        </a>
+      </div>
+
+      <div class="ai-note">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg></span>
+        <div>
+          <b>How to read this section —</b>
+          <p>Start with the chart for a shape of the market, switch to the table when you need exact numbers to sort or filter by, and use rotation graphs (once live) to see whether a sector is freshly turning up or already stretched.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="cols">
+        <div><h5>Analysis</h5><ul><li><a href="../macro-analysis/index.html">Macro Analysis</a></li><li><a href="index.html">Sector Analysis</a></li><li><a href="../stock-analysis/index.html">Stock Analysis</a></li></ul></div>
+        <div><h5>Sector Analysis</h5><ul><li><a href="momentum-chart.html">Momentum Chart</a></li><li><a href="momentum-table.html">Momentum Table</a></li><li><a href="rotation.html">Rotation Graphs</a></li></ul></div>
+        <div><h5>Stock Analysis</h5><ul><li><a href="../stock-analysis/fundamentals/template.html">Fundamentals View</a></li><li><a href="../stock-analysis/deep-dive/zaggle.html">Deep-Dive Reports</a></li></ul></div>
+      </div>
+      <p class="legal">SnapStocks is an analysis and research tool for Indian equities. Nothing here is investment advice.</p>
+    </div>
+  </footer>
+</div>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/theme.js"></script>
+</body>
+</html>

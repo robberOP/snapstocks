@@ -1,0 +1,56 @@
+<!--
+  Reference partial — SnapStocks top nav.
+  This is a static site with no template/include engine yet, so every page
+  inlines this markup verbatim inside <body> (see DESIGN.md → "No build
+  step, on purpose"). Keep this file in sync as the source of truth; when a
+  build step is introduced, this becomes the literal partial.
+
+  Placeholders to fill per page:
+    {{ACTIVE_HOME}} {{ACTIVE_MACRO}} {{ACTIVE_SECTOR}} {{ACTIVE_STOCK}}
+      → aria-current="page" on the active top-level item
+    {{ASSET_PREFIX}} → "../" depth back to /snapstocks/assets/ from the page
+-->
+<header class="topnav">
+  <div class="container">
+    <a href="{{ASSET_PREFIX}}../pages/index.html" class="brand-mark">
+      <span class="logo-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 8-10"/><path d="M15 5h6v6"/></svg>
+      </span>
+      <span class="wordmark">Snap<b>Stocks</b></span>
+    </a>
+
+    <nav class="nav-primary" aria-label="Primary">
+      <a href="{{ASSET_PREFIX}}../pages/index.html" {{ACTIVE_HOME}}>Home</a>
+      <a href="{{ASSET_PREFIX}}../pages/macro-analysis/index.html" {{ACTIVE_MACRO}}>Macro Analysis <span class="soon-dot" title="Coming soon"></span></a>
+      <a href="{{ASSET_PREFIX}}../pages/sector-analysis/index.html" {{ACTIVE_SECTOR}}>Sector Analysis</a>
+      <a href="{{ASSET_PREFIX}}../pages/stock-analysis/index.html" {{ACTIVE_STOCK}}>Stock Analysis</a>
+    </nav>
+
+    <div class="nav-actions">
+      <label class="nav-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search ticker or sector…" autocomplete="off" />
+        <kbd>/</kbd>
+      </label>
+      <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav-drawer" data-nav-drawer aria-label="Mobile">
+    <a href="{{ASSET_PREFIX}}../pages/index.html">Home</a>
+    <a href="{{ASSET_PREFIX}}../pages/macro-analysis/index.html">Macro Analysis <span class="badge-soon">Soon</span></a>
+    <a href="{{ASSET_PREFIX}}../pages/sector-analysis/index.html">Sector Analysis</a>
+    <div class="drawer-sub">
+      <a href="{{ASSET_PREFIX}}../pages/sector-analysis/momentum-chart.html">— Momentum Chart</a>
+      <a href="{{ASSET_PREFIX}}../pages/sector-analysis/momentum-table.html">— Momentum Table</a>
+      <a href="{{ASSET_PREFIX}}../pages/sector-analysis/rotation.html">— Rotation Graphs</a>
+    </div>
+    <a href="{{ASSET_PREFIX}}../pages/stock-analysis/index.html">Stock Analysis</a>
+    <div class="drawer-sub">
+      <a href="{{ASSET_PREFIX}}../pages/stock-analysis/fundamentals/template.html">— Fundamentals</a>
+      <a href="{{ASSET_PREFIX}}../pages/stock-analysis/deep-dive/zaggle.html">— Deep-Dive Reports</a>
+    </div>
+  </nav>
+</header>

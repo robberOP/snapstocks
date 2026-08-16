@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sector Momentum Table — SnapStocks</title>
+<meta name="description" content="Sortable sector return and volume-ratio table across five timeframes." />
+<link rel="stylesheet" href="../../assets/css/tokens.css" />
+<link rel="stylesheet" href="../../assets/css/base.css" />
+<link rel="stylesheet" href="../../assets/css/layout.css" />
+<link rel="stylesheet" href="../../assets/css/components.css" />
+</head>
+<body>
+<div class="page-shell">
+
+  <header class="topnav">
+    <div class="container">
+      <a href="../index.html" class="brand-mark">
+        <span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 8-10"/><path d="M15 5h6v6"/></svg></span>
+        <span class="wordmark">Snap<b>Stocks</b></span>
+      </a>
+      <nav class="nav-primary" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="../macro-analysis/index.html">Macro Analysis <span class="soon-dot" title="Coming soon"></span></a>
+        <a href="index.html" aria-current="page">Sector Analysis</a>
+        <a href="../stock-analysis/index.html">Stock Analysis</a>
+      </nav>
+      <div class="nav-actions">
+        <label class="nav-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search ticker or sector…" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="nav-drawer" data-nav-drawer aria-label="Mobile">
+      <a href="../index.html">Home</a>
+      <a href="../macro-analysis/index.html">Macro Analysis <span class="badge-soon">Soon</span></a>
+      <a href="index.html">Sector Analysis</a>
+      <div class="drawer-sub">
+        <a href="momentum-chart.html">— Momentum Chart</a>
+        <a href="momentum-table.html">— Momentum Table</a>
+        <a href="rotation.html">— Rotation Graphs</a>
+      </div>
+      <a href="../stock-analysis/index.html">Stock Analysis</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <div class="page-header">
+      <div class="container">
+        <nav class="breadcrumbs"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Sector Analysis</a><span class="sep">/</span><span class="current">Momentum Table</span></nav>
+        <div class="page-header-row">
+          <div>
+            <span class="eyebrow"><svg class="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg>Sector Analysis</span>
+            <h1>Sector Momentum — Table</h1>
+            <p class="dek">Same dataset as the chart view, in a sortable table — click any column header to sort.</p>
+          </div>
+          <div class="as-of">EOD momentum scan<br/><b>Updated 14 Aug 2026, 17:30 IST</b></div>
+        </div>
+        <nav class="subnav" aria-label="Sector Analysis views">
+          <a href="momentum-chart.html">Momentum Chart</a>
+          <a href="momentum-table.html" aria-current="page">Momentum Table</a>
+          <a href="rotation.html" class="disabled">Rotation Graphs <span class="badge-soon">Soon</span></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="section-body container">
+
+      <div class="controls">
+        <div class="seg" id="group-toggle" role="group" aria-label="Group by">
+          <button type="button" data-group="sector" aria-pressed="true">Sector</button>
+          <button type="button" data-group="industry" aria-pressed="false" disabled title="Industry drill-down coming soon">Industry</button>
+        </div>
+        <div class="search-field" style="flex:1 1 220px; max-width:280px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="search" type="text" placeholder="Filter sectors…" autocomplete="off" />
+        </div>
+        <span class="spacer"></span>
+        <span class="hint">Prefer a visual? <a href="momentum-chart.html">Open the chart view</a>.</span>
+      </div>
+
+      <div class="table-shell">
+        <div class="table-scroll">
+          <table class="data" id="momentum-table">
+            <thead>
+              <tr>
+                <th class="sortable" data-key="name" aria-sort="none">Sector</th>
+                <th class="sortable" data-key="1d" aria-sort="none">1D <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="2d" aria-sort="none">2D <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="1w" aria-sort="descending">1W <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="1m" aria-sort="none">1M <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="3m" aria-sort="none">3M <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="vol" aria-sort="none">Vol Ratio (1W) <span class="arrow">↕</span></th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+            <caption>Return = average trading-day return across each sector's mapped stocks. Volume ratio = 1W avg. volume ÷ trailing 5W avg. volume.</caption>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="cols">
+        <div><h5>Analysis</h5><ul><li><a href="../macro-analysis/index.html">Macro Analysis</a></li><li><a href="index.html">Sector Analysis</a></li><li><a href="../stock-analysis/index.html">Stock Analysis</a></li></ul></div>
+        <div><h5>Sector Analysis</h5><ul><li><a href="momentum-chart.html">Momentum Chart</a></li><li><a href="momentum-table.html">Momentum Table</a></li><li><a href="rotation.html">Rotation Graphs</a></li></ul></div>
+        <div><h5>Stock Analysis</h5><ul><li><a href="../stock-analysis/fundamentals/template.html">Fundamentals View</a></li><li><a href="../stock-analysis/deep-dive/zaggle.html">Deep-Dive Reports</a></li></ul></div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/theme.js"></script>
+<script src="../../assets/js/sector-momentum-data.js"></script>
+<script>
+(function () {
+  var DATA = window.SNAPSTOCKS_SECTOR_MOMENTUM;
+  var sortKey = "1w", sortDir = -1, query = "";
+
+  function magClass(v) {
+    var a = Math.abs(v);
+    var tier = a > 3 ? "strong" : a > 1 ? "mid" : "soft";
+    var side = v >= 0 ? "up" : "down";
+    return side + "-" + tier;
+  }
+  var TIER_BG = {
+    "up-strong": "var(--up-tint-strong)", "up-mid": "var(--up-tint)", "up-soft": "var(--up-tint)",
+    "down-strong": "var(--down-tint-strong)", "down-mid": "var(--down-tint)", "down-soft": "var(--down-tint)"
+  };
+  var TIER_TEXT = {
+    "up-strong": "var(--up-strong)", "up-mid": "var(--up-strong)", "up-soft": "var(--up-strong)",
+    "down-strong": "var(--down-strong)", "down-mid": "var(--down-strong)", "down-soft": "var(--down-strong)"
+  };
+
+  function retCell(v) {
+    var cls = magClass(v);
+    return '<td><span class="mag-cell" style="background:' + TIER_BG[cls] + ';color:' + TIER_TEXT[cls] + '">' + (v >= 0 ? "+" : "") + v.toFixed(2) + "%</span></td>";
+  }
+
+  function rows() {
+    var rs = DATA.sectors.filter(function (s) { return s.name.toLowerCase().indexOf(query.toLowerCase()) !== -1; });
+    rs.sort(function (a, b) {
+      var av = sortKey === "name" ? a.name : (sortKey === "vol" ? a.vol["1w"] : a.ret[sortKey]);
+      var bv = sortKey === "name" ? b.name : (sortKey === "vol" ? b.vol["1w"] : b.ret[sortKey]);
+      if (sortKey === "name") return av.localeCompare(bv) * sortDir;
+      return (av - bv) * sortDir;
+    });
+    return rs;
+  }
+
+  function render() {
+    var rs = rows();
+    document.getElementById("tbody").innerHTML = rs.map(function (s) {
+      return "<tr>" +
+        '<td class="name-cell">' + s.name + "</td>" +
+        retCell(s.ret["1d"]) + retCell(s.ret["2d"]) + retCell(s.ret["1w"]) + retCell(s.ret["1m"]) + retCell(s.ret["3m"]) +
+        "<td>" + s.vol["1w"].toFixed(2) + "×</td>" +
+        "</tr>";
+    }).join("");
+  }
+
+  document.querySelectorAll("th.sortable").forEach(function (th) {
+    th.addEventListener("click", function () {
+      var key = th.getAttribute("data-key");
+      if (sortKey === key) { sortDir *= -1; } else { sortKey = key; sortDir = key === "name" ? 1 : -1; }
+      document.querySelectorAll("th.sortable").forEach(function (t) { t.setAttribute("aria-sort", "none"); });
+      th.setAttribute("aria-sort", sortDir === 1 ? "ascending" : "descending");
+      render();
+    });
+  });
+  document.getElementById("search").addEventListener("input", function (e) { query = e.target.value; render(); });
+
+  render();
+})();
+</script>
+</body>
+</html>

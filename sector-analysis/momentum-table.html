@@ -4,11 +4,15 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sector Momentum Table — SnapStocks</title>
-<meta name="description" content="Sortable sector return and volume-ratio table across five timeframes." />
+<meta name="description" content="Sortable sector/industry return and volume-ratio table across five timeframes." />
 <link rel="stylesheet" href="/assets/css/tokens.css" />
 <link rel="stylesheet" href="/assets/css/base.css" />
 <link rel="stylesheet" href="/assets/css/layout.css" />
 <link rel="stylesheet" href="/assets/css/components.css" />
+<style>
+  .covbadge { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); }
+  .covbadge.partial { color: var(--status-warning); }
+</style>
 </head>
 <body>
 <div class="page-shell">
@@ -59,7 +63,7 @@
             <h1>Sector Momentum — Table</h1>
             <p class="dek">Same dataset as the chart view, in a sortable table — click any column header to sort.</p>
           </div>
-          <div class="as-of">EOD momentum scan<br/><b>Updated 14 Aug 2026, 17:30 IST</b></div>
+          <div class="as-of">EOD momentum scan<br/><b id="as-of-date">Loading…</b></div>
         </div>
         <nav class="subnav" aria-label="Sector Analysis views">
           <a href="/sector-analysis/momentum-chart.html">Momentum Chart</a>
@@ -74,11 +78,18 @@
       <div class="controls">
         <div class="seg" id="group-toggle" role="group" aria-label="Group by">
           <button type="button" data-group="sector" aria-pressed="true">Sector</button>
-          <button type="button" data-group="industry" aria-pressed="false" disabled title="Industry drill-down coming soon">Industry</button>
+          <button type="button" data-group="industry" aria-pressed="false">Industry</button>
+        </div>
+        <div class="seg" id="period-toggle" role="group" aria-label="Status timeframe">
+          <button type="button" data-period="1d" aria-pressed="false">1D</button>
+          <button type="button" data-period="2d" aria-pressed="false">2D</button>
+          <button type="button" data-period="1w" aria-pressed="true">1W</button>
+          <button type="button" data-period="1m" aria-pressed="false">1M</button>
+          <button type="button" data-period="3m" aria-pressed="false">3M</button>
         </div>
         <div class="search-field" style="flex:1 1 220px; max-width:280px;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input id="search" type="text" placeholder="Filter sectors…" autocomplete="off" />
+          <input id="search" type="text" placeholder="Filter…" autocomplete="off" />
         </div>
         <span class="spacer"></span>
         <span class="hint">Prefer a visual? <a href="/sector-analysis/momentum-chart.html">Open the chart view</a>.</span>
@@ -89,17 +100,25 @@
           <table class="data" id="momentum-table">
             <thead>
               <tr>
-                <th class="sortable" data-key="name" aria-sort="none">Sector</th>
-                <th class="sortable" data-key="1d" aria-sort="none">1D <span class="arrow">↕</span></th>
-                <th class="sortable" data-key="2d" aria-sort="none">2D <span class="arrow">↕</span></th>
-                <th class="sortable" data-key="1w" aria-sort="descending">1W <span class="arrow">↕</span></th>
-                <th class="sortable" data-key="1m" aria-sort="none">1M <span class="arrow">↕</span></th>
-                <th class="sortable" data-key="3m" aria-sort="none">3M <span class="arrow">↕</span></th>
-                <th class="sortable" data-key="vol" aria-sort="none">Vol Ratio (1W) <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="name" aria-sort="none">Name</th>
+                <th class="sortable" data-key="coverage" aria-sort="none">Coverage <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="status" aria-sort="none">Status <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="breadth_1d" aria-sort="none">Breadth 1D <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="breadth_1w" aria-sort="none">Breadth 1W <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="ret_1d" aria-sort="none">Ret 1D <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="vol_1d" aria-sort="none">Vol 1D/5D <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="ret_2d" aria-sort="none">Ret 2D <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="vol_2d" aria-sort="none">Vol 2D/5D <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="ret_1w" aria-sort="descending">Ret 1W <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="vol_1w" aria-sort="none">Vol 1W/4W <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="ret_1m" aria-sort="none">Ret 1M <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="vol_1m" aria-sort="none">Vol 1M/3M <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="ret_3m" aria-sort="none">Ret 3M <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="vol_3m" aria-sort="none">Vol 3M/12M <span class="arrow">↕</span></th>
               </tr>
             </thead>
             <tbody id="tbody"></tbody>
-            <caption>Return = average trading-day return across each sector's mapped stocks. Volume ratio = 1W avg. volume ÷ trailing 5W avg. volume.</caption>
+            <caption>Return = average trading-day return across each group's mapped stocks. Each period's volume ratio compares that period's own trailing average volume to a longer lookback (1D→5D avg, 2D→5D avg, 1W→4W avg, 1M→3M avg, 3M→12M avg). Status uses the timeframe selected above. Coverage = stocks with price data / stocks mapped to this group.</caption>
           </table>
         </div>
       </div>
@@ -123,8 +142,26 @@
 <script src="/assets/js/sector-momentum-data.js"></script>
 <script>
 (function () {
-  var DATA = window.SNAPSTOCKS_SECTOR_MOMENTUM;
-  var sortKey = "1w", sortDir = -1, query = "";
+  var DATA = null;
+  var state = { group: "sector", period: "1w", query: "", sortKey: "ret_1w", sortDir: -1 };
+
+  var STATUS_META = {
+    good:     { pill: "pill-good",     label: "Confirmed up" },
+    warning:  { pill: "pill-warning",  label: "Light-vol rally" },
+    critical: { pill: "pill-critical", label: "Heavy selling" },
+    serious:  { pill: "pill-serious",  label: "Quiet pullback" },
+    unknown:  { pill: "pill-neutral",  label: "No data" }
+  };
+
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+
+  function classifyStatus(ret, vol) {
+    if (ret === null || ret === undefined || vol === null || vol === undefined) return "unknown";
+    if (ret >= 0 && vol >= 1) return "good";
+    if (ret >= 0 && vol < 1) return "warning";
+    if (ret < 0 && vol >= 1) return "critical";
+    return "serious";
+  }
 
   function magClass(v) {
     var a = Math.abs(v);
@@ -142,44 +179,105 @@
   };
 
   function retCell(v) {
+    if (v === null || v === undefined) return '<td><span style="color:var(--text-muted)">—</span></td>';
     var cls = magClass(v);
     return '<td><span class="mag-cell" style="background:' + TIER_BG[cls] + ';color:' + TIER_TEXT[cls] + '">' + (v >= 0 ? "+" : "") + v.toFixed(2) + "%</span></td>";
   }
+  function volCell(v) {
+    if (v === null || v === undefined) return '<td><span style="color:var(--text-muted)">—</span></td>';
+    return "<td>" + v.toFixed(2) + "×</td>";
+  }
+  function breadthCell(v) {
+    if (v === null || v === undefined) return '<td><span style="color:var(--text-muted)">—</span></td>';
+    return "<td>" + v.toFixed(0) + "%</td>";
+  }
+
+  function sortValue(row, key) {
+    if (key === "name") return row.name;
+    if (key === "coverage") return row.n_mapped ? row.n_with_data / row.n_mapped : 0;
+    if (key === "status") return classifyStatus(row.ret[state.period], row.vol_ratio[state.period]);
+    if (key === "breadth_1d") return row.breadth["1d"];
+    if (key === "breadth_1w") return row.breadth["1w"];
+    if (key.indexOf("ret_") === 0) return row.ret[key.slice(4)];
+    if (key.indexOf("vol_") === 0) return row.vol_ratio[key.slice(4)];
+    return null;
+  }
 
   function rows() {
-    var rs = DATA.sectors.filter(function (s) { return s.name.toLowerCase().indexOf(query.toLowerCase()) !== -1; });
-    rs.sort(function (a, b) {
-      var av = sortKey === "name" ? a.name : (sortKey === "vol" ? a.vol["1w"] : a.ret[sortKey]);
-      var bv = sortKey === "name" ? b.name : (sortKey === "vol" ? b.vol["1w"] : b.ret[sortKey]);
-      if (sortKey === "name") return av.localeCompare(bv) * sortDir;
-      return (av - bv) * sortDir;
+    var all = DATA[state.group] || [];
+    var q = state.query.trim().toLowerCase();
+    var filtered = q ? all.filter(function (r) { return r.name.toLowerCase().indexOf(q) !== -1; }) : all.slice();
+    filtered.sort(function (a, b) {
+      var av = sortValue(a, state.sortKey), bv = sortValue(b, state.sortKey);
+      if (typeof av === "string" || typeof bv === "string") {
+        av = av == null ? "" : String(av);
+        bv = bv == null ? "" : String(bv);
+        return av.localeCompare(bv) * state.sortDir;
+      }
+      av = (av === null || av === undefined) ? -Infinity : av;
+      bv = (bv === null || bv === undefined) ? -Infinity : bv;
+      return (av - bv) * state.sortDir;
     });
-    return rs;
+    return filtered;
   }
 
   function render() {
     var rs = rows();
-    document.getElementById("tbody").innerHTML = rs.map(function (s) {
+    document.getElementById("tbody").innerHTML = rs.map(function (r) {
+      var status = classifyStatus(r.ret[state.period], r.vol_ratio[state.period]);
+      var sm = STATUS_META[status];
+      var missing = Math.max(0, r.n_mapped - r.n_with_data);
+      var cov = '<span class="covbadge' + (missing > 0 ? " partial" : "") + '">' + r.n_with_data + '/' + r.n_mapped + '</span>';
+      var pill = '<span class="pill ' + sm.pill + '"><span class="d"></span>' + sm.label + '</span>';
       return "<tr>" +
-        '<td class="name-cell">' + s.name + "</td>" +
-        retCell(s.ret["1d"]) + retCell(s.ret["2d"]) + retCell(s.ret["1w"]) + retCell(s.ret["1m"]) + retCell(s.ret["3m"]) +
-        "<td>" + s.vol["1w"].toFixed(2) + "×</td>" +
+        '<td class="name-cell">' + esc(r.name) + "</td>" +
+        "<td>" + cov + "</td>" +
+        "<td>" + pill + "</td>" +
+        breadthCell(r.breadth["1d"]) + breadthCell(r.breadth["1w"]) +
+        retCell(r.ret["1d"]) + volCell(r.vol_ratio["1d"]) +
+        retCell(r.ret["2d"]) + volCell(r.vol_ratio["2d"]) +
+        retCell(r.ret["1w"]) + volCell(r.vol_ratio["1w"]) +
+        retCell(r.ret["1m"]) + volCell(r.vol_ratio["1m"]) +
+        retCell(r.ret["3m"]) + volCell(r.vol_ratio["3m"]) +
         "</tr>";
     }).join("");
   }
 
+  document.getElementById("group-toggle").addEventListener("click", function (e) {
+    var btn = e.target.closest("button");
+    if (!btn) return;
+    state.group = btn.getAttribute("data-group");
+    Array.prototype.forEach.call(this.querySelectorAll("button"), function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
+    render();
+  });
+  document.getElementById("period-toggle").addEventListener("click", function (e) {
+    var btn = e.target.closest("button");
+    if (!btn) return;
+    state.period = btn.getAttribute("data-period");
+    Array.prototype.forEach.call(this.querySelectorAll("button"), function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
+    render();
+  });
+  document.getElementById("search").addEventListener("input", function (e) { state.query = e.target.value; render(); });
+
   document.querySelectorAll("th.sortable").forEach(function (th) {
     th.addEventListener("click", function () {
       var key = th.getAttribute("data-key");
-      if (sortKey === key) { sortDir *= -1; } else { sortKey = key; sortDir = key === "name" ? 1 : -1; }
+      if (state.sortKey === key) { state.sortDir *= -1; } else { state.sortKey = key; state.sortDir = key === "name" ? 1 : -1; }
       document.querySelectorAll("th.sortable").forEach(function (t) { t.setAttribute("aria-sort", "none"); });
-      th.setAttribute("aria-sort", sortDir === 1 ? "ascending" : "descending");
+      th.setAttribute("aria-sort", state.sortDir === 1 ? "ascending" : "descending");
       render();
     });
   });
-  document.getElementById("search").addEventListener("input", function (e) { query = e.target.value; render(); });
 
-  render();
+  loadSectorMomentum().then(function (data) {
+    DATA = data;
+    document.getElementById("as-of-date").textContent = "As of " + data.as_of;
+    render();
+  }).catch(function (err) {
+    document.getElementById("as-of-date").textContent = "Data unavailable";
+    document.getElementById("tbody").innerHTML = '<tr><td colspan="15"><div class="callout callout-flag"><span class="icon">!</span><div><b>Couldn’t load momentum data.</b> ' + esc(err.message) + '</div></div></td></tr>';
+    console.error(err);
+  });
 })();
 </script>
 </body>

@@ -1,0 +1,942 @@
+<title>Optiemus Infracom</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Electronics Manufacturing Services (EMS) / Mobile &amp; Telecom Accessories</div>
+    <h1>Optiemus Infracom Limited</h1>
+    <p class="sub">BSE: 530135 &middot; NSE: OPTIEMUS &middot; FY2023&ndash;FY2027 performance review, investor-presentation synthesis, and forward scenario framework, as of 17 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> FY26 was a deliberate reset &mdash; management exited volatile local-brand contracts and let revenue shrink 6.4% while quietly expanding margin &mdash; and Q1 FY27 delivered the payoff: revenue more than doubled on a single new EMS contract (the AI+ smartphone program), but EBITDA margin nearly halved in the same quarter, operating cash flow has now been negative for two straight years despite rising profit, debt has nearly doubled, and the stock itself round-tripped from &#8377;505 to &#8377;288 to &#8377;554 inside seven months. The company is mid-way through funding four new, capex-heavy growth bets (cover glass, screen protectors, drones, EMS scale-up) simultaneously, on a balance sheet that is increasingly debt-funded, with essentially zero independent analyst coverage watching it.
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (17 Aug 26)</div><div class="v">&#8377;554.35</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;4,948 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;288 &ndash; &#8377;713</div></div>
+      <div class="chip"><div class="k">Q1FY27 Revenue</div><div class="v pos">+103% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 EBITDA Margin</div><div class="v neg">4.68% <span style="font-size:11px;">(vs 6.80%)</span></div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT</div><div class="v pos">+46% YoY</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">68.6x</div></div>
+      <div class="chip"><div class="k">FY26 Operating Cash Flow</div><div class="v neg">&minus;&#8377;12.2 Cr</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage:</b> BSE filings in this dataset span 21&nbsp;Feb&ndash;11&nbsp;Aug 2026 &mdash; one full results cycle (Q4/FY26, reported 30 May 2026) plus Q1FY27 (reported 4 Aug 2026) and the newsflow since. There is no earnings-call transcript in this dataset for either quarter &mdash; only the audited/reviewed financial statements, the investor presentations (which include a chairman's written message and section-by-section "growth blueprint"), and BSE regulatory filings. The AnnualStatementsConv and QuarterlyStatementsConv folders for this company are empty, so pre-FY26 quarterly trend and any FY25-and-earlier guidance history could not be sourced from primary filings; those gaps are flagged inline wherever they matter, and multi-year figures instead lean on yfinance's annual statements (which themselves have gaps before FY23) and on historical tables the company republishes inside its own FY26 presentation. Sell-side coverage is effectively nil: institutional holding is 1.21% and yfinance records no analyst recommendation or price target.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Call &amp; disclosure insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What Optiemus does, and how it has grown</h2></div>
+      <p class="sec-dek">A trading-and-distribution business bolted onto an increasingly large contract-manufacturing (EMS) engine, now betting heavily on moving up the value chain into components and its own B2C brands.</p>
+
+      <p class="lede">Incorporated in 1993 as Akanksha Cellular Limited and renamed Optiemus Infracom in June 2011, the Noida-headquartered company operates through two reported segments &mdash; <b>Trading &amp; Distribution</b> (importing and distributing mobile handsets and accessories in India and abroad) and <b>Manufacturing / EMS</b> (contract manufacturing of mobile phones, hearables &amp; wearables, IT hardware, telecom equipment and, more recently, drones). The manufacturing side has grown from a minority contributor into the dominant one: it was ~71% of consolidated net segment revenue in Q1 FY26 and had risen to ~85% by Q1 FY27, entirely on the back of one large new EMS contract described below.</p>
+
+      <h3>Group structure</h3>
+      <p>Optiemus operates through a wide subsidiary/JV web, all consolidated: <b>Optiemus Electronics Limited (OEL, 100%)</b> &mdash; the main EMS arm, two (soon three) manufacturing units in Noida; <b>GDN Enterprises (100%)</b> &mdash; a second EMS unit and PLI (Production-Linked Incentive) scheme beneficiary; <b>Bharat Innovative Glass Technologies / "BIGTech" (70%, JV with Corning Incorporated)</b> &mdash; a new cover-glass plant in Tamil Nadu; <b>Optiemus Unmanned Systems (100%)</b> &mdash; drones; plus smaller/newer entities (Optiemus Display Technology, Optiemus Vision Technology, Optiemus Micro Electronics, XO Ventures, all 100%), <b>Troosol Enterprises</b> and <b>Fine MS Electronics</b> (60% each), a 74%-held step-down subsidiary (Optiemus Telecommunication), a 46.22% associate (Teleecare Network India) and a 90% joint venture (Win Technology), plus a wholly owned Singapore trading entity.</p>
+
+      <h3>The moat, as the company frames it</h3>
+      <p>Four claims recur across the filings: (i) <b>#1 position in Hearables &amp; Wearables (H&amp;W) manufacturing in India</b>, "trusted by premium global brands" &mdash; a company-sourced claim with no independent third-party verification found in this dataset; (ii) <b>first-mover access to India's new PLI 2.0 / Mobile Phone Manufacturing Scheme (MPMS)</b> &mdash; a &#8377;62,500&nbsp;crore, cabinet-approved, FY27&ndash;FY31 scheme offering Indian mobile brands stackable incentives up to 9.5% (5.0% base domestic manufacturing + 1.5% component localisation + 3.0% design/R&amp;D), which Optiemus is already monetising through its AI+ Smartphone EMS contract; (iii) a <b>70:30 joint venture with Corning Incorporated</b> for finished cover glass &mdash; a capital- and technology-intensive, high-entry-barrier B2B segment few Indian EMS players can enter; (iv) a regulatory tailwind in <b>screen protectors</b>, where new BIS (Bureau of Indian Standards) certification requirements are expected to restrict today's grey-market/import-dominated market and create a formal, domestically-manufactured category the company is positioning dual brands (RhinoTech premium, OptiSafe/OptiGuard economy) to capture.</p>
+
+      <h3>The growth arc, FY23&ndash;FY26 (consolidated)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>₹ Cr unless noted</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total revenue</td><td>1,141.97</td><td>1,527.72</td><td>1,890.00</td><td>1,768.62</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td class="pos">+33.8%</td><td class="pos">+23.7%</td><td class="neg">&minus;6.4%</td></tr>
+            <tr><td>EBITDA</td><td>71.93</td><td>101.69</td><td>129.09</td><td>138.09</td></tr>
+            <tr><td>EBITDA margin</td><td>6.3%</td><td>6.7%</td><td>6.8%</td><td>7.8%</td></tr>
+            <tr><td>PAT</td><td>41.87</td><td>56.76</td><td>63.33</td><td>66.01</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>4.88</td><td>6.62</td><td>7.33</td><td>7.39</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement. FY22 and earlier is not usable &mdash; most FY22 line items are NaN in the source data (flagged as a gap, not silently omitted).</caption>
+      </div>
+      <p>Read as a whole, this is a company that compounded profit at a mid-teens rate (PAT CAGR ~16.5%, FY23&ndash;FY26) even through a year in which reported revenue <em>fell</em>. That FY26 decline was not an accident: per the chairman's own framing in the FY26 investor presentation, it was the deliberate result of "exiting volatile brand partnerships, upgrading our customer mix, and sharpening our focus on high-potential niche categories" &mdash; a controlled shrink of low-quality, unpredictable trading/manufacturing volume in exchange for a cleaner base to grow from. Q1 FY27 is the first hard evidence of what that reset was meant to buy (see §03).</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item of consequence in BSE filings and the tracked news feed since late February 2026.</p>
+
+      <div class="news-item">
+        <div class="news-date">11 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Warrant conversion adds &#8377;11.2 Cr, dilutes marginally</div>
+          <div class="news-body">1,67,250 equity shares allotted on conversion of fully-convertible warrants at &#8377;672.25 each (&#8377;11.24 Cr), taking paid-up capital to &#8377;90.17 Cr across ~9.02 Cr shares. Routine follow-through on the Jan&ndash;Feb 2025 preferential issue, not a fresh catalyst.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">05 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Stock fell ~4.9% the day after Q1FY27 results</div>
+          <div class="news-body">Despite the headline revenue and PAT beat, the market's focus was gross-margin compression (management's own Q1 presentation shows EBITDA margin falling from 6.80% to 4.68% YoY) &mdash; an early signal that the market is pricing execution and margin quality, not just growth, on this stock.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">04 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (with a margin caveat)</span>
+          <div class="news-title">Q1FY27 results: revenue more than doubled</div>
+          <div class="news-body">Consolidated revenue &#8377;883 Cr (+103% YoY), PAT &#8377;21.18 Cr (+46% YoY), driven overwhelmingly by the AI+ smartphone contract manufacturing ramp. Same day: Quectel IoT manufacturing partnership announced; &#8377;38.47 Cr raised through warrant conversion. Full breakdown in §03&ndash;04.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">31 Jul 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">President&ndash;New Projects resigns</div>
+          <div class="news-body">Vrajesh Shelat cited personal reasons; no replacement named at the time of disclosure. Notable mainly for timing &mdash; this role oversees a portfolio (screen protectors, drones, cover glass) that is unusually crowded right now. See §07.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">01 Jul 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Change in Managing Director at OEL</div>
+          <div class="news-body">Gururaj Ayekawadi resigned as MD of Optiemus Electronics Limited (health reasons, effective 30 Jun); promoter-group member Neetesh Gupta appointed MD the same day, ensuring continuity but also concentrating operating control of the core EMS subsidiary within the promoter family. See §07.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">29&ndash;30 Jun 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Quectel manufacturing tie-up; &#8377;110.8 Cr into subsidiaries</div>
+          <div class="news-body">OEL signed a manufacturing partnership with Quectel IoT Technologies to localise automotive/IoT wireless modules (no financial terms disclosed). Separately, the board approved &#8377;10.8 Cr equity into the BIGTech (Corning) cover-glass JV plus a &#8377;100 Cr unsecured loan (3-year, 8.5% p.a.) to wholly-owned GDN Enterprises for working capital &mdash; more of the intercompany capital recycling detailed in §05.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">24 Jun 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">BSE seeks clarification on trading-volume spike</div>
+          <div class="news-body">Company's reply was boilerplate &mdash; "evaluating and finalising certain business developments," no undisclosed material information &mdash; five days before the Quectel and BIGTech/GDN announcements landed. Timing worth a mention in §07, not a smoking gun on its own.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">21 Apr 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Credit rating upgraded, agency switched</div>
+          <div class="news-body">CRISIL assigned BBB/Stable (long-term) and A3+ (short-term) on &#8377;50 Cr of bank facilities, an upgrade versus the prior ICRA BBB-/A3 ratings, with the rating mandate itself moved from ICRA to CRISIL. A genuine, independently-assessed positive data point, even as balance-sheet leverage was rising through the same period (§05).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">02 Apr 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Planned rights-issue investment into OEL withdrawn</div>
+          <div class="news-body">Barely three weeks after approving a &#8377;156 Cr rights-issue infusion into OEL (9 Mar), the company reversed course, saying OEL's working-capital position no longer required it. Avoids near-term dilution but is a fast, visible reassessment of a capital-allocation decision. See §05.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">18 May 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Second screen-protector plant announced</div>
+          <div class="news-body">New Noida facility, 6&ndash;8 months to commission, 15&ndash;20 million units/year initial capacity, positioned to ride incoming mandatory BIS certification. Dual-brand strategy: RhinoTech (premium) and OptiSafe/OptiGuard (mass market) &mdash; the company's clearest B2C pivot to date.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">12 Mar 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Ai+ Smartphone manufacturing agreement signed</div>
+          <div class="news-body">OEL to manufacture ~3 million Ai+ Smartphone devices (plus tablets, IoT, wearables) under a &#8377;125 Cr, 5-year Make-in-India investment, ramping from April 2026 at Noida. This is the contract that produced the Q1FY27 revenue doubling (~&#8377;500 Cr+ of Q1 revenue) &mdash; the single most consequential news item in this timeline.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">09&ndash;10 Mar 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">&#8377;196 Cr rights-issue investment into OEL and GDN approved</div>
+          <div class="news-body">&#8377;156 Cr into OEL and &#8377;40 Cr into GDN, both wholly-owned subsidiaries, to strengthen working capital and balance sheets ahead of the EMS ramp. (The OEL portion was subsequently withdrawn on 2 Apr &mdash; see above.)</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>The stock's 52-week high of &#8377;713 was actually set back in late September 2025, well before any of the FY26 reset narrative was public. From there it fell steadily to roughly &#8377;505 by end-Dec 2025 and on to a 52-week low of &#8377;288 (early Apr 2026) &mdash; before the FY26 results were even reported &mdash; on the back of the guided/realised FY26 revenue decline. It then rallied hard through the Q4FY26 results (30 May) and the Q1FY27 beat (4 Aug), touching roughly &#8377;658 in early August before pulling back to &#8377;554 as of 17 Aug on the margin-compression concern &mdash; a strong recovery, but one that has not yet retested the September 2025 high. Very little of this multi-hundred-rupee round trip was driven by news that wasn't already knowable in direction, if not magnitude &mdash; a sign of a thin-float, sentiment-driven stock (see §07, §09).</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segment mix &amp; guidance</h2></div>
+      <p class="sec-dek">One quarter that looks like an inflection point &mdash; and a guidance framework that shifted meaningfully in the three months since it was first given.</p>
+
+      <h3>Quarterly trend, consolidated</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>₹ Cr</th><th>Q4FY25</th><th>Q1FY26</th><th>Q2FY26</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue</td><td>449.3</td><td>435.4</td><td>418.3</td><td>430.0</td><td>485.0</td><td>883.0</td></tr>
+            <tr><td>EBITDA</td><td>32.5</td><td>29.6</td><td>35.7*</td><td>33.2*</td><td>39.2</td><td>41.3</td></tr>
+            <tr><td>EBITDA margin</td><td>7.2%</td><td>6.8%</td><td>8.5%*</td><td>7.7%*</td><td>8.1%</td><td>4.7%</td></tr>
+            <tr><td>PBT</td><td>21.0</td><td>18.8</td><td>24.9</td><td>19.4</td><td>27.6</td><td>28.2</td></tr>
+            <tr><td>PAT</td><td>22.5</td><td>14.5</td><td>16.8</td><td>12.2</td><td>22.5</td><td>21.2</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>2.60</td><td>1.61</td><td>1.88</td><td>1.38</td><td>2.53</td><td>2.35</td></tr>
+          </tbody>
+        </table>
+        <caption>Sources: Q4FY26 and Q1FY27 investor presentations (Q4FY25, Q1FY26, Q4FY26, Q1FY27 columns) and MarketData/yfinance quarterly financials for the two quarters without a company presentation on file (Q2FY26, Q3FY26, marked *). Company-reported EBITDA for Q1FY27 (&#8377;41.32 Cr) differs marginally from yfinance's independently-computed figure (&#8377;41.11 Cr); the company figure is used here as the primary source.</caption>
+      </div>
+      <p>Two things jump out. First, revenue was essentially flat &mdash; even mildly declining &mdash; for four straight quarters (Q4FY25 through Q3FY26) before the step-change in Q4FY26 and the outright doubling in Q1FY27: this is a single-contract inflection, not a broad-based demand acceleration, and its durability depends on the AI+ program and the newer EMS wins (Quectel, Realme power banks, PhonePe soundbox, POS devices, Accton telecom) actually scaling as guided. Second, EBITDA margin moved in the <em>opposite</em> direction to revenue in Q1FY27 &mdash; the strongest revenue quarter on record produced the weakest margin in the six quarters shown, because the incremental revenue is low-margin, high-volume mobile assembly. Management's own Q1FY27 presentation is explicit about this: "EBITDA margins stood at 4.68% ... primarily reflecting a revenue shift toward high-volume mobile manufacturing."</p>
+
+      <h3>Segment mix: manufacturing has swallowed the business</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Manufacturing share, Q1FY26</div><div class="v">70.7%</div><div class="d">of gross segment revenue (&#8377;307.7 Cr of &#8377;442.4 Cr)</div></div>
+        <div class="stat"><div class="k">Manufacturing share, Q4FY26</div><div class="v">74.1%</div><div class="d">&#8377;359.3 Cr of &#8377;513.0 Cr</div></div>
+        <div class="stat"><div class="k">Manufacturing share, Q1FY27</div><div class="v pos">84.5%</div><div class="d">&#8377;745.9 Cr of &#8377;889.9 Cr</div></div>
+      </div>
+      <p>Trading &amp; Distribution has been broadly flat in absolute terms (~&#8377;134&ndash;154 Cr/quarter) while Manufacturing has grown from roughly &#8377;308 Cr to &#8377;746 Cr in a year. The company is, in effect, re-rating itself from a handset-and-accessories distributor into a scaled EMS player in real time.</p>
+
+      <h3>Geography, market position, expansion &mdash; a data gap</h3>
+      <p>No geographic segment note was found in either results filing reviewed &mdash; only the qualitative statement that trading covers "India and internationally," plus a wholly-owned Singapore trading subsidiary. Neither presentation discloses an India-vs-export revenue split, so this note cannot quantify geographic mix; flagged as a gap rather than estimated. On market share, the company's only quantified positioning claim is "#1 in Hearables &amp; Wearables in India" (unverified, company-sourced); no ranking is claimed or disclosed for the mobile-EMS or cover-glass businesses.</p>
+      <p>What <em>is</em> clearly disclosed is a deliberate two-pronged expansion: <b>horizontal</b> &mdash; new product categories added to the existing distribution/manufacturing base (screen protectors, drones, IoT modules, POS devices, telecom ODM for Accton) &mdash; and <b>vertical</b> &mdash; moving upstream from device assembly into a captive input, finished cover glass, via the Corning JV, rather than continuing to buy that component from third parties. Both are funded from the same FY26&ndash;27 capex programme discussed in §05.</p>
+
+      <h3>Guidance: given, then reframed within three months</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th style="text-align:left;">When given</th><th style="text-align:left;">Guidance</th></tr></thead>
+          <tbody>
+            <tr><td>FY26 annual results (30 May 2026)</td><td>"40&ndash;45% overall revenue CAGR over the next three years" (FY27&ndash;FY29)</td></tr>
+            <tr><td>Q1FY27 results (4 Aug 2026)</td><td>FY27 revenue ~&#8377;3,600 Cr (~2x FY26); FY28&ndash;FY29 growth "sustained... over 30%"; explicitly excludes screen protector, cover glass and the Q3FY27 B2C launch (framed as upside, not baseline)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Not a contradiction, but a real shift in shape</b>The near-term guide got <em>more</em> aggressive (2x in FY27 alone implies ~100% growth, well above the 40&ndash;45% blended figure given three months earlier), while the outer-year guide (30%+ for FY28&ndash;29) is arithmetically <em>below</em> the original 40&ndash;45% CAGR band. Management frames this as conservatism &mdash; deliberately excluding optionality from cover glass, screen protectors and new B2C launches &mdash; and the one data point available (Q1FY27 revenue of &#8377;883 Cr, ~24.5% of the full-year &#8377;3,600 Cr target, achieved in the seasonally weaker first quarter) is consistent with the chairman's claim that Q1 came in "ahead of guidance." One quarter of delivery against a guidance reset is a positive early sign, not a validated track record.</div>
+      </div>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">FY26 margin expansion despite a revenue decline, followed by a sharp Q1FY27 compression that management attributes entirely to mix &mdash; plus a growing reliance on other income that is worth watching.</p>
+
+      <h3>What moved FY26</h3>
+      <p>Full-year EBITDA margin rose from 6.8% (FY25) to 7.8% (FY26) even as revenue fell 6.4% &mdash; consistent with the "exit low-quality volume, upgrade customer mix" narrative: the business that remained was more profitable per rupee of sales. PBT margin improved more sharply (4.1%&rarr;5.1%) than PAT margin (3.35%&rarr;3.73%), because tax expense rose faster than pre-tax profit (current tax alone was &#8377;18.6 Cr in FY26 vs a net tax credit position the prior year in one quarter) &mdash; a normalisation rather than a red flag.</p>
+
+      <h3>What moved Q1FY27 specifically</h3>
+      <div class="grid-2">
+        <div class="card">
+          <b>Mix shift to low-margin assembly.</b> The AI+ smartphone program contributed &#8377;500+ Cr of Q1 revenue at a materially lower gross margin than the historical trading/accessories mix &mdash; management's stated reason for EBITDA margin falling from 6.80% to 4.68% YoY, and news coverage separately flagged gross margin compressing to ~2.6% from ~4.8% YoY on the same effect.
+        </div>
+        <div class="card">
+          <b>Incubation losses, quantified and stripped out by management.</b> Two pre-revenue ventures dragged consolidated PAT by a combined &#8377;2.45 Cr in Q1FY27: BIGTech (cover glass, pre-operative) lost &#8377;1.44 Cr, and Optiemus Unmanned Systems (drones, product-development phase) lost &#8377;1.02 Cr. Management's own disclosure: "core operating PAT stood at &#8377;2,363 Lakhs," i.e. &#8377;23.63 Cr &mdash; <em>above</em> the &#8377;21.18 Cr headline PAT once these two items are excluded.
+        </div>
+        <div class="card">
+          <b>Segment profitability swung hard.</b> The Manufacturing segment posted a <em>loss</em> of &#8377;4.01 Cr (before unallocable items) in Q4FY26, then swung to a &#8377;20.79 Cr profit in Q1FY27 &mdash; consistent with one-off ramp/setup costs in Q4 ahead of the AI+ contract going live, reversing once volumes arrived.
+        </div>
+        <div class="card">
+          <b>Other income is a growing share of pre-tax profit.</b> Q1FY27 other income was &#8377;10.91 Cr against PBT of &#8377;28.24 Cr &mdash; 38.6% of PBT, up from 28.6% for full-year FY26 (&#8377;25.94 Cr of &#8377;90.67 Cr). Management attributes this to "ongoing government policy incentives (expected to be of recurring nature)" &mdash; plausibly PLI/MPMS-linked, and therefore more durable than a typical one-off other-income spike, but still worth tracking: a rising share of profit coming from non-operating income can mask a decelerating core margin if it isn't monitored quarter to quarter.
+        </div>
+      </div>
+
+      <h3>Depreciation and finance cost &mdash; both set to keep climbing</h3>
+      <p>Consolidated D&amp;A rose from &#8377;22.38 Cr (FY25) to &#8377;24.34 Cr (FY26) and should step up further given FY26 capex of &#8377;312 Cr (vs &#8377;83 Cr the year before) is only partly reflected in a full year of depreciation yet &mdash; Unit&nbsp;3 in Noida and the BIGTech Tamil Nadu plant both came online only during FY26/Q1FY27. Quarterly finance cost has climbed steadily on a rising debt base: &#8377;5.40 Cr (Q1FY26) &rarr; &#8377;6.60 Cr (Q4FY26) &rarr; &#8377;6.23 Cr (Q1FY27), tracking total debt that nearly doubled year-on-year (see §05). Expect both lines to keep rising through FY27 as the capex programme continues.</p>
+
+      <h3>Forward margin guidance</h3>
+      <p>Management expects "EBITDA margins to improve in the coming quarters" as Noida Unit 3 (commissioned in Q1FY27, +6 million units/year of capacity) reaches efficient utilisation, as PLI 2.0/MPMS incentives (up to 9.5% stackable) flow through more fully, and as the higher-margin B2C initiatives (screen protectors, the Q3FY27 second B2C category) start contributing from H2 FY27. No specific FY27 margin number was given in either presentation reviewed &mdash; a gap investors should watch for in the Q2FY27 print.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">A balance sheet growing quickly on both sides &mdash; equity raises and debt in roughly equal measure &mdash; to fund a multi-front capex programme, with extensive intercompany capital recycling along the way.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>₹ Cr, consolidated</th><th>Mar-23</th><th>Mar-24</th><th>Mar-25</th><th>Mar-26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity</td><td>382.2</td><td>426.2</td><td>693.1</td><td>822.0</td></tr>
+            <tr><td>Total assets</td><td>911.4</td><td>1,347.7</td><td>1,550.6</td><td>1,838.2</td></tr>
+            <tr><td>Total debt</td><td>117.8</td><td>163.9</td><td>197.5</td><td class="neg">372.8</td></tr>
+            <tr><td>Net debt</td><td>40.5</td><td>79.6</td><td>&mdash;<sup>†</sup></td><td class="neg">274.8</td></tr>
+            <tr><td>Net PPE</td><td>&mdash;</td><td>198.6</td><td>259.4</td><td>547.3</td></tr>
+            <tr><td>Capital work-in-progress</td><td>2.6</td><td>2.6</td><td>28.7</td><td>300.3</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet. † Mar-25 net debt is not computed in the source data (cash exceeded reported debt components inconsistently across the two figures); treated as a gap rather than estimated.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Debt nearly doubled in FY26, and net debt tripled in six months</b>Total debt rose 88.7% YoY (&#8377;197.5 Cr &rarr; &#8377;372.8 Cr) and net debt rose from ~&#8377;92 Cr at end-Sep 2025 to &#8377;274.8 Cr at end-Mar 2026 &mdash; roughly 199% growth in a single half-year. Debt/equity is still a moderate ~0.45x, and the CRISIL upgrade (§02) is a genuine independent counter-signal, but the <em>rate</em> of leverage build is worth tracking against whether the new capacity actually converts to matching EBITDA growth.</div>
+      </div>
+
+      <h3>Capital allocation: extensive intercompany recycling</h3>
+      <p>Nearly every discretionary capital-allocation decision disclosed in this dataset routes money between Optiemus and its own wholly-owned subsidiaries or JVs: &#8377;156 Cr into OEL and &#8377;40 Cr into GDN via rights issue (approved 9 Mar 2026, for subsidiary working capital/balance-sheet strengthening &mdash; though the OEL leg was withdrawn a month later, see §02); &#8377;10.8 Cr equity into the BIGTech (Corning) JV plus a &#8377;100 Cr, 3-year, 8.5%-p.a. unsecured loan to GDN (30 Jun 2026); and a corporate guarantee to CSB Bank on OEL's behalf enhanced from &#8377;35.5 Cr to &#8377;60 Cr (10 Jun 2026). Every one of these is disclosed as a related-party transaction (common promoter directors across entities) but stated to be executed at arm's length, priced by an independent valuer. The scale is material &mdash; well over &#8377;300 Cr of intra-group capital moved in FY26 alone &mdash; and standard for a group funding a capex-heavy expansion through its own subsidiaries rather than a governance red flag on its own, but the volume and the OEL rights-issue reversal both argue for closer tracking of how disciplined the capital planning actually is.</p>
+
+      <h3>The Jan&ndash;Feb 2025 preferential issue: undersubscribed, then reallocated</h3>
+      <p>The equity/warrant preferential issue that is still being converted today (see the Aug 2026 warrant-conversion news items) was originally sized at &#8377;434.4 Cr but was cut to &#8377;296.4 Cr due to under-subscription of both warrants and equity &mdash; a soft investor-demand signal at the time. Subsequently, at the 32nd AGM (30 Sep 2025), shareholders approved reallocating funds <em>away</em> from the originally-stated subsidiary-capex objects (OEL, GDN, drones, BIGTech) and <em>toward</em> general working capital &mdash; per ICRA's Q4FY26 Monitoring Agency report, this was "due to under subscription... the allocated amount towards each object has been proportionately reduced" and required fresh shareholder approval. ICRA's monitoring found no other deviation and utilisation "on schedule" against the revised objects.</p>
+
+      <h3>Capex: a genuine, multi-front expansion of the asset base</h3>
+      <p>Capex jumped from &#8377;83.3 Cr (FY25) to &#8377;312.3 Cr (FY26, +275% YoY) &mdash; more than 12x the year's depreciation charge, confirming real capacity expansion rather than maintenance spend. This is funding, simultaneously: the BIGTech Tamil Nadu cover-glass plant, Noida Unit 3 (EMS), and a second screen-protector plant. No explicit multi-year capex guidance figure was found in the filings reviewed, but the scale of concurrent projects (cover glass, a third EMS unit, two screen-protector plants, drone R&amp;D) implies continued heavy capex through FY27&ndash;28 &mdash; a genuine risk factor if the associated revenue ramps (12&ndash;15 months for BIGTech customer onboarding, per management's own admission; BIS-timeline-dependent for screen protectors) slip.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality &mdash; the least reassuring section of this note</h2></div>
+      <p class="sec-dek">Two straight years of negative operating cash flow against rising, positive PAT, and a &#8377;420 Cr balance-sheet item this dataset cannot fully explain.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>₹ Cr, consolidated</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT</td><td>41.9</td><td>56.8</td><td>63.3</td><td>66.0</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td class="pos">1.2</td><td class="pos">40.3</td><td class="neg">&minus;12.5</td><td class="neg">&minus;12.2</td></tr>
+            <tr><td>Capex</td><td>&minus;100.5</td><td>&minus;61.8</td><td>&minus;83.3</td><td>&minus;312.3</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="neg">&minus;99.3</td><td class="neg">&minus;21.5</td><td class="neg">&minus;95.8</td><td class="neg">&minus;324.5</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Earnings-quality check: fails clean, and the cause is not obvious from this dataset</b>PAT has grown every year since FY23 while CFO has been negative in two of the last four years and free cash flow has been negative in <em>all four</em>, worsening sharply in FY26. The mechanical driver in FY26 is a single working-capital line: "Change in Other Current Assets" of &minus;&#8377;314.0 Cr &mdash; consistent with the balance sheet, where Other Current Assets jumped from just &#8377;0.3 Cr (Mar-25) to &#8377;420.2 Cr (Mar-26). No filing reviewed in this dataset explains what this &#8377;420 Cr balance actually is. Plausible candidates &mdash; construction-linked advances for BIGTech/Unit 3/the screen-protector plants, or government PLI/MPMS incentive receivables not yet collected (consistent with the "recurring" other income discussed in §04) &mdash; are consistent with the numbers but not confirmed by any disclosure found here. This is the single most important open question in the entire dataset and should be the first thing to check in the FY27 annual report notes.</div>
+      </div>
+
+      <p>Capex (&#8377;312.3 Cr) vastly exceeds depreciation (&#8377;24.3 Cr) in FY26, confirming the asset base is genuinely expanding, in line with the stated growth plans (§05). But with CFO negative and FCF at &minus;&#8377;324.5 Cr, the entire capex programme was funded externally: FY26 financing cash flow was +&#8377;194.6 Cr, made up of +&#8377;72.4 Cr of gross equity/warrant issuance and +&#8377;177.3 Cr of net new debt. No earnings-call transcript exists in this dataset to check for direct management commentary on the cash-flow trajectory (a data gap, flagged rather than inferred) &mdash; the only touchpoint is the ICRA Monitoring Agency report, which confirms fund utilisation is "on schedule" against the revised (working-capital-weighted) objects of the 2025 preferential issue, but does not comment on operating cash generation.</p>
+      <p><b>Read plainly:</b> until the new EMS contracts, the cover-glass JV and the B2C launches mature into cash-generative revenue on the timelines management has given, further external funding (more debt, more equity/warrant issuance) should be expected as the default outcome, not a surprise.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">A tightly promoter-controlled company with a busy few months of leadership transitions, and one long-running litigation that is now trending favourably.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Ashok Gupta</div>
+          <div class="role">Executive Chairman &amp; Whole-time Director</div>
+          <div class="bio">Promoter; signs virtually every regulatory filing and results release reviewed in this dataset on the board's behalf; author of the chairman's message in both investor presentations reviewed here.</div>
+        </div>
+        <div class="person">
+          <div class="name">Neetesh Gupta</div>
+          <div class="role">Managing Director, Optiemus Electronics Ltd (from 1 Jul 2026)</div>
+          <div class="bio">Promoter group; MBA, Nottingham University; 11+ years in telecom/electronics manufacturing and trading. Appointed to replace the outgoing OEL MD on the same day as the resignation, ensuring continuity but also placing the core EMS subsidiary's day-to-day leadership inside the promoter family.</div>
+        </div>
+        <div class="person">
+          <div class="name">Vikas Chandra</div>
+          <div class="role">Company Secretary &amp; Compliance Officer</div>
+          <div class="bio">Primary signatory on essentially all BSE/NSE disclosures in this dataset, including the standard reply to the exchange's June 2026 volume-movement query.</div>
+        </div>
+      </div>
+
+      <h3>Leadership changes in a five-week window (Jun&ndash;Jul 2026)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Date</th><th>Event</th></tr></thead>
+          <tbody>
+            <tr><td>1 Jul 2026</td><td>Gururaj Ayekawadi resigns as Managing Director of OEL (health reasons, effective 30 Jun); Neetesh Gupta (promoter group) appointed MD the same day.</td></tr>
+            <tr><td>31 Jul 2026</td><td>Vrajesh Shelat, President&ndash;New Projects, resigns (personal reasons, effective 31 Jul); no replacement named at the time of disclosure.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Worth watching, not yet a red flag</b>Both departures are framed as personal/health-related, not adversarial, and the OEL MD transition had same-day continuity. But the New Projects role has no confirmed successor while the company is simultaneously incubating screen protectors, drones and the cover-glass JV &mdash; a heavier-than-usual execution load to run leaderless in that specific seat, even briefly.</div>
+      </div>
+
+      <h3>Litigation: the BlackBerry dispute is trending in the company's favour</h3>
+      <p>Since a 2017 license agreement, BlackBerry Limited has claimed approximately US$22.5 million in unpaid minimum software license fees; in July 2024 it sought summary judgment in the UK's High Court, then withdrew that application. On 19 December 2025, the High Court found that BlackBerry's own conduct "amounted to an abuse of process" and allowed Optiemus to seek to strike out the claim; BlackBerry has since offered to reduce its claim by 70% (implying roughly US$6.75 million), and the company is preparing counterclaims it estimates could exceed US$20 million. No provision has been booked. A multi-year overhang, but one where the disclosed trajectory has clearly moved in Optiemus's favour over the past eight months.</p>
+
+      <h3>Other governance markers</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Auditor:</b> Mukesh Raj &amp; Co issued an <b>unmodified (clean) opinion</b> on both standalone and consolidated FY26 results, and an unmodified limited-review conclusion on Q1FY27 &mdash; no qualification, emphasis of matter, or auditor change found.</li>
+        <li><b>Ownership:</b> insiders/promoters hold <b>72.53%</b> of shares; institutional ownership is just 1.21% across 9 institutions; free float is roughly 21.9 million of 89.26 million shares (~24.5%) &mdash; a thin, promoter-dominated register that plausibly explains the stock's extreme 52-week range (&#8377;288&ndash;&#8377;713).</li>
+        <li><b>Related-party transactions:</b> extensive, but confined to wholly-owned subsidiaries/JVs and consistently disclosed as arm's-length via independent valuation (§05) &mdash; standard practice for a group funding expansion through its own subsidiaries, though the sheer volume (&gt;&#8377;300 Cr in FY26) warrants continued scrutiny.</li>
+        <li><b>Disclosure timeliness:</b> the company's boilerplate reply to BSE's 24 Jun volume-movement query, five days before the Quectel and BIGTech/GDN announcements, is a minor timing question worth noting (§02) rather than a confirmed lapse.</li>
+      </ul>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other insights from management's own disclosures</h2></div>
+      <p class="sec-dek">No earnings-call transcript exists in this dataset (flagged in the coverage note above) &mdash; this section draws on the chairman's written commentary and the structured "growth blueprint" inside both investor presentations, clearly attributed as company-sourced framing rather than an independently verified call transcript.</p>
+
+      <h3>Management's own framing: "six building blocks of growth"</h3>
+      <p>The Q1FY27 presentation organises the growth story into six explicit pillars: <b>EMS Scale-Up</b> (100%+ Q1 revenue growth, Unit 3 online, AI+ partnership); <b>MPMS/PLI 2.0</b> (policy-led incentive stack, first-mover advantage via AI+); <b>Screen Protector</b> (BIS-led B2C category creation); <b>B2C Pivot</b> (a second, still-undisclosed consumer category targeted for Q3FY27); <b>Cover Glass JV</b> (high-entry-barrier B2B, Corning partnership); and <b>Drones</b> (explicitly "medium-term option value," not in the base guidance). Presenting six distinct, simultaneous growth engines is an unusually broad bet for a company of this size to be funding all at once &mdash; the flip side of the diversification argument is execution-bandwidth risk, which is precisely what the New Projects leadership gap (§07) raises.</p>
+
+      <h3>Cover glass: management's own timeline is candidly unhurried</h3>
+      <p>On BIGTech (the Corning JV), management states plainly that "revenue visibility might take 12&ndash;15 months as customer agreements get concluded," even though the Tamil Nadu facility itself was inaugurated by Tamil Nadu's Chief Minister in December 2025 and sampling/trial production is complete. This kind of unpromotional, specific caveat &mdash; rather than a vague "coming soon" &mdash; is a credibility-supporting disclosure, and it also means the JV should not be modelled as a near-term revenue contributor.</p>
+
+      <h3>Screen protectors: a regulation-created market, by the company's own estimate</h3>
+      <p>Management frames the category opportunity as ~&#8377;20,000 Cr today (currently import-dominated) growing to ~&#8377;40,000 Cr by 2030 once mandatory BIS certification (expected within roughly 30 days of the Q1FY27 presentation, i.e. by around September 2026) restricts grey-market imports. These are company estimates with no independent market-research citation found in this dataset, and should be treated as a company's own bull case for the category, not a verified TAM.</p>
+
+      <h3>PLI 2.0 / MPMS: the policy tailwind underpinning the whole EMS story</h3>
+      <p>The scheme is real and cabinet-approved (&#8377;62,500 Cr, FY27&ndash;FY31), offering Indian mobile brands up to 9.5% stackable incentives. Optiemus's positioning is that its AI+ Smartphone partnership gives it a first-mover template to onboard additional Indian brands under the same scheme &mdash; the AI+ contract is framed less as a one-off win and more as a proof-of-concept for a repeatable EMS-for-Indian-brands playbook.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">There essentially isn't any.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analyst recommendation</div><div class="v">None</div><div class="d">No rating on record in yfinance</div></div>
+        <div class="stat"><div class="k">Price targets</div><div class="v">N/A</div><div class="d">No low/mean/median/high target available</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">1.21%</div><div class="d">9 institutions; float institutions 4.41%</div></div>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>The market has almost no independent check on this story</b>With essentially zero sell-side coverage and institutional ownership under 1.5%, there is no external analyst community stress-testing management's guidance, margin assumptions or capex plans on a quarterly cadence the way there would be for a more widely-covered stock. That places more weight than usual on investors doing their own verification of the specific numbers in §03&ndash;06, and on watching the actual results against the guidance given, quarter by quarter, rather than relying on consensus.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock priced for the growth story to keep working, on a year that already saw a 60% peak-to-trough swing and a near-full round trip back up.</p>
+
+      <h3>Twelve months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Aug 2025&ndash;Aug 2026 (NSE, via yfinance). The 52-week high of &#8377;713 (intraday) was actually set in late September 2025; the stock then declined steadily to a 52-week low of &#8377;288 around late March/early April 2026, coinciding with the FY26 revenue-decline narrative, before rallying through the Q4FY26 and Q1FY27 results to &#8377;554 by 17 Aug &mdash; a strong recovery that has not yet retested the September 2025 peak.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">68.6x</div><div class="d">On TTM diluted EPS (~&#8377;8.1)</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">6.33x</div><div class="d">Book value/share &#8377;87.57</div></div>
+        <div class="stat"><div class="k">EV / Revenue</div><div class="v">2.42x</div><div class="d">On TTM revenue &#8377;2,216 Cr</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">57.5x</div><div class="d">TTM EBITDA margin compressed to 4.2% by Q1FY27's mix shift</div></div>
+      </div>
+      <p>All four multiples are rich by almost any small-cap industrial/EMS benchmark, and the EV/EBITDA figure in particular is mechanically inflated by the very margin compression discussed in §04 &mdash; TTM EBITDA margin of 4.2% is well below FY26's own 7.8%. A meaningful amount of the "growth is inflecting" story already appears to be priced in.</p>
+
+      <h3>Bear / base / bull, FY27E&ndash;FY28E</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Illustrative scenarios built from management's own FY27 revenue target (~&#8377;3,600 Cr) and FY28&ndash;29 growth guide (30%+ CAGR), combined with a plausible margin-recovery path and a re-rated multiple. These are scenario illustrations, not point forecasts &mdash; there is no independent analyst consensus in this dataset to anchor against (§09), and Optiemus has exactly one quarter of delivery against its current guidance framework.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;150&ndash;220</div>
+          <div class="rng">&minus;60% to &minus;73% from CMP</div>
+          <ul>
+            <li>FY27 revenue undershoots guidance, landing near &#8377;2,700&ndash;2,900 Cr as new EMS wins ramp slower than promised</li>
+            <li>EBITDA margin stays pinned at 4&ndash;5%; the &#8377;420 Cr other-current-assets question (§06) turns out to reflect a genuine, un-recovered receivable</li>
+            <li>Rising D&amp;A/interest on the FY26 capex base compresses PAT margin to 1.5&ndash;2%; FY27E EPS ~&#8377;5&ndash;6</li>
+            <li>Multiple de-rates to 25&ndash;30x as the guidance-reset story disappoints, revisiting/undercutting the FY26 low</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;300&ndash;420</div>
+          <div class="rng">&minus;24% to &minus;46% from CMP</div>
+          <ul>
+            <li>FY27 revenue lands close to the &#8377;3,600 Cr guide (~2x FY26)</li>
+            <li>EBITDA margin recovers gradually to 5.5&ndash;6.5% as Unit 3 utilisation and PLI incentives build, still below FY26's 7.8%</li>
+            <li>PAT margin ~2.5&ndash;3%; FY27E EPS ~&#8377;10&ndash;12</li>
+            <li>Multiple compresses from today's 68.6x toward a still growth-priced but more sustainable 30&ndash;35x</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;850&ndash;1,050</div>
+          <div class="rng">+53% to +89% from CMP</div>
+          <ul>
+            <li>FY27 meets/beats guidance; FY28 growth holds at 30%+ as cover glass and the two B2C launches begin contributing on top of EMS</li>
+            <li>FY28E revenue &#8377;5,000&ndash;6,300 Cr; EBITDA margin recovers to 7&ndash;8% (FY26 levels) on richer B2C/cover-glass mix and fuller PLI incentives</li>
+            <li>PAT margin 4%+; FY28E EPS ~&#8377;25&ndash;30</li>
+            <li>Multiple holds 30&ndash;35x on sustained multi-engine growth; price approaches/exceeds the 52-week high of &#8377;713</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuinely deliberate FY26 reset that expanded margin while shrinking low-quality revenue; a Q1FY27 revenue doubling anchored in a real, named, ramping contract (AI+ Smartphones) rather than a vague growth claim; management that quantifies and discloses its own drags rather than hiding them (the &#8377;2.45 Cr incubation-loss breakdown, the 12&ndash;15 month cover-glass revenue-visibility caveat); an independent credit-rating upgrade (CRISIL) arriving in the same window as rising leverage; a genuine policy tailwind (PLI 2.0/MPMS) the company is already monetising; and a multi-year litigation overhang (BlackBerry) that has moved clearly in the company's favour.</p>
+        <p style="max-width:none;"><b>What's not good:</b> operating cash flow has been negative for two straight years against rising PAT, and the FY26 driver &mdash; a &#8377;420 Cr jump in "other current assets" &mdash; is not explained anywhere in this dataset; free cash flow was &minus;&#8377;324.5 Cr in FY26 and the entire capex programme is being funded by new debt and equity; total debt nearly doubled in a year; Q1FY27's headline revenue beat came with EBITDA margin nearly halving; guidance shifted meaningfully within three months of being given; two senior leadership departures landed within five weeks of each other, one in a role overseeing several of the very growth bets discussed here; and virtually no independent analyst or institutional scrutiny exists to cross-check any of it.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> candidly, on the evidence available. Rather than smoothing over the FY26 revenue decline, leadership named it a deliberate strategic choice; rather than presenting Q1FY27's headline PAT at face value, it disclosed and excluded the incubation losses to show the "core" number; rather than promising fast cover-glass revenue, it gave a specific 12&ndash;15 month caveat. That transparency is a real, credit-worthy pattern &mdash; but it is one clean quarter into a multi-year, multi-front, increasingly debt-funded expansion, on a stock that has already shown it can move 60%+ in either direction within months on sentiment alone.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: medium-to-cautious, roughly 35&ndash;45%.</b> The operational turnaround looks real and management's disclosure pattern is credible, but the current price already embeds a large amount of the guided growth (68.6x trailing P/E, 57.5x EV/EBITDA), the cash-flow picture has an unresolved &#8377;420 Cr question mark, and there is essentially no independent coverage to lean on. The base-case scenario in §10 &mdash; built directly from management's own numbers &mdash; implies material downside from CMP even if the company broadly delivers, because so much optimism is already in the price; only the bull case, which requires sustained multi-engine execution across cover glass, B2C and EMS simultaneously, supports upside from here.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) the composition of the &#8377;420 Cr "other current assets" balance, whenever the FY27 annual report notes disclose it &mdash; the single biggest unresolved question in this note; (2) whether consolidated operating cash flow turns positive as new revenue streams mature; (3) EBITDA margin in Q2&ndash;Q3 FY27 &mdash; a recovery toward 6%+ would validate the "temporary mix effect" explanation, while continued sub-5% prints would suggest the AI+ contract's economics are structurally thinner than the base business; (4) whether a permanent President&ndash;New Projects is named, and how the six concurrent growth bets are resourced without one; (5) total debt and net debt levels at the next two quarter-ends, against whether EBITDA is growing fast enough to keep leverage ratios in check.</div>
+      </div>
+    </section>
+
+    <footer>
+      Compiled from company BSE/NSE filings (Announcements/AnnouncementsConv, 21&nbsp;Feb&ndash;11&nbsp;Aug 2026), MarketData (Yahoo Finance via yfinance, last fetched 17 Aug 2026 21:10 IST), and the tracked News feed. All figures are as originally reported by the company or the cited data source; where a figure could not be independently reconciled or a disclosure was absent, that is stated explicitly in the relevant section rather than silently filled in or corrected. This is a research synthesis for informational purposes, not investment advice.
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT, consolidated) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [449, 435, 418, 430, 485, 883];
+    var ebitda  = [32.5, 29.6, 35.7, 33.2, 39.2, 41.3];
+    var pat     = [22.5, 14.5, 16.8, 12.2, 22.5, 21.2];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+
+    function y(v){ return padT + plotH - (v/maxV)*plotH; }
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT, consolidated" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 4;
+    for(var g=0; g<=steps; g++){
+      var gv = (maxV/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(v);
+        var bh = (padT+plotH) - by;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+by.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '</div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Aug 25', 556], ['Sep 25', 622], ['Oct 25', 584], ['Nov 25', 564],
+      ['Dec 25', 505], ['Jan 26', 402], ['Feb 26', 414], ['Mar 26', 293],
+      ['Apr 26', 416], ['May 26', 405], ['Jun 26', 465], ['Jul 26', 638],
+      ['Aug 26', 554]
+    ];
+    var W = 900, H = 220, padL = 44, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Optiemus monthly closing share price, August 2025 to August 2026" style="width:100%;height:auto;font-size:11px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 3;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i%1===0){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Approximate month-end/period closing prices derived from daily price history; 52-week low (~₹288) and high (~₹713) are intraday/closing extremes that may fall between the monthly points plotted.</div></div>';
+  })();
+})();
+</script>

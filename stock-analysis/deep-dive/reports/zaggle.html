@@ -1,0 +1,1105 @@
+<title>Zaggle Ledger</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    /* brand — UI chrome only: links, eyebrow, section numerals, focus rings */
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    /* AI accent — violet, sparing: the two synthesized-verdict moments only */
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    /* categorical slot 4 (violet) — deliberately distinct from --ai; "Mixed" sentiment only */
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    /* categorical — fixed order, chart series identity */
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  /* direction — price/return/momentum only; glyph always accompanies color per a11y rule */
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  /* ---------- Shell ---------- */
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  /* ---------- Cover ---------- */
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  /* ---------- TOC ---------- */
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  /* ---------- Content ---------- */
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  /* tables */
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  /* pills / tags */
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  /* news timeline */
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  /* quote */
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  /* callouts */
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  /* stat tiles */
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  /* verdict cards */
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  /* mgmt roster */
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  /* ---------- Latest Update band ---------- */
+  .latest-update{
+    grid-column: 1 / -1;
+    margin: 34px 0 8px;
+  }
+  .lu-head{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:4px;}
+  .lu-head h2{ font-size:23px; }
+  .lu-livedot{
+    display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--critical);
+  }
+  .lu-livedot .p{ width:7px; height:7px; border-radius:50%; background:var(--critical); animation:pulse 2.2s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce){ .lu-livedot .p{ animation:none; } }
+  @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
+  .lu-dek{ font-size:14px; color:var(--ink-mute); max-width:74ch; margin:6px 0 18px; }
+
+  .update-entry{
+    border:1px solid var(--border-strong); border-radius:var(--radius-lg); background:var(--surface);
+    box-shadow:var(--shadow); padding:22px 24px 24px; margin-bottom:18px;
+  }
+  .update-entry + .update-entry{ opacity:.82; }
+  .ue-top{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+  .ue-date{ font-weight:700; font-size:16px; }
+  .ue-quarter{ font-size:12px; color:var(--ink-mute); }
+  .ue-quarter b{ color:var(--ink-soft); font-weight:600; }
+
+  .metric-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:14px 0 18px; }
+  .metric{ padding:12px 14px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface-2); }
+  .metric .k{ font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-mute);}
+  .metric .v{ font-size:19px; font-weight:700; margin-top:3px;}
+  .metric .d{ font-size:12px; margin-top:3px; font-weight:600; }
+  .metric .d.pos{ color:var(--good); }
+  .metric .d.neg{ color:var(--critical); }
+  .metric .d.flat{ color:var(--ink-mute); }
+
+  .ue-cols{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px; }
+  @media (max-width:700px){ .ue-cols{ grid-template-columns:1fr; } }
+  .ue-col h5{
+    font-family:-apple-system,sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.06em;
+    margin:0 0 8px; display:flex; align-items:center; gap:6px;
+  }
+  .ue-col.good h5{ color:var(--good); }
+  .ue-col.bad h5{ color:var(--critical); }
+  .ue-col ul{ margin:0; padding-left:18px; font-size:13.4px; color:var(--ink-soft); }
+  .ue-col li{ margin-bottom:7px; }
+
+  .verdict-strip{
+    display:flex; align-items:center; gap:12px; margin-top:18px; padding:13px 16px;
+    border-radius:var(--radius-md); background:var(--ai-tint); border:1px solid color-mix(in srgb, var(--ai) 30%, var(--border));
+    font-size:13.6px;
+  }
+  .verdict-strip b{ color:var(--ai); }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; SaaS Fintech / Spend Management</div>
+    <h1>Zaggle Prepaid Ocean Services</h1>
+    <p class="sub">NSE / BSE: ZAGGLE &middot; Scrip 543985 &middot; FY2022&ndash;FY2026 performance review, conference-call synthesis, and forward scenario framework, as of 14 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> revenue and profit have compounded at 40&ndash;50% a year for five straight years and FY26 was the third consecutive record quarter &mdash; yet operating cash flow has been negative in three of the last four years, and the stock has been de-rated by more than 50% from its 52-week high well before the market had reason to doubt the P&amp;L. The gap between the earnings story and the cash story is the whole debate on this stock.
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (14 Aug 26)</div><div class="v">&#8377;200.6</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;2,702 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;186 &ndash; &#8377;418</div></div>
+      <div class="chip"><div class="k">FY26 Revenue (Cons.)</div><div class="v pos">+46.3%</div></div>
+      <div class="chip"><div class="k">FY26 Adj. EBITDA</div><div class="v pos">+51.0%</div></div>
+      <div class="chip"><div class="k">FY26 PAT</div><div class="v pos">+51.8%</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">19.5x</div></div>
+      <div class="chip"><div class="k">FY26 OCF (Cons.)</div><div class="v neg">&minus;&#8377;51 Cr</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage:</b> primary BSE filings in this dataset span 17&nbsp;Apr&ndash;14&nbsp;Aug 2026 &mdash; effectively one full results cycle (Q4/FY26, reported 13 May 2026) plus the subsequent quarter's newsflow. Historical FY22&ndash;FY26 trend figures are drawn from the tables Zaggle itself republishes inside the Q4FY26 investor presentation, cross-checked against Yahoo/yfinance market data, not from each quarter's original filing (those pre-date this dataset). Q1FY27 results were scheduled for release the same evening this note was compiled (14 Aug 2026, post-market) and are <b>not</b> reflected in any figure below. Sell-side coverage is thin &mdash; two analysts only.
+    </div>
+  </div>
+
+  <section class="latest-update" id="latest-update">
+    <div class="lu-head">
+      <h2>Latest Update</h2>
+      <span class="lu-livedot"><span class="p"></span>Rolling</span>
+    </div>
+    <p class="lu-dek">This section is appended each time new results or filings land — newest entry first. The rest of the document below (§01&ndash;§11) is the standing analysis as of the 13&nbsp;May 2026 (Q4/FY26) results and is left as originally written; read this section as the update layered on top of it, not a replacement for it.</p>
+
+    <div class="update-entry">
+      <div class="ue-top">
+        <span class="ue-date">14 Aug 2026</span>
+        <span class="ue-quarter"><b>Q1 FY27</b> (quarter ended 30 Jun 2026) &middot; unaudited, limited review &middot; released post-market</span>
+        <span class="pill mixed"><span class="d"></span>Mixed &mdash; cautious near-term</span>
+      </div>
+
+      <p>Growth decelerated faster than the guidance issued just three months ago, and the company posted its first year-on-year profit decline in the entire record this note has tracked. Management's own explanation is unusually specific and roughly half the drag looks transitional &mdash; but the miss against fresh guidance, in guidance's very first quarter, is the headline fact.</p>
+
+      <div class="metric-row">
+        <div class="metric"><div class="k">Consol. revenue</div><div class="v">₹423 Cr</div><div class="d pos">+27.5% YoY</div></div>
+        <div class="metric"><div class="k">Standalone revenue</div><div class="v">₹390 Cr</div><div class="d neg">+17.7% YoY</div></div>
+        <div class="metric"><div class="k">Adj. EBITDA margin</div><div class="v">8.2%</div><div class="d neg">vs 10.1% Q1FY26</div></div>
+        <div class="metric"><div class="k">Consol. PAT</div><div class="v">₹17.5 Cr</div><div class="d neg">&minus;32.9% YoY</div></div>
+        <div class="metric"><div class="k">Cash PAT</div><div class="v">₹30.6 Cr</div><div class="d neg">&minus;12.4% YoY</div></div>
+      </div>
+
+      <div class="callout flag" style="margin-top:2px;">
+        <div class="icon">&#9888;</div>
+        <div><b>The number that matters most: standalone growth of 17.7% is already below the guided 25&ndash;30% FY27 range</b>Management set that range on 13 May 2026 and delivered 17.7% in the very first quarter of the guided year. Consolidated growth (27.5%) looks less alarming only because it is being lifted by acquisitions (GreenEdge, Zagg.Money) that weren't in the base a year ago &mdash; organically, the core business grew slower than the Street was told to expect six weeks earlier.</div>
+      </div>
+
+      <h3 style="font-size:15.5px;margin:22px 0 4px;">Why margin and profit fell &mdash; management's own five reasons</h3>
+      <p style="font-size:13.8px;">From the press release and investor presentation, verbatim in substance: (1) one-off Dice acquisition costs &mdash; transaction fees, vendor payments, relocation for 100+ transferred staff; (2) Dice's own contract revenue was <em>not yet booked</em> in Q1 and only starts from Q2 FY27 &mdash; a self-disclosed cost/revenue timing mismatch; (3) a "moderated push of expenses into the P&amp;L which were earlier capitalised" &mdash; i.e. management chose to expense more product-development cost rather than capitalise it; (4) annual increments for existing staff; (5) added employee costs and other expenses consolidated from the Zagg.Money (Rivpe) acquisition.</p>
+
+      <div class="ue-cols">
+        <div class="ue-col good">
+          <h5>&#10003; What's reassuring</h5>
+          <ul>
+            <li>Incentive/cashback as a % of revenue kept falling &mdash; 69% (Q4FY26) &rarr; 66.3% (Q1FY27) &mdash; continued, verifiable progress on the exact metric management promised to fix</li>
+            <li>Point (3) above is management <em>self-correcting</em> the capitalised-development-cost critique raised by analysts on the Q4 call: expensing more, capitalising less, is more conservative accounting, not less &mdash; it just makes this quarter's margin look worse to get there</li>
+            <li>Two of the five drag factors (Dice transaction costs, Dice revenue timing) are one-off/transitional and should start reversing from Q2 FY27 once Dice contracts begin billing</li>
+            <li>Marquee enterprise logos already onboarded from Dice &mdash; Hindalco, IDFC First Bank, Trident Group, Lenskart, Manipal Hospitals, Bajaj Electricals, XpressBees, Navi, Dezerv &mdash; <em>before</em> Dice revenue even hits the P&amp;L</li>
+            <li>New 5-year HPCL loyalty-rewards partnership (fuel/petroleum spend) and the PNB co-branded card deal both progressed to signed agreements</li>
+            <li>Corporate customers +14.2% YoY, revenue per employee +26.1% YoY &mdash; underlying unit economics and headcount efficiency still moving the right way</li>
+            <li>A newly flagged tailwind: government-guided MDR on UPI, which management says opens incremental interchange monetisation across BROME/Zoyer, Zagg.Money's TPAP, and 86400's switch business &mdash; not discussed as a lever in the Q4 call</li>
+          </ul>
+        </div>
+        <div class="ue-col bad">
+          <h5>&#10007; What's not</h5>
+          <ul>
+            <li>First year-on-year PAT decline in the multi-year record this note has tracked &mdash; the "profit always grows" pattern the FY26 review was built on is now broken, at least for one quarter</li>
+            <li>Standalone revenue growth (17.7%) missed guidance (25&ndash;30%) in the guidance's first quarter &mdash; either the guide was too optimistic or Q1 is unusually weak this year; neither is confirmed yet, but the miss itself is a fact</li>
+            <li>No cash-flow statement is required or disclosed in a limited-review quarterly filing &mdash; so the single metric management staked its own credibility on last quarter (a path to positive operating cash flow) <b>cannot be checked this quarter</b>. The most consequential open question from the FY26 review is exactly as open as it was three months ago</li>
+            <li>Zagg.Money (Rivpe) is running at a loss: ₹1.25 Cr revenue against ₹&minus;2.52 Cr EBITDA; TaxSpanner remains negligible at ₹0.79 Cr revenue and ₹0.05 Cr EBITDA &mdash; two of the six acquisitions in the portfolio are still pure drag, not yet contributors</li>
+            <li>EBITDA margin (8.2%) is now running below the FY26 full-year level (10.2%, on the restated consolidated basis shown in this quarter's presentation) and below every quarter of FY26 except the softest one &mdash; the "margin recovery" trend highlighted in §04 has paused, at least for one print</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="verdict-strip">
+        <span>&#9679;</span>
+        <div><span class="ai-pill">AI-Synthesized</span><b>Net effect on the 12-month verdict in §11:</b> this update pulls the original "medium, ~45&ndash;55%" probability band down toward the <b>lower end of that range (roughly 35&ndash;45%) for the next one to two quarters specifically</b> &mdash; not a reversal of the multi-year thesis, but a real, guidance-contradicting data point that needs a clean Q2 FY27 (Dice revenue finally showing up, cashback ratio still falling, and ideally a return to double-digit standalone-vs-guidance growth) to be dismissed as transitional rather than the start of a genuine slowdown. The Q1FY27 earnings call was scheduled for 5:30&nbsp;PM IST the same day this entry was written and is <b>not yet reflected</b> here; today's closing price (₹200.59) also predates this release, since the board meeting concluded at 3:56&nbsp;PM IST, after the exchange's 3:30&nbsp;PM close.</div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#latest-update" style="color:var(--critical);font-weight:700;"><span class="n">&#9679;</span>Latest update</a></li>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Call insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What Zaggle does, and why it has grown</h2></div>
+      <p class="sec-dek">A B2B2C spend-management platform monetising the corporate expense and rewards workflow &mdash; not a pure prepaid-card company.</p>
+
+      <p class="lede">Incorporated in 2011 and listed in September 2023, Zaggle sells software and payment instruments that sit on top of a corporate's ERP, HRMS and banking rails to automate <em>non-capex spend</em>: employee expenses and reimbursements, tax-saving benefits, vendor payments, and channel/employee rewards. It calls itself India's largest issuer of prepaid cards by volume, with 50&nbsp;million+ cards issued through 19 bank partners, 3.9&nbsp;million active users and 3,900+ corporate customers as of March 2026.</p>
+
+      <h3>Four product pillars</h3>
+      <div class="grid-2">
+        <div class="card">
+          <b>Propel</b> &mdash; channel and employee rewards platform (points, gift cards, loyalty). The single largest revenue contributor: 57% of FY26 standalone revenue on a gross basis, but the lowest-margin line because most of that revenue is a pass-through cost of redemption.
+        </div>
+        <div class="card">
+          <b>Save</b> &mdash; employee expense management, digitised reimbursements and tax-benefit administration; the original core product and still the primary cross-sell anchor into new corporate logos.
+        </div>
+        <div class="card">
+          <b>Zoyer</b> &mdash; vendor procure-to-pay and invoice-to-pay with embedded finance; zero revenue at IPO (Sept 2023), now management's highlighted growth engine (the "BROME" module case studies cited on the Q4 call).
+        </div>
+        <div class="card">
+          <b>Zatix / ZIP / Fleet / Payroll Card</b> &mdash; a tail of newer, high-margin, largely software-fee businesses (card analytics, international payments, fleet/OMC spend, payroll cards) that are small today but pitched as the next legs of growth.
+        </div>
+      </div>
+
+      <h3>The moat, as the company frames it</h3>
+      <p>Three claims recur across the filings and call: (i) <b>network effects</b> &mdash; banks, corporates and employees all sit on the same rails, and cross-sell between Save/Propel/Zoyer inside an existing account is the cheapest growth lever the company has; (ii) <b>embedding &amp; switching costs</b> &mdash; once Zaggle sits inside a finance team's reconciliation workflow, churn is low (management cites &lt;1.5% customer churn and customer-acquisition cost under 5% of revenue); (iii) <b>scale in card issuance</b> &mdash; 50&nbsp;million+ cards issued gives it negotiating weight with banking/network partners that a smaller SaaS entrant would lack. These are asserted by management rather than independently verified in this dataset, but the <1.5% churn / <5% CAC figures are at least directionally consistent with five years of accelerating, not decelerating, revenue growth off an expanding base.</p>
+
+      <h3>The growth arc, FY22&ndash;FY26 (standalone)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>₹ Cr unless noted</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>371</td><td>553</td><td>776</td><td>1,303</td><td>1,853</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td>49%</td><td>40%</td><td>68%</td><td>42%</td></tr>
+            <tr><td>Corporate customers</td><td>1,753</td><td>2,411</td><td>3,016</td><td>3,455</td><td>3,915</td></tr>
+            <tr><td>Aggregate users (Mn)</td><td>1.72</td><td>2.27</td><td>2.73</td><td>3.28</td><td>3.90</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Zaggle Q4FY26 investor presentation, "Historical financial and operating metrics" (standalone). Figures rounded to the nearest ₹ crore.</caption>
+      </div>
+      <p>The five-year revenue CAGR works out to roughly 48%. Growth has never dipped below 40% YoY even as the base has grown almost 5&ndash;6x since the IPO &mdash; management's own reference point when explaining why FY27 guidance (25&ndash;30% standalone) reads as a deceleration rather than a slowdown in absolute demand.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item in the tracked news feed since the Q4FY26 results, 13 May &ndash; 8 Aug 2026.</p>
+
+      <div class="news-item">
+        <div class="news-date">08 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Cross-sell into an existing account</div>
+          <div class="news-body">Amended its agreement with APAC Financial Services to add Employee Tax Benefits on top of the Zoyer platform and expense-management services it already provides that customer. Consistent with the land-and-expand model but no contract value disclosed &mdash; a data point, not a catalyst.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">27 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Three-year Daimler India (DICV) fleet deal</div>
+          <div class="news-body">Zatix platform plus a Corporate Credit Card programme for DICV's commercial-vehicle fleet partners. Revenue is variable &mdash; tied to fleet partners onboarded and spend at DICV touchpoints &mdash; and the contract value "cannot be ascertained at this stage" per the filing; it is a logo win in the fleet-management adjacency management has been chasing (Adani, Think Gas, AGP Pratham cited on the call), not yet a quantifiable revenue line.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">21 &amp; 23 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">19.9% stake in Unobanc ("moneyHOP")</div>
+          <div class="news-body">₹7.96 Cr for 19.9% of Unobanc Private Limited, which holds an FFMC licence and in-principle RBI approval for an Authorised Dealer Category&nbsp;II licence &mdash; i.e. a regulatory shortcut into cross-border payments/forex/remittance, an area Zaggle has flagged as a strategic priority (Zaggle Payments IFSC Ltd was also incorporated in GIFT City in Feb 2026 for the same purpose). Unobanc itself is small: ₹17.4 Cr FY25 turnover, ₹1.37 Cr EBITDA.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">19 Jun 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Co-branded card partnership with Punjab National Bank</div>
+          <div class="news-body">Targets ₹450 Cr in annual transaction volume and 2.5 lakh new users, distributed through PNB's 10,000+ branch network into Tier-2/3 markets &mdash; a distribution-scale deal with a large PSU bank rather than a private-bank niche partnership. The 8&ndash;10% revenue-uplift figure attached to this deal in press coverage is an external estimate, not a company figure.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">19 May 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (signal)</span>
+          <div class="news-title">New Group CFO appointed</div>
+          <div class="news-body">Venkatesh Ramachandran (27+ years, ex-CFO Biological E., Aragen Life Sciences, Spencer's Retail) joins effective 18 May 2026, with capital-markets and M&amp;A experience explicitly relevant to a company mid-way through an acquisition spree and about to deploy leftover QIP proceeds. See §07 for the full CFO transition timeline &mdash; it happened inside a single week alongside a CTO resignation.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">16 May 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Results beat estimates &mdash; stock fell ~19% anyway</div>
+          <div class="news-body">FY26 EPS of ₹10.26 was in line and revenue of ~₹1,908 Cr came in 4.9% ahead of Street numbers. Analysts raised FY27 revenue and EPS estimates by roughly 6&ndash;7% (to ₹2,610 Cr / ₹14.38) &mdash; yet cut the consensus price target 20% to ₹430 in the same breath. Operational upgrade, valuation downgrade: the single clearest data point that this stock's problem is not the P&amp;L.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">13 May 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Q4/FY26 results: third straight record quarter</div>
+          <div class="news-body">Consolidated Q4 revenue ₹618 Cr (+49.9% YoY), PAT ₹40.6 Cr (+30.4% YoY); FY26 revenue ₹1,908 Cr (+46.3%), PAT ₹138.8 Cr (+51.8%). Full break-down in §04.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>The market's verdict has been unambiguous even where the news items individually read "bullish": the stock closed at ₹283 the day results were announced, fell to ₹210 within 48 hours, and has not meaningfully recovered since (₹200.6 as of 14 Aug). New logos, new subsidiaries, and a new CFO have not moved the share price. What has moved it is discussed in §06 and §10.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segment mix &amp; guidance</h2></div>
+      <p class="sec-dek">100% domestic revenue, a revenue mix still dominated by transaction-based fees, and a growth guide that is explicitly a deceleration off a much larger base.</p>
+
+      <h3>Quarterly trend, consolidated</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>₹ Cr</th><th>Q4FY25</th><th>Q1FY26</th><th>Q2FY26</th><th>Q3FY26</th><th>Q4FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>412</td><td>332</td><td>432</td><td>526</td><td>618</td></tr>
+            <tr><td>Adjusted EBITDA</td><td>37</td><td>43</td><td>55</td><td>53</td><td>60</td></tr>
+            <tr><td>Adj. EBITDA margin</td><td>9.0%</td><td>~13%*</td><td>~13%*</td><td>10.0%</td><td>9.8%</td></tr>
+            <tr><td>Profit after tax</td><td>31.1</td><td>26.1</td><td>35.0</td><td>36.4</td><td>40.6</td></tr>
+          </tbody>
+        </table>
+        <caption>Sources: Q4FY26 press release (Q4FY25, Q3FY26, Q4FY26 columns) and MarketData/yfinance quarterly financials (Q1&ndash;Q2FY26). *Q1/Q2FY26 EBITDA margin uses yfinance's "normalized EBITDA" proxy, not Zaggle's own Adjusted-EBITDA definition, and likely overstates the company-reported figure &mdash; treat as directional only.</caption>
+      </div>
+      <p>Revenue has stepped up sequentially every single quarter of FY26 (₹332 Cr &rarr; ₹618 Cr, +86% Q1&rarr;Q4), which is the pattern management points to as evidence of accelerating, not merely compounding, demand. Q3 and Q4 are structurally the two strongest quarters in Zaggle's calendar (33&ndash;35% of annual revenue combined vs. 16&ndash;19% for Q1) &mdash; a real seasonality, not a one-off.</p>
+
+      <h3>Revenue mix (standalone, FY26)</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Propel platform / gift cards</div><div class="v">57%</div><div class="d">Gross revenue basis; crossed ₹1,000 Cr for the first time in FY26</div></div>
+        <div class="stat"><div class="k">Program fees</div><div class="v">41%</div><div class="d">Interchange share from banking partners on prepaid/credit card spend</div></div>
+        <div class="stat"><div class="k">SaaS / platform fees</div><div class="v">2%</div><div class="d">The highest-margin, most "software-like" revenue line &mdash; still tiny</div></div>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>The structural point the label "SaaS fintech" can obscure</b>Only ~2% of standalone revenue is a pure software/platform fee. The other 98% is transaction-linked (interchange and gift-card/points redemption), which is why Zaggle reports both a "gross" and a "net" revenue view: on a net basis (after deducting pass-through cost of point redemption), FY26 Adjusted EBITDA margin was 21.7% vs. 9.9% on a gross basis. Both are true; the net number is closer to unit economics, the gross number is what flows through the audited P&amp;L.</div>
+      </div>
+
+      <h3>Geography, market position, expansion</h3>
+      <p>100% of FY26 revenue was generated within India &mdash; the consolidated segment note lists "Outside India: nil" for both the quarter and the year. International expansion is guided, not realised: management describes the UAE/MENA as its "primary growth pillar" but says it currently has <b>no on-ground presence there</b>, citing regional volatility (the war referenced repeatedly on the call) as the reason go-live has slipped from an original June 2026 target to "financial year-end" at the earliest. US entry is being built around the recently acquired DICE IP and enterprise contract base but is also unquantified. Investors should treat both as FY27&ndash;28 optionality, not FY27 revenue.</p>
+      <p>On market position, Zaggle's own claim (from Frost &amp; Sullivan, per the investor presentation) is "#1 spend management company in India" against a ₹1,750 Bn+ (2027E) domestic payments-market opportunity. No independent third-party market-share verification is present in this dataset; this is a company-sourced claim, not an audited fact.</p>
+
+      <h3>Guidance vs. what the data can verify</h3>
+      <table style="width:100%;">
+        <thead><tr><th style="text-align:left;">Guided metric</th><th style="text-align:left;">Guidance (given 13 May 2026)</th><th style="text-align:left;">Status</th></tr></thead>
+      </table>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Metric</th><th>Standalone</th><th>Consolidated</th></tr></thead>
+          <tbody>
+            <tr><td>FY27 revenue growth</td><td>25&ndash;30%</td><td>~40%</td></tr>
+            <tr><td>FY27 Adj. EBITDA margin</td><td colspan="2">Not given &mdash; deferred pending DICE integration (see §08)</td></tr>
+            <tr><td>Long-term (5-yr) Adj. EBITDA margin</td><td colspan="2">14&ndash;15%, reaffirmed on the call ("temporary variation" acknowledged near-term)</td></tr>
+            <tr><td>Cashback/incentive as % of GTV</td><td colspan="2">~68% today, guided toward ~50% over 4&ndash;5 years</td></tr>
+          </tbody>
+        </table>
+        <caption>This dataset does not contain pre-FY26 transcripts, so a formal "prior guidance vs. actual delivery" table cannot be built before Q4FY26. The one check available: FY26 standalone growth of 42% delivered against a base that had itself guided a deceleration from FY25's 68% &mdash; i.e. growth decelerated less than the multi-year trend would suggest, a mild beat-the-glide-path outcome.</caption>
+      </div>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">A five-year margin round-trip: heavy compression after the IPO as low-margin GTV scaled, now recovering on opex discipline and AI-driven efficiency.</p>
+
+      <h3>Standalone margin walk, FY22&ndash;FY26</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th></th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Gross profit margin</td><td>60.8%</td><td>42.0%</td><td>50.9%</td><td>47.8%</td><td>45.4%</td></tr>
+            <tr><td>Adjusted EBITDA margin</td><td>16.1%</td><td>11.3%</td><td>11.0%</td><td>9.6%</td><td>9.9%</td></tr>
+            <tr><td>Reported EBITDA margin</td><td>16.1%</td><td>8.7%</td><td>9.1%</td><td>8.8%</td><td>9.7%</td></tr>
+            <tr><td>PAT margin</td><td>11.3%</td><td>4.1%</td><td>5.7%</td><td>6.7%</td><td>7.2%</td></tr>
+            <tr><td>Cash PAT margin</td><td>11.9%</td><td>7.9%</td><td>8.7%</td><td>8.6%</td><td>9.2%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q4FY26 investor presentation, "Historical profit and loss statement (standalone)".</caption>
+      </div>
+      <p>Read left to right, this is a margin trough in FY23&ndash;FY25 followed by a recovery that began in FY24 and is still running: PAT margin bottomed at 4.1% in FY23 (the first full year post-scale-up of the low-margin Propel/GTV business) and has rebuilt to 7.2% in FY26, still below the FY22 pre-IPO base of 11.3%. Management's explanation, repeated on the call, is that ESOP costs (₹149.8 Mn in FY24 down to ₹22.3 Mn in FY26) and AI-driven headcount efficiency are now doing the work that scale alone did in the early years.</p>
+
+      <h3>What moved Q4FY26 specifically</h3>
+      <div class="grid-2">
+        <div class="card">
+          <b>Depreciation &amp; amortisation</b> jumped from ₹61.6 Mn (Q4FY25) to ₹104.1 Mn (Q4FY26) standalone &mdash; management attributes this entirely to capitalised technology/product development, which "nearly doubled from ₹30 Cr in H1 to ₹56 Cr in H2 FY26" per the CFO's answer on the call. This is a real cost, just a non-cash one this year.
+        </div>
+        <div class="card">
+          <b>ESOP cost fell 80% YoY</b> in Q4 (₹12.8 Mn &rarr; ₹2.5 Mn), directly boosting the gap between Adjusted and Reported EBITDA growth (45.2% vs. 49.6% YoY) &mdash; a genuine, if modest, tailwind that will not repeat at the same rate every quarter.
+        </div>
+        <div class="card">
+          <b>Other income</b> was ~20&ndash;23% of consolidated PBT in both FY25 and FY26 (₹38.0 Cr / ₹185.2 Cr in FY26), almost entirely interest income earned on unutilised IPO/QIP cash. As that cash gets deployed into acquisitions (§08), this tailwind should mechanically shrink &mdash; a headwind to watch in FY27 profit quality, not a red flag today.
+        </div>
+        <div class="card">
+          <b>Finance costs are falling</b>, not rising &mdash; ₹76.3 Mn (FY25) &rarr; ₹53.3 Mn (FY26) standalone, consistent with a company that repaid debt using QIP proceeds rather than levering up to fund growth.
+        </div>
+      </div>
+
+      <h3>Subsidiary/associate contribution (FY25 &rarr; FY26, as disclosed on the call)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Entity</th><th>Revenue FY25</th><th>Revenue FY26</th><th>Growth</th><th>PAT FY26</th></tr></thead>
+          <tbody>
+            <tr><td>86400 (Mobileware, 38.34% associate)</td><td>₹34 Cr</td><td>₹74 Cr</td><td class="pos">+118%</td><td>₹11 Cr</td></tr>
+            <tr><td>GreenEdge (100%, golf/loyalty rewards)</td><td>₹36.5 Cr</td><td>₹103.7 Cr</td><td class="pos">+184%</td><td>₹8.1 Cr</td></tr>
+            <tr><td>TaxSpanner (98.3%)</td><td colspan="3">Management: "not very stoked about the performance" &mdash; board refreshed, rebrand to "Z.tax" targeted Q2 FY27</td><td>&mdash;</td></tr>
+          </tbody>
+        </table>
+        <caption>Note: management stated GreenEdge revenue growth as "roughly 300%" live on the call, then corrected in the published transcript to 184% &mdash; the underlying ₹36.5 Cr → ₹103.7 Cr figures are unchanged; only the growth-rate framing was corrected.</caption>
+      </div>
+
+      <h3>Margin guidance</h3>
+      <p>No FY27 Adjusted EBITDA margin guidance was given &mdash; explicitly deferred because the DICE asset-purchase structure (see §08) now lands integration costs directly on the standalone P&L rather than inside a ring-fenced subsidiary. Management reaffirmed a 5-year path to 14&ndash;15% Adjusted EBITDA margin (from 9.9% in FY26) but conceded the ~100bps/year glide path "might go through some temporary variation" in the near term. Read plainly: margin expansion is the guidance most at risk of slipping over the next 2&ndash;3 quarters.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">Debt-light, cash-rich on paper, and mid-way through deploying two years of IPO/QIP proceeds into acquisitions.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>₹ Cr, standalone</th><th>Mar-22</th><th>Mar-23</th><th>Mar-24</th><th>Mar-25</th><th>Mar-26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity</td><td>&minus;3.6</td><td>48.8</td><td>575.4</td><td>1,247.6</td><td>1,400.2</td></tr>
+            <tr><td>Total assets</td><td>92.6</td><td>234.8</td><td>696.1</td><td>1,308.3</td><td>1,519.8</td></tr>
+            <tr><td>Total borrowings</td><td>64.5</td><td>121.1</td><td>73.6</td><td>5.1</td><td>43.9</td></tr>
+            <tr><td>Trade receivables</td><td>43.0</td><td>102.7</td><td>174.6</td><td>214.9</td><td>333.9</td></tr>
+            <tr><td>Cash &amp; bank balances</td><td>3.6</td><td>22.6</td><td>279.3</td><td>653.1</td><td>535.2</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q4FY26 investor presentation, "Historical balance sheet (standalone)".</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Receivables outgrew revenue in FY26</b>Standalone trade receivables rose 55% YoY (₹214.9 Cr &rarr; ₹333.9 Cr) against 42% revenue growth &mdash; roughly 60 to 66 days sales outstanding. Not yet an alarming absolute level, but this is the single line item an analyst pressed management on directly, and it is the direct mechanical cause of FY26's negative operating cash flow (§06).</div>
+      </div>
+
+      <h3>Capital allocation: still spending down the IPO/QIP war chest</h3>
+      <p>Zaggle raised ₹362.2 Cr in its September 2023 IPO (fully utilised as of March 2026, per the audited note) and a further ₹574.1 Cr via QIP completed in FY25. Of the QIP proceeds, ₹191.3 Cr had been deployed by March 2026 (debt repayment, strategic investments/acquisitions, general corporate purposes); the remaining <b>₹382.8 Cr sits in short-term bank deposits and a monitoring account</b>, i.e. this is committed dry powder for further M&amp;A, not yet cash flow generated by the business.</p>
+      <p>In FY26 the company also raised ₹15.0 Cr via a two-tranche preferential warrant issue (352,734 warrants to the promoter group, 705,467 to non-promoters, at ₹567/warrant with 25% paid up-front) &mdash; the promoter group's participation is a mild positive skin-in-the-game signal, though the balance 75% due on conversion is a known future dilution event.</p>
+      <p>Debt reappeared modestly in FY26 (₹5.1 Cr &rarr; ₹43.9 Cr standalone current borrowings) after being paid down to near-zero in FY25; management describes this as short-term, working-capital-linked borrowing "to quickly deploy capital and grow the business" rather than a leverage strategy &mdash; consistent with a company still overwhelmingly funded by equity (debt/equity is under 4%).</p>
+
+      <h3>Capex</h3>
+      <p>Standalone capex rose from ₹67.5 Cr (FY25) to ₹107.1 Cr (FY26), running well ahead of depreciation (₹34.6 Cr) &mdash; a genuine expansion of the asset base (largely capitalised software/product development), not maintenance capex. Management declined to give a forward capex number ("difficult to give specifics... but this investment is critical for building market leadership"), which is a reasonable answer for a technology company but also means investors have no explicit ceiling on how much further capitalised development can grow relative to reported profit.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality &mdash; the crux of the bear case</h2></div>
+      <p class="sec-dek">This is the section that explains the share-price chart more than any other in this note.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>₹ Cr, consolidated</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT</td><td>22.9</td><td>44.0</td><td>87.9</td><td>138.1</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td class="neg">&minus;15.6</td><td class="neg">&minus;82.8</td><td class="pos">19.7</td><td class="neg">&minus;51.5</td></tr>
+            <tr><td>Capex</td><td>&minus;16.2</td><td>&minus;45.9</td><td>&minus;67.5</td><td>&minus;107.1</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="neg">&minus;31.8</td><td class="neg">&minus;128.7</td><td class="neg">&minus;47.8</td><td class="neg">&minus;158.6</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. FY26 standalone cash flow statement (audited, in the Q4FY26 financial results filing) shows OCF of &minus;₹6.3 Cr and FCF of &minus;₹113.4 Cr on a standalone basis &mdash; the wider consolidated gap reflects newly acquired subsidiaries still burning cash.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Earnings-quality check: FAILS clean</b>PAT has grown every year since FY23 (5.8x cumulative, standalone) while consolidated CFO was negative in three of the last four years and free cash flow has been negative in <em>all four</em>. This is not a subtle divergence to tease out of the footnotes &mdash; management raised it unprompted on the call, named it the company's top internal priority ("operating cash flow, revenue growth and margin expansion" &mdash; in that order), and fielded direct, pointed analyst questions about it (see quotes below). The gap is explained, not denied: rising receivables, a redemption-heavy Propel/points model that "absorbs a lot of cash," and capitalised product development that inflates reported EBITDA/PAT relative to cash generated.</div>
+      </div>
+
+      <blockquote>
+        "The reported EBITDA... whatever, ₹50 crores, ₹55 crores of EBITDA that you have every quarter... is that a challenge given the focus now on cash flows that margins can actually see further downside?"
+        <cite>&mdash; Jayesh Shah, OHM Portfolio Equity Research, Q4FY26 earnings call</cite>
+      </blockquote>
+      <blockquote>
+        "We are just about minus ₹6 crores on negative [standalone operating] cash flow, and we will look forward to improving it to a positive cash flow in the coming quarters... this remains the metric which we continuously track extremely closely."
+        <cite>&mdash; Dr. Raj Narayanam, Executive Chairman, Q4FY26 earnings call</cite>
+      </blockquote>
+      <blockquote>
+        "Best of luck for next year. Hopefully we'll see a large part of our PAT converted to operating cash flow next year."
+        <cite>&mdash; Akhil Gulecha, Hornbill Capital, closing an exchange about the Propel business's return on capital</cite>
+      </blockquote>
+
+      <p>The trajectory within FY26 is genuinely improving on management's own account: standalone OCF moved from roughly &minus;₹33&ndash;34 Cr at end-September 2025 to roughly &minus;₹6&ndash;7 Cr by end-March 2026 &mdash; i.e. quarter-on-quarter progress toward breakeven, even if the annual number is still negative and the <em>consolidated</em> figure (dragged down by newly acquired, "nascent" subsidiaries per management) remains around &minus;₹52 Cr. This dataset does not include a published standalone quarterly cash-flow statement, so that improving trajectory rests on verbal management disclosure rather than an audited table &mdash; worth confirming in the Q1FY27 filings due the same day as this note.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">A founder-led company with an unusually busy May 2026 for the leadership roster.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Dr. Raj P Narayanam</div>
+          <div class="role">Founder &amp; Executive Chairman</div>
+          <div class="bio">Founded Zaggle in 2011; on the board since 2012. MBA, University of Chicago; honorary doctorate, Chitkara University. Named FinTech "Star of the Year" at the Hurun India Stars of A.P. &amp; Telangana 2026.</div>
+        </div>
+        <div class="person">
+          <div class="name">Avinash Ramesh Godkhindi</div>
+          <div class="role">Managing Director &amp; CEO</div>
+          <div class="bio">On the board since 2012; prior banking-industry experience at Citibank India. Runs the quarterly numbers and fields the bulk of analyst Q&amp;A on every call reviewed here.</div>
+        </div>
+        <div class="person">
+          <div class="name">Venkatesh Ramachandran</div>
+          <div class="role">Group CFO (from 18 May 2026)</div>
+          <div class="bio">27+ years across pharma, life sciences, logistics, IT services, retail, telecom, infra. Previously CFO at Biological E., Aragen Life Sciences and Prolifics; Group CFO at NTC Logistics. Deep M&amp;A, IPO and capital-raising background &mdash; a plausible fit for a company mid-acquisition-spree.</div>
+        </div>
+        <div class="person">
+          <div class="name">Rajesh Tummalaganti</div>
+          <div class="role">Deputy CFO (ex-Interim CFO)</div>
+          <div class="bio">Chartered Accountant, 20 years' experience including EY and Head Digital Works. Ran the Q4FY26 results and call as Interim CFO before handing over; retained as Deputy CFO.</div>
+        </div>
+      </div>
+
+      <h3>The May 2026 leadership reshuffle</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Date</th><th>Event</th></tr></thead>
+          <tbody>
+            <tr><td>13 May 2026</td><td>Board approves Venkatesh Ramachandran as Group CFO effective 18 May; outgoing Interim CFO Rajesh Tummalaganti retained as Deputy CFO. (A prior CFO, Aditya Kumar Grandhi, was thanked on the call for his tenure &mdash; his own departure and Tummalaganti's interim appointment both pre-date this dataset.)</td></tr>
+            <tr><td>22 May 2026</td><td>Chief Technology Officer Srikanth Gaddam resigns, citing personal reasons; last working day 27 May 2026.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Key-man watch, not a governance red flag</b>Two C-suite transitions inside a ten-day window &mdash; a full CFO succession and a CTO exit &mdash; is a higher rate of senior turnover than a company this size usually shows, and it lands squarely in the middle of an active M&amp;A/integration period (DICE, Rivpe, Unobanc all in progress). Nothing in the filings suggests the departures were adversarial (both are "cessation"/"resignation," not "removal," and the CFO transition was clearly a planned succession, with the new hire's profile disclosed in full). It is a fair item to monitor for continuity risk over the next two quarters rather than a confirmed problem.</div>
+      </div>
+
+      <h3>Other governance markers</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Auditor:</b> MSKA &amp; Associates LLP issued an <b>unmodified (clean) opinion</b> on both standalone and consolidated FY26 results, with an unmodified limited-review conclusion for Q4 &mdash; no qualification, emphasis of matter, or auditor change found in this dataset.</li>
+        <li><b>Related-party transactions:</b> both disclosed acquisitions reviewed here (DICE, Unobanc) are explicitly stated as <em>not</em> related-party transactions with no promoter-group interest.</li>
+        <li><b>M&amp;A discipline:</b> the DICE deal was renegotiated down from an original ~₹123 Cr valuation to ~₹68 Cr and restructured from a share purchase to an asset purchase; a separate proposed acquisition (EffiaSoft) was abandoned outright after reassessment ("we have decided not to proceed ahead with the transaction") &mdash; both read as reasonable capital discipline rather than deal-chasing.</li>
+        <li><b>Ownership:</b> insiders hold 52.1% of shares; institutional ownership is thin at 6.2% (16 institutions per the data) &mdash; a relatively low-float, retail/promoter-heavy register that can amplify price moves in both directions.</li>
+      </ul>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other insights from the conference call</h2></div>
+      <p class="sec-dek">The M&amp;A portfolio, the DICE restructuring, and the international-expansion delay.</p>
+
+      <h3>The acquisition/investment portfolio, in one place</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Entity</th><th>Stake</th><th>Consideration</th><th>Status</th><th>Rationale</th></tr></thead>
+          <tbody>
+            <tr><td>Span Across IT ("TaxSpanner")</td><td>98.3%</td><td>₹56.8 Cr</td><td>Completed Sep 2024</td><td>Tax/e-filing, cross-sell into corporate tax-benefit users</td></tr>
+            <tr><td>Mobileware ("86400")</td><td>38.34% (associate)</td><td>₹22.9 Cr</td><td>Completed Mar 2025</td><td>UPI/API banking infrastructure; +118% revenue growth in FY26</td></tr>
+            <tr><td>GreenEdge Enterprises</td><td>100%</td><td>₹20 Cr acq. + ₹25 Cr invest.</td><td>Completed Dec 2025</td><td>Golf-based loyalty/rewards for banks &amp; NPCI; +184% revenue growth in FY26</td></tr>
+            <tr><td>Rivpe Technology ("Zagg.money")</td><td>100%</td><td>₹22 Cr acq. + ₹50 Cr invest.</td><td>Completed Mar 2026 (equity); Jun 2026 (CCPS)</td><td>UPI payments + co-branded consumer credit cards; entry into consumer credit card market</td></tr>
+            <tr><td>Dice Enterprises</td><td>Asset purchase (not equity)</td><td>~₹67.9 Cr</td><td>Definitive docs signed 13 May 2026</td><td>T&amp;E / procure-to-pay IP, ~95% gross-margin SaaS revenue, ~100 AI-skilled staff, enterprise contract book</td></tr>
+            <tr><td>Unobanc ("moneyHOP")</td><td>19.9%</td><td>₹7.96 Cr</td><td>Completed Jul 2026</td><td>FFMC + in-principle RBI AD-II licence for cross-border payments/forex</td></tr>
+            <tr><td>Zaggle Payments IFSC Ltd</td><td>100% (new subsidiary)</td><td>₹1 lakh paid-up capital</td><td>Incorporated Feb 2026, GIFT City</td><td>Platform for global cross-border payments ambitions</td></tr>
+            <tr><td>EffiaSoft</td><td>&mdash;</td><td>&mdash;</td><td><b>Abandoned</b></td><td>"Reassessed the strategic need" given AI-driven disruption &mdash; deal terminated</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Why DICE matters more than its size suggests</h3>
+      <p>DICE had FY25 turnover of just ₹10.85 Cr and was loss-making (management expects it to still be loss-making in FY26). Its significance is structural: the deal was originally a 100% share acquisition (a subsidiary, ring-fenced from the standalone P&L), but was restructured in May 2026 into an asset purchase &mdash; meaning DICE's costs and the ~100 transferred employees now sit directly on <em>Zaggle's own standalone P&L</em>. This is the specific reason management gave for withholding FY27 EBITDA-margin guidance until integration completes "in the next few months." It is a small deal with an outsized, temporary effect on near-term margin visibility.</p>
+
+      <h3>International expansion: guided, then pushed out</h3>
+      <p>US operations were originally targeted to start by June 2026; management confirmed on the call this has slipped "by a couple of quarters," attributed to regional volatility affecting the linked Middle East go-to-market plan, with the DICE acquisition now cited as the platform to relaunch from. UAE/MENA entry has no committed timeline beyond "once peace is restored" in the region. Both remain FY27&ndash;28 optionality rather than a funded, dated plan.</p>
+
+      <h3>Cashback economics: a structural bet on customer habituation</h3>
+      <p>Management was pressed on why prepaid/credit card cashback (currently ~68% of GTV) needs to exist at all, given it consumes cash the company says it wants to conserve. The answer given was explicitly analogous to e-commerce and food-delivery's own historical cashback phase: management expects a "growing category" (spend management, likened to the adoption curves of ERPs, HRMS and CRM before it) to let Zaggle dial down cashback as corporate/consumer habits mature over the guided 4&ndash;5 year window &mdash; a plausible but unproven thesis that the company is explicitly asking investors to underwrite.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">Thin, and possibly stale.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analysts covering</div><div class="v">2</div><div class="d">Both rated "Buy," zero Hold/Sell</div></div>
+        <div class="stat"><div class="k">Mean target</div><div class="v">₹430</div><div class="d">Range ₹380&ndash;480</div></div>
+        <div class="stat"><div class="k">Implied upside</div><div class="v pos">+114%</div><div class="d">vs. CMP ₹200.6 &mdash; see caveat</div></div>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Treat the ₹430 target with real caution</b>The news timeline itself (16 May 2026) shows analysts cutting their consensus target 20% to ₹430 <em>immediately after</em> the Q4 results, even while raising FY27 estimates &mdash; i.e. this was already a valuation-driven downgrade, not a fresh bullish call. The stock has fallen a further ~7% since that target was set (₹216 &rarr; ₹200.6), with no confirmation in this dataset that either analyst has revised the target down again. With only two names covering the stock, "consensus" here really means two individual views, not a broad market read.</div>
+      </div>
+      <p>Historical EPS-vs-estimate surprises (from tracked earnings dates) show a pattern worth noting: large negative surprises through FY25 (misses of 66&ndash;77% against Street EPS estimates across four consecutive quarters, Jul 2024&ndash;Feb 2025) gave way to small beats and modest misses through FY26 (+5.0%, &minus;15.7%, &minus;69.8%<sup>†</sup>, &minus;1.8%, +3.1%). The Nov 2025 outlier (&minus;69.8%, estimate ₹8.60 vs. reported ₹2.60) sits awkwardly against a smooth, rising sequential-EPS trend (₹1.94 &rarr; ₹2.60 &rarr; ₹2.75 &rarr; ₹3.02 across FY26's four quarters) and most likely reflects a bad or stale individual estimate feeding the aggregator rather than a genuine operating miss &mdash; flagged here rather than silently smoothed over.</p>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock that got cheaper while the business got bigger.</p>
+
+      <h3>One year of price action against an unbroken growth story</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Monthly closing price, Aug 2025&ndash;Aug 2026 (NSE). The stock had already fallen ~50% from its 52-week high before the Q4FY26 results were even announced &mdash; the post-results leg down (₹283&rarr;₹210 in two sessions) extended an existing de-rating rather than starting a new one.</p>
+
+      <h3>Valuation today &mdash; and a correction to the raw data</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>The headline "EV/EBITDA 3.5x" is misleading</b>MarketData's automated EBITDA figure (₹690 Cr TTM, implying a 36% margin) does not reconcile with Zaggle's own reported Adjusted EBITDA (₹191.6 Cr consolidated FY26, 10.0% margin) &mdash; the aggregator appears to treat "cost of point redemption/gift cards," the company's largest single expense line, differently from how Zaggle itself defines cost of revenue. Using the company's own Adjusted EBITDA, EV/EBITDA is closer to <b>12.6x</b> (₹2,416 Cr EV / ₹191.6 Cr), not 3.5x. Net profit margin (7.2%) and revenue growth figures in the raw data do reconcile with company filings and are used as-is throughout this note.</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">19.5x</div><div class="d">On ₹10.26 consolidated diluted EPS</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">2.06x</div><div class="d">BVPS ₹97.18</div></div>
+        <div class="stat"><div class="k">EV / Revenue</div><div class="v">1.27x</div><div class="d">On FY26 consolidated revenue</div></div>
+        <div class="stat"><div class="k">EV / Adj. EBITDA</div><div class="v">~12.6x</div><div class="d">Corrected basis &mdash; see above</div></div>
+      </div>
+
+      <h3>Bear / base / bull, FY28E</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Illustrative scenarios built from management's stated FY27 growth guidance (25&ndash;30% standalone / ~40% consolidated), the reaffirmed 5-year 14&ndash;15% Adj. EBITDA margin path, and the observed post-result de-rating &mdash; not point forecasts. No FY27 EBITDA guidance exists in this dataset, so margin paths below are scenario assumptions, explicitly labelled as such.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">₹150&ndash;190</div>
+          <div class="rng">Roughly flat to &minus;15% from CMP</div>
+          <ul>
+            <li>Consolidated growth undershoots to ~20% CAGR as MENA/US delays persist and DICE drag lingers</li>
+            <li>PAT margin stays pinned near 7.3&ndash;7.5%; OCF/FCF conversion does not improve</li>
+            <li>Multiple stays compressed (10&ndash;13x P/E) on continued cash-flow and thin-float concerns</li>
+            <li>FY28E EPS ~₹15.5</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">₹290&ndash;330</div>
+          <div class="rng">+45% to +65% from CMP</div>
+          <ul>
+            <li>Revenue CAGR ~30&ndash;33% FY26&ndash;28, roughly tracking guidance</li>
+            <li>PAT margin drifts to ~8% as DICE integrates and cashback ratio starts easing</li>
+            <li>Partial multiple recovery to 15&ndash;17x P/E, still below the stock's own historical range</li>
+            <li>FY28E EPS ~₹19.5, consistent with FY27E consensus of ₹14.38 (+40% YoY) extended one more year at a similar rate</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">₹480&ndash;600</div>
+          <div class="rng">+140% to +200% from CMP</div>
+          <ul>
+            <li>Growth holds near 35&ndash;40% as GreenEdge/86400/Zagg.money/DICE cross-sell all scale together</li>
+            <li>Consolidated OCF turns sustainably positive; the cash-quality overhang lifts</li>
+            <li>Re-rating to 20&ndash;24x P/E, still a discount to the stock's own 2024 trading multiples</li>
+            <li>FY28E EPS ~₹24&ndash;25; price approaches/exceeds the 52-week high</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> five straight years of 40&ndash;50% revenue growth, three consecutive record quarters into FY26, a clean audit opinion, a debt-light balance sheet sitting on ₹383 Cr of still-undeployed QIP cash, disciplined (not reckless) M&amp;A &mdash; including walking away from a deal (EffiaSoft) and renegotiating another (DICE) down 45% &mdash; and two acquired subsidiaries (86400, GreenEdge) already growing revenue well over 100% within a year of being bought.</p>
+        <p style="max-width:none;"><b>What's not good:</b> free cash flow has been negative for four straight years despite consistently positive and growing PAT; only 2% of revenue is pure high-margin SaaS; FY27 has no EBITDA guidance; two C-suite departures landed in the same ten-day window; and the market has already rendered a harsh verdict &mdash; the stock is down more than 50% from its 52-week high, with roughly half of that de-rating having happened <em>before</em> the Q4 results the company is calling its best-ever quarter.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> credibly, on the evidence here. Rather than deny the cash-flow gap, leadership named it the top internal priority on the call, quantified the quarter-on-quarter standalone improvement (&minus;₹33&ndash;34 Cr to &minus;₹6&ndash;7 Cr), and is visibly re-pricing the parts of the business (Propel take-rate, cashback ratio) that consume the most working capital. The CFO hire brought in specific M&amp;A/capital-markets pedigree at exactly the moment the company needs to deploy ₹383 Cr of dry powder without repeating past cash-conversion mistakes.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood this resolves in the bulls' favour over the next 12 months: medium, roughly 45&ndash;55%.</b> The case rests on whether consolidated operating cash flow actually crosses into positive territory in FY27 &mdash; the one metric management has staked its own credibility on and the one this dataset cannot yet confirm, since Q1FY27 results land the same day this note was compiled. A clean, audited quarter of positive consolidated OCF would be the single most re-rating-worthy data point available to this stock; a repeat of FY26's pattern (strong PAT, negative CFO) would likely keep the multiple compressed regardless of how fast the top line grows.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) Q1FY27 consolidated operating cash flow, due the same day as this note &mdash; a positive print would be the strongest bullish confirmation available; (2) whether FY27 EBITDA-margin guidance is issued on schedule "in the next few months" as promised, or slips further; (3) receivable days &mdash; a continued rise past ~70 days alongside flat-to-negative CFO would harden this from a "watch item" to a genuine red flag; (4) any further senior-management departures during the DICE/Unobanc integration window.</div>
+      </div>
+    </section>
+
+    <footer>
+      Compiled from company BSE/NSE filings (Announcements/AnnouncementsConv, 17 Apr&ndash;14 Aug 2026), MarketData (Yahoo Finance via yfinance, last fetched 14 Aug 2026 16:16 IST), and the tracked News feed. All figures are as originally reported by the company or the cited data source; where a figure could not be independently reconciled, that is stated explicitly in the relevant section rather than silently corrected. This is a research synthesis for informational purposes, not investment advice.
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT, consolidated) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26'];
+    var revenue = [412, 332, 432, 526, 618];
+    var ebitda  = [37, 43, 55, 53, 60];
+    var pat     = [31, 26, 35, 36, 41];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'Adj. EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+
+    function y(v){ return padT + plotH - (v/maxV)*plotH; }
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, adjusted EBITDA and PAT, consolidated" style="width:100%;height:auto;font-size:11px;">';
+
+    // gridlines
+    var steps = 4;
+    for(var g=0; g<=steps; g++){
+      var gv = (maxV/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(v);
+        var bh = (padT+plotH) - by;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+by.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '</div>';
+  })();
+
+  // ---------- Price sparkline ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Aug 25', 396], ['Sep 25', 346], ['Oct 25', 363], ['Nov 25', 392],
+      ['Dec 25', 365], ['Jan 26', 276], ['Feb 26', 256], ['Mar 26', 210],
+      ['Apr 26', 260], ['May 26 (pre)', 246], ['May 26 (post-Q4)', 210],
+      ['Jun 26', 199], ['Jul 26', 206], ['Aug 26', 201]
+    ];
+    var W = 900, H = 220, padL = 44, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Zaggle monthly closing share price, August 2025 to August 2026" style="width:100%;height:auto;font-size:11px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 3;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i%2===0 || i===points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','').replace(' (pre)','').replace(' (post-Q4)','*')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">* Q4FY26 results announced 13 May 2026</div></div>';
+  })();
+})();
+</script>

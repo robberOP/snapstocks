@@ -80,13 +80,6 @@
           <button type="button" data-group="sector" aria-pressed="true">Sector</button>
           <button type="button" data-group="industry" aria-pressed="false">Industry</button>
         </div>
-        <div class="seg" id="period-toggle" role="group" aria-label="Status timeframe">
-          <button type="button" data-period="1d" aria-pressed="false">1D</button>
-          <button type="button" data-period="2d" aria-pressed="false">2D</button>
-          <button type="button" data-period="1w" aria-pressed="true">1W</button>
-          <button type="button" data-period="1m" aria-pressed="false">1M</button>
-          <button type="button" data-period="3m" aria-pressed="false">3M</button>
-        </div>
         <div class="search-field" style="flex:1 1 220px; max-width:280px;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input id="search" type="text" placeholder="Filter…" autocomplete="off" />
@@ -102,9 +95,6 @@
               <tr>
                 <th class="sortable" data-key="name" aria-sort="none">Name</th>
                 <th class="sortable" data-key="coverage" aria-sort="none">Coverage <span class="arrow">↕</span></th>
-                <th class="sortable" data-key="status" aria-sort="none">Status <span class="arrow">↕</span></th>
-                <th class="sortable" data-key="breadth_1d" aria-sort="none">Breadth 1D <span class="arrow">↕</span></th>
-                <th class="sortable" data-key="breadth_1w" aria-sort="none">Breadth 1W <span class="arrow">↕</span></th>
                 <th class="sortable" data-key="ret_1d" aria-sort="none">Ret 1D <span class="arrow">↕</span></th>
                 <th class="sortable" data-key="vol_1d" aria-sort="none">Vol 1D/5D <span class="arrow">↕</span></th>
                 <th class="sortable" data-key="ret_2d" aria-sort="none">Ret 2D <span class="arrow">↕</span></th>
@@ -118,7 +108,7 @@
               </tr>
             </thead>
             <tbody id="tbody"></tbody>
-            <caption>Return = average trading-day return across each group's mapped stocks. Each period's volume ratio compares that period's own trailing average volume to a longer lookback (1D→5D avg, 2D→5D avg, 1W→4W avg, 1M→3M avg, 3M→12M avg). Status uses the timeframe selected above. Coverage = stocks with price data / stocks mapped to this group.</caption>
+            <caption>Return = average trading-day return across each group's mapped stocks. Each period's volume ratio compares that period's own trailing average volume to a longer lookback (1D→5D avg, 2D→5D avg, 1W→4W avg, 1M→3M avg, 3M→12M avg). Coverage = stocks with price data / stocks mapped to this group.</caption>
           </table>
         </div>
       </div>
@@ -143,25 +133,9 @@
 <script>
 (function () {
   var DATA = null;
-  var state = { group: "sector", period: "1w", query: "", sortKey: "ret_1w", sortDir: -1 };
-
-  var STATUS_META = {
-    good:     { pill: "pill-good",     label: "Confirmed up" },
-    warning:  { pill: "pill-warning",  label: "Light-vol rally" },
-    critical: { pill: "pill-critical", label: "Heavy selling" },
-    serious:  { pill: "pill-serious",  label: "Quiet pullback" },
-    unknown:  { pill: "pill-neutral",  label: "No data" }
-  };
+  var state = { group: "sector", query: "", sortKey: "ret_1w", sortDir: -1 };
 
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
-
-  function classifyStatus(ret, vol) {
-    if (ret === null || ret === undefined || vol === null || vol === undefined) return "unknown";
-    if (ret >= 0 && vol >= 1) return "good";
-    if (ret >= 0 && vol < 1) return "warning";
-    if (ret < 0 && vol >= 1) return "critical";
-    return "serious";
-  }
 
   function magClass(v) {
     var a = Math.abs(v);
@@ -187,17 +161,10 @@
     if (v === null || v === undefined) return '<td><span style="color:var(--text-muted)">—</span></td>';
     return "<td>" + v.toFixed(2) + "×</td>";
   }
-  function breadthCell(v) {
-    if (v === null || v === undefined) return '<td><span style="color:var(--text-muted)">—</span></td>';
-    return "<td>" + v.toFixed(0) + "%</td>";
-  }
 
   function sortValue(row, key) {
     if (key === "name") return row.name;
     if (key === "coverage") return row.n_mapped ? row.n_with_data / row.n_mapped : 0;
-    if (key === "status") return classifyStatus(row.ret[state.period], row.vol_ratio[state.period]);
-    if (key === "breadth_1d") return row.breadth["1d"];
-    if (key === "breadth_1w") return row.breadth["1w"];
     if (key.indexOf("ret_") === 0) return row.ret[key.slice(4)];
     if (key.indexOf("vol_") === 0) return row.vol_ratio[key.slice(4)];
     return null;
@@ -224,16 +191,11 @@
   function render() {
     var rs = rows();
     document.getElementById("tbody").innerHTML = rs.map(function (r) {
-      var status = classifyStatus(r.ret[state.period], r.vol_ratio[state.period]);
-      var sm = STATUS_META[status];
       var missing = Math.max(0, r.n_mapped - r.n_with_data);
       var cov = '<span class="covbadge' + (missing > 0 ? " partial" : "") + '">' + r.n_with_data + '/' + r.n_mapped + '</span>';
-      var pill = '<span class="pill ' + sm.pill + '"><span class="d"></span>' + sm.label + '</span>';
       return "<tr>" +
         '<td class="name-cell">' + esc(r.name) + "</td>" +
         "<td>" + cov + "</td>" +
-        "<td>" + pill + "</td>" +
-        breadthCell(r.breadth["1d"]) + breadthCell(r.breadth["1w"]) +
         retCell(r.ret["1d"]) + volCell(r.vol_ratio["1d"]) +
         retCell(r.ret["2d"]) + volCell(r.vol_ratio["2d"]) +
         retCell(r.ret["1w"]) + volCell(r.vol_ratio["1w"]) +
@@ -247,13 +209,6 @@
     var btn = e.target.closest("button");
     if (!btn) return;
     state.group = btn.getAttribute("data-group");
-    Array.prototype.forEach.call(this.querySelectorAll("button"), function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
-    render();
-  });
-  document.getElementById("period-toggle").addEventListener("click", function (e) {
-    var btn = e.target.closest("button");
-    if (!btn) return;
-    state.period = btn.getAttribute("data-period");
     Array.prototype.forEach.call(this.querySelectorAll("button"), function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
     render();
   });
@@ -275,7 +230,7 @@
     render();
   }).catch(function (err) {
     document.getElementById("as-of-date").textContent = "Data unavailable";
-    document.getElementById("tbody").innerHTML = '<tr><td colspan="15"><div class="callout callout-flag"><span class="icon">!</span><div><b>Couldn’t load momentum data.</b> ' + esc(err.message) + '</div></div></td></tr>';
+    document.getElementById("tbody").innerHTML = '<tr><td colspan="12"><div class="callout callout-flag"><span class="icon">!</span><div><b>Couldn’t load momentum data.</b> ' + esc(err.message) + '</div></div></td></tr>';
     console.error(err);
   });
 })();

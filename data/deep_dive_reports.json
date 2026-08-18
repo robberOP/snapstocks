@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "nh",
+    "name": "Narayana Hrudayalaya Ltd (NH)",
+    "shell_url": "/stock-analysis/deep-dive/nh.html",
+    "report_url": "/stock-analysis/deep-dive/reports/nh.html"
+  },
+  {
+    "slug": "optiemus",
+    "name": "Optiemus Infracom Limited",
+    "shell_url": "/stock-analysis/deep-dive/optiemus.html",
+    "report_url": "/stock-analysis/deep-dive/reports/OPTIEMUS.html"
+  },
+  {
+    "slug": "refex",
+    "name": "Refex Industries Limited",
+    "shell_url": "/stock-analysis/deep-dive/refex.html",
+    "report_url": "/stock-analysis/deep-dive/reports/REFEX.html"
+  },
+  {
+    "slug": "zaggle",
+    "name": "Zaggle Prepaid Ocean Services",
+    "shell_url": "/stock-analysis/deep-dive/zaggle.html",
+    "report_url": "/stock-analysis/deep-dive/reports/zaggle.html"
+  }
+]

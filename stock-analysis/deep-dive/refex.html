@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sector Rotation Graphs — SnapStocks</title>
-<meta name="description" content="Relative rotation graphs for Indian sectors — coming soon." />
+<title>Refex Industries Limited — Deep-Dive — SnapStocks</title>
+<meta name="description" content="Narrative deep-dive report for Refex Industries Limited." />
 <link rel="stylesheet" href="/assets/css/tokens.css" />
 <link rel="stylesheet" href="/assets/css/base.css" />
 <link rel="stylesheet" href="/assets/css/layout.css" />
@@ -22,8 +22,8 @@
       <nav class="nav-primary" aria-label="Primary">
         <a href="/">Home</a>
         <a href="/macro-analysis/index.html">Macro Analysis <span class="soon-dot" title="Coming soon"></span></a>
-        <a href="/sector-analysis/index.html" aria-current="page">Sector Analysis</a>
-        <a href="/stock-analysis/index.html">Stock Analysis</a>
+        <a href="/sector-analysis/index.html">Sector Analysis</a>
+        <a href="/stock-analysis/index.html" aria-current="page">Stock Analysis</a>
       </nav>
       <div class="nav-actions">
         <label class="nav-search">
@@ -40,42 +40,29 @@
       <a href="/">Home</a>
       <a href="/macro-analysis/index.html">Macro Analysis <span class="badge-soon">Soon</span></a>
       <a href="/sector-analysis/index.html">Sector Analysis</a>
-      <div class="drawer-sub">
-        <a href="/sector-analysis/momentum-chart.html">— Momentum Chart</a>
-        <a href="/sector-analysis/momentum-table.html">— Momentum Table</a>
-        <a href="/sector-analysis/rotation.html">— Rotation Graphs</a>
-      </div>
       <a href="/stock-analysis/index.html">Stock Analysis</a>
+      <div class="drawer-sub">
+        <a href="/stock-analysis/fundamentals/template.html">— Fundamentals</a>
+        <a href="/stock-analysis/deep-dive/zaggle.html">— Deep-Dive Reports</a>
+      </div>
     </nav>
   </header>
 
   <div class="content">
     <div class="page-header">
       <div class="container">
-        <nav class="breadcrumbs"><a href="/">Home</a><span class="sep">/</span><a href="/sector-analysis/index.html">Sector Analysis</a><span class="sep">/</span><span class="current">Rotation Graphs</span></nav>
-        <div class="page-header-row">
-          <div>
-            <span class="eyebrow"><svg class="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg>Sector Analysis</span>
-            <h1>Sector Rotation Graphs</h1>
-            <p class="dek">Relative-rotation trails showing how sectors move between leading, weakening, lagging and improving over time.</p>
-          </div>
-        </div>
-        <nav class="subnav" aria-label="Sector Analysis views">
-          <a href="/sector-analysis/momentum-chart.html">Momentum Chart</a>
-          <a href="/sector-analysis/momentum-table.html">Momentum Table</a>
-          <a href="/sector-analysis/rotation.html" aria-current="page">Rotation Graphs <span class="badge-soon">Soon</span></a>
+        <nav class="breadcrumbs"><a href="/">Home</a><span class="sep">/</span><a href="/stock-analysis/index.html">Stock Analysis</a><span class="sep">/</span><span class="current">Refex Industries Limited — Deep-Dive</span></nav>
+        <nav class="subnav" aria-label="Stock Analysis views">
+          <a href="/stock-analysis/fundamentals/template.html">Fundamentals View</a>
+          <a href="/stock-analysis/deep-dive/refex.html" aria-current="page">Deep-Dive Reports</a>
         </nav>
       </div>
     </div>
 
     <div class="section-body container">
-      <div class="empty-state">
-        <span class="icon-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 1 3 6.2"/><path d="M4 18v-4h4"/></svg>
-        </span>
-        <h3>Rotation graphs are in the works</h3>
-        <p>This view will plot each sector's trail across trailing weeks on a relative-rotation quadrant, so you can see a sector cross from lagging into improving before it shows up as a leader on the momentum chart.</p>
-        <a href="/sector-analysis/momentum-chart.html" class="btn btn-secondary">Use the Momentum Chart for now</a>
+      <div class="report-frame-wrap">
+        <div class="report-frame-loading"><span class="spinner-ring"></span>Loading report…</div>
+        <iframe data-report-frame src="/stock-analysis/deep-dive/reports/REFEX.html" title="Refex Industries Limited — deep-dive report" scrolling="no"></iframe>
       </div>
     </div>
   </div>
@@ -93,5 +80,6 @@
 <script src="/assets/js/nav.js"></script>
 <script src="/assets/js/theme.js"></script>
 <script src="/assets/js/stock-search.js"></script>
+<script src="/assets/js/report-frame.js"></script>
 </body>
 </html>

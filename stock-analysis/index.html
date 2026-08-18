@@ -28,7 +28,7 @@
       <div class="nav-actions">
         <label class="nav-search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" placeholder="Search ticker or sector…" autocomplete="off" />
+          <input type="text" placeholder="Search ticker or sector…" autocomplete="off" data-stock-search />
           <kbd>/</kbd>
         </label>
         <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
@@ -56,13 +56,9 @@
           <div>
             <span class="eyebrow"><svg class="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg>Stock Analysis</span>
             <h1>One stock, two views</h1>
-            <p class="dek">Every ticker gets a full fundamentals snapshot pulled from yfinance. Select names also carry a narrative deep-dive report when our team has written one up.</p>
+            <p class="dek">Every ticker gets a full fundamentals snapshot pulled from yfinance. Select names also carry a narrative deep-dive report when our team has written one up. Search for a ticker to jump straight to its page.</p>
           </div>
         </div>
-        <nav class="subnav" aria-label="Stock Analysis views">
-          <a href="/stock-analysis/fundamentals/template.html">Fundamentals View</a>
-          <a href="/stock-analysis/deep-dive/zaggle.html">Deep-Dive Reports</a>
-        </nav>
       </div>
     </div>
 
@@ -70,60 +66,22 @@
 
       <div class="search-field" style="max-width:480px;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" placeholder="Search by ticker or company name — e.g. ZAGGLE, TCS, HDFC Bank…" autocomplete="off" style="padding-top:11px; padding-bottom:11px;" />
+        <input type="text" placeholder="Search by ticker or company name — e.g. ZAGGLE, TCS, HDFC Bank…" autocomplete="off" style="padding-top:11px; padding-bottom:11px;" data-stock-search />
       </div>
 
       <div>
-        <h2 style="margin-bottom:2px; font-size:1.1rem;">Recently viewed / featured</h2>
-        <p style="font-size:0.85rem; margin-bottom:var(--space-3);">Sample stock pages — this row becomes your watchlist and recent-search history once accounts are wired up.</p>
+        <h2 style="margin-bottom:2px; font-size:1.1rem;">Deep-dive reports</h2>
+        <p style="font-size:0.85rem; margin-bottom:var(--space-3);">Every stock with a written deep-dive — generated from <code>data/deep_dive_reports.json</code>, which <code>scripts/generate_deep_dive_shells.py</code> rewrites whenever a new report is added.</p>
         <div class="table-shell">
           <div class="table-scroll">
             <table class="data">
-              <thead><tr><th>Company</th><th>Price</th><th>Change</th><th>Sector</th><th>Fundamentals</th><th>Deep-Dive</th></tr></thead>
-              <tbody>
-                <tr>
-                  <td class="name-cell"><b>Zaggle Prepaid Ocean Services</b>&nbsp;<span style="color:var(--text-muted); font-weight:400;">ZAGGLE</span></td>
-                  <td>₹412.60</td>
-                  <td><span class="dir down"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 19l-7-9h14z"/></svg>&minus;1.85%</span></td>
-                  <td>Fintech / SaaS</td>
-                  <td><a href="/stock-analysis/fundamentals/template.html">View</a></td>
-                  <td><a href="/stock-analysis/deep-dive/zaggle.html">Read report</a></td>
-                </tr>
-                <tr>
-                  <td class="name-cell"><b>Tata Consultancy Services</b>&nbsp;<span style="color:var(--text-muted); font-weight:400;">TCS</span></td>
-                  <td>₹3,946.15</td>
-                  <td><span class="dir up"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5l7 9H5z"/></svg>+0.42%</span></td>
-                  <td>IT Services</td>
-                  <td><a href="/stock-analysis/fundamentals/template.html">View</a></td>
-                  <td><span class="pill pill-neutral"><span class="d"></span>Not yet written</span></td>
-                </tr>
-                <tr>
-                  <td class="name-cell"><b>HDFC Bank</b>&nbsp;<span style="color:var(--text-muted); font-weight:400;">HDFCBANK</span></td>
-                  <td>₹1,742.30</td>
-                  <td><span class="dir up"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5l7 9H5z"/></svg>+0.88%</span></td>
-                  <td>Private Bank</td>
-                  <td><a href="/stock-analysis/fundamentals/template.html">View</a></td>
-                  <td><span class="pill pill-neutral"><span class="d"></span>Not yet written</span></td>
-                </tr>
+              <thead><tr><th>Company</th><th>Deep-Dive</th></tr></thead>
+              <tbody id="deep-dive-list">
+                <tr><td colspan="2"><span style="color:var(--text-muted);">Loading…</span></td></tr>
               </tbody>
             </table>
           </div>
         </div>
-      </div>
-
-      <div class="nav-grid">
-        <a href="/stock-analysis/fundamentals/template.html" class="card card-link nav-card">
-          <span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg></span>
-          <h3>Fundamentals View</h3>
-          <p>Screener-style snapshot for any ticker: valuation ratios, quarterly &amp; annual financials, shareholding, and peer comparison — generated straight from yfinance.</p>
-          <div class="sub-list"><div class="row"><span>Coverage</span><span>Every listed ticker</span></div><div class="row"><span>Refresh</span><span>Daily, EOD</span></div></div>
-        </a>
-        <a href="/stock-analysis/deep-dive/zaggle.html" class="card card-link nav-card">
-          <span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5M9 12h6M9 16h6"/></svg></span>
-          <h3>Deep-Dive Reports</h3>
-          <p>A written thesis on select names — business quality, quarter-by-quarter update log, bull/base/bear cases, and management track record.</p>
-          <div class="sub-list"><div class="row"><span>Coverage</span><span>Select names, growing</span></div><div class="row"><span>Refresh</span><span>Updated on results/news</span></div></div>
-        </a>
       </div>
 
     </div>
@@ -141,5 +99,7 @@
 </div>
 <script src="/assets/js/nav.js"></script>
 <script src="/assets/js/theme.js"></script>
+<script src="/assets/js/stock-search.js"></script>
+<script src="/assets/js/deep-dive-listing.js"></script>
 </body>
 </html>

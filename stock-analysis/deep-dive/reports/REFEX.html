@@ -1,0 +1,953 @@
+<title>Refex Industries</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Ash &amp; Coal Logistics / Wind Turbine Manufacturing / Green Mobility</div>
+    <h1>Refex Industries Limited</h1>
+    <p class="sub">NSE: REFEX &middot; BSE: 532884 &middot; FY2023&ndash;FY2026 performance review, quarterly investor-presentation and earnings-call synthesis, and forward scenario framework, as of 17 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> Refex has spent FY26 shedding a volatile legacy trading book (refrigerant gas, power trading &mdash; both now discontinued) and re-basing itself around three focused engines &mdash; the profitable, cash-generative core (fly-ash &amp; coal logistics for thermal power plants), a fast-scaling but still loss-making wind-turbine manufacturing bet (Venwind), and a green-mobility business now being demerged into a separately listed entity. Revenue and PAT have both roughly doubled year-on-year and debt has fallen even as the balance sheet tripled in size &mdash; but free cash flow has been negative for four straight years running, receivable days have nearly tripled, and the company's own auditor flags impairment risk on receivables now equal to 58% of total assets. Management guidance has also proven directionally right but numerically slippery: an ash-volume ramp promised "this year" has already been pushed to Q4FY27, and the wind subsidiary posted an EBITDA loss in its first full commercial quarter just weeks after being pitched as "better than industry" margin.
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (17 Aug 26)</div><div class="v">&#8377;302.75</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;4,154 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;188 &ndash; &#8377;415</div></div>
+      <div class="chip"><div class="k">Q1FY27 Revenue</div><div class="v pos">+139&ndash;160% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 EBITDA Margin</div><div class="v neg">12.4% <span style="font-size:11px;">(vs 16.9% in Q4FY26)</span></div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT</div><div class="v pos">+201% YoY</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">14.36x</div></div>
+      <div class="chip"><div class="k">FY23&ndash;FY26 Free Cash Flow</div><div class="v neg">Negative, all 4 years</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage &amp; a naming caution:</b> BSE filings in this dataset span 26&nbsp;May&ndash;14&nbsp;Aug 2026 &mdash; effectively one full results cycle (Q4/FY26, reported 29&nbsp;May 2026 investor presentation / earnings call 2&nbsp;Jun) plus Q1FY27 (reported 29&nbsp;Jul, call 4&nbsp;Aug) and the FY26 Annual Report (filed 8&nbsp;Jul). There is no quarterly history before Q4FY26 in the primary-filing dataset, so the "guidance vs. actual" and quarter-by-quarter trend work in this note leans heavily on these two quarters plus yfinance's independently computed annual (FY22&ndash;FY26) and quarterly (five quarters, with Q2FY26/Sep-25 absent from the source data) financial series. Every figure below is tagged with its source; gaps are stated explicitly rather than estimated. <b>Important:</b> the group has (at least) three distinct, easily confused entities &mdash; <b>Refex Industries Limited</b> (RIL, ticker REFEX, the sole subject of this report), <b>Refex Renewables &amp; Infrastructure Limited</b> (a separate listed company in the same promoter group, not consolidated into the figures below), and <b>Refex Mobility Limited</b> (RML, the not-yet-listed entity that will receive RIL's green-mobility business via the demerger discussed in §8). News and search results frequently conflate these three; this report does not.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Call &amp; disclosure insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What Refex does, and how it has grown</h2></div>
+      <p class="sec-dek">A largest-in-its-niche logistics business for thermal power plants, now funding two much more capital-hungry, unproven bets on top of it.</p>
+
+      <p class="lede">Incorporated in 2002 as Refex Refrigerants Limited and renamed Refex Industries Limited in November 2013, the Chennai-headquartered company has spent the past two years deliberately narrowing its focus. Two legacy, low-margin trading lines &mdash; <b>Power Trading</b> (discontinued August 2025) and the original <b>Refrigerant Gas</b> business (discontinued January 2026) &mdash; have been wound down. What remains, per the Q1FY27 segment note, is three businesses: <b>Ash &amp; Coal Handling</b> (fly-ash/pond-ash excavation, transport and disposal, plus coal-yard logistics, for thermal power plants &mdash; run out of the standalone parent), <b>Wind</b> (5.3MW wind-turbine-generator manufacturing via 73.28%-owned subsidiary Venwind Refex Power Ltd, "VRPL"), and <b>Green Mobility</b> (EV-led corporate transport via Refex Green Mobility Ltd, "RGML" &mdash; being demerged into a separately listed Refex Mobility Ltd, see §8).</p>
+
+      <h3>Group structure &amp; the three-entity naming trap</h3>
+      <p>Promoter entity Refex Holding Private Limited (formerly Sherisha Technologies) holds 56.84% of RIL (MarketData). The wider Refex group also includes Refex Renewables &amp; Infrastructure Limited, a separately listed company that also reported Q1 results the same week as RIL (see §2) &mdash; it is <b>not</b> a subsidiary consolidated into any figure in this report. Once the pending demerger completes, Refex Mobility Limited will become a fourth, independently listed entity carrying the green-mobility business out of RIL's own consolidated numbers.</p>
+
+      <h3>The moat, as management frames it</h3>
+      <p>On the June 2026 earnings call, Chairman &amp; MD Anil Jain described Refex as India's <b>largest organized ash &amp; coal handling player</b>, active across 40 thermal plants (42 by the August call) in 14&ndash;15 states, with the next-closest competitor at roughly "25% of its scale" &mdash; a claim management itself qualified as self-reported ("no exact data, not listed"). The stated addressable market was put at ~&#8377;75,000 Cr with Refex at only ~3% national share in June, but reframed in August as "30&ndash;35% market penetration" &mdash; a different denominator (share of plants actually served vs. share of the national ash-handling opportunity) that is worth reading carefully rather than treating as a contradiction. On Wind, the moat argument is structural rather than scale-based: VRPL positions itself as a pure turbine <em>supplier</em>, not an EPC contractor building whole wind farms &mdash; an asset-light stance that caps its own execution risk on any single wind farm &mdash; and its 5.3MW ALMM-certified turbine is marketed as India's largest-capacity wind turbine platform, with VRPL calling itself the first company certified at that capacity.</p>
+
+      <h3>The growth arc, FY23&ndash;FY26 (consolidated, yfinance annual)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total revenue</td><td>1,617.90</td><td>1,377.10</td><td>2,251.84</td><td>2,275.44</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td class="neg">&minus;14.9%</td><td class="pos">+63.5%</td><td class="pos">+1.0%</td></tr>
+            <tr><td>EBITDA</td><td>172.52</td><td>152.08</td><td>273.64</td><td>419.54</td></tr>
+            <tr><td>EBITDA margin</td><td>10.7%</td><td>11.0%</td><td>12.2%</td><td>18.4%</td></tr>
+            <tr><td>PAT (reported, incl. discontinued ops)</td><td>116.06</td><td>93.87</td><td>158.78</td><td>203.35</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>10.77</td><td>8.36</td><td>12.33</td><td>15.07</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement. FY22 is not usable &mdash; nearly all FY22 line items are NaN in the source data (flagged as a gap, not silently omitted). Consolidated figures mix continuing and now-discontinued segments across years, which is why headline FY26 growth (+1.0%) understates the real story &mdash; see §03 for standalone continuing-operations growth, which is much stronger.</caption>
+      </div>
+      <p>Read plainly, this is a company whose reported consolidated revenue looks almost flat in FY26 only because two legacy segments were being wound down inside the same number. Strip those out and the picture management presents (and that Q1FY27 segment data corroborates, §03) is of a core Ash &amp; Coal business compounding at a company-claimed <b>46.4% revenue CAGR and 52.6% PAT CAGR over FY22&ndash;FY26</b> (Q1FY27 investor presentation), now joined by a Wind business that went from near-zero revenue (&#8377;0.76 Cr in Q1FY26) to &#8377;297 Cr in a single year (Q1FY27) &mdash; the single largest driver of the group's reported growth acceleration, and, as §04 and §10 show, also the single largest source of near-term margin risk.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item of consequence in the tracked News feed and BSE filings index since late May 2026.</p>
+
+      <div class="news-item">
+        <div class="news-date">14 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Another ash-transport order win, &#8377;40.83 Cr</div>
+          <div class="news-body">Slab-wise rate contract for ash excavation, transport and unloading, 12 months, with a Maharatna CPSE counterparty &mdash; the sixth such order in the dataset window (§03 tallies all six, ~&#8377;172 Cr combined).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">10 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Credit rating upgraded by Acuité</div>
+          <div class="news-body">Long-term bank facility rating upgraded to ACUITE A/Stable (from A-); short-term to ACUITE A1 (from A2+); &#8377;660 Cr rated quantum across Union Bank, YES Bank, Indian Overseas Bank and Jio Credit. An independently-assessed positive, arriving the same week as a mixed post-results stock reaction (below).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">04&ndash;05 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Q1FY27 earnings call; stock drifts lower through the week</div>
+          <div class="news-body">Management held the Q1FY27 call (transcript reviewed in §03&ndash;06). Despite the headline beat reported on 4 Aug (below), the stock had already fallen from &#8377;328 (28 Jul, pre-results) to &#8377;299 (30 Jul) around the results filing itself, and continued drifting from &#8377;306 (4 Aug) to &#8377;293 (7 Aug) through the week &mdash; consistent with the market focusing on the Q1FY27 margin dip and the wind segment's EBITDA loss (§04) rather than the headline growth rate.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">04 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (headline)</span>
+          <div class="news-title">Q1FY27 results: revenue +139% YoY, PAT +201%</div>
+          <div class="news-body">Consolidated net sales &#8377;916.31 Cr (company-reported +139% YoY; yfinance's independently recomputed total revenue implies +160.4% &mdash; a methodology gap between "net sales" and "total revenue" that this report flags rather than resolves), net profit &#8377;63.80 Cr (+201%), EBITDA &#8377;119.30 Cr per the company (+146%) vs. &#8377;113.47 Cr on yfinance's recomputation, EPS &#8377;4.65 (from &#8377;1.58 YoY). Same day: the separately listed <b>Refex Renewables &amp; Infrastructure Limited</b> (not RIL &mdash; see the naming note in §01) reported a narrowed consolidated net loss of &#8377;3.14 Cr (from &#8377;7.51 Cr); and RIL's 24th AGM approved FY26 financials, a final dividend, Anil Jain's reappointment as director (99.94% support), and a &#8377;19.07 Cr reallocation of preferential-issue proceeds from capex to working capital (99.97% support, see §05).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">31 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">&#8377;22.75 Cr order win; AGM outcome filed</div>
+          <div class="news-body">A rate contract for ash transport to road sites (Maharatna CPSE counterparty, ~12 months) was credited in press coverage with prompting a stock-price pop; AGM scrutinizer's report and outcome of AGM filed the same day.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">01 Jul 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Promoter buys 10 lakh shares on-market (~0.9% stake)</div>
+          <div class="news-body">Framed by coverage as a confidence signal following the ~&#8377;927 Cr (envisaged) preferential issue and strong logistics revenue growth. Reads constructively, but sits awkwardly next to the 41% promoter pledge level disclosed on the same-period earnings call (§07) &mdash; buying more shares while a meaningful chunk of the existing holding remains pledged is a genuinely mixed signal, not a clean bullish one.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">26 Jun 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral (procedural)</span>
+          <div class="news-title">NCLT Chennai clears first motion for green-mobility demerger</div>
+          <div class="news-body">Composite scheme: RGML amalgamates into RIL, then the green-mobility business demerges into Refex Mobility Ltd, with RIL shareholders to receive RML shares in a 1:1 ratio (per this news item; the underlying scheme documents did not separately confirm the ratio in the sections reviewed for this report). Court-convened shareholder/creditor meetings were scheduled for 5 Aug 2026 &mdash; see §08 for the full mechanics and status.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">03 Jun 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Refex Mobility (RGML) crosses &#8377;100 Cr FY26 revenue</div>
+          <div class="news-body">&#8377;103.2 Cr revenue, 2.5x YoY, 1.5 million trips, 1,750 vehicles, 70+ enterprise customers across five cities; losses narrowing, with operational breakeven targeted FY2027&ndash;28 &mdash; the business being carved out via the demerger above.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>Refex's monthly closing price (NSE, via yfinance) ran from roughly &#8377;365 in Aug 2025 down to a 52-week low near &#8377;189 by end-March 2026 &mdash; a ~48% drawdown coinciding with the period between the two investor-presentation cycles in this dataset &mdash; before rallying hard to &#8377;355 by June 2026 on the FY26 results and Q1FY27 anticipation, then pulling back to &#8377;303 by mid-August as the Q1FY27 print landed with a margin caveat attached. Full chart in §10. A beta of 1.74 and a thin institutional float (0.47% institutional ownership, per MarketData) help explain why the swings have been this pronounced.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segment mix &amp; guidance</h2></div>
+      <p class="sec-dek">A real, order-book-backed acceleration in the core business, a wind segment scaling revenue faster than profit, and a volume-ramp guidance number that has already slipped once.</p>
+
+      <h3>Quarterly trend, consolidated</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue</td><td>594.47</td><td>351.86</td><td>576.01</td><td>934.17</td><td>916.31</td></tr>
+            <tr><td>EBITDA</td><td>73.12</td><td>42.59</td><td>95.56</td><td>158.13</td><td>113.47</td></tr>
+            <tr><td>EBITDA margin</td><td>12.3%</td><td>12.1%</td><td>16.6%</td><td>16.9%</td><td>12.4%</td></tr>
+            <tr><td>PAT (diluted, common)</td><td>48.32</td><td>21.17</td><td>53.92</td><td>90.82</td><td>63.80</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>3.49</td><td>1.53</td><td>3.89</td><td>6.54</td><td>4.59</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance quarterly financials. Q2FY26 (Sep-25 quarter) is absent from the source data entirely &mdash; flagged as a gap rather than interpolated. Dec-24 (Q3FY25) figures are mostly NaN in source and are omitted.</caption>
+      </div>
+      <p>Two things stand out. First, revenue essentially doubled from Q4FY25 to Q4FY26 and held near that new level in Q1FY27 &mdash; but this is a segment-mix story more than a single-business acceleration: Wind alone went from a rounding error to roughly a third of consolidated revenue in one year (below). Second, EBITDA margin peaked in Q4FY26 (16.9%, and reported as high as ~20&ndash;22% on a standalone basis per the June call) and then <em>fell</em> in Q1FY27 even as revenue held flat &mdash; the opposite of what the headline growth numbers alone would suggest, and the subject of pointed analyst questioning on the August call (§04).</p>
+
+      <h3>Segment mix (Q1FY27 vs. Q4FY26 vs. Q1FY26 base, consolidated)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, segment revenue</th><th>Q1FY26</th><th>Q4FY26</th><th>Q1FY27</th><th>Q1FY27 segment EBIT</th></tr></thead>
+          <tbody>
+            <tr><td>Ash &amp; Coal Handling</td><td>&mdash;<sup>&dagger;</sup></td><td>690.4</td><td>610.5</td><td class="pos">111.5</td></tr>
+            <tr><td>Wind (Venwind)</td><td>0.76</td><td>233.1</td><td>297.1</td><td class="neg">&minus;0.3</td></tr>
+            <tr><td>Green Mobility (pre-demerger)</td><td>&mdash;<sup>&dagger;</sup></td><td>30.0</td><td>33.0</td><td class="neg">&minus;13.6</td></tr>
+            <tr><td>Other / unallocable</td><td>&mdash;<sup>&dagger;</sup></td><td>11.7</td><td>8.8</td><td class="neg">&minus;10.3</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1FY27 financial-results filing, segment-wise revenue note. &dagger; Q1FY26 segment-level split for Ash &amp; Coal / Mobility / Other was not extracted from the reviewed documents; only Wind's near-zero base (&#8377;0.76 Cr) was directly cited across both investor presentations. Segment totals include minor inter-segment items and may not sum exactly to consolidated revenue.</caption>
+      </div>
+      <p>Ash &amp; Coal Handling remains the only segment that is both large and reliably profitable (&#8377;111.5 Cr EBIT on &#8377;610.5 Cr revenue in Q1FY27, an 18.3% EBIT margin). Wind, now a third of consolidated revenue, was <b>marginally EBIT-negative</b> in its first full quarter of scale; Green Mobility &mdash; the segment being demerged out &mdash; lost &#8377;13.6 Cr on &#8377;33.0 Cr of revenue, a loss rate of over 40%, though this is expected to leave RIL's consolidated numbers once the demerger completes (§08). Standalone (Ash &amp; Coal-dominated) continuing-operations figures corroborate the core business's strength directly: Q1FY27 standalone revenue &#8377;619.3 Cr (+76.4% YoY), EBITDA &#8377;105.4 Cr (+166%), PAT &#8377;73.6 Cr (+122.8%); FY26 standalone revenue &#8377;2,039 Cr (&minus;9.7% YoY, reflecting the deliberate exit from trading revenue), EBITDA &#8377;350 Cr (+68.5%), PAT &#8377;247 Cr (+34.7%) &mdash; both investor presentations.</p>
+
+      <h3>Order book, and confirmed order wins</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Ash &amp; Coal order book</div><div class="v">&#8377;1,635 Cr</div><div class="d">As of 30-Jun-26, up from &#8377;1,500 Cr at 31-Mar-26 after &#8377;279 Cr of new Q1FY27 orders</div></div>
+        <div class="stat"><div class="k">Wind (VRPL) confirmed order book</div><div class="v">&#8377;1,860 Cr</div><div class="d">&gt;400MW secured; unchanged between the Q4FY26 and Q1FY27 decks &mdash; worth watching for fresh order-intake disclosure next quarter</div></div>
+        <div class="stat"><div class="k">Wind pipeline</div><div class="v">1.5 GW</div><div class="d">Additional pipeline beyond the confirmed order book (Q4FY26/Q1FY27 IPs)</div></div>
+      </div>
+      <p>Six ash/coal "Award of Order" filings landed in this dataset window, all with Maharatna CPSE or major power-producer counterparties, all pond/fly-ash excavation-transport-disposal contracts of 12&ndash;24 months: 29 May (&#8377;36.9 Cr), 20 Jun (&#8377;29.3 Cr), 26 Jun (&#8377;21.2 Cr), 7 Jul (&#8377;20.9 Cr), 30 Jul (&#8377;22.75 Cr) and 14 Aug (&#8377;40.8 Cr incl. GST) &mdash; ~&#8377;172 Cr combined, a steady drumbeat of contract wins rather than one lumpy award, which is a genuine positive for revenue visibility in the core segment.</p>
+
+      <h3>Geography &amp; market position</h3>
+      <p>No revenue-by-geography breakout was found in either investor presentation &mdash; only the qualitative "14&ndash;15 states, 40+ plants" domestic-presence framing, plus a single reference to VRPL's wind team "training in Laos" with no associated revenue. This report treats geographic mix as a data gap rather than estimating it. On expansion: <b>horizontal</b> (new segment: wind manufacturing, entered essentially from scratch in the past year) and <b>vertical</b> (in-house logistics technology the company says it built rather than bought) are both clearly evidenced; no new-country entry is evidenced.</p>
+
+      <h3>Guidance vs. actual &mdash; the ash-volume ramp target</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr style="text-align:left;"><th style="text-align:left;">When given</th><th style="text-align:left;">Guidance</th><th style="text-align:left;">What actually happened</th></tr></thead>
+          <tbody>
+            <tr><td>June 2026 call (Q4FY26)</td><td>Ash volumes to ramp from ~68,000&ndash;70,000 tons/day toward <b>90,000&ndash;95,000 tons/day "in the current financial year" (FY27)</b>; blended EBITDA margin "15% to 18% always" (Q4FY26's 20%+ print called an outlier); Wind FY27 revenue off the &#8377;1,860 Cr order book, margins "better than industry"</td><td>&mdash;</td></tr>
+            <tr><td>August 2026 call (Q1FY27)</td><td>&mdash;</td><td>Q1 volumes came in at <b>65,000&ndash;70,000 tons/day &mdash; essentially flat vs. Q4FY26</b>, not on the ramp trajectory implied in June; management pushed the 90,000 tons/day target out to <b>Q4FY27</b> specifically, with an interim 75,000&ndash;80,000 tons/day marker also cited for Q4FY27. Wind posted a <b>Q1 EBITDA loss of &#8377;34 lakh</b> (₹297 Cr Q1 revenue vs. FY27 target of &#8377;1,700&ndash;1,800 Cr, i.e. only ~17% of the full-year target executed in Q1)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>A guidance number moved, and an analyst caught a related inconsistency</b>On the August call, analyst Jasmine Surana directly challenged management: "In the last quarter you said an 18%, 20% margin range would be sustainable... now you said 12% margin will continue." Management's response was that it always meant EBITDA 15&ndash;18% / net margin 10&ndash;12%, attributing the confusion to investors over-anchoring on the unusually strong Q4FY26 print. Whether that is a fair clarification or a retroactive reframing is a judgment call this report leaves to the reader &mdash; but it is the second instance in two consecutive calls (alongside the ash-volume ramp slippage above) of a specific, numeric guidance point requiring in-call correction. New FY27 revenue guidance given in August: Wind full-year revenue &#8377;1,700&ndash;1,800 Cr with net (not EBITDA) margin of 5&ndash;6% by year-end, explicitly back-half loaded ("we never speak EBITDA" for Wind specifically); Ash &amp; Coal FY27 growth guided to beat FY26's 28% adjusted CAGR.</div>
+      </div>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">A genuine FY26 margin expansion driven by exiting low-quality trading revenue, followed by a Q1FY27 compression that management attributes to a mix shift and a one-time cost &mdash; both plausible, neither yet proven over more than one quarter.</p>
+
+      <h3>What moved FY26</h3>
+      <p>Consolidated EBITDA margin rose from 12.2% (FY25) to 18.4% (FY26, yfinance) even as headline revenue grew only 1.0% &mdash; consistent with the "exit low-margin trading, keep the higher-margin core" narrative discussed in §01. PAT margin improved from 7.1% to 8.9% over the same period. On the June call, management attributed the Q4FY26 EBITDA margin spike specifically (reported as high as 20&ndash;22% on a standalone basis) to COGS falling 18% YoY on cost efficiency and tech-driven manpower reduction, plus the ongoing exit from low-margin trading lines &mdash; and explicitly flagged that print as an <em>outlier</em> versus the 15&ndash;18% blended band it considers sustainable.</p>
+
+      <h3>What moved Q1FY27 specifically</h3>
+      <div class="grid-2">
+        <div class="card">
+          <b>A one-time refinancing charge.</b> Management attributed the core (ex-Wind) margin dip versus Q4FY26 largely to a one-time ~&#8377;4 Cr bank processing charge tied to refinancing a loan with Indian Overseas Bank at better terms &mdash; framing underlying core margin as "close to the same" once that charge is excluded.
+        </div>
+        <div class="card">
+          <b>Wind's first commercial quarter came in at a loss.</b> Q1FY27 Wind EBITDA was &minus;&#8377;34 lakh on &#8377;297 Cr of revenue &mdash; a near-zero margin that diluted the blended consolidated print even before the refinancing charge, and a direct contradiction of the June call's "better than industry" margin framing for the segment.
+        </div>
+        <div class="card">
+          <b>Diesel cost pass-through is only partial.</b> Escalation clauses recover an estimated 40&ndash;60% of diesel cost increases in the Ash &amp; Coal business, per the June call &mdash; the remainder is absorbed, a real and recurring margin-sensitivity factor tied to fuel prices that is not fully hedged by contract structure.
+        </div>
+        <div class="card">
+          <b>Finance costs, historically modest but rising.</b> Quarterly finance/interest expense has climbed from &#8377;5.15 Cr (Mar-25) to &#8377;6.17 Cr (Jun-25) to &#8377;9.14 Cr (Dec-25) to &#8377;10.15 Cr (Mar-26) to &#8377;12.92 Cr (Jun-26) &mdash; source: MarketData quarterly &mdash; tracking the working-capital intensity discussed in §06 even as total reported debt has fallen (§05), a combination that points to short-term working-capital borrowing (LCs/BGs) rather than long-term debt as the driver.
+        </div>
+      </div>
+
+      <h3>Annual margin trend</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>EBITDA margin</td><td>10.7%</td><td>11.0%</td><td>12.2%</td><td class="pos">18.4%</td></tr>
+            <tr><td>PAT margin</td><td>7.2%</td><td>6.8%</td><td>7.1%</td><td class="pos">8.9%</td></tr>
+            <tr><td>Interest coverage (EBIT / finance cost)</td><td>17.9x</td><td>8.1x</td><td>19.1x</td><td>12.3x</td></tr>
+            <tr><td>Other income as % of PBT</td><td>&mdash;</td><td>&mdash;</td><td>2.8%</td><td>1.6%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement. Other income share of PBT is low and declining &mdash; profit growth here is genuinely operating-driven, not propped up by non-operating income, a clean result on this specific check.</caption>
+      </div>
+
+      <h3>Forward margin guidance</h3>
+      <p>Blended consolidated EBITDA margin is guided at "15% to 18%" on an ongoing basis (June call), with Wind targeted to reach only a 5&ndash;6% <em>net</em> margin by FY27 year-end (from a Q1 loss), and full turbine-industry-benchmark margins (18&ndash;20% EBITDA) only expected "2 years down the line" once component localization is complete &mdash; blade manufacturing in-house within 6&ndash;12 months, ~85% component localization within 12 months. Net effect for modelling purposes: expect blended margin to compress somewhat from FY26's unusually high 18.4% print toward the 15&ndash;18% band as Wind's larger, lower-margin revenue base dilutes the mix through FY27, with a Wind-led margin recovery only becoming visible in FY28 on management's own timeline.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">Genuine deleveraging on the reported debt line, funded by two large equity raises &mdash; but a fast-growing, unrelated contingent-liability exposure sits just off the balance sheet.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated</th><th>Mar-23</th><th>Mar-24</th><th>Mar-25</th><th>Mar-26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity</td><td>314.4</td><td>465.6</td><td>1,212.8</td><td>1,504.2</td></tr>
+            <tr><td>Total debt</td><td>149.4</td><td>214.6</td><td>286.1</td><td class="pos">225.0</td></tr>
+            <tr><td>Debt / equity</td><td>0.48x</td><td>0.46x</td><td>0.24x</td><td class="pos">0.15x</td></tr>
+            <tr><td>Net debt (debt &minus; cash &amp; ST investments)</td><td>129.1</td><td>199.0</td><td class="pos">&minus;25.0<sup>&dagger;</sup></td><td class="pos">34.1</td></tr>
+            <tr><td>Net debt / EBITDA</td><td>0.75x</td><td>1.31x</td><td>net cash</td><td class="pos">0.08x</td></tr>
+            <tr><td>Total assets</td><td>752.3</td><td>798.0</td><td>1,799.2</td><td>2,842.7</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet; net debt/net debt-EBITDA computed as total debt less cash &amp; short-term investments (yfinance's own "Net Debt" field is blank for FY25/FY26). &dagger; FY25 shows a net cash position.</caption>
+      </div>
+      <p>On the numbers that show up in a standard balance sheet, Refex has genuinely deleveraged: total debt fell in FY26 even as revenue nearly doubled, debt/equity has dropped from 0.48x to 0.15x over three years, and net debt/EBITDA sits at a token 0.08x &mdash; management's Q1FY27 investor presentation explicitly claims the company is now "net debt-free." The Acuité rating upgrade in August (§02) is an independent data point consistent with that trajectory.</p>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>A contingent liability grew 11x in one year</b>Per the FY26 Annual Report (Note 39/43), corporate guarantees extended for a subsidiary rose from &#8377;46.27 Cr (FY25) to <b>&#8377;509.37 Cr (FY26)</b> &mdash; likely tied to Venwind's wind capex/working-capital needs &mdash; alongside a new &#8377;20.15 Cr surety-bond claim not acknowledged as debt (nil in FY25). Total contingent liabilities rose from ~&#8377;84 Cr to ~&#8377;567 Cr, a 6.8x increase. None of this appears on the reported balance sheet or in the "net debt-free" framing, but it is a real, disclosed exposure: if Venwind's execution falters and lenders call on these guarantees, RIL's clean leverage picture could deteriorate quickly. Worth tracking every reporting period.</div>
+      </div>
+
+      <h3>Capital allocation: two large equity raises, and a capex pool quietly redirected</h3>
+      <p>Two preferential issues funded the FY25&ndash;26 equity build-up: a March 2024 promoter issue (&#8377;220 Cr raised, &#8377;184.69 Cr utilized, &#8377;35 Cr parked in an inter-corporate deposit) and an October 2024 issue envisaged at &#8377;927.81 Cr but which actually yielded &#8377;513.38 Cr after equity undersubscription and warrant lapse/forfeiture (&#8377;130.69 Cr forfeited) &mdash; a soft investor-demand signal at the time that is easy to miss if only the headline "~&#8377;927 Cr QIP" figure (repeated in some news coverage) is taken at face value. CARE Ratings, as the independent monitoring agency, reported <b>nil deviation</b> from stated objects for both issues as of 30 Jun 2026. However, of the &#8377;19.68 Cr originally earmarked from the 2024 preferential-issue pool specifically for capex, only &#8377;0.62 Cr had been utilized by June 2026 &mdash; the board proposed (and the 4 Aug 2026 AGM approved, 99.97% support) reallocating the unused &#8377;19.07 Cr from capex to general working capital. That is a small absolute sum, but it is a directionally consistent signal with the working-capital-hungry growth pattern flagged in §06: capex from this specific pool is running behind plan and cash is being redirected toward funding receivables/working capital instead.</p>
+
+      <h3>Capex vs. depreciation: the asset base is genuinely expanding</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Capex</td><td>71.99</td><td>50.72</td><td>220.60</td><td>199.67</td></tr>
+            <tr><td>Depreciation &amp; amortization</td><td>6.89</td><td>13.55</td><td>32.56</td><td>59.89</td></tr>
+            <tr><td>Capex / D&amp;A</td><td>10.4x</td><td>3.7x</td><td>6.8x</td><td>3.3x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement.</caption>
+      </div>
+      <p>Capex has exceeded depreciation by 3&ndash;10x every year since FY23 &mdash; unambiguous evidence of real capacity expansion (fleet, Wind's Silvassa manufacturing facility) rather than maintenance-only spend. No specific multi-year rupee capex figure was disclosed in either investor presentation for FY27/FY28; management's August-call framing was that capital allocation is "based on requirements," with Ash &amp; Coal the current priority and Wind's capital needs to be met "as required" via entity-level bank loans or holding-company allocation &mdash; a qualitative rather than quantified commitment.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality &mdash; the most important section of this note</h2></div>
+      <p class="sec-dek">Four straight years of negative free cash flow, a receivables base the company's own auditor now flags as an impairment risk, and a management explanation that neither call's analysts pushed back on.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT</td><td>116.1</td><td>93.9</td><td>158.8</td><td>203.4</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td class="pos">27.6</td><td class="pos">2.9</td><td class="neg">&minus;248.5</td><td class="pos">107.1</td></tr>
+            <tr><td>Capex</td><td>&minus;72.0</td><td>&minus;50.7</td><td>&minus;220.6</td><td>&minus;199.7</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="neg">&minus;44.4</td><td class="neg">&minus;47.9</td><td class="neg">&minus;469.1</td><td class="neg">&minus;92.5</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>24%</td><td>3%</td><td class="neg">&minus;157%</td><td>53%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Earnings-quality check: fails clean, and the company's own auditor agrees</b>PAT has grown every year since FY24 while cash conversion has been erratic-to-poor: CFO/PAT ranged from 24% down to a deeply negative &minus;157% (FY25) before recovering to a still-partial 53% in FY26, and free cash flow has been negative in <em>all four</em> years shown. The mechanical driver is receivables: receivable days rose from 55 (FY23) to 81 (FY24) to 114 (FY25) to <b>149 (FY26)</b> &mdash; nearly tripling while revenue grew only ~1.4x over the same period &mdash; and the annual cash-flow statement's "Change in Receivables" line has been a growing cash drag every year (&minus;&#8377;169 Cr, &minus;&#8377;64 Cr, &minus;&#8377;482 Cr, &minus;&#8377;789 Cr, FY23&rarr;FY26). This is not just a ratio-derived concern: the FY26 Annual Report's own Key Audit Matters section flags <b>impairment risk on &#8377;1,413.2 Cr of high-value receivables and contract assets in the Ash &amp; Coal Handling segment &mdash; 58.3% of total consolidated assets</b> &mdash; an independent, auditor-sourced confirmation of the same pattern this report's own ratio work surfaced. Payable days have also stretched materially (17 days FY24 &rarr; 92 days FY26), meaning working capital is being partly funded by leaning on suppliers as well as by the equity raises in §05.</div>
+      </div>
+
+      <p>Management's own framing (June call): receivables are guided at 105&ndash;125 days on a standalone basis, Wind's receivable cycle is described as letter-of-credit-backed and much shorter, and the ~&#8377;700+ Cr of contract assets on the balance sheet were characterized as "normal unbilled revenue" &mdash; i.e., a structural feature of billing government/PSU thermal-plant counterparties on a bill-then-collect cycle, not a quality issue. That is a plausible explanation for a logistics business serving state-owned power plants, and it is worth noting neither call's analyst panel challenged it directly despite it being, by a wide margin, the single largest quantitative flag in this entire dataset. Readers should weight the auditor's independent impairment-risk flag (above) at least as heavily as management's own framing when assessing this line.</p>
+      <p><b>Read plainly:</b> FY26's CFO turning positive (&#8377;107 Cr, from FY25's &minus;&#8377;248.5 Cr) is a genuine, meaningful improvement and should not be dismissed &mdash; but free cash flow remains solidly negative, the receivables base keeps growing in absolute terms, and until collections meaningfully outpace revenue growth for at least two consecutive periods, the safest assumption is that further capex and working-capital needs will continue to be funded externally (equity, debt, or drawing on the credit-rating headroom from §02/§05) rather than from organic operating cash generation.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">An experienced, promoter-controlled board with a clean audit trail on paper &mdash; alongside an unresolved tax search, a personal regulatory finding against the Chairman/MD, and a meaningfully pledged promoter stake.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Anil Jain</div>
+          <div class="role">Chairman &amp; Managing Director; promoter</div>
+          <div class="bio">Architect of the group's expansion from a refrigerant-gas specialist into Energy, Mobility, Pharma, Venture Capital, MedTech and Airport Transportation (Annual Report). Primary voice on both earnings calls reviewed. Reappointed director at the Aug 2026 AGM with 99.94% support. As of the June 2026 call, ~41% of his promoter shareholding was pledged.</div>
+        </div>
+        <div class="person">
+          <div class="name">Dinesh Kumar Agarwal</div>
+          <div class="role">Whole-time Director &amp; CFO</div>
+          <div class="bio">With the company since 2014; 22+ years corporate experience including stints at Aircel/Brisk and a Solar EPC background. Handles the majority of detailed financial Q&amp;A on both calls.</div>
+        </div>
+        <div class="person">
+          <div class="name">Dr. Vineet Kothari</div>
+          <div class="role">Independent Director (appointed Jun 2025, term to 2030)</div>
+          <div class="bio">Designated Senior Advocate, Supreme Court of India; former Judge / Acting Chief Justice of the Rajasthan, Karnataka, Madras and Gujarat High Courts; Senior Advisor to KPMG India.</div>
+        </div>
+        <div class="person">
+          <div class="name">Susmitha Siripurapu</div>
+          <div class="role">Non-Executive Director</div>
+          <div class="bio">Engineering degree, Osmania University; MBA, HEC Paris &amp; Duke University; background in digital-transformation and strategy consulting.</div>
+        </div>
+        <div class="person">
+          <div class="name">Latha Venkatesh</div>
+          <div class="role">Independent Director (term 2023&ndash;2028)</div>
+          <div class="bio">Cost &amp; Management Accountant; 11+ years of audit/assurance experience.</div>
+        </div>
+        <div class="person">
+          <div class="name">Ankit Poddar</div>
+          <div class="role">Company Secretary (KMP)</div>
+          <div class="bio">Listed as Key Managerial Personnel alongside Jain and Agarwal in the FY26 Annual Report.</div>
+        </div>
+      </div>
+
+      <h3>Recent KMP change</h3>
+      <p>Ms. Lalitha Uthayakumar was re-designated from President &ndash; Refrigerant Gas Business to General Manager &ndash; Accounts effective 1 Aug 2026, ceasing to be Senior Managerial Personnel, explicitly "consequent to discontinuation of the Refrigerant Gas Business" (cessation filing, 29 Jul 2026) &mdash; a natural, non-adversarial consequence of the strategic exit discussed in §01, not a governance concern on its own.</p>
+
+      <h3>Two matters worth tracking closely</h3>
+      <div class="grid-2">
+        <div class="card">
+          <b>Promoter pledge, and a stated (but not yet confirmed) unwind.</b> ~41% of the CMD's promoter shareholding was disclosed as pledged on the June call &mdash; higher than at least one analyst (Shreya Ruia) expected, per the transcript. Management said in June it expected "a large part... removed" over roughly six months, and reaffirmed in August that release was expected "in the next two weeks" with "no challenge." This is a specific, checkable commitment; whether it is met on the stated timeline is a near-term, low-cost verification point for any investor in this stock.
+        </div>
+        <div class="card">
+          <b>An income-tax search, and a SEBI finding against the CMD.</b> The Income Tax Department conducted a search at company premises 9&ndash;13 Dec 2025; the company states it has received no official notice and there has been no financial or reputational impact, per management's response to a direct analyst question referencing "turbulent times" and an "IT search issue" on the June call. Separately, SEBI imposed a &#8377;10 lakh penalty on CMD Anil Jain personally for violating Unpublished Price-Sensitive Information (UPSI) regulations (Dec 2025), which he has appealed; the Securities Appellate Tribunal stayed the penalty in Feb 2026 on a 50% deposit. The rupee amount is immaterial, but a UPSI finding against a sitting Chairman/MD, even under appeal, is a governance data point that belongs in any assessment of this management team.
+        </div>
+      </div>
+
+      <h3>Auditor, related parties &amp; ownership</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Auditor:</b> A B C D &amp; Co. LLP (FRN 016415S/S000188), appointed for a 5-year term through FY2027 at the 20th AGM (2022) &mdash; no change this year. Opinion is <b>unmodified/unqualified</b> on both standalone and consolidated FY26 results. Two Emphases of Matter (not qualifications): the segment discontinuations (Power Trading, Refrigerant Gas) and the pending NCLT scheme. Key Audit Matters cover ash-disposal revenue recognition and the receivables/contract-asset impairment risk flagged in §06.</li>
+        <li><b>Related-party transactions:</b> director/promoter-entity RPTs (remuneration, sitting fees, rent reimbursements to the promoter holding entity, CSR to a promoter-linked foundation) are small &mdash; under 0.2% of standalone revenue. The larger RPT flows are intercompany capital funding into subsidiaries: ~&#8377;155 Cr combined equity/OCD investment into Venwind, and ~&#8377;69 Cr of net loans/advances to Refex Green Mobility (Annual Report, Note 40) &mdash; standard holding-company capital allocation into wholly/majority-owned subsidiaries, not obviously value-extractive on the evidence reviewed.</li>
+        <li><b>Ownership:</b> insiders/promoters hold <b>56.84%</b>; institutional ownership is just <b>0.47%</b> across 12 institutions (MarketData) &mdash; a thin, promoter-dominated register, consistent with the stock's wide 52-week range and high beta (§02, §10). The promoter's July 2026 on-market share purchase (§02) is a genuine counter-signal to the pledge overhang, but does not resolve it.</li>
+      </ul>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other insights from the calls and disclosures</h2></div>
+      <p class="sec-dek">The green-mobility demerger mechanics, a reporting-comparability caveat an analyst flagged (and this report inherits), and a same-day investor-deck correction.</p>
+
+      <h3>The Refex Mobility demerger: mechanics and status</h3>
+      <p>The composite scheme &mdash; Refex Green Mobility Ltd (transferor) amalgamating into Refex Industries (demerged company), followed by demerger of the combined green-mobility business into Refex Mobility Limited (resulting company) &mdash; was approved by the RIL board on 22 Sep 2025. BSE and NSE issued "No Adverse Observation" letters on 16 Mar 2026; the scheme petition was filed with NCLT Chennai on 26 Mar 2026; the NCLT's order directing court-convened meetings was issued 18 Jun 2026 (RML and RGML shareholder meetings were dispensed with; RIL equity shareholder and creditor meetings, plus RGML creditor meetings, were required). Those meetings were held 5 Aug 2026; the approval threshold is 75% in value under Companies Act §230(6), with a 31 Jul 2026 voting cut-off date. <b>As of this dataset's 14 Aug 2026 cutoff, the actual voting/approval percentages had not yet been disclosed</b> &mdash; the scrutinizer's report was due to NCLT within three days of the meeting. Stated rationale (MD&amp;A): "create two focused businesses with independent growth strategies and enhanced value creation potential." Once effective, RML shares will list on BSE/NSE, and Green Mobility's revenue and losses (&#8377;33.0 Cr revenue, &minus;&#8377;13.6 Cr EBIT in Q1FY27 alone) will exit RIL's consolidated numbers &mdash; management's August-call guidance was that mobility-segment losses should be out of RIL's P&amp;L by the end of Q3FY27.</p>
+
+      <h3>A reporting-comparability caveat, direct from an analyst</h3>
+      <p>On the August call, analyst Miten Shah pointed out that RIL currently reports standalone-only headline comparatives (i.e., the Ash &amp; Coal core, excluding Wind) in some of its period-over-period framing, and asked whether this risks obscuring the true consolidated growth picture. Management's response was that this is for "apples-to-apples" comparability given Wind's near-zero prior-year base, and confirmed that <b>full consolidated reporting as the primary comparative basis will only begin from Q4FY27</b>. This report necessarily mixes standalone and consolidated figures across sections (each is labelled at point of use) for the same reason &mdash; readers should treat any single-quarter comparison with the same caution the analyst raised, at least until Q4FY27's fully consolidated comparatives are available.</p>
+
+      <h3>Wind's competitive framing shifted between calls</h3>
+      <p>In June, management's moat argument was specific and checkable in principle: the nearest ash/coal-handling competitor was pegged at roughly "25% of Refex's scale" (self-reported, unverified). In August, when a similar competitive-positioning question came up for Wind, management's answer was considerably softer &mdash; "competition will help... it is not a challenge, it will be an opportunity" &mdash; a framing this report flags as a non-answer rather than new information, worth noting alongside the more substantive TAM/penetration figures discussed in §01.</p>
+
+      <h3>A minor but notable data-quality slip</h3>
+      <p>Two Q1FY27 investor presentations were filed on the same day (29 Jul 2026, 74 minutes apart). The first (filed 15:57 IST) showed Gross Profit of &#8377;495.1 Cr on the standalone P&amp;L slide &mdash; a figure inconsistent with the revenue and cost lines on the same slide. A "Revised Investor Presentation" filed at 17:11 IST corrected this to &#8377;124.1 Cr (consistent with Revenue &#8377;619.3 Cr less Materials &#8377;500.4 Cr plus the inventory-change adjustment). No other differences were found across either deck. A minor, quickly-corrected slip on its own, but one more data point in this report's overall read that Refex's public disclosures, while generally substantive, have shown a pattern of numbers needing in-period correction or clarification (alongside the margin-guidance clarification and the ash-volume-target revision above).</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">Essentially none &mdash; which raises the weight this report places on cross-checking management's own numbers.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analyst recommendation</div><div class="v">None</div><div class="d">No rating on record in yfinance</div></div>
+        <div class="stat"><div class="k">Price targets</div><div class="v">N/A</div><div class="d">No low/mean/median/high target available</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">0.47%</div><div class="d">12 institutions (MarketData)</div></div>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>The market has almost no independent check on this story</b>With zero sell-side coverage on record and institutional ownership under 0.5%, there is no visible analyst community stress-testing Refex's guidance, margin assumptions or capex plans on a quarterly cadence. The two named analysts quoted in this report (Jasmine Surana, Miten Shah, and others named across both calls) appear to be independent investors or boutique-desk participants asking sharp questions live on the call, rather than a standing institutional coverage universe publishing models and price targets between results. That places extra weight on investors doing their own verification of the guidance-vs-actual pattern in §03&ndash;04 and the cash-flow quality question in §06, rather than leaning on consensus.</div>
+      </div>
+      <p>Aggregator summaries of each quarter's earnings-call highlights (via GuruFocus/Yahoo Finance) exist for Q2FY26 through Q1FY27 &mdash; useful as a public record of what was said, but these are automated content summaries, not independent equity research, and should not be read as analyst coverage in the traditional sense.</p>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock that has already round-tripped roughly 48% down and ~88% back up within the past twelve months, now sitting on a trailing multiple that is neither cheap nor obviously priced for perfection.</p>
+
+      <h3>Twelve months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Aug 2025&ndash;Aug 2026 (NSE, via yfinance daily price history). The stock fell from ~&#8377;365 (Aug-25) to a 52-week low near &#8377;189 (end Mar-26) as the FY26 revenue mix-shift and ash-volume-ramp questions built, then rallied to ~&#8377;355 (Jun-26) through the FY26 results cycle, before pulling back to &#8377;303 by 17 Aug-26 on the Q1FY27 margin/Wind-loss reaction discussed in §02.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">14.36x</div><div class="d">On TTM diluted EPS</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">2.76x</div><div class="d">Book value/share &#8377;109.63</div></div>
+        <div class="stat"><div class="k">EV / Revenue</div><div class="v">1.40x</div><div class="d">On TTM revenue &#8377;2,841 Cr</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">8.47x</div><div class="d">TTM EBITDA margin 16.6%</div></div>
+      </div>
+      <p>None of these multiples scream "priced for perfection" the way a 60&ndash;70x trailing P/E would &mdash; at 14.36x trailing, the market is pricing something closer to a solid-growth industrial than a story stock, despite TTM revenue growth of 139% and TTM earnings growth of 207% (MarketData). That gap between the growth rate and the multiple is itself informative: it suggests the market already has some skepticism priced in about durability &mdash; consistent with the receivables, contingent-liability and guidance-slippage flags raised in §04&ndash;07 &mdash; rather than extrapolating the headline growth rate forward at face value.</p>
+
+      <h3>Bear / base / bull, FY27E</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Illustrative scenarios built from management's own segment guidance (Ash &amp; Coal to beat FY26's 28% adjusted growth; Wind FY27 revenue &#8377;1,700&ndash;1,800 Cr with a back-loaded 5&ndash;6% net margin; Mobility exiting the consolidated P&amp;L by ~Q3FY27), combined with plausible execution outcomes on each. These are scenario illustrations, not point forecasts &mdash; there is no analyst consensus to anchor against (§09), and Refex has exactly one quarter of results (Q1FY27) against the FY27 guidance framework given in June, with the ash-volume component of that guidance already revised once.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;170&ndash;230</div>
+          <div class="rng">&minus;24% to &minus;44% from CMP</div>
+          <ul>
+            <li>Ash-volume ramp continues slipping past Q4FY27; Wind stays loss-making through FY27 as the "better than industry" margin claim proves premature a second time</li>
+            <li>Receivable days keep rising past 149; the auditor's flagged impairment risk on the &#8377;1,413 Cr receivables/contract-asset base partially crystallizes</li>
+            <li>The &#8377;509 Cr Venwind corporate guarantee sees a partial call, or the promoter-pledge unwind slips past its stated near-term timeline</li>
+            <li>FY27 PAT growth stalls to ~15&ndash;25% YoY (&#8377;235&ndash;255 Cr); FY27E EPS ~&#8377;17; multiple de-rates to ~10&ndash;12x on quality/governance concerns</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;350&ndash;405</div>
+          <div class="rng">+16% to +34% from CMP</div>
+          <ul>
+            <li>Ash &amp; Coal sustains 28%+ growth at a 15&ndash;18% EBITDA margin; Wind executes roughly to the revised guidance, posting a modest full-year loss-to-breakeven as margin builds through H2</li>
+            <li>Mobility's losses exit the consolidated P&amp;L on schedule (~Q3FY27) as the demerger completes</li>
+            <li>Receivable days stabilize near management's guided 105&ndash;125-day band rather than continuing to expand</li>
+            <li>FY27 PAT ~&#8377;320&ndash;380 Cr (+55&ndash;85% YoY); FY27E EPS ~&#8377;23&ndash;27; multiple holds near today's 14&ndash;16x</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;500&ndash;580</div>
+          <div class="rng">+65% to +92% from CMP</div>
+          <ul>
+            <li>Ash &amp; Coal growth accelerates past 30% with margin holding at the top of the 15&ndash;18% band; Wind's &#8377;1,860 Cr order book converts smoothly and localization completes ahead of schedule, pulling margin recovery into FY27 rather than FY28</li>
+            <li>The demerger completes cleanly and the market re-rates the resulting focused Ash/Coal + Wind entity on cleaner, fully-consolidated disclosure from Q4FY27</li>
+            <li>Receivable days genuinely improve; the credit-rating upgrade trajectory continues</li>
+            <li>FY27 PAT ~&#8377;430&ndash;480 Cr (+110&ndash;135% YoY); FY27E EPS ~&#8377;31&ndash;35; multiple re-rates to 16&ndash;18x on demonstrated multi-engine execution</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: FY26 book value/share is &#8377;109.63 at 2.76x P/B. If FY27 retained earnings lift book value toward &#8377;115&ndash;120/share and the market holds today's ~2.7&ndash;2.8x multiple, that implies a price band of roughly &#8377;310&ndash;335 &mdash; close to the base case above and a useful sanity check on the earnings-multiple approach.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a real, deliberate strategic reset &mdash; exiting volatile refrigerant-gas and power-trading revenue in favour of a focused, profitable Ash &amp; Coal core with a steady drumbeat of new order wins (~&#8377;172 Cr across six contracts in this dataset window alone) and a growing order book (&#8377;1,635 Cr); genuine deleveraging (debt/equity down from 0.48x to 0.15x, an independent Acuité rating upgrade); an asset-light Wind positioning (product supply, not EPC) that caps project-level execution risk; a clean, unmodified audit opinion with no auditor change; nil deviation on preferential-issue fund utilization per an independent monitoring agency; a promoter buying shares on the open market; and a demerger rationale (separating Mobility into its own listed entity) that is procedurally on track, if not yet finally approved.</p>
+        <p style="max-width:none;"><b>What's not good:</b> free cash flow has been negative for four straight years, and the FY26 cause &mdash; receivable days nearly tripling to 149 &mdash; is independently flagged by the company's own auditor as an impairment risk on 58.3% of total assets, a check no analyst on either call pushed back on; a contingent-liability guarantee to the Wind subsidiary grew 11x in a single year, sitting just outside the "net debt-free" narrative; the Wind segment posted an EBITDA loss in its first full commercial quarter, directly undercutting a "better than industry margin" claim made weeks earlier; the ash-volume ramp guidance has already been walked back once, from "this year" to "Q4FY27"; the Chairman/MD carries a ~41% pledge on his promoter stake and a SEBI UPSI finding (under stay); an income-tax search remains publicly unexplained beyond management's own assurance; institutional/analyst scrutiny is close to zero; and fully consolidated reporting won't arrive until Q4FY27, limiting today's comparability.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> with a mix of real candor and some promotional smoothing. On the credit side: management disclosed the Wind EBITDA miss and its one-time refinancing-charge explanation plainly, corrected an internally inconsistent investor-deck figure within two hours of the original filing, and gave a specific, checkable timeline for the pledge unwind rather than a vague reassurance. On the debit side: the single largest quantitative flag in this dataset &mdash; the receivables build the auditor itself is watching &mdash; was addressed only in passing as "normal unbilled revenue," a moat question on Wind was answered with an unfalsifiable "competition is an opportunity," and the ash-volume target needed an in-call revision once an analyst pressed on the mismatch between the June framing and the August result.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: moderate, roughly 40&ndash;50%.</b> The core Ash &amp; Coal business is demonstrably strong &mdash; profitable, order-book-backed, and growing well ahead of the multiple the market is currently paying for the stock (14.36x trailing, against 139%+ TTM revenue growth). But this is offset by a genuinely serious cash-conversion and receivables-quality question that the company's own auditor, not just this report, has flagged; by a Wind segment that is now the single largest swing factor in the consolidated numbers and has already missed its own margin framing once; and by governance data points (the pledge, the SEBI finding, the tax search) that are individually manageable but collectively argue for a discount to a clean-hands growth story. The base case above implies meaningful upside if Refex simply executes to its own restated guidance &mdash; but "restated" is the operative word, and the bear case is not a remote tail risk given how many of its inputs (receivables, the Venwind guarantee, Wind margin timing) are already visible, unresolved items in the FY26 numbers rather than hypotheticals.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) receivable days and the composition of the &#8377;1,413 Cr Ash &amp; Coal receivables/contract-asset base in the FY27 quarterly filings &mdash; a decline toward the guided 105&ndash;125-day band would meaningfully de-risk the single biggest flag in this note, while continued growth past 149 days would not; (2) whether Wind EBITDA turns positive in Q2/Q3 FY27 as guided, and whether the &#8377;1,860 Cr order book grows or stays flat quarter to quarter; (3) whether the ~41% promoter pledge is actually released on the "next two weeks" timeline given in August; (4) the &#8377;509 Cr Venwind corporate guarantee &mdash; any drawdown or call would be a material balance-sheet event; (5) the final NCLT sanction and voting outcome for the Refex Mobility demerger, and whether Q4FY27's first fully consolidated comparatives validate or complicate the standalone-basis growth story told through FY26/Q1FY27.</div>
+      </div>
+
+      <footer>
+        Compiled from Refex Industries' BSE/NSE filings (Announcements/AnnouncementsConv, 26&nbsp;May&ndash;14&nbsp;Aug 2026 &mdash; the Q4FY26 and Q1FY27 investor presentations, both earnings-call transcripts, the FY26 Annual Report, the KMP cessation filing, the QIP/preferential-issue monitoring-agency report, the Acuité credit-rating letter, and the NCLT/court-convened-meeting filings for the green-mobility demerger), MarketData (Yahoo Finance via yfinance, last fetched 17&nbsp;Aug&nbsp;2026 22:07 IST, including the full daily price-history series), and the tracked News feed. All figures are as originally reported by the company or the cited data source; where a figure could not be independently reconciled, a data gap existed, or two sources disagreed (e.g. company-reported vs. yfinance-recomputed EBITDA/revenue growth), that is stated explicitly in the relevant section rather than silently resolved or estimated. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT, consolidated) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [594.47, 351.86, 576.01, 934.17, 916.31];
+    var ebitda  = [73.12, 42.59, 95.56, 158.13, 113.47];
+    var pat     = [48.32, 21.17, 53.92, 90.82, 63.80];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+
+    function y(v){ return padT + plotH - (v/maxV)*plotH; }
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT, consolidated" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 4;
+    for(var g=0; g<=steps; g++){
+      var gv = (maxV/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(v);
+        var bh = (padT+plotH) - by;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+by.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q2FY26 (Sep-25 quarter) is absent from the source data and is not plotted here — a gap, not a zero.</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Aug 25', 365.33], ['Sep 25', 355.41], ['Oct 25', 367.03], ['Nov 25', 345.20],
+      ['Dec 25', 259.07], ['Jan 26', 224.48], ['Feb 26', 219.99], ['Mar 26', 188.89],
+      ['Apr 26', 263.02], ['May 26', 327.25], ['Jun 26', 355.07], ['Jul 26', 302.80],
+      ['Aug 26', 302.75]
+    ];
+    var W = 900, H = 220, padL = 44, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Refex Industries monthly closing share price, August 2025 to August 2026" style="width:100%;height:auto;font-size:11px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 3;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily NSE price history via yfinance. 52-week range per MarketData snapshot is ₹188–415 (intraday extremes may fall between the monthly points plotted).</div></div>';
+  })();
+})();
+</script>

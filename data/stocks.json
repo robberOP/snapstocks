@@ -1,0 +1,6002 @@
+[
+  {
+    "symbol": "360ONE",
+    "name": "360ONE",
+    "sector": "Capital Markets",
+    "industry": "Stockbroking & Allied",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "3MINDIA",
+    "name": "3MINDIA",
+    "sector": "Diversified",
+    "industry": "Diversified",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AADHARHFC",
+    "name": "AADHARHFC",
+    "sector": "Finance",
+    "industry": "Housing Finance Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AARTIDRUGS",
+    "name": "AARTIDRUGS",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AARTIIND",
+    "name": "AARTIIND",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AARTIPHARM",
+    "name": "AARTIPHARM",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AAVAS",
+    "name": "AAVAS",
+    "sector": "Finance",
+    "industry": "Housing Finance Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ABB",
+    "name": "ABB",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ABBOTINDIA",
+    "name": "ABBOTINDIA",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ABCAPITAL",
+    "name": "ABCAPITAL",
+    "sector": "Finance",
+    "industry": "Investment Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ABDL",
+    "name": "ABDL",
+    "sector": "Beverages",
+    "industry": "Breweries & Distilleries",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ABFRL",
+    "name": "ABFRL",
+    "sector": "Retailing",
+    "industry": "Speciality Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ABLBL",
+    "name": "ABLBL",
+    "sector": "Retailing",
+    "industry": "Speciality Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ABREL",
+    "name": "ABREL",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ABSLAMC",
+    "name": "ABSLAMC",
+    "sector": "Capital Markets",
+    "industry": "Asset Management Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ACC",
+    "name": "ACC",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ACE",
+    "name": "ACE",
+    "sector": "Agricultural, Commercial & Construction Vehicles",
+    "industry": "Construction Vehicles",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ACI",
+    "name": "ACI",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ACMESOLAR",
+    "name": "ACMESOLAR",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ACUTAAS",
+    "name": "ACUTAAS",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ADANIENSOL",
+    "name": "ADANIENSOL",
+    "sector": "Power",
+    "industry": "Power Distribution",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ADANIENT",
+    "name": "ADANIENT",
+    "sector": "Metals & Minerals Trading",
+    "industry": "Trading - Minerals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ADANIGREEN",
+    "name": "ADANIGREEN",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ADANIPORTS",
+    "name": "ADANIPORTS",
+    "sector": "Transport Infrastructure",
+    "industry": "Port & Port services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ADANIPOWER",
+    "name": "ADANIPOWER",
+    "sector": "Power",
+    "industry": "Integrated Power Utilities",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ADVENZYMES",
+    "name": "ADVENZYMES",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Biotechnology",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AEGISLOG",
+    "name": "AEGISLOG",
+    "sector": "Gas",
+    "industry": "Trading - Gas",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AEGISVOPAK",
+    "name": "AEGISVOPAK",
+    "sector": "Oil",
+    "industry": "Oil Storage & Transportation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AEQUS",
+    "name": "AEQUS",
+    "sector": "Aerospace & Defense",
+    "industry": "Aerospace & Defense",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AETHER",
+    "name": "AETHER",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AFCONS",
+    "name": "AFCONS",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AFFLE",
+    "name": "AFFLE",
+    "sector": "IT - Services",
+    "industry": "IT Enabled Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AGARWALEYE",
+    "name": "AGARWALEYE",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AHLUCONT",
+    "name": "AHLUCONT",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AIAENG",
+    "name": "AIAENG",
+    "sector": "Industrial Products",
+    "industry": "Castings & Forgings",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AIIL",
+    "name": "AIIL",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AJANTPHARM",
+    "name": "AJANTPHARM",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AKUMS",
+    "name": "AKUMS",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ALIVUS",
+    "name": "ALIVUS",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ALKEM",
+    "name": "ALKEM",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ALKYLAMINE",
+    "name": "ALKYLAMINE",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ALOKINDS",
+    "name": "ALOKINDS",
+    "sector": "Textiles & Apparels",
+    "industry": "Other Textile Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AMBER",
+    "name": "AMBER",
+    "sector": "Consumer Durables",
+    "industry": "Household Appliances",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AMBUJACEM",
+    "name": "AMBUJACEM",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ANANDRATHI",
+    "name": "ANANDRATHI",
+    "sector": "Capital Markets",
+    "industry": "Financial Products Distributor",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ANANTRAJ",
+    "name": "ANANTRAJ",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ANGELONE",
+    "name": "ANGELONE",
+    "sector": "Capital Markets",
+    "industry": "Stockbroking & Allied",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ANTHEM",
+    "name": "ANTHEM",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Biotechnology",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ANUP",
+    "name": "ANUP",
+    "sector": "Industrial Manufacturing",
+    "industry": "Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ANURAS",
+    "name": "ANURAS",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "APARINDS",
+    "name": "APARINDS",
+    "sector": "Electrical Equipment",
+    "industry": "Other Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "APLAPOLLO",
+    "name": "APLAPOLLO",
+    "sector": "Industrial Products",
+    "industry": "Iron & Steel Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "APLLTD",
+    "name": "APLLTD",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "APOLLO",
+    "name": "APOLLO",
+    "sector": "Aerospace & Defense",
+    "industry": "Aerospace & Defense",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "APOLLOHOSP",
+    "name": "APOLLOHOSP",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "APOLLOTYRE",
+    "name": "APOLLOTYRE",
+    "sector": "Auto Components",
+    "industry": "Tyres & Rubber Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "APTUS",
+    "name": "APTUS",
+    "sector": "Finance",
+    "industry": "Housing Finance Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ARE&M",
+    "name": "ARE&M",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ARVIND",
+    "name": "ARVIND",
+    "sector": "Textiles & Apparels",
+    "industry": "Garments & Apparels",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ARVINDFASN",
+    "name": "ARVINDFASN",
+    "sector": "Retailing",
+    "industry": "Speciality Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ASAHIINDIA",
+    "name": "ASAHIINDIA",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ASHAPURMIN",
+    "name": "ASHAPURMIN",
+    "sector": "Minerals & Mining",
+    "industry": "Industrial Minerals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ASHOKA",
+    "name": "ASHOKA",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ASHOKLEY",
+    "name": "ASHOKLEY",
+    "sector": "Agricultural, Commercial & Construction Vehicles",
+    "industry": "Commercial Vehicles",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ASIANPAINT",
+    "name": "ASIANPAINT",
+    "sector": "Consumer Durables",
+    "industry": "Paints",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ASKAUTOLTD",
+    "name": "ASKAUTOLTD",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ASTERDM",
+    "name": "ASTERDM",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ASTRAL",
+    "name": "ASTRAL",
+    "sector": "Industrial Products",
+    "industry": "Plastic Products - Industrial",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ASTRAMICRO",
+    "name": "ASTRAMICRO",
+    "sector": "Aerospace & Defense",
+    "industry": "Aerospace & Defense",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ATGL",
+    "name": "ATGL",
+    "sector": "Gas",
+    "industry": "LPG/CNG/PNG/LNG Supplier",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ATHERENERG",
+    "name": "ATHERENERG",
+    "sector": "Automobiles",
+    "industry": "2/3 Wheelers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ATLANTAELE",
+    "name": "ATLANTAELE",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ATUL",
+    "name": "ATUL",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AUBANK",
+    "name": "AUBANK",
+    "sector": "Banks",
+    "industry": "Other Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AURIONPRO",
+    "name": "AURIONPRO",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AUROPHARMA",
+    "name": "AUROPHARMA",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AVALON",
+    "name": "AVALON",
+    "sector": "Electrical Equipment",
+    "industry": "Other Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AVANTIFEED",
+    "name": "AVANTIFEED",
+    "sector": "Food Products",
+    "industry": "Animal Feed",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AVL",
+    "name": "AVL",
+    "sector": "Retailing",
+    "industry": "Speciality Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AWFIS",
+    "name": "AWFIS",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Diversified Commercial Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AWL",
+    "name": "AWL",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Edible Oil",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AXISBANK",
+    "name": "AXISBANK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AXISCADES",
+    "name": "AXISCADES",
+    "sector": "Aerospace & Defense",
+    "industry": "Aerospace & Defense",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "AZAD",
+    "name": "AZAD",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BAJAJ-AUTO",
+    "name": "BAJAJ-AUTO",
+    "sector": "Automobiles",
+    "industry": "2/3 Wheelers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BAJAJELEC",
+    "name": "BAJAJELEC",
+    "sector": "Consumer Durables",
+    "industry": "Household Appliances",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BAJAJFINSV",
+    "name": "BAJAJFINSV",
+    "sector": "Finance",
+    "industry": "Holding Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BAJAJHFL",
+    "name": "BAJAJHFL",
+    "sector": "Finance",
+    "industry": "Housing Finance Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BAJAJHLDNG",
+    "name": "BAJAJHLDNG",
+    "sector": "Finance",
+    "industry": "Holding Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BAJFINANCE",
+    "name": "BAJFINANCE",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BALAMINES",
+    "name": "BALAMINES",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BALKRISIND",
+    "name": "BALKRISIND",
+    "sector": "Auto Components",
+    "industry": "Tyres & Rubber Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BALRAMCHIN",
+    "name": "BALRAMCHIN",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Sugar",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BALUFORGE",
+    "name": "BALUFORGE",
+    "sector": "Industrial Products",
+    "industry": "Castings & Forgings",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BANCOINDIA",
+    "name": "BANCOINDIA",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BANDHANBNK",
+    "name": "BANDHANBNK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BANKBARODA",
+    "name": "BANKBARODA",
+    "sector": "Banks",
+    "industry": "Public Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BANKINDIA",
+    "name": "BANKINDIA",
+    "sector": "Banks",
+    "industry": "Public Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BATAINDIA",
+    "name": "BATAINDIA",
+    "sector": "Consumer Durables",
+    "industry": "Footwear",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BAYERCROP",
+    "name": "BAYERCROP",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Pesticides & Agrochemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BBOX",
+    "name": "BBOX",
+    "sector": "IT - Services",
+    "industry": "IT Enabled Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BBTC",
+    "name": "BBTC",
+    "sector": "Food Products",
+    "industry": "Packaged Foods",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BDL",
+    "name": "BDL",
+    "sector": "Aerospace & Defense",
+    "industry": "Aerospace & Defense",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BECTORFOOD",
+    "name": "BECTORFOOD",
+    "sector": "Food Products",
+    "industry": "Packaged Foods",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BEL",
+    "name": "BEL",
+    "sector": "Aerospace & Defense",
+    "industry": "Aerospace & Defense",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BELRISE",
+    "name": "BELRISE",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BEML",
+    "name": "BEML",
+    "sector": "Agricultural, Commercial & Construction Vehicles",
+    "industry": "Construction Vehicles",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BERGEPAINT",
+    "name": "BERGEPAINT",
+    "sector": "Consumer Durables",
+    "industry": "Paints",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BHARATFORG",
+    "name": "BHARATFORG",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BHARTIARTL",
+    "name": "BHARTIARTL",
+    "sector": "Telecom - Services",
+    "industry": "Telecom - Cellular & Fixed line services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BHARTIHEXA",
+    "name": "BHARTIHEXA",
+    "sector": "Telecom - Services",
+    "industry": "Telecom - Cellular & Fixed line services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BHEL",
+    "name": "BHEL",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BIKAJI",
+    "name": "BIKAJI",
+    "sector": "Food Products",
+    "industry": "Packaged Foods",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BIOCON",
+    "name": "BIOCON",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BIRLACORPN",
+    "name": "BIRLACORPN",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BLACKBUCK",
+    "name": "BLACKBUCK",
+    "sector": "Transport Services",
+    "industry": "Transport Related Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BLS",
+    "name": "BLS",
+    "sector": "Leisure Services",
+    "industry": "Tour, Travel Related Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BLUEDART",
+    "name": "BLUEDART",
+    "sector": "Transport Services",
+    "industry": "Logistics Solution Provider",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BLUEJET",
+    "name": "BLUEJET",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BLUESTARCO",
+    "name": "BLUESTARCO",
+    "sector": "Consumer Durables",
+    "industry": "Household Appliances",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BLUESTONE",
+    "name": "BLUESTONE",
+    "sector": "Consumer Durables",
+    "industry": "Gems, Jewellery And Watches",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BORORENEW",
+    "name": "BORORENEW",
+    "sector": "Industrial Products",
+    "industry": "Glass - Industrial",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BOSCHLTD",
+    "name": "BOSCHLTD",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BPCL",
+    "name": "BPCL",
+    "sector": "Petroleum Products",
+    "industry": "Refineries & Marketing",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BRIGADE",
+    "name": "BRIGADE",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BRITANNIA",
+    "name": "BRITANNIA",
+    "sector": "Food Products",
+    "industry": "Packaged Foods",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BSE",
+    "name": "BSE",
+    "sector": "Capital Markets",
+    "industry": "Exchange and Data Platform",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "BSOFT",
+    "name": "BSOFT",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CAMPUS",
+    "name": "CAMPUS",
+    "sector": "Consumer Durables",
+    "industry": "Footwear",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CAMS",
+    "name": "CAMS",
+    "sector": "Capital Markets",
+    "industry": "Depositories, Clearing Houses and Other Intermediaries",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CANBK",
+    "name": "CANBK",
+    "sector": "Banks",
+    "industry": "Public Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CANFINHOME",
+    "name": "CANFINHOME",
+    "sector": "Finance",
+    "industry": "Housing Finance Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CANHLIFE",
+    "name": "CANHLIFE",
+    "sector": "Insurance",
+    "industry": "Life Insurance",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CAPILLARY",
+    "name": "CAPILLARY",
+    "sector": "IT - Software",
+    "industry": "Software Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CAPLIPOINT",
+    "name": "CAPLIPOINT",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CARBORUNIV",
+    "name": "CARBORUNIV",
+    "sector": "Industrial Products",
+    "industry": "Abrasives & Bearings",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CARTRADE",
+    "name": "CARTRADE",
+    "sector": "Retailing",
+    "industry": "E-Retail/ E-Commerce",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CASTROLIND",
+    "name": "CASTROLIND",
+    "sector": "Petroleum Products",
+    "industry": "Lubricants",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CCAVENUE",
+    "name": "CCAVENUE",
+    "sector": "Financial Technology (Fintech)",
+    "industry": "Financial Technology (Fintech)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CCL",
+    "name": "CCL",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Tea & Coffee",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CDSL",
+    "name": "CDSL",
+    "sector": "Capital Markets",
+    "industry": "Depositories, Clearing Houses and Other Intermediaries",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CEATLTD",
+    "name": "CEATLTD",
+    "sector": "Auto Components",
+    "industry": "Tyres & Rubber Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CELLO",
+    "name": "CELLO",
+    "sector": "Consumer Durables",
+    "industry": "Houseware",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CEMPRO",
+    "name": "CEMPRO",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CENTRALBK",
+    "name": "CENTRALBK",
+    "sector": "Banks",
+    "industry": "Public Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CENTURYPLY",
+    "name": "CENTURYPLY",
+    "sector": "Consumer Durables",
+    "industry": "Plywood Boards/ Laminates",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CERA",
+    "name": "CERA",
+    "sector": "Consumer Durables",
+    "industry": "Sanitary Ware",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CESC",
+    "name": "CESC",
+    "sector": "Power",
+    "industry": "Integrated Power Utilities",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CGCL",
+    "name": "CGCL",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CGPOWER",
+    "name": "CGPOWER",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CHALET",
+    "name": "CHALET",
+    "sector": "Leisure Services",
+    "industry": "Hotels & Resorts",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CHAMBLFERT",
+    "name": "CHAMBLFERT",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Fertilizers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CHENNPETRO",
+    "name": "CHENNPETRO",
+    "sector": "Petroleum Products",
+    "industry": "Refineries & Marketing",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CHOICEIN",
+    "name": "CHOICEIN",
+    "sector": "Finance",
+    "industry": "Holding Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CHOLAFIN",
+    "name": "CHOLAFIN",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CHOLAHLDNG",
+    "name": "CHOLAHLDNG",
+    "sector": "Finance",
+    "industry": "Investment Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CIEINDIA",
+    "name": "CIEINDIA",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CIPLA",
+    "name": "CIPLA",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CLEAN",
+    "name": "CLEAN",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CMSINFO",
+    "name": "CMSINFO",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Diversified Commercial Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "COALINDIA",
+    "name": "COALINDIA",
+    "sector": "Consumable Fuels",
+    "industry": "Coal",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "COCHINSHIP",
+    "name": "COCHINSHIP",
+    "sector": "Industrial Manufacturing",
+    "industry": "Ship Building & Allied Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "COFORGE",
+    "name": "COFORGE",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "COHANCE",
+    "name": "COHANCE",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "COLPAL",
+    "name": "COLPAL",
+    "sector": "Personal Products",
+    "industry": "Personal Care",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CONCOR",
+    "name": "CONCOR",
+    "sector": "Transport Services",
+    "industry": "Logistics Solution Provider",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CONCORDBIO",
+    "name": "CONCORDBIO",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "COROMANDEL",
+    "name": "COROMANDEL",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Fertilizers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CORONA",
+    "name": "CORONA",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CPPLUS",
+    "name": "CPPLUS",
+    "sector": "Industrial Manufacturing",
+    "industry": "Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CRAFTSMAN",
+    "name": "CRAFTSMAN",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CRAMC",
+    "name": "CRAMC",
+    "sector": "Capital Markets",
+    "industry": "Asset Management Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CREDITACC",
+    "name": "CREDITACC",
+    "sector": "Finance",
+    "industry": "Microfinance Institutions",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CRISIL",
+    "name": "CRISIL",
+    "sector": "Finance",
+    "industry": "Other Financial Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CRIZAC",
+    "name": "CRIZAC",
+    "sector": "Retailing",
+    "industry": "Internet & Catalogue Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CROMPTON",
+    "name": "CROMPTON",
+    "sector": "Consumer Durables",
+    "industry": "Household Appliances",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CSBBANK",
+    "name": "CSBBANK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CUB",
+    "name": "CUB",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CUMMINSIND",
+    "name": "CUMMINSIND",
+    "sector": "Industrial Products",
+    "industry": "Compressors, Pumps & Diesel Engines",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CUPID",
+    "name": "CUPID",
+    "sector": "Personal Products",
+    "industry": "Personal Care",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "CYIENT",
+    "name": "CYIENT",
+    "sector": "IT - Services",
+    "industry": "IT Enabled Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DABUR",
+    "name": "DABUR",
+    "sector": "Personal Products",
+    "industry": "Personal Care",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DALBHARAT",
+    "name": "DALBHARAT",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DATAMATICS",
+    "name": "DATAMATICS",
+    "sector": "IT - Services",
+    "industry": "IT Enabled Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DATAPATTNS",
+    "name": "DATAPATTNS",
+    "sector": "Aerospace & Defense",
+    "industry": "Aerospace & Defense",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DBL",
+    "name": "DBL",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DBREALTY",
+    "name": "DBREALTY",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DCBBANK",
+    "name": "DCBBANK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DCMSHRIRAM",
+    "name": "DCMSHRIRAM",
+    "sector": "Diversified",
+    "industry": "Diversified",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DEEPAKFERT",
+    "name": "DEEPAKFERT",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Commodity Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DEEPAKNTR",
+    "name": "DEEPAKNTR",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DELHIVERY",
+    "name": "DELHIVERY",
+    "sector": "Transport Services",
+    "industry": "Logistics Solution Provider",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DEVYANI",
+    "name": "DEVYANI",
+    "sector": "Leisure Services",
+    "industry": "Restaurants",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DIACABS",
+    "name": "DIACABS",
+    "sector": "Electrical Equipment",
+    "industry": "Other Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DIVISLAB",
+    "name": "DIVISLAB",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DIXON",
+    "name": "DIXON",
+    "sector": "Consumer Durables",
+    "industry": "Consumer Electronics",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DLF",
+    "name": "DLF",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DMART",
+    "name": "DMART",
+    "sector": "Retailing",
+    "industry": "Diversified Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DOMS",
+    "name": "DOMS",
+    "sector": "Household Products",
+    "industry": "Stationary",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DRREDDY",
+    "name": "DRREDDY",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "DYNAMATECH",
+    "name": "DYNAMATECH",
+    "sector": "Industrial Manufacturing",
+    "industry": "Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ECLERX",
+    "name": "ECLERX",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Business Process Outsourcing (BPO)/ Knowledge Process Outsourcing (KPO)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EDELWEISS",
+    "name": "EDELWEISS",
+    "sector": "Finance",
+    "industry": "Holding Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EICHERMOT",
+    "name": "EICHERMOT",
+    "sector": "Automobiles",
+    "industry": "2/3 Wheelers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EIDPARRY",
+    "name": "EIDPARRY",
+    "sector": "Food Products",
+    "industry": "Other Food Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EIEL",
+    "name": "EIEL",
+    "sector": "Other Utilities",
+    "industry": "Water Supply & Management",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EIHOTEL",
+    "name": "EIHOTEL",
+    "sector": "Leisure Services",
+    "industry": "Hotels & Resorts",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ELECON",
+    "name": "ELECON",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ELECTCAST",
+    "name": "ELECTCAST",
+    "sector": "Industrial Products",
+    "industry": "Iron & Steel Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ELGIEQUIP",
+    "name": "ELGIEQUIP",
+    "sector": "Industrial Products",
+    "industry": "Compressors, Pumps & Diesel Engines",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ELLEN",
+    "name": "ELLEN",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Industrial Gases",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EMAMILTD",
+    "name": "EMAMILTD",
+    "sector": "Personal Products",
+    "industry": "Personal Care",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EMBDL",
+    "name": "EMBDL",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EMCURE",
+    "name": "EMCURE",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EMIL",
+    "name": "EMIL",
+    "sector": "Retailing",
+    "industry": "Diversified Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EMMVEE",
+    "name": "EMMVEE",
+    "sector": "Electrical Equipment",
+    "industry": "Other Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ENDURANCE",
+    "name": "ENDURANCE",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ENGINERSIN",
+    "name": "ENGINERSIN",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ENRIN",
+    "name": "ENRIN",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ENTERO",
+    "name": "ENTERO",
+    "sector": "Retailing",
+    "industry": "Pharmacy Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EPL",
+    "name": "EPL",
+    "sector": "Industrial Products",
+    "industry": "Packaging",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EQUITASBNK",
+    "name": "EQUITASBNK",
+    "sector": "Banks",
+    "industry": "Other Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ERIS",
+    "name": "ERIS",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ESCORTS",
+    "name": "ESCORTS",
+    "sector": "Agricultural, Commercial & Construction Vehicles",
+    "industry": "Tractors",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ETERNAL",
+    "name": "ETERNAL",
+    "sector": "Retailing",
+    "industry": "E-Retail/ E-Commerce",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ETHOSLTD",
+    "name": "ETHOSLTD",
+    "sector": "Consumer Durables",
+    "industry": "Gems, Jewellery And Watches",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EUREKAFORB",
+    "name": "EUREKAFORB",
+    "sector": "Consumer Durables",
+    "industry": "Household Appliances",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "EXIDEIND",
+    "name": "EXIDEIND",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "FACT",
+    "name": "FACT",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Fertilizers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "FEDERALBNK",
+    "name": "FEDERALBNK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "FEDFINA",
+    "name": "FEDFINA",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "FIEMIND",
+    "name": "FIEMIND",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "FINCABLES",
+    "name": "FINCABLES",
+    "sector": "Industrial Products",
+    "industry": "Cables - Electricals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "FINPIPE",
+    "name": "FINPIPE",
+    "sector": "Industrial Products",
+    "industry": "Plastic Products - Industrial",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "FIRSTCRY",
+    "name": "FIRSTCRY",
+    "sector": "Retailing",
+    "industry": "E-Retail/ E-Commerce",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "FIVESTAR",
+    "name": "FIVESTAR",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "FLUOROCHEM",
+    "name": "FLUOROCHEM",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "FORCEMOT",
+    "name": "FORCEMOT",
+    "sector": "Automobiles",
+    "industry": "Passenger Cars & Utility Vehicles",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "FORTIS",
+    "name": "FORTIS",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "FSL",
+    "name": "FSL",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Business Process Outsourcing (BPO)/ Knowledge Process Outsourcing (KPO)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GABRIEL",
+    "name": "GABRIEL",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GAEL",
+    "name": "GAEL",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Other Agricultural Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GAIL",
+    "name": "GAIL",
+    "sector": "Gas",
+    "industry": "Gas Transmission/Marketing",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GALLANTT",
+    "name": "GALLANTT",
+    "sector": "Industrial Products",
+    "industry": "Iron & Steel Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GESHIP",
+    "name": "GESHIP",
+    "sector": "Transport Services",
+    "industry": "Shipping",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GHCL",
+    "name": "GHCL",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Commodity Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GICRE",
+    "name": "GICRE",
+    "sector": "Insurance",
+    "industry": "General Insurance",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GILLETTE",
+    "name": "GILLETTE",
+    "sector": "Personal Products",
+    "industry": "Personal Care",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GLAND",
+    "name": "GLAND",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GLAXO",
+    "name": "GLAXO",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GLENMARK",
+    "name": "GLENMARK",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GMDCLTD",
+    "name": "GMDCLTD",
+    "sector": "Minerals & Mining",
+    "industry": "Industrial Minerals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GMMPFAUDLR",
+    "name": "GMMPFAUDLR",
+    "sector": "Industrial Manufacturing",
+    "industry": "Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GMRAIRPORT",
+    "name": "GMRAIRPORT",
+    "sector": "Transport Infrastructure",
+    "industry": "Airport & Airport services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GMRP&UI",
+    "name": "GMRP&UI",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GNFC",
+    "name": "GNFC",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Commodity Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GODFRYPHLP",
+    "name": "GODFRYPHLP",
+    "sector": "Diversified FMCG",
+    "industry": "Diversified FMCG",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GODIGIT",
+    "name": "GODIGIT",
+    "sector": "Insurance",
+    "industry": "General Insurance",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GODREJAGRO",
+    "name": "GODREJAGRO",
+    "sector": "Food Products",
+    "industry": "Animal Feed",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GODREJCP",
+    "name": "GODREJCP",
+    "sector": "Personal Products",
+    "industry": "Personal Care",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GODREJIND",
+    "name": "GODREJIND",
+    "sector": "Diversified",
+    "industry": "Diversified",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GODREJPROP",
+    "name": "GODREJPROP",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GOKEX",
+    "name": "GOKEX",
+    "sector": "Textiles & Apparels",
+    "industry": "Garments & Apparels",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GOKULAGRO",
+    "name": "GOKULAGRO",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Edible Oil",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GPIL",
+    "name": "GPIL",
+    "sector": "Industrial Products",
+    "industry": "Iron & Steel Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GPPL",
+    "name": "GPPL",
+    "sector": "Transport Infrastructure",
+    "industry": "Port & Port services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GRANULES",
+    "name": "GRANULES",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GRAPHITE",
+    "name": "GRAPHITE",
+    "sector": "Industrial Products",
+    "industry": "Electrodes & Refractories",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GRASIM",
+    "name": "GRASIM",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GRAVITA",
+    "name": "GRAVITA",
+    "sector": "Minerals & Mining",
+    "industry": "Industrial Minerals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GREAVESCOT",
+    "name": "GREAVESCOT",
+    "sector": "Industrial Products",
+    "industry": "Compressors, Pumps & Diesel Engines",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GROWW",
+    "name": "GROWW",
+    "sector": "Capital Markets",
+    "industry": "Stockbroking & Allied",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GRSE",
+    "name": "GRSE",
+    "sector": "Aerospace & Defense",
+    "industry": "Aerospace & Defense",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GRWRHITECH",
+    "name": "GRWRHITECH",
+    "sector": "Industrial Products",
+    "industry": "Plastic Products - Industrial",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GSFC",
+    "name": "GSFC",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Fertilizers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "GVT&D",
+    "name": "GVT&D",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HAL",
+    "name": "HAL",
+    "sector": "Aerospace & Defense",
+    "industry": "Aerospace & Defense",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HAPPSTMNDS",
+    "name": "HAPPSTMNDS",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HAVELLS",
+    "name": "HAVELLS",
+    "sector": "Consumer Durables",
+    "industry": "Consumer Electronics",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HBLENGINE",
+    "name": "HBLENGINE",
+    "sector": "Industrial Products",
+    "industry": "Other Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HCC",
+    "name": "HCC",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HCG",
+    "name": "HCG",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HCLTECH",
+    "name": "HCLTECH",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HDBFS",
+    "name": "HDBFS",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HDFCAMC",
+    "name": "HDFCAMC",
+    "sector": "Capital Markets",
+    "industry": "Asset Management Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HDFCBANK",
+    "name": "HDFCBANK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HDFCLIFE",
+    "name": "HDFCLIFE",
+    "sector": "Insurance",
+    "industry": "Life Insurance",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HEG",
+    "name": "HEG",
+    "sector": "Industrial Products",
+    "industry": "Electrodes & Refractories",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HEMIPROP",
+    "name": "HEMIPROP",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Diversified Commercial Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HERITGFOOD",
+    "name": "HERITGFOOD",
+    "sector": "Food Products",
+    "industry": "Dairy Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HEROMOTOCO",
+    "name": "HEROMOTOCO",
+    "sector": "Automobiles",
+    "industry": "2/3 Wheelers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HEXT",
+    "name": "HEXT",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HFCL",
+    "name": "HFCL",
+    "sector": "Telecom - Services",
+    "industry": "Telecom - Infrastructure",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HGINFRA",
+    "name": "HGINFRA",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HINDALCO",
+    "name": "HINDALCO",
+    "sector": "Non - Ferrous Metals",
+    "industry": "Aluminium",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HINDCOPPER",
+    "name": "HINDCOPPER",
+    "sector": "Non - Ferrous Metals",
+    "industry": "Copper",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HINDPETRO",
+    "name": "HINDPETRO",
+    "sector": "Petroleum Products",
+    "industry": "Refineries & Marketing",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HINDUNILVR",
+    "name": "HINDUNILVR",
+    "sector": "Diversified FMCG",
+    "industry": "Diversified FMCG",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HINDZINC",
+    "name": "HINDZINC",
+    "sector": "Non - Ferrous Metals",
+    "industry": "Zinc",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HOMEFIRST",
+    "name": "HOMEFIRST",
+    "sector": "Finance",
+    "industry": "Housing Finance Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HONASA",
+    "name": "HONASA",
+    "sector": "Personal Products",
+    "industry": "Personal Care",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HONAUT",
+    "name": "HONAUT",
+    "sector": "Industrial Manufacturing",
+    "industry": "Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HSCL",
+    "name": "HSCL",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Carbon Black",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HUDCO",
+    "name": "HUDCO",
+    "sector": "Finance",
+    "industry": "Financial Institution",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "HYUNDAI",
+    "name": "HYUNDAI",
+    "sector": "Automobiles",
+    "industry": "Passenger Cars & Utility Vehicles",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ICICIAMC",
+    "name": "ICICIAMC",
+    "sector": "Capital Markets",
+    "industry": "Asset Management Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ICICIBANK",
+    "name": "ICICIBANK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ICICIGI",
+    "name": "ICICIGI",
+    "sector": "Insurance",
+    "industry": "General Insurance",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ICICIPRULI",
+    "name": "ICICIPRULI",
+    "sector": "Insurance",
+    "industry": "Life Insurance",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ICIL",
+    "name": "ICIL",
+    "sector": "Textiles & Apparels",
+    "industry": "Other Textile Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IDBI",
+    "name": "IDBI",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IDEA",
+    "name": "IDEA",
+    "sector": "Telecom - Services",
+    "industry": "Telecom - Cellular & Fixed line services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IDFCFIRSTB",
+    "name": "IDFCFIRSTB",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IEX",
+    "name": "IEX",
+    "sector": "Capital Markets",
+    "industry": "Exchange and Data Platform",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IFBIND",
+    "name": "IFBIND",
+    "sector": "Consumer Durables",
+    "industry": "Household Appliances",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IFCI",
+    "name": "IFCI",
+    "sector": "Finance",
+    "industry": "Financial Institution",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IGIL",
+    "name": "IGIL",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Diversified Commercial Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IGL",
+    "name": "IGL",
+    "sector": "Gas",
+    "industry": "LPG/CNG/PNG/LNG Supplier",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IIFL",
+    "name": "IIFL",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IIFLCAPS",
+    "name": "IIFLCAPS",
+    "sector": "Capital Markets",
+    "industry": "Stockbroking & Allied",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IKS",
+    "name": "IKS",
+    "sector": "IT - Services",
+    "industry": "IT Enabled Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IMFA",
+    "name": "IMFA",
+    "sector": "Ferrous Metals",
+    "industry": "Ferro & Silica Manganese",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INDGN",
+    "name": "INDGN",
+    "sector": "Healthcare Services",
+    "industry": "Healthcare Research, Analytics & Technology",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INDHOTEL",
+    "name": "INDHOTEL",
+    "sector": "Leisure Services",
+    "industry": "Hotels & Resorts",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INDIACEM",
+    "name": "INDIACEM",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INDIAGLYCO",
+    "name": "INDIAGLYCO",
+    "sector": "Beverages",
+    "industry": "Breweries & Distilleries",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INDIAMART",
+    "name": "INDIAMART",
+    "sector": "Retailing",
+    "industry": "Internet & Catalogue Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INDIANB",
+    "name": "INDIANB",
+    "sector": "Banks",
+    "industry": "Public Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INDIASHLTR",
+    "name": "INDIASHLTR",
+    "sector": "Finance",
+    "industry": "Housing Finance Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INDIGO",
+    "name": "INDIGO",
+    "sector": "Transport Services",
+    "industry": "Airline",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INDIGOPNTS",
+    "name": "INDIGOPNTS",
+    "sector": "Consumer Durables",
+    "industry": "Paints",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INDUSINDBK",
+    "name": "INDUSINDBK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INDUSTOWER",
+    "name": "INDUSTOWER",
+    "sector": "Telecom - Services",
+    "industry": "Telecom - Infrastructure",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INFY",
+    "name": "INFY",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INOXGREEN",
+    "name": "INOXGREEN",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Diversified Commercial Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INOXINDIA",
+    "name": "INOXINDIA",
+    "sector": "Industrial Products",
+    "industry": "Other Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INOXWIND",
+    "name": "INOXWIND",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "INTELLECT",
+    "name": "INTELLECT",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IOB",
+    "name": "IOB",
+    "sector": "Banks",
+    "industry": "Public Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IOC",
+    "name": "IOC",
+    "sector": "Petroleum Products",
+    "industry": "Refineries & Marketing",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IONEXCHANG",
+    "name": "IONEXCHANG",
+    "sector": "Other Utilities",
+    "industry": "Water Supply & Management",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IPCALAB",
+    "name": "IPCALAB",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IRB",
+    "name": "IRB",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IRCON",
+    "name": "IRCON",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IRCTC",
+    "name": "IRCTC",
+    "sector": "Leisure Services",
+    "industry": "Tour, Travel Related Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IREDA",
+    "name": "IREDA",
+    "sector": "Finance",
+    "industry": "Financial Institution",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IRFC",
+    "name": "IRFC",
+    "sector": "Finance",
+    "industry": "Financial Institution",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ITC",
+    "name": "ITC",
+    "sector": "Diversified FMCG",
+    "industry": "Diversified FMCG",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ITCHOTELS",
+    "name": "ITCHOTELS",
+    "sector": "Leisure Services",
+    "industry": "Hotels & Resorts",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ITI",
+    "name": "ITI",
+    "sector": "Telecom -  Equipment & Accessories",
+    "industry": "Telecom -  Equipment & Accessories",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "IXIGO",
+    "name": "IXIGO",
+    "sector": "Leisure Services",
+    "industry": "Tour, Travel Related Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "J&KBANK",
+    "name": "J&KBANK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JAIBALAJI",
+    "name": "JAIBALAJI",
+    "sector": "Ferrous Metals",
+    "industry": "Iron & Steel",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JAINREC",
+    "name": "JAINREC",
+    "sector": "Diversified Metals",
+    "industry": "Diversified Metals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JAMNAAUTO",
+    "name": "JAMNAAUTO",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JAYNECOIND",
+    "name": "JAYNECOIND",
+    "sector": "Industrial Products",
+    "industry": "Iron & Steel Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JBCHEPHARM",
+    "name": "JBCHEPHARM",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JBMA",
+    "name": "JBMA",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JINDALSAW",
+    "name": "JINDALSAW",
+    "sector": "Industrial Products",
+    "industry": "Iron & Steel Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JINDALSTEL",
+    "name": "JINDALSTEL",
+    "sector": "Ferrous Metals",
+    "industry": "Iron & Steel",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JIOFIN",
+    "name": "JIOFIN",
+    "sector": "Finance",
+    "industry": "Investment Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JKCEMENT",
+    "name": "JKCEMENT",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JKLAKSHMI",
+    "name": "JKLAKSHMI",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JKPAPER",
+    "name": "JKPAPER",
+    "sector": "Industrial Products",
+    "industry": "Paper & Paper Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JKTYRE",
+    "name": "JKTYRE",
+    "sector": "Auto Components",
+    "industry": "Tyres & Rubber Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JLHL",
+    "name": "JLHL",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JMFINANCIL",
+    "name": "JMFINANCIL",
+    "sector": "Finance",
+    "industry": "Holding Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JPPOWER",
+    "name": "JPPOWER",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JSFB",
+    "name": "JSFB",
+    "sector": "Banks",
+    "industry": "Other Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JSL",
+    "name": "JSL",
+    "sector": "Ferrous Metals",
+    "industry": "Iron & Steel",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JSLL",
+    "name": "JSLL",
+    "sector": "Leisure Services",
+    "industry": "Wellness",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JSWCEMENT",
+    "name": "JSWCEMENT",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JSWDULUX",
+    "name": "JSWDULUX",
+    "sector": "Consumer Durables",
+    "industry": "Paints",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JSWENERGY",
+    "name": "JSWENERGY",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JSWINFRA",
+    "name": "JSWINFRA",
+    "sector": "Transport Infrastructure",
+    "industry": "Port & Port services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JSWSTEEL",
+    "name": "JSWSTEEL",
+    "sector": "Ferrous Metals",
+    "industry": "Iron & Steel",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JUBLFOOD",
+    "name": "JUBLFOOD",
+    "sector": "Leisure Services",
+    "industry": "Restaurants",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JUBLINGREA",
+    "name": "JUBLINGREA",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JUBLPHARMA",
+    "name": "JUBLPHARMA",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JUSTDIAL",
+    "name": "JUSTDIAL",
+    "sector": "Retailing",
+    "industry": "Internet & Catalogue Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JWL",
+    "name": "JWL",
+    "sector": "Industrial Manufacturing",
+    "industry": "Railway Wagons",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JYOTHYLAB",
+    "name": "JYOTHYLAB",
+    "sector": "Household Products",
+    "industry": "Household Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "JYOTICNC",
+    "name": "JYOTICNC",
+    "sector": "Industrial Manufacturing",
+    "industry": "Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KAJARIACER",
+    "name": "KAJARIACER",
+    "sector": "Consumer Durables",
+    "industry": "Ceramics",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KALYANKJIL",
+    "name": "KALYANKJIL",
+    "sector": "Consumer Durables",
+    "industry": "Gems, Jewellery And Watches",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KANSAINER",
+    "name": "KANSAINER",
+    "sector": "Consumer Durables",
+    "industry": "Paints",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KARURVYSYA",
+    "name": "KARURVYSYA",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KAYNES",
+    "name": "KAYNES",
+    "sector": "Industrial Manufacturing",
+    "industry": "Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KEC",
+    "name": "KEC",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KEI",
+    "name": "KEI",
+    "sector": "Industrial Products",
+    "industry": "Cables - Electricals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KFINTECH",
+    "name": "KFINTECH",
+    "sector": "Capital Markets",
+    "industry": "Depositories, Clearing Houses and Other Intermediaries",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KIMS",
+    "name": "KIMS",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KIRLOSBROS",
+    "name": "KIRLOSBROS",
+    "sector": "Industrial Products",
+    "industry": "Compressors, Pumps & Diesel Engines",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KIRLOSENG",
+    "name": "KIRLOSENG",
+    "sector": "Industrial Products",
+    "industry": "Compressors, Pumps & Diesel Engines",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KIRLPNU",
+    "name": "KIRLPNU",
+    "sector": "Industrial Products",
+    "industry": "Compressors, Pumps & Diesel Engines",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KITEX",
+    "name": "KITEX",
+    "sector": "Textiles & Apparels",
+    "industry": "Garments & Apparels",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KNRCON",
+    "name": "KNRCON",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KOTAKBANK",
+    "name": "KOTAKBANK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KPIGREEN",
+    "name": "KPIGREEN",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KPIL",
+    "name": "KPIL",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KPITTECH",
+    "name": "KPITTECH",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KPRMILL",
+    "name": "KPRMILL",
+    "sector": "Textiles & Apparels",
+    "industry": "Other Textile Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KRBL",
+    "name": "KRBL",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Other Agricultural Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KRN",
+    "name": "KRN",
+    "sector": "Industrial Products",
+    "industry": "Other Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KSB",
+    "name": "KSB",
+    "sector": "Industrial Products",
+    "industry": "Compressors, Pumps & Diesel Engines",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KSCL",
+    "name": "KSCL",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Other Agricultural Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "KTKBANK",
+    "name": "KTKBANK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LALPATHLAB",
+    "name": "LALPATHLAB",
+    "sector": "Healthcare Services",
+    "industry": "Healthcare Service Provider",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LATENTVIEW",
+    "name": "LATENTVIEW",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LAURUSLABS",
+    "name": "LAURUSLABS",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LEMONTREE",
+    "name": "LEMONTREE",
+    "sector": "Leisure Services",
+    "industry": "Hotels & Resorts",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LENSKART",
+    "name": "LENSKART",
+    "sector": "Retailing",
+    "industry": "Speciality Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LGEINDIA",
+    "name": "LGEINDIA",
+    "sector": "Consumer Durables",
+    "industry": "Household Appliances",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LICHSGFIN",
+    "name": "LICHSGFIN",
+    "sector": "Finance",
+    "industry": "Housing Finance Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LICI",
+    "name": "LICI",
+    "sector": "Insurance",
+    "industry": "Life Insurance",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LINDEINDIA",
+    "name": "LINDEINDIA",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Industrial Gases",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LLOYDSENGG",
+    "name": "LLOYDSENGG",
+    "sector": "Industrial Manufacturing",
+    "industry": "Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LLOYDSENT",
+    "name": "LLOYDSENT",
+    "sector": "Metals & Minerals Trading",
+    "industry": "Trading - Metals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LLOYDSME",
+    "name": "LLOYDSME",
+    "sector": "Minerals & Mining",
+    "industry": "Industrial Minerals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LODHA",
+    "name": "LODHA",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LOTUSDEV",
+    "name": "LOTUSDEV",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LT",
+    "name": "LT",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LTF",
+    "name": "LTF",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LTFOODS",
+    "name": "LTFOODS",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Other Agricultural Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LTM",
+    "name": "LTM",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LTTS",
+    "name": "LTTS",
+    "sector": "IT - Services",
+    "industry": "IT Enabled Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LUMAXTECH",
+    "name": "LUMAXTECH",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LUPIN",
+    "name": "LUPIN",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "LXCHEM",
+    "name": "LXCHEM",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "M&M",
+    "name": "M&M",
+    "sector": "Automobiles",
+    "industry": "Passenger Cars & Utility Vehicles",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "M&MFIN",
+    "name": "M&MFIN",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MAHABANK",
+    "name": "MAHABANK",
+    "sector": "Banks",
+    "industry": "Public Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MAHSCOOTER",
+    "name": "MAHSCOOTER",
+    "sector": "Finance",
+    "industry": "Investment Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MAHSEAMLES",
+    "name": "MAHSEAMLES",
+    "sector": "Industrial Products",
+    "industry": "Iron & Steel Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MANAPPURAM",
+    "name": "MANAPPURAM",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MANKIND",
+    "name": "MANKIND",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MANORAMA",
+    "name": "MANORAMA",
+    "sector": "Food Products",
+    "industry": "Other Food Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MANYAVAR",
+    "name": "MANYAVAR",
+    "sector": "Retailing",
+    "industry": "Speciality Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MAPMYINDIA",
+    "name": "MAPMYINDIA",
+    "sector": "IT - Software",
+    "industry": "Software Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MARICO",
+    "name": "MARICO",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Edible Oil",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MARKSANS",
+    "name": "MARKSANS",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MARUTI",
+    "name": "MARUTI",
+    "sector": "Automobiles",
+    "industry": "Passenger Cars & Utility Vehicles",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MASTEK",
+    "name": "MASTEK",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MAXHEALTH",
+    "name": "MAXHEALTH",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MAZDOCK",
+    "name": "MAZDOCK",
+    "sector": "Industrial Manufacturing",
+    "industry": "Ship Building & Allied Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MCX",
+    "name": "MCX",
+    "sector": "Capital Markets",
+    "industry": "Exchange and Data Platform",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MEDANTA",
+    "name": "MEDANTA",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MEDPLUS",
+    "name": "MEDPLUS",
+    "sector": "Retailing",
+    "industry": "Pharmacy Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MEESHO",
+    "name": "MEESHO",
+    "sector": "Retailing",
+    "industry": "E-Retail/ E-Commerce",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "METROPOLIS",
+    "name": "METROPOLIS",
+    "sector": "Healthcare Services",
+    "industry": "Healthcare Service Provider",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MFSL",
+    "name": "MFSL",
+    "sector": "Insurance",
+    "industry": "Life Insurance",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MGL",
+    "name": "MGL",
+    "sector": "Gas",
+    "industry": "LPG/CNG/PNG/LNG Supplier",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MIDHANI",
+    "name": "MIDHANI",
+    "sector": "Aerospace & Defense",
+    "industry": "Aerospace & Defense",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MINDACORP",
+    "name": "MINDACORP",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MMTC",
+    "name": "MMTC",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Trading & Distributors",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MOIL",
+    "name": "MOIL",
+    "sector": "Minerals & Mining",
+    "industry": "Industrial Minerals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MOTHERSON",
+    "name": "MOTHERSON",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MOTILALOFS",
+    "name": "MOTILALOFS",
+    "sector": "Capital Markets",
+    "industry": "Stockbroking & Allied",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MPHASIS",
+    "name": "MPHASIS",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MRF",
+    "name": "MRF",
+    "sector": "Auto Components",
+    "industry": "Tyres & Rubber Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MRPL",
+    "name": "MRPL",
+    "sector": "Petroleum Products",
+    "industry": "Refineries & Marketing",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MSTCLTD",
+    "name": "MSTCLTD",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Trading & Distributors",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MSUMI",
+    "name": "MSUMI",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MTARTECH",
+    "name": "MTARTECH",
+    "sector": "Electrical Equipment",
+    "industry": "Other Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "MUTHOOTFIN",
+    "name": "MUTHOOTFIN",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NAM-INDIA",
+    "name": "NAM-INDIA",
+    "sector": "Capital Markets",
+    "industry": "Asset Management Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NH",
+    "name": "Narayana Hrudayalaya Ltd (NH)",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": "/stock-analysis/deep-dive/nh.html"
+  },
+  {
+    "symbol": "NATCOPHARM",
+    "name": "NATCOPHARM",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NATIONALUM",
+    "name": "NATIONALUM",
+    "sector": "Non - Ferrous Metals",
+    "industry": "Aluminium",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NAUKRI",
+    "name": "NAUKRI",
+    "sector": "Retailing",
+    "industry": "Internet & Catalogue Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NAVA",
+    "name": "NAVA",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NAVINFLUOR",
+    "name": "NAVINFLUOR",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NAZARA",
+    "name": "NAZARA",
+    "sector": "Entertainment",
+    "industry": "Digital Entertainment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NBCC",
+    "name": "NBCC",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NCC",
+    "name": "NCC",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NEOGEN",
+    "name": "NEOGEN",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NESCO",
+    "name": "NESCO",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Diversified Commercial Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NESTLEIND",
+    "name": "NESTLEIND",
+    "sector": "Food Products",
+    "industry": "Packaged Foods",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NETWEB",
+    "name": "NETWEB",
+    "sector": "IT - Services",
+    "industry": "IT Enabled Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NETWORK18",
+    "name": "NETWORK18",
+    "sector": "Entertainment",
+    "industry": "Media & Entertainment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NEULANDLAB",
+    "name": "NEULANDLAB",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NEWGEN",
+    "name": "NEWGEN",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NFL",
+    "name": "NFL",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Fertilizers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NHPC",
+    "name": "NHPC",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NIACL",
+    "name": "NIACL",
+    "sector": "Insurance",
+    "industry": "General Insurance",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NIVABUPA",
+    "name": "NIVABUPA",
+    "sector": "Insurance",
+    "industry": "General Insurance",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NLCINDIA",
+    "name": "NLCINDIA",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NMDC",
+    "name": "NMDC",
+    "sector": "Minerals & Mining",
+    "industry": "Industrial Minerals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NSLNISP",
+    "name": "NSLNISP",
+    "sector": "Ferrous Metals",
+    "industry": "Iron & Steel",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NTPC",
+    "name": "NTPC",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NTPCGREEN",
+    "name": "NTPCGREEN",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NUVAMA",
+    "name": "NUVAMA",
+    "sector": "Capital Markets",
+    "industry": "Stockbroking & Allied",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NUVOCO",
+    "name": "NUVOCO",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "NYKAA",
+    "name": "NYKAA",
+    "sector": "Retailing",
+    "industry": "E-Retail/ E-Commerce",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "OBEROIRLTY",
+    "name": "OBEROIRLTY",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "OFSS",
+    "name": "OFSS",
+    "sector": "IT - Software",
+    "industry": "Software Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "OIL",
+    "name": "OIL",
+    "sector": "Oil",
+    "industry": "Oil Exploration & Production",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "OLAELEC",
+    "name": "OLAELEC",
+    "sector": "Automobiles",
+    "industry": "2/3 Wheelers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "OLECTRA",
+    "name": "OLECTRA",
+    "sector": "Automobiles",
+    "industry": "Passenger Cars & Utility Vehicles",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ONESOURCE",
+    "name": "ONESOURCE",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ONGC",
+    "name": "ONGC",
+    "sector": "Oil",
+    "industry": "Oil Exploration & Production",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "OPTIEMUS",
+    "name": "Optiemus Infracom Limited",
+    "sector": "Telecom -  Equipment & Accessories",
+    "industry": "Telecom -  Equipment & Accessories",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": "/stock-analysis/deep-dive/optiemus.html"
+  },
+  {
+    "symbol": "ORIENTCEM",
+    "name": "ORIENTCEM",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ORKLAINDIA",
+    "name": "ORKLAINDIA",
+    "sector": "Food Products",
+    "industry": "Other Food Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "OSWALPUMPS",
+    "name": "OSWALPUMPS",
+    "sector": "Industrial Products",
+    "industry": "Compressors, Pumps & Diesel Engines",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PAGEIND",
+    "name": "PAGEIND",
+    "sector": "Textiles & Apparels",
+    "industry": "Garments & Apparels",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PARADEEP",
+    "name": "PARADEEP",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Fertilizers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PARAS",
+    "name": "PARAS",
+    "sector": "Aerospace & Defense",
+    "industry": "Aerospace & Defense",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PARKHOSPS",
+    "name": "PARKHOSPS",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PATANJALI",
+    "name": "PATANJALI",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Edible Oil",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PAYTM",
+    "name": "PAYTM",
+    "sector": "Financial Technology (Fintech)",
+    "industry": "Financial Technology (Fintech)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PCBL",
+    "name": "PCBL",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Carbon Black",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PCJEWELLER",
+    "name": "PCJEWELLER",
+    "sector": "Consumer Durables",
+    "industry": "Gems, Jewellery And Watches",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PERSISTENT",
+    "name": "PERSISTENT",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PETRONET",
+    "name": "PETRONET",
+    "sector": "Gas",
+    "industry": "LPG/CNG/PNG/LNG Supplier",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PFC",
+    "name": "PFC",
+    "sector": "Finance",
+    "industry": "Financial Institution",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PFIZER",
+    "name": "PFIZER",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PFOCUS",
+    "name": "PFOCUS",
+    "sector": "Entertainment",
+    "industry": "Media & Entertainment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PGEL",
+    "name": "PGEL",
+    "sector": "Consumer Durables",
+    "industry": "Consumer Electronics",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PGIL",
+    "name": "PGIL",
+    "sector": "Textiles & Apparels",
+    "industry": "Garments & Apparels",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PHOENIXLTD",
+    "name": "PHOENIXLTD",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PICCADIL",
+    "name": "PICCADIL",
+    "sector": "Beverages",
+    "industry": "Breweries & Distilleries",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PIDILITIND",
+    "name": "PIDILITIND",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PIIND",
+    "name": "PIIND",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Pesticides & Agrochemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PINELABS",
+    "name": "PINELABS",
+    "sector": "Financial Technology (Fintech)",
+    "industry": "Financial Technology (Fintech)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PIRAMALFIN",
+    "name": "PIRAMALFIN",
+    "sector": "Finance",
+    "industry": "Housing Finance Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PNB",
+    "name": "PNB",
+    "sector": "Banks",
+    "industry": "Public Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PNBHOUSING",
+    "name": "PNBHOUSING",
+    "sector": "Finance",
+    "industry": "Housing Finance Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PNCINFRA",
+    "name": "PNCINFRA",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PNGJL",
+    "name": "PNGJL",
+    "sector": "Consumer Durables",
+    "industry": "Gems, Jewellery And Watches",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "POLICYBZR",
+    "name": "POLICYBZR",
+    "sector": "Financial Technology (Fintech)",
+    "industry": "Financial Technology (Fintech)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "POLYCAB",
+    "name": "POLYCAB",
+    "sector": "Industrial Products",
+    "industry": "Cables - Electricals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "POLYMED",
+    "name": "POLYMED",
+    "sector": "Healthcare Services",
+    "industry": "Healthcare Research, Analytics & Technology",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "POONAWALLA",
+    "name": "POONAWALLA",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "POWERGRID",
+    "name": "POWERGRID",
+    "sector": "Power",
+    "industry": "Power - Transmission",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "POWERINDIA",
+    "name": "POWERINDIA",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "POWERMECH",
+    "name": "POWERMECH",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PPLPHARMA",
+    "name": "PPLPHARMA",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PRAJIND",
+    "name": "PRAJIND",
+    "sector": "Industrial Manufacturing",
+    "industry": "Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PREMIERENE",
+    "name": "PREMIERENE",
+    "sector": "Electrical Equipment",
+    "industry": "Other Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PRESTIGE",
+    "name": "PRESTIGE",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PRICOLLTD",
+    "name": "PRICOLLTD",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PRIVISCL",
+    "name": "PRIVISCL",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PRSMJOHNSN",
+    "name": "PRSMJOHNSN",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PRUDENT",
+    "name": "PRUDENT",
+    "sector": "Capital Markets",
+    "industry": "Financial Products Distributor",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PTC",
+    "name": "PTC",
+    "sector": "Power",
+    "industry": "Power Trading",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PTCIL",
+    "name": "PTCIL",
+    "sector": "Industrial Products",
+    "industry": "Castings & Forgings",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PURVA",
+    "name": "PURVA",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PVRINOX",
+    "name": "PVRINOX",
+    "sector": "Entertainment",
+    "industry": "Film Production, Distribution & Exhibition",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "PWL",
+    "name": "PWL",
+    "sector": "Retailing",
+    "industry": "E-Retail/ E-Commerce",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "QPOWER",
+    "name": "QPOWER",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "QUESS",
+    "name": "QUESS",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Diversified Commercial Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RADICO",
+    "name": "RADICO",
+    "sector": "Beverages",
+    "industry": "Breweries & Distilleries",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RAILTEL",
+    "name": "RAILTEL",
+    "sector": "Telecom - Services",
+    "industry": "Other Telecom Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RAIN",
+    "name": "RAIN",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Petrochemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RAINBOW",
+    "name": "RAINBOW",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RALLIS",
+    "name": "RALLIS",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Pesticides & Agrochemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RAMCOCEM",
+    "name": "RAMCOCEM",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RATEGAIN",
+    "name": "RATEGAIN",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RATNAMANI",
+    "name": "RATNAMANI",
+    "sector": "Industrial Products",
+    "industry": "Iron & Steel Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RAYMONDLSL",
+    "name": "RAYMONDLSL",
+    "sector": "Textiles & Apparels",
+    "industry": "Other Textile Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RBA",
+    "name": "RBA",
+    "sector": "Leisure Services",
+    "industry": "Restaurants",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RBLBANK",
+    "name": "RBLBANK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RCF",
+    "name": "RCF",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Fertilizers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RECLTD",
+    "name": "RECLTD",
+    "sector": "Finance",
+    "industry": "Financial Institution",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "REDINGTON",
+    "name": "REDINGTON",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Trading & Distributors",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "REDTAPE",
+    "name": "REDTAPE",
+    "sector": "Consumer Durables",
+    "industry": "Footwear",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "REFEX",
+    "name": "Refex Industries Limited",
+    "sector": "Other Utilities",
+    "industry": "Waste Management",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": "/stock-analysis/deep-dive/refex.html"
+  },
+  {
+    "symbol": "RELAXO",
+    "name": "RELAXO",
+    "sector": "Consumer Durables",
+    "industry": "Footwear",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RELIANCE",
+    "name": "RELIANCE",
+    "sector": "Petroleum Products",
+    "industry": "Refineries & Marketing",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RELIGARE",
+    "name": "RELIGARE",
+    "sector": "Finance",
+    "industry": "Investment Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RENUKA",
+    "name": "RENUKA",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Sugar",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RHIM",
+    "name": "RHIM",
+    "sector": "Industrial Products",
+    "industry": "Electrodes & Refractories",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RITES",
+    "name": "RITES",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RKFORGE",
+    "name": "RKFORGE",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ROUTE",
+    "name": "ROUTE",
+    "sector": "Telecom - Services",
+    "industry": "Other Telecom Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RPOWER",
+    "name": "RPOWER",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RRKABEL",
+    "name": "RRKABEL",
+    "sector": "Industrial Products",
+    "industry": "Cables - Electricals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RTNINDIA",
+    "name": "RTNINDIA",
+    "sector": "Retailing",
+    "industry": "E-Retail/ E-Commerce",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RTNPOWER",
+    "name": "RTNPOWER",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RUBICON",
+    "name": "RUBICON",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "RVNL",
+    "name": "RVNL",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SAATVIKGL",
+    "name": "SAATVIKGL",
+    "sector": "Electrical Equipment",
+    "industry": "Other Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SAFARI",
+    "name": "SAFARI",
+    "sector": "Consumer Durables",
+    "industry": "Plastic Products - Consumer",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SAGILITY",
+    "name": "SAGILITY",
+    "sector": "IT - Services",
+    "industry": "IT Enabled Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SAIL",
+    "name": "SAIL",
+    "sector": "Ferrous Metals",
+    "industry": "Iron & Steel",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SAILIFE",
+    "name": "SAILIFE",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SAMHI",
+    "name": "SAMHI",
+    "sector": "Leisure Services",
+    "industry": "Hotels & Resorts",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SAMMAANCAP",
+    "name": "SAMMAANCAP",
+    "sector": "Finance",
+    "industry": "Housing Finance Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SANDUMA",
+    "name": "SANDUMA",
+    "sector": "Ferrous Metals",
+    "industry": "Iron & Steel",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SANOFICONR",
+    "name": "SANOFICONR",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SANSERA",
+    "name": "SANSERA",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SAPPHIRE",
+    "name": "SAPPHIRE",
+    "sector": "Leisure Services",
+    "industry": "Restaurants",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SARDAEN",
+    "name": "SARDAEN",
+    "sector": "Ferrous Metals",
+    "industry": "Iron & Steel",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SAREGAMA",
+    "name": "SAREGAMA",
+    "sector": "Entertainment",
+    "industry": "Media & Entertainment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SBFC",
+    "name": "SBFC",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SBICARD",
+    "name": "SBICARD",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SBILIFE",
+    "name": "SBILIFE",
+    "sector": "Insurance",
+    "industry": "Life Insurance",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SBIN",
+    "name": "SBIN",
+    "sector": "Banks",
+    "industry": "Public Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SCHAEFFLER",
+    "name": "SCHAEFFLER",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SCHNEIDER",
+    "name": "SCHNEIDER",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SCI",
+    "name": "SCI",
+    "sector": "Transport Services",
+    "industry": "Shipping",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SENCO",
+    "name": "SENCO",
+    "sector": "Consumer Durables",
+    "industry": "Gems, Jewellery And Watches",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SFL",
+    "name": "SFL",
+    "sector": "Consumer Durables",
+    "industry": "Furniture, Home Furnishing",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SHAILY",
+    "name": "SHAILY",
+    "sector": "Consumer Durables",
+    "industry": "Plastic Products - Consumer",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SHAKTIPUMP",
+    "name": "SHAKTIPUMP",
+    "sector": "Industrial Products",
+    "industry": "Compressors, Pumps & Diesel Engines",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SHARDACROP",
+    "name": "SHARDACROP",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Pesticides & Agrochemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SHAREINDIA",
+    "name": "SHAREINDIA",
+    "sector": "Capital Markets",
+    "industry": "Stockbroking & Allied",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SHILPAMED",
+    "name": "SHILPAMED",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SHREECEM",
+    "name": "SHREECEM",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SHRIPISTON",
+    "name": "SHRIPISTON",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SHRIRAMFIN",
+    "name": "SHRIRAMFIN",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SHYAMMETL",
+    "name": "SHYAMMETL",
+    "sector": "Industrial Products",
+    "industry": "Iron & Steel Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SIEMENS",
+    "name": "SIEMENS",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SIGNATURE",
+    "name": "SIGNATURE",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SJVN",
+    "name": "SJVN",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SKFINDIA",
+    "name": "SKFINDIA",
+    "sector": "Industrial Products",
+    "industry": "Abrasives & Bearings",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SKFINDUS",
+    "name": "SKFINDUS",
+    "sector": "Industrial Products",
+    "industry": "Abrasives & Bearings",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SKIPPER",
+    "name": "SKIPPER",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SKYGOLD",
+    "name": "SKYGOLD",
+    "sector": "Consumer Durables",
+    "industry": "Gems, Jewellery And Watches",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SMARTWORKS",
+    "name": "SMARTWORKS",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Diversified Commercial Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SMLMAH",
+    "name": "SMLMAH",
+    "sector": "Agricultural, Commercial & Construction Vehicles",
+    "industry": "Commercial Vehicles",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SOBHA",
+    "name": "SOBHA",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SOLARINDS",
+    "name": "SOLARINDS",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Explosives",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SONACOMS",
+    "name": "SONACOMS",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SONATSOFTW",
+    "name": "SONATSOFTW",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SOUTHBANK",
+    "name": "SOUTHBANK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SPARC",
+    "name": "SPARC",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SPLPETRO",
+    "name": "SPLPETRO",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Petrochemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SRF",
+    "name": "SRF",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Commodity Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "STAR",
+    "name": "STAR",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "STARCEMENT",
+    "name": "STARCEMENT",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "STARHEALTH",
+    "name": "STARHEALTH",
+    "sector": "Insurance",
+    "industry": "General Insurance",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "STLTECH",
+    "name": "STLTECH",
+    "sector": "Telecom -  Equipment & Accessories",
+    "industry": "Telecom -  Equipment & Accessories",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "STYL",
+    "name": "STYL",
+    "sector": "Financial Technology (Fintech)",
+    "industry": "Financial Technology (Fintech)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "STYRENIX",
+    "name": "STYRENIX",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Specialty Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SUBROS",
+    "name": "SUBROS",
+    "sector": "Industrial Products",
+    "industry": "Other Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SUDARSCHEM",
+    "name": "SUDARSCHEM",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Dyes And Pigments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SUDEEPPHRM",
+    "name": "SUDEEPPHRM",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SUMICHEM",
+    "name": "SUMICHEM",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Pesticides & Agrochemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SUNDARMFIN",
+    "name": "SUNDARMFIN",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SUNPHARMA",
+    "name": "SUNPHARMA",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SUNTECK",
+    "name": "SUNTECK",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SUNTV",
+    "name": "SUNTV",
+    "sector": "Entertainment",
+    "industry": "TV Broadcasting & Software Production",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SUPREMEIND",
+    "name": "SUPREMEIND",
+    "sector": "Industrial Products",
+    "industry": "Plastic Products - Industrial",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SUPRIYA",
+    "name": "SUPRIYA",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SURYAROSNI",
+    "name": "SURYAROSNI",
+    "sector": "Industrial Products",
+    "industry": "Iron & Steel Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SUZLON",
+    "name": "SUZLON",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SWANCORP",
+    "name": "SWANCORP",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Petrochemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SWIGGY",
+    "name": "SWIGGY",
+    "sector": "Retailing",
+    "industry": "E-Retail/ E-Commerce",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SWSOLAR",
+    "name": "SWSOLAR",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SYNGENE",
+    "name": "SYNGENE",
+    "sector": "Healthcare Services",
+    "industry": "Healthcare Research, Analytics & Technology",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "SYRMA",
+    "name": "SYRMA",
+    "sector": "Industrial Manufacturing",
+    "industry": "Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TANLA",
+    "name": "TANLA",
+    "sector": "IT - Software",
+    "industry": "Software Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TARC",
+    "name": "TARC",
+    "sector": "Realty",
+    "industry": "Residential, Commercial Projects",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TARIL",
+    "name": "TARIL",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TATACAP",
+    "name": "TATACAP",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TATACHEM",
+    "name": "TATACHEM",
+    "sector": "Chemicals & Petrochemicals",
+    "industry": "Commodity Chemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TATACOMM",
+    "name": "TATACOMM",
+    "sector": "Telecom - Services",
+    "industry": "Telecom - Cellular & Fixed line services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TATACONSUM",
+    "name": "TATACONSUM",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Tea & Coffee",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TATAELXSI",
+    "name": "TATAELXSI",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TATAINVEST",
+    "name": "TATAINVEST",
+    "sector": "Finance",
+    "industry": "Investment Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TATAPOWER",
+    "name": "TATAPOWER",
+    "sector": "Power",
+    "industry": "Integrated Power Utilities",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TATASTEEL",
+    "name": "TATASTEEL",
+    "sector": "Ferrous Metals",
+    "industry": "Iron & Steel",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TATATECH",
+    "name": "TATATECH",
+    "sector": "IT - Services",
+    "industry": "IT Enabled Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TBOTEK",
+    "name": "TBOTEK",
+    "sector": "Leisure Services",
+    "industry": "Tour, Travel Related Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TCS",
+    "name": "TCS",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TDPOWERSYS",
+    "name": "TDPOWERSYS",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TECHM",
+    "name": "TECHM",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TECHNOE",
+    "name": "TECHNOE",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TEGA",
+    "name": "TEGA",
+    "sector": "Industrial Manufacturing",
+    "industry": "Industrial Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TEJASNET",
+    "name": "TEJASNET",
+    "sector": "Telecom -  Equipment & Accessories",
+    "industry": "Telecom -  Equipment & Accessories",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TENNIND",
+    "name": "TENNIND",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TEXRAIL",
+    "name": "TEXRAIL",
+    "sector": "Industrial Manufacturing",
+    "industry": "Railway Wagons",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "THANGAMAYL",
+    "name": "THANGAMAYL",
+    "sector": "Consumer Durables",
+    "industry": "Gems, Jewellery And Watches",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "THELEELA",
+    "name": "THELEELA",
+    "sector": "Leisure Services",
+    "industry": "Hotels & Resorts",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "THERMAX",
+    "name": "THERMAX",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "THOMASCOOK",
+    "name": "THOMASCOOK",
+    "sector": "Leisure Services",
+    "industry": "Tour, Travel Related Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "THYROCARE",
+    "name": "THYROCARE",
+    "sector": "Healthcare Services",
+    "industry": "Healthcare Service Provider",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TI",
+    "name": "TI",
+    "sector": "Beverages",
+    "industry": "Breweries & Distilleries",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TIINDIA",
+    "name": "TIINDIA",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TIMETECHNO",
+    "name": "TIMETECHNO",
+    "sector": "Industrial Products",
+    "industry": "Plastic Products - Industrial",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TIMKEN",
+    "name": "TIMKEN",
+    "sector": "Industrial Products",
+    "industry": "Abrasives & Bearings",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TIPSMUSIC",
+    "name": "TIPSMUSIC",
+    "sector": "Entertainment",
+    "industry": "Media & Entertainment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TITAGARH",
+    "name": "TITAGARH",
+    "sector": "Industrial Manufacturing",
+    "industry": "Railway Wagons",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TITAN",
+    "name": "TITAN",
+    "sector": "Consumer Durables",
+    "industry": "Gems, Jewellery And Watches",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TMB",
+    "name": "TMB",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TMCV",
+    "name": "TMCV",
+    "sector": "Agricultural, Commercial & Construction Vehicles",
+    "industry": "Commercial Vehicles",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TMPV",
+    "name": "TMPV",
+    "sector": "Automobiles",
+    "industry": "Passenger Cars & Utility Vehicles",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TORNTPHARM",
+    "name": "TORNTPHARM",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TORNTPOWER",
+    "name": "TORNTPOWER",
+    "sector": "Power",
+    "industry": "Integrated Power Utilities",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TRANSRAILL",
+    "name": "TRANSRAILL",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TRAVELFOOD",
+    "name": "TRAVELFOOD",
+    "sector": "Leisure Services",
+    "industry": "Restaurants",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TRENT",
+    "name": "TRENT",
+    "sector": "Retailing",
+    "industry": "Speciality Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TRIDENT",
+    "name": "TRIDENT",
+    "sector": "Textiles & Apparels",
+    "industry": "Other Textile Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TRITURBINE",
+    "name": "TRITURBINE",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TRIVENI",
+    "name": "TRIVENI",
+    "sector": "Agricultural Food & other Products",
+    "industry": "Sugar",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TSFINV",
+    "name": "TSFINV",
+    "sector": "Finance",
+    "industry": "Investment Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TTML",
+    "name": "TTML",
+    "sector": "Telecom - Services",
+    "industry": "Telecom - Cellular & Fixed line services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TVSMOTOR",
+    "name": "TVSMOTOR",
+    "sector": "Automobiles",
+    "industry": "2/3 Wheelers",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "TVSSCS",
+    "name": "TVSSCS",
+    "sector": "Transport Services",
+    "industry": "Logistics Solution Provider",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "UBL",
+    "name": "UBL",
+    "sector": "Beverages",
+    "industry": "Breweries & Distilleries",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "UCOBANK",
+    "name": "UCOBANK",
+    "sector": "Banks",
+    "industry": "Public Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "UJJIVANSFB",
+    "name": "UJJIVANSFB",
+    "sector": "Banks",
+    "industry": "Other Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ULTRACEMCO",
+    "name": "ULTRACEMCO",
+    "sector": "Cement & Cement Products",
+    "industry": "Cement & Cement Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "UNIONBANK",
+    "name": "UNIONBANK",
+    "sector": "Banks",
+    "industry": "Public Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "UNITDSPR",
+    "name": "UNITDSPR",
+    "sector": "Beverages",
+    "industry": "Breweries & Distilleries",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "UNOMINDA",
+    "name": "UNOMINDA",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "UPL",
+    "name": "UPL",
+    "sector": "Fertilizers & Agrochemicals",
+    "industry": "Pesticides & Agrochemicals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "URBANCO",
+    "name": "URBANCO",
+    "sector": "Retailing",
+    "industry": "E-Retail/ E-Commerce",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "USHAMART",
+    "name": "USHAMART",
+    "sector": "Industrial Products",
+    "industry": "Iron & Steel Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "UTIAMC",
+    "name": "UTIAMC",
+    "sector": "Capital Markets",
+    "industry": "Asset Management Company",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "UTLSOLAR",
+    "name": "UTLSOLAR",
+    "sector": "Electrical Equipment",
+    "industry": "Other Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "V2RETAIL",
+    "name": "V2RETAIL",
+    "sector": "Retailing",
+    "industry": "Speciality Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VAIBHAVGBL",
+    "name": "VAIBHAVGBL",
+    "sector": "Consumer Durables",
+    "industry": "Gems, Jewellery And Watches",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VARROC",
+    "name": "VARROC",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VBL",
+    "name": "VBL",
+    "sector": "Beverages",
+    "industry": "Other Beverages",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VEDL",
+    "name": "VEDL",
+    "sector": "Diversified Metals",
+    "industry": "Diversified Metals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VGUARD",
+    "name": "VGUARD",
+    "sector": "Consumer Durables",
+    "industry": "Household Appliances",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VIJAYA",
+    "name": "VIJAYA",
+    "sector": "Healthcare Services",
+    "industry": "Healthcare Service Provider",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VIKRAMSOLR",
+    "name": "VIKRAMSOLR",
+    "sector": "Electrical Equipment",
+    "industry": "Other Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VIPIND",
+    "name": "VIPIND",
+    "sector": "Consumer Durables",
+    "industry": "Plastic Products - Consumer",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VIYASH",
+    "name": "VIYASH",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VMART",
+    "name": "VMART",
+    "sector": "Retailing",
+    "industry": "Diversified Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VMM",
+    "name": "VMM",
+    "sector": "Retailing",
+    "industry": "Diversified Retail",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VOLTAMP",
+    "name": "VOLTAMP",
+    "sector": "Electrical Equipment",
+    "industry": "Heavy Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VOLTAS",
+    "name": "VOLTAS",
+    "sector": "Consumer Durables",
+    "industry": "Household Appliances",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "VTL",
+    "name": "VTL",
+    "sector": "Textiles & Apparels",
+    "industry": "Other Textile Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WAAREEENER",
+    "name": "WAAREEENER",
+    "sector": "Electrical Equipment",
+    "industry": "Other Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WAAREERTL",
+    "name": "WAAREERTL",
+    "sector": "Electrical Equipment",
+    "industry": "Other Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WABAG",
+    "name": "WABAG",
+    "sector": "Other Utilities",
+    "industry": "Water Supply & Management",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WAKEFIT",
+    "name": "WAKEFIT",
+    "sector": "Consumer Durables",
+    "industry": "Furniture, Home Furnishing",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WEBELSOLAR",
+    "name": "WEBELSOLAR",
+    "sector": "Electrical Equipment",
+    "industry": "Other Electrical Equipment",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WELCORP",
+    "name": "WELCORP",
+    "sector": "Industrial Products",
+    "industry": "Iron & Steel Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WELENT",
+    "name": "WELENT",
+    "sector": "Construction",
+    "industry": "Civil Construction",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WELSPUNLIV",
+    "name": "WELSPUNLIV",
+    "sector": "Textiles & Apparels",
+    "industry": "Other Textile Products",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WESTLIFE",
+    "name": "WESTLIFE",
+    "sector": "Leisure Services",
+    "industry": "Restaurants",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WEWORK",
+    "name": "WEWORK",
+    "sector": "Commercial Services & Supplies",
+    "industry": "Diversified Commercial Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WHIRLPOOL",
+    "name": "WHIRLPOOL",
+    "sector": "Consumer Durables",
+    "industry": "Household Appliances",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WIPRO",
+    "name": "WIPRO",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "WOCKPHARMA",
+    "name": "WOCKPHARMA",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "YATHARTH",
+    "name": "YATHARTH",
+    "sector": "Healthcare Services",
+    "industry": "Hospital",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "YESBANK",
+    "name": "YESBANK",
+    "sector": "Banks",
+    "industry": "Private Sector Bank",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ZAGGLE",
+    "name": "Zaggle Prepaid Ocean Services",
+    "sector": "IT - Services",
+    "industry": "IT Enabled Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": "/stock-analysis/deep-dive/zaggle.html"
+  },
+  {
+    "symbol": "ZEEL",
+    "name": "ZEEL",
+    "sector": "Entertainment",
+    "industry": "TV Broadcasting & Software Production",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ZENSARTECH",
+    "name": "ZENSARTECH",
+    "sector": "IT - Software",
+    "industry": "Computers - Software & Consulting",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ZENTEC",
+    "name": "ZENTEC",
+    "sector": "Aerospace & Defense",
+    "industry": "Aerospace & Defense",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ZFCVINDIA",
+    "name": "ZFCVINDIA",
+    "sector": "Auto Components",
+    "industry": "Auto Components & Equipments",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ZYDUSLIFE",
+    "name": "ZYDUSLIFE",
+    "sector": "Pharmaceuticals & Biotechnology",
+    "industry": "Pharmaceuticals",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  },
+  {
+    "symbol": "ZYDUSWELL",
+    "name": "ZYDUSWELL",
+    "sector": "Food Products",
+    "industry": "Packaged Foods",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html",
+    "deep_dive_url": null
+  }
+]

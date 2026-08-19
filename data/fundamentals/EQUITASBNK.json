@@ -1,0 +1,347 @@
+{
+  "symbol": "EQUITASBNK",
+  "name": "Equitas Sma. Fin",
+  "generatedAt": "2026-08-18T16:37:46.107036+00:00",
+  "profile": {
+    "sector": "Financial Services",
+    "industry": "Banks - Regional",
+    "exchange": "NSE",
+    "bseCode": "543243",
+    "nseSymbol": "EQUITASBNK",
+    "website": "https://equitas.bank.in",
+    "deepDiveUrl": null,
+    "peerSector": "Banks",
+    "peerIndustry": "Other Bank"
+  },
+  "price": {
+    "current": 76.26,
+    "change": 1.050003,
+    "changePercent": 1.396095,
+    "previousClose": 75.21,
+    "dayLow": 75.0,
+    "dayHigh": 77.0,
+    "fiftyTwoWeekLow": 50.0,
+    "fiftyTwoWeekHigh": 83.9,
+    "asOf": 1785751199
+  },
+  "stats": {
+    "marketCap": 87233536000.0,
+    "trailingPE": 17.098656,
+    "forwardPE": 8.43183,
+    "priceToBook": 1.4237175,
+    "bookValue": 53.564,
+    "dividendYield": null,
+    "trailingEps": 4.46,
+    "debtToEquity": 0.9424800000000001,
+    "roe": 1.6830304880495837,
+    "roce": null,
+    "return1y": 28.017462694156052,
+    "sharesOutstanding": 1143896368.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q4FY25",
+      "Q1FY26",
+      "Q3FY26",
+      "Q4FY26",
+      "Q1FY27"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2025-06-30T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        10548705000.0,
+        10774343000.0,
+        11410842000.0,
+        12435748000.0,
+        12846947000.0
+      ],
+      "Expenses": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "OperatingProfit": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "NetProfit": [
+        421077000.0,
+        -2237633000.0,
+        900278000.0,
+        2126829000.0,
+        1836069000.0
+      ],
+      "EPS": [
+        0.37,
+        -1.96,
+        0.79,
+        1.86,
+        1.6
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY22",
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2022-03-31T00:00:00",
+      "2023-03-31T00:00:00",
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        null,
+        30484093000.0,
+        37515631000.0,
+        41631017000.0,
+        44647166000.0
+      ],
+      "Expenses": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "OperatingProfit": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "NetProfit": [
+        null,
+        5735905000.0,
+        7989602000.0,
+        1470499000.0,
+        1030828000.0
+      ],
+      "EPS": [
+        null,
+        4.67,
+        7.01,
+        1.29,
+        0.9
+      ],
+      "SalesGrowth": [
+        null,
+        null,
+        23.066252947069803,
+        10.969790165597908,
+        7.244956326673452
+      ]
+    },
+    "ttm": {
+      "Sales": 47467880000.0,
+      "Expenses": null,
+      "OperatingProfit": null,
+      "NetProfit": 2625543000.0
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY22",
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2022-03-31T00:00:00",
+      "2023-03-31T00:00:00",
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        null,
+        11105582000.0,
+        11348873000.0,
+        11398624000.0,
+        11410431000.0
+      ],
+      "Borrowings": [
+        null,
+        29737600000.0,
+        17875300000.0,
+        21369900000.0,
+        57725500000.0
+      ],
+      "TotalAssets": [
+        null,
+        349581286000.0,
+        453038699000.0,
+        528356344000.0,
+        606103584000.0
+      ],
+      "NetBlock": [
+        null,
+        3791304000.0,
+        6047251000.0,
+        6957024000.0,
+        7152849000.0
+      ],
+      "Investments": [
+        null,
+        66645624000.0,
+        90652723000.0,
+        92886851000.0,
+        101488271000.0
+      ],
+      "StockholdersEquity": [
+        null,
+        51579477000.0,
+        59687019000.0,
+        60725203000.0,
+        61248326000.0
+      ],
+      "CurrentAssets": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "CurrentLiabilities": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "AccountsReceivable": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY22",
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2022-03-31T00:00:00",
+      "2023-03-31T00:00:00",
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        null,
+        -9976653000.0,
+        38335369000.0,
+        19368208000.0,
+        -33158326000.0
+      ],
+      "InvestingCashFlow": [
+        null,
+        -2612552000.0,
+        -3597298000.0,
+        -2386711000.0,
+        -1854155000.0
+      ],
+      "FinancingCashFlow": [
+        null,
+        601131000.0,
+        -12102163000.0,
+        2591980000.0,
+        36412520000.0
+      ],
+      "NetCashFlow": [
+        null,
+        -8882569000.0,
+        22635908000.0,
+        19573477000.0,
+        1400039000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY22",
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "ROE": [
+        null,
+        11.12051795329371,
+        13.385828499828415,
+        2.421562921741077,
+        1.6830304880495837
+      ],
+      "DebtorDays": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "WorkingCapitalDays": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "dividends": [
+    {
+      "date": "2024-08-09",
+      "amount": 1.0
+    },
+    {
+      "date": "2023-07-28",
+      "amount": 1.0
+    }
+  ],
+  "analyst": {
+    "targetMean": 86.52632,
+    "targetHigh": 98.0,
+    "targetLow": 64.0,
+    "recommendationKey": "strong_buy",
+    "numberOfAnalystOpinions": 19
+  },
+  "holders": {
+    "insidersPercent": 0.120979995,
+    "institutionsPercent": 0.53106
+  }
+}

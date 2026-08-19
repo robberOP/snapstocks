@@ -1,0 +1,241 @@
+{
+  "symbol": "LGEINDIA",
+  "name": "LG Electronics",
+  "generatedAt": "2026-08-18T16:38:22.434262+00:00",
+  "profile": {
+    "sector": "Technology",
+    "industry": "Consumer Electronics",
+    "exchange": "NSE",
+    "bseCode": "544576",
+    "nseSymbol": "LGEINDIA",
+    "website": "https://www.lg.com/in/",
+    "deepDiveUrl": null,
+    "peerSector": "Consumer Durables",
+    "peerIndustry": "Household Appliances"
+  },
+  "price": {
+    "current": 1569.8,
+    "change": 79.30005,
+    "changePercent": 5.320366,
+    "previousClose": 1490.5,
+    "dayLow": 1499.0,
+    "dayHigh": 1574.0,
+    "fiftyTwoWeekLow": 1304.1,
+    "fiftyTwoWeekHigh": 1749.0,
+    "asOf": 1785751195
+  },
+  "stats": {
+    "marketCap": 1065536978944.0,
+    "trailingPE": 63.069508,
+    "forwardPE": 40.265106,
+    "priceToBook": 13.900278,
+    "bookValue": 112.933,
+    "dividendYield": null,
+    "trailingEps": 24.89,
+    "debtToEquity": 0.0599,
+    "roe": 21.98265853122722,
+    "roce": 27.63971278071034,
+    "return1y": null,
+    "sharesOutstanding": 678772392.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q3FY25",
+      "Q4FY25",
+      "Q3FY26",
+      "Q4FY26"
+    ],
+    "periodDates": [
+      "2024-12-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        43955310000.0,
+        74484210000.0,
+        41143940000.0,
+        80535520000.0
+      ],
+      "Expenses": [
+        41449700000.0,
+        64967680000.0,
+        40290430000.0,
+        72098310000.0
+      ],
+      "OperatingProfit": [
+        2505610000.0,
+        9516530000.0,
+        853510000.0,
+        8437210000.0
+      ],
+      "NetProfit": [
+        2334530000.0,
+        7545480000.0,
+        896730000.0,
+        6927310000.0
+      ],
+      "EPS": [
+        3.439341,
+        11.116363,
+        1.32,
+        10.21
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        241566540000.0,
+        244594190000.0
+      ],
+      "Expenses": [
+        213775060000.0,
+        222799830000.0
+      ],
+      "OperatingProfit": [
+        27791480000.0,
+        21794360000.0
+      ],
+      "NetProfit": [
+        null,
+        16850930000.0
+      ],
+      "EPS": [
+        null,
+        24.83
+      ],
+      "SalesGrowth": [
+        null,
+        1.253339970014059
+      ]
+    },
+    "ttm": {
+      "Sales": 240118980000.0,
+      "Expenses": 218806120000.0,
+      "OperatingProfit": 21312860000.0,
+      "NetProfit": 17704050000.0
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        null,
+        6787720000.0
+      ],
+      "Borrowings": [
+        null,
+        4591560000.0
+      ],
+      "TotalAssets": [
+        null,
+        136362550000.0
+      ],
+      "NetBlock": [
+        null,
+        22668720000.0
+      ],
+      "Investments": [
+        null,
+        1349500000.0
+      ],
+      "StockholdersEquity": [
+        null,
+        76655560000.0
+      ],
+      "CurrentAssets": [
+        null,
+        107583370000.0
+      ],
+      "CurrentLiabilities": [
+        null,
+        51698320000.0
+      ],
+      "AccountsReceivable": [
+        null,
+        28250760000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        null,
+        17212480000.0
+      ],
+      "InvestingCashFlow": [
+        null,
+        -8564760000.0
+      ],
+      "FinancingCashFlow": [
+        null,
+        -1274330000.0
+      ],
+      "NetCashFlow": [
+        null,
+        7373390000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        null,
+        27.63971278071034
+      ],
+      "ROE": [
+        null,
+        21.98265853122722
+      ],
+      "DebtorDays": [
+        null,
+        42.15769556913842
+      ],
+      "WorkingCapitalDays": [
+        null,
+        83.39545289280993
+      ]
+    }
+  },
+  "dividends": [],
+  "analyst": {
+    "targetMean": 1730.2222,
+    "targetHigh": 1950.0,
+    "targetLow": 1420.0,
+    "recommendationKey": "strong_buy",
+    "numberOfAnalystOpinions": 28
+  },
+  "holders": {
+    "insidersPercent": 0.85,
+    "institutionsPercent": 0.07581
+  }
+}

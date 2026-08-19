@@ -1,0 +1,303 @@
+{
+  "symbol": "GROWW",
+  "name": "Billionbrains",
+  "generatedAt": "2026-08-18T16:37:55.453665+00:00",
+  "profile": {
+    "sector": "Financial Services",
+    "industry": "Capital Markets",
+    "exchange": "NSE",
+    "bseCode": "544603",
+    "nseSymbol": "GROWW",
+    "website": "https://www.groww.in",
+    "deepDiveUrl": null,
+    "peerSector": "Capital Markets",
+    "peerIndustry": "Stockbroking & Allied"
+  },
+  "price": {
+    "current": 192.6,
+    "change": -1.769989,
+    "changePercent": -0.9106288,
+    "previousClose": 194.37,
+    "dayLow": 190.6,
+    "dayHigh": 195.35,
+    "fiftyTwoWeekLow": 112.0,
+    "fiftyTwoWeekHigh": 227.2,
+    "asOf": 1785751200
+  },
+  "stats": {
+    "marketCap": 1192497774592.0,
+    "trailingPE": 48.759495,
+    "forwardPE": 30.177637,
+    "priceToBook": 12.336664,
+    "bookValue": 15.612,
+    "dividendYield": null,
+    "trailingEps": 3.95,
+    "debtToEquity": 0.03028,
+    "roe": 21.58246173723793,
+    "roce": 29.30906780727393,
+    "return1y": null,
+    "sharesOutstanding": 6191576922.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q3FY25",
+      "Q4FY25",
+      "Q1FY26",
+      "Q3FY26",
+      "Q4FY26",
+      "Q1FY27"
+    ],
+    "periodDates": [
+      "2024-12-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2025-06-30T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        null,
+        8010060000.0,
+        9044000000.0,
+        12160720000.0,
+        15053670000.0,
+        15014200000.0
+      ],
+      "Expenses": [
+        null,
+        4194250000.0,
+        4282500000.0,
+        5050590000.0,
+        5911770000.0,
+        5483700000.0
+      ],
+      "OperatingProfit": [
+        null,
+        3815810000.0,
+        4761500000.0,
+        7110130000.0,
+        9141900000.0,
+        9530500000.0
+      ],
+      "NetProfit": [
+        null,
+        3090890000.0,
+        3783500000.0,
+        5469330000.0,
+        6863540000.0,
+        7350400000.0
+      ],
+      "EPS": [
+        null,
+        0.500663,
+        0.612852,
+        0.87,
+        1.09,
+        1.17
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2023-03-31T00:00:00",
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        null,
+        null,
+        35817370000.0,
+        42703780000.0
+      ],
+      "Expenses": [
+        null,
+        null,
+        14780690000.0,
+        18056650000.0
+      ],
+      "OperatingProfit": [
+        null,
+        null,
+        21036680000.0,
+        24647130000.0
+      ],
+      "NetProfit": [
+        null,
+        null,
+        null,
+        20830000000.0
+      ],
+      "EPS": [
+        0.741323,
+        -1.303844,
+        3.19,
+        3.4
+      ],
+      "SalesGrowth": [
+        null,
+        null,
+        null,
+        19.22645353357882
+      ]
+    },
+    "ttm": {
+      "Sales": 51272590000.0,
+      "Expenses": 20728560000.0,
+      "OperatingProfit": 30544030000.0,
+      "NetProfit": 23466770000.0
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2023-03-31T00:00:00",
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        null,
+        null,
+        null,
+        12478060000.0
+      ],
+      "Borrowings": [
+        null,
+        null,
+        null,
+        2922250000.0
+      ],
+      "TotalAssets": [
+        null,
+        null,
+        null,
+        185409230000.0
+      ],
+      "NetBlock": [
+        null,
+        null,
+        null,
+        884570000.0
+      ],
+      "Investments": [
+        4640410000.0,
+        null,
+        3737110000.0,
+        12816180000.0
+      ],
+      "StockholdersEquity": [
+        null,
+        null,
+        null,
+        96513550000.0
+      ],
+      "CurrentAssets": [
+        null,
+        null,
+        null,
+        143365530000.0
+      ],
+      "CurrentLiabilities": [
+        null,
+        null,
+        null,
+        87660130000.0
+      ],
+      "AccountsReceivable": [
+        null,
+        null,
+        null,
+        2774570000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        null,
+        -206030000.0
+      ],
+      "InvestingCashFlow": [
+        null,
+        -13507080000.0
+      ],
+      "FinancingCashFlow": [
+        null,
+        21754720000.0
+      ],
+      "NetCashFlow": [
+        null,
+        8041610000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        null,
+        null,
+        null,
+        29.30906780727393
+      ],
+      "ROE": [
+        null,
+        null,
+        null,
+        21.58246173723793
+      ],
+      "DebtorDays": [
+        null,
+        null,
+        null,
+        23.71495099497047
+      ],
+      "WorkingCapitalDays": [
+        null,
+        null,
+        null,
+        476.1281319826957
+      ]
+    }
+  },
+  "dividends": [],
+  "analyst": {
+    "targetMean": 237.5,
+    "targetHigh": 255.0,
+    "targetLow": 190.0,
+    "recommendationKey": "strong_buy",
+    "numberOfAnalystOpinions": 10
+  },
+  "holders": {
+    "insidersPercent": 0.50106996,
+    "institutionsPercent": 0.35865003
+  }
+}

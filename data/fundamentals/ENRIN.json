@@ -1,0 +1,260 @@
+{
+  "symbol": "ENRIN",
+  "name": "Siemens Ener.Ind",
+  "generatedAt": "2026-08-18T16:37:45.525935+00:00",
+  "profile": {
+    "sector": "Utilities",
+    "industry": "Utilities - Renewable",
+    "exchange": "NSE",
+    "bseCode": "544390",
+    "nseSymbol": "ENRIN",
+    "website": "https://www.siemens-energy-india.com",
+    "deepDiveUrl": null,
+    "peerSector": "Electrical Equipment",
+    "peerIndustry": "Heavy Electrical Equipment"
+  },
+  "price": {
+    "current": 3256.0,
+    "change": 25.199951,
+    "changePercent": 0.77999103,
+    "previousClose": 3230.8,
+    "dayLow": 3181.0,
+    "dayHigh": 3298.3,
+    "fiftyTwoWeekLow": 2115.0,
+    "fiftyTwoWeekHigh": 3968.0,
+    "asOf": 1785751202
+  },
+  "stats": {
+    "marketCap": 1159528448000.0,
+    "trailingPE": 88.40619,
+    "forwardPE": 59.505966,
+    "priceToBook": 24.097633,
+    "bookValue": 135.117,
+    "dividendYield": 0.12,
+    "trailingEps": 36.83,
+    "debtToEquity": 0.044829999999999995,
+    "roe": 25.108985917421773,
+    "roce": 29.22620080600066,
+    "return1y": 7.472627132104473,
+    "sharesOutstanding": 356120505.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q3FY25",
+      "Q4FY25",
+      "Q1FY26",
+      "Q2FY26",
+      "Q3FY26",
+      "Q4FY26"
+    ],
+    "periodDates": [
+      "2024-12-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2025-06-30T00:00:00",
+      "2025-09-30T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        null,
+        18795000000.0,
+        17846000000.0,
+        26015000000.0,
+        19109000000.0,
+        23941000000.0
+      ],
+      "Expenses": [
+        null,
+        13283000000.0,
+        13083000000.0,
+        27515000000.0,
+        13518000000.0,
+        17198000000.0
+      ],
+      "OperatingProfit": [
+        null,
+        5512000000.0,
+        4763000000.0,
+        -1500000000.0,
+        5591000000.0,
+        6743000000.0
+      ],
+      "NetProfit": [
+        null,
+        2461000000.0,
+        2627000000.0,
+        3596000000.0,
+        3129000000.0,
+        3746000000.0
+      ],
+      "EPS": [
+        6.506225,
+        6.910582,
+        7.38,
+        null,
+        8.79,
+        10.52
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2024-09-30T00:00:00",
+      "2025-09-30T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        47596000000.0,
+        77825000000.0
+      ],
+      "Expenses": [
+        35158000000.0,
+        63596000000.0
+      ],
+      "OperatingProfit": [
+        12438000000.0,
+        14229000000.0
+      ],
+      "NetProfit": [
+        6000000000.0,
+        11001000000.0
+      ],
+      "EPS": [
+        16.84823,
+        30.89
+      ],
+      "SalesGrowth": [
+        null,
+        63.511639633582654
+      ]
+    },
+    "ttm": {
+      "Sales": 86911000000.0,
+      "Expenses": 71314000000.0,
+      "OperatingProfit": 15597000000.0,
+      "NetProfit": 13098000000.0
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2024-09-30T00:00:00",
+      "2025-09-30T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        null,
+        712000000.0
+      ],
+      "Borrowings": [
+        1241000000.0,
+        1476000000.0
+      ],
+      "TotalAssets": [
+        70477000000.0,
+        95452000000.0
+      ],
+      "NetBlock": [
+        5407000000.0,
+        7116000000.0
+      ],
+      "Investments": [
+        null,
+        185000000.0
+      ],
+      "StockholdersEquity": [
+        32168000000.0,
+        43813000000.0
+      ],
+      "CurrentAssets": [
+        62794000000.0,
+        85777000000.0
+      ],
+      "CurrentLiabilities": [
+        32635000000.0,
+        43591000000.0
+      ],
+      "AccountsReceivable": [
+        18775000000.0,
+        19205000000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2024-09-30T00:00:00",
+      "2025-09-30T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        1473000000.0,
+        36701000000.0
+      ],
+      "InvestingCashFlow": [
+        -1275000000.0,
+        -34826000000.0
+      ],
+      "FinancingCashFlow": [
+        -198000000.0,
+        -553000000.0
+      ],
+      "NetCashFlow": [
+        0.0,
+        1322000000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        21.790603033666297,
+        29.22620080600066
+      ],
+      "ROE": [
+        18.652076597861228,
+        25.108985917421773
+      ],
+      "DebtorDays": [
+        143.98006134969324,
+        90.07163507870222
+      ],
+      "WorkingCapitalDays": [
+        231.28067484662574,
+        197.8527465467395
+      ]
+    }
+  },
+  "dividends": [
+    {
+      "date": "2026-01-30",
+      "amount": 4.0
+    }
+  ],
+  "analyst": {
+    "targetMean": 3619.8,
+    "targetHigh": 4500.0,
+    "targetLow": 2632.0,
+    "recommendationKey": "none",
+    "numberOfAnalystOpinions": 15
+  },
+  "holders": {
+    "insidersPercent": 0.27528998,
+    "institutionsPercent": 0.55976003
+  }
+}

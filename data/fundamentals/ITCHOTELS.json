@@ -1,0 +1,277 @@
+{
+  "symbol": "ITCHOTELS",
+  "name": "ITC Hotels",
+  "generatedAt": "2026-08-18T16:38:09.505692+00:00",
+  "profile": {
+    "sector": "Consumer Cyclical",
+    "industry": "Resorts & Casinos",
+    "exchange": "NSE",
+    "bseCode": "544325",
+    "nseSymbol": "ITCHOTELS",
+    "website": "https://www.itchotels.com",
+    "deepDiveUrl": null,
+    "peerSector": "Leisure Services",
+    "peerIndustry": "Hotels & Resorts"
+  },
+  "price": {
+    "current": 165.22,
+    "change": 2.850006,
+    "changePercent": 1.7552541,
+    "previousClose": 162.37,
+    "dayLow": 162.8,
+    "dayHigh": 167.35,
+    "fiftyTwoWeekLow": 137.3,
+    "fiftyTwoWeekHigh": 253.67,
+    "asOf": 1785751198
+  },
+  "stats": {
+    "marketCap": 344149327872.0,
+    "trailingPE": 39.716347,
+    "forwardPE": 28.356256,
+    "priceToBook": 2.952097,
+    "bookValue": 55.967,
+    "dividendYield": 0.62,
+    "trailingEps": 4.16,
+    "debtToEquity": 0.00634,
+    "roe": 7.007227766426313,
+    "roce": 9.189175573536318,
+    "return1y": -28.82985425637955,
+    "sharesOutstanding": 2082976309.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q4FY25",
+      "Q1FY26",
+      "Q2FY26",
+      "Q3FY26",
+      "Q4FY26",
+      "Q1FY27"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2025-06-30T00:00:00",
+      "2025-09-30T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        null,
+        8089300000.0,
+        8320400000.0,
+        12242700000.0,
+        12438800000.0,
+        9288000000.0
+      ],
+      "Expenses": [
+        null,
+        6667000000.0,
+        6903700000.0,
+        8614200000.0,
+        8833600000.0,
+        7407800000.0
+      ],
+      "OperatingProfit": [
+        3124900000.0,
+        1422300000.0,
+        null,
+        3628500000.0,
+        3605200000.0,
+        1880200000.0
+      ],
+      "NetProfit": [
+        2569000000.0,
+        1331000000.0,
+        null,
+        2351300000.0,
+        3158900000.0,
+        1802500000.0
+      ],
+      "EPS": [
+        1.23,
+        0.64,
+        null,
+        1.13,
+        1.52,
+        0.87
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        35258600000.0,
+        41091200000.0
+      ],
+      "Expenses": [
+        26742300000.0,
+        30467000000.0
+      ],
+      "OperatingProfit": [
+        8516300000.0,
+        10624200000.0
+      ],
+      "NetProfit": [
+        6345700000.0,
+        8168900000.0
+      ],
+      "EPS": [
+        3.05,
+        3.92
+      ],
+      "SalesGrowth": [
+        null,
+        16.54234711531371
+      ]
+    },
+    "ttm": {
+      "Sales": 42289900000.0,
+      "Expenses": 31759300000.0,
+      "OperatingProfit": null,
+      "NetProfit": null
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        830000000.0,
+        2081200000.0,
+        2083000000.0
+      ],
+      "Borrowings": [
+        735900000.0,
+        733000000.0,
+        741900000.0
+      ],
+      "TotalAssets": [
+        101918100000.0,
+        124762600000.0,
+        134845900000.0
+      ],
+      "NetBlock": [
+        82843200000.0,
+        83771300000.0,
+        84247300000.0
+      ],
+      "Investments": [
+        480400000.0,
+        3926500000.0,
+        15321400000.0
+      ],
+      "StockholdersEquity": [
+        84978500000.0,
+        106921700000.0,
+        116578200000.0
+      ],
+      "CurrentAssets": [
+        15468000000.0,
+        34569600000.0,
+        32588500000.0
+      ],
+      "CurrentLiabilities": [
+        9821100000.0,
+        11607400000.0,
+        11776100000.0
+      ],
+      "AccountsReceivable": [
+        1445200000.0,
+        2017700000.0,
+        2302500000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        6724900000.0,
+        8010600000.0,
+        11098500000.0
+      ],
+      "InvestingCashFlow": [
+        -7526500000.0,
+        -22033500000.0,
+        -11742200000.0
+      ],
+      "FinancingCashFlow": [
+        1269700000.0,
+        14296800000.0,
+        185700000.0
+      ],
+      "NetCashFlow": [
+        468100000.0,
+        273900000.0,
+        -458000000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        7.871489776872825,
+        9.189175573536318
+      ],
+      "ROE": [
+        5.934903766026915,
+        7.007227766426313
+      ],
+      "DebtorDays": [
+        20.88740052072402,
+        20.452371797367807
+      ],
+      "WorkingCapitalDays": [
+        237.70663043909852,
+        184.86989915115643
+      ]
+    }
+  },
+  "dividends": [
+    {
+      "date": "2026-05-21",
+      "amount": 1.0
+    }
+  ],
+  "analyst": {
+    "targetMean": 212.7143,
+    "targetHigh": 236.0,
+    "targetLow": 189.0,
+    "recommendationKey": "none",
+    "numberOfAnalystOpinions": 14
+  },
+  "holders": {
+    "insidersPercent": 0.46387002,
+    "institutionsPercent": 0.32173002
+  }
+}

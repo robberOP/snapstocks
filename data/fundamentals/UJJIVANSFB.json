@@ -1,0 +1,338 @@
+{
+  "symbol": "UJJIVANSFB",
+  "name": "Ujjivan Small",
+  "generatedAt": "2026-08-18T16:39:18.568481+00:00",
+  "profile": {
+    "sector": "Financial Services",
+    "industry": "Banks - Regional",
+    "exchange": "NSE",
+    "bseCode": "542904",
+    "nseSymbol": "UJJIVANSFB",
+    "website": "https://www.ujjivansfb.bank.in",
+    "deepDiveUrl": null,
+    "peerSector": "Banks",
+    "peerIndustry": "Other Bank"
+  },
+  "price": {
+    "current": 71.14,
+    "change": -0.6100006,
+    "changePercent": -0.850175,
+    "previousClose": 71.75,
+    "dayLow": 71.0,
+    "dayHigh": 73.1,
+    "fiftyTwoWeekLow": 41.32,
+    "fiftyTwoWeekHigh": 73.29,
+    "asOf": 1785751202
+  },
+  "stats": {
+    "marketCap": 138426236928.0,
+    "trailingPE": 15.532751,
+    "forwardPE": 9.742936,
+    "priceToBook": 2.0277627,
+    "bookValue": 35.083,
+    "dividendYield": null,
+    "trailingEps": 4.58,
+    "debtToEquity": null,
+    "roe": 10.162371847279255,
+    "roce": null,
+    "return1y": 61.792125118596566,
+    "sharesOutstanding": 1945828504.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q4FY25",
+      "Q1FY26",
+      "Q3FY26",
+      "Q4FY26",
+      "Q1FY27"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2025-06-30T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        11340000000.0,
+        11049400000.0,
+        12959500000.0,
+        13995900000.0,
+        14433600000.0
+      ],
+      "Expenses": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "OperatingProfit": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "NetProfit": [
+        833900000.0,
+        1032200000.0,
+        1857200000.0,
+        2819700000.0,
+        3165400000.0
+      ],
+      "EPS": [
+        0.43,
+        0.53,
+        0.94,
+        1.43,
+        1.6
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2023-03-31T00:00:00",
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        32877631000.0,
+        40570943000.0,
+        43702894000.0,
+        49074381000.0
+      ],
+      "Expenses": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "OperatingProfit": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "NetProfit": [
+        10999217000.0,
+        12814907000.0,
+        7261031000.0,
+        6926344000.0
+      ],
+      "EPS": [
+        5.81,
+        6.54,
+        3.71,
+        3.51
+      ],
+      "SalesGrowth": [
+        null,
+        23.399836806976758,
+        7.719689926852329,
+        12.290918308522086
+      ]
+    },
+    "ttm": {
+      "Sales": 52438400000.0,
+      "Expenses": null,
+      "OperatingProfit": null,
+      "NetProfit": 8874500000.0
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY22",
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2022-03-31T00:00:00",
+      "2023-03-31T00:00:00",
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        null,
+        19547066000.0,
+        19314285000.0,
+        19350036000.0,
+        19427144000.0
+      ],
+      "Borrowings": [
+        null,
+        23914640000.0,
+        15208153000.0,
+        18553630000.0,
+        24860113000.0
+      ],
+      "TotalAssets": [
+        null,
+        333168775000.0,
+        404222162000.0,
+        476891515000.0,
+        575412051000.0
+      ],
+      "NetBlock": [
+        null,
+        1791496000.0,
+        3948541000.0,
+        4437402000.0,
+        4572748000.0
+      ],
+      "Investments": [
+        null,
+        85103075000.0,
+        97660182000.0,
+        117299902000.0,
+        127242483000.0
+      ],
+      "StockholdersEquity": [
+        null,
+        42091070000.0,
+        56134921000.0,
+        60834069000.0,
+        68156766000.0
+      ],
+      "CurrentAssets": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "CurrentLiabilities": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "AccountsReceivable": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY22",
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2022-03-31T00:00:00",
+      "2023-03-31T00:00:00",
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        null,
+        10597867000.0,
+        15928416000.0,
+        20281997000.0,
+        18431962000.0
+      ],
+      "InvestingCashFlow": [
+        null,
+        -20957116000.0,
+        -8645390000.0,
+        -17934397000.0,
+        -24806678000.0
+      ],
+      "FinancingCashFlow": [
+        null,
+        11864291000.0,
+        -5187262000.0,
+        3982436000.0,
+        9113512000.0
+      ],
+      "NetCashFlow": [
+        null,
+        1505042000.0,
+        2095764000.0,
+        6330036000.0,
+        2738796000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "ROE": [
+        26.13194912840182,
+        22.828761084388095,
+        11.935797028471004,
+        10.162371847279255
+      ],
+      "DebtorDays": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "WorkingCapitalDays": [
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "dividends": [
+    {
+      "date": "2024-07-12",
+      "amount": 1.5
+    },
+    {
+      "date": "2023-07-14",
+      "amount": 0.5
+    },
+    {
+      "date": "2023-03-01",
+      "amount": 0.75
+    }
+  ],
+  "analyst": {
+    "targetMean": 82.0,
+    "targetHigh": 90.0,
+    "targetLow": 60.0,
+    "recommendationKey": "strong_buy",
+    "numberOfAnalystOpinions": 19
+  },
+  "holders": {
+    "insidersPercent": 0.00043,
+    "institutionsPercent": 0.36333
+  }
+}

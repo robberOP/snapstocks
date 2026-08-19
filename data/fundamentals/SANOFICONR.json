@@ -1,0 +1,287 @@
+{
+  "symbol": "SANOFICONR",
+  "name": "Sanofi Consumer",
+  "generatedAt": "2026-08-18T16:38:57.131417+00:00",
+  "profile": {
+    "sector": "Healthcare",
+    "industry": "Drug Manufacturers - General",
+    "exchange": "NSE",
+    "bseCode": "544250",
+    "nseSymbol": "SANOFICONR",
+    "website": "https://www.sanofi.com/en/india/consumer-healthcare",
+    "deepDiveUrl": null,
+    "peerSector": "Pharmaceuticals & Biotechnology",
+    "peerIndustry": "Pharmaceuticals"
+  },
+  "price": {
+    "current": 4539.5,
+    "change": -71.700195,
+    "changePercent": -1.5549139,
+    "previousClose": 4611.2,
+    "dayLow": 4515.0,
+    "dayHigh": 4659.0,
+    "fiftyTwoWeekLow": 3975.0,
+    "fiftyTwoWeekHigh": 5512.0,
+    "asOf": 1785751199
+  },
+  "stats": {
+    "marketCap": 104696700928.0,
+    "trailingPE": 39.378036,
+    "forwardPE": 33.90217,
+    "priceToBook": 30.054356,
+    "bookValue": 151.043,
+    "dividendYield": 1.63,
+    "trailingEps": 115.28,
+    "debtToEquity": 0.05979,
+    "roe": 62.526041666666664,
+    "roce": 77.01863354037268,
+    "return1y": -7.831267370436397,
+    "sharesOutstanding": 23030622.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q1FY26",
+      "Q2FY26",
+      "Q3FY26",
+      "Q4FY26",
+      "Q1FY27"
+    ],
+    "periodDates": [
+      "2025-06-30T00:00:00",
+      "2025-09-30T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        2209000000.0,
+        2339000000.0,
+        2510000000.0,
+        2292000000.0,
+        2357000000.0
+      ],
+      "Expenses": [
+        1537000000.0,
+        1522000000.0,
+        1646000000.0,
+        1436000000.0,
+        1497000000.0
+      ],
+      "OperatingProfit": [
+        672000000.0,
+        817000000.0,
+        864000000.0,
+        856000000.0,
+        860000000.0
+      ],
+      "NetProfit": [
+        607000000.0,
+        629000000.0,
+        665000000.0,
+        678000000.0,
+        688000000.0
+      ],
+      "EPS": [
+        26.36,
+        27.31,
+        28.87,
+        29.44,
+        29.87
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2023-12-31T00:00:00",
+      "2024-12-31T00:00:00",
+      "2025-12-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        5443000000.0,
+        7162000000.0,
+        8780000000.0
+      ],
+      "Expenses": [
+        3271000000.0,
+        4500000000.0,
+        5806000000.0
+      ],
+      "OperatingProfit": [
+        2172000000.0,
+        2662000000.0,
+        2974000000.0
+      ],
+      "NetProfit": [
+        1649000000.0,
+        1810000000.0,
+        2401000000.0
+      ],
+      "EPS": [
+        71.600324,
+        78.59,
+        104.27
+      ],
+      "SalesGrowth": [
+        null,
+        31.581848245452875,
+        22.591454900865678
+      ]
+    },
+    "ttm": {
+      "Sales": 9498000000.0,
+      "Expenses": 6101000000.0,
+      "OperatingProfit": 3397000000.0,
+      "NetProfit": 2660000000.0
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2023-12-31T00:00:00",
+      "2024-12-31T00:00:00",
+      "2025-12-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        20000000.0,
+        230000000.0,
+        230000000.0
+      ],
+      "Borrowings": [
+        0.0,
+        203000000.0,
+        248000000.0
+      ],
+      "TotalAssets": [
+        3454000000.0,
+        4313000000.0,
+        5470000000.0
+      ],
+      "NetBlock": [
+        20000000.0,
+        279000000.0,
+        351000000.0
+      ],
+      "Investments": [
+        null,
+        36000000.0,
+        32000000.0
+      ],
+      "StockholdersEquity": [
+        2076000000.0,
+        2730000000.0,
+        3840000000.0
+      ],
+      "CurrentAssets": [
+        3352000000.0,
+        3917000000.0,
+        4943000000.0
+      ],
+      "CurrentLiabilities": [
+        1299000000.0,
+        1306000000.0,
+        1284000000.0
+      ],
+      "AccountsReceivable": [
+        316000000.0,
+        137000000.0,
+        296000000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2023-12-31T00:00:00",
+      "2024-12-31T00:00:00",
+      "2025-12-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        -4000000.0,
+        4390000000.0,
+        1748000000.0
+      ],
+      "InvestingCashFlow": [
+        0.0,
+        19000000.0,
+        76000000.0
+      ],
+      "FinancingCashFlow": [
+        20000000.0,
+        -1156000000.0,
+        -1345000000.0
+      ],
+      "NetCashFlow": [
+        16000000.0,
+        3253000000.0,
+        479000000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        101.85614849187937,
+        83.40538742933155,
+        77.01863354037268
+      ],
+      "ROE": [
+        79.43159922928709,
+        66.30036630036629,
+        62.526041666666664
+      ],
+      "DebtorDays": [
+        21.190519933860003,
+        6.981988271432561,
+        12.305239179954441
+      ],
+      "WorkingCapitalDays": [
+        137.67132096270439,
+        133.06548450153588,
+        152.1110478359909
+      ]
+    }
+  },
+  "dividends": [
+    {
+      "date": "2026-06-19",
+      "amount": 75.0
+    },
+    {
+      "date": "2025-04-17",
+      "amount": 55.0
+    }
+  ],
+  "analyst": {
+    "targetMean": 5855.0,
+    "targetHigh": 5855.0,
+    "targetLow": 5855.0,
+    "recommendationKey": "strong_buy",
+    "numberOfAnalystOpinions": 1
+  },
+  "holders": {
+    "insidersPercent": 0.71458,
+    "institutionsPercent": 0.18128
+  }
+}

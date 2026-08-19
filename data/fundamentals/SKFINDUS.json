@@ -1,0 +1,243 @@
+{
+  "symbol": "SKFINDUS",
+  "name": "SKF India Indus.",
+  "generatedAt": "2026-08-18T16:39:01.970442+00:00",
+  "profile": {
+    "sector": "Industrials",
+    "industry": "Tools & Accessories",
+    "exchange": "NSE",
+    "bseCode": "544572",
+    "nseSymbol": "SKFINDUS",
+    "website": "https://www.skf.com/in",
+    "deepDiveUrl": null,
+    "peerSector": "Industrial Products",
+    "peerIndustry": "Abrasives & Bearings"
+  },
+  "price": {
+    "current": 2724.6,
+    "change": 39.900146,
+    "changePercent": 1.486205,
+    "previousClose": 2684.7,
+    "dayLow": 2650.5,
+    "dayHigh": 2760.0,
+    "fiftyTwoWeekLow": 1994.1,
+    "fiftyTwoWeekHigh": 3041.0,
+    "asOf": 1786960791
+  },
+  "stats": {
+    "marketCap": 134698680320.0,
+    "trailingPE": 64.64057,
+    "forwardPE": 32.38431,
+    "priceToBook": 9.120672,
+    "bookValue": 298.728,
+    "dividendYield": 1.12,
+    "trailingEps": 42.15,
+    "debtToEquity": 0.00309,
+    "roe": 14.738802180316213,
+    "roce": 14.918999023273047,
+    "return1y": null,
+    "sharesOutstanding": 49437963.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q4FY25",
+      "Q3FY26",
+      "Q4FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        7206100000.0,
+        8609500000.0,
+        9457200000.0
+      ],
+      "Expenses": [
+        5687300000.0,
+        7619500000.0,
+        8732100000.0
+      ],
+      "OperatingProfit": [
+        1518800000.0,
+        990000000.0,
+        725100000.0
+      ],
+      "NetProfit": [
+        1213100000.0,
+        -500900000.0,
+        1189700000.0
+      ],
+      "EPS": [
+        24.537823,
+        -10.1,
+        24.0
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        7206100000.0,
+        33440200000.0
+      ],
+      "Expenses": [
+        5687300000.0,
+        29685600000.0
+      ],
+      "OperatingProfit": [
+        1518800000.0,
+        3754600000.0
+      ],
+      "NetProfit": [
+        1213100000.0,
+        2176700000.0
+      ],
+      "EPS": [
+        24.537823,
+        null
+      ],
+      "SalesGrowth": [
+        null,
+        364.0540653057826
+      ]
+    },
+    "ttm": {
+      "Sales": null,
+      "Expenses": null,
+      "OperatingProfit": null,
+      "NetProfit": null
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        494500000.0,
+        494400000.0
+      ],
+      "Borrowings": [
+        20200000.0,
+        45700000.0
+      ],
+      "TotalAssets": [
+        19147300000.0,
+        26745000000.0
+      ],
+      "NetBlock": [
+        1694600000.0,
+        3235600000.0
+      ],
+      "Investments": [
+        null,
+        266300000.0
+      ],
+      "StockholdersEquity": [
+        13110500000.0,
+        14768500000.0
+      ],
+      "CurrentAssets": [
+        15336900000.0,
+        20782000000.0
+      ],
+      "CurrentLiabilities": [
+        5877000000.0,
+        11899500000.0
+      ],
+      "AccountsReceivable": [
+        5301500000.0,
+        8280200000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        -177500000.0,
+        1638400000.0
+      ],
+      "InvestingCashFlow": [
+        -19800000.0,
+        -460800000.0
+      ],
+      "FinancingCashFlow": [
+        -2700000.0,
+        -17200000.0
+      ],
+      "NetCashFlow": [
+        -200000000.0,
+        1160400000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        12.399116824789191,
+        14.918999023273047
+      ],
+      "ROE": [
+        9.252888905838832,
+        14.738802180316213
+      ],
+      "DebtorDays": [
+        268.52909340697465,
+        90.37843673183772
+      ],
+      "WorkingCapitalDays": [
+        479.15842133747793,
+        96.95254514028026
+      ]
+    }
+  },
+  "dividends": [
+    {
+      "date": "2026-08-17",
+      "amount": 20.0
+    },
+    {
+      "date": "2026-07-03",
+      "amount": 10.0
+    }
+  ],
+  "analyst": {
+    "targetMean": 2836.3333,
+    "targetHigh": 3437.0,
+    "targetLow": 2472.0,
+    "recommendationKey": "none",
+    "numberOfAnalystOpinions": 3
+  },
+  "holders": {
+    "insidersPercent": 0.52575,
+    "institutionsPercent": 0.29067
+  }
+}

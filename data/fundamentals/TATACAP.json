@@ -1,0 +1,308 @@
+{
+  "symbol": "TATACAP",
+  "name": "Tata Capital",
+  "generatedAt": "2026-08-18T16:39:09.798572+00:00",
+  "profile": {
+    "sector": "Financial Services",
+    "industry": "Credit Services",
+    "exchange": "NSE",
+    "bseCode": "544574",
+    "nseSymbol": "TATACAP",
+    "website": "https://www.tatacapital.com",
+    "deepDiveUrl": null,
+    "peerSector": "Finance",
+    "peerIndustry": "Non Banking Financial Company (NBFC)"
+  },
+  "price": {
+    "current": 364.75,
+    "change": -0.6499939,
+    "changePercent": -0.17788558,
+    "previousClose": 365.4,
+    "dayLow": 359.9,
+    "dayHigh": 370.45,
+    "fiftyTwoWeekLow": 296.0,
+    "fiftyTwoWeekHigh": 379.95,
+    "asOf": 1785751203
+  },
+  "stats": {
+    "marketCap": 1538038693888.0,
+    "trailingPE": 28.429462,
+    "forwardPE": 17.256062,
+    "priceToBook": 3.353653,
+    "bookValue": 108.762,
+    "dividendYield": 0.16,
+    "trailingEps": 12.83,
+    "debtToEquity": 5.02931,
+    "roe": 10.566817606667382,
+    "roce": 3.6910533109390844,
+    "return1y": null,
+    "sharesOutstanding": 4216692745.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q3FY25",
+      "Q4FY25",
+      "Q1FY26",
+      "Q3FY26",
+      "Q4FY26",
+      "Q1FY27"
+    ],
+    "periodDates": [
+      "2024-12-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2025-06-30T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        null,
+        72879100000.0,
+        72879900000.0,
+        77044500000.0,
+        79480400000.0,
+        84038800000.0
+      ],
+      "Expenses": [
+        null,
+        53175400000.0,
+        60190600000.0,
+        54821400000.0,
+        56025800000.0,
+        63923200000.0
+      ],
+      "OperatingProfit": [
+        null,
+        19703700000.0,
+        12689300000.0,
+        22223100000.0,
+        23454600000.0,
+        20115600000.0
+      ],
+      "NetProfit": [
+        10755700000.0,
+        10517000000.0,
+        null,
+        12568700000.0,
+        15020200000.0,
+        15473800000.0
+      ],
+      "EPS": [
+        2.533812,
+        2.477579,
+        null,
+        2.97,
+        3.54,
+        3.65
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2023-03-31T00:00:00",
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        122185800000.0,
+        170490500000.0,
+        269326300000.0,
+        297453600000.0
+      ],
+      "Expenses": [
+        86367100000.0,
+        125396000000.0,
+        198281200000.0,
+        211343700000.0
+      ],
+      "OperatingProfit": [
+        35818700000.0,
+        45094500000.0,
+        71045100000.0,
+        86109900000.0
+      ],
+      "NetProfit": [
+        null,
+        null,
+        null,
+        48461000000.0
+      ],
+      "EPS": [
+        null,
+        null,
+        null,
+        11.76
+      ],
+      "SalesGrowth": [
+        null,
+        39.533808347614865,
+        57.97144122399782,
+        10.443577177572335
+      ]
+    },
+    "ttm": {
+      "Sales": 313443600000.0,
+      "Expenses": 234961000000.0,
+      "OperatingProfit": 78482600000.0,
+      "NetProfit": null
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2023-03-31T00:00:00",
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        null,
+        null,
+        null,
+        42166900000.0
+      ],
+      "Borrowings": [
+        1065150900000.0,
+        1399730900000.0,
+        1991981900000.0,
+        2277671000000.0
+      ],
+      "TotalAssets": [
+        null,
+        null,
+        2483196900000.0,
+        2905035400000.0
+      ],
+      "NetBlock": [
+        null,
+        null,
+        19251500000.0,
+        25020800000.0
+      ],
+      "Investments": [
+        null,
+        null,
+        20239500000.0,
+        19499700000.0
+      ],
+      "StockholdersEquity": [
+        null,
+        null,
+        330464900000.0,
+        458614900000.0
+      ],
+      "CurrentAssets": [
+        null,
+        null,
+        1041013800000.0,
+        1051133500000.0
+      ],
+      "CurrentLiabilities": [
+        null,
+        null,
+        777683100000.0,
+        903926400000.0
+      ],
+      "AccountsReceivable": [
+        null,
+        null,
+        1292700000.0,
+        2061700000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        -300879000000.0,
+        -379649400000.0
+      ],
+      "InvestingCashFlow": [
+        1750300000.0,
+        2672800000.0
+      ],
+      "FinancingCashFlow": [
+        null,
+        318483400000.0
+      ],
+      "NetCashFlow": [
+        -5004700000.0,
+        -58493200000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        null,
+        null,
+        3.3617435402750773,
+        3.6910533109390844
+      ],
+      "ROE": [
+        null,
+        null,
+        null,
+        10.566817606667382
+      ],
+      "DebtorDays": [
+        null,
+        null,
+        1.75191022933891,
+        2.5298752477697364
+      ],
+      "WorkingCapitalDays": [
+        null,
+        null,
+        356.8745625659284,
+        180.63520327203975
+      ]
+    }
+  },
+  "dividends": [
+    {
+      "date": "2026-07-27",
+      "amount": 0.57
+    }
+  ],
+  "analyst": {
+    "targetMean": 404.6154,
+    "targetHigh": 450.0,
+    "targetLow": 335.0,
+    "recommendationKey": "buy",
+    "numberOfAnalystOpinions": 13
+  },
+  "holders": {
+    "insidersPercent": 0.85973,
+    "institutionsPercent": 0.0473
+  }
+}

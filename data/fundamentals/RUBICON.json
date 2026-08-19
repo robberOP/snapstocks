@@ -1,0 +1,225 @@
+{
+  "symbol": "RUBICON",
+  "name": "Rubicon Research",
+  "generatedAt": "2026-08-18T16:38:55.715204+00:00",
+  "profile": {
+    "sector": "Healthcare",
+    "industry": "Drug Manufacturers - General",
+    "exchange": "NSE",
+    "bseCode": "544578",
+    "nseSymbol": "RUBICON",
+    "website": "https://www.rubicon.co.in",
+    "deepDiveUrl": null,
+    "peerSector": "Pharmaceuticals & Biotechnology",
+    "peerIndustry": "Pharmaceuticals"
+  },
+  "price": {
+    "current": 1500.8,
+    "change": 9.800049,
+    "changePercent": 0.65728027,
+    "previousClose": 1491.0,
+    "dayLow": 1490.0,
+    "dayHigh": 1530.0,
+    "fiftyTwoWeekLow": 570.75,
+    "fiftyTwoWeekHigh": 1589.7,
+    "asOf": 1785751200
+  },
+  "stats": {
+    "marketCap": 247770267648.0,
+    "trailingPE": 97.708336,
+    "forwardPE": 53.985615,
+    "priceToBook": 19.187645,
+    "bookValue": 78.217,
+    "dividendYield": 0.1,
+    "trailingEps": 15.36,
+    "debtToEquity": 0.24131,
+    "roe": 19.14422627794994,
+    "roce": 24.328570048723947,
+    "return1y": null,
+    "sharesOutstanding": 165092124.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q3FY25",
+      "Q4FY25",
+      "Q3FY26",
+      "Q4FY26"
+    ],
+    "periodDates": [
+      "2024-12-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        3133960000.0,
+        3581470000.0,
+        4755290000.0,
+        5139150000.0
+      ],
+      "Expenses": [
+        2529180000.0,
+        2953330000.0,
+        3789560000.0,
+        4074750000.0
+      ],
+      "OperatingProfit": [
+        604780000.0,
+        628140000.0,
+        965730000.0,
+        1064400000.0
+      ],
+      "NetProfit": [
+        380730000.0,
+        362450000.0,
+        727970000.0,
+        767850000.0
+      ],
+      "EPS": [
+        2.310952,
+        2.199996,
+        4.41,
+        4.6
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        12842720000.0,
+        17539560000.0
+      ],
+      "Expenses": [
+        10566010000.0,
+        13989810000.0
+      ],
+      "OperatingProfit": [
+        2276710000.0,
+        3549750000.0
+      ],
+      "NetProfit": [
+        null,
+        2467350000.0
+      ],
+      "EPS": [
+        null,
+        15.31
+      ],
+      "SalesGrowth": [
+        null,
+        36.57200343852393
+      ]
+    },
+    "ttm": {
+      "Sales": 16609870000.0,
+      "Expenses": 13346820000.0,
+      "OperatingProfit": 3263050000.0,
+      "NetProfit": 2239000000.0
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY26"
+    ],
+    "periodDates": [
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        165090000.0
+      ],
+      "Borrowings": [
+        3110080000.0
+      ],
+      "TotalAssets": [
+        23267140000.0
+      ],
+      "NetBlock": [
+        5078020000.0
+      ],
+      "Investments": [
+        357520000.0
+      ],
+      "StockholdersEquity": [
+        12888220000.0
+      ],
+      "CurrentAssets": [
+        16818090000.0
+      ],
+      "CurrentLiabilities": [
+        8358660000.0
+      ],
+      "AccountsReceivable": [
+        5087070000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        null,
+        2050460000.0
+      ],
+      "InvestingCashFlow": [
+        null,
+        -4097230000.0
+      ],
+      "FinancingCashFlow": [
+        null,
+        2830670000.0
+      ],
+      "NetCashFlow": [
+        null,
+        783900000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        24.328570048723947
+      ],
+      "ROE": [
+        19.14422627794994
+      ],
+      "DebtorDays": [
+        105.86243611584327
+      ],
+      "WorkingCapitalDays": [
+        176.04158542175517
+      ]
+    }
+  },
+  "dividends": [],
+  "analyst": {
+    "targetMean": 1395.0,
+    "targetHigh": 1600.0,
+    "targetLow": 1190.0,
+    "recommendationKey": "none",
+    "numberOfAnalystOpinions": 2
+  },
+  "holders": {
+    "insidersPercent": 0.77614,
+    "institutionsPercent": 0.12309
+  }
+}

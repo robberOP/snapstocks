@@ -1,0 +1,58 @@
+{
+  "symbol": "CIGNITITEC",
+  "name": "Cigniti Tech.",
+  "generatedAt": "2026-08-18T16:37:33.889722+00:00",
+  "profile": {
+    "sector": null,
+    "industry": null,
+    "exchange": "NSE",
+    "bseCode": null,
+    "nseSymbol": "CIGNITITEC",
+    "website": "https://www.cigniti.com",
+    "deepDiveUrl": null,
+    "peerSector": null,
+    "peerIndustry": null
+  },
+  "price": {
+    "current": 1260.1,
+    "change": -0.20007324,
+    "changePercent": -0.015875049,
+    "previousClose": 1260.3,
+    "dayLow": 1222.1,
+    "dayHigh": 1288.0,
+    "fiftyTwoWeekLow": 996.5,
+    "fiftyTwoWeekHigh": 1929.5,
+    "asOf": 1778752789
+  },
+  "stats": {
+    "marketCap": 34711924736.0,
+    "trailingPE": 11.531985,
+    "forwardPE": null,
+    "priceToBook": 3.0759804,
+    "bookValue": 409.658,
+    "dividendYield": null,
+    "trailingEps": 109.27,
+    "debtToEquity": 0.01799,
+    "roe": null,
+    "roce": null,
+    "return1y": null,
+    "sharesOutstanding": 27546959.0
+  },
+  "quarterly": null,
+  "annual": null,
+  "balanceSheet": null,
+  "cashFlow": null,
+  "ratios": null,
+  "dividends": [],
+  "analyst": {
+    "targetMean": null,
+    "targetHigh": null,
+    "targetLow": null,
+    "recommendationKey": "none",
+    "numberOfAnalystOpinions": null
+  },
+  "holders": {
+    "insidersPercent": 0.65433,
+    "institutionsPercent": 0.1547
+  }
+}

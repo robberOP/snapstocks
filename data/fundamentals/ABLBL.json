@@ -1,0 +1,248 @@
+{
+  "symbol": "ABLBL",
+  "name": "A B Lifestyle",
+  "generatedAt": "2026-08-18T16:37:07.441063+00:00",
+  "profile": {
+    "sector": "Consumer Cyclical",
+    "industry": "Apparel Retail",
+    "exchange": "NSE",
+    "bseCode": "544403",
+    "nseSymbol": "ABLBL",
+    "website": "https://www.ablbl.in",
+    "deepDiveUrl": null,
+    "peerSector": "Retailing",
+    "peerIndustry": "Speciality Retail"
+  },
+  "price": {
+    "current": 95.91,
+    "change": 1.2400055,
+    "changePercent": 1.3098189,
+    "previousClose": 94.67,
+    "dayLow": 93.85,
+    "dayHigh": 96.17,
+    "fiftyTwoWeekLow": 87.91,
+    "fiftyTwoWeekHigh": 151.33,
+    "asOf": 1785751198
+  },
+  "stats": {
+    "marketCap": 116495958016.0,
+    "trailingPE": 68.02128,
+    "forwardPE": 32.123016,
+    "priceToBook": 8.289542,
+    "bookValue": 11.57,
+    "dividendYield": 0.53,
+    "trailingEps": 1.41,
+    "debtToEquity": 2.13719,
+    "roe": 12.112392808333157,
+    "roce": 13.227658077346865,
+    "return1y": -33.437430703238626,
+    "sharesOutstanding": 1214638186.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q3FY25",
+      "Q4FY25",
+      "Q1FY26",
+      "Q3FY26",
+      "Q4FY26"
+    ],
+    "periodDates": [
+      "2024-12-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2025-06-30T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        21384000000.0,
+        19421600000.0,
+        18405800000.0,
+        23431700000.0,
+        21741600000.0
+      ],
+      "Expenses": [
+        15326000000.0,
+        14132800000.0,
+        12858300000.0,
+        16462600000.0,
+        15172900000.0
+      ],
+      "OperatingProfit": [
+        6058000000.0,
+        5288800000.0,
+        5547500000.0,
+        6969100000.0,
+        6568700000.0
+      ],
+      "NetProfit": [
+        603100000.0,
+        383700000.0,
+        240600000.0,
+        690100000.0,
+        545200000.0
+      ],
+      "EPS": [
+        0.495977,
+        0.315547,
+        0.2,
+        0.56,
+        0.45
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        78086000000.0,
+        83404000000.0
+      ],
+      "Expenses": [
+        72742800000.0,
+        77188200000.0
+      ],
+      "OperatingProfit": [
+        5343200000.0,
+        6215800000.0
+      ],
+      "NetProfit": [
+        596000000.0,
+        1710500000.0
+      ],
+      "EPS": [
+        0.490138,
+        null
+      ],
+      "SalesGrowth": [
+        null,
+        6.810439771533949
+      ]
+    },
+    "ttm": {
+      "Sales": 83000700000.0,
+      "Expenses": 58626600000.0,
+      "OperatingProfit": 24374100000.0,
+      "NetProfit": 1859600000.0
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        12203100000.0,
+        12205200000.0
+      ],
+      "Borrowings": [
+        29324500000.0,
+        30181000000.0
+      ],
+      "TotalAssets": [
+        82790300000.0,
+        87200500000.0
+      ],
+      "NetBlock": [
+        21787900000.0,
+        25935500000.0
+      ],
+      "Investments": [
+        14200000.0,
+        22900000.0
+      ],
+      "StockholdersEquity": [
+        12765300000.0,
+        14121900000.0
+      ],
+      "CurrentAssets": [
+        44052500000.0,
+        45816800000.0
+      ],
+      "CurrentLiabilities": [
+        45670700000.0,
+        43002200000.0
+      ],
+      "AccountsReceivable": [
+        13220500000.0,
+        11981000000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        11441700000.0,
+        12188100000.0
+      ],
+      "InvestingCashFlow": [
+        69500000.0,
+        -1981000000.0
+      ],
+      "FinancingCashFlow": [
+        -12304100000.0,
+        -9828100000.0
+      ],
+      "NetCashFlow": [
+        -792900000.0,
+        379000000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        12.538120022845073,
+        13.227658077346865
+      ],
+      "ROE": [
+        4.668907115383109,
+        12.112392808333157
+      ],
+      "DebtorDays": [
+        61.7970250749174,
+        52.43231739484917
+      ],
+      "WorkingCapitalDays": [
+        -7.564006351970903,
+        12.317502757661504
+      ]
+    }
+  },
+  "dividends": [],
+  "analyst": {
+    "targetMean": 142.90909,
+    "targetHigh": 170.0,
+    "targetLow": 90.0,
+    "recommendationKey": "none",
+    "numberOfAnalystOpinions": 11
+  },
+  "holders": {
+    "insidersPercent": 0.57302,
+    "institutionsPercent": 0.22975
+  }
+}

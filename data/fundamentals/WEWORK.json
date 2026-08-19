@@ -1,0 +1,239 @@
+{
+  "symbol": "WEWORK",
+  "name": "Wework India",
+  "generatedAt": "2026-08-18T16:39:23.819648+00:00",
+  "profile": {
+    "sector": "Real Estate",
+    "industry": "Real Estate Services",
+    "exchange": "NSE",
+    "bseCode": "544570",
+    "nseSymbol": "WEWORK",
+    "website": "https://wework.co.in",
+    "deepDiveUrl": null,
+    "peerSector": "Commercial Services & Supplies",
+    "peerIndustry": "Diversified Commercial Services"
+  },
+  "price": {
+    "current": 744.6,
+    "change": 1.0999756,
+    "changePercent": 0.14794561,
+    "previousClose": 743.5,
+    "dayLow": 726.6,
+    "dayHigh": 754.0,
+    "fiftyTwoWeekLow": 420.0,
+    "fiftyTwoWeekHigh": 767.0,
+    "asOf": 1785751201
+  },
+  "stats": {
+    "marketCap": 103194304512.0,
+    "trailingPE": 122.065575,
+    "forwardPE": 41.82307,
+    "priceToBook": 33.566242,
+    "bookValue": 22.183,
+    "dividendYield": null,
+    "trailingEps": 6.1,
+    "debtToEquity": 18.549590000000002,
+    "roe": 24.980115381130254,
+    "roce": 12.332557797994944,
+    "return1y": null,
+    "sharesOutstanding": 138590252.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q3FY25",
+      "Q4FY25",
+      "Q1FY26",
+      "Q3FY26",
+      "Q4FY26",
+      "Q1FY27"
+    ],
+    "periodDates": [
+      "2024-12-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2025-06-30T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        4916580000.0,
+        5393670000.0,
+        null,
+        6341050000.0,
+        6960630000.0,
+        6838320000.0
+      ],
+      "Expenses": [
+        null,
+        4202830000.0,
+        4230380000.0,
+        4721790000.0,
+        5130310000.0,
+        5286330000.0
+      ],
+      "OperatingProfit": [
+        null,
+        1190840000.0,
+        1122720000.0,
+        1619260000.0,
+        1830320000.0,
+        1551990000.0
+      ],
+      "NetProfit": [
+        -832520000.0,
+        365180000.0,
+        null,
+        166950000.0,
+        655510000.0,
+        -43060000.0
+      ],
+      "EPS": [
+        -6.211758,
+        2.724751,
+        null,
+        1.22,
+        4.76,
+        -0.31
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        null,
+        24401800000.0
+      ],
+      "Expenses": [
+        15349990000.0,
+        18340850000.0
+      ],
+      "OperatingProfit": [
+        4142120000.0,
+        6060950000.0
+      ],
+      "NetProfit": [
+        null,
+        744330000.0
+      ],
+      "EPS": [
+        null,
+        5.4
+      ],
+      "SalesGrowth": [
+        null,
+        null
+      ]
+    },
+    "ttm": {
+      "Sales": null,
+      "Expenses": 19368810000.0,
+      "OperatingProfit": 6124290000.0,
+      "NetProfit": null
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY26"
+    ],
+    "periodDates": [
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        1353780000.0
+      ],
+      "Borrowings": [
+        55502980000.0
+      ],
+      "TotalAssets": [
+        70921600000.0
+      ],
+      "NetBlock": [
+        58085400000.0
+      ],
+      "Investments": [
+        2730090000.0
+      ],
+      "StockholdersEquity": [
+        2979690000.0
+      ],
+      "CurrentAssets": [
+        5920620000.0
+      ],
+      "CurrentLiabilities": [
+        17878670000.0
+      ],
+      "AccountsReceivable": [
+        846170000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        null,
+        17341320000.0
+      ],
+      "InvestingCashFlow": [
+        null,
+        -6472410000.0
+      ],
+      "FinancingCashFlow": [
+        null,
+        -10478000000.0
+      ],
+      "NetCashFlow": [
+        null,
+        390910000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        12.332557797994944
+      ],
+      "ROE": [
+        24.980115381130254
+      ],
+      "DebtorDays": [
+        12.656937193157882
+      ],
+      "WorkingCapitalDays": [
+        -178.8674708423149
+      ]
+    }
+  },
+  "dividends": [],
+  "analyst": {
+    "targetMean": 896.1429,
+    "targetHigh": 995.0,
+    "targetLow": 791.0,
+    "recommendationKey": "strong_buy",
+    "numberOfAnalystOpinions": 7
+  },
+  "holders": {
+    "insidersPercent": 0.63537,
+    "institutionsPercent": 0.24956
+  }
+}

@@ -15,10 +15,10 @@ Merges two sources:
      "NSE: XXX" text). A report whose ticker isn't in the mapping CSV still
      gets its own entry rather than being dropped.
 
-Every entry's fundamentals_url points at the single shared
-stock-analysis/fundamentals/template.html — there's no per-ticker
-fundamentals page yet (see DESIGN.md section 9/10). Update FUNDAMENTALS_URL
-here (and probably this script's merge logic) once that changes.
+Every entry's fundamentals_url points at the shared
+stock-analysis/fundamentals/template.html with its own symbol as a
+`?symbol=` query param — see generate_fundamentals_data.py, which builds
+the per-ticker JSON that page fetches at load time.
 
 Usage:
     python scripts/generate_stock_index.py [--mapping-csv PATH]
@@ -37,7 +37,11 @@ OUT_PATH = ROOT / "data" / "stocks.json"
 DEFAULT_MAPPING_CSV = (
     ROOT.parent / "stock-research" / "reports" / "sector_momentum" / "input" / "sector_industry_mapping.csv"
 )
-FUNDAMENTALS_URL = "/stock-analysis/fundamentals/template.html"
+FUNDAMENTALS_URL_BASE = "/stock-analysis/fundamentals/template.html"
+
+
+def fundamentals_url(symbol: str) -> str:
+    return f"{FUNDAMENTALS_URL_BASE}?symbol={symbol}"
 
 H1_RE = re.compile(r"<h1[^>]*>(.*?)</h1>", re.IGNORECASE | re.DOTALL)
 TAG_RE = re.compile(r"<[^>]+>")
@@ -100,7 +104,7 @@ def main() -> None:
             "name": symbol,
             "sector": meta["sector"],
             "industry": meta["industry"],
-            "fundamentals_url": FUNDAMENTALS_URL,
+            "fundamentals_url": fundamentals_url(symbol),
             "deep_dive_url": None,
         }
 
@@ -119,12 +123,13 @@ def main() -> None:
                 stocks[key]["deep_dive_url"] = deep_dive_url
                 overlaid += 1
             else:
+                entry_symbol = ticker or name
                 stocks[key] = {
-                    "symbol": ticker or name,
+                    "symbol": entry_symbol,
                     "name": name,
                     "sector": None,
                     "industry": None,
-                    "fundamentals_url": FUNDAMENTALS_URL,
+                    "fundamentals_url": fundamentals_url(entry_symbol),
                     "deep_dive_url": deep_dive_url,
                 }
                 added += 1

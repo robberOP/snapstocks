@@ -1,0 +1,297 @@
+{
+  "symbol": "GILLETTE",
+  "name": "Gillette India",
+  "generatedAt": "2026-08-18T16:37:50.985253+00:00",
+  "profile": {
+    "sector": "Consumer Defensive",
+    "industry": "Household & Personal Products",
+    "exchange": "NSE",
+    "bseCode": "507815",
+    "nseSymbol": "GILLETTE",
+    "website": "https://www.gillette.co.in",
+    "deepDiveUrl": null,
+    "peerSector": "Personal Products",
+    "peerIndustry": "Personal Care"
+  },
+  "price": {
+    "current": 7719.0,
+    "change": 95.0,
+    "changePercent": 1.2460651,
+    "previousClose": 7624.0,
+    "dayLow": 7624.0,
+    "dayHigh": 7776.0,
+    "fiftyTwoWeekLow": 7206.0,
+    "fiftyTwoWeekHigh": 11100.0,
+    "asOf": 1785751187
+  },
+  "stats": {
+    "marketCap": 251525283840.0,
+    "trailingPE": 47.090046,
+    "forwardPE": null,
+    "priceToBook": 26.575727,
+    "bookValue": 290.453,
+    "dividendYield": 1.57,
+    "trailingEps": 163.92,
+    "debtToEquity": 2e-05,
+    "roe": 42.387801538192264,
+    "roce": 53.268141568148096,
+    "return1y": -24.515925344236912,
+    "sharesOutstanding": 32585217.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q3FY25",
+      "Q4FY25",
+      "Q1FY26"
+    ],
+    "periodDates": [
+      "2024-12-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2025-06-30T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        6855500000.0,
+        7674700000.0,
+        7067200000.0
+      ],
+      "Expenses": [
+        5233500000.0,
+        5662400000.0,
+        5169300000.0
+      ],
+      "OperatingProfit": [
+        1622000000.0,
+        2012300000.0,
+        1897900000.0
+      ],
+      "NetProfit": [
+        1259700000.0,
+        1586800000.0,
+        1456900000.0
+      ],
+      "EPS": [
+        38.66,
+        48.7,
+        44.71
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25"
+    ],
+    "periodDates": [
+      "2022-06-30T00:00:00",
+      "2023-06-30T00:00:00",
+      "2024-06-30T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        22561600000.0,
+        24770500000.0,
+        26330800000.0
+      ],
+      "Expenses": [
+        18199400000.0,
+        20052100000.0,
+        20701700000.0
+      ],
+      "OperatingProfit": [
+        4362200000.0,
+        4718400000.0,
+        5629100000.0
+      ],
+      "NetProfit": [
+        2893300000.0,
+        3556800000.0,
+        4117000000.0
+      ],
+      "EPS": [
+        88.79,
+        109.15,
+        126.35
+      ],
+      "SalesGrowth": [
+        null,
+        9.790529040493583,
+        6.299025049958621
+      ]
+    },
+    "ttm": {
+      "Sales": null,
+      "Expenses": null,
+      "OperatingProfit": null,
+      "NetProfit": null
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25"
+    ],
+    "periodDates": [
+      "2022-06-30T00:00:00",
+      "2023-06-30T00:00:00",
+      "2024-06-30T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        325900000.0,
+        325900000.0,
+        325900000.0
+      ],
+      "Borrowings": [
+        1200000.0,
+        500000.0,
+        500000.0
+      ],
+      "TotalAssets": [
+        16189300000.0,
+        19161500000.0,
+        18307500000.0
+      ],
+      "NetBlock": [
+        4279900000.0,
+        4228300000.0,
+        3728500000.0
+      ],
+      "Investments": [
+        49300000.0,
+        54400000.0,
+        51300000.0
+      ],
+      "StockholdersEquity": [
+        8612000000.0,
+        9888600000.0,
+        9712700000.0
+      ],
+      "CurrentAssets": [
+        9629300000.0,
+        12498700000.0,
+        11866100000.0
+      ],
+      "CurrentLiabilities": [
+        6743900000.0,
+        8182900000.0,
+        7590400000.0
+      ],
+      "AccountsReceivable": [
+        2670100000.0,
+        3201600000.0,
+        2743300000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25"
+    ],
+    "periodDates": [
+      "2022-06-30T00:00:00",
+      "2023-06-30T00:00:00",
+      "2024-06-30T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        4615300000.0,
+        4626000000.0,
+        5090400000.0
+      ],
+      "InvestingCashFlow": [
+        -1120400000.0,
+        -666700000.0,
+        -491500000.0
+      ],
+      "FinancingCashFlow": [
+        -2248900000.0,
+        -2314400000.0,
+        -4399000000.0
+      ],
+      "NetCashFlow": [
+        1246000000.0,
+        1644900000.0,
+        199900000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25"
+    ],
+    "rows": {
+      "ROCE": [
+        44.663010565989794,
+        43.782449492649334,
+        53.268141568148096
+      ],
+      "ROE": [
+        33.596144914073385,
+        35.96869122019295,
+        42.387801538192264
+      ],
+      "DebtorDays": [
+        43.196692610453155,
+        47.176439716598374,
+        38.027879897306576
+      ],
+      "WorkingCapitalDays": [
+        46.67980107793774,
+        63.594477301628956,
+        59.27015130569523
+      ]
+    }
+  },
+  "dividends": [
+    {
+      "date": "2026-02-04",
+      "amount": 180.0
+    },
+    {
+      "date": "2025-08-26",
+      "amount": 47.0
+    },
+    {
+      "date": "2025-02-18",
+      "amount": 65.0
+    },
+    {
+      "date": "2024-11-26",
+      "amount": 45.0
+    },
+    {
+      "date": "2024-02-08",
+      "amount": 85.0
+    },
+    {
+      "date": "2023-11-21",
+      "amount": 50.0
+    },
+    {
+      "date": "2023-02-09",
+      "amount": 35.0
+    },
+    {
+      "date": "2022-11-10",
+      "amount": 36.0
+    }
+  ],
+  "analyst": {
+    "targetMean": null,
+    "targetHigh": null,
+    "targetLow": null,
+    "recommendationKey": "none",
+    "numberOfAnalystOpinions": null
+  },
+  "holders": {
+    "insidersPercent": 0.77949,
+    "institutionsPercent": 0.10904
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "symbol": "ORKLAINDIA",
+  "name": "Orkla India",
+  "generatedAt": "2026-08-18T16:38:41.059492+00:00",
+  "profile": {
+    "sector": "Consumer Defensive",
+    "industry": "Packaged Foods",
+    "exchange": "NSE",
+    "bseCode": "544595",
+    "nseSymbol": "ORKLAINDIA",
+    "website": "https://www.orklaindia.com",
+    "deepDiveUrl": null,
+    "peerSector": "Food Products",
+    "peerIndustry": "Other Food Products"
+  },
+  "price": {
+    "current": 573.6,
+    "change": 16.299988,
+    "changePercent": 2.924814,
+    "previousClose": 557.3,
+    "dayLow": 557.0,
+    "dayHigh": 581.1,
+    "fiftyTwoWeekLow": 533.25,
+    "fiftyTwoWeekHigh": 760.0,
+    "asOf": 1785751192
+  },
+  "stats": {
+    "marketCap": 78577016832.0,
+    "trailingPE": 27.590185,
+    "forwardPE": 21.430685,
+    "priceToBook": 2.8362904,
+    "bookValue": 202.236,
+    "dividendYield": null,
+    "trailingEps": 20.79,
+    "debtToEquity": 0.02284,
+    "roe": 10.38788667759988,
+    "roce": 13.24957420737722,
+    "return1y": null,
+    "sharesOutstanding": 136989230.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q3FY25",
+      "Q4FY25",
+      "Q3FY26",
+      "Q4FY26"
+    ],
+    "periodDates": [
+      "2024-12-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        6152700000.0,
+        5961800000.0,
+        6360600000.0,
+        6258000000.0
+      ],
+      "Expenses": [
+        5455600000.0,
+        5155100000.0,
+        5498800000.0,
+        5403900000.0
+      ],
+      "OperatingProfit": [
+        697100000.0,
+        806700000.0,
+        861800000.0,
+        854100000.0
+      ],
+      "NetProfit": [
+        658500000.0,
+        352400000.0,
+        566400000.0,
+        734300000.0
+      ],
+      "EPS": [
+        4.806947,
+        2.572465,
+        4.8,
+        5.4
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        23583200000.0,
+        24928900000.0
+      ],
+      "Expenses": [
+        20220000000.0,
+        21211600000.0
+      ],
+      "OperatingProfit": [
+        3363200000.0,
+        3717300000.0
+      ],
+      "NetProfit": [
+        null,
+        2856700000.0
+      ],
+      "EPS": [
+        null,
+        20.8
+      ],
+      "SalesGrowth": [
+        null,
+        5.706180670986126
+      ]
+    },
+    "ttm": {
+      "Sales": 24733100000.0,
+      "Expenses": 21513400000.0,
+      "OperatingProfit": 3219700000.0,
+      "NetProfit": 2311600000.0
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY26"
+    ],
+    "periodDates": [
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        137000000.0
+      ],
+      "Borrowings": [
+        628100000.0
+      ],
+      "TotalAssets": [
+        34019600000.0
+      ],
+      "NetBlock": [
+        3808900000.0
+      ],
+      "Investments": [
+        0.0
+      ],
+      "StockholdersEquity": [
+        27500300000.0
+      ],
+      "CurrentAssets": [
+        12311200000.0
+      ],
+      "CurrentLiabilities": [
+        4721300000.0
+      ],
+      "AccountsReceivable": [
+        1826000000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        null,
+        2611800000.0
+      ],
+      "InvestingCashFlow": [
+        null,
+        -3077100000.0
+      ],
+      "FinancingCashFlow": [
+        null,
+        -127700000.0
+      ],
+      "NetCashFlow": [
+        null,
+        -593000000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        13.24957420737722
+      ],
+      "ROE": [
+        10.38788667759988
+      ],
+      "DebtorDays": [
+        26.735636149208347
+      ],
+      "WorkingCapitalDays": [
+        111.12858970913277
+      ]
+    }
+  },
+  "dividends": [],
+  "analyst": {
+    "targetMean": 746.6667,
+    "targetHigh": 800.0,
+    "targetLow": 700.0,
+    "recommendationKey": "strong_buy",
+    "numberOfAnalystOpinions": 6
+  },
+  "holders": {
+    "insidersPercent": 0.83325,
+    "institutionsPercent": 0.09854999
+  }
+}

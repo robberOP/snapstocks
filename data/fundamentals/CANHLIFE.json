@@ -1,0 +1,277 @@
+{
+  "symbol": "CANHLIFE",
+  "name": "Canara HSBC",
+  "generatedAt": "2026-08-18T16:37:28.397893+00:00",
+  "profile": {
+    "sector": "Financial Services",
+    "industry": "Insurance - Life",
+    "exchange": "NSE",
+    "bseCode": "544583",
+    "nseSymbol": "CANHLIFE",
+    "website": "https://www.canarahsbclife.com",
+    "deepDiveUrl": null,
+    "peerSector": "Insurance",
+    "peerIndustry": "Life Insurance"
+  },
+  "price": {
+    "current": 150.92,
+    "change": 4.470001,
+    "changePercent": 3.052237,
+    "previousClose": 146.45,
+    "dayLow": 147.15,
+    "dayHigh": 154.8,
+    "fiftyTwoWeekLow": 106.0,
+    "fiftyTwoWeekHigh": 166.69,
+    "asOf": 1785751200
+  },
+  "stats": {
+    "marketCap": 142994423808.0,
+    "trailingPE": 108.57554,
+    "forwardPE": 79.43158,
+    "priceToBook": 8.665594,
+    "bookValue": 17.416,
+    "dividendYield": 0.27,
+    "trailingEps": 1.39,
+    "debtToEquity": 0.15304,
+    "roe": 7.886164176222539,
+    "roce": null,
+    "return1y": null,
+    "sharesOutstanding": 947484925.0
+  },
+  "quarterly": {
+    "periods": [
+      "Q3FY25",
+      "Q4FY25",
+      "Q1FY26",
+      "Q3FY26",
+      "Q4FY26",
+      "Q1FY27"
+    ],
+    "periodDates": [
+      "2024-12-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2025-06-30T00:00:00",
+      "2025-12-31T00:00:00",
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        null,
+        27764700000.0,
+        36316100000.0,
+        42022500000.0,
+        12905700000.0,
+        43508600000.0
+      ],
+      "Expenses": [
+        null,
+        27500300000.0,
+        35621000000.0,
+        41714100000.0,
+        13355200000.0,
+        43193500000.0
+      ],
+      "OperatingProfit": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "NetProfit": [
+        null,
+        320900000.0,
+        234200000.0,
+        276500000.0,
+        347300000.0,
+        281400000.0
+      ],
+      "EPS": [
+        null,
+        0.337789,
+        0.246526,
+        0.29,
+        0.37,
+        0.3
+      ]
+    }
+  },
+  "annual": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "Sales": [
+        104759200000.0,
+        112416500000.0
+      ],
+      "Expenses": [
+        103477700000.0,
+        111008700000.0
+      ],
+      "OperatingProfit": [
+        null,
+        null
+      ],
+      "NetProfit": [
+        1169800000.0,
+        1266100000.0
+      ],
+      "EPS": [
+        1.231368,
+        1.33
+      ],
+      "SalesGrowth": [
+        null,
+        7.309429625273961
+      ]
+    },
+    "ttm": {
+      "Sales": 134752900000.0,
+      "Expenses": 133883800000.0,
+      "OperatingProfit": null,
+      "NetProfit": 1139400000.0
+    }
+  },
+  "balanceSheet": {
+    "periods": [
+      "FY23",
+      "FY24",
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2023-03-31T00:00:00",
+      "2024-03-31T00:00:00",
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "EquityCapital": [
+        null,
+        null,
+        null,
+        9500000000.0
+      ],
+      "Borrowings": [
+        null,
+        null,
+        null,
+        2500000000.0
+      ],
+      "TotalAssets": [
+        null,
+        null,
+        429142800000.0,
+        480566700000.0
+      ],
+      "NetBlock": [
+        null,
+        null,
+        264000000.0,
+        243400000.0
+      ],
+      "Investments": [
+        171877950000.0,
+        213613650000.0,
+        239438200000.0,
+        282120300000.0
+      ],
+      "StockholdersEquity": [
+        null,
+        null,
+        15168600000.0,
+        16054700000.0
+      ],
+      "CurrentAssets": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "CurrentLiabilities": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "AccountsReceivable": [
+        null,
+        null,
+        829500000.0,
+        547500000.0
+      ]
+    }
+  },
+  "cashFlow": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "periodDates": [
+      "2025-03-31T00:00:00",
+      "2026-03-31T00:00:00"
+    ],
+    "rows": {
+      "OperatingCashFlow": [
+        null,
+        null
+      ],
+      "InvestingCashFlow": [
+        -7144700000.0,
+        -36659100000.0
+      ],
+      "FinancingCashFlow": [
+        null,
+        2120000000.0
+      ],
+      "NetCashFlow": [
+        4743500000.0,
+        795900000.0
+      ]
+    }
+  },
+  "ratios": {
+    "periods": [
+      "FY25",
+      "FY26"
+    ],
+    "rows": {
+      "ROCE": [
+        null,
+        null
+      ],
+      "ROE": [
+        7.711983966878948,
+        7.886164176222539
+      ],
+      "DebtorDays": [
+        2.8901280269417864,
+        1.7776527467053325
+      ],
+      "WorkingCapitalDays": [
+        null,
+        null
+      ]
+    }
+  },
+  "dividends": [],
+  "analyst": {
+    "targetMean": 192.75,
+    "targetHigh": 235.0,
+    "targetLow": 166.0,
+    "recommendationKey": "strong_buy",
+    "numberOfAnalystOpinions": 8
+  },
+  "holders": {
+    "insidersPercent": 0.75327003,
+    "institutionsPercent": 0.19769
+  }
+}

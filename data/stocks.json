@@ -1769,11 +1769,11 @@
   },
   {
     "symbol": "EQUITASBNK",
-    "name": "EQUITASBNK",
+    "name": "Equitas Small Finance Bank Limited",
     "sector": "Banks",
     "industry": "Other Bank",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=EQUITASBNK",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/equitasbnk.html"
   },
   {
     "symbol": "ERIS",
@@ -1832,19 +1832,19 @@
     "deep_dive_url": null
   },
   {
+    "symbol": "FEDFINA",
+    "name": "Fedbank Financial Services Limited",
+    "sector": "Finance",
+    "industry": "Non Banking Financial Company (NBFC)",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=FEDFINA",
+    "deep_dive_url": "/stock-analysis/deep-dive/fedfina.html"
+  },
+  {
     "symbol": "FEDERALBNK",
     "name": "FEDERALBNK",
     "sector": "Banks",
     "industry": "Private Sector Bank",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=FEDERALBNK",
-    "deep_dive_url": null
-  },
-  {
-    "symbol": "FEDFINA",
-    "name": "FEDFINA",
-    "sector": "Finance",
-    "industry": "Non Banking Financial Company (NBFC)",
-    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=FEDFINA",
     "deep_dive_url": null
   },
   {
@@ -2560,14 +2560,6 @@
     "deep_dive_url": null
   },
   {
-    "symbol": "IKS",
-    "name": "IKS",
-    "sector": "IT - Services",
-    "industry": "IT Enabled Services",
-    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=IKS",
-    "deep_dive_url": null
-  },
-  {
     "symbol": "IMFA",
     "name": "IMFA",
     "sector": "Ferrous Metals",
@@ -2702,6 +2694,14 @@
     "industry": "Computers - Software & Consulting",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=INTELLECT",
     "deep_dive_url": null
+  },
+  {
+    "symbol": "IKS",
+    "name": "Inventurus Knowledge Solutions Limited (IKS Health)",
+    "sector": "IT - Services",
+    "industry": "IT Enabled Services",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=IKS",
+    "deep_dive_url": "/stock-analysis/deep-dive/iks.html"
   },
   {
     "symbol": "IOB",

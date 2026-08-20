@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alkyl Amines Chemicals Ltd (ALKYLAMINE) — Equity Research Note</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f5f7fc;
+    --ink: #0b1220;
+    --ink-2: #4b5567;
+    --ink-muted: #8892a6;
+    --grid: #e4e8f1;
+    --baseline: #cbd3e3;
+    --border: #e4e8f1;
+
+    /* brand — UI chrome only: nav, links, focus rings, informational callouts */
+    --brand-500: #3366ff;
+    --brand-600: #2251e0;
+    --brand-700: #1a3fb8;
+    --brand-50:  #eef3ff;
+    --brand-100: #dce7ff;
+
+    /* AI accent — violet, sparing: one touch, the synthesized verdict only */
+    --ai-500: #7c5cfc;
+    --ai-600: #6238e0;
+
+    /* direction — price/return/momentum only, always paired with a glyph */
+    --up: #1a9850; --up-strong: #0b7a3d;
+    --up-tint: #e3f7ea; --up-tint-strong: #c3eed3;
+    --down: #d8342a; --down-strong: #b0201a;
+    --down-tint: #fce7e5; --down-tint-strong: #f7c7c2;
+    --flat: #98a2b3; --flat-tint: #f1f3f7;
+
+    /* categorical — fixed order, multi-series chart identity */
+    --blue:    #2f6fed;  /* slot 1 */
+    --orange:  #0ea5a8;  /* slot 2 (teal) */
+    --aqua:    #e08e0b;  /* slot 3 (amber — always paired with a legend label here) */
+    --violet:  #8b3fe8;  /* slot 4 — deliberately distinct from --ai-500 */
+    --magenta: #e0578a;  /* slot 5 (rose) */
+    --indigo:  #5b6ee8;  /* slot 6 */
+
+    /* status — governance/audit/data-quality state, never price direction */
+    --good: #1a9850;
+    --warn: #b9790a;
+    --serious: #c24e17;
+    --critical: #d8342a;
+    --chip-good-bg: #e3f7ea;
+    --chip-bad-bg: #fce7e5;
+    --chip-warn-bg: #fdf1e0;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-pill: 999px;
+    --shadow-card: 0 1px 2px rgba(16,31,94,.05), 0 6px 16px rgba(16,31,94,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      color-scheme: dark;
+      --bg: #0a0e1a;
+      --surface: #10162a;
+      --surface-2: #0d1220;
+      --ink: #f2f5fc;
+      --ink-2: #b7c0d6;
+      --ink-muted: #7c879e;
+      --grid: #232b42;
+      --baseline: #33405f;
+      --border: #232b42;
+
+      --brand-500: #3366ff;
+      --brand-600: #6f97ff;
+      --brand-700: #a9c0ff;
+      --brand-50:  #101f3d;
+      --brand-100: #17284a;
+
+      --ai-500: #9472ff;
+      --ai-600: #ab8fff;
+
+      --up: #3ddc84; --up-strong: #63e39d;
+      --up-tint: #113322; --up-tint-strong: #164429;
+      --down: #ff6b5e; --down-strong: #ff8a7f;
+      --down-tint: #341613; --down-tint-strong: #4a1e1a;
+      --flat: #8d97ac; --flat-tint: #171d2e;
+
+      --blue:    #4c86ff;
+      --orange:  #1d9c99;
+      --aqua:    #c97a16;
+      --violet:  #9457ee;
+      --magenta: #d25e85;
+      --indigo:  #6b7cf2;
+
+      --good: #3ddc84;
+      --warn: #e0a83c;
+      --serious: #e8834d;
+      --critical: #ff6b5e;
+      --chip-good-bg: #113322;
+      --chip-bad-bg: #341613;
+      --chip-warn-bg: #2b2415;
+
+      --shadow-card: 0 1px 2px rgba(0,0,0,.35), 0 6px 16px rgba(0,0,0,.4);
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height:1.55;
+    font-size:15.5px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition-duration:.001ms !important; animation-duration:.001ms !important;}
+  }
+  a{color:var(--brand-500);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--brand-500); outline-offset:2px; border-radius:4px;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 20px 80px;}
+  header.hero{
+    background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+    border-bottom:1px solid var(--border);
+    padding:28px 0 18px;
+    position:relative; overflow:hidden;
+  }
+  header.hero::before{
+    content:""; position:absolute; top:-140px; left:-100px; width:560px; height:380px;
+    background:
+      radial-gradient(circle at 25% 30%, rgba(51,102,255,.16), transparent 60%),
+      radial-gradient(circle at 70% 65%, rgba(124,92,252,.13), transparent 60%);
+    filter:blur(30px); pointer-events:none; z-index:0;
+  }
+  header.hero > *{position:relative; z-index:1;}
+  .kicker{color:var(--ink-muted); font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:600;}
+  h1{font-size:28px; margin:6px 0 4px; letter-spacing:-.01em; text-wrap:balance;}
+  .subtitle{color:var(--ink-2); font-size:14.5px; margin-bottom:18px;}
+  .tag{
+    display:inline-block; padding:2px 9px; border-radius:var(--radius-pill); font-size:11.5px; font-weight:600;
+    background:var(--surface-2); color:var(--ink-2); border:1px solid var(--border); margin-right:6px;
+  }
+  nav.toc{
+    display:flex; flex-wrap:wrap; gap:6px 10px; margin-top:16px; padding-top:14px; border-top:1px solid var(--border);
+  }
+  nav.toc a{
+    font-size:12.5px; color:var(--ink-2); text-decoration:none; padding:4px 9px; border-radius:var(--radius-sm); background:var(--surface-2);
+    border:1px solid var(--border); white-space:nowrap; transition:color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  nav.toc a:hover{color:var(--brand-600); border-color:var(--brand-500); background:var(--brand-50);}
+
+  .stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(128px,1fr)); gap:10px; margin-top:18px;}
+  .stat-tile{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:10px 12px;
+    box-shadow:var(--shadow-card);
+  }
+  .stat-tile .label{font-size:11px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.04em;}
+  .stat-tile .value{font-size:19px; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums;}
+  .stat-tile .delta{font-size:11.5px; margin-top:2px;}
+  .up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--flat);}
+  .delta.up::before{content:"▲ ";} .delta.down::before{content:"▼ ";}
+
+  section{padding:34px 0; border-bottom:1px solid var(--border);}
+  section:last-of-type{border-bottom:none;}
+  h2{font-size:21px; margin:0 0 4px; display:flex; align-items:baseline; gap:10px; letter-spacing:-.01em;}
+  h2 .num{color:var(--ink-muted); font-weight:600; font-size:15px;}
+  h3{font-size:16px; margin:22px 0 8px; letter-spacing:-.01em;}
+  h4{font-size:13.5px; margin:16px 0 6px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-2);}
+  p{margin:8px 0; max-width:70ch;}
+  .lede{color:var(--ink-2); font-size:14.5px; margin-bottom:18px; max-width:70ch;}
+
+  .callout{
+    background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--brand-500);
+    border-radius:var(--radius-md); padding:12px 16px; margin:14px 0; font-size:14px; box-shadow:var(--shadow-card);
+  }
+  .callout.verdict{border-left-color:var(--ai-500);}
+  .callout.good{border-left-color:var(--good);}
+  .callout.bad{border-left-color:var(--critical);}
+  .callout.warn{border-left-color:var(--warn);}
+  .callout h4{margin-top:0;}
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; color:#fff;
+    background:linear-gradient(135deg, var(--brand-500), var(--ai-500)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{content:"✦"; font-size:10px;}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:820px){ .grid2,.grid3{grid-template-columns:1fr;} }
+
+  .card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:14px 16px; box-shadow:var(--shadow-card);}
+  .card h4{margin-top:0;}
+  .card.strength{border-top:3px solid var(--good);}
+  .card.weak{border-top:3px solid var(--critical);}
+
+  table{border-collapse:collapse; width:100%; font-size:13.3px; font-variant-numeric:tabular-nums;}
+  .tblwrap{overflow-x:auto; margin:10px 0 18px; border:1px solid var(--border); border-radius:var(--radius-md);}
+  th,td{padding:7px 10px; text-align:right; border-bottom:1px solid var(--grid); white-space:nowrap;}
+  th:first-child,td:first-child{text-align:left; white-space:normal; min-width:150px;}
+  thead th{background:var(--surface-2); color:var(--ink-2); font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:.02em; position:sticky; top:0;}
+  tbody tr:hover{background:var(--surface-2);}
+  tbody tr.total td{font-weight:700; border-top:1.5px solid var(--baseline);}
+  .src{font-size:11px; color:var(--ink-muted); margin-top:-8px; margin-bottom:16px;}
+
+  .chip{display:inline-flex; align-items:center; gap:5px; padding:2px 8px; border-radius:var(--radius-sm); font-size:11.5px; font-weight:600;}
+  .chip::before{content:""; width:6px; height:6px; border-radius:50%; background:currentColor; flex:none;}
+  .chip.beat{background:var(--chip-good-bg); color:var(--good);}
+  .chip.miss{background:var(--chip-bad-bg); color:var(--critical);}
+  .chip.na{background:var(--surface-2); color:var(--ink-muted);}
+
+  .barchart{display:flex; align-items:flex-end; gap:10px; height:190px; padding:8px 4px 0; border-bottom:1px solid var(--baseline);}
+  .bar-group{display:flex; flex-direction:column; align-items:center; justify-content:flex-end; flex:1; height:100%; gap:3px;}
+  .bars-inline{display:flex; align-items:flex-end; gap:3px; height:100%; width:100%; justify-content:center;}
+  .bar{width:100%; border-radius:4px 4px 0 0; position:relative;}
+  .bar.stack{border-radius:0;}
+  .bar.stack:first-child{border-radius:4px 4px 0 0;}
+  .bar-col{display:flex; flex-direction:column-reverse; width:60%; height:100%;}
+  .bar-val{font-size:10px; color:var(--ink-muted); margin-bottom:2px; font-variant-numeric:tabular-nums;}
+  .bar-label{font-size:11px; color:var(--ink-2); margin-top:8px; text-align:center;}
+  .legend{display:flex; gap:14px; flex-wrap:wrap; margin:10px 0 4px; font-size:12px; color:var(--ink-2);}
+  .legend .sw{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px;}
+  .chart-title{font-size:12.5px; color:var(--ink-2); font-weight:600; margin-bottom:2px;}
+  .chart-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:16px; box-shadow:var(--shadow-card);}
+
+  .qlist{margin:8px 0; padding-left:0; list-style:none;}
+  .qlist li{padding:8px 0 8px 16px; border-left:2px solid var(--grid); margin-left:4px; position:relative;}
+  .qlist li::before{content:""; position:absolute; left:-5px; top:14px; width:8px; height:8px; border-radius:50%; background:var(--brand-500);}
+  .qlist .d{font-size:12px; color:var(--ink-muted); font-weight:600;}
+
+  .timeline{margin:10px 0;}
+  .tl-item{display:grid; grid-template-columns:96px 1fr; gap:14px; padding:10px 0; border-top:1px solid var(--grid);}
+  .tl-item:first-child{border-top:none;}
+  .tl-date{font-size:12px; color:var(--ink-muted); font-weight:600; white-space:nowrap; padding-top:2px;}
+  .tl-cat{display:inline-block; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; padding:1px 7px; border-radius:5px; margin-bottom:4px;}
+  .tl-cat.ma{background:var(--chip-bad-bg); color:var(--critical);}
+  .tl-cat.scheme{background:var(--chip-warn-bg); color:var(--aqua);}
+  .tl-cat.gov{background:var(--surface-2); color:var(--violet);}
+  .tl-cat.credit{background:var(--chip-good-bg); color:var(--good);}
+  .tl-cat.cap{background:var(--surface-2); color:var(--blue);}
+  .tl-cat.news{background:var(--surface-2); color:var(--ink-2);}
+
+  footer{padding:26px 0 60px; color:var(--ink-muted); font-size:12px;}
+  .backtop{
+    position:fixed; right:18px; bottom:18px; background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius-pill); padding:7px 12px; font-size:12px; color:var(--ink-2); text-decoration:none;
+    box-shadow:0 2px 8px rgba(16,31,94,.18); transition:border-color .15s ease, color .15s ease;
+  }
+  .backtop:hover{border-color:var(--brand-500); color:var(--brand-600);}
+  strong.hl{color:var(--ink);}
+  .band{font-weight:700;}
+
+  @media (max-width:700px){ table{font-size:12px;} }
+  @media (max-width:640px){ .wrap{padding:0 14px 60px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero" id="top">
+  <div class="kicker">Equity Research Note — Not Investment Advice</div>
+  <h1>Alkyl Amines Chemicals Ltd (ALKYLAMINE)</h1>
+  <div class="subtitle">
+    <span class="tag">NSE / BSE: ALKYLAMINE · 506767</span>
+    <span class="tag">Basic Materials — Specialty Chemicals</span>
+    <span class="tag">Navi Mumbai, India</span>
+    <span class="tag">Report basis: through Q1 FY27 (Jun-2026) results, filed 2026-08-04</span>
+  </div>
+  <p class="lede">A journey through the last eight reported quarters (Q2 FY25 → Q1 FY27) and the FY25/FY26 annual reports — a debt-free, founder-led specialty amines maker that spent two flat-to-declining years absorbing Chinese import dumping, a new domestic competitor and a global ammonia supply shock, before a sharp Q1 FY27 rebound that management itself has cautioned may not be sustainable. Figures are sourced from company BSE filings (financial results, investor presentations, earnings-call transcripts, annual report), Yahoo Finance (yfinance) market data, and BSE/news wires. All ₹ figures in Crore (Cr) unless stated.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><div class="label">CMP (20-Aug-26)</div><div class="value">₹1,956.10</div><div class="delta flat">52-wk range ₹1,212–2,202</div></div>
+    <div class="stat-tile"><div class="label">Market Cap</div><div class="value">₹10,005 Cr</div><div class="delta flat">5.11 Cr shares</div></div>
+    <div class="stat-tile"><div class="label">TTM P/E</div><div class="value">44.5x</div><div class="delta down">Fwd P/E 42.4x</div></div>
+    <div class="stat-tile"><div class="label">Price/Book</div><div class="value">6.52x</div><div class="delta flat">BVPS ≈ ₹299.81</div></div>
+    <div class="stat-tile"><div class="label">Net Cash (no debt)</div><div class="value">₹249.8 Cr</div><div class="delta up">Total debt only ₹1.2 Cr</div></div>
+    <div class="stat-tile"><div class="label">FY26 ROE</div><div class="value">~11.7%</div><div class="delta down">vs 19.6% FY23</div></div>
+    <div class="stat-tile"><div class="label">Analyst Mean Target</div><div class="value">₹1,727</div><div class="delta down">-11.7% vs CMP (3 analysts)</div></div>
+    <div class="stat-tile"><div class="label">Div. Yield / Payout</div><div class="value">0.76%</div><div class="delta flat">₹10/sh, ~28% payout</div></div>
+  </div>
+
+  <nav class="toc">
+    <a href="#verdict">Investment View</a>
+    <a href="#s1">1. Business &amp; Moats</a>
+    <a href="#s2">2. Recent News</a>
+    <a href="#s3">3. Sales &amp; Expansion</a>
+    <a href="#s4">4. Margins &amp; Profitability</a>
+    <a href="#s6">6. Balance Sheet &amp; Capital Allocation</a>
+    <a href="#s7">7. Cash Flow</a>
+    <a href="#s8">8. Management &amp; Governance</a>
+    <a href="#s9">9. Other Call Insights</a>
+    <a href="#s10">10. Analyst Coverage</a>
+    <a href="#s11">11. Outlook &amp; Valuation</a>
+    <a href="#methodology">Methodology</a>
+  </nav>
+</header>
+
+<section id="verdict">
+  <h2>Investment View <span class="num">— probability-banded verdict</span></h2>
+  <div class="callout verdict">
+    <h4><span class="ai-pill">AI-Synthesized View</span>One-year outlook: <span class="band">Medium-to-low likelihood (~30–40%) of meaningfully positive total returns from CMP</span></h4>
+    <p>Alkyl Amines is a genuinely <strong class="hl">high-quality balance sheet</strong> — debt-free with ₹249.8 Cr of net cash, funding two new specialty-chemical projects (Dahej, Kurkumbh) entirely from internal accruals, an unqualified audit opinion, and a stable CRISIL AA-/A1+ rating. But the <strong class="hl">underlying earnings engine has been stuck for two years</strong>: FY25 volume growth of ~13% beat management's own guidance, but FY26 came in flat-to-down (revenue -2.3%, PAT -3.3%) — a clear miss against the "10-15%" growth management guided a year earlier — as Chinese dumping, US tariff/sanctions spillovers and a new fourth domestic methylamine competitor (Aarti Drugs) all bit at once. ROE has roughly halved since its FY23 peak (19.6%→11.7%) and two consecutive capex projects have slipped their completion timelines by 3-9 months. The <strong class="hl">Q1 FY27 print (revenue +30%, PAT +91%, EBITDA margin 27.1% vs a ~20% run-rate)</strong> looks spectacular, but is explained by management's own prior commentary as a temporary pass-through of a doubled ammonia price plus residual cheap-ammonia inventory after March 2026's force-majeure supply shock — management explicitly said in May 2026, "this kind of thing, we will not be able to sustain... it's only temporary." At 44.5x trailing / 42.4x forward P/E and 6.5x P/B, the stock is priced well above its own FY26 profitability, and the thin three-analyst coverage base carries a mean target (₹1,727) already <em>below</em> CMP with a Hold/Neutral consensus even after upward FY27/28 estimate revisions — suggesting the Q1 FY27 beat and the acetonitrile anti-dumping-duty tailwind are already largely in the price. Watch: whether Q2 FY27 margins normalize back toward the ~20% band (confirming the "temporary" framing) or hold near 27% (which would force a genuine re-rating), and whether FY27 volume growth actually lands in management's guided 5-10% band after two years of guidance misses.</p>
+  </div>
+  <div class="grid2">
+    <div class="card strength">
+      <h4>What's working</h4>
+      <ul>
+        <li>Debt-free balance sheet: ₹249.8 Cr net cash (FY26), up from a small net-debt position in FY23 — capex self-funded, no leverage risk (interest coverage ~349x)</li>
+        <li>Acetonitrile anti-dumping duty (effective Jun-2025) finally showing through — market share regained in Q4 FY26 per management</li>
+        <li>Ethylamines: a stable two-player domestic duopoly (with Balaji) — "the market has adjusted and the margins have improved"</li>
+        <li>FY25 volume growth (~13%) beat the ">10%" guidance given at the start of the year</li>
+        <li>₹10/share dividend held flat through a flat-earnings year (~28% payout, comfortably covered by free cash flow)</li>
+        <li>Unmodified/unqualified statutory and secretarial audit opinions; immaterial related-party transactions; CRISIL AA-/A1+ reaffirmed with no rating action</li>
+      </ul>
+    </div>
+    <div class="card weak">
+      <h4>What's not working</h4>
+      <ul>
+        <li>FY26 volume/revenue flat-to-down — a clear miss against the "10-15%" growth management guided in May-2025</li>
+        <li>A fourth domestic methylamine producer (Aarti Drugs, ~50-60k TPA) has entered — the first new domestic entrant in "30, 35 years," structurally overhanging that segment</li>
+        <li>March-2026 ammonia force-majeure exposed a genuine single-input-source vulnerability, forcing a temporary shutdown of ammonia-based production at all three plants</li>
+        <li>Two consecutive capex projects (Dahej, new Kurkumbh) have both slipped their guided completion dates by roughly 3–9 months</li>
+        <li>ROE (19.6%→11.7%) and ROCE (24.8%→15.9%) both roughly halved from the FY23 peak to FY26</li>
+        <li>Q1 FY27's 27.1% EBITDA margin is explicitly flagged by management's own prior commentary as temporary/unsustainable, not a new structural level</li>
+        <li>Governance flag: 48.34% of institutional votes opposed a director's re-appointment at the Jul-2026 AGM; thin 3-analyst coverage with a mean target below CMP</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1.</span> Business, Segments, Moats &amp; Growth History</h2>
+  <p class="lede">Founded in 1979 by Yogesh M. Kothari, Alkyl Amines has spent over four decades building what its own annual report calls a "leadership position in some of the products in domestic market, driven by strong in-house technology" — a genuinely self-funded, family-run specialty-chemicals compounder that has weathered several China-driven pricing cycles.</p>
+
+  <h3>What the company does</h3>
+  <p>Alkyl Amines manufactures <strong class="hl">aliphatic amines</strong> (methylamines, ethylamines, isopropylamines, n-propylamines, n-butylamines, ethylhexylamines, furfurylamines, cyclohexylamines), <strong class="hl">amine derivatives</strong> (dimethylamine hydrochloride, DEET, DEPA and others), and <strong class="hl">specialty chemicals</strong> (acetonitrile/ACN, DBU, diethylketone and others) sold into pharmaceutical, agrochemical, water-treatment and rubber-chemical end-markets. Statutory (Ind AS 108) segment reporting is deliberately simple: the company discloses only <strong class="hl">"a Single operating segment, i.e. Specialty Chemicals"</strong> — the product-family and geography detail below is disclosed only in investor presentations and earnings calls, not as formal segments.</p>
+
+  <div class="tblwrap"><table>
+    <thead><tr><th>Site</th><th>State</th><th>Core products</th><th>Role in the FY25–27 story</th></tr></thead>
+    <tbody>
+      <tr><td>Patalganga</td><td>Maharashtra</td><td>Methylamines, ethylamines, derivatives</td><td>Flagship/original site; one of three plants hit by the Mar-2026 ammonia force majeure</td></tr>
+      <tr><td>Kurkumbh</td><td>Maharashtra</td><td>Ethylamines, derivatives, acetonitrile (ACN)</td><td>Houses the new ~₹120cr specialty-chemical project (dyes/pigments/electronics import substitute); also hit by the ammonia shortage</td></tr>
+      <tr><td>Dahej</td><td>Gujarat</td><td>Acetonitrile (ACN); new specialty molecule under construction</td><td>Houses the ₹115–150cr Dahej project (import substitute); also hit by the ammonia shortage</td></tr>
+      <tr><td>Pune (R&amp;D/Projects office)</td><td>Maharashtra</td><td>R&amp;D, process engineering</td><td>Central technology function behind ~35–40 years of in-house process development</td></tr>
+      <tr class="total"><td>Captive solar (Bhoom, Manwath, Talegadh)</td><td colspan="3">Three captive solar plants (2 Maharashtra, 1 Gujarat) supplying renewable power to the manufacturing sites</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">Source: FY26 Annual Report MD&amp;A (AnnouncementsConv/2026-06-09_reg-34-1-annual-report). Total production capacity ~2,00,000 MT (~1,50,000 MT saleable after ~25% self-consumption for derivatives); ACN capacity ~30,000 MT across Kurkumbh+Dahej; average plant utilization has run 60–70%, individual plants ranging ~50–85% (Q4FY25/Q4FY26 calls).</p>
+
+  <h3>Self-described moats</h3>
+  <div class="grid3">
+    <div class="card"><h4>In-house technology self-sufficiency</h4><p style="font-size:13.5px">"Barring the initial technologies which we imported from America, all the products we have launched in the last 35–40 years have been with our own R&amp;D and engineering efforts" — a genuinely differentiated process-development track record versus import-dependent peers.</p></div>
+    <div class="card"><h4>Scale claims in core products</h4><p style="font-size:13.5px">Management: "we are probably either the largest or the second largest producer of ethylamines in the world already," and on acetonitrile, "we suspect that we will be the lowest cost manufacturer in this product for some time to come" — self-reported, not independently verified in this dataset.</p></div>
+    <div class="card"><h4>Customer-led product pipeline</h4><p style="font-size:13.5px">New molecules are typically co-developed with customers ("the customers are the first people to know about the products"); roughly a dozen products sit in the R&amp;D pipeline at any time, of which "maybe 1 or 2 may survive to commercialization" — a disciplined, demand-pulled (not speculative) R&amp;D funnel.</p></div>
+    <div class="card"><h4>Debt-free capital structure</h4><p style="font-size:13.5px">Every capex program referenced across the calls reviewed — the 2022 ₹225–300cr multi-molecule program, the Nov-2024 Dahej project, the Nov-2025 Kurkumbh project — is explicitly funded from internal accruals, not debt, giving genuine flexibility to slow or pace capex through a downturn.</p></div>
+    <div class="card"><h4>Land bank for organic growth</h4><p style="font-size:13.5px">As of Nov-2024, management said the company holds land at both Kurkumbh and Dahej sufficient "for at least another 2 to 3 years" without needing further acquisition — removes a common mid-cap-chemicals bottleneck (site availability) from the near-term growth story.</p></div>
+    <div class="card"><h4>Two-player domestic duopolies</h4><p style="font-size:13.5px">In ethylamines specifically, only two domestic producers exist (Alkyl Amines and Balaji Amines), which management credits for pricing discipline recovering after a period of oversupply — a structural (if narrow) moat that does not extend to methylamines, now a four-player market.</p></div>
+  </div>
+
+  <h3>Growth history</h3>
+  <ul class="qlist">
+    <li><span class="d">1979</span> — Founded by Yogesh M. Kothari as a manufacturer of aliphatic amines.</li>
+    <li><span class="d">Sep 2022 – FY23</span> — Board approves a large ~₹225–300cr multi-molecule specialty-chemicals capex program; FY23 marks the peak of a multi-year capex cycle (₹303cr capex, CWIP swells to ₹352cr), largely a major ethylamines capacity expansion — funded partly by a temporary net-debt position (the only year in this dataset where debt exceeded cash).</li>
+    <li><span class="d">FY24</span> — Margins roughly halve from the FY23 peak (EBITDA margin 21.5%→18.7%, PAT -35% YoY) as Chinese dumping of acetonitrile and agrochemical intermediates depresses pricing even as the new ethylamines capacity ramps up.</li>
+    <li><span class="d">Nov 2024</span> — Board approves the Dahej specialty-chemicals project (₹115–150cr, 3,000–4,000 MTPA, import substitute) as the next tranche of the 2022 program; company applies for anti-dumping protection on MIPA against Chinese imports.</li>
+    <li><span class="d">FY25</span> — Volume growth ~13% beats the "cross 10%" guidance given mid-year; EBITDA margin recovers to a ~20–21% band.</li>
+    <li><span class="d">Jun 2025</span> — Anti-dumping duty on acetonitrile finally takes effect after DGTR recommendation and Ministry of Finance approval — though a pre-duty import surge blunts the immediate benefit.</li>
+    <li><span class="d">Jul–Nov 2025</span> — H1 FY26 volume growth stalls to "marginally up" as US tariff/sanctions disruption ripples through pharma-customer demand and Chinese exporters reroute dumped volumes into India/Asia; Aarti Drugs commissions a fourth domestic methylamine plant (~50–60k TPA), permanently altering that segment's competitive structure.</li>
+    <li><span class="d">Nov 2025</span> — Board approves a second new specialty-chemicals project at Kurkumbh (~₹120cr, import substitute for dyes/pigments/electronics end-uses).</li>
+    <li><span class="d">Mar 2026</span> — A Middle-East geopolitical conflict disrupts global ammonia supply; multiple suppliers invoke force majeure, forcing Alkyl Amines to temporarily suspend ammonia-based production (methylamines, ethylamines, derivatives) across all three plants — the single largest operational disruption in the period reviewed.</li>
+    <li><span class="d">FY26 (full year)</span> — Revenue and PAT both essentially flat YoY (-2% to -3%), missing the "10-15%" volume guidance given a year earlier; management maintains the company nonetheless held or slightly grew market share.</li>
+    <li><span class="d">Q1 FY27 (Jun-26)</span> — Revenue +30% YoY, PAT +91% YoY, EBITDA margin jumps to ~27% — a sharp rebound this report's analysis attributes to post-crisis ammonia-price pass-through and residual cheap-inventory cost advantage, which management itself has said is not sustainable.</li>
+    <li><span class="d">Aug 2026</span> — Board proposes (via postal ballot) restructuring the top leadership into an Executive Chairman + two Joint Managing Directors structure effective 1-Oct-2026, explicitly framed as succession planning.</li>
+  </ul>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2.</span> Recent News &amp; Filings</h2>
+  <p class="lede">Alkyl Amines' own BSE announcement stream is the most reliable near-term source. Below covers the results/governance news cycle from the March-2026 ammonia disruption through the report date (20-Aug-2026) — the company's <code>News/news.md</code> feed itself only carries seven dated events across this window, supplemented here with directly-relevant BSE filings.</p>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-date">Aug 19, 2026</div><div><span class="tl-cat news">Filing</span><br>Routine statutory newspaper-publication filing.</div></div>
+    <div class="tl-item"><div class="tl-date">Aug 18, 2026</div><div><span class="tl-cat gov">Postal Ballot</span><br>Notice seeking shareholder approval (voting window 21-Aug to 19-Sep-2026) for the Executive Chairman/Joint-MD leadership restructuring and authorization to pay up to 1% of net profits as commission to non-executive directors — described in the news source as routine succession/governance mechanics driven partly by Companies Act age limits (directors over 70), with no indicated operational or financial impact.</div></div>
+    <div class="tl-item"><div class="tl-date">Aug 5, 2026</div><div><span class="tl-cat news">Analyst Coverage</span><br>Motilal Oswal raises FY27E/FY28E estimates 28%/17% on the back of the Q1 print, sets a ₹1,950 target (40x FY28E EPS) on 11%/16%/19% projected revenue/EBITDA/PAT CAGR FY26-28 — but keeps a <strong>Neutral</strong> rating, implying the Street sees the good news as largely priced in already.</div></div>
+    <div class="tl-item"><div class="tl-date">Aug 4, 2026</div><div><span class="tl-cat cap">Results / Governance</span><br><strong>Q1 FY27 results</strong>: revenue +30.2% YoY to ₹528.01cr, PAT +91.4% YoY to ₹94.63cr, EBITDA +69% YoY to ₹142.90cr, EPS nearly doubled to ₹18.50. Same-day filing detailed the leadership succession plan (Executive Chairman + 2 Joint MDs) and disclosed a pending National Peroxide Ltd litigation involving Whole-time Director Rakesh Goyal (see Section 8).</div></div>
+    <div class="tl-item"><div class="tl-date">Jul 17, 2026</div><div><span class="tl-cat cap">Board Meeting</span><br>Intimation of the board meeting that approved Q1 FY27 results (held Aug 4).</div></div>
+    <div class="tl-item"><div class="tl-date">Jul 3–7, 2026</div><div><span class="tl-cat gov">46th AGM</span><br>Shareholders approve the ₹10/share FY26 dividend (500% of face value) with 96.22% support — but <strong>48.34% of institutional votes opposed</strong> the re-appointment of Director Premal N. Kapadia, a governance flag despite the resolution passing overall; no forward guidance was given at the AGM itself.</div></div>
+    <div class="tl-item"><div class="tl-date">Jun 9, 2026</div><div><span class="tl-cat gov">Annual Report</span><br><strong>FY2025-26 Annual Report</strong> and BRSR (sustainability report) filed — the primary source for Sections 1, 6 and 8 of this report.</div></div>
+    <div class="tl-item"><div class="tl-date">May 13, 2026</div><div><span class="tl-cat cap">Earnings Call</span><br>Q4 FY26/FY26 earnings call: FY26 revenue -2.3% YoY, PAT -3.3% YoY; management guides FY27 volume growth of 5-10% and capex of ₹80-90cr, mainly to complete the Dahej project.</div></div>
+    <div class="tl-item"><div class="tl-date">May 5–6, 2026</div><div><span class="tl-cat cap">Results / Coverage</span><br>Q4 FY26/FY26 results and ₹10/share dividend recommended; Motilal Oswal separately reiterates Neutral with a ₹1,720 target (6-7% CAGR FY26-28 at the time).</div></div>
+    <div class="tl-item"><div class="tl-date">Mar 16, 2026</div><div><span class="tl-cat ma">Operational Disruption</span><br>Media reports (via Google News, no direct BSE filing type found in this category) that Alkyl Amines temporarily suspended production of methylamines, ethylamines and derivatives at Patalganga, Kurkumbh and Dahej due to ammonia unavailability from Middle-East geopolitical disruption and supplier force majeures — company said it could not yet quantify the financial/operational impact.</div></div>
+    <div class="tl-item"><div class="tl-date">Dec 29, 2025</div><div><span class="tl-cat credit">Credit Rating</span><br>CRISIL Ratings reaffirms <strong>AA-/Stable</strong> (long-term) and <strong>A1+</strong> (short-term) on ₹189.38cr of rated bank facilities — a straight reaffirmation, no rating action.</div></div>
+  </div>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3.</span> Sales, Segment/Geography Mix, Expansion &amp; Guidance</h2>
+  <p class="lede">Quarterly revenue bounced in a fairly narrow ₹354–415cr band for six straight quarters (Q3 FY25 through Q4 FY26) before jumping sharply to ₹528cr in Q1 FY27 — a break from trend this report treats cautiously given management's own framing of the driver as temporary (see Section 4).</p>
+
+  <h3>Quarterly revenue trend (₹ Cr, revenue from operations)</h3>
+  <div class="chart-card">
+    <div class="chart-title">Revenue from operations — Q2 FY25 → Q1 FY27</div>
+    <div class="barchart">
+      <div class="bar-group"><div class="bar-val">415</div><div class="bar-col"><div class="bar" style="height:78.6%; background:var(--blue);"></div></div><div class="bar-label">Q2<br>FY25</div></div>
+      <div class="bar-group"><div class="bar-val">371</div><div class="bar-col"><div class="bar" style="height:70.3%; background:var(--blue);"></div></div><div class="bar-label">Q3<br>FY25</div></div>
+      <div class="bar-group"><div class="bar-val">386</div><div class="bar-col"><div class="bar" style="height:73.1%; background:var(--blue);"></div></div><div class="bar-label">Q4<br>FY25</div></div>
+      <div class="bar-group"><div class="bar-val">406</div><div class="bar-col"><div class="bar" style="height:76.8%; background:var(--blue);"></div></div><div class="bar-label">Q1<br>FY26</div></div>
+      <div class="bar-group"><div class="bar-val">389</div><div class="bar-col"><div class="bar" style="height:73.8%; background:var(--blue);"></div></div><div class="bar-label">Q2<br>FY26</div></div>
+      <div class="bar-group"><div class="bar-val">354</div><div class="bar-col"><div class="bar" style="height:67.0%; background:var(--blue);"></div></div><div class="bar-label">Q3<br>FY26</div></div>
+      <div class="bar-group"><div class="bar-val">387</div><div class="bar-col"><div class="bar" style="height:73.3%; background:var(--blue);"></div></div><div class="bar-label">Q4<br>FY26</div></div>
+      <div class="bar-group"><div class="bar-val">528</div><div class="bar-col"><div class="bar" style="height:100%; background:var(--aqua);"></div></div><div class="bar-label">Q1<br>FY27</div></div>
+    </div>
+    <div class="legend"><span><span class="sw" style="background:var(--blue)"></span>Six-quarter ₹354–415cr band</span><span><span class="sw" style="background:var(--aqua)"></span>Q1 FY27 — ammonia price pass-through, flagged as temporary by management</span></div>
+  </div>
+  <p class="src">Source: quarterly financial-results filings (Nov-2024 → Aug-2026) and MarketData quarterly income statement; both reconcile exactly for every quarter shown.</p>
+
+  <h3>Product &amp; geography mix</h3>
+  <div class="grid2">
+    <div class="card">
+      <h4>Product family split (last disclosed, Q4 FY25 call)</h4>
+      <p style="font-size:13.5px">Amines ~50%, amine derivatives ~30%, specialty chemicals ~18–20% of revenue. This breakdown was disclosed once, in May-2025, and not repeated on any later call reviewed — treat as a snapshot, not a confirmed current split.</p>
+    </div>
+    <div class="card">
+      <h4>Geography &amp; end-industry</h4>
+      <p style="font-size:13.5px">Consistently <strong>~80% domestic / ~20% export</strong> (minor drift 18-22%); management explicitly does not want to "push exports too much" given global trade uncertainty. End-industry: life sciences (pharma + agrochemicals combined) is <strong>~65–75%</strong> of turnover, the balance split across water treatment, rubber chemicals and other industrial uses.</p>
+    </div>
+  </div>
+
+  <h3>Volume, price/mix and guidance by quarter</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Quarter</th><th>What drove it</th><th>Guidance given that quarter</th></tr></thead>
+    <tbody>
+      <tr><td>Q2 FY25 (Sep-24)</td><td>Volume +17% YoY (weak prior-year base); FG prices fell ~5-6% vs RM -3-4%, squeezing margin; "focus will be more volume than margin"</td><td>FY25 volume: "hope to cross 10%"; FY25 capex ₹80-100cr, FY26 "~₹100-120cr"</td></tr>
+      <tr><td>Q3 FY25 (Dec-24)</td><td>No call transcript available in this dataset for this quarter</td><td>n/a</td></tr>
+      <tr><td>Q4 FY25 / FY25 (Mar-25)</td><td>FY25 volume +13% (beat); topline +9% vs volume +13% implies ~-4% price/mix, concentrated in ethylamines/methylamines; EBITDA margin ~20-21%</td><td>FY26: "double digit... 10% to 15%" volume growth; margin improvement "difficult to say... we do not foresee it"; FY26 capex ~₹150cr</td></tr>
+      <tr><td>Q1 FY26 (Jun-25)</td><td>No call transcript available in this dataset for this quarter</td><td>n/a</td></tr>
+      <tr><td>Q2 FY26 / H1 (Sep-25)</td><td>H1 volume only "marginally up" — a clear miss; US tariff/sanctions spillover + Chinese rerouting + new Aarti methylamine capacity; ethylamines held up better than methylamines</td><td>ACN duty benefit guided to show "mainly volume... from Q4 FY26 onward"; new Kurkumbh project ~₹120cr, completion guided Feb-Mar 2026</td></tr>
+      <tr><td>Q3 FY26 (Dec-25)</td><td>No call transcript available in this dataset for this quarter</td><td>n/a</td></tr>
+      <tr><td>Q4 FY26 / FY26 (Mar-26)</td><td>FY26 flat/-1% to -2% (volume -1%, price -1%); March ammonia force-majeure the dominant event; market share "retained and perhaps even slightly increased"; ACN duty benefit finally visible in pricing/market share by quarter-end</td><td>FY27 volume "5% to 10%" ("a normal year"); FY27 capex ~₹80-90cr; new capex decisions deferred "until this volatility... settles"</td></tr>
+      <tr><td>Q1 FY27 (Jun-26)</td><td>Revenue +30.2%/PAT +91.4% YoY — no transcript filed yet to confirm volume vs. price/inventory split; treated per management's own May-2026 "temporary" framing until confirmed</td><td>No new transcript-based guidance available yet</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">Source: Q2FY25 (Nov-2024), Q4FY25 (May-2025), Q2FY26 (Nov-2025) and Q4FY26 (May-2026) earnings-call transcripts — the only four transcripts available in this dataset; Q3FY25, Q1FY26, Q3FY26 and Q1FY27 have results filings only, no call transcript, flagged as a genuine data gap rather than silently filled.</p>
+
+  <h3>Market position &amp; competitive structure</h3>
+  <p style="font-size:14px">No independent market-share/ranking figure is disclosed; management self-describes as "largest or second largest" global ethylamines producer and the presumptive lowest-cost domestic ACN producer. The competitive map differs sharply by product: <strong>ethylamines</strong> is a stable two-player domestic duopoly (Alkyl Amines + Balaji Amines, though Balaji is commissioning a new 18,000-ton ACN plant that may add future ACN competition); <strong>methylamines</strong> shifted from a three-player market (Alkyl Amines, Balaji, RCF) to four with Aarti Drugs' 50-60k TPA plant coming online in H2 FY26 — management calls this "an overcapacity... that will take some time to fill up," against total declared market capacity of 150,000+ tons versus ~80-90,000 tons of actual four-player demand.</p>
+
+  <h3>Horizontal &amp; vertical expansion</h3>
+  <div class="callout warn">
+    <h4>Forward guidance — what management has and hasn't committed to</h4>
+    <p style="font-size:13.5px">Both active capex projects are <strong>vertical/product-line expansions at existing sites</strong>, not new geographies or M&amp;A: the <strong>Dahej project</strong> (₹115-150cr, 3,000-4,000 MTPA new molecule, import substitute) was guided for mechanical completion Dec-2025/Jan-2026 but has slipped to "early Q2 FY2026-27" (Jul-Sep 2026) per the FY26 Annual Report; the <strong>new Kurkumbh project</strong> (~₹120cr, import substitute for dyes/pigments/electronics) was guided for Feb-Mar 2026 completion but slipped to "beginning of the next quarter" (end-Jun-2026) per the Q4 FY26 call, with management stressing project economics were unaffected by the delay. On new geographies, management has been explicit it does <em>not</em> want to push exports further given global trade uncertainty — this is a deliberately domestic-anchored growth story, not an international expansion one.</p>
+  </div>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4.</span> Margins, EBITDA, PAT &amp; Cost Drivers</h2>
+  <p class="lede">EBITDA margin held a remarkably tight ~20-21% band for six consecutive quarters (Q3 FY25 – Q4 FY26) despite the revenue stagnation described above, then jumped to 27.1% in Q1 FY27 — a break management's own prior commentary suggests is a temporary pass-through effect, not a new structural level.</p>
+
+  <h3>EBITDA &amp; PAT margin trend</h3>
+  <div class="chart-card">
+    <div class="chart-title">EBITDA margin vs. PAT margin, % of revenue from operations (yfinance basis — see methodology)</div>
+    <div class="barchart">
+      <div class="bar-group"><div class="bars-inline">
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:69.4%; background:var(--blue);" title="EBITDA margin 20.82%"></div></div>
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:39.3%; background:var(--orange);" title="PAT margin 11.79%"></div></div>
+      </div><div class="bar-label">Q3<br>FY25</div></div>
+      <div class="bar-group"><div class="bars-inline">
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:66.6%; background:var(--blue);" title="EBITDA margin 19.98%"></div></div>
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:39.7%; background:var(--orange);" title="PAT margin 11.92%"></div></div>
+      </div><div class="bar-label">Q4<br>FY25</div></div>
+      <div class="bar-group"><div class="bars-inline">
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:69.5%; background:var(--blue);" title="EBITDA margin 20.85%"></div></div>
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:40.6%; background:var(--orange);" title="PAT margin 12.19%"></div></div>
+      </div><div class="bar-label">Q1<br>FY26</div></div>
+      <div class="bar-group"><div class="bars-inline">
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:66.5%; background:var(--blue);" title="EBITDA margin 19.94% (estimated from filing, see note)"></div></div>
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:36.8%; background:var(--orange);" title="PAT margin 11.03%"></div></div>
+      </div><div class="bar-label">Q2<br>FY26</div></div>
+      <div class="bar-group"><div class="bars-inline">
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:70.8%; background:var(--blue);" title="EBITDA margin 21.23%"></div></div>
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:39.8%; background:var(--orange);" title="PAT margin 11.94%"></div></div>
+      </div><div class="bar-label">Q3<br>FY26</div></div>
+      <div class="bar-group"><div class="bars-inline">
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:68.0%; background:var(--blue);" title="EBITDA margin 20.41%"></div></div>
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:39.1%; background:var(--orange);" title="PAT margin 11.73%"></div></div>
+      </div><div class="bar-label">Q4<br>FY26</div></div>
+      <div class="bar-group"><div class="bars-inline">
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:90.2%; background:var(--blue);" title="EBITDA margin 27.07%"></div></div>
+        <div class="bar-col" style="width:45%;"><div class="bar" style="height:59.8%; background:var(--orange);" title="PAT margin 17.93%"></div></div>
+      </div><div class="bar-label">Q1<br>FY27</div></div>
+    </div>
+    <div class="legend"><span><span class="sw" style="background:var(--blue)"></span>EBITDA margin</span><span><span class="sw" style="background:var(--orange)"></span>PAT margin</span></div>
+  </div>
+
+  <div class="tblwrap"><table>
+    <thead><tr><th>Quarter</th><th>Revenue ₹Cr</th><th>EBITDA ₹Cr</th><th>EBITDA %</th><th>D&amp;A ₹Cr</th><th>Fin. cost ₹Cr</th><th>PBT ₹Cr</th><th>PAT ₹Cr</th><th>PAT %</th><th>EPS ₹</th></tr></thead>
+    <tbody>
+      <tr><td>Q2 FY25</td><td>414.89</td><td>n/a</td><td>n/a</td><td>n/a</td><td>n/a</td><td>n/a</td><td>47.46</td><td>11.44%</td><td>9.29</td></tr>
+      <tr><td>Q3 FY25</td><td>371.20</td><td>77.27</td><td>20.82%</td><td>17.93</td><td>0.29</td><td>59.05</td><td>43.76</td><td>11.79%</td><td>8.55</td></tr>
+      <tr><td>Q4 FY25</td><td>386.05</td><td>77.13</td><td>19.98%</td><td>17.61</td><td>0.17</td><td>59.35</td><td>46.02</td><td>11.92%</td><td>8.99</td></tr>
+      <tr><td>Q1 FY26</td><td>405.53</td><td>84.53</td><td>20.85%</td><td>17.89</td><td>0.30</td><td>66.34</td><td>49.44</td><td>12.19%</td><td>9.65</td></tr>
+      <tr><td>Q2 FY26*</td><td>389.41</td><td>77.64</td><td>19.94%</td><td>18.19</td><td>0.34</td><td>59.11</td><td>42.94</td><td>11.03%</td><td>8.39</td></tr>
+      <tr><td>Q3 FY26</td><td>354.00</td><td>75.17</td><td>21.23%</td><td>17.69</td><td>0.24</td><td>57.24</td><td>42.26</td><td>11.94%</td><td>8.25</td></tr>
+      <tr><td>Q4 FY26</td><td>386.91</td><td>78.96</td><td>20.41%</td><td>17.89</td><td>0.29</td><td>60.78</td><td>45.37</td><td>11.73%</td><td>8.86</td></tr>
+      <tr><td>Q1 FY27</td><td>528.01</td><td>142.90</td><td>27.07%</td><td>17.84</td><td>0.39</td><td>124.67</td><td>94.63</td><td>17.93%</td><td>18.47</td></tr>
+      <tr class="total"><td>FY25 (full year)</td><td>1,548.20†</td><td>320.45</td><td>20.70%</td><td>71.24</td><td>0.57</td><td>248.64</td><td>186.11</td><td>12.02%</td><td>36.35</td></tr>
+      <tr class="total"><td>FY26 (full year)</td><td>1,511.88†</td><td>315.83</td><td>20.89%</td><td>71.66</td><td>0.70</td><td>243.47</td><td>180.00</td><td>11.91%</td><td>35.15</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">Source: MarketData quarterly/annual income statement (Yahoo Finance). *Q2 FY26 is not in yfinance's 6-quarter quarterly window; EBITDA/EPS for that quarter are derived directly from the Q3 FY26 results filing's comparative column using yfinance's own convention (EBIT = PBT + finance cost; EBITDA = EBIT + D&amp;A) so the series stays methodologically consistent. †Annual "Total Revenue" from yfinance runs ~1.5-2% below the company's own filed "Revenue from Operations" (FY26: ₹1,511.88cr yfinance vs ₹1,535.85cr filed; FY25: ₹1,548.20cr vs ₹1,571.82cr filed) — quarterly figures reconcile exactly between the two sources, so this is an annual-statement presentation quirk, not a data error; see Methodology.</p>
+
+  <h3>What actually moved the margin</h3>
+  <div class="grid2">
+    <div class="card strength">
+      <h4>Genuine structural tailwind: acetonitrile duty + ethylamines discipline</h4>
+      <p style="font-size:13.5px">The Jun-2025 anti-dumping duty on acetonitrile took time to bite (a pre-duty import surge initially blunted it) but by Q4 FY26 management confirmed "import volumes declined, resulting in an increase in our market share of Acetonitrile." Separately, ethylamines pricing improved through FY26 as the two-player domestic market "adjusted" following the earlier oversupply from the new large plant that came online FY23-24.</p>
+    </div>
+    <div class="card weak">
+      <h4>Temporary tailwind: the ammonia price shock</h4>
+      <p style="font-size:13.5px">March-2026's force-majeure ammonia shortage roughly doubled ammonia costs (~₹50/kg → over ₹100/kg); the company passed this through to finished-goods pricing while still selling through cheaper legacy inventory, temporarily widening margins. Management's own words: "this kind of thing, we will not be able to sustain... it's only temporary" — directly implicating the Q1 FY27 margin spike as a pass-through/inventory effect rather than a new sustainable level. Ammonia contracts have also shifted to short-term only, since "nobody is willing to commit longer term," adding a genuine forward cost-volatility risk.</p>
+    </div>
+  </div>
+
+  <h3>Below-the-line: finance costs &amp; depreciation</h3>
+  <p>Both are structurally immaterial to the margin story here (unlike a leveraged peer): quarterly finance costs have run ₹0.17–0.39cr — under 0.1% of revenue every quarter — reflecting the company's near-zero debt load. D&amp;A has been remarkably stable at ₹17.6–18.2cr/quarter across the entire eight-quarter window, ticking up only modestly as the Dahej and Kurkumbh projects near completion. Interest coverage (EBIT/finance cost) is not a meaningful risk metric here — it runs into the hundreds-of-times range every year (Section 6) — a genuine point of difference from more leveraged specialty-chemical peers.</p>
+
+  <div class="callout bad">
+    <h4>Guidance-vs-actual: consensus EPS missed 4 of the last 6 reported quarters, then blown away in Q1 FY27</h4>
+    <div class="chart-card" style="margin-top:8px;">
+      <div class="chart-title">Consensus EPS estimate vs. reported EPS (₹)</div>
+      <div class="barchart">
+        <div class="bar-group"><div class="bars-inline">
+          <div class="bar-col" style="width:40%;"><div class="bar" style="height:53.1%; background:var(--ink-muted); opacity:.5;" title="Est. 9.80"></div></div>
+          <div class="bar-col" style="width:40%;"><div class="bar" style="height:51.7%; background:var(--critical);" title="Actual 9.55 — miss -2.55%"></div></div>
+        </div><div class="bar-label">Q1 FY25</div></div>
+        <div class="bar-group"><div class="bars-inline">
+          <div class="bar-col" style="width:40%;"><div class="bar" style="height:48.2%; background:var(--ink-muted); opacity:.5;" title="Est. 8.90"></div></div>
+          <div class="bar-col" style="width:40%;"><div class="bar" style="height:46.3%; background:var(--critical);" title="Actual 8.55 — miss -3.93%"></div></div>
+        </div><div class="bar-label">Q3 FY25</div></div>
+        <div class="bar-group"><div class="bars-inline">
+          <div class="bar-col" style="width:40%;"><div class="bar" style="height:56.3%; background:var(--ink-muted); opacity:.5;" title="Est. 10.40"></div></div>
+          <div class="bar-col" style="width:40%;"><div class="bar" style="height:48.7%; background:var(--critical);" title="Actual 8.99 — miss -13.56%"></div></div>
+        </div><div class="bar-label">Q4 FY25</div></div>
+        <div class="bar-group"><div class="bars-inline">
+          <div class="bar-col" style="width:40%;"><div class="bar" style="height:51.4%; background:var(--ink-muted); opacity:.5;" title="Est. 9.50"></div></div>
+          <div class="bar-col" style="width:40%;"><div class="bar" style="height:52.2%; background:var(--good);" title="Actual 9.65 — beat +1.58%"></div></div>
+        </div><div class="bar-label">Q1 FY26</div></div>
+        <div class="bar-group"><div class="bars-inline">
+          <div class="bar-col" style="width:40%;"><div class="bar" style="height:46.8%; background:var(--ink-muted); opacity:.5;" title="Est. 8.65"></div></div>
+          <div class="bar-col" style="width:40%;"><div class="bar" style="height:44.7%; background:var(--critical);" title="Actual 8.25 — miss -4.62%"></div></div>
+        </div><div class="bar-label">Q3 FY26</div></div>
+        <div class="bar-group"><div class="bars-inline">
+          <div class="bar-col" style="width:40%;"><div class="bar" style="height:45.5%; background:var(--ink-muted); opacity:.5;" title="Est. 8.40"></div></div>
+          <div class="bar-col" style="width:40%;"><div class="bar" style="height:100%; background:var(--good);" title="Actual 18.47 — beat +119.88%"></div></div>
+        </div><div class="bar-label">Q1 FY27</div></div>
+      </div>
+      <div class="legend"><span><span class="sw" style="background:var(--ink-muted); opacity:.5"></span>Consensus estimate</span><span><span class="sw" style="background:var(--good)"></span>Beat</span><span><span class="sw" style="background:var(--critical)"></span>Miss</span></div>
+    </div>
+    <p style="font-size:13.5px; margin-top:10px;">Source: MarketData earnings-history (Yahoo Finance) — Q2 FY25, Q2 FY26 and Q4 FY26 dates are missing from this feed, a genuine data gap. Of the six dates available, four were misses (three in the -2.5% to -13.6% range) before the Q1 FY27 print beat by a startling 119.9% — consistent with sell-side models under-estimating both the depth of the FY26 stagnation and the scale of the ammonia-driven margin spike, a forecasting-lag pattern in both directions rather than a one-way bias.</p>
+  </div>
+
+  <h3>Profitability ratio trend (annual)</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>FY</th><th>Revenue ₹Cr</th><th>EBITDA margin</th><th>PAT margin</th><th>ROE</th><th>ROCE</th></tr></thead>
+    <tbody>
+      <tr><td>FY23</td><td>1,656.89</td><td>21.52%</td><td>13.80%</td><td>19.56%</td><td>24.77%</td></tr>
+      <tr><td>FY24</td><td>1,419.00</td><td>18.69%</td><td>10.49%</td><td>11.75%</td><td>16.24%</td></tr>
+      <tr><td>FY25</td><td>1,548.20</td><td>20.70%</td><td>12.02%</td><td>13.27%</td><td>17.70%</td></tr>
+      <tr><td>FY26</td><td>1,511.88</td><td>20.89%</td><td>11.91%</td><td>11.74%</td><td>15.92%</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:14px">The FY23→FY24 collapse (margin -280bps, ROE -783bps) predates this report's quarter-by-quarter narrative but sets the backdrop: it coincides with the first wave of Chinese acetonitrile/intermediate dumping described repeatedly in later calls. FY25 partially recovered margin and ROE; FY26 held margin roughly flat but ROE/ROCE drifted down further as the equity base grew (retained earnings) faster than profit — i.e., the company is compounding capital at a lower rate than it did in FY23, even though absolute EBITDA margin looks similar.</p>
+
+  <h3>Cross-checks (per the quantitative-first methodology)</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Check</th><th>Result</th><th>Read</th></tr></thead>
+    <tbody>
+      <tr><td>CFO growth vs. PAT growth</td><td>FY25: PAT +25.1% vs CFO -4.2%; FY26: PAT -3.3% vs CFO -9.3%</td><td class="chip miss">Flag — FY25 shows a genuine divergence (strong PAT growth, falling CFO); FY26 both fell together, less concerning but still a two-year CFO decline against a roughly flat PAT base</td></tr>
+      <tr><td>Receivable days vs. revenue growth</td><td>56.9 (FY23) → 56.9 (FY24) → 53.5 (FY25) → 54.6 (FY26) days</td><td class="chip beat">Clean — stable in a narrow 53-57 day band regardless of revenue direction</td></tr>
+      <tr><td>Inventory days</td><td>76.1 (FY23) → 79.6 (FY24) → 69.7 (FY25) → 52.9 (FY26) days</td><td class="chip beat">Clean — declining materially, consistent with management's inventory-drawdown commentary, not a demand-slowdown signal</td></tr>
+      <tr><td>Payable days (trade payables)</td><td>78.6 (FY23) → 79.6 (FY24) → 75.0 (FY25) → 65.5 (FY26) days</td><td class="chip beat">Clean — paying suppliers faster over time, no working-capital stress signal</td></tr>
+      <tr><td>Capex vs. depreciation</td><td>6.72x (FY23) → 2.08x (FY24) → 0.67x (FY25) → 1.79x (FY26)</td><td class="chip miss">Flag — FY25 capex fell below depreciation (a maintenance-only year), consistent with the ~₹150cr capex guidance not being fully spent; FY26 capex resumed above D&amp;A as Dahej/Kurkumbh ramped</td></tr>
+      <tr><td>Debt growth vs. EBITDA growth</td><td>Total debt ₹1.2cr (FY26) vs ₹87.75cr (FY23) — structurally near-zero throughout</td><td class="chip beat">Clean — not a meaningful leverage risk in any year reviewed</td></tr>
+      <tr><td>Other income as % of PBT</td><td>~12.0% (FY25) → ~13.0% (FY26)</td><td class="chip beat">Clean — stable, profit growth is not being propped up by rising non-operating income</td></tr>
+      <tr><td>Related-party transactions</td><td>Annual Report: "no materially significant related party transactions"; no loans/advances to director-linked firms</td><td class="chip beat">Clean relative to ₹1,536cr revenue base</td></tr>
+      <tr><td>Auditor's opinion</td><td>N. M. Raiji &amp; Co. — unmodified/unqualified, 3 Key Audit Matters (litigation contingencies, receivable ECL judgment, revenue-cutoff timing)</td><td class="chip beat">Clean — no qualification</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6.</span> Balance Sheet, Capital Allocation &amp; Capex Plans</h2>
+  <p class="lede">Unlike many mid-cap chemicals stories, leverage is essentially not part of this narrative: Alkyl Amines swung from a small net-debt position in FY23 (during its peak capex year) to a large and growing net-cash position by FY26, funding both active capex projects entirely from internal accruals.</p>
+
+  <h3>Net cash / (net debt) trend</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>FY</th><th>Total debt ₹Cr</th><th>Cash + ST investments ₹Cr</th><th>Net cash / (net debt) ₹Cr</th><th>Debt/Equity</th><th>Interest coverage (EBIT/fin. cost)</th></tr></thead>
+    <tbody>
+      <tr><td>FY23</td><td>87.75</td><td>17.19</td><td>(70.56)</td><td>0.075x</td><td>114.0x</td></tr>
+      <tr><td>FY24</td><td>3.17</td><td>30.39</td><td>27.22</td><td>0.003x</td><td>54.4x</td></tr>
+      <tr><td>FY25</td><td>5.53</td><td>202.83</td><td>197.30</td><td>0.004x</td><td>437.2x</td></tr>
+      <tr><td>FY26</td><td>1.19</td><td>250.94</td><td>249.75</td><td>0.001x</td><td>348.8x</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">Source: MarketData annual balance sheet/income statement. Even in FY23 — the only year with net debt — leverage was minor (D/E 0.075x); the company has never carried meaningful leverage risk in the period covered by this dataset.</p>
+
+  <h3>Balance sheet summary, FY25 vs FY26 (₹ Cr)</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Item</th><th>Mar-25</th><th>Mar-26</th><th>Δ</th></tr></thead>
+    <tbody>
+      <tr><td>Total equity</td><td>1,402.48</td><td>1,533.37</td><td>+9.3%</td></tr>
+      <tr><td>Total borrowings</td><td>5.53</td><td>1.19</td><td>-79%</td></tr>
+      <tr><td>Net block + CWIP</td><td>1,093.29 + n/a</td><td>1,142.70 + 130.48 (CWIP)</td><td>Net PPE +4.5%</td></tr>
+      <tr><td>Trade receivables (gross)</td><td>230.15</td><td>229.66</td><td>-0.2%</td></tr>
+      <tr><td>Inventory</td><td>164.78</td><td>122.13</td><td>-25.9%</td></tr>
+      <tr><td>Trade payables</td><td>177.23</td><td>151.21</td><td>-14.7%</td></tr>
+      <tr><td>Cash &amp; short-term investments</td><td>202.83</td><td>250.94</td><td>+23.7%</td></tr>
+      <tr><td>Contingent liabilities</td><td>36.18</td><td>36.84</td><td>+1.8%, ~2.4% of revenue</td></tr>
+      <tr><td>Capital commitments (net of advances)</td><td>31.27</td><td>23.01</td><td>-26.4%</td></tr>
+      <tr class="total"><td>Total assets</td><td>1,788.86</td><td>1,895.41</td><td>+6.0%</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">Source: MarketData annual balance sheet, cross-checked against FY26 Annual Report Notes 3.3 and 36a-36b (capital commitments and contingent liabilities converted from ₹ lakh).</p>
+
+  <h3>How the capex projects are being funded</h3>
+  <p style="font-size:14px">Both active projects — the <strong class="hl">Dahej specialty-chemicals project</strong> (₹115-150cr, board-approved Nov-2024) and the <strong class="hl">new Kurkumbh specialty-chemicals project</strong> (~₹120cr, board-approved Nov-2025) — are explicitly funded from <strong>internal accruals</strong>, consistent with the company's zero-reliance-on-debt pattern. FY26 total capex (property, plant, equipment and CWIP) was <strong>₹128.4cr</strong> against the ~₹150cr guided a year earlier — a modest (~86% of plan) shortfall, materially smaller than the project-timeline slips noted in Section 3. Capital Work-in-Progress ageing (Annual Report Note 3.3) shows ₹16.29cr of CWIP in "projects temporarily suspended" and modest overdue-vs-plan amounts at Kurkumbh (₹2.24cr), Dahej (₹0.66cr) and Patalganga (₹0.30cr) expansions — the Annual Report states "there are no projects where actual cost has exceeded, compared to its original plan," i.e. delays have been timeline slips, not cost overruns.</p>
+
+  <div class="tblwrap"><table>
+    <thead><tr><th>Rating date</th><th>Agency</th><th>Long-term</th><th>Short-term</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>29-Dec-2025</td><td>CRISIL</td><td>AA- (Stable)</td><td>A1+</td><td>Reaffirmed on ₹189.38cr of rated bank facilities; no rating action</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:13.5px">Given the company's near-total absence of debt, this rating is more a governance/counterparty signal than a load-bearing risk metric — headroom against any leverage-linked trigger is effectively unlimited at current balance-sheet settings.</p>
+
+  <h3>Capital allocation summary</h3>
+  <p style="font-size:14px">FY26 uses of cash, in order of scale: <strong>₹128.4cr</strong> organic capex (Dahej + Kurkumbh projects plus maintenance), <strong>₹51.1cr</strong> dividends (₹10/share, ~28% payout — held flat despite flat earnings), and no acquisitions, buybacks or new debt issuance. The dividend has been held at ₹10/share for two consecutive years (FY25, FY26) despite the earnings stagnation, funded comfortably by free cash flow generation (Section 7) rather than by drawing down the cash pile. Management has explicitly deferred further capex decisions of any size (₹20cr to ₹200cr, per its own framing) "until this volatility in the market settles" — a conservative, wait-and-see capital-allocation posture consistent with the company's history of self-funding growth only when the underlying demand picture is clear.</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7.</span> Free Cash Flow &amp; Operating Cash Generation</h2>
+  <p class="lede">Alkyl Amines does not disclose quarterly cash-flow statements (only annual) — this section is necessarily annual-only, a genuine data-coverage gap for a quarter-over-quarter FCF view.</p>
+
+  <div class="tblwrap"><table>
+    <thead><tr><th>₹ Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+    <tbody>
+      <tr><td>Cash from operations (CFO)</td><td>248.38</td><td>274.79</td><td>263.11</td><td>238.55</td></tr>
+      <tr><td>Capex (purchase of PP&amp;E/CWIP)</td><td>-303.43</td><td>-122.32</td><td>-47.69</td><td>-128.40</td></tr>
+      <tr class="total"><td>Free cash flow (CFO − capex)</td><td>-55.04</td><td>152.47</td><td>215.42</td><td>110.15</td></tr>
+      <tr><td>Cash from financing</td><td>7.99</td><td>-140.14</td><td>-49.16</td><td>-56.08</td></tr>
+      <tr><td>Dividends paid</td><td>-51.09</td><td>-51.11</td><td>-51.13</td><td>-51.14</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">Source: MarketData annual cash flow statement.</p>
+
+  <h3>Reading the FCF swing</h3>
+  <div class="grid2">
+    <div class="card weak">
+      <h4>FY23: free cash flow turned negative</h4>
+      <p style="font-size:13.5px">FY23 FCF was <strong>-₹55.0 Cr</strong> — the only negative year in the dataset — as the peak of the ethylamines-expansion capex cycle (₹303.4cr) outran operating cash generation (₹248.4cr). This is also the year the balance sheet briefly carried net debt (Section 6).</p>
+    </div>
+    <div class="card strength">
+      <h4>FY24–25: FCF recovered sharply as capex pulled back</h4>
+      <p style="font-size:13.5px">As the FY23 expansion completed, capex fell to ₹122.3cr (FY24) and then just ₹47.7cr (FY25) — below depreciation, effectively a maintenance-only year — pushing FCF to a dataset-high <strong>₹215.4 Cr</strong> in FY25. FY26 capex resumed (₹128.4cr, funding Dahej/Kurkumbh) and FCF moderated to <strong>₹110.2 Cr</strong>, still comfortably positive.</p>
+    </div>
+  </div>
+  <p style="font-size:14px">One divergence worth flagging per the earnings-quality check in Section 4: <strong class="hl">CFO has now declined for two consecutive years</strong> (₹274.8cr FY24 → ₹263.1cr FY25 → ₹238.6cr FY26) even though PAT rose in FY25 before falling only modestly in FY26 — i.e., cash conversion of profit has been gently weakening, not improving, through the period. This is not severe enough to call a red flag on its own (both CFO and PAT remain solidly positive and dividends stayed fully covered), but it is the opposite direction from what a "quality compounding" story would ideally show, and is worth monitoring alongside the receivable/inventory/payable trends (all of which, by contrast, read clean).</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8.</span> Management Pedigree &amp; Governance</h2>
+
+  <h3>Board &amp; leadership</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Name</th><th>Role (current)</th><th>Background</th></tr></thead>
+    <tbody>
+      <tr><td>Yogesh M. Kothari</td><td>Chairman &amp; Managing Director (founder)</td><td>Age 77; Chemical Engineer (ICT Mumbai), Master's from University of Massachusetts Lowell; founded the company in 1979; holds 57.64% individually</td></tr>
+      <tr><td>Kirat M. Patel</td><td>Executive Director</td><td>Age 73; IIT Mumbai (B.Tech Mechanical), Jamnalal Bajaj Institute (MMS Finance); with the company since inception; primary spokesperson on recent earnings calls</td></tr>
+      <tr><td>Suneet Y. Kothari</td><td>Executive Director</td><td>Age 50; Cornell University (Chemical Engineering) and INSEAD MBA; son of Yogesh M. Kothari; with the company since 2001</td></tr>
+      <tr><td>Rakesh Goyal</td><td>Whole-time Director – Operations</td><td>Age 57; IIT Kanpur (B.Tech Chemical); prior roles at National Peroxide, Jesons Industries, Dow Chemical, HUL, NOCIL; joined as COO Apr-2018, current 5-year term to May-2027</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:13.5px">Independent directors: Leja S. Hattiangadi, Chandrashekhar R. Gupte, Ravi B. Kapoor, Ashwin Ramanathan, Bhavna G. Doshi. Non-executive, non-independent: Premal N. Kapadia (the director whose Jul-2026 AGM re-appointment drew 48.34% institutional opposition — see Section 2). CFO: Kanchan Shinde. Company Secretary: Chintamani D. Thatte. Board composition was stable through FY26 itself.</p>
+
+  <div class="callout warn">
+    <h4>Disclosed litigation</h4>
+    <p style="font-size:13.5px">National Peroxide Limited has a pending criminal and civil case against Whole-time Director Rakesh Goyal and other former NPL officers alleging financial irregularities, sub judice before the Chief Metropolitan Magistrate Court and the Bombay High Court — disclosed in the Aug-2026 change-in-directorate filing alongside his new 5-year term (Apr-2027 to Mar-2032). This predates his tenure at Alkyl Amines but is a live disclosure worth tracking.</p>
+  </div>
+
+  <h3>Aug-2026 leadership succession (pending shareholder approval)</h3>
+  <p style="font-size:14px">Effective 1-Oct-2026, subject to the postal-ballot vote closing 19-Sep-2026: Yogesh M. Kothari moves to <strong>Executive Chairman</strong>; Kirat M. Patel and Suneet Y. Kothari become <strong>Joint Managing Directors</strong>; Rakesh Goyal continues as <strong>Executive Director – Operations</strong> on a new term. Stated rationale: "considering the continued growth and expanding business operations of the Company and to facilitate the succession that shall ensure the continuity of Company's growth." This follows the Aug-2024 mandatory retirement of three long-serving independent directors — Dilip G. Piramal, Shyam B. Ghia, Shobhan M. Thakore — who completed their statutory maximum two terms under Companies Act Section 149(11).</p>
+
+  <h3>Governance checks</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Item</th><th>Finding</th></tr></thead>
+    <tbody>
+      <tr><td>Statutory auditor</td><td>N. M. Raiji &amp; Co., second 5-year term from the 42nd AGM (Aug-2022); ₹35 lakh + ₹1.48 lakh audit fee; <strong>unmodified opinion</strong>, no emphasis of matter</td></tr>
+      <tr><td>Key Audit Matters</td><td>(1) Litigation/contingency judgment (multiple tax/customs/excise disputes); (2) trade-receivable ECL judgment (company applies negligible historical default rates, no ECL allowance provided); (3) revenue-recognition period-end cut-off timing</td></tr>
+      <tr><td>Internal auditor</td><td>Aneja Assurance Private Limited, appointed May-2025 for FY26-FY28</td></tr>
+      <tr><td>Secretarial auditor</td><td>P. Mehta &amp; Associates, appointed May-2025 for FY26-FY30; FY26 secretarial audit unqualified</td></tr>
+      <tr><td>Contingent liabilities</td><td>₹36.84cr (FY26) vs ₹36.18cr (FY25) — labour, income-tax, excise and customs disputes; management does not consider outcomes "certain," hence disclosed as contingent not provided</td></tr>
+      <tr><td>Related-party transactions</td><td>Board's Report: "no materially significant related party transactions that may have potential conflict with the interests of the Company at large"</td></tr>
+      <tr><td>CSR &amp; employees</td><td>682 employees (Mar-2026); CSR spend in line with statutory obligation</td></tr>
+      <tr><td>Credit rating</td><td>CRISIL AA-/Stable, A1+ — reaffirmed Dec-2025, no change</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Shareholding (as of 31-Mar-2026)</h3>
+  <p style="font-size:14px">Indian Promoter &amp; PAC hold <strong>71.93%</strong> (72.05% including non-resident PAC) — Yogesh M. Kothari alone holds 57.64%, with the balance across family members and promoter-group LLPs (Niyoko, Purjeeko, SYK Trading). FPIs hold 3.45%, mutual funds 1.28%, Indian public 18.00%. Yahoo Finance's slightly more current snapshot (Aug-2026) shows insiders at 72.26% and institutions at 5.20% (34 institutional holders) — broadly consistent, reflecting the passage of a few months. This is a tightly-held, founder/family-controlled register with limited free float (~1.39 Cr shares), which likely also explains the thin analyst coverage (Section 10).</p>
+
+  <div class="callout">
+    <h4>Open question flagged, not resolved</h4>
+    <p style="font-size:13.5px">Chief Commercial Officer Udipt Agarwal was the primary commercial spokesperson on the Nov-2024 and May-2025 earnings calls but was not present or mentioned on the Nov-2025 or May-2026 calls, and no change-in-management filing documenting a CCO departure or replacement was found in this dataset. Flagged as an open question rather than a confirmed change.</p>
+  </div>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9.</span> Other Conference-Call Insights Worth Watching</h2>
+  <div class="grid2">
+    <div class="card">
+      <h4>China: from headwind to modest tailwind</h4>
+      <p style="font-size:13.5px">Chinese acetonitrile/agrochemical-intermediate dumping was the dominant margin headwind through most of FY25-26 ("finished good prices have dropped a little more than the raw material prices"). Post-duty (from Jun-2025), the benefit arrived slowly due to a pre-duty import surge, but by Q4 FY26 management confirmed market-share gains. China's 2025-26 "anti-involution" capacity-cutting policy was explicitly downplayed as a real but modest tailwind — "it's not that significant... 5% more selling price," not a structural re-rating catalyst.</p>
+    </div>
+    <div class="card">
+      <h4>GLP-1/peptide demand — genuine but overstated near-term</h4>
+      <p style="font-size:13.5px">Management called client GLP-1 volume forecasts overly optimistic — "everybody is giving different optimistic figures, but I don't think that will all hold" — while still expecting some real acetonitrile volume growth from peptide manufacturing (potentially up to ~10% of the ~30,000-ton total ACN market if it develops). A genuine optionality, not yet a confirmed driver.</p>
+    </div>
+    <div class="card">
+      <h4>Ammonia sourcing risk has no quick fix</h4>
+      <p style="font-size:13.5px">The company buys ammonia through fertilizer-linked distributors rather than direct manufacturer relationships, and is monitoring green ammonia as a future alternative but does not expect price parity for "3 to 5 years." No formal inventory-buffer or supplier-diversification program was announced in response to the March-2026 shortage beyond noting the existing distributor network is itself spread across multiple fertilizer-linked suppliers — a genuine, unresolved structural exposure.</p>
+    </div>
+    <div class="card">
+      <h4>US tariffs/sanctions — small direct, larger indirect impact</h4>
+      <p style="font-size:13.5px">Direct US exports were only ~4% of total exports (~1% of total sales), but the larger effect was indirect: Chinese material rerouted from the US into Asia/India, and sanctions on Indian distributors within the ammonia/methanol supply chain — both cited as contributors to the H1 FY26 volume stall.</p>
+    </div>
+  </div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="card">
+      <h4>DEK product: a slow-burn turnaround</h4>
+      <p style="font-size:13.5px">DEK (an agrochemical-end-use specialty product) underperformed through FY25 ("has not improved as much as we expected"); by Nov-2025 management said it had "stabilized" with improving market share, though margins remained "a little lower than what we expected" — a small, credible example of the company working through a slow product ramp rather than abandoning it.</p>
+    </div>
+    <div class="card">
+      <h4>No PLI benefit; no buyback commentary</h4>
+      <p style="font-size:13.5px">Management explicitly stated the company does not itself benefit from the pharma PLI scheme (it supplies raw materials to PLI-eligible manufacturers, not the other way round). Separately, when an investor flagged promoter-linked entities buying shares in the open market (May-2025), the CFO said "we are not aware about any" buyback plans and did not elaborate further.</p>
+    </div>
+  </div>
+  <div class="callout warn">
+    <h4>Data gaps flagged</h4>
+    <p style="font-size:13.5px">No earnings-call transcript exists in this dataset for Q3 FY25 (Jan-2025), Q1 FY26 (Aug-2025), Q3 FY26 (Feb-2026), or Q1 FY27 (Aug-2026, call not yet filed as of this report's 20-Aug-2026 cutoff) — only the raw results filings were available for those quarters, so no management commentary could be extracted for them specifically. The Q1 FY27 revenue/margin jump in particular cannot yet be decomposed into volume vs. price/inventory effects from management's own words.</p>
+  </div>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10.</span> Analyst Coverage</h2>
+  <div class="grid2">
+    <div class="card">
+      <h4>Ratings distribution (3 analysts)</h4>
+      <div class="barchart" style="height:130px;">
+        <div class="bar-group"><div class="bar-val">0</div><div class="bar-col"><div class="bar" style="height:2%; background:var(--up-strong);"></div></div><div class="bar-label">Strong<br>Buy</div></div>
+        <div class="bar-group"><div class="bar-val">1</div><div class="bar-col"><div class="bar" style="height:100%; background:var(--up);"></div></div><div class="bar-label">Buy</div></div>
+        <div class="bar-group"><div class="bar-val">1</div><div class="bar-col"><div class="bar" style="height:100%; background:var(--ink-muted);"></div></div><div class="bar-label">Hold</div></div>
+        <div class="bar-group"><div class="bar-val">1</div><div class="bar-col"><div class="bar" style="height:100%; background:var(--critical);"></div></div><div class="bar-label">Sell</div></div>
+        <div class="bar-group"><div class="bar-val">0</div><div class="bar-col"><div class="bar" style="height:2%; background:var(--critical);"></div></div><div class="bar-label">Strong<br>Sell</div></div>
+      </div>
+      <p style="font-size:12.5px; color:var(--ink-2); margin-top:8px;">1 Buy / 1 Hold / 1 Sell — an evenly split, thin coverage base (only 3 analysts, unchanged over the last 3 months per MarketData's recommendation trend), consistent with the tightly-held, low-free-float register noted in Section 8.</p>
+    </div>
+    <div class="card">
+      <h4>Price targets vs. CMP (₹1,956.10)</h4>
+      <div class="tblwrap" style="margin-top:8px;"><table>
+        <tbody>
+          <tr><td>Low</td><td>1,068</td><td>-45.4%</td></tr>
+          <tr><td>Mean</td><td>1,727</td><td>-11.7%</td></tr>
+          <tr><td>Median</td><td>1,950</td><td>-0.3%</td></tr>
+          <tr><td>High</td><td>2,164</td><td>+10.6%</td></tr>
+        </tbody>
+      </table></div>
+      <p style="font-size:12.5px; color:var(--ink-2); margin-top:4px;">CMP already sits above the analyst <strong>mean</strong> target and essentially in line with the median — an unusual setup where the market has run ahead of the average sell-side view even before the Q1 FY27 print was fully digested.</p>
+    </div>
+  </div>
+  <p style="font-size:14px">Two Motilal Oswal notes bracket the period reviewed and both stayed <strong>Neutral</strong> despite raising numbers: in May-2026 (pre-Q1FY27), a ₹1,720 target on a 6-7% FY26-28 revenue/EBITDA/PAT CAGR; in Aug-2026 (post-Q1FY27), a ₹1,950 target (40x FY28E EPS) after raising FY27E/FY28E estimates 28%/17% on 11%/16%/19% CAGR assumptions. The pattern — meaningfully better numbers, same cautious rating — is itself informative: it suggests the sell side reads the current setup as "good news, but already close to fair value," which is consistent with this report's own valuation read in Section 11.</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11.</span> Outlook — Growth, Margins &amp; Valuation (Bear / Base / Bull)</h2>
+  <p class="lede">This is scenario modelling built up from the segment trends in Sections 3-4, management's own FY27 guidance (5-10% volume growth, ₹80-90cr capex) and Motilal Oswal's published FY26-28 CAGR assumptions (11%/16%/19% revenue/EBITDA/PAT) — not a discounted-cash-flow valuation, and not a price call. Treat the ranges as illustrative, not precise.</p>
+
+  <h3>FY27E / FY28E building blocks</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Driver</th><th>FY26A</th><th>FY27E (base)</th><th>FY28E (base)</th><th>Basis</th></tr></thead>
+    <tbody>
+      <tr><td>Revenue (₹ Cr)</td><td>1,535.85</td><td>~1,690-1,730</td><td>~1,875-1,920</td><td>Management's 5-10% FY27 volume guidance plus modest price; ~11% CAGR per Motilal Oswal FY26-28</td></tr>
+      <tr><td>EBITDA margin</td><td>~20.6%†</td><td>~19-21%</td><td>~21-23%</td><td>Q1 FY27's 27.1% assumed to normalize back toward the historical 20-21% band as the ammonia-price pass-through effect fades, per management's own "temporary" framing</td></tr>
+      <tr><td>PAT margin</td><td>~11.7%†</td><td>~11-13%</td><td>~12-14%</td><td>Broadly tracks EBITDA margin given near-zero finance costs and stable D&amp;A</td></tr>
+      <tr><td>EPS (₹)</td><td>35.15</td><td>~38-45</td><td>~46-52</td><td>~19% FY26-28 PAT CAGR per Motilal Oswal; brackets their own implied FY28E EPS of ~48.75 (₹1,950 target ÷ 40x)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">†EBITDA/PAT margin on the company's own filed FY26 revenue base (₹1,535.85cr); see Section 4 footnote on the yfinance/company revenue reconciliation.</p>
+
+  <h3>Bear / Base / Bull — FY28E and implied price</h3>
+  <div class="grid3">
+    <div class="card weak">
+      <h4>Bear case</h4>
+      <p style="font-size:13px">Q1 FY27's margin strength fully unwinds as legacy cheap-ammonia inventory runs out and ammonia costs stay structurally higher on short-term-only contracts; methylamine overcapacity from Aarti's entry keeps pricing depressed for years; FY27 volume growth undershoots the 5-10% guided range for a third straight year; China dumping resumes.</p>
+      <p style="font-size:13px"><strong>FY28E EPS ~₹34-38</strong> (roughly flat to FY25/26 levels). Multiple de-rates to ~30-33x on a "growth disappointment" repricing, below the current 42-44x band.</p>
+      <p style="font-size:15px; font-weight:700; margin-top:8px;">Implied price: ~₹1,020–1,250</p>
+      <p style="font-size:12px; color:var(--ink-2)">≈ 36-48% below CMP — near/below the 52-week low (₹1,212) and close to the Street's own low target (₹1,068)</p>
+    </div>
+    <div class="card">
+      <h4>Base case</h4>
+      <p style="font-size:13px">EBITDA margin normalizes to a ~20-21% band as the ammonia pass-through effect fades but the ACN duty tailwind persists; FY27 volume growth lands within the guided 5-10% range; Dahej and Kurkumbh projects commission on their latest (slipped) timelines without further major delays.</p>
+      <p style="font-size:13px"><strong>FY28E EPS ~₹46-52</strong>, consistent with Motilal Oswal's own implied estimate. Multiple holds near today's 40-42x (close to their own 40x FY28E assumption).</p>
+      <p style="font-size:15px; font-weight:700; margin-top:8px;">Implied price: ~₹1,840–2,180</p>
+      <p style="font-size:12px; color:var(--ink-2)">≈ -6% to +11% vs CMP — brackets the analyst median/high targets (₹1,950 / ₹2,164)</p>
+    </div>
+    <div class="card strength">
+      <h4>Bull case</h4>
+      <p style="font-size:13px">The Q1 FY27 margin step-up proves partly durable (a genuine cost/efficiency edge in acetonitrile, not just inventory timing); GLP-1/peptide ACN demand materializes meaningfully; ethylamines duopoly pricing discipline holds; new Kurkumbh/Dahej capacity ramps profitably from FY27 without further delays.</p>
+      <p style="font-size:13px"><strong>FY28E EPS ~₹58-64</strong>. Market rewards renewed double-digit compounding with a sustained premium multiple, ~42-45x.</p>
+      <p style="font-size:15px; font-weight:700; margin-top:8px;">Implied price: ~₹2,440–2,880</p>
+      <p style="font-size:12px; color:var(--ink-2)">≈ +25-47% vs CMP — above even the Street's current high target</p>
+    </div>
+  </div>
+
+  <h3>Cross-check via Price/Book</h3>
+  <p style="font-size:14px">Book value/share is ~₹299.81 (Mar-2026) and compounding steadily via retained earnings (dividend payout only ~28%). At the base-case ROE of ~13-14% (a modest recovery from FY26's 11.7% but well below the FY23 peak of 19.6%), a P/B of ~5.5-6.5x is broadly consistent with the current 6.52x multiple, implying a similar ~₹1,850-2,150 range on a modestly grown FY28E book value — consistent with the base-case P/E answer above. The bear case (ROE stuck ~10-11%) implies P/B compressing to ~3.5-4.2x (~₹1,150-1,400 on flat book growth); the bull case (ROE recovering to ~17-19%, still below FY23) implies P/B ~7.5-8.5x (~₹2,550-2,900) — both converge reasonably with the P/E-based ranges, a useful internal-consistency check on the scenario math.</p>
+
+  <div class="callout verdict">
+    <h4>Bottom line</h4>
+    <p style="font-size:14px">The bear/base/bull spread (~₹1,000 to ~₹2,900) is wide for a debt-free, family-run, long-tenured chemicals compounder — a direct consequence of how uncertain the Q1 FY27 margin durability genuinely is, by management's own admission. At CMP ₹1,956, the market is pricing something between the base and bull case already — above the analyst mean target and roughly at the median — which leaves the setup <strong>asymmetric to the downside</strong> over the next two to three quarters unless Q2 FY27 confirms the higher margin band is more than a one-quarter pass-through effect. The balance sheet (zero debt, ₹250cr net cash) means this is a valuation/growth-durability risk, not a solvency risk — a meaningfully different risk profile from a leveraged peer facing the same demand uncertainty.</p>
+  </div>
+</section>
+
+<section id="methodology">
+  <h2>Data Coverage &amp; Methodology</h2>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Period</th><th>Financial results</th><th>Investor presentation</th><th>Earnings call transcript</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Q2 FY25 (Sep-24)</td><td>✓</td><td>✓ (raw PDF)</td><td>✓</td><td>Pre-conversion PDF; EBITDA/PBT breakdown not machine-extractable in this environment, flagged n/a in Section 4</td></tr>
+      <tr><td>Q3 FY25 (Dec-24)</td><td>✓</td><td>n/a</td><td>✗</td><td>No transcript found in scope</td></tr>
+      <tr><td>Q4 FY25 / FY25 (Mar-25)</td><td>✓</td><td>✓</td><td>✓</td><td></td></tr>
+      <tr><td>Q1 FY26 (Jun-25)</td><td>✓</td><td>n/a</td><td>✗</td><td>No transcript found in scope</td></tr>
+      <tr><td>Q2 FY26 (Sep-25)</td><td>✓</td><td>✓</td><td>✓</td><td>Not in yfinance's 6-quarter window; EBITDA/EPS derived from the filing's comparative column</td></tr>
+      <tr><td>Q3 FY26 (Dec-25)</td><td>✓</td><td>n/a</td><td>✗</td><td>No transcript found in scope</td></tr>
+      <tr><td>Q4 FY26 / FY26 (Mar-26)</td><td>✓</td><td>✓</td><td>✓</td><td></td></tr>
+      <tr><td>Q1 FY27 (Jun-26)</td><td>✓</td><td>n/a</td><td>✗</td><td>Results filed 4-Aug-26; no transcript filed as of this report's 20-Aug-26 cutoff</td></tr>
+      <tr><td>FY26 Annual Report</td><td colspan="3">✓ fully converted &amp; reviewed (MD&amp;A, Board's Report, financial statement notes)</td><td></td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:13.5px">Quarterly figures reconcile exactly between MarketData (Yahoo Finance) and the company's own filed results for every quarter checked. Annual figures show a small, consistent ~1.5-2% gap (yfinance's annual "Total Revenue" running below the company's filed "Revenue from Operations" — e.g. FY26: ₹1,511.88cr vs ₹1,535.85cr) that does not appear at the quarterly level; this report uses yfinance figures as instructed for the quantitative trend tables and flags company-filed figures explicitly wherever they are the primary source (Sections 1, 3, 6, 8-9), rather than silently mixing bases. EBITDA in this report follows yfinance's own convention (EBIT = PBT + finance cost, i.e. including other income; EBITDA = EBIT + D&amp;A) for consistency across the full quarterly series, which differs modestly from a strict operating-only EBITDA that nets out other income — a ~2% of revenue difference for this company. Alkyl Amines does not disclose quarterly cash-flow statements, limiting Section 7 to an annual view. Consolidated/standalone distinction is not material here — the company has no meaningful subsidiaries in the filings reviewed. Fiscal year runs April-March (Q1 = Apr-Jun … Q4 = Jan-Mar). No figure in this report has been estimated or interpolated to fill a gap; gaps are marked "n/a" or flagged explicitly as above.</p>
+  <p style="font-size:12.5px; color:var(--ink-muted)">Source folders: <code>ALKYLAMINE/MarketData/</code>, <code>ALKYLAMINE/Announcements/</code> (raw PDFs referenced inline by filename/date throughout this report), <code>ALKYLAMINE/AnnouncementsConv/</code> (converted filings from Dec-2025 onward, including the FY26 annual report and latest transcripts), <code>ALKYLAMINE/News/</code>.</p>
+</section>
+
+<footer>
+  <p>Prepared as an independent research note from company filings, BSE announcements and third-party market data. This document is for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are as disclosed by Alkyl Amines Chemicals Ltd and Yahoo Finance as of the dates cited; verify against primary filings before acting. Report compiled 20-Aug-2026.</p>
+</footer>
+
+</div>
+<a href="#top" class="backtop">↑ Top</a>
+</body>
+</html>

@@ -1,0 +1,1031 @@
+<title>Equitas Small Finance Bank</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.2px; }
+  th,td{ padding:8px 12px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.5px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Small Finance Bank</div>
+    <h1>Equitas Small Finance Bank Limited</h1>
+    <p class="sub">NSE/BSE: EQUITASBNK &middot; BSE Scrip 543243 &middot; Q2 FY25&ndash;Q1 FY27 performance review, investor-presentation &amp; earnings-call synthesis, and forward scenario framework, as of 19 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> a textbook small-finance-bank stress-and-recovery cycle. Industry-wide microfinance over-leveraging pushed credit costs steadily higher through FY25, then a one-time provisioning-norms change forced an outright &#8377;224&nbsp;Cr loss in Q1&nbsp;FY26 (EPS &minus;&#8377;1.96) &mdash; missing management's own guided "H1FY26 MFI breakeven" by a wide margin. What followed was a genuine V-shaped operational recovery: PAT rebuilt quarter over quarter to a record &#8377;213&nbsp;Cr in Q4&nbsp;FY26 (ROA 1.46%, beating the bank's own guided ~1% exit target), with Q1&nbsp;FY27 posting the strongest advance growth (+27% YoY) and disbursement growth (+93% YoY) in the series. Just as that recovery solidified, a fresh governance overhang landed on 14&nbsp;August&nbsp;2026: press reports that the RBI has questioned the board about founder-MD&amp;CEO P&nbsp;N&nbsp;Vasudevan's relationship to an NBFC promoted by his daughter, arriving in the same year as unusually heavy senior-management churn (a CFO, a CRO and two different Presidents-Finance departing, one after just 3.5 weeks) and a &#8377;1,250&nbsp;Cr QIP mandate that lapsed unused and had to be re-authorised.
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (19 Aug 26)</div><div class="v">&#8377;74.50</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;8,522 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;50.0 &ndash; &#8377;83.9</div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT</div><div class="v pos">&#8377;184 Cr <span style="font-size:11px;">(vs &minus;&#8377;224 Cr YoY)</span></div></div>
+      <div class="chip"><div class="k">Q1FY27 ROA / ROE</div><div class="v">1.18% / 11.76%</div></div>
+      <div class="chip"><div class="k">Q1FY27 GNPA / NNPA</div><div class="v pos">2.36% / 0.70%</div></div>
+      <div class="chip"><div class="k">Trailing P/E &middot; P/B</div><div class="v">16.5x &middot; 1.39x</div></div>
+      <div class="chip"><div class="k">CRAR (Q1FY27)</div><div class="v">19.44%</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage:</b> BSE/NSE filings for this dataset span August 2024&ndash;August 2026 &mdash; eight consecutive quarters of investor presentations and results (Q2&nbsp;FY25 through Q1&nbsp;FY27), the FY24&ndash;FY26 annual reports, ~290 BSE announcement filings, and the tracked news feed through 18&nbsp;August&nbsp;2026. No earnings-call Q&amp;A transcript text was recoverable from this dataset &mdash; every "analyst-investor-meet" and "earnings-call-transcript" folder here is a one-page BSE cover letter linking to an external PDF/MP3 that was never fetched, so management commentary below is drawn from the investor presentations' own "Outlook" slides and press releases instead, which do carry direct, quotable guidance language. The FY26 annual report's MD&amp;A prose (not its tables) suffered character-level corruption in PDF-to-text conversion; where that made a passage unreadable, the equivalent FY25 narrative is used instead and flagged inline. Figures are bank-standalone (Equitas SFB has no material subsidiaries) unless marked otherwise; where the investor presentation's own ratio basis (which includes IBPC/securitisation/DA in the advances denominator) differs from the regulatory filing's basis, both are noted.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet &amp; capital</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Guidance vs. actual</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What Equitas SFB does, and how it has grown</h2></div>
+      <p class="sec-dek">A Chennai-born microfinance NBFC that converted into one of India's first small finance banks in 2016, now running a diversified secured-lending book with the universal banking licence as its long-stated destination.</p>
+
+      <p class="lede">Equitas Small Finance Bank traces to Equitas Micro Finance India Pvt Ltd, founded in 2007 by <b>P&nbsp;N&nbsp;Vasudevan</b> (ex-Cholamandalam Investment &amp; Finance, ex-Development Credit Bank). In 2016 it merged with two sister NBFCs (Equitas Finance, Equitas Housing Finance) to become one of the first cohort of RBI-licensed small finance banks, and listed in 2020. Fifteen years on, the bank runs <b>1,113 offices</b> (1,060 branches + 53 other offices) across 16 states and 2 union territories, with <b>~28,000 employees</b> and a balance sheet that has grown from &#8377;26,948&nbsp;Cr (FY22) to &#8377;60,610&nbsp;Cr (FY26) &mdash; more than doubling in four years.</p>
+
+      <h3>Product segments</h3>
+      <p>On the asset side: <b>Small Business Loans (SBL)</b> &mdash; the flagship segment, secured against property, ~40% of the book; <b>Vehicle Finance</b> (new/used commercial vehicles, used cars) at ~23%; <b>Microfinance &amp; micro-loans</b>, historically 16&ndash;21% of the book, deliberately shrunk to ~9% during the FY26 stress and now being rebuilt toward a stated ~10% target; <b>Affordable Housing Finance</b>, the fastest-growing segment (46% CAGR, FY20&rarr;FY26, &#8377;605&nbsp;Cr&rarr;&#8377;5,782&nbsp;Cr); <b>MSE Finance</b> and <b>NBFC/co-lending finance</b> (the latter up 269% YoY in FY26 off a small base); and newer verticals &mdash; <b>gold loans</b> (+179% YoY) and <b>credit cards/personal loans</b> (73% CAGR) &mdash; both still under 2% of the book but the fastest-scaling additions. On the liability side: savings, current and term deposits, with a "Liability Strategy 2.0" push toward mass-affluent/HNI/NRI segments (the ELITE proposition) that management itself flags as a near-term profitability drag in exchange for a stickier, cheaper deposit base over time.</p>
+
+      <h3>The moat, as the company frames it</h3>
+      <p>Three claims recur across filings: (i) an <b>"inclusive banking DNA"</b> &mdash; a direct-sourced, high-touch underwriting model for semi-formal/informal borrowers that peers relying on co-lending or purely digital channels don't replicate easily; (ii) a <b>digital layer bolted onto the physical network</b> rather than replacing it &mdash; the Equitas 2.0 app (~40 lakh registered users, ~9 lakh monthly active) plus ENVI (insurance marketplace, 9 insurers) and ENVEST (mutual funds), with 95%+ of transactions now digital; (iii) a <b>regulatory tailwind specific to the SFB licence category</b> &mdash; RBI relaxed the Priority Sector Lending requirement for SFBs from 75% to 60% of ANBC during FY26, loosening a structural constraint unique to this licence class. Against that, the bank operates in a small, competitive corner of the market &mdash; the SFB sector as a whole is only ~1.6% of Indian banking-system credit &mdash; and its own MD&amp;A frames the licence upgrade itself, not scale, as the real strategic prize: <i>"the journey ahead is anchored in strengthening customer stickiness, progressing towards a universal banking license, and enhancing institutional resilience"</i> (FY25 Annual Report). Management has stated it intends to keep Net NPA deliberately below 1% specifically to stay eligible for that application &mdash; a real near-term profitability tradeoff, not a coincidence, discussed further in §04.</p>
+
+      <h3>The growth arc, FY22&ndash;FY26</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Balance sheet size</td><td>26,948</td><td>34,958</td><td>45,304</td><td>52,836</td><td>60,610</td></tr>
+            <tr><td>Gross advances</td><td>20,597</td><td>&mdash;</td><td>32,776</td><td>37,986</td><td>46,165</td></tr>
+            <tr><td>Deposits</td><td>18,951</td><td>&mdash;</td><td>&mdash;</td><td>43,107</td><td>46,533</td></tr>
+            <tr><td>Net worth</td><td>4,246</td><td>5,158</td><td>5,969</td><td>6,073</td><td>6,125</td></tr>
+            <tr><td>PAT</td><td>&mdash;</td><td>574</td><td>799</td><td>147</td><td>103</td></tr>
+            <tr><td>ROA / ROE</td><td>&mdash;</td><td>&mdash;</td><td>2.00% / 14.43%</td><td>0.30% / 2.45%</td><td>0.19% / 1.73%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 Annual Report 5-year trend table (Corporate Overview, pp.32&ndash;33) and yfinance annual statements. Some FY22/FY23 cells not disclosed in the trend table are marked &mdash;.</caption>
+      </div>
+      <p>Read plainly: this was a compounding growth story (balance sheet +125% in four years) that hit a profitability air-pocket in FY25&ndash;FY26 &mdash; PAT fell 87% from its FY24 peak even as the book kept growing &mdash; entirely on the back of a microfinance-led credit-cost spike, not a demand or franchise problem. §03&ndash;04 unpack exactly how that played out quarter by quarter, and how sharply it has since reversed.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item of consequence in the tracked news feed and BSE filings since January 2026.</p>
+
+      <div class="news-item">
+        <div class="news-date">15 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">FCNR deposit rates raised to 7.1%</div>
+          <div class="news-body">Routine NRI-deposit rate action; stock traded lower the same day, but that move tracks the RBI/Unico story below more than this rate change.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">14 Aug 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish (governance)</span>
+          <div class="news-title">Press reports RBI questioned the board on Unico Housing Finance ties</div>
+          <div class="news-body">Moneycontrol reported RBI queried the bank's board about MD&amp;CEO P&nbsp;N&nbsp;Vasudevan's daughter's promoter stake in Unico Housing Finance, an NBFC, and asked for related-party disclosure. The bank's only on-record BSE clarification came four days later (18&nbsp;Aug); see §07 for the full detail and what was and wasn't actually disclosed.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">13 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (management framing)</span>
+          <div class="news-title">Management outlines 5-year plan: advances to ~&#8377;1.2 lakh Cr, universal banking application "within a year"</div>
+          <div class="news-body">Press coverage of management commentary: targeting ~20% CAGR to nearly treble advances from &#8377;45,000 Cr to &#8377;1.2 lakh Cr over five years, cost of funds down from 8.2% to below 7.5%, and a cautious, delayed universal-banking application (learning from peers' rejected applications) rather than an immediate filing.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">07&ndash;28 Jul 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Q1FY27 results: strong YoY turnaround, softer QoQ</div>
+          <div class="news-body">PAT &#8377;184 Cr vs a &#8377;224 Cr loss a year earlier; GNPA improved to 2.36%; NIM up 87bps YoY; advances +27% YoY on a 179% gold-loan surge and 70% MFI growth. But PAT fell 13&ndash;14% sequentially from Q4FY26's record, and deposit growth was a modest 10% YoY &mdash; full detail in §03&ndash;04.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">30 Jun 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">CFO N&nbsp;Sridharan superannuates; CRO term also completes same day</div>
+          <div class="news-body">Sridharan retired as CFO effective 30&nbsp;Jun&nbsp;2026, succeeded by Mukund Shyamrao Barsagade (previously President-Finance) from 1&nbsp;Jul. Chief Risk Officer Sibi P.M. also demitted office the same day on completing a 5-year term, with an interim CRO appointed. Two senior risk/finance seats turning over on the same date, in the same year as the RBI matter below, is a pattern worth tracking rather than a single isolated retirement &mdash; see §07.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">19&ndash;20 Jun 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">CRISIL reaffirms A1+ on CDs; debt-private-placement resolution flagged</div>
+          <div class="news-body">Routine reaffirmation, no rating change since inception of this dataset's coverage. Separately the bank flagged it would consider fresh private-placement debt issuance &mdash; materialised as the June AGM's fresh &#8377;500 Cr NCD/&#8377;1,250 Cr QIP enabling resolutions (§05).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">12 Jan 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed / Unclear</span>
+          <div class="news-title">Angel One names Equitas SFB a top stock call</div>
+          <div class="news-body">Headline-only wire pickup with no retrievable article text; included for completeness, not weighted as a strong signal.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>The stock bottomed near its 52-week low (&#8377;50.27 monthly close) in August 2025 &mdash; right as the Q1FY26 loss quarter was being absorbed &mdash; then climbed through the recovery story to a 52-week high close to &#8377;83.9 by June 2026, before pulling back to &#8377;74.50 as the RBI/Unico story broke in mid-August. The round trip tracks the operational recovery almost exactly, which is itself informative: this is a name the market is pricing off quarterly execution, not off a separate narrative.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Advances, deposits, segment mix &amp; guidance</h2></div>
+      <p class="sec-dek">Eight quarters that trace a full stress-and-recovery cycle in the loan book, a deliberate mix shift away from and now cautiously back toward microfinance, and a slow, steady dilution of Tamil Nadu concentration.</p>
+
+      <h3>Quarterly trend, bank standalone</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %</th><th>Q2FY25</th><th>Q3FY25</th><th>Q4FY25</th><th>Q1FY26</th><th>Q2FY26</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Gross advances</td><td>36,053</td><td>37,344</td><td>37,986</td><td>37,610</td><td>39,123</td><td>43,268</td><td>46,165</td><td>47,641</td></tr>
+            <tr><td>Total deposits</td><td>39,859</td><td>40,738</td><td>43,107</td><td>44,379</td><td>44,094</td><td>43,668</td><td>46,533</td><td>48,976</td></tr>
+            <tr><td>Disbursements</td><td>4,850</td><td>5,142</td><td>4,267</td><td>3,511</td><td>~4,900*</td><td>6,557</td><td>7,347</td><td>6,784</td></tr>
+            <tr><td>CASA ratio</td><td>31%</td><td>29%</td><td>29%</td><td>29%</td><td>~28%*</td><td>30%</td><td>26%</td><td>25%</td></tr>
+            <tr><td>Employees</td><td>23,233</td><td>24,238</td><td>25,409</td><td>25,865</td><td>27,145</td><td>28,451</td><td>28,058</td><td>27,720</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: quarterly investor presentations, "Snapshot" and "Balance Sheet" pages, each dated with results. *Q2FY26 disbursements/CASA are back-computed from adjacent-quarter growth-rate disclosures rather than lifted directly from a Q2FY26 snapshot line, so treat as approximate. Gross advances include IBPC/securitisation/DA per the company's own presentation convention; net (balance-sheet) advances run 3&ndash;9% lower each quarter &mdash; e.g. Q1FY27 net advances &#8377;44,733 Cr vs gross &#8377;47,641 Cr.</caption>
+      </div>
+      <p>Two inflections stand out. First, <b>gross advances growth troughed in Q1FY26</b> (essentially flat YoY, +8%) exactly as the MFI book was being cut down, then reaccelerated hard through FY26 into Q1FY27's +27% YoY &mdash; the best growth quarter in the whole series, powered by a 179% YoY gold-loan surge and 70% MFI regrowth off the shrunken base. Second, <b>CASA ratio has drifted down from 31% to 25%</b> over the same eight quarters as deposit growth increasingly leans on term deposits &mdash; a genuine cost-of-funds headwind partly offset by the broader rate-cycle tailwind discussed in §04.</p>
+
+      <h3>Segment mix: a deliberate MFI cut, then a controlled rebuild</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>% of gross advances</th><th>Q2FY25</th><th>Q4FY25</th><th>Q1FY26 (trough)</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Small Business Loans</td><td>41%</td><td>43%</td><td>45%</td><td>40%</td><td>40%</td></tr>
+            <tr><td>Vehicle Finance</td><td>25%</td><td>25%</td><td>25%</td><td>23%</td><td>23%</td></tr>
+            <tr><td>Microfinance &amp; micro-loans</td><td>16%</td><td>12%</td><td class="neg">9%</td><td>12%</td><td>13%</td></tr>
+            <tr><td>Housing Finance</td><td>12%</td><td>13%</td><td>13%</td><td>13%</td><td>13%</td></tr>
+            <tr><td>MSE Finance</td><td>4%</td><td>4%</td><td>5%</td><td>5%</td><td>5%</td></tr>
+            <tr><td>NBFC finance</td><td>2%</td><td>1%</td><td>1%</td><td class="pos">4%</td><td>4%</td></tr>
+            <tr><td>Gold loans / Others</td><td>1%</td><td>2%</td><td>2%</td><td>3%</td><td>3%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: quarterly investor presentation "Advances Evolution" tables. NBFC finance grew 269% YoY in FY26 off a small base; gold loans +179% YoY in Q1FY27 &mdash; both newer diversification bets, not yet individually large.</caption>
+      </div>
+      <p>SBL has remained the anchor segment throughout (40&ndash;45%), Vehicle Finance a steady second (23&ndash;25%). The real story is microfinance: management cut it from 16% to a 9% trough as the stress crisis peaked (Q1FY26), then deliberately rebuilt it to 13% by Q1FY27 &mdash; now 100% covered by the CGFMU credit guarantee scheme and originated increasingly via cash-flow-based individual-loan underwriting rather than pure group-lending, a genuine change in risk architecture, not just a size change. Guidance (Q3FY26 call materials) explicitly targets holding MFI "at around 10% of overall advances" going forward &mdash; a structurally smaller, better-guaranteed exposure than the pre-crisis mix.</p>
+
+      <h3>Geography: Tamil Nadu concentration slowly diluting</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Tamil Nadu &amp; Pondicherry, Q2FY25</div><div class="v">48%</div><div class="d">of advances (largest state by far)</div></div>
+        <div class="stat"><div class="k">Tamil Nadu &amp; Pondicherry, Q1FY27</div><div class="v">44%</div><div class="d">of advances, 24% of deposits</div></div>
+        <div class="stat"><div class="k">States/UTs of presence</div><div class="v">18</div><div class="d">Maharashtra ~15%, Karnataka ~12% next-largest</div></div>
+      </div>
+      <p>No independently ranked market-share figure is disclosed for any segment; the bank's only quantified positioning claims are internal CAGR figures (SBL portfolio CAGR 27% FY18&ndash;FY26, Housing Finance 46% FY20&ndash;FY26). Expansion is overwhelmingly <b>horizontal</b> &mdash; new branches (20 asset + 10 liability branches added in FY25 alone, spread across Andhra Pradesh, Karnataka, Telangana, Gujarat, Maharashtra, UP, Uttarakhand) and new products (gold loans, credit cards) layered onto the existing distribution network &mdash; rather than any disclosed vertical integration.</p>
+
+      <h3>Guidance: growth targets given, then delivered on</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr style="text-align:left;"><th style="text-align:left;">When given</th><th style="text-align:left;">Guidance</th><th style="text-align:left;">Outcome</th></tr></thead>
+          <tbody>
+            <tr><td>Q1FY26 call (Aug&nbsp;2025)</td><td>"Targeting mid-teen growth in overall advances for the year"</td><td class="pos">Beaten &mdash; FY26 gross advances grew 22% YoY (19% excl. DA)</td></tr>
+            <tr><td>Q4FY26 / FY26 call (Apr&nbsp;2026)</td><td>"20%+ growth in overall advances for FY27"</td><td>Tracking &mdash; Q1FY27 advances +27% YoY (24% excl. DA)</td></tr>
+            <tr><td>13&nbsp;Aug&nbsp;2026 press commentary</td><td>~20% advances CAGR over 5 years, to ~&#8377;1.2 lakh Cr; universal banking application "within a year"</td><td>Forward-looking, not yet testable</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, credit cost &amp; profitability &mdash; the heart of this story</h2></div>
+      <p class="sec-dek">A one-time provisioning shock turned a slow-bleed year into an outright loss quarter, followed by the sharpest V-shaped recovery in this dataset's coverage window.</p>
+
+      <h3>Quarterly P&amp;L, bank standalone (&#8377; Cr)</h3>
+      <div id="pnlchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q2FY25</th><th>Q3FY25</th><th>Q4FY25</th><th>Q1FY26</th><th>Q2FY26</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Net Interest Income</td><td>802</td><td>818</td><td>829</td><td>786</td><td>773</td><td>852</td><td>981</td><td>1,030</td></tr>
+            <tr><td>Other income (net)</td><td>229</td><td>232</td><td>218</td><td>285</td><td>224</td><td>285</td><td>259</td><td>250</td></tr>
+            <tr><td>Net income</td><td>1,031</td><td>1,050</td><td>1,047</td><td>1,071</td><td>997</td><td>1,137</td><td>1,239</td><td>1,280</td></tr>
+            <tr><td>Operating expenses</td><td>681</td><td>717</td><td>736</td><td>757</td><td>757</td><td>829</td><td>837</td><td>875</td></tr>
+            <tr><td>PPOP</td><td>350</td><td>333</td><td>311</td><td>315</td><td>240</td><td>308</td><td>402</td><td>405</td></tr>
+            <tr><td>Provisions / credit cost</td><td class="neg">330</td><td class="neg">243</td><td class="neg">258</td><td class="neg">612</td><td class="neg">207</td><td class="neg">194</td><td class="neg">124</td><td class="neg">161</td></tr>
+            <tr><td>PBT</td><td>20</td><td>90</td><td>53</td><td class="neg">&minus;297</td><td>33</td><td>114</td><td>278</td><td>244</td></tr>
+            <tr class="total"><td>PAT</td><td>13</td><td>66</td><td>42</td><td class="neg">&minus;224</td><td>24</td><td>90</td><td>213</td><td>184</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>0.11</td><td>0.58</td><td>0.37</td><td class="neg">&minus;1.96</td><td>0.21</td><td>0.79</td><td>1.86</td><td>1.60</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: quarterly investor presentation "Profit &amp; Loss Account" tables, cross-checked against each quarter's Reg-33 financial-results filing. PPOP is the presentation's own "PBT before provision &amp; write-off" line.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>The Q1FY26 loss, unpacked</b>The &#8377;612&nbsp;Cr provisioning charge that produced the loss was explicitly one-time and two-part, per the bank's own Q1FY26 presentation: &#8377;185&nbsp;Cr of additional standard-asset provisioning in microfinance, plus &#8377;145&nbsp;Cr of additional NPA provisioning from a <i>change in provisioning norms</i> (regulatory, not a fresh credit event) &mdash; together with the ordinary run-rate MFI/vehicle-finance credit cost. On a "normalised, prior-norms" basis management separately disclosed the quarter would have shown a &#8377;26&nbsp;Cr profit. That distinction matters for reading the trend, but it does not erase the fact that this was a materially worse outcome than the "H1FY26 MFI breakeven" the bank itself had guided to just one quarter earlier (§08).</div>
+      </div>
+
+      <h3>Key ratio trend</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th></th><th>Q2FY25</th><th>Q3FY25</th><th>Q4FY25</th><th>Q1FY26</th><th>Q2FY26</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>NIM</td><td>7.50%</td><td>7.39%</td><td>7.13%</td><td>6.55%</td><td class="neg">6.29%</td><td>6.72%</td><td class="pos">7.29%</td><td>7.24%</td></tr>
+            <tr><td>Cost-to-income</td><td>66.09%</td><td>68.30%</td><td>70.28%</td><td>70.62%</td><td class="neg">75.89%</td><td>72.96%</td><td class="pos">67.52%</td><td>68.38%</td></tr>
+            <tr><td>Credit cost (ann.)</td><td>3.72%*</td><td>2.65%</td><td>2.74%</td><td class="neg">6.48%</td><td>2.16%</td><td>1.88%</td><td class="pos">1.11%</td><td>1.37%</td></tr>
+            <tr><td>ROA</td><td>0.11%</td><td>0.53%</td><td>0.32%</td><td class="neg">&minus;1.68%</td><td>0.18%</td><td>0.65%</td><td class="pos">1.46%</td><td>1.18%</td></tr>
+            <tr><td>ROE</td><td>0.86%</td><td>4.44%</td><td>2.79%</td><td class="neg">&minus;15.02%</td><td>1.65%</td><td>6.10%</td><td class="pos">14.10%</td><td>11.76%</td></tr>
+            <tr><td>Gross NPA</td><td>2.95%</td><td>2.97%</td><td>2.89%</td><td>2.82%</td><td>2.82%</td><td>2.62%</td><td>2.49%</td><td class="pos">2.36%</td></tr>
+            <tr><td>Net NPA</td><td>0.97%</td><td>0.96%</td><td>0.98%</td><td>0.95%</td><td>0.95%</td><td>0.88%</td><td>0.68%</td><td>0.70%</td></tr>
+            <tr><td>PCR</td><td>67.71%</td><td>68.28%</td><td>66.83%</td><td>67.03%</td><td>~67%</td><td>67.10%</td><td class="pos">73.03%</td><td>71.02%</td></tr>
+          </tbody>
+        </table>
+        <caption>*Q2FY25 credit cost of 3.72% includes ~&#8377;100 Cr of additional stress-sector provisioning taken proactively that quarter; NIM/GNPA/NNPA figures use the investor presentation's own basis. All figures bank-standalone, high-confidence (explicit, sourced values from each quarter's own snapshot page).</caption>
+      </div>
+      <p>The trend line is unusually clean for a stress cycle: NIM compressed steadily for five straight quarters (7.50%&rarr;6.29%) as the higher-yielding MFI book shrank and funding costs stayed elevated, then recovered smartly once the mix stabilised and rate cuts flowed through. Credit cost is the real story &mdash; it worsened every quarter from Q3FY25 through the Q1FY26 spike, then fell in every single quarter since, from 6.48% to 1.11% by Q4FY26 (before ticking back up modestly to 1.37% in Q1FY27, which management had flagged as a seasonal, not structural, uptick). Asset-quality ratios (GNPA/NNPA/PCR) never moved nearly as violently as profitability did &mdash; confirming this was primarily a <i>provisioning and margin</i> story, not a collapse in underlying book quality.</p>
+
+      <h3>FY-level view: profitability round-tripped, asset quality held</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th></th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT (&#8377; Cr)</td><td>799</td><td>147</td><td>103</td></tr>
+            <tr><td>NIM</td><td>8.36%</td><td>7.51%</td><td>6.69%</td></tr>
+            <tr><td>ROA / ROE</td><td>2.00% / 14.43%</td><td>0.30% / 2.45%</td><td>0.19% / 1.73%</td></tr>
+            <tr><td>GNPA / NNPA</td><td>2.52% / 1.12%</td><td>2.89% / 0.98%</td><td>2.49% / 0.68%</td></tr>
+            <tr><td>PCR</td><td>56.06%</td><td>66.83%</td><td>73.03%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 Annual Report, 5-year Key Ratios trend table.</caption>
+      </div>
+      <p>Note the apparent contradiction that is actually the whole thesis: PAT and ROA fell for two straight years (FY24&rarr;FY26) while GNPA/NNPA <i>improved</i> and PCR rose sharply. That is a bank front-loading provisioning &mdash; taking the P&amp;L hit early and building coverage &mdash; rather than one where deteriorating loan quality is dragging profit down. Management's own framing (§01, §08) ties this directly to protecting the Net NPA &lt;1% threshold it believes is a precondition for a future universal banking licence application.</p>
+
+      <h3>Forward margin/profitability guidance</h3>
+      <p>From the Q4FY26/FY26 call materials (Apr&nbsp;2026), the most specific numeric guidance in this dataset: <b>exit ROA of ~1.5% by Q4FY27</b>, with <b>full-year FY27 ROA of ~1.2%</b>. Cost-to-income is guided to "moderate further in H2FY27," with Q1FY27 explicitly flagged in advance as seasonally elevated on annual increments &mdash; a call that was then correctly realised (cost-to-income ticked up to 68.38% in Q1FY27 as guided, not a surprise miss). Credit cost is guided to "normalize, with a marginal increase and stabilization towards FY27" after Q4FY26's unusually low 1.11% print, consistent with Q1FY27's modest uptick to 1.37%.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet, capital adequacy &amp; capital allocation</h2></div>
+      <p class="sec-dek">Capital adequacy has eroded steadily as the book has outgrown internal accruals, a &#8377;1,250 Cr equity raise was approved and then left unused for over a year, and the dividend has been suspended to preserve capital.</p>
+
+      <h3>Capital adequacy: comfortable, but trending the wrong way</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>CRAR</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Overall CRAR</td><td>25.16%</td><td>23.80%</td><td>21.70%</td><td>20.60%</td><td>20.31%</td><td class="neg">19.44%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 Annual Report 5-year trend table + Q1FY27 investor presentation. Regulatory minimum for SFBs is 15%.</caption>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Comfortably above the floor, but the trend explains the QIP</b>CRAR has declined every year for five straight years as balance-sheet growth has outpaced internally generated capital (depressed by the FY25&ndash;26 profitability air-pocket). Still 4+ points above the regulatory minimum, but the direction of travel is the entire rationale for the equity raise below.</div>
+      </div>
+
+      <h3>Capital-raise history: debt executed on schedule, equity raise stalled</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr style="text-align:left;"><th style="text-align:left;">Date</th><th style="text-align:left;">Action</th><th style="text-align:left;">Amount</th><th style="text-align:left;">Status</th></tr></thead>
+          <tbody>
+            <tr><td>Dec 2024</td><td>Tier-II NCD (private placement)</td><td>&#8377;500 Cr</td><td class="pos">Completed</td></tr>
+            <tr><td>Jul 2025</td><td>Tier-II NCD (private placement, 2nd tranche)</td><td>&#8377;500 Cr</td><td class="pos">Completed</td></tr>
+            <tr><td>Jun&ndash;Jul 2025</td><td>QIP enabling resolution + shareholder postal-ballot approval (99.46% in favour)</td><td>Up to &#8377;1,250 Cr</td><td class="neg">Approved, never executed</td></tr>
+            <tr><td>Jun 2026</td><td>Fresh QIP + NCD enabling resolutions sought at 10th AGM</td><td>QIP &le;&#8377;1,250 Cr; NCD &le;&#8377;500 Cr</td><td>Re-authorised (Aug 2026 AGM)</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: BSE board-meeting/postal-ballot/AGM filings, 2024&ndash;2026.</caption>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>A &#8377;1,250 Cr equity mandate sat unused for over a year</b>Shareholders approved the QIP in July 2025 with near-unanimous support, precisely when capital preservation should have mattered most (mid-stress-cycle). No QIP allotment filing exists anywhere in this dataset through August 2026 &mdash; the bank instead leaned entirely on Tier-II debt and an IBPC sell-down (~&#8377;1,250 Cr, disclosed as improving CAR by ~0.9%) to manage capital through the trough, then had to seek a <i>fresh</i> QIP authorisation at the FY26 AGM. That could reflect disciplined patience (raising equity only once the stock re-rated off its post-loss lows made sense, and CRAR never actually breached the comfort zone), but it is also a full year of capital-planning uncertainty investors should weigh against the smooth "we're on top of this" framing in management's calls.</div>
+      </div>
+
+      <h3>Dividend: suspended to preserve capital</h3>
+      <p>The Board did not recommend a dividend for FY26, stating explicitly: <i>"Considering the need to preserve capital to support growth and expansion, the Board of Directors did not recommend any dividend for the financial year ended March 31, 2026."</i> The bank had paid a &#8377;1/share dividend in both FY23 and FY24 before suspending it &mdash; consistent with, and reinforcing, the capital-conservation reading of the QIP delay above.</p>
+
+      <h3>Book value &amp; per-share metrics</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Book value / share</div><div class="v">&#8377;53.56</div><div class="d">yfinance, as of Mar-26</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">1.39x</div><div class="d">On CMP &#8377;74.50</div></div>
+        <div class="stat"><div class="k">Net worth (Q1FY27)</div><div class="v">&#8377;6,367 Cr</div><div class="d">+9% YoY, +4% QoQ</div></div>
+      </div>
+      <p>Net worth growth (9% YoY) has lagged balance-sheet growth (advances +27% YoY) by design &mdash; the bank has chosen to fund most of its FY26&ndash;27 growth via deposits and Tier-II debt rather than dilutive equity, which is exactly why CRAR keeps drifting down and why the QIP question (executed vs. re-authorised-but-unused) matters for anyone modelling forward book value per share.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality &mdash; a bank-specific read, not a manufacturer's</h2></div>
+      <p class="sec-dek">Operating cash flow for a fast-growing bank is dominated by loan-book and deposit movements, not by the PAT-vs-CFO divergence check that flags trouble at an industrial company &mdash; here it mechanically tracks advances growth instead.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, standalone</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT</td><td>574</td><td>799</td><td>147</td><td>103</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td class="neg">&minus;998</td><td class="pos">3,834</td><td class="pos">1,937</td><td class="neg">&minus;3,316</td></tr>
+            <tr><td>Capex (premises/IT)</td><td>&minus;266</td><td>&minus;364</td><td>&minus;245</td><td>&minus;193</td></tr>
+            <tr><td>Financing cash flow</td><td>+60</td><td>&minus;1,210</td><td>+259</td><td>+3,641</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: yfinance annual cash-flow statement. Under Ind AS banking presentation, loan disbursements and deposit movements both run through operating activities &mdash; this is why CFO swings by thousands of crores while PAT moves by tens.</caption>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Why this check doesn't transfer directly from the standard playbook</b>The skill's usual "does CFO growth track PAT growth" earnings-quality check is built for manufacturers, where a PAT/CFO divergence usually signals channel stuffing or aggressive revenue recognition. For a bank, operating cash flow is mechanically a function of how fast the loan book and deposit base are growing &mdash; FY26's &minus;&#8377;3,316&nbsp;Cr CFO simply reflects gross advances growing &#8377;8.2k Cr faster than deposits and provisions could fund internally, funded instead by the +&#8377;3,641&nbsp;Cr financing inflow (Tier-II bonds, deposit growth, IBPC sell-down). FY24's strong +&#8377;3,834&nbsp;Cr CFO likewise reflects that year's slower advances growth relative to deposit inflows, not superior earnings quality. Reading this line as a red flag the way one would at an industrial company would be a mistake; the more useful signal is the CRAR trend in §05, which does capture whether balance-sheet growth is outrunning the bank's capital base.</div>
+      </div>
+
+      <p><b>Capex</b> is genuinely small and non-strategic for this business &mdash; &#8377;193&ndash;364&nbsp;Cr/year on branches, ATMs and IT infrastructure, roughly flat-to-declining as a share of a balance sheet that grew 34% over the same period, and dwarfed by the &#8377;500&nbsp;Cr+ Tier-II raises and IBPC sell-downs used to fund actual growth. There is no capex-vs-depreciation asset-expansion signal to read here in the way there would be for a manufacturer &mdash; the bank's "capex" is loan origination, which shows up in the advances trend in §03, not in this line.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">A founder-led bank with a clean audit opinion and a 9-of-11 independent board, unusually heavy senior-management churn in FY26, and a live governance question about the founder-MD&amp;CEO's family ties to an NBFC.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">P N Vasudevan</div>
+          <div class="role">Founder, MD &amp; CEO (since Sept 2016)</div>
+          <div class="bio">B.Sc. Physics (Madras), qualified Company Secretary. ~20 years at Cholamandalam Investment &amp; Finance (Murugappa Group), then EVP &amp; Head of Consumer Banking at Development Credit Bank. Founded Equitas Micro Finance in 2007; led the 2016 merger into Equitas SFB. RBI approved a further 3-year re-appointment effective 23 Jul 2026 (disclosed 23 Apr 2026).</div>
+        </div>
+        <div class="person">
+          <div class="name">Balaji Nuthalapadi</div>
+          <div class="role">Executive Director (from 29 Mar 2025)</div>
+          <div class="bio">PGDM, IIM Ahmedabad; 28 years at Citi across APAC/EMEA, most recently MD &amp; Head, Centralized Controls Testing Execution. Member, Tamil Nadu State Fintech Governing Council.</div>
+        </div>
+        <div class="person">
+          <div class="name">Mukund Shyamrao Barsagade</div>
+          <div class="role">Chief Financial Officer (from 1 Jul 2026)</div>
+          <div class="bio">Promoted from President-Finance to succeed N Sridharan, who superannuated 30 Jun 2026.</div>
+        </div>
+        <div class="person">
+          <div class="name">Anil Kumar Sharma</div>
+          <div class="role">Part-time Chairman, Independent Director (from Apr 2024)</div>
+          <div class="bio">The only Non-Executive Director with a shareholding (1,00,107 shares). Board is 11 members, 9 independent (~82%) &mdash; no inter-se relationships between directors disclosed.</div>
+        </div>
+      </div>
+
+      <h3>Senior-management churn, FY26 &mdash; unusually heavy for one year</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr style="text-align:left;"><th style="text-align:left;">Date</th><th style="text-align:left;">Role</th><th style="text-align:left;">Change</th></tr></thead>
+          <tbody>
+            <tr><td>Jul 2025</td><td>Head-Assets</td><td>Rohit Phadke retires; Jagadesh J appointed</td></tr>
+            <tr><td>Sep 2025</td><td>Head-Strategy/CX/IR/Chief IR Officer</td><td>Dheeraj Mohan resigns (relieved 31 Oct 2025)</td></tr>
+            <tr><td>Nov 2025</td><td>President-Finance</td><td>Manish Agrawal appointed 3 Nov, resigns 28 Nov &mdash; <b>~3.5-week tenure</b></td></tr>
+            <tr><td>Jan&ndash;Apr 2026</td><td>Head-Lead Bank / Govt. Liaison</td><td>John Alex resigns (relieved 31 Mar 2026)</td></tr>
+            <tr><td>Jun&ndash;Jul 2026</td><td>CFO &amp; Chief Risk Officer</td><td>Both N Sridharan (CFO) and Sibi P.M. (CRO, completed 5-yr term) exit the same day, 30 Jun 2026</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: BSE change-in-management filings, 2025&ndash;2026. Company Secretary N Ramanathan is the one constant &mdash; unchanged and the signatory on every filing across the entire period.</caption>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Worth watching, not yet disqualifying</b>Every individual departure is explained (retirement, resignation, term completion) with no adversarial language in any filing, and the CEO/ED/Company Secretary seats &mdash; the ones that matter most for continuity &mdash; have been stable or smoothly transitioned. But five senior roles turning over in twelve months, including a finance head who lasted 3.5 weeks and a CFO/CRO handover on the same calendar day, is a materially higher churn rate than the two prior years show in this dataset, and it coincides with the stress cycle in §04 and the governance question below.</div>
+      </div>
+
+      <h3>The RBI / Unico Housing Finance matter</h3>
+      <p>On 14&nbsp;Aug&nbsp;2026, Moneycontrol reported that the RBI had questioned the bank's board about a "nexus" between the bank and Unico Housing Finance, an NBFC in which MD&amp;CEO Vasudevan's daughter holds a promoter stake, and had asked for related-party disclosure. The bank's <b>only</b> BSE filing on the matter &mdash; a Regulation 30 clarification dated <b>18&nbsp;Aug&nbsp;2026</b>, four days after the press report &mdash; states, point by point:</p>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Exactly one transaction has ever occurred</b> between the bank and Unico: a &#8377;25&nbsp;Cr bulk deposit placed by Unico on 1&nbsp;Jan&nbsp;2024, for 89 days at 7.5% p.a., repaid at maturity on 30&nbsp;Mar&nbsp;2024. No loan has ever been extended to Unico, and the bank states it has no intention of doing so.</li>
+        <li>The MD&amp;CEO's daughter's investment in Unico has been disclosed to the Board and, per the bank, to the RBI at the time his re-appointment was proposed.</li>
+        <li>The bank disputes the "nexus" characterisation and states Mr.&nbsp;Vasudevan is compliant with Section&nbsp;10B(4)(c) of the Banking Regulation Act, 1949 &mdash; which restricts an MD's "substantial interest" in another company held via a <i>spouse or minor child</i>, a provision that on its face does not cover an adult daughter's independent shareholding.</li>
+        <li>The bank declined to characterise its correspondence with RBI as confidential, but disclosed nothing further about the scope, status, or outcome of RBI's specific query.</li>
+      </ul>
+      <p>Independently cross-checking the FY26 and FY25 annual reports' formal AS-18 related-party-transaction notes: <b>Unico Housing Finance is not named anywhere in either document.</b> The disclosed related-party universe is limited to two entities under common management (Equitas Development Initiatives Trust, Equitas Healthcare Foundation) plus KMP and named relatives &mdash; all transactions with them are small (CSR contributions, routine deposit/interest items, all under &#8377;12&nbsp;Cr). That is technically consistent with the bank's position (a single arm's-length historical deposit, structured through an entity that isn't itself a defined "related party" under AS-18 since the daughter isn't a KMP), but it also means investors have no ongoing visibility into the Unico relationship beyond what the press has reported and the bank has chosen to clarify.</p>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>A perception risk more than a disclosed financial one, for now</b>Nothing in the company's own filings or the annual reports shows a material financial exposure to Unico, an auditor qualification, or a disclosed RBI directive. But the timing &mdash; breaking within four months of RBI approving Vasudevan's own three-year re-appointment, and inside a year of unusually heavy CFO/CRO/finance-team turnover &mdash; is the kind of governance-adjacent overhang that can weigh on sentiment and multiple even absent a quantifiable earnings impact. Watch for any further RBI correspondence, a change in disclosure practice around promoter-family business interests, or (the more consequential tail risk) any signal affecting Vasudevan's own tenure, given how closely this stock's recovery story is tied to a single founder-CEO's continuity.</div>
+      </div>
+
+      <h3>Other governance markers</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Auditors:</b> Joint statutory auditors ASA &amp; Associates LLP and Suri &amp; Co (Chennai) issued an <b>unqualified/clean opinion</b> on FY26 financials &mdash; no emphasis of matter, no qualification found. The one flagged Key Audit Matter is NPA identification/classification/provisioning judgment &mdash; a standard disclosure for any lender, not evidence of irregularity.</li>
+        <li><b>Contingent liabilities:</b> &#8377;1,024.5&nbsp;Cr (FY26) vs &#8377;794.6&nbsp;Cr (FY25), a ~29% YoY increase &mdash; mainly tax disputes not acknowledged as debts and guarantees given on behalf of constituents, described as not expected to have a material adverse impact.</li>
+        <li><b>Credit ratings:</b> Stable throughout &mdash; CARE AA-/Stable (issuer, reaffirmed repeatedly 2024&ndash;2025), India Ratings IND&nbsp;AA-/Stable (affirmed three times through Dec 2025), CRISIL A1+ on commercial paper/CDs (reaffirmed twice, most recently Jun 2026). No upgrade or downgrade anywhere in this dataset's coverage window.</li>
+        <li><b>Ownership:</b> Institutional holding 54.04% (43 institutions), insider holding 12.10%, 19 analysts covering the stock (§09) &mdash; a well-covered, institutionally-owned name, which somewhat mitigates (though doesn't eliminate) the governance-opacity concern above.</li>
+      </ul>
+    </section>
+
+    <!-- 08 GUIDANCE VS ACTUAL -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Guidance vs. actual, quarter by quarter</h2></div>
+      <p class="sec-dek">The single most useful thread in this dataset: the MFI-normalisation date slipped three times before finally being met and beaten.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr style="text-align:left;"><th style="text-align:left;">Guidance given</th><th style="text-align:left;">When</th><th style="text-align:left;">What actually happened</th></tr></thead>
+          <tbody>
+            <tr><td>"We expect our MFI portfolio to reach breakeven level in H1FY26"</td><td>Q3FY25 call, Jan 2026</td><td class="neg">Missed badly &mdash; Q1FY26 was an outright &#8377;224 Cr bank-level loss</td></tr>
+            <tr><td>"Asset quality cycle may turn positive by Q3FY26"</td><td>Q4FY25/FY25 call, Apr 2025</td><td>Timeline quietly pushed out before Q1FY26 even landed</td></tr>
+            <tr><td>"Microfinance stress...expected to normalise by Q4FY26"; "targeting mid-teen advances growth"; "expect to be profitable for the year"</td><td>Q1FY26 call, Aug 2025 &mdash; issued the same quarter as the loss</td><td class="pos">All three delivered &mdash; FY26 advances grew 22% YoY, bank was profitable every subsequent quarter, and credit cost/slippages hit multi-year lows exactly in Q4FY26</td></tr>
+            <tr><td>"We are in line with our stated guidance for FY26"</td><td>Q3FY26 call, Jan 2026</td><td class="pos">First quarter management explicitly self-certifies being on-track, after two prior quarters of slipping timelines</td></tr>
+            <tr><td>"Q1FY27 will be elevated [cost-to-income] due to annual increments"</td><td>Q4FY26 call, Apr 2026</td><td class="pos">Met precisely &mdash; cost-to-income ticked up from 67.52% to 68.38% as flagged, not a surprise</td></tr>
+            <tr><td>Exit ROA ~1.5% by Q4FY27; full-year FY27 ROA ~1.2%</td><td>Q4FY26 call, Apr 2026</td><td>In progress &mdash; Q1FY27 ROA 1.18%, tracking the full-year number one quarter in</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: quarterly investor-presentation "Outlook" slides and press releases, since no Q&amp;A transcript text was recoverable from this dataset (see coverage note).</caption>
+      </div>
+
+      <h3>Root cause, in one sequence</h3>
+      <p>The stress traces to <b>industry-wide microfinance over-leveraging</b> that surfaced across Indian small finance banks and MFI lenders from mid-2024, compounded by a <b>Karnataka collections ordinance and a Tamil Nadu debt-collection bill</b> that disrupted MFI collections in the bank's two largest states, and finally crystallised by a <b>provisioning-norms change</b> that forced the one-time Q1FY26 charge. Management's response was structural, not just cyclical: cutting MFI to ~9% of the book, moving 100% of MFI disbursements under CGFMU guarantee cover, shifting toward cash-flow-based individual-loan underwriting for graduating MFI borrowers, and raising Tier-II capital twice plus an IBPC sell-down to defend CRAR through the trough.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">Well covered for a small finance bank, and skewed bullish.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analysts covering</div><div class="v">19</div><div class="d">3 strong buy, 15 buy, 1 sell, 0 hold</div></div>
+        <div class="stat"><div class="k">Target mean / median</div><div class="v">&#8377;86.5 / &#8377;88.0</div><div class="d">+16&ndash;18% from CMP &#8377;74.50</div></div>
+        <div class="stat"><div class="k">Target range</div><div class="v">&#8377;64 &ndash; &#8377;98</div><div class="d">Low target still above the 52-wk low</div></div>
+      </div>
+      <p>Coverage has stayed almost uniformly positive (18 of 19 analysts at buy/strong-buy) through a period that included an outright quarterly loss &mdash; consistent with the sell-side reading Q1FY26 as a one-time, well-explained provisioning event rather than a franchise problem, and rewarding the subsequent recovery. That near-unanimous positioning is itself worth noting: it leaves little room for further upgrades to drive the stock higher on sentiment alone, and means any disappointment (including an escalation of the governance matter in §07) has more analysts who could move the same direction than analysts already cautious.</p>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock that has already round-tripped from its 52-week low back to the mid-70s, pricing in a good chunk of the recovery, with the next leg dependent on FY27 guidance being met and the governance overhang not escalating.</p>
+
+      <h3>Twelve months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Aug 2025&ndash;Aug 2026 (NSE, via yfinance). The 52-week low of &#8377;50.0 fell in August 2025, right as the Q1FY26 loss was being digested; the recovery carried the stock to a 52-week high near &#8377;83.9 around June 2026, before easing back to &#8377;74.50 as the RBI/Unico story broke in mid-August.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">16.45x</div><div class="d">On TTM diluted EPS ~&#8377;4.53</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">8.24x</div><div class="d">yfinance consensus, implies EPS roughly doubling</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">1.39x</div><div class="d">Book value/share &#8377;53.56</div></div>
+        <div class="stat"><div class="k">Price / Sales (TTM)</div><div class="v">1.82x</div><div class="d">EV/Revenue 1.88x</div></div>
+      </div>
+      <p>The trailing P/E is depressed by two weak years of PAT (FY25&ndash;FY26), not by a demanding price &mdash; a 16.5x trailing multiple on a bank that just posted its strongest quarter of growth in the series is not obviously expensive if the recovery holds. The much lower forward P/E (8.24x) reflects consensus expecting EPS to roughly double as ROA normalises toward the guided 1.2% FY27 run-rate; that is the crux of the bull case, and also the main thing that can disappoint.</p>
+
+      <h3>Bear / base / bull, FY27E&ndash;FY28E</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Illustrative scenarios built from management's own FY27 guidance (20%+ advances growth, exit ROA ~1.5% Q4FY27, full-year ROA ~1.2%) combined with a plausible range of execution and multiple outcomes. These are scenario illustrations, not point forecasts &mdash; Equitas has delivered on its most recent guidance cycle (§08) but has only one full year of clean recovery behind it, and the RBI/Unico matter (§07) is unresolved as of this report.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;48&ndash;58</div>
+          <div class="rng">&minus;22% to &minus;35% from CMP</div>
+          <ul>
+            <li>RBI/Unico matter escalates into a formal directive or affects CEO continuity; sentiment de-rates independent of fundamentals</li>
+            <li>MFI or vehicle-finance stress resurfaces; credit cost normalises above 2% rather than the guided marginal increase</li>
+            <li>QIP executed at a depressed price, diluting book value/share meaningfully</li>
+            <li>FY27 ROA lands near 0.6&ndash;0.8%; EPS ~&#8377;3.5&ndash;4.5; P/B de-rates to 0.9&ndash;1.0x</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;80&ndash;95</div>
+          <div class="rng">+7% to +28% from CMP</div>
+          <ul>
+            <li>FY27 advances grow ~20% as guided; MFI mix holds near 10&ndash;13%, fully CGFMU-covered</li>
+            <li>Full-year FY27 ROA lands close to the guided ~1.2%; PAT ~&#8377;850&ndash;950 Cr, EPS ~&#8377;7.5&ndash;8.3</li>
+            <li>Governance matter stays a disclosure/perception issue, not a financial one</li>
+            <li>P/B holds near 1.3&ndash;1.5x on ROE recovering to 13&ndash;14%</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;110&ndash;135</div>
+          <div class="rng">+48% to +81% from CMP</div>
+          <ul>
+            <li>FY27 exit ROA reaches or beats the guided 1.5%; credit cost stays structurally lower post-CGFMU/individual-loan shift</li>
+            <li>Universal banking licence progress becomes a visible, market-moving catalyst</li>
+            <li>PAT ~&#8377;1,050&ndash;1,150 Cr, EPS ~&#8377;9&ndash;10; multiple re-rates toward 1.8&ndash;2.2x P/B as best-in-class SFB peers command</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuine, verifiable V-shaped operational recovery &mdash; PAT rebuilt every single quarter from the Q1FY26 loss to a record &#8377;213&nbsp;Cr in Q4FY26, credit cost fell from 6.48% to 1.11% over the same five quarters, and asset-quality ratios (GNPA, NNPA, PCR) never deteriorated as sharply as profitability did, confirming this was a provisioning and margin story rather than a book-quality collapse; management's most recent guidance cycle (Q1FY26 onward) has been met or beaten on every count checkable in this dataset; the loan book is genuinely diversifying (NBFC finance, gold loans, housing finance all scaling well ahead of the core book) and MFI exposure is now smaller, CGFMU-guaranteed, and individually underwritten rather than pure group-lending; credit ratings stayed stable throughout with no downgrade; and the auditor's opinion is clean with no qualification.</p>
+        <p style="max-width:none;"><b>What's not good:</b> the very first guidance cycle (Q3FY25's "H1FY26 MFI breakeven") was missed badly, via an outright loss quarter; capital adequacy has declined for five consecutive years and a shareholder-approved &#8377;1,250&nbsp;Cr QIP sat unused for over a year before requiring re-authorisation; the dividend is suspended; five senior management seats (Head-Assets, Head-Strategy/IR, President-Finance twice, CFO, CRO) turned over within about twelve months, an unusually high churn rate; and a live, unresolved governance question about the founder-MD&amp;CEO's family ties to an NBFC broke in mid-August 2026, with the company's own disclosure limited to a single historical &#8377;25&nbsp;Cr deposit and no visibility into what RBI's actual query covers or where it stands.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> candidly on the numbers, more guardedly on governance. The bank named the Q1FY26 provisioning shock's two components explicitly (MFI standard-asset provisioning, provisioning-norms change) rather than burying it in a vague "elevated credit cost" line, and it has since delivered a guidance cycle investors can actually check against outcomes quarter by quarter &mdash; a real, credit-worthy pattern documented in §08. But the RBI/Unico response came only after press reporting forced the issue, four days late and narrow in scope, and the capital-planning story (QIP approved, unused, re-sought) reads less disciplined than the smooth "on top of it" tone of the quarterly calls would suggest.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: medium, roughly 45&ndash;55%.</b> The operational recovery is real, guidance has been reliable for a full year now, and the stock is not obviously expensive against a normalising ROA. But this is a single-founder-led franchise where a governance question specifically touching the MD&amp;CEO just broke unresolved, capital-raise execution has been slower than the growth ambitions imply it should be, and 18 of 19 covering analysts are already positioned bullishly &mdash; leaving more room for disappointment to move the stock than for further sentiment-driven upside. The base case in §10, built directly from management's own FY27 targets, implies modest-to-solid upside if the bank simply delivers what it has guided; the bear case is not a return to FY26-style credit stress so much as a governance-driven de-rating that would be largely disconnected from the operating numbers.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) any further RBI correspondence or disclosure on the Unico Housing Finance matter, and specifically whether it touches Vasudevan's own tenure given his re-appointment was only just approved; (2) whether the &#8377;1,250 Cr QIP is finally executed, and at what price relative to book value; (3) Q2&ndash;Q3 FY27 ROA against the guided ~1.2% full-year path &mdash; a clean beat would validate the recovery as durable rather than a low-base bounce; (4) MFI credit cost as the rebuilt ~13% mix seasons past its first year under CGFMU cover; (5) whether the CFO/CRO/finance-team churn stabilises or continues into FY27, which would harden the governance concern from a one-off into a pattern.</div>
+      </div>
+    </section>
+
+    <footer>
+      Compiled from company BSE/NSE filings (Announcements/AnnouncementsConv, Aug 2024&ndash;Aug 2026, including 8 quarterly investor presentations/results and the FY24&ndash;FY26 annual reports), MarketData (Yahoo Finance via yfinance, last fetched 19 Aug 2026 10:25 IST), and the tracked News feed. All figures are as originally reported by the company or the cited data source; where a figure could not be independently reconciled, used a different basis (e.g. investor-presentation vs. regulatory-filing NPA ratios), or a disclosure was absent, that is stated explicitly in the relevant section rather than silently filled in or corrected. This is a research synthesis for informational purposes, not investment advice.
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Advances / Deposits, ₹ Cr) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q2FY25','Q3FY25','Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var advances = [36053, 37344, 37986, 37610, 39123, 43268, 46165, 47641];
+    var deposits = [39859, 40738, 43107, 44379, 44094, 43668, 46533, 48976];
+    var series = [
+      {label:'Gross Advances', color:'var(--chart-1)', data:advances},
+      {label:'Deposits', color:'var(--chart-3)', data:deposits}
+    ];
+    var W = 900, H = 300, padL = 52, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, deposits) * 1.12;
+
+    function y(v){ return padT + plotH - (v/maxV)*plotH; }
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly gross advances and deposits, bank standalone" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 4;
+    for(var g=0; g<=steps; g++){
+      var gv = (maxV/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv).toLocaleString()+'</text>';
+    }
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(v);
+        var bh = (padT+plotH) - by;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+by.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v.toLocaleString()+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '</div>';
+  })();
+
+  // ---------- Quarterly PAT / PPOP chart ----------
+  (function(){
+    var el = document.getElementById('pnlchart');
+    var quarters = ['Q2FY25','Q3FY25','Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var ppop = [350, 333, 311, 315, 240, 308, 402, 405];
+    var pat  = [13, 66, 42, -224, 24, 90, 213, 184];
+    var W = 900, H = 300, padL = 52, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var minV = -260, maxV = 430;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / 3.2;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly PPOP and PAT, bank standalone" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = [-200,-100,0,100,200,300,400];
+    steps.forEach(function(gv){
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+gv+'</text>';
+    });
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      var pv = ppop[qi], av = pat[qi];
+      var pbx = gx + groupW/2 - barW - 2;
+      var aby = y(Math.max(pv,0)), pbh = Math.abs(y(pv)-zeroY);
+      svg += '<rect x="'+pbx.toFixed(1)+'" y="'+Math.min(y(pv),zeroY).toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+pbh.toFixed(1)+'" rx="2.5" fill="'+css('--chart-1')+'"><title>PPOP '+q+': ₹'+pv+' Cr</title></rect>';
+      var abx = gx + groupW/2 + 2;
+      var abh = Math.abs(y(av)-zeroY);
+      var color = av < 0 ? css('--critical') : css('--chart-2');
+      svg += '<rect x="'+abx.toFixed(1)+'" y="'+Math.min(y(av),zeroY).toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+abh.toFixed(1)+'" rx="2.5" fill="'+color+'"><title>PAT '+q+': ₹'+av+' Cr</title></rect>';
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.5"/>';
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+css('--chart-1')+';display:inline-block;"></span>PPOP (₹ Cr)</span>' +
+      '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+css('--chart-2')+';display:inline-block;"></span>PAT, profit quarters (₹ Cr)</span>' +
+      '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+css('--critical')+';display:inline-block;"></span>PAT, loss quarter (₹ Cr)</span>' +
+      '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '</div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Aug 25', 50.27], ['Sep 25', 57.18], ['Oct 25', 56.99], ['Nov 25', 64.16],
+      ['Dec 25', 62.99], ['Jan 26', 70.11], ['Feb 26', 64.37], ['Mar 26', 51.73],
+      ['Apr 26', 66.85], ['May 26', 70.21], ['Jun 26', 75.41], ['Jul 26', 75.21],
+      ['Aug 26', 74.50]
+    ];
+    var W = 900, H = 220, padL = 40, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Equitas SFB monthly closing share price, August 2025 to August 2026" style="width:100%;height:auto;font-size:11px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+gv.toFixed(0)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 3;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily price history. The 52-week high (~₹83.9) and low (~₹50.0) are intraday/closing extremes that may fall between the monthly points plotted.</div></div>';
+  })();
+})();
+</script>

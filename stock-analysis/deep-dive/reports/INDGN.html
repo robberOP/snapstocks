@@ -1,0 +1,1017 @@
+<title>Indegene — AI Life Sciences Play</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a; --page:#0a0e1a; --surface:#10162a; --surface-2:#0d1220;
+      --ink:#f2f5fc; --ink-soft:#b7c0d6; --ink-mute:#7c879e;
+      --border:#232b42; --border-strong:#33405f;
+      --accent:#3366ff; --accent-ink:#a9c0ff; --accent-tint:#101f3d; --accent-tint-strong:#17284a;
+      --ai:#9472ff; --ai-tint:#1e1833;
+      --good:#3ddc84; --good-tint:#113322; --warn:#e0a83c; --warn-tint:#2b2415; --critical:#ff6b5e; --critical-tint:#341613;
+      --mixed:#9457ee; --mixed-tint:#241a3d;
+      --chart-1:#4c86ff; --chart-2:#c97a16; --chart-3:#1d9c99;
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a; --page:#0a0e1a; --surface:#10162a; --surface-2:#0d1220;
+    --ink:#f2f5fc; --ink-soft:#b7c0d6; --ink-mute:#7c879e;
+    --border:#232b42; --border-strong:#33405f;
+    --accent:#3366ff; --accent-ink:#a9c0ff; --accent-tint:#101f3d; --accent-tint-strong:#17284a;
+    --ai:#9472ff; --ai-tint:#1e1833;
+    --good:#3ddc84; --good-tint:#113322; --warn:#e0a83c; --warn-tint:#2b2415; --critical:#ff6b5e; --critical-tint:#341613;
+    --mixed:#9457ee; --mixed-tint:#241a3d;
+    --chart-1:#4c86ff; --chart-2:#c97a16; --chart-3:#1d9c99;
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; background:var(--page); color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){ *{ transition-duration:.001ms !important; animation-duration:.001ms !important; } }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{ font-weight:600; color:var(--ink); text-wrap:balance; line-height:1.18; letter-spacing:-.01em; margin:0; }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{ max-width:1180px; margin:0 auto; display:grid; grid-template-columns: 236px minmax(0,1fr); gap:0 44px; padding: 0 24px 80px; }
+  @media (max-width: 880px){ .shell{ grid-template-columns: 1fr; } .toc{ position:static !important; order:2; } }
+
+  .cover{ grid-column: 1 / -1; padding: 46px 0 30px; border-bottom:1px solid var(--border); margin-bottom: 36px; }
+  .cover-eyebrow{ display:flex; align-items:center; gap:10px; font-size:12.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:14px; }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{ font-size:clamp(38px,6vw,58px); letter-spacing:-0.01em; }
+  .cover .sub{ font-size:17px; color:var(--ink-soft); max-width:66ch; margin-top:12px; }
+  .thesis{ margin-top:22px; padding:16px 20px; background:var(--accent-tint); border:1px solid var(--accent-tint-strong); border-radius:var(--radius-md); font-size:15.5px; color:var(--ink); max-width:82ch; }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{ margin-top:26px; display:grid; grid-template-columns:repeat(auto-fit,minmax(128px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; }
+  .chip{ background:var(--surface); padding:14px 16px; }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{ margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:86ch; border-left:2px solid var(--border-strong); padding-left:12px; }
+
+  .toc{ position:sticky; top:24px; align-self:start; padding-top:6px; }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{ display:flex; gap:10px; text-decoration:none; color:var(--ink-soft); padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px; transition:color .15s ease, background .15s ease; }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:74ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px 22px; box-shadow:var(--shadow); }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{ background:var(--surface-2); color:var(--ink-mute); font-weight:600; text-transform:uppercase; font-size:10.8px; letter-spacing:.05em; position:sticky; top:0; }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px; border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); } .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); } .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); } .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); } .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{ display:grid; grid-template-columns:112px 1fr; gap:18px; padding:18px 0; border-top:1px solid var(--border); }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{ margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong); font-style:italic; font-size:16px; color:var(--ink); max-width:76ch; }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); }
+
+  .callout{ display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0; border:1px solid var(--border); font-size:14px; }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); } .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); } .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); } .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{ grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border); font-size:12px; color:var(--ink-mute); max-width:90ch; }
+
+  .latest-update{ grid-column: 1 / -1; margin: 34px 0 8px; }
+  .lu-head{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:4px;}
+  .lu-head h2{ font-size:23px; }
+  .lu-livedot{ display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--critical); }
+  .lu-livedot .p{ width:7px; height:7px; border-radius:50%; background:var(--critical); animation:pulse 2.2s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce){ .lu-livedot .p{ animation:none; } }
+  @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
+  .lu-dek{ font-size:14px; color:var(--ink-mute); max-width:76ch; margin:6px 0 18px; }
+
+  .update-entry{ border:1px solid var(--border-strong); border-radius:var(--radius-lg); background:var(--surface); box-shadow:var(--shadow); padding:22px 24px 24px; margin-bottom:18px; }
+  .ue-top{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+  .ue-date{ font-weight:700; font-size:16px; }
+  .ue-quarter{ font-size:12px; color:var(--ink-mute); }
+  .ue-quarter b{ color:var(--ink-soft); font-weight:600; }
+
+  .metric-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:14px 0 18px; }
+  .metric{ padding:12px 14px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface-2); }
+  .metric .k{ font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-mute);}
+  .metric .v{ font-size:19px; font-weight:700; margin-top:3px;}
+  .metric .d{ font-size:12px; margin-top:3px; font-weight:600; }
+  .metric .d.pos{ color:var(--good); } .metric .d.neg{ color:var(--critical); } .metric .d.flat{ color:var(--ink-mute); }
+
+  .ue-cols{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px; }
+  @media (max-width:700px){ .ue-cols{ grid-template-columns:1fr; } }
+  .ue-col h5{ font-size:12px; text-transform:uppercase; letter-spacing:.06em; margin:0 0 8px; display:flex; align-items:center; gap:6px; }
+  .ue-col.good h5{ color:var(--good); } .ue-col.bad h5{ color:var(--critical); }
+  .ue-col ul{ margin:0; padding-left:18px; font-size:13.4px; color:var(--ink-soft); }
+  .ue-col li{ margin-bottom:7px; }
+
+  .verdict-strip{ display:flex; align-items:center; gap:12px; margin-top:18px; padding:13px 16px; border-radius:var(--radius-md); background:var(--ai-tint); border:1px solid color-mix(in srgb, var(--ai) 30%, var(--border)); font-size:13.6px; }
+  .verdict-strip b{ color:var(--ai); }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; AI-Native Life Sciences Commercialization</div>
+    <h1>Indegene Limited</h1>
+    <p class="sub">NSE / BSE: INDGN &middot; Scrip 544172 &middot; FY2023&ndash;FY2027(Q1) performance review, conference-call synthesis, and forward scenario framework, as of 20 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> revenue crossed &#8377;3,500 crore for the first time in FY26 (+23.6%) and re-accelerated further to +39.7% YoY in Q1 FY27 &mdash; yet reported EBITDA margin slid from a 19&ndash;20% multi-year band to 16&ndash;17%, reported PAT actually <em>fell</em> 1.4% in FY26, and diluted EPS was flat year-on-year in the latest quarter (&#8377;4.81 vs &#8377;4.82) despite the 40% revenue jump. Management calls this a deliberate, self-funded investment cycle &mdash; GenAI platforms, go-to-market hiring, three acquisitions &mdash; and has given an increasingly specific, publicly-defended promise to be back in the 19&ndash;20% margin band by Q4 FY27. Whether that promise holds is the entire debate on this stock.
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (20 Aug 26)</div><div class="v">&#8377;565.6</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;13,620 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;414 &ndash; &#8377;597</div></div>
+      <div class="chip"><div class="k">FY26 Revenue Growth</div><div class="v pos">+23.6%</div></div>
+      <div class="chip"><div class="k">FY26 Reported PAT</div><div class="v neg">&minus;1.4%</div></div>
+      <div class="chip"><div class="k">Q1FY27 Revenue Growth</div><div class="v pos">+39.7%</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">34.0x</div></div>
+      <div class="chip"><div class="k">Forward P/E</div><div class="v">20.8x</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage:</b> primary BSE filings in this dataset span 29&nbsp;Apr&ndash;19&nbsp;Aug 2026 &mdash; two results cycles (Q4/FY26, reported 29&nbsp;Apr 2026, and Q1&nbsp;FY27, reported 30&nbsp;Jul 2026), the FY26 Annual Report (filed 17&nbsp;Jul 2026), and subsequent newsflow/AGM material through 19&nbsp;Aug 2026. No pre-FY26 quarterly transcripts or presentations are in this dataset, so a guidance-vs-delivered table cannot be built earlier than the Q4FY26&rarr;Q1FY27 pair; FY23&ndash;FY26 annual trend figures are drawn from tables Indegene republishes inside its own investor presentations, cross-checked against Yahoo/yfinance market data (which reconciles almost exactly for revenue, PAT and EPS). The company listed on NSE/BSE only on 13&nbsp;May 2024, so its entire listed history is ~2.3 years. Sell-side coverage: 8 analysts.
+    </div>
+  </div>
+
+  <section class="latest-update" id="latest-update">
+    <div class="lu-head">
+      <h2>Latest Update</h2>
+      <span class="lu-livedot"><span class="p"></span>Rolling</span>
+    </div>
+    <p class="lu-dek">This section is appended each time new results or filings land &mdash; newest entry first. The rest of the document below (&sect;01&ndash;&sect;11) is the standing analysis built around FY26 and the Q1&nbsp;FY27 print (30&nbsp;Jul 2026) and is left as written; read this section as the newsflow layered on top of it since that print, through 19&nbsp;Aug 2026.</p>
+
+    <div class="update-entry">
+      <div class="ue-top">
+        <span class="ue-date">6&ndash;19 Aug 2026</span>
+        <span class="ue-quarter">Post-Q1&nbsp;FY27 newsflow &middot; no new financial results in this window &middot; next print is Q2&nbsp;FY27</span>
+        <span class="pill mixed"><span class="d"></span>Mixed &mdash; constructive</span>
+      </div>
+
+      <p>Three unrelated items landed in the same fortnight: a private-equity exit that the market absorbed smoothly, a legacy US litigation matter moving to closure, and routine AGM/board business. None of them changes the FY27 margin-recovery thesis (&sect;04, &sect;10) &mdash; the next real test of that thesis is the Q2&nbsp;FY27 print, not this window.</p>
+
+      <div class="metric-row">
+        <div class="metric"><div class="k">BPC stake sold</div><div class="v">8.73%</div><div class="d">Block deal, 6 Aug, &#8377;525/share</div></div>
+        <div class="metric"><div class="k">Deal value</div><div class="v">&#8377;1,105 Cr</div><div class="d">2.1 Cr shares, 9 institutional buyers</div></div>
+        <div class="metric"><div class="k">Stock reaction</div><div class="v pos">+1.8%</div><div class="d">Intraday, day of the block deal</div></div>
+        <div class="metric"><div class="k">TCPA settlement</div><div class="v">Authorized</div><div class="d">19 Aug &mdash; execution of the &#8377;203M provision</div></div>
+      </div>
+
+      <div class="callout note" style="margin-top:2px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Brighton Park Capital's full exit was absorbed by quality buyers, not dumped into the market</b>BPC &mdash; one of the two PE investors (with Carlyle Group) who put $200M into Indegene in 2021 &mdash; sold its entire remaining 8.73% stake via block deals on 6&nbsp;Aug at &#8377;525/share, a ~7% discount to the pre-deal close. The stake was picked up by nine institutional investors including Quant Mutual Fund (3.95%), ICICI Prudential (2.8%), and marquee global names Goldman Sachs, Morgan Stanley and Norges Bank. This dataset does not confirm whether Carlyle still holds its own stake post-IPO &mdash; worth checking in the next shareholding disclosure. A PE exit is mechanically a liquidity event, not a fundamental one, but broad, high-quality institutional take-up (rather than the stock cratering on the block) is a mildly reassuring signal on how the market reads the stock at &#8377;525&ndash;568.</div>
+      </div>
+
+      <div class="ue-cols">
+        <div class="ue-col good">
+          <h5>&#10003; What's reassuring</h5>
+          <ul>
+            <li>The TCPA class-action settlement &mdash; the source of the &#8377;203M exceptional charge that hit Q4FY26 PAT &mdash; moved to execution on 19&nbsp;Aug: the Board authorized signing the final settlement agreement, following the May 2026 term sheet. This closes out the one clean one-off item flagged in &sect;04, assuming the capped &#8377;417M settlement framework holds.</li>
+            <li>Jill De Simone's appointment as Independent Director (Jan 2026&ndash;Jan 2029) was confirmed by shareholders at the 13&nbsp;Aug AGM &mdash; a 40+-year pharma veteran (President, US Oncology at Merck; senior roles at Teva and Bristol Myers Squibb) formally joins the board, adding sector-specific governance depth (see &sect;07).</li>
+            <li>Institutional ownership deepened via the BPC block &mdash; Norges Bank and Goldman Sachs are new, high-quality names in the register.</li>
+          </ul>
+        </div>
+        <div class="ue-col bad">
+          <h5>&#10007; What's not</h5>
+          <ul>
+            <li>A headline-only report (11&nbsp;Aug) says Indegene "is pursuing a clinical research acquisition" &mdash; no target, size or terms disclosed in any source available here. Consistent with the company's stated M&amp;A appetite (&sect;08) but adds no verifiable information; flagged as a pipeline signal to watch for a formal BSE filing, not a confirmed deal.</li>
+            <li>No new operating data landed in this window &mdash; the margin-recovery thesis (H2&nbsp;FY27 inflection, 19&ndash;20% by Q4&nbsp;FY27) remains unconfirmed by anything newer than the 30&nbsp;Jul Q1FY27 print.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="verdict-strip">
+        <span>&#9679;</span>
+        <div><span class="ai-pill">AI-Synthesized</span><b>Net effect on the 12-month verdict in &sect;11:</b> neutral-to-mildly-positive. Nothing here confirms or contradicts the FY27 margin-recovery guidance that the whole thesis rests on &mdash; it's housekeeping (an overhang removed, a legal matter closed, a governance seat filled) rather than a fundamental data point. The verdict in &sect;11 is unchanged by this window; it will next move on the Q2&nbsp;FY27 print, specifically whether EBITDA margin holds roughly flat quarter-on-quarter as management explicitly claimed it would (see &sect;04).</div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#latest-update" style="color:var(--critical);font-weight:700;"><span class="n">&#9679;</span>Latest update</a></li>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Call insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+<!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What Indegene does, and why it has grown</h2></div>
+      <p class="sec-dek">A 27-year-old life sciences specialist trying to prove it is an "AI-native operating partner," not an IT-services vendor that happens to serve pharma.</p>
+
+      <p class="lede">Founded in 1998 and based in Bengaluru, Indegene sells outsourced commercialization, medical and clinical services to biopharmaceutical, biotech and medical-device companies &mdash; content, omnichannel marketing, regulatory/medical affairs, pharmacovigilance and safety, and increasingly GenAI-embedded versions of all of it. Carlyle Group and Brighton Park Capital invested $200 million in 2021; the company listed on the NSE/BSE on 13&nbsp;May 2024 at an issue price of &#8377;452/share (fresh issue &#8377;7,600Mn + offer-for-sale &#8377;10,818Mn by the pre-IPO investors), with net fresh-issue proceeds of &#8377;7,246Mn used mostly to repay acquisition debt and fund inorganic growth (&sect;05). It calls itself "the strategic operating partner to the world's leading life sciences organizations across the commercialization lifecycle" and explicitly rejects being categorized as IT services, a horizontal BPO, a specialty creative agency, or a CRO.</p>
+
+      <h3>Two reportable segments (reorganized in FY26)</h3>
+      <p style="font-size:13.8px;">Indegene merged its former "Brand Activation" segment into Enterprise Commercial Solutions during FY26 &mdash; comparatives were recast, so pre-FY26 segment splits are not strictly comparable to what's shown in &sect;03.</p>
+      <div class="grid-2">
+        <div class="card">
+          <b>Enterprise Commercial Solutions (ECS)</b> &mdash; ~70&ndash;72% of revenue and the fastest-growing segment. Brand/product commercialization: audience intelligence, brand strategy, content production, omnichannel engagement, a "Launch Engine" for first-time product launches, built on the proprietary Invisage&trade; and Tandem&trade; data/targeting platforms (the latter acquired with BioPharm).
+        </div>
+        <div class="card">
+          <b>Enterprise Medical Solutions (EMS)</b> &mdash; ~25&ndash;28% of revenue. Regulatory affairs, medical affairs ("Medical 360&deg;"), pharmacovigilance/safety, compliance and real-world evidence, delivered through the NEXT family of platforms (NEXT MLR, NEXT Medical Writing, NEXT Scientific Content Authoring).
+        </div>
+        <div class="card">
+          <b>"Others" (not a reportable segment)</b> &mdash; ~3&ndash;4% of revenue: Indegene Consulting and Enterprise Clinical Solutions, the latter built around Datavant/Komodo data partnerships and pitched as the "next growth platform." Currently loss-making at the segment-result line in every period disclosed (&sect;03) &mdash; a vertical expansion into clinical-trial-adjacent work that hasn't yet turned a profit.
+        </div>
+        <div class="card">
+          <b>The AI stack ("Cortex")</b> &mdash; four layers per the FY26 annual report: a federated <em>Data Foundation</em> (3M+ HCP engagement signals); <em>Cortex</em>, a proprietary LLM-agnostic reasoning engine encoding domain knowledge into semantic knowledge graphs; <em>The Mesh</em>, production AI agents (Content Super-App, Medical Writing, Medico-Legal Review, adverse-event monitoring via "NAEM," HCP journey optimization, submissions planning); and <em>The Cockpit</em>, the human domain experts who own outcomes. Management says ~50% of internal product code is now AI-assisted.
+        </div>
+      </div>
+
+      <h3>The moat, as the company frames it ("The Indegene EDGE")</h3>
+      <p>Four claims recur across the annual report and both earnings calls: (i) <b>embedded in revenue, not cost</b> &mdash; client spend is tied to product launches and brand performance, not a cost-cutting IT budget, which management argues makes Indegene "far more resilient to cost cutting than a typical services model"; (ii) <b>domain-led work</b> &mdash; 27+ years exclusively in life sciences, 1,500+ specialists, ~29% of delivery staff from a healthcare background (up from 22% two years ago); (iii) <b>a growth-stage disruptor, not a mature IT vendor</b> &mdash; the pitch is that Indegene displaces fragmented agency/CRO wallet share rather than competing for generic offshore-IT dollars, "a materially larger and less contested opportunity set"; (iv) <b>outcome-aligned pricing</b> &mdash; management said on the Q1FY27 call that roughly <b>60% of contracts are now output/outcome-based</b> rather than staffing-based, explicitly framed as "the economics of a platform, not a labor arbitrage business." These are asserted by management rather than independently audited, but net revenue retention above 100% for five consecutive years and a client base that has roughly doubled since FY22 are at least directionally consistent with them.</p>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>No independent market-share or ranking figure found</b>Unlike some peers who cite a third-party research-firm ranking, nothing in Indegene's own filings or transcripts in this dataset states an independent, audited market-share or industry-ranking number. Management's own scale claim is qualitative: "operating partner to all 20 of the top-20 global biopharma companies and 80 of the top 100." A widely circulated news estimate (23&nbsp;Jun 2026 coverage) puts the addressable outsourced-pharma-marketing market at "$60 billion, growing to $85 billion by 2030" &mdash; that figure appears only in press coverage, not in the annual report or investor presentations reviewed here, so it is flagged as a news-sourced claim rather than a company-disclosed TAM.</div>
+      </div>
+
+      <h3>The growth arc, FY23&ndash;FY26 (consolidated)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>2,306</td><td>2,590</td><td>2,839</td><td>3,510</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td>+12.3%</td><td>+9.6%</td><td>+23.6%</td></tr>
+            <tr><td>Adjusted EBITDA margin</td><td>n/a in this dataset</td><td>~20.7%*</td><td>19.8%</td><td>19.4%</td></tr>
+            <tr><td>PAT</td><td>266</td><td>337</td><td>407</td><td>401</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>11.12</td><td>14.09</td><td>17.02</td><td>16.62</td></tr>
+          </tbody>
+        </table>
+        <caption>Sources: Q4FY26 investor presentation ("19%&ndash;20% band, 4 years" chart) for revenue/growth/margin; MarketData/yfinance annual financials for PAT and EPS, cross-checked against and matching company filings for FY25&ndash;FY26 exactly. *FY24 margin read off a jumbled chart-OCR extraction and shown with lower confidence than the FY25/FY26 figures, which reconcile precisely against the company's own Adjusted-EBITDA reconciliation table in &sect;04.</caption>
+      </div>
+      <p>Two things sit side by side in this table and drive the whole report: revenue re-accelerated sharply in FY26 after a soft FY25, while PAT and EPS <em>declined</em> in the very same year &mdash; the first time in this four-year window that revenue growth and profit growth moved in opposite directions. &sect;04 walks through why.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item in the tracked news feed since September 2025, condensed &mdash; the last six weeks in full detail, the year before that summarized by theme.</p>
+
+      <div class="news-item">
+        <div class="news-date">19 Aug 2026</div>
+        <div><span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">TCPA class-action settlement authorized for execution</div>
+          <div class="news-body">Board authorized signing the settlement agreement for the 2020-21 US fax-advertising class action (see &sect;08). Terms not separately re-disclosed here beyond the previously provisioned &#8377;203M / capped &#8377;417M framework.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">17 Aug 2026</div>
+        <div><span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Jill De Simone's board appointment confirmed at AGM</div>
+          <div class="news-body">28th AGM (13&nbsp;Aug) approved her three-year term (Jan 2026&ndash;Jan 2029) as Independent Director. See &sect;07 for background.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">11 Aug 2026</div>
+        <div><span class="pill mixed"><span class="d"></span>Mixed / unclear</span>
+          <div class="news-title">Reported pursuit of a clinical-research acquisition</div>
+          <div class="news-body">Headline-only coverage; no target, size or terms available in any source reviewed here. Not yet a confirmed transaction.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">6 Aug 2026</div>
+        <div><span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Brighton Park Capital exits its full 8.73% stake</div>
+          <div class="news-body">Block deal, &#8377;1,105 Cr at &#8377;525/share, absorbed by nine institutions including Quant MF, ICICI Prudential, Goldman Sachs, Morgan Stanley and Norges Bank. Full detail in the Latest Update band above.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">3 Aug 2026</div>
+        <div><span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Nomura and Motilal Oswal stay Neutral after Q1FY27</div>
+          <div class="news-body">Nomura: TP &#8377;500, flags 400bps YoY EBITDA margin compression to 16.4%, expects recovery to 18.3% only by FY28. Motilal Oswal: TP &#8377;570 on 20x FY28E EPS, projects 19%/29%/31% CAGR revenue/EBIT/PAT through FY28. Full detail in &sect;09.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">30 Jul 2026</div>
+        <div><span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Q1 FY27 results: growth re-accelerates to +39.7% YoY</div>
+          <div class="news-body">Five $1M+ ACV deal wins including one above $3M; management guided FY27 growth to exceed FY26's 23&ndash;24% and tightened the margin-recovery timeline to 6 quarters (Q4FY27), down from the originally-flagged 6&ndash;8. Full detail in &sect;03&ndash;&sect;04.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">6 May &amp; 4 May 2026</div>
+        <div><span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Tax demand disclosed; Q4FY26 results draw a cautious analyst reaction</div>
+          <div class="news-body">A &#8377;49.68 Cr income-tax demand (transfer pricing, FY23-24; the annual report separately discloses a larger &#8377;111.4 Cr draft TP order for the same assessment year filed 18&nbsp;Mar 2026 &mdash; the two disclosures do not fully reconcile in this dataset and are presented as separate, evolving items in &sect;05). Separately, Motilal Oswal kept Neutral (TP &#8377;552) after Q4FY26 PAT missed estimates (&#8377;0.8Bn vs &#8377;1.1Bn) on margin dilution and exceptional items.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">30 Apr 2026</div>
+        <div><span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Q4/FY26 results: first &#8377;1,000 Cr quarter, but PAT fell 32.3% YoY</div>
+          <div class="news-body">FY26 revenue &#8377;3,501 Cr (+23.6%); Q4 PAT of &#8377;79.7 Cr fell sharply on margin compression and the TCPA exceptional item. 18 new clients added (91 total). Full detail in &sect;03&ndash;&sect;04.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:8px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Feb&ndash;Sep 2025, summarized by theme (headline items only beyond this point)</b>
+        <b style="display:inline;">M&amp;A cadence:</b> five acquisitions inside twelve months &mdash; Cake Health/Austria (18&nbsp;Feb 2026), Trilogy Writing &amp; Consulting/Canada (31&nbsp;Dec 2025), Cake Group/DACH region (10&nbsp;Nov 2025, up to &euro;8.5M), BioPharm Communications/US (3&nbsp;Oct 2025, up to $106M, the largest of the group), all cash-funded, all pitched as capability or geography bolt-ons rather than scale-for-scale's-sake (detail in &sect;08). <b style="display:inline;">Governance:</b> Jill De Simone's initial board appointment (9&nbsp;Feb 2026); a "no identifiable promoter" regulatory disclosure (12&nbsp;Jun 2026, routine). <b style="display:inline;">Commercial:</b> a Pune delivery center opened (8&nbsp;Sep 2025); a Datavant partnership on clinical-trial recruitment (22&nbsp;Sep 2025). <b style="display:inline;">Analyst coverage initiated:</b> ICICI Securities Add (10&nbsp;Sep 2025), Motilal Oswal Neutral (11&nbsp;Dec 2025) &mdash; both stayed at broadly the same stance through the following nine months.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segment mix &amp; guidance</h2></div>
+      <p class="sec-dek">Growth re-accelerating for two straight quarters, increasingly diversified beyond the top client cohort, overwhelmingly North America/Europe, and still without a formal numeric revenue guide.</p>
+
+      <h3>Quarterly trend, consolidated</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q1FY26</th><th>Q2FY26</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>760.8</td><td>804.2</td><td>942.1</td><td>1,003.4</td><td>1,063.1</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td>&mdash;</td><td>+15.1%*</td><td>+32.8%</td><td>+39.7%</td></tr>
+            <tr><td>Reported EBITDA</td><td>153.6</td><td>141.6&dagger;</td><td>164.4</td><td>164.8</td><td>179.5</td></tr>
+            <tr><td>Reported EBITDA margin</td><td>20.2%</td><td>17.6%</td><td>17.5%</td><td>16.4%</td><td>16.9%</td></tr>
+            <tr><td>Reported PAT</td><td>116.4</td><td>102.1&dagger;</td><td>102.9</td><td>79.7</td><td>116.2</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>4.82</td><td>n/a</td><td>4.26</td><td>3.30</td><td>4.81</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1FY27 investor presentation's own trailing-5-quarter chart (revenue and both margins disclosed to one decimal for every quarter shown). &dagger;Q2FY26 EBITDA/PAT in &#8377; Cr are derived by applying the deck's disclosed margin percentages to disclosed revenue &mdash; the absolute &#8377; figures for that quarter were not separately captured in this dataset. *Q3FY26 YoY growth per Motilal Oswal note (USD terms, BioPharm-aided); not separately stated in &#8377; terms in the presentations reviewed.</caption>
+      </div>
+      <p>Note the EPS punchline first flagged in &sect;01: Q1FY27 diluted EPS of &#8377;4.81 is essentially flat against Q1FY26's &#8377;4.82 &mdash; a 40% revenue increase produced no per-share earnings growth at all, entirely because EBITDA margin gave up roughly 330 basis points (20.2%&rarr;16.9%) over the same four quarters. Revenue has stepped up every single quarter since Q1FY26; margin has moved the other way for three of those four quarters before stabilizing (not yet recovering) in Q1FY27.</p>
+
+      <h3>Segment revenue (ECS / EMS / Others, recast basis)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Mn</th><th>Q4FY25</th><th>Q3FY26</th><th>Q4FY26</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>ECS revenue</td><td>5,222</td><td>6,689</td><td>7,193</td><td>19,348</td><td>24,605</td></tr>
+            <tr><td>EMS revenue</td><td>2,107</td><td>2,387</td><td>2,537</td><td>8,025</td><td>9,298</td></tr>
+            <tr><td>Others revenue</td><td>227</td><td>345</td><td>304</td><td>1,020</td><td>1,202</td></tr>
+            <tr><td>ECS segment result</td><td>1,062</td><td>1,199</td><td>1,212</td><td>3,942</td><td>4,492</td></tr>
+            <tr><td>EMS segment result</td><td>585</td><td>612</td><td>672</td><td>2,081</td><td>2,435</td></tr>
+            <tr><td>Others segment result</td><td class="neg">(100)</td><td class="neg">(55)</td><td class="neg">(163)</td><td class="neg">(329)</td><td class="neg">(327)</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 financial results Note 14 / Q1FY27 results Note 5, segment note (post-reorganization; Brand Activation merged into ECS in FY26, comparatives recast). "Segment result" is pre-unallocable-expense, pre-D&amp;A, pre-other-income, pre-finance-cost, pre-tax contribution &mdash; not a fully-loaded net margin, and the company does not separately disclose a segment margin %.</caption>
+      </div>
+      <p>ECS grew faster than EMS in every period shown, attributed on the calls to broader industry commercialization activity and faster GenAI adoption specifically on the commercial side. "Others" (consulting + the clinical-solutions push) has posted a segment loss in every period disclosed here &mdash; a genuine vertical expansion still in investment mode, not yet break-even.</p>
+
+      <h3>Client base &amp; concentration</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Active clients</div><div class="v">105</div><div class="d">Q1FY27, vs 91 at FY26-end and 70 a year earlier (+50% YoY)</div></div>
+        <div class="stat"><div class="k">$1M+ revenue clients</div><div class="v">54</div><div class="d">Vs 40 a year earlier</div></div>
+        <div class="stat"><div class="k">Revenue per employee</div><div class="v">$77.1K</div><div class="d">+14.2% YoY, "highest in the peer group" per management</div></div>
+        <div class="stat"><div class="k">Net revenue retention</div><div class="v">&gt;100%</div><div class="d">Every year for 5 consecutive years (FY21&ndash;FY26)</div></div>
+      </div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>% of TTM revenue</th><th>Q4FY25</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Top client</td><td>12.0%</td><td>9.5%</td><td>9.3%</td><td>9.0%</td></tr>
+            <tr><td>Top 5 clients</td><td>37.9%</td><td>33.1%</td><td>31.2%</td><td>30.4%</td></tr>
+            <tr><td>Top 10 clients</td><td>56.4%</td><td>48.9%</td><td>47.3%</td><td>45.7%</td></tr>
+            <tr><td>Top 20 clients</td><td>77.2%</td><td>68.7%</td><td>68.6%</td><td>66.6%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26IP / Q1FY27IP fact sheets. One customer individually accounts for &gt;10% of group revenue (&#8377;3,651Mn FY26 vs &#8377;3,842Mn FY25 &mdash; a declining absolute figure even as total revenue grows) &mdash; annual report, related-party note.</caption>
+      </div>
+      <div class="callout pass">
+        <div class="icon">&#10003;</div>
+        <div><b>Concentration is genuinely falling, not just diluting on paper</b>Top-5 client share of TTM revenue has dropped from 37.9% to 30.4% in five quarters while the top-20 cohort's absolute revenue kept compounding (&#8377;22,082Mn FY25 &rarr; &#8377;24,190Mn FY26 &rarr; &#8377;26,480Mn Q1FY27 TTM, per the Q1FY27 deck) &mdash; i.e. the base is growing under the largest clients, not instead of them. The single &gt;10%-of-revenue customer remains a real point-of-failure risk, but it is a shrinking one in relative terms.</div>
+      </div>
+
+      <h3>Geography</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>% of revenue</th><th>Q4FY25</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>North America</td><td>71.9%</td><td>71.8%</td><td>74.1%</td><td>75.1%</td></tr>
+            <tr><td>Europe</td><td>24.6%</td><td>25.5%</td><td>23.2%</td><td>22.2%</td></tr>
+            <tr><td>India</td><td>0.9%</td><td>0.4%</td><td>0.4%</td><td>0.5%</td></tr>
+            <tr><td>Rest of World</td><td>2.6%</td><td>2.3%</td><td>2.3%</td><td>2.2%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26IP / Q1FY27IP fact sheets. North America share rose mechanically with the US-based, cash-funded BioPharm acquisition consolidating from October 2025.</caption>
+      </div>
+      <p>No organic new-country market entry is disclosed in this dataset &mdash; the "new geography" story here is entirely acquisition-led: Cake Group (Austria/Germany/Switzerland, the DACH region) and Warn &amp; Co (UK) both add on-the-ground European headcount and client relationships rather than Indegene opening its own greenfield office. Management explicitly connected the Cake acquisition to a subsequent Germany win with its largest customer on the Q4FY26 call ("now you can understand why we did Cake as an acquisition").</p>
+
+      <h3>Guidance vs. what the data can verify</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Guided on&hellip;</th><th>What was said</th><th>What actually happened next</th></tr></thead>
+          <tbody>
+            <tr><td>30 Apr 2026 (Q4/FY26 call)</td><td>No formal revenue guidance: "we're not providing formal revenue guidance," only that the pipeline was "stronger &amp; higher than last year"</td><td class="pos">Q1FY27 revenue grew +39.7% YoY &mdash; an acceleration from Q4FY26's +32.8%, consistent with the qualitative direction given</td></tr>
+            <tr><td>30 Jul 2026 (Q1FY27 call)</td><td>"We expect our organic growth in FY27 to be better than FY26, and we anticipate an acceleration in the second half"</td><td>Not yet verifiable &mdash; requires Q2&ndash;Q4 FY27 prints</td></tr>
+          </tbody>
+        </table>
+        <caption>This dataset contains no pre-FY26 transcripts, so a guidance-vs-actual table cannot be built further back than this one pair of calls.</caption>
+      </div>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">A deliberate, self-disclosed investment cycle that management has now put a firm date on unwinding &mdash; and defended under direct analyst pressure.</p>
+
+      <h3>Adjusted vs. reported &mdash; the reconciliation that explains most of the FY26 profit story</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Mn, consolidated</th><th>FY25</th><th>FY26</th><th>YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue</td><td>28,393</td><td>35,105</td><td class="pos">+23.6%</td></tr>
+            <tr><td>Adjusted EBITDA</td><td>5,622</td><td>6,793</td><td class="pos">+20.8%</td></tr>
+            <tr><td>Adjusted EBITDA margin</td><td>19.8%</td><td>19.4%</td><td>&minus;0.4pt</td></tr>
+            <tr><td>&nbsp;&nbsp;&minus; MTM impact of open FX contracts</td><td>&mdash;</td><td class="neg">(398)</td><td>&mdash;</td></tr>
+            <tr><td>&nbsp;&nbsp;&minus; One-time acquisition/restructuring costs</td><td>&mdash;</td><td class="neg">(148)</td><td>&mdash;</td></tr>
+            <tr class="total"><td>Reported EBITDA (Ind AS)</td><td>5,622</td><td>6,247</td><td class="pos">+11.1%</td></tr>
+            <tr><td>Reported EBITDA margin</td><td>19.8%</td><td>17.8%</td><td>&minus;2.0pt</td></tr>
+            <tr><td>Adjusted PAT</td><td>n/a</td><td>4,583</td><td class="pos">+12.7%*</td></tr>
+            <tr class="total"><td>Reported PAT</td><td>4,067</td><td>4,011</td><td class="neg">&minus;1.4%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q4FY26 investor presentation's own Adjusted-vs-Reported reconciliation. *FY25 Adjusted PAT comparator not disclosed in the reviewed filings, so the +12.7% growth figure is management's own stated number, not independently recomputed here.</caption>
+      </div>
+      <p>Reported PAT actually fell in FY26 even though revenue grew 23.6% and management's own "adjusted" profit measure grew a healthy 12.7% &mdash; the whole gap is bridged by three items the company itself calls out: a &#8377;203Mn litigation provision (&sect;08), a &#8377;398Mn mark-to-market charge on FX hedges that predates a January 2026 accounting policy change (cash-flow hedge designation, which should reduce this volatility going forward), and &#8377;148Mn of acquisition/restructuring costs. None of these three is a recurring operating expense; all three are explained, not denied, in the company's own materials.</p>
+
+      <h3>Why margin fell through FY26 and into Q1FY27 &mdash; management's own explanation</h3>
+      <div class="grid-2">
+        <div class="card">
+          <b>Go-to-market &amp; technology investment</b> &mdash; flagged as far back as the Aug 2025 (Q2FY26) call as a 150bps margin hit, driven by GTM hiring, domain-expertise "handholding" investment, and R&amp;D spend that rose to "a tad above 2% of revenue."
+        </div>
+        <div class="card">
+          <b>Cost/revenue timing mismatch on the largest outcome-based deal</b> &mdash; the &gt;$10M ACV omnichannel deal won in Q3FY26 has been on the P&amp;L as a cost since it went live in Q4FY26, but its revenue is deferred until Q3FY27 under the outcome-based recognition structure. Management: "most of that revenue will flow straight to the bottom line" once it starts.
+        </div>
+        <div class="card">
+          <b>Workforce transformation (Q1FY27-specific)</b> &mdash; a one-time cost this quarter that management says will structurally reduce employee cost and dampen the impact of future wage-hike cycles.
+        </div>
+        <div class="card">
+          <b>D&amp;A nearly doubled</b> &mdash; &#8377;802Mn (FY25) &rarr; &#8377;1,264Mn (FY26), +57.6%, almost entirely amortization of intangibles recognized in the BioPharm and other FY26 acquisitions &mdash; a real but non-cash drag on reported PAT and EPS.
+        </div>
+      </div>
+
+      <h3>The guidance itself &mdash; tightened, not loosened, under direct questioning</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Call date</th><th>Margin guidance given</th></tr></thead>
+          <tbody>
+            <tr><td>30 Apr 2026 (Q4/FY26)</td><td>Qualitative only: "the second half of FY27 will see us revert to the earlier levels of higher margins." No number given in this call.</td></tr>
+            <tr><td>30 Jul 2026 (Q1FY27)</td><td>Specific and tightened: referencing the original Aug 2025 guidance of a "6&ndash;8 quarter" normalization window, CFO Suhas Prabhu confirmed <b>"the margin normalization is expected in 6 quarters, that is by Q4 of FY27"</b> &mdash; inflection at Q3FY27, full return to the <b>19&ndash;20% band</b> by H2FY27/Q4FY27. Confirmed directly to an analyst's follow-up: <i>"Yes, Chirag."</i></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <blockquote>
+        "Is there any delay there? ... this is despite the fact that you have invested in some of large deals which maybe you did not factor in when you gave this guidance. Is that fair?"
+        <cite>&mdash; Prolin Nandu, Edelweiss Public Alternatives, Q1FY27 earnings call</cite>
+      </blockquote>
+      <blockquote>
+        "No, there is no delay ... It's not going to be 6 to 8, it's going to be 6 ... Yes, absolutely."
+        <cite>&mdash; Manish Gupta, Chairman &amp; CEO, responding directly, Q1FY27 earnings call</cite>
+      </blockquote>
+      <p>This is a notable exchange: an analyst got management to concede on the record that the original margin-recovery timeline didn't fully price in the cost of some of the large deals won since &mdash; and management held (in fact tightened) the timeline anyway rather than pushing it out. Read together with the Q1FY27 print itself (margins stabilized at 16.9% rather than deteriorating further), this is a guidance track record that is firming, not slipping, through the hardest part of the cycle.</p>
+
+      <h3>Other profit-quality checks</h3>
+      <div class="callout pass">
+        <div class="icon">&#10003;</div>
+        <div><b>Other income as % of PBT is falling, not rising</b>FY26 other income was &#8377;720Mn against PBT of &#8377;5,250Mn (13.7%), down from FY25's &#8377;1,072Mn against &#8377;5,393Mn (19.9%). Profit growth is becoming <em>less</em> reliant on non-operating income, the opposite of the usual red-flag pattern &mdash; passes clean.</div>
+      </div>
+      <div class="callout pass">
+        <div class="icon">&#10003;</div>
+        <div><b>Finance costs are falling, consistent with the debt-free balance sheet</b>&#8377;220Mn (FY25) &rarr; &#8377;193Mn (FY26) &mdash; IPO proceeds were used to retire acquisition-linked debt (&sect;05), and no new borrowing has been drawn since.</div>
+      </div>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">Zero financial debt, a tripled goodwill balance from one large acquisition, and a dividend that grew faster than the payout ratio suggests it needed to.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Mn, consolidated</th><th>31-Mar-2025</th><th>31-Mar-2026</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity</td><td>26,156</td><td>31,387</td></tr>
+            <tr><td>Cash &amp; cash equivalents</td><td>2,410</td><td>3,008</td></tr>
+            <tr><td>Current investments</td><td>12,897</td><td>10,995</td></tr>
+            <tr><td>Other bank balances</td><td>1,336</td><td>811</td></tr>
+            <tr><td>Trade receivables (billed + unbilled)</td><td>7,514</td><td>9,818</td></tr>
+            <tr><td>Trade payables</td><td>934</td><td>1,807</td></tr>
+            <tr><td>Goodwill</td><td>3,565</td><td>11,343</td></tr>
+            <tr><td>Other intangible assets</td><td>1,862</td><td>4,833</td></tr>
+            <tr><td>Financial debt / borrowings</td><td colspan="2" style="text-align:center;">None disclosed &mdash; only lease liabilities</td></tr>
+            <tr><td>Total assets</td><td>33,259</td><td>46,203</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 Annual Report consolidated balance sheet.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Goodwill more than tripled on a single, first-year-auditor-reviewed acquisition</b>Consolidated goodwill jumped from &#8377;3,565Mn to &#8377;11,343Mn &mdash; the BioPharm Communications purchase-price allocation alone contributed &#8377;6,429Mn of that. Deloitte Haskins &amp; Sells took over as statutory auditor for FY26 (a first-year auditor rotation) and explicitly named "Business Combinations" &mdash; specifically the estimation involved in valuing BioPharm's customer relationships, IP, brand and contracts &mdash; as one of only two Key Audit Matters for the year. Not a red flag on its own (the audit opinion is unmodified/unqualified on both years), but a large first-time PPA reviewed by a first-year auditor is worth a second look if goodwill impairment ever becomes a live topic.</div>
+      </div>
+
+      <h3>No financial debt; growth is funded from the balance sheet, not leverage</h3>
+      <p>Indegene carries no borrowings on either year's balance sheet &mdash; only lease liabilities. Net IPO proceeds of &#8377;7,246Mn were used to repay ILSL Holdings Inc. debt (&#8377;3,950Mn), fund capex (&#8377;577Mn), technology/cybersecurity/cloud spend (&#8377;253Mn), and general corporate/inorganic growth (&#8377;2,294Mn) &mdash; fully utilized as of 30&nbsp;Jun 2026. The much larger BioPharm acquisition (&#8377;8,821Mn / ~$99.8M total consideration) was funded from the company's broader cash and investment balance, not from a new debt raise: consolidated cash + investments fell only from &#8377;16,643Mn to &#8377;15,385Mn across FY26 despite &#8377;7,235Mn of net acquisition cash outflow &mdash; strong underlying cash generation absorbed most of the M&amp;A spend (&sect;06).</p>
+
+      <h3>Receivables &amp; working capital</h3>
+      <p>Net DSO (billed + unbilled receivables, less unearned revenue) improved from 72 days (Mar-2025) to 63 days (Mar-2026), continuing a multi-year decline the CFO explicitly guided toward "mid-60s to 70 days on a steady basis." It then <b>ticked back up to 67 days in Q1FY27</b> (+4 days QoQ) &mdash; not yet alarming, and still inside the guided range, but the one balance-sheet metric that reversed direction this quarter and worth watching alongside the >$10M ACV deal's deferred-revenue mechanics.</p>
+
+      <h3>Capital allocation: dividend up, capex still capital-light, M&amp;A the primary growth lever</h3>
+      <ul style="max-width:76ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Dividend:</b> FY26 final dividend of &#8377;2.25/share, a 12.5% increase over FY25's &#8377;2.00 &mdash; roughly &#8377;542Mn cash outflow, a payout ratio of only ~13.5% of reported PAT (or ~11.8% of Adjusted PAT). Capital allocation remains growth/M&amp;A-first; no buyback disclosed in this dataset.</li>
+        <li><b>Capex is genuinely small:</b> &#8377;443Mn (FY26) vs &#8377;300Mn (FY25) &mdash; about 1.3% of revenue, consistent with an asset-light services model. Capital commitments contracted-but-not-executed stepped up sharply, though, from &#8377;9Mn to &#8377;138Mn, signaling more near-term spend than the historical run-rate.</li>
+        <li><b>Growth capital goes into acquisitions, not fixed assets:</b> five acquisitions in twelve months (BioPharm, MJL, Warn &amp; Co, Cake Group, Trilogy &mdash; full table in &sect;08) consumed &#8377;7,235Mn of cash in FY26 investing activities versus &#8377;443Mn of PP&amp;E capex &mdash; more than 16x the fixed-asset spend.</li>
+      </ul>
+
+      <h3>The one material contingent liability</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>&#8377;1,114Mn draft transfer-pricing order, ~21% of FY26 PBT</b>A draft TP order dated 18&nbsp;Mar 2026 (AY2023-24) proposes an adjustment of &#8377;1,114Mn; the company is pursuing resolution via the India&ndash;US Mutual Agreement Procedure and has not recognized a provision, assessing the probability of an outflow as low. Separately, a news report (6&nbsp;May 2026) describes a smaller, already-finalized &#8377;49.68 Cr demand for the same assessment year based on a &#8377;123.41 Cr TP adjustment &mdash; the two disclosures do not cleanly reconcile in the documents reviewed here (they may represent different stages or different components of the same underlying dispute) and are presented separately rather than force-fit into one number. Either way, transfer-pricing risk on the multinational delivery structure is the single largest disclosed contingent liability on the balance sheet.</div>
+      </div>
+
+      <h3>ESOPs</h3>
+      <p>2,869,462 options outstanding at FY26-end (down from 3,267,710 a year earlier) against 240.8Mn shares outstanding &mdash; about 1.2% potential dilution, modest. Consolidated share-based payment expense rose from &#8377;174Mn to &#8377;256Mn YoY, a real but not disproportionate cost relative to the 23.6% revenue growth.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality &mdash; the check this stock actually passes</h2></div>
+      <p class="sec-dek">The mirror image of &sect;04: while reported profit fell, cash generation accelerated &mdash; the clearest evidence that the margin story is an investment cycle, not a deteriorating business.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Mn, consolidated</th><th>FY25</th><th>FY26</th><th>YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Reported PAT</td><td>4,067</td><td>4,011</td><td class="neg">&minus;1.4%</td></tr>
+            <tr><td>Cash from operations (OCF)</td><td>4,419</td><td>6,508</td><td class="pos">+47.3%</td></tr>
+            <tr><td>Capex</td><td class="neg">(300)</td><td class="neg">(443)</td><td>+47.7%</td></tr>
+            <tr class="total"><td>Free cash flow (OCF &minus; capex)</td><td>4,119</td><td>6,065</td><td class="pos">+47.3%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 Annual Report consolidated cash flow statement. No quarterly (Q1FY27) cash flow statement was included in the 30&nbsp;Jul 2026 filing &mdash; only annual cash flow data is available in this dataset.</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#10003;</div>
+        <div><b>Earnings-quality check: passes clean</b>Per the skill's own cross-check &mdash; does CFO growth track PAT growth &mdash; the answer here is that CFO grew <em>far faster</em> than even Adjusted PAT (+47.3% vs +12.7%), and massively outpaced reported PAT, which actually fell (&minus;1.4%). That is the opposite of a red flag: it confirms that the items dragging reported profit (the litigation provision, FX mark-to-market, and acquisition-linked amortization) are non-cash or one-off, not signs of deteriorating underlying cash generation. Management's own cited "cash conversion ratio" of <b>162%</b> (OCF against Adjusted PAT) is the headline number built from this same relationship.</div>
+      </div>
+
+      <p>Two structural reasons cash outpaced reported profit: working-capital discipline (DSO improved from 72 to 63 days across the year, &sect;05, before the Q1FY27 uptick) and the fact that the biggest drags on reported PAT &mdash; &#8377;203Mn litigation provision, &#8377;398Mn FX MTM, &#8377;148Mn one-time costs, and the near-doubling of D&amp;A &mdash; are all either non-cash or genuinely one-off. None of them recur mechanically into FY27's cash flow statement the way they did into FY26's P&amp;L.</p>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Data gap: no quarterly cash flow statement</b>Indegene's quarterly result filings (both the Q4FY26 filing that also carries the full FY26 audited statements, and the Q1FY27 filing) do not include a quarterly cash flow statement &mdash; only P&amp;L, and a balance sheet in the annual filing. This means the specific claim that Q1FY27 continued the FY26 cash-generation trend cannot be directly verified from these documents; it can only be inferred from the DSO trend (which ticked up 4 days) and the stable cash + investments balance (&#8377;15,385Mn &rarr; &#8377;14,602Mn, a modest decline with no acquisition disclosed this quarter).</div>
+      </div>
+
+      <p>Unlike some companies under margin pressure, cash flow was not a major topic on either earnings call reviewed here &mdash; likely because, on the evidence in this dataset, it isn't the part of the story analysts are worried about. No explicit forward OCF or FCF target was given by management in either call.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">No promoter, a majority-independent board, disciplined executive pay, and a clean first-year audit rotation.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Manish Gupta</div>
+          <div class="role">Chairman, Executive Director &amp; CEO</div>
+          <div class="bio">Leads the strategic narrative on both earnings calls reviewed here &mdash; confident, consistent tone across quarters ("not cautiously optimistic but excited and confident" &rarr; "not merely optimistic, but genuinely confident"). CEO pay ratio: 30.3x median employee remuneration; his own pay <em>decreased</em> 0.25% YoY in FY26.</div>
+        </div>
+        <div class="person">
+          <div class="name">Dr. Sanjay Suresh Parikh</div>
+          <div class="role">Executive Director</div>
+          <div class="bio">Ceased to be an Audit Committee member effective 15&nbsp;Jul 2026 (remains an Executive Director). Pay ratio 18.2x median employee, down 5.93% YoY.</div>
+        </div>
+        <div class="person">
+          <div class="name">Suhas Prabhu</div>
+          <div class="role">Chief Financial Officer</div>
+          <div class="bio">The numbers-and-mechanics communicator on both calls &mdash; walks through hedge-accounting adjustments, DSO trends and contract revenue-recognition timing in detail, and confirmed the 19&ndash;20%-by-Q4FY27 margin target with a direct "Yes" under analyst questioning. Pay ratio only 5.82x median employee (+9.85% YoY) &mdash; the most modestly-compensated named KMP relative to the median.</div>
+        </div>
+        <div class="person">
+          <div class="name">Jill Mary De Simone</div>
+          <div class="role">Independent Director (from Jan 2026)</div>
+          <div class="bio">40+ year pharma veteran &mdash; President, US Oncology at Merck; senior roles at Teva and Bristol Myers Squibb. Three-year term (Jan 2026&ndash;Jan 2029) confirmed by shareholders at the 13&nbsp;Aug 2026 AGM.</div>
+        </div>
+      </div>
+
+      <h3>Board composition &amp; ownership structure</h3>
+      <ul style="max-width:76ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>11 directors, 7 independent</b> &mdash; a majority-independent board.</li>
+        <li><b>No promoter:</b> the annual report states explicitly, twice, that "the company is managed by a professional board and does not have promoters" &mdash; consistent with its PE-backed IPO structure. Carlyle Group and Brighton Park Capital jointly invested $200M in 2021; BPC fully exited its 8.73% stake in August 2026 (Latest Update, above). This dataset does not confirm whether Carlyle still holds a stake.</li>
+        <li><b>yfinance classifies 55.67% of shares as "insider" held</b> despite the no-promoter disclosure &mdash; most likely reflects large pre-IPO holders (founders, PE-adjacent entities, ESOP trust) still bucketed under SEBI's broad non-public/insider category rather than a promoter relationship; flagged as a data-labeling nuance, not a governance contradiction.</li>
+        <li><b>One board departure-and-return:</b> Neeraj Bharadwaj resigned 22&nbsp;Jul 2025 and was re-appointed as Independent Director effective 23&nbsp;Jan 2026 via postal ballot &mdash; unusual, but nothing in the filings suggests it was adversarial.</li>
+      </ul>
+
+      <h3>Auditor</h3>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Deloitte Haskins &amp; Sells &mdash; first year as statutory auditor for FY26</b>Unmodified/unqualified opinion on both standalone and consolidated FY26 financials (partner Sathya P Koushik, dated 29&nbsp;Apr 2026); FY25 comparatives were audited by a predecessor firm, which also issued a clean opinion. Two Key Audit Matters: revenue recognition on fixed-price contracts (a standard judgment area for this business model), and the BioPharm business-combination purchase price allocation (goodwill &#8377;6,429Mn, &sect;05). Neither is a qualification or an emphasis of matter &mdash; both are the auditor flagging where the most estimation judgment sat in a year with a large first-time acquisition and a new audit firm.</div>
+      </div>
+
+      <h3>Related-party transactions &amp; executive pay discipline</h3>
+      <p>KMP compensation was &#8377;123Mn in FY26 (~0.35% of revenue) &mdash; immaterial. Median full-time employee remuneration rose 7.47% YoY to &#8377;12.36 lakh, roughly in line with the average 8.8% merit increase for FY26 &mdash; and every named KMP except the CFO saw pay grow slower than that average (the CEO's pay actually fell). No evidence in this dataset of management enriching itself while margins compressed for shareholders &mdash; if anything, the opposite.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other insights from the conference calls</h2></div>
+      <p class="sec-dek">The acquisition round-up, the one legacy legal overhang, the AI-moat question, and the one answer management wouldn't give a number for.</p>
+
+      <h3>The FY26 acquisition portfolio</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Entity</th><th>Consideration</th><th>Closed</th><th>Rationale</th></tr></thead>
+          <tbody>
+            <tr><td>MJL Communications Group (UK)</td><td>&#8377;411M</td><td>Mar 2025</td><td>UK creative/comms capability</td></tr>
+            <tr><td>BioPharm Communications (US)</td><td>&#8377;8,821M / ~$99.8M</td><td>Oct 2025</td><td>AI/AdTech, digital advertising, Tandem&trade; data asset &mdash; the largest deal by far</td></tr>
+            <tr><td>Warn &amp; Co (UK)</td><td>&#8377;464M / &pound;3.91M</td><td>Oct 2025</td><td>Specialized transformation consulting</td></tr>
+            <tr><td>Cake Group (Austria/Germany/Switzerland)</td><td>&#8377;904M / &euro;8.9M</td><td>Jan 2026</td><td>DACH-region healthcare marketing; blue-chip clients incl. Amgen, AstraZeneca, Pfizer</td></tr>
+            <tr><td>Trilogy Writing &amp; Consulting (Canada)</td><td>&euro;329K</td><td>Jan 2026</td><td>Small tuck-in, merged into Indegene Healthcare Canada</td></tr>
+          </tbody>
+        </table>
+        <caption>Sources: FY26 financial results filings, annual report. All five funded from cash, none debt-financed.</caption>
+      </div>
+      <p>All-cash, capability- or geography-led bolt-ons rather than debt-funded scale acquisitions &mdash; consistent with the zero-debt balance sheet in &sect;05. BioPharm dominates the group both in size and in its effect on FY26 financials (goodwill, D&amp;A, and North America revenue mix all moved because of this one deal).</p>
+
+      <h3>The legacy litigation, now moving to close</h3>
+      <p>Indegene Inc. (the US subsidiary) was named in a 2020-21 class action in the US District Court of New Jersey alleging Telephone Consumer Protection Act violations &mdash; unsolicited fax advertisements sent without recipient consent, from a marketing channel the company says is no longer in use. During FY26 the matter reached a mediator-proposed settlement framework capped at &#8377;417Mn (US$4.72M), structured as a claims-made arrangement; Indegene provisioned its best estimate of &#8377;203Mn as an exceptional item in Q4FY26. A term sheet was signed 25&nbsp;May 2026, and the Board authorized execution of the final settlement agreement on 19&nbsp;Aug 2026 (Latest Update, above). Management stated on the Q4FY26 call that it does not believe there are further liability exposures of this kind beyond this one instance.</p>
+
+      <h3>The AI-moat durability question</h3>
+      <blockquote>
+        "What is the risk that this could probably catch up to stay relevant in the AI world?"
+        <cite>&mdash; Prolin Nandu, Edelweiss Public Alternatives, Q4FY26 earnings call, on whether large LLM providers could commoditize Indegene's domain-expertise moat</cite>
+      </blockquote>
+      <p>Manish Gupta's answer: the moat is domain expertise, proprietary data and human-in-the-loop judgment, and "at least in the medium term, call it 3 to 5 years, we don't see LLMs having the ability to do this" &mdash; citing an FDA warning letter issued to a company over an AI-generated-looking regulatory submission as evidence that raw AI output still carries real reliability risk in this industry. This is a genuine, not-fully-resolved question rather than a settled one: management's own answer puts a 3&ndash;5 year clock on how long the moat should be expected to hold, not "indefinitely."</p>
+
+      <h3>The one question management wouldn't quantify</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>What % of revenue is genuinely AI-led? Management declined to say.</b>Asked directly on the Q1FY27 call to quantify the share of revenue from AI-led platform engagements, management's answer was: "unfortunately, we can't break this out because unlike other companies, for us, AI is getting embedded in everything we do." Given how central the AI narrative is to both the growth story and the valuation multiple (&sect;10), this is the one place across both calls where a specific, reasonable analyst question got a genuinely unquantified answer rather than a number, a range, or an explained reason for withholding one.</div>
+      </div>
+      <p>Separately, the company also stopped disclosing organic-vs-BioPharm-inorganic growth starting with the Q1FY27 call (a 12% organic figure was given for Q4FY26; management said in Q1FY27 "it's very difficult to peel out what was BioPharm, what was anything else" going forward) &mdash; a real reduction in disclosure granularity at exactly the point investors most want to see through acquisition noise.</p>
+
+      <h3>Outcome-based pricing mechanics</h3>
+      <p>Management disclosed on the Q1FY27 call that roughly <b>60% of contracts are now output/outcome-based</b> rather than staffing-based. For a typical $1&ndash;4M deal, the FTE component of revenue starts within a month of signing while the output-based component ramps over 3&ndash;4 quarters; for the largest, pure-outcome &gt;$10M ACV deal, there is no FTE component at all, and revenue is recognized only against client-accepted, quarterly-measured outcomes, "trued up on a full year basis" &mdash; which is exactly the mechanic behind the Q3FY27 revenue-recognition date repeatedly cited in &sect;04.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">The Street's two biggest India names have stayed Neutral through the entire margin-compression phase &mdash; while the broader 8-analyst consensus leans Buy.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analysts covering</div><div class="v">8</div><div class="d">1 Strong Buy, 5 Buy, 2 Hold, 0 Sell</div></div>
+        <div class="stat"><div class="k">Mean target</div><div class="v">&#8377;620.6</div><div class="d">Range &#8377;500&ndash;735</div></div>
+        <div class="stat"><div class="k">Implied upside</div><div class="v pos">+9.7%</div><div class="d">vs. CMP &#8377;565.6</div></div>
+      </div>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Broker</th><th>Date</th><th>Rating</th><th>Target</th><th>Key point</th></tr></thead>
+          <tbody>
+            <tr><td>Motilal Oswal</td><td>3 Aug 2026</td><td>Neutral</td><td>&#8377;570</td><td>20x FY28E EPS; projects 19%/29%/31% CAGR revenue/EBIT/PAT to FY28</td></tr>
+            <tr><td>Nomura</td><td>3 Aug 2026</td><td>Neutral</td><td>&#8377;500</td><td>Flags 400bps YoY EBITDA margin compression (16.4%); sees recovery only to 18.3% by FY28</td></tr>
+            <tr><td>IDBI Capital</td><td>30 Jul 2026</td><td>Initiated</td><td>Not captured</td><td>Headline-only source; detail not available in this dataset</td></tr>
+            <tr><td>Motilal Oswal</td><td>4 May 2026</td><td>Neutral</td><td>&#8377;552</td><td>Flagged Q4FY26 PAT miss vs estimate on margin dilution + exceptionals</td></tr>
+            <tr><td>ICICI Securities</td><td>5 May 2026</td><td>Buy</td><td>&#8377;620 (Mar'27E)</td><td>Cites broad-based ECS/EMS growth, sector demand 5&ndash;8% CAGR FY26&ndash;28</td></tr>
+            <tr><td>Motilal Oswal</td><td>2 Feb 2026</td><td>Neutral</td><td>&#8377;550</td><td>Flagged organic growth of only 4% QoQ in Q3FY26, margin below estimate</td></tr>
+            <tr><td>Motilal Oswal</td><td>11 Dec 2025</td><td>Neutral (initiated)</td><td>Not captured</td><td>Initiated Neutral vs Buy initiations for two named peers the same day</td></tr>
+            <tr><td>ICICI Securities</td><td>10 Sep 2025</td><td>Add (initiated)</td><td>Implies ~14% upside</td><td>Initiation note</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: tracked News feed, analyst-coverage-tagged items, Sep 2025&ndash;Aug 2026.</caption>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Read the pattern, not just the latest print</b>Motilal Oswal &mdash; the most consistently-covering name in this dataset &mdash; has stayed at Neutral across every single note from Dec 2025 through Aug 2026, spanning the entire margin-compression episode and its target price has drifted only modestly (&#8377;550&rarr;&#8377;552&rarr;&#8377;570). Nomura's Aug 2026 note is more cautious still, explicitly pricing in margin recovery only to 18.3% by FY28 &mdash; short of management's own 19&ndash;20% target. The broader 8-analyst consensus (skewed Buy, mean target &#8377;620.6) is more constructive than the two most detail-oriented notes reviewed here &mdash; a split verdict between the analysts closest to the margin mechanics and the wider Street.</div>
+      </div>
+
+      <h3>EPS-vs-estimate track record</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Earnings date</th><th>Est. EPS</th><th>Actual EPS</th><th>Surprise</th></tr></thead>
+          <tbody>
+            <tr><td>30 Jul 2026 (Q1FY27)</td><td>4.63</td><td>4.81</td><td class="pos">+4.0%</td></tr>
+            <tr><td>29 Apr 2026 (Q4FY26)</td><td>4.53</td><td>3.94</td><td class="neg">&minus;13.0%</td></tr>
+            <tr><td>29 Jan 2026 (Q3FY26)</td><td>4.90</td><td>4.26</td><td class="neg">&minus;13.1%</td></tr>
+            <tr><td>30 Oct 2025 (Q2FY26)</td><td>4.70</td><td>4.23</td><td class="neg">&minus;10.0%</td></tr>
+            <tr><td>31 Jul 2025 (Q1FY26)</td><td>4.85</td><td>4.82</td><td class="neg">&minus;0.6%</td></tr>
+            <tr><td>28 Apr 2025 (Q4FY25)</td><td>4.90</td><td>4.88</td><td class="neg">&minus;0.4%</td></tr>
+            <tr><td>30 Jan 2025 (Q3FY25)</td><td>4.45</td><td>4.55</td><td class="pos">+2.3%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance earnings history.</caption>
+      </div>
+      <p>A clean pattern: three consecutive double-digit misses (Q2&ndash;Q4 FY26, all margin-driven, matching the compression story in &sect;04) followed by the first beat in five quarters in Q1FY27 &mdash; the same quarter management says margins stabilized. Whether this is the start of a beat streak or a one-off is exactly what the Q2FY27 print will answer.</p>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock that round-tripped through the exact margin-compression window this note describes, and is now back near its 52-week high on the strength of Q1FY27's re-acceleration.</p>
+
+      <h3>One year of price action against the margin-compression episode</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Monthly closing price, Aug 2025&ndash;Aug 2026 (NSE). The stock fell from &#8377;540 to a trough of &#8377;433 (mid-March 2026) as the market priced in the Q3&ndash;Q4FY26 margin compression and PAT decline, then recovered to a new high (&#8377;568) following the Q1FY27 re-acceleration print and the smoothly-absorbed BPC block deal.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">34.0x</div><div class="d">On &#8377;16.62 FY26 diluted EPS</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">20.8x</div><div class="d">Implies Street NTM EPS ~&#8377;27.2</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">4.34x</div><div class="d">BVPS &#8377;130.29</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">20.8x</div><div class="d">On trailing reported EBITDA</div></div>
+      </div>
+      <p>The steep gap between trailing (34.0x) and forward (20.8x) P/E is itself a data point: the market is already pricing in a large EPS recovery over the next four quarters, which is exactly what the 19&ndash;20%-margin-by-Q4FY27 guidance implies if delivered &mdash; the valuation and the guidance are telling the same story, not two different ones. The stock trades at roughly +25% above its May 2024 IPO price of &#8377;452, but is only modestly above its own first-day close of ~&#8377;566.50 more than two years later, despite revenue growing from an FY25 base of &#8377;28,393Mn to &#8377;35,105Mn in FY26 &mdash; a "business outgrowing the stock" dynamic, though far less dramatic than a company that has actually de-rated.</p>
+
+      <h3>Bear / base / bull, FY28E</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Illustrative scenarios built from management's own FY27 growth-acceleration language, the firm 19&ndash;20%-margin-by-Q4FY27 guidance, and the range of sell-side FY28 estimates in &sect;09 &mdash; not point forecasts. No formal numeric FY27 revenue guidance exists in this dataset, so the growth paths below are scenario assumptions, explicitly labelled as such.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;400&ndash;460</div>
+          <div class="rng">Roughly &minus;20% to &minus;30% from CMP</div>
+          <ul>
+            <li>Margin recovery slips past Q4FY27 &mdash; the &gt;$10M ACV deal's Q3FY27 revenue recognition disappoints or is further delayed</li>
+            <li>Revenue growth decelerates back toward the mid-teens as FY26's re-acceleration proves partly BioPharm-driven, not organic</li>
+            <li>Multiple compresses toward 14&ndash;16x forward P/E as the Street loses confidence in the guidance track record</li>
+            <li>FY28E diluted EPS ~&#8377;22&ndash;24</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;600&ndash;680</div>
+          <div class="rng">+6% to +20% from CMP</div>
+          <ul>
+            <li>Revenue CAGR ~19&ndash;21% FY26&ndash;28, roughly tracking Motilal Oswal's estimate</li>
+            <li>Margin recovers to the 19&ndash;20% band by Q4FY27 and holds through FY28, as guided</li>
+            <li>Multiple holds near the current ~21x forward level, consistent with the analyst mean target of &#8377;620.6</li>
+            <li>FY28E diluted EPS ~&#8377;27&ndash;29</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;850&ndash;950</div>
+          <div class="rng">+50% to +68% from CMP</div>
+          <ul>
+            <li>Growth re-accelerates further as the outcome-based deal pipeline (Tectonic, Agentic AOR, further $25M+ client upgrades) scales faster than guided</li>
+            <li>Margin overshoots back above the historical 19&ndash;20% band on genuine AI-driven operating leverage</li>
+            <li>Re-rating toward a premium 26&ndash;28x forward multiple as the market re-prices the "AI-native platform" narrative versus a life-sciences-BPO discount</li>
+            <li>FY28E diluted EPS ~&#8377;33&ndash;36, approaching the analyst high target (&#8377;735) extended one more year</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> revenue crossed &#8377;3,500 crore for the first time in FY26 and re-accelerated to +39.7% YoY in Q1FY27; a genuinely zero-debt balance sheet that absorbed five acquisitions in twelve months (led by the ~$100M BioPharm deal) without borrowing a rupee; earnings quality that passes clean &mdash; operating cash flow grew 47.3% in FY26 even as reported PAT fell, meaning the profit dip is a non-cash/one-off story, not a cash-generation problem; client concentration genuinely falling (top-5 share 38%&rarr;30% in five quarters) while the base keeps growing; a margin-recovery guidance that has gotten <em>more</em> specific and held firm under direct, pointed analyst questioning rather than slipping; disciplined, cash-funded M&amp;A with no debt-fuelled empire-building; and a legacy US litigation overhang now moving to close.</p>
+        <p style="max-width:none;"><b>What's not good:</b> reported EBITDA margin fell from a 19&ndash;20% multi-year band to 16&ndash;17% through FY26 and into Q1FY27, and reported PAT and diluted EPS were both essentially flat-to-down over the trailing year despite 40% revenue growth &mdash; a real, not merely optical, profitability stall; goodwill tripled on one large acquisition reviewed by a first-year statutory auditor; receivable days ticked back up in the most recent quarter after two years of improvement; the company quietly stopped disclosing organic-vs-acquired growth exactly when investors most need to see through the BioPharm noise; management has never once put a number on what share of revenue is genuinely AI-native rather than AI-branded; one customer still accounts for &gt;10% of group revenue; and the Street's two most detail-oriented covering brokers (Motilal Oswal, Nomura) have stayed at Neutral through the entire episode, unconvinced the margin recovery is fully de-risked.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> credibly, on the evidence reviewed here. Rather than obscure the margin drag, leadership named its specific causes (GTM/tech investment, an outcome-based deal's cost/revenue timing mismatch, wage-hike cycles) as far back as the Aug 2025 call, gave a bounded recovery window, and then tightened rather than loosened that same window on the next call &mdash; while conceding under direct questioning that the original plan hadn't fully priced in some of the new investment. The cash-generation engine and the debt-free balance sheet were never allowed to weaken while the P&amp;L absorbed the cost of the investment cycle, and executive pay actually declined for the CEO in the same year reported profit did &mdash; a rare instance of incentive alignment holding through a rough patch rather than being quietly protected.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the FY27 margin-recovery guidance is met and the multi-year growth-plus-re-rating case plays out over the next 12 months: Medium-to-High, roughly 55&ndash;65%.</b> The case rests on cash-flow-clean fundamentals, a guidance track record that has firmed rather than slipped, and a Q1FY27 print that already delivered the first half of the promise (accelerating revenue, stabilizing margin) exactly on schedule. The specific event this dataset cannot yet confirm is whether the &gt;$10M ACV outcome-based deal's revenue actually begins flowing from Q3FY27 as management has repeatedly and specifically said it would &mdash; that single data point, more than any other in this note, is what separates the base case from the bear case in &sect;10.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) the Q2FY27 EBITDA margin print &mdash; management explicitly claimed it would hold roughly flat quarter-on-quarter rather than showing the usual seasonal wage-hike dip, a specific and checkable claim; (2) whether the &gt;$10M ACV deal's revenue recognition actually begins in Q3FY27 as guided; (3) receivable days &mdash; a continued rise past ~70 days would harden this from a watch item into a genuine red flag; (4) whether organic-vs-acquired growth disclosure returns, or the opacity persists; (5) any confirmation of the 11&nbsp;Aug clinical-research acquisition report, and its funding structure.</div>
+      </div>
+    </section>
+
+    <footer>
+      Compiled from company BSE/NSE filings (Announcements/AnnouncementsConv, 29&nbsp;Apr&ndash;19&nbsp;Aug 2026, including the FY26 Annual Report filed 17&nbsp;Jul 2026), MarketData (Yahoo Finance via yfinance, last fetched 20&nbsp;Aug 2026 08:19 IST), and the tracked News feed. All figures are as originally reported by the company or the cited data source; where a figure could not be independently reconciled across sources, that is stated explicitly in the relevant section rather than silently corrected. This is a research synthesis for informational purposes, not investment advice.
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT, consolidated) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [760.8, 804.2, 942.1, 1003.4, 1063.1];
+    var ebitda  = [153.6, 141.6, 164.4, 164.8, 179.5];
+    var pat     = [116.4, 102.1, 102.9, 79.7, 116.2];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'Reported EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'Reported PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+
+    function y(v){ return padT + plotH - (v/maxV)*plotH; }
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, reported EBITDA and reported PAT, consolidated" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 4;
+    for(var g=0; g<=steps; g++){
+      var gv = (maxV/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(v);
+        var bh = (padT+plotH) - by;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+by.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '</div>';
+  })();
+
+  // ---------- Price sparkline ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Aug 25', 540], ['Sep 25', 559], ['Oct 25', 537], ['Nov 25', 529],
+      ['Dec 25', 518], ['Jan 26', 480], ['Feb 26', 494], ['Mar 26', 433],
+      ['Apr 26', 498], ['May 26', 519], ['Jun 26', 523], ['Jul 26', 515],
+      ['Aug 26*', 568]
+    ];
+    var W = 900, H = 220, padL = 44, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Indegene monthly closing share price, August 2025 to August 2026" style="width:100%;height:auto;font-size:11px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 3;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i%2===0 || i===points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">* Aug 2026 figure is the 18 Aug close (month in progress)</div></div>';
+  })();
+})();
+</script>

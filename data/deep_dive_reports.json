@@ -1,5 +1,35 @@
 [
   {
+    "slug": "alkylamine",
+    "name": "Alkyl Amines Chemicals Ltd (ALKYLAMINE)",
+    "shell_url": "/stock-analysis/deep-dive/alkylamine.html",
+    "report_url": "/stock-analysis/deep-dive/reports/ALKYLAMINE.html"
+  },
+  {
+    "slug": "equitasbnk",
+    "name": "Equitas Small Finance Bank Limited",
+    "shell_url": "/stock-analysis/deep-dive/equitasbnk.html",
+    "report_url": "/stock-analysis/deep-dive/reports/EQUITASBNK.html"
+  },
+  {
+    "slug": "fedfina",
+    "name": "Fedbank Financial Services Limited",
+    "shell_url": "/stock-analysis/deep-dive/fedfina.html",
+    "report_url": "/stock-analysis/deep-dive/reports/FEDFINA.html"
+  },
+  {
+    "slug": "indgn",
+    "name": "Indegene Limited",
+    "shell_url": "/stock-analysis/deep-dive/indgn.html",
+    "report_url": "/stock-analysis/deep-dive/reports/INDGN.html"
+  },
+  {
+    "slug": "iks",
+    "name": "Inventurus Knowledge Solutions Limited (IKS Health)",
+    "shell_url": "/stock-analysis/deep-dive/iks.html",
+    "report_url": "/stock-analysis/deep-dive/reports/IKS.html"
+  },
+  {
     "slug": "nh",
     "name": "Narayana Hrudayalaya Ltd (NH)",
     "shell_url": "/stock-analysis/deep-dive/nh.html",

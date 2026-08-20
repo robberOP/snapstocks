@@ -1,0 +1,1039 @@
+<title>Inventurus Knowledge Solutions (IKS Health)</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(34px,5.4vw,54px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:66ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:80ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:86ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Healthcare BPO / Care-Enablement Platform / US Healthcare IT</div>
+    <h1>Inventurus Knowledge Solutions Limited (IKS Health)</h1>
+    <p class="sub">NSE: IKS &middot; BSE: 544309 &middot; FY2023&ndash;FY2026 performance review, the $557M TruBridge acquisition explained, quarterly investor-presentation and earnings-call synthesis, and a forward scenario framework, as of 20 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> IKS spent FY24&ndash;FY26 digesting its first big bet &mdash; the October 2023 Aquity Solutions acquisition &mdash; which built out the "care enablement platform" but also diluted margins and mechanically decelerated headline growth as the merged base normalized (76% &rarr; 47% &rarr; 20% revenue growth, FY24&rarr;FY26). Along the way the stock round-tripped from its Dec-2024 IPO price down to a 52-week low near &#8377;1,328 (Mar 2026) before rallying back above &#8377;1,860 on de-leveraging (net debt down to &#8377;252 Cr) and a clean Q4FY26 beat. Management then used that stronger balance sheet and re-rated stock to fund a second, structurally different and much larger acquisition: the <b>$557 million purchase of TruBridge</b>, a rural-hospital EHR-plus-billing platform, funded almost entirely by a syndicated $635M loan from 14+ global and Indian banks. The deal closed 9 July 2026 and will roughly double IKS's revenue base &mdash; but within a month of closing, management itself disclosed a ~12% downward revision to TruBridge's expected steady-state revenue, even as it reaffirmed the deal stays EPS-accretive on unchanged EBITDA. Q1FY27 (the first quarter to fully report, pre-TruBridge-consolidation) was a clean, broad-based beat &mdash; the real test of the platform bet begins with TruBridge's first quarter inside the numbers, from Q2FY27 onward.</div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (20 Aug 26)</div><div class="v">&#8377;1,812.30</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;30,403 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;1,262 &ndash; &#8377;1,933</div></div>
+      <div class="chip"><div class="k">Q1FY27 Revenue</div><div class="v pos">+20.7% YoY (INR)</div></div>
+      <div class="chip"><div class="k">Q1FY27 EBITDA Margin</div><div class="v" style="font-size:15px;">33.0% <span style="font-size:11px; color:var(--ink-mute);">(vs 35.0% Q4FY26)</span></div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT</div><div class="v pos">+27.8% YoY</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">40.56x</div></div>
+      <div class="chip"><div class="k">TruBridge Deal</div><div class="v" style="font-size:15px;">$557M, closed 9-Jul-26</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage &amp; a size caution:</b> IKS listed on NSE/BSE only on 19 December 2024, so its entire trading and public-disclosure history spans just ~20 months. BSE filings reviewed here run 13&nbsp;May&ndash;18&nbsp;Aug 2026 &mdash; the Q4/FY26 results cycle (investor presentation, earnings call, filed mid-May) plus Q1FY27 (results and call, early August) and, in between, the full TruBridge acquisition paper trail (financing, syndication, shareholder postal ballots, closing). <b>AnnualStatementsConv and QuarterlyStatementsConv are empty for this company</b> &mdash; no annual-report markdown exists in this dataset, so the annual P&amp;L/balance-sheet/cash-flow trend below leans on yfinance's independently recomputed FY22&ndash;FY26 statements (MarketData), cross-checked wherever possible against the two quarters of company-reported figures. Quarterly cash flow and a Mar-25/Mar-26-only quarterly balance sheet are the only balance-sheet/cash-flow granularity yfinance provides intra-year; a genuine data gap, flagged rather than estimated, is called out at each relevant point. One name-collision worth flagging up front: "Iksuda Therapeutics," a UK antibody-drug-conjugate biotech that received FDA clearance in late July 2026, shares no ownership or corporate link to IKS Health found anywhere in this filing set &mdash; a namesake coincidence, not a business update, and excluded from the newsflow below.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales, segments &amp; guidance</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet &amp; capital allocation</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#trubridge"><span class="n">08</span>The TruBridge deal, in full</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What IKS does, and how it has grown</h2></div>
+      <p class="sec-dek">A 20-year-old Indian BPO reinvented as a US healthcare "system of action," now betting a second, larger acquisition can turn it into a system of record too.</p>
+
+      <p class="lede">Founded in 2006 by Sachin Gupta and Joseph Benardello and based in Navi Mumbai, IKS (formerly Inventurus Knowledge Solutions, branded IKS Health) built a "care enablement platform" that takes over the administrative and clinical "chore tasks" &mdash; scheduling, financial clearance, patient engagement, clinical documentation, medical coding, billing, payment posting, denial management, referral management, and more &mdash; that sit between a US physician and the patient they're treating. Management counts <b>16 discrete workflows</b> spanning the patient journey, delivered through a blend of India-based (and increasingly AI-automated) labor and proprietary software, for healthcare organizations across the <b>US, Canada and Australia</b> &mdash; health systems, academic medical centers, and single- and multi-specialty physician groups.</p>
+
+      <h3>The moat, as management frames it</h3>
+      <p>On both earnings calls reviewed, CEO Sachin Gupta laid out three competitor archetypes: (1) <b>"systems of record"</b> &mdash; EHR vendors like Epic, now trying to add workflow/action capability of their own; (2) <b>"point-solution systems of action"</b> &mdash; narrow, single-feature vendors (e.g. coding-only or RCM-only players) that management calls the fastest-growing but most price-commoditized category, citing Carlyle's recent acquisition of two such point-solution firms and ~$50bn of PE capital deployed into US healthcare IT over four years; and (3) <b>"platform systems of action"</b> &mdash; comprehensive, multi-workflow platforms, a category management says has very few credible players besides IKS. The stated differentiators: breadth (one platform instead of stitching together point solutions), outcome alignment (management cited a $3M "NEVA" &mdash; negotiated economic value add &mdash; payment received from a customer, Palomar, tied to 2025 performance), and increasingly, proprietary AI trained on a "structured, unified, labeled" patient-data corpus to build small language models rather than depending on costly third-party LLMs, wrapped in what management calls "glass box" (explainable, neuro-symbolic) AI &mdash; a positioning aimed squarely at healthcare's low tolerance for AI hallucination.</p>
+
+      <h3>Client model &amp; go-to-market</h3>
+      <p>IKS reports a single operating segment under Ind AS 108 (no segment-level revenue is disclosed in any filing reviewed), serving <b>600+ healthcare-organization clients</b> as of Q1FY27 (down from ~900 at the time of the 2023 Aquity acquisition &mdash; a deliberate cull of small, low-value accounts), of which roughly 450 are "large enterprise" clients. <b>85&ndash;90% of revenue comes from repeat customers</b>, and top-5/top-10 client relationships average 5&ndash;7+ years' vintage. Go-to-market has been deliberately re-stratified: a full-platform pitch for mid-sized health systems and independent physician groups, versus a narrower "land-and-expand" point-solution entry (RCM, coding, patient access) for large health systems, where the buyer is rarely a platform-level decision-maker &mdash; management has openly conceded this distinction was a prior go-to-market mistake carried over from the legacy Aquity client base, one that "took us longer than we had originally planned" to correct.</p>
+
+      <h3>The growth arc, FY23&ndash;FY26 (consolidated)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total revenue</td><td>1,031.30</td><td>1,816.91</td><td>2,663.99</td><td>3,193.79</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td class="pos">+76.2%</td><td class="pos">+46.6%</td><td class="pos">+19.9%</td></tr>
+            <tr><td>EBITDA</td><td>389.26</td><td>559.16</td><td>808.71</td><td>1,099.31</td></tr>
+            <tr><td>EBITDA margin</td><td>37.8%</td><td>30.8%</td><td>30.4%</td><td>34.4%</td></tr>
+            <tr><td>PAT</td><td>305.23</td><td>370.49</td><td>486.06</td><td>721.55</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>17.79</td><td>21.59</td><td>28.62</td><td>42.26</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement. FY22 is unusable &mdash; nearly all FY22 line items are NaN in the source data.</caption>
+      </div>
+      <p>The shape of this table is really one event, seen from two sides: the <b>October 2023 acquisition of Aquity Solutions</b> (a large RCM/documentation outsourcer) roughly doubled IKS's revenue base in a single year (FY24's 76.2% growth) but also diluted EBITDA margin from 37.8% to 30.8% as the lower-margin Aquity book blended in. FY25's 46.6% growth is still partly a base-comparison artifact of that deal; only FY26's 19.9% growth (on a fully merged base, with margin recovering to 34.4% as integration synergies and mix-shift kicked in) is a reasonably clean read of organic-ish momentum. That deceleration curve (76% &rarr; 47% &rarr; 20%) is the most important context for reading the TruBridge deal in §08 &mdash; it is IKS repeating the same playbook (a large, debt-funded, margin-dilutive-then-accretive acquisition) at a bigger scale, with the market having just watched how the first one played out.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Thirteen weeks dominated by one storyline &mdash; financing, closing and beginning to digest the TruBridge acquisition &mdash; bookended by two clean results prints.</p>
+
+      <div class="news-item">
+        <div class="news-date">18 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">20th AGM scheduled for 21 Sep 2026</div>
+          <div class="news-body">Video-conference AGM notice; shareholders asked to update KYC/PAN for dividend eligibility. Routine, procedural &mdash; the same meeting at which the Chairman transition below takes effect.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">11&ndash;13 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">One-on-one investor meetings and a rescheduled conference</div>
+          <div class="news-body">Meetings with Aditya Birla Sun Life AMC, 3P Investment Managers, ICICI Prudential AMC, SBI MF, ValueQuest, HDFC AMC and (added 13 Aug) Temasek; the Motilal Oswal 22nd Annual Global Investor Conference slot moved from 18 to 19 Aug. Intimations only, no incremental disclosure.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">7 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Motilal Oswal reiterates BUY, target &#8377;2,075</div>
+          <div class="news-body">Cites Q1FY27 USD revenue +12% YoY (INR +21% YoY), EBITDA margin 33.0% (~35% adjusted), and projects FY26&ndash;28E organic CAGRs of 17% (revenue) / 19% (EBITDA) / 20% (PAT), valuing the stock at 34x FY28E EPS. Same day, the second postal ballot (TruBridge-financing security authorizations) cleared with 99.78&ndash;99.80% approval.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">6 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Q1FY27 earnings call; partial Abridge AI stake sale disclosed</div>
+          <div class="news-body">Management held the Q1FY27 call (transcript reviewed in §03&ndash;06, §08) and, the same day, filed a Stock Purchase Agreement selling 54,055 Series A-1 Preferred shares of Abridge AI Inc. &mdash; an AI ambient-scribe investee IKS also names as a rising competitive threat &mdash; for $10.0M, a partial monetisation rather than a full exit. See §08 for the juxtaposition.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">5 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (headline), Mixed (detail)</span>
+          <div class="news-title">Q1FY27 results: revenue +20.7% YoY, PAT +27.8%; Chairman transition announced</div>
+          <div class="news-body">Consolidated revenue &#8377;893.63 Cr, PAT &#8377;193.7&ndash;194.0 Cr (company press release rounds to +27.63% YoY); EBITDA margin 33.0%, down from 35.0% in Q4FY26 (see §04 for the margin bridge). Same board meeting: Non-Executive Chairman Berjis Desai to retire at the 21-Sep AGM (government appointment, unrelated to performance); independent director Clarence Carleton King II designated as incoming Non-Executive Chairman (see §07).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">3 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">TruBridge financing syndicated to 14+ banks</div>
+          <div class="news-body">The $635M facility, originally backed by four global lenders/arrangers, was syndicated to add Axis Bank, HDFC Bank, ICICI Bank, State Bank of India, IDFC FIRST, Federal Bank, Kotak Mahindra Bank, DBS, and several other regional/international banks &mdash; broad, diversified lender support for the acquisition debt (full detail in §08).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">29 Jul 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">A nil-cost option on US value-based care: Value Partners Collective ACO, LLC</div>
+          <div class="news-body">A new, zero-capitalized US step-down subsidiary incorporated 5 May, disclosed 29 Jul, formed solely to apply for CMS's 10-year "LEAD" Medicare ACO program. If not selected, it dissolves &mdash; a genuine call option, not a committed investment, but a first toe into direct value-based-care risk-contracting adjacent to IKS's services model.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">14 Jul 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">WWMG MSO stake crosses 50% &mdash; control obtained</div>
+          <div class="news-body">First $2.84M tranche of a Board-approved (29 Jun) $15M investment plan funded, taking IKS Inc.'s stake in physician-practice manager IKS WWMG MSO LLC from 48.02% to 51.88%, with a stated path to 63.49% by 2029 (full detail in §05).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">9 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (strategic), Mixed (financial)</span>
+          <div class="news-title">TruBridge acquisition completed &mdash; $557 million</div>
+          <div class="news-body">100% of TruBridge, Inc. acquired via Delaware merger, ~2.5 months after the 23 Apr announcement. Full deal mechanics, financing, and the post-close revenue-guidance reset in §08.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">22 Jun 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">First-ever issuer rating: CARE A+ / Stable</div>
+          <div class="news-body">CARE Ratings' inaugural rating on IKS, assigned 19 Jun and detailed 22 Jun, cites the 20-year track record, platform differentiation and strong pre-deal balance sheet, while flagging the pending debt-funded TruBridge acquisition as the central swing factor for the credit going forward (full detail in §05).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">14&ndash;20 May 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Record FY26 results; ARAI Solutions acquired; Q4FY26 call held</div>
+          <div class="news-body">FY26 revenue &#8377;3,193.79 Cr (+19.9% YoY), PAT &#8377;721.55 Cr (+48.5% YoY), EBITDA margin recovering to 34.4%, cash flow from operations nearly doubling to &#8377;673.6 Cr (§06). Separately, IKS completed a small, ₹11 Cr all-cash acquisition of ARAI Solutions, an AI/knowledge-graph research firm &mdash; a tuck-in, not a scale deal.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">30 May &amp; 7 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral (procedural)</span>
+          <div class="news-title">Two shareholder postal ballots clear TruBridge security package</div>
+          <div class="news-body">Shareholders approved pledge/guarantee/security authority for the TruBridge financing in two rounds &mdash; both with &gt;99.6% approval and the promoter group voting 100% in favour both times. Procedural, but confirms clean, uncontested shareholder support for the leverage taken on in §08.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">31 Mar 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">ThinkDTM acquihire</div>
+          <div class="news-body">A small AI-talent acquihire, pre-dating this report's BSE-filing window; no financial terms found in the sources reviewed.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>IKS listed at a first-month close of ~&#8377;1,920 (Dec 2024) and drifted down for over a year &mdash; through Aquity-integration questions and a decelerating headline growth rate &mdash; to a 52-week low of &#8377;1,328 by end-March 2026, a ~31% drawdown from listing. The stock then rallied hard, +40% from that March low to ~&#8377;1,860 by mid-August, coinciding almost exactly with the FY26 results beat, the TruBridge close, and the credit-rating initiation. Full chart in §10.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, client mix &amp; guidance</h2></div>
+      <p class="sec-dek">Real, broad-based growth in the legacy business with a management team that studiously avoids formal guidance &mdash; except on the one number (TruBridge's revenue base) it revised down within weeks of closing.</p>
+
+      <h3>Quarterly trend, consolidated (pre-TruBridge)</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q3FY25 (Dec-24)</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue</td><td>657.16</td><td>723.96</td><td>740.10</td><td>814.95</td><td>857.65</td><td>893.63</td></tr>
+            <tr><td>EBITDA</td><td>208.45</td><td>229.44</td><td>240.86</td><td>284.76</td><td>299.69</td><td>295.34</td></tr>
+            <tr><td>EBITDA margin</td><td>31.7%</td><td>31.7%</td><td>32.5%</td><td>35.0%</td><td>34.9%</td><td>33.1%</td></tr>
+            <tr><td>PAT</td><td>129.68</td><td>147.80</td><td>151.54</td><td>183.33</td><td>205.97</td><td>193.74</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>7.60</td><td>8.70</td><td>8.85</td><td>10.73</td><td>12.06</td><td>11.32</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance quarterly financials. Q2FY26 (Sep-25 quarter) is absent from the source data entirely &mdash; a gap, not a zero. None of these six quarters include TruBridge, which closed 9 Jul 2026 (Q2FY27).</caption>
+      </div>
+      <p>Six consecutive quarters of revenue growth with EBITDA margin generally expanding through Q3/Q4FY26 (31.7% &rarr; 35.0%) before dipping back to 33.1% in Q1FY27 &mdash; the margin bridge for that dip (a currency-gain base effect plus acquisition costs, not a demand problem) is unpacked in §04. PAT grew every quarter shown, and grew faster than revenue in five of the six &mdash; consistent operating leverage, not a one-off.</p>
+
+      <h3>Client concentration &amp; unit economics (company-reported KPIs)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>Q1FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from Top 10 clients</td><td>321.3</td><td>452.5</td><td>480.8</td></tr>
+            <tr><td>Top 10 contribution</td><td>43.4%</td><td>52.8%</td><td>53.8%</td></tr>
+            <tr><td>Revenue from Top 5 clients</td><td>234.9</td><td>356.4</td><td>375.9</td></tr>
+            <tr><td>Top 5 contribution</td><td>31.7%</td><td>41.5%</td><td>42.1%</td></tr>
+            <tr><td>Top 10 client ageing (years)</td><td>5.54</td><td>5.42</td><td>5.76</td></tr>
+            <tr><td>Annualised Adj. EBITDA / employee (&#8377; lakh)</td><td>81</td><td>98</td><td>99</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1FY27 investor presentation, "Other KPI Metrics" table. Full-year Top-10 contribution for FY26 was 37% &mdash; materially lower than any single quarter shown here.</caption>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>A concentration metric that swings hard by quarter</b>Top-10 client contribution jumped from 43.4% (Q1FY26) to 53.8% (Q1FY27) &mdash; but the full-year FY26 figure was only 37%. Management's explanation, repeated on <em>both</em> the May and August calls after being raised independently by the same analyst each time, is that RCM-business seasonality distorts single-quarter concentration figures and the annual number is the fairer read. That is plausible, but the fact it needed re-explaining twice in a row is itself worth noting &mdash; treat any single-quarter concentration snapshot with caution until at least one more quarter (ideally a non-Q1) confirms the pattern.</div>
+      </div>
+
+      <h3>Client base &amp; headcount</h3>
+      <p><b>600+</b> healthcare-organization clients (Q1FY27), of which ~450 are "large enterprise" accounts; 85&ndash;90% of revenue from repeat customers. Employee count: 12,300 (Jun-25) &rarr; 13,331 (Mar-26) &rarr; 12,889 (Jun-26, still pre-TruBridge) &mdash; broadly flat to down even as revenue grew, another operating-leverage signal. Combined headcount post-TruBridge close was cited on the August call as "north of 16,000 employees globally."</p>
+
+      <h3>Geography</h3>
+      <p>No country-level revenue split is disclosed in any filing reviewed &mdash; a genuine data gap. The only quantified geography reference is CARE Ratings' independent estimate that <b>~90&ndash;95% of consolidated revenue is US-healthcare-derived</b>, with the remainder from Canada and Australia. TruBridge adds no new geography (US-only), but does add a new sub-market &mdash; rural/community hospitals versus IKS's traditional ambulatory/physician-group base (detailed in §08).</p>
+
+      <h3>Guidance vs. actual</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr style="text-align:left;"><th style="text-align:left;">When given</th><th style="text-align:left;">Guidance (May 2026, Q4FY26 call)</th><th style="text-align:left;">What actually happened (Aug 2026, Q1FY27 call)</th></tr></thead>
+          <tbody>
+            <tr><td>Formal growth guidance</td><td colspan="2">Management has consistently declined to give one: "we don't give guidance... I'm not in a position to predict exactly what our growth rate is going to be quarter-on-quarter" (CEO, May call) &mdash; a stance repeated, not walked back, in August.</td></tr>
+            <tr><td>Effective tax rate</td><td>~22% for FY27 (legacy IKS, explicitly ex-TruBridge)</td><td class="pos">Came in at 22.4% in Q1FY27; CFO reaffirmed the ~22&ndash;23% range for the rest of the year</td></tr>
+            <tr><td>"True North" target</td><td>EBITDA to grow from ~&#8377;1,000 Cr (LTM Dec-25) to <b>~&#8377;3,000 Cr by FY30</b>, with net debt returning near zero</td><td class="pos">Reaffirmed in August, with an added clarification: achievable with "very marginal" (ESOP-only) equity dilution</td></tr>
+            <tr><td>TruBridge close timing</td><td>Deal "awaiting close," expected "in a few months"</td><td class="pos">Closed 9 Jul 2026 &mdash; on the stated timeline</td></tr>
+            <tr><td>TruBridge leverage at close</td><td>~3x EBITDA</td><td>Not re-quantified in the Q1FY27 call reviewed; the credit-rating framework in §05 tracks this going forward</td></tr>
+            <tr><td>TruBridge revenue base</td><td>Implicit in the deal ($557M price against a ~$340M/year revenue base pre-close, per CARE Ratings' independent estimate)</td><td class="neg">Revised down to <b>~$300M/year steady-state</b> (~12% lower) &mdash; management cited more conservative RCM revenue recognition, exit of two unprofitable service lines, and anticipated transition-period customer discounts. EBITDA ($68M annualised) and deal economics were reaffirmed as unchanged, with EPS accretion described as "perhaps even a bit more" than originally modelled</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>The one guidance number that moved, moved down &mdash; and management flagged it unprompted</b>Every other tracked commitment (ETR, the FY30 EBITDA target, close timing) held or was reaffirmed. The exception is TruBridge's own revenue base, revised down ~12% within a month of closing. Two things temper the concern: management disclosed this proactively rather than it being extracted by analyst pressure, and it did not touch the EBITDA/accretion thesis. But it is still the first real data point on whether TruBridge's pre-deal financials were fully understood at signing &mdash; worth weighing against management's own admission it needs "two, three quarters" of TruBridge trading history before giving any growth aspiration for that book.</div>
+      </div>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">A genuine FY26 margin recovery from the Aquity-integration dip, a Q1FY27 wobble that is mostly a currency base-effect and acquisition costs rather than a demand problem, and a management team that is explicit about a coming margin dilution from TruBridge.</p>
+
+      <h3>Q1FY27 vs. Q4FY26 vs. Q1FY26, full P&amp;L bridge (consolidated, company-reported)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>Q1FY26</th><th>Q4FY26</th><th>Q1FY27</th><th>YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue (USD mn)</td><td>87</td><td>95</td><td>97</td><td class="pos">+12.0%</td></tr>
+            <tr><td>Revenue (INR)</td><td>740.10</td><td>857.65</td><td>893.63</td><td class="pos">+20.7%</td></tr>
+            <tr><td>Employee benefit expense (ex-ESOP)</td><td>387.1</td><td>401.1</td><td>433.2</td><td class="neg">+11.9%</td></tr>
+            <tr><td>Other expenses<sup>&dagger;</sup></td><td>107.5</td><td>174.3</td><td>144.9</td><td class="neg">+34.8%</td></tr>
+            <tr><td>EBITDA (ex-ESOP)</td><td>246.7</td><td>317.5</td><td>316.7</td><td class="pos">+28.4%</td></tr>
+            <tr><td>EBITDA margin (ex-ESOP)</td><td>33.3%</td><td>37.0%</td><td>35.4%</td><td>&mdash;</td></tr>
+            <tr><td>ESOP cost</td><td>8.9</td><td>17.3</td><td>21.8</td><td class="neg">+145.4%</td></tr>
+            <tr class="total"><td>EBITDA (reported)</td><td>237.8</td><td>300.2</td><td>294.9</td><td class="pos">+24.0%</td></tr>
+            <tr><td>EBITDA margin (reported)</td><td>32.1%</td><td>35.0%</td><td>33.0%</td><td>&mdash;</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>27.90</td><td>34.06</td><td>34.29</td><td>+22.9%</td></tr>
+            <tr><td>Finance cost</td><td>18.08</td><td>12.68</td><td>10.11</td><td class="pos">&minus;44.1%</td></tr>
+            <tr><td>PAT</td><td>151.54</td><td>205.97</td><td>193.74</td><td class="pos">+27.8%</td></tr>
+            <tr><td>PAT margin</td><td>20.5%</td><td>24.0%</td><td>21.7%</td><td>&mdash;</td></tr>
+            <tr><td>Adjusted PAT<sup>&Dagger;</sup></td><td>168.2</td><td>226.9</td><td>215.3</td><td class="pos">+28.0%</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>8.85</td><td>12.06</td><td>11.32</td><td class="pos">+27.9%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1FY27 financial-results filing &amp; investor presentation (2026-08-05). &dagger; Includes acquisition-related expenses: ~&#8377;25 Cr in Q4FY26, ~&#8377;20 Cr in Q1FY27, per CFO commentary. &Dagger; Adds back intangible amortisation from the Aquity purchase-price allocation. Figures cross-checked against MarketData/yfinance quarterly financials in §03 and match closely.</caption>
+      </div>
+
+      <h3>What moved Q1FY27's margin</h3>
+      <div class="grid-2">
+        <div class="card">
+          <b>A currency base effect, mostly.</b> Q4FY26 carried an unusually large gross forex gain (~&#8377;35 Cr, netting to ~&#8377;23 Cr after hedge losses per the CFO); Q1FY27's forex gain was a much smaller &#8377;1.2 Cr, described on the call as "rather neutral this quarter." Part of the sequential EBITDA-margin dip (35.0% &rarr; 33.0%) is this base effect unwinding, not underlying deterioration.
+        </div>
+        <div class="card">
+          <b>Rising, but explained, ESOP and acquisition costs.</b> ESOP expense more than doubled YoY (&#8377;8.9 Cr &rarr; &#8377;21.8 Cr) as the company incentivizes an expanding tech/leadership bench, including incoming TruBridge leadership; acquisition-related costs of ~&#8377;20&ndash;25 Cr/quarter have run through Q4FY26 and Q1FY27 and are expected to continue "into the next quarter as well" per management.
+        </div>
+      </div>
+
+      <h3>Annual margin trend</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>EBITDA margin</td><td>37.8%</td><td class="neg">30.8%</td><td>30.4%</td><td class="pos">34.4%</td></tr>
+            <tr><td>PAT margin</td><td>29.6%</td><td class="neg">20.4%</td><td>18.2%</td><td class="pos">22.6%</td></tr>
+            <tr><td>Interest coverage (EBIT / finance cost)</td><td>68.1x<sup>&dagger;</sup></td><td>8.5x</td><td>7.8x</td><td>13.9x</td></tr>
+            <tr><td>Other income as % of PBT</td><td>~8%</td><td>~7%</td><td>~9%</td><td>~2%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement. &dagger; FY23 interest coverage is an outlier &mdash; the company carried almost no debt (&#8377;52 Cr) before the debt-funded Aquity deal in FY24. Other income's small and declining share of PBT is a clean result: profit growth here is genuinely operating-driven, not propped up by non-operating income.</caption>
+      </div>
+      <p>The FY24 margin compression (37.8% &rarr; 30.8%) and FY25 trough (30.4%) map directly onto the Aquity integration; FY26's recovery to 34.4% is the clearest evidence yet that IKS can restore margin after a large acquisition, which is precisely the pattern management is asking the market to trust again with TruBridge (see §08 for the explicit forward margin guidance: a dip toward 26&ndash;27% blended, recovering to "early-to-mid 30s" over roughly two years).</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">A balance sheet that had genuinely de-levered right up to the moment it took on a much larger acquisition loan &mdash; now the subject of IKS's first-ever credit rating.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated</th><th>Mar-23</th><th>Mar-24</th><th>Mar-25</th><th>Mar-26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity</td><td>828.6</td><td>1,157.9</td><td>1,789.7</td><td>2,800.2</td></tr>
+            <tr><td>Total debt</td><td>52.4</td><td class="neg">1,311.1</td><td>855.6</td><td class="pos">752.5</td></tr>
+            <tr><td>Debt / equity</td><td>0.06x</td><td class="neg">1.13x</td><td>0.48x</td><td class="pos">0.27x</td></tr>
+            <tr><td>Net debt</td><td>&mdash;<sup>&dagger;</sup></td><td>1,049.6</td><td>574.6</td><td class="pos">252.0</td></tr>
+            <tr><td>Net debt / EBITDA</td><td>&mdash;</td><td>1.9x</td><td>0.7x</td><td class="pos">0.2x</td></tr>
+            <tr><td>Total assets</td><td>988.3</td><td>3,027.5</td><td>3,051.8</td><td>4,267.9</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet. &dagger; FY23 net-debt figure unusable in source data (cash breakdown NaN); total debt of &#8377;52 Cr was immaterial regardless. Total debt spiked in FY24 to fund the Aquity acquisition, then fell every year since &mdash; consistent with management's own May-call claim of paying gross debt down from a peak near &#8377;850 Cr to &#8377;251 Cr by Mar-26 (matches this table's Mar-26 net-debt figure closely).</caption>
+      </div>
+      <p>Up to the TruBridge deal, IKS's own numbers told a clean de-leveraging story: debt/equity fell from a post-Aquity peak of 1.13x (FY24) to 0.27x (FY26), and net debt/EBITDA fell to a token 0.2x. That is the balance sheet CARE Ratings assessed when it issued IKS's <b>first-ever issuer rating &mdash; CARE A+ / Stable &mdash; on 19 June 2026</b>, citing the 20-year operating track record, platform differentiation, strong pre-deal liquidity (&#8377;390 Cr cash, ~10% average working-capital utilisation) and improving leverage (FY26 gearing 0.27x, interest coverage 14.5x, receivable days ~74). CARE's own framing makes clear the rating is forward-looking on the deal, not backward-looking on the balance sheet it just assessed: the central rating driver going forward is <b>"expected moderation in financial risk profile from the debt-funded TruBridge acquisition,"</b> with an explicit negative trigger if net debt/PBILDT stays above 2x from Q4FY27 onward, and a positive trigger below 1.25x on successful integration. The ~$635M TruBridge facility carries a 5-year tenor with an 18-month moratorium &mdash; deliberately built-in runway before integration/synergy realization is required to start servicing the debt at scale.</p>
+
+      <h3>Capital allocation in the window</h3>
+      <div class="grid-2">
+        <div class="card">
+          <b>The TruBridge debt raise.</b> Up to $635M syndicated across 14+ banks (§08); refinanced and retired an existing $70M term loan and its $77M guarantee. Parent-level corporate guarantee of up to $603.75M issued in support.
+        </div>
+        <div class="card">
+          <b>WWMG MSO stake build-up.</b> Up to $15M approved (29 Jun) to raise IKS's stake in physician-practice manager IKS WWMG MSO LLC from 48.02% toward 63.49% by 2029 (~$32M cumulative). First $2.84M tranche funded 14 Jul, taking the stake to 51.88% &mdash; control obtained on the very last day of Q1FY27, so no P&amp;L consolidation impact yet. Disclosed rationale: platform stickiness via physician-practice aggregation; reported early traction includes DSO improving from 46.1 to 41.7 days and $2.5M of identified annualised cost savings.
+        </div>
+        <div class="card">
+          <b>ESOP grants continuing at pace.</b> 131,114 options at a nominal &#8377;1 exercise price (16 Jun &mdash; a retention-style grant) and 61,000 options at market price &#8377;1,800.20 (2 Jul, standard-form). ESOP cost is now running at &#8377;21.8 Cr/quarter (+145% YoY), with management flagging further increases as it incentivizes incoming TruBridge leadership.
+        </div>
+        <div class="card">
+          <b>Partial monetisation of a strategic AI stake.</b> IKS sold 54,055 Series A-1 Preferred shares of Abridge AI Inc. for $10.0M (5&ndash;6 Aug) &mdash; a partial, not full, exit from an investee CEO Sachin Gupta also names as a rising competitive threat in ambient-AI scribing (see §08).
+        </div>
+      </div>
+      <p><b>Dividends/buybacks:</b> none found in this window &mdash; consistent with a young (listed Dec-2024), growth-and-deleveraging-focused company retaining all cash flow. <b>Capex:</b> this is a labor/technology services business, not an asset-heavy one &mdash; capex has run well below depreciation every year (FY26: &#8377;60.6 Cr capex vs &#8377;124.2 Cr D&amp;A), which is expected for this business model and should be read as low capital intensity, not under-investment; IKS's growth capital goes into acquisitions (Aquity, TruBridge, WWMG, ARAI) rather than fixed-asset capex.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Cash generation that nearly doubled in FY26 and funded real debt paydown &mdash; with one large, well-disclosed one-time outflow in Q1FY27 worth separating from the underlying trend.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT</td><td>305.2</td><td>370.5</td><td>486.1</td><td>721.6</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td class="pos">288.0</td><td class="neg">209.8</td><td>317.9</td><td class="pos">673.6</td></tr>
+            <tr><td>Capex</td><td>&minus;8.6</td><td>&minus;32.7</td><td>&minus;42.4</td><td>&minus;60.6</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="pos">279.4</td><td class="pos">177.1</td><td class="pos">275.5</td><td class="pos">613.0</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>94%</td><td>57%</td><td>65%</td><td>93%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. Quarterly cash flow is not available in the source data &mdash; a genuine gap, flagged rather than estimated.</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#10003;</div>
+        <div><b>Earnings-quality check: passes clean</b>Unlike a company quietly propping up PAT with non-cash items, IKS's free cash flow has been positive in all four years shown, and CFO/PAT conversion &mdash; while it dipped to 57% in the acquisition-heavy FY24 &mdash; recovered to 93% in FY26, tracking PAT growth rather than diverging from it. FY26's CFO nearly doubling (&#8377;317.9 Cr &rarr; &#8377;673.6 Cr) funded the debt paydown described in §05 without needing fresh equity. Receivable days have stayed in a fairly narrow band (55 &rarr; 71 &rarr; 62 &rarr; 65, FY23&rarr;FY26 per yfinance; CARE Ratings' own figure of ~74 days for FY26 is close, on a slightly different receivables definition) &mdash; no build-up pattern that would suggest channel stuffing or slipping collections.</div>
+      </div>
+
+      <h3>A one-time item worth isolating in Q1FY27</h3>
+      <p>The Q1FY27 investor presentation flags that operating and free cash flow were reduced by a <b>one-time upfront "NEVA" (negotiated economic value add) guarantee payment of &#8377;143 Cr made to a customer</b> in the quarter &mdash; the mirror image of the $3M NEVA payment IKS <em>received</em> from Palomar in 2025, illustrating this is a two-way mechanism embedded in some customer contracts, not a one-directional revenue kicker. Company-reported "FCF Yield" (likely FCF as a share of Adjusted EBITDA or Adjusted PAT, not separately defined in the filing) moved 84.5% (Q1FY26) &rarr; 62.1% (Q4FY26) &rarr; 89.9% (Q1FY27) &mdash; note this last figure is <em>after</em> the &#8377;143 Cr outflow, per the presentation, so the underlying quarter's cash generation before that one-time payment was stronger still. This is disclosed plainly by management rather than buried, and is the kind of contract structure worth understanding (and watching for recurrence) rather than a red flag on its own.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">A founder-led team about to hand its board chair to an outside healthcare-industry veteran, with a clean disclosure record and no litigation or auditor flags found in this filing window.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Sachin K. Gupta</div>
+          <div class="role">Founder, CEO &amp; Non-Executive Director</div>
+          <div class="bio">Primary voice on both earnings calls reviewed; frames strategy in terms of the platform-vs-point-solution competitive positioning described in §01 and the TruBridge/rural-healthcare thesis in §08.</div>
+        </div>
+        <div class="person">
+          <div class="name">Joseph Benardello</div>
+          <div class="role">Co-Founder, Chief Growth Officer &amp; Non-Executive Director</div>
+          <div class="bio">Co-founded the company alongside Gupta; growth/commercial-side leadership.</div>
+        </div>
+        <div class="person">
+          <div class="name">Nithya Balasubramanian</div>
+          <div class="role">CFO &amp; Whole-time Director</div>
+          <div class="bio">Handles the detailed financial Q&amp;A on both calls reviewed &mdash; including the ETR guidance and margin-bridge commentary cited throughout §03&ndash;06.</div>
+        </div>
+        <div class="person">
+          <div class="name">Peter Limeri</div>
+          <div class="role">Group Chief Operating Officer</div>
+          <div class="bio">Operational leadership across the combined (post-TruBridge) organization.</div>
+        </div>
+        <div class="person">
+          <div class="name">Clarence Carleton King II</div>
+          <div class="role">Incoming Non-Executive Chairman (effective 21 Sep 2026); currently Independent Director</div>
+          <div class="bio">40 years of US healthcare executive experience spanning both delivery (hospitals, clinics, ambulatory surgery centers) and financing (HMOs, PPOs, managed care) sides of the industry; P&amp;L responsibility up to $9bn+ annually across public, private and provider-sponsored companies; Certified Corporate Director (NACD / Indian Institute of Corporate Affairs). His appointment moves IKS from a non-independent to an independent board chair.</div>
+        </div>
+        <div class="person">
+          <div class="name">Berjis Desai</div>
+          <div class="role">Outgoing Non-Executive Chairman (retiring 21 Sep 2026)</div>
+          <div class="bio">Retiring due to his appointment as a Member of the National Commission for Minorities, Government of India &mdash; an external, non-adversarial reason stated in his own resignation letter, not a governance dispute.</div>
+        </div>
+      </div>
+
+      <h3>Ownership &amp; a very thin free float</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Promoter / insider holding</div><div class="v">70.98%</div><div class="d">Founder Sachin Gupta + Jhujhunwala family trusts collectively hold 63.72% (CARE Ratings, Mar-26)</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">9.93%</div><div class="d">56 institutions (MarketData)</div></div>
+        <div class="stat"><div class="k">Float shares</div><div class="v">41.0M</div><div class="d">Just ~24% of the 167.8M shares outstanding</div></div>
+      </div>
+      <p>A ~71% insider-held register with only ~24% of shares actually floating is typical for a company barely 20 months post-IPO, but it does mean price moves can be amplified by comparatively thin liquidity &mdash; a context worth holding alongside the 52-week range (&#8377;1,262&ndash;1,933, a 53% peak-to-trough span) discussed in §10.</p>
+
+      <h3>Other management change</h3>
+      <p>Saransh Mundra (VP of Finance &amp; Head of Investor Relations) was reclassified out of formal "Senior Management Personnel" status under Companies Act/SEBI LODR definitions following an internal role review (13 May 2026), but explicitly retained as "an integral part of the organization" and continued as the IR contact on every subsequent filing &mdash; reads as an administrative reclassification, not a departure.</p>
+
+      <h3>Auditor &amp; disclosure quality</h3>
+      <p>Both standalone and consolidated Q1FY27 results carry <b>unmodified/clean</b> limited-review conclusions from Price Waterhouse Chartered Accountants LLP. No litigation, no impairment, and no auditor qualification were found anywhere in the filings reviewed for this window. One related-party nuance is worth flagging: the further WWMG MSO investment (§05) is explicitly disclosed as a related-party transaction (a subsidiary investing further in its own associate), though the company states neither the Promoter nor Promoter Group has any personal interest in WWMG. Separately, Note 9 of the Q1FY27 results discloses that IKS had "a material pre-existing relationship with TruBridge, Inc. for the sale of certain software licenses" prior to the acquisition closing, with that revenue recognized separately from the business-combination accounting under Ind AS 115 &mdash; disclosed and stated to be arm's-length, but a data point worth tracking as more TruBridge-related disclosures arrive.</p>
+    </section>
+
+    <!-- 08 TRUBRIDGE -->
+    <section id="trubridge">
+      <div class="sec-head"><span class="sec-num">08</span><h2>The TruBridge deal, in full</h2></div>
+      <p class="sec-dek">A $557 million, debt-funded bet that owning the "system of record" (EHR), not just orchestrating around it, is the next step in the platform thesis &mdash; financed by a genuinely broad bank syndicate and de-risked by an 18-month debt-service moratorium, but still a large, largely unproven integration.</p>
+
+      <h3>Deal fact sheet</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Consideration</div><div class="v">$557M</div><div class="d">Announced 23 Apr 2026, closed 9 Jul 2026 (~2.5 months)</div></div>
+        <div class="stat"><div class="k">Structure</div><div class="v">100% merger</div><div class="d">IKS Next Horizon, Inc. merged into TruBridge, Inc. under Delaware law</div></div>
+        <div class="stat"><div class="k">Financing</div><div class="v">Up to $635M</div><div class="d">Reduced from an original $670M facility (2 Jul update); parent guarantee up to $603.75M</div></div>
+        <div class="stat"><div class="k">Lenders (final)</div><div class="v">14+ banks</div><div class="d">Citigroup, Deutsche Bank, JPMorgan, Exim Bank of India (original) + Axis, HDFC, ICICI, SBI, IDFC FIRST, Kotak, Federal Bank, DBS, and more (syndicated 3 Aug)</div></div>
+        <div class="stat"><div class="k">TruBridge footprint</div><div class="v">700&ndash;800 hospitals</div><div class="d">~30&ndash;35% share of the US rural-hospital EHR market; 15M+ patient records</div></div>
+      </div>
+
+      <h3>Why a rural-hospital EHR company</h3>
+      <p>TruBridge brings the "system of record" (EHR) half of the healthcare-IT stack, focused on the ~2,200-hospital, ~$162bn US <b>rural/community hospital</b> market &mdash; distinct from IKS's traditional ambulatory/physician-group client base. Owning the EHR outright, rather than integrating with it via API as a system-of-action vendor normally must, gives IKS synchronous, native-workflow orchestration and full data ownership, which management frames as the foundation for the proprietary "AI training corpus" strategy described in §01. Because ~60&ndash;70% of rural-hospital care is outpatient, management's stated thesis is that the small language models and workflows built for TruBridge's inpatient/rural context are largely reusable in IKS's outpatient/ambulatory core business, and vice versa &mdash; a genuine cross-pollination argument, though one that is still entirely unproven in results as of this report. A second, more mechanical opportunity: only ~250 of TruBridge's 700+ EHR customers currently use TruBridge's own RCM module, leaving a large embedded cross-sell base for IKS's full 16-workflow suite. Management has been explicit that it does <b>not</b> intend further TruBridge-sized deals &mdash; future M&amp;A is expected to be smaller AI-capability tuck-ins (in the mould of ARAI) or point-solution consolidation, not another transformative acquisition.</p>
+
+      <h3>What could go wrong &mdash; risks management itself has named</h3>
+      <div class="grid-2">
+        <div class="card">
+          <b>A legacy technology migration.</b> TruBridge's EHR runs on COBOL; migrating to a modern PostgreSQL/cloud-native stack is management's own stated 18&ndash;24 month plan, done "in a modular way" with AI-assisted reverse-engineering of embedded business logic. An analyst (Dev Thacker) directly flagged this class of migration as historically difficult; management's mitigant is credible but the migration itself is, in the CEO's own words, "still a significant" undertaking.
+        </div>
+        <div class="card">
+          <b>Margin dilution, guided explicitly.</b> Blended consolidated EBITDA margin is guided to <b>drop toward 26&ndash;27%</b> initially (from IKS's standalone ~33&ndash;35%) before recovering to "early-to-mid 30s" over roughly two years, via offshore/tech-led operating-model transformation and SG&amp;A synergies at TruBridge &mdash; a trajectory that matches CARE Ratings' independent projection almost exactly.
+        </div>
+        <div class="card">
+          <b>The revenue reset already discussed in §03.</b> A ~12% downward revision to TruBridge's expected steady-state revenue ($340M &rarr; ~$300M/year), disclosed within a month of close.
+        </div>
+        <div class="card">
+          <b>Leverage, and the rating agency's own words.</b> CARE Ratings ties rating stability explicitly to "timely integration and realisation of envisaged synergies," with a negative trigger if net debt/PBILDT exceeds 2x on a sustained basis from Q4FY27 &mdash; i.e., the rating agency itself treats successful integration as a live, unresolved question, not a formality.
+        </div>
+      </div>
+
+      <h3>A juxtaposition worth noting: trimming Abridge while calling it a threat</h3>
+      <p>On the same week TruBridge's post-close numbers were disclosed, IKS also filed the partial sale of its Abridge AI stake (§05) for $10.0M. Abridge is an AI ambient-scribe company expanding from documentation into a fuller pre/peri/post-visit platform &mdash; exactly the kind of "point solution system of action" competitor category management describes in §01. Asked directly about Abridge's competitive threat on the August call, the CEO's response was measured rather than dismissive ("we respect Abridge... will obviously carefully evaluate them... how well they do, how well they don't do will be a matter of time"). Trimming (not exiting) a stake in a company you also name as a rising competitive threat is not necessarily inconsistent &mdash; it may simply be portfolio-level profit-taking on a strategic investment &mdash; but it is a data point worth holding alongside the competitive-positioning commentary in §01.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage &amp; earnings-surprise history</h2></div>
+      <p class="sec-dek">A modest but genuinely bullish-leaning coverage universe, against a quarterly EPS-beat record that is mixed rather than one-directional.</p>
+
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analyst recommendation</div><div class="v">Buy</div><div class="d">8 analysts: 2 Strong Buy, 4 Buy, 2 Hold, 0 Sell &mdash; unchanged over the last 4 months</div></div>
+        <div class="stat"><div class="k">Price targets</div><div class="v">&#8377;1,960.6 mean</div><div class="d">Range &#8377;1,680 (low) &ndash; &#8377;2,170 (high); CMP &#8377;1,812.30 implies ~8% upside to mean</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">9.93%</div><div class="d">56 institutions (MarketData)</div></div>
+      </div>
+
+      <h3>Quarterly EPS: estimate vs. actual</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Quarter</th><th>EPS estimate</th><th>Reported EPS</th><th>Surprise</th></tr></thead>
+          <tbody>
+            <tr><td>Q1FY26 (Jul-25)</td><td>9.30</td><td>8.85</td><td class="neg">&minus;4.84%</td></tr>
+            <tr><td>Q2FY26 (Oct-25)</td><td>9.80</td><td>10.58</td><td class="pos">+7.96%</td></tr>
+            <tr><td>Q3FY26 (Feb-26)</td><td>10.76</td><td>10.73</td><td class="neg">&minus;0.28%</td></tr>
+            <tr><td>Q4FY26 (May-26)</td><td>11.82</td><td>12.06</td><td class="pos">+2.03%</td></tr>
+            <tr><td>Q1FY27 (Aug-26)</td><td>11.43</td><td>11.32</td><td class="neg">&minus;0.92%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance earnings history.</caption>
+      </div>
+      <p>Two beats, three narrow misses over the last five reported quarters &mdash; not the clean beat-every-quarter record the "record results" newsflow framing might suggest, though every miss shown has been small (under 5%) and the two largest surprises (the Q1FY26 miss and Q2FY26 beat) roughly offset each other. The most recent print (Q1FY27) was a marginal miss on EPS despite the strong headline revenue/PAT growth &mdash; consistent with the margin dip discussed in §04 flowing through to the bottom line at the margin.</p>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>One independent print reviewed directly</b>Motilal Oswal's 7 Aug note (BUY, target &#8377;2,075, 34x FY28E EPS) projects FY26&ndash;28E CAGRs of 17% revenue / 19% EBITDA / 20% PAT &mdash; figures that appear to be built primarily off the legacy IKS organic business, since they sit well below what reported growth will look like once TruBridge is consolidated (see §10). Read this as an organic-growth anchor, not a forecast that already prices in the TruBridge base &mdash; the two are not directly comparable without adjustment.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock that fell ~31% from its IPO price before rallying ~40% off the bottom, now trading at a premium multiple that prices in a successful TruBridge integration the company has not yet had a single quarter to prove.</p>
+
+      <h3>Twenty months of price action, since IPO</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Dec 2024 (IPO) &ndash; Aug 2026 (NSE, via yfinance daily price history). IKS listed 19 Dec 2024, drifted to a 52-week low of &#8377;1,328 by end-March 2026 as Aquity-integration questions and decelerating headline growth weighed on the stock, then rallied ~40% to ~&#8377;1,860 by mid-August on the FY26 beat, the CARE rating, and the TruBridge close.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">40.56x</div><div class="d">On TTM diluted EPS</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">26.58x</div><div class="d">Consensus FY27E basis</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">10.83x</div><div class="d">Book value/share &#8377;167.36</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">26.45x</div><div class="d">TTM EBITDA margin 34.5%</div></div>
+      </div>
+      <p>At 40.6x trailing and 26.6x forward earnings, the market is pricing IKS closer to a high-growth software/platform story than a BPO &mdash; a premium that is only justified if (a) the legacy business sustains the mid-to-high-teens organic growth Motilal Oswal projects, <em>and</em> (b) TruBridge's margin recovers on the guided 26&ndash;27% &rarr; "early-to-mid 30s" timeline without a repeat of the Aquity-era multi-year margin drag. Neither is yet demonstrated in reported numbers &mdash; Q1FY27 is the last quarter before TruBridge enters the P&amp;L.</p>
+
+      <h3>Bear / base / bull, FY27E&ndash;FY28E</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Illustrative scenarios, not point forecasts. Reported FY27 revenue will look transformed regardless of scenario purely from TruBridge's ~9-month consolidation (Jul-26 close, Mar-27 year-end) on top of an organic base growing mid-to-high teens &mdash; the real variable across these scenarios is <em>margin and integration execution</em>, not top-line optics. Base case anchors to Motilal Oswal's independent 34x FY28E EPS framework; bear/bull adjust the multiple and the margin-recovery timeline.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;1,250&ndash;1,450</div>
+          <div class="rng">&minus;20% to &minus;31% from CMP</div>
+          <ul>
+            <li>TruBridge's revenue base resets a second time, or the COBOL-to-cloud migration slips past its 18&ndash;24 month window</li>
+            <li>Blended EBITDA margin gets stuck near the 26&ndash;27% trough rather than recovering, as legacy-IKS margin gains are offset by integration drag</li>
+            <li>Net debt/PBILDT breaches CARE's 2x negative trigger from Q4FY27, pressuring the credit rating just as the moratorium ends</li>
+            <li>FY28E EPS growth decelerates to high single digits; multiple compresses to ~22&ndash;25x on integration-risk discount</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;1,950&ndash;2,150</div>
+          <div class="rng">+8% to +19% from CMP</div>
+          <ul>
+            <li>Legacy IKS sustains ~17% revenue / ~19% EBITDA / ~20% PAT CAGR through FY28 (Motilal Oswal's own framework)</li>
+            <li>TruBridge margin recovers roughly on the guided two-year timeline; leverage stays inside CARE's &lt;2x threshold</li>
+            <li>Cross-sell into TruBridge's ~450-customer RCM-attach gap begins showing measurable traction by FY28</li>
+            <li>Multiple holds near today's 34x FY28E EPS anchor</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;2,500&ndash;2,800</div>
+          <div class="rng">+38% to +54% from CMP</div>
+          <ul>
+            <li>TruBridge integration runs ahead of schedule &mdash; margin recovery pulled into FY27/early-FY28 rather than "a couple of years"</li>
+            <li>The AI-training-corpus / SLM strategy shows demonstrable cost or win-rate advantage, reinforcing the platform moat narrative</li>
+            <li>Net debt/PBILDT falls toward CARE's &lt;1.25x positive trigger, prompting a rating upgrade</li>
+            <li>Multiple re-rates toward 40x+ on demonstrated multi-platform execution, echoing the market's reaction to the clean FY26 Aquity-recovery print</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: Mar-26 book value/share was &#8377;167.36 at 10.83x P/B (pre-TruBridge-close). If FY27 retained earnings and TruBridge purchase-accounting effects lift book value toward &#8377;200&ndash;220/share and the market holds a broadly similar 9&ndash;10x multiple, that implies a price band of roughly &#8377;1,800&ndash;2,200 &mdash; consistent with the base case above and a useful sanity check on the earnings-multiple approach.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuine, second demonstration of IKS's ability to digest a large acquisition &mdash; the FY24&ndash;FY26 Aquity cycle (margin dilution to 30.4%, recovery to 34.4%) is a real precedent, not a hopeful assumption, for the TruBridge playbook now underway; consistently strong free cash flow (positive all four years shown, CFO/PAT conversion recovering to 93% in FY26) that funded genuine debt paydown without fresh equity; a first-ever, solidly investment-grade credit rating (CARE A+/Stable) with a broad, 14+-bank lending syndicate behind the TruBridge financing and an 18-month debt-service moratorium built in; an incoming independent board chair with directly relevant 40-year US healthcare pedigree; unmodified audit opinions and no litigation or impairment flags found in this window; and a mixed-but-not-alarming analyst-estimate track record (two beats, three small misses) against a genuinely bullish 8-analyst coverage universe.</p>
+        <p style="max-width:none;"><b>What's not good:</b> the one number management could have gotten right at signing &mdash; TruBridge's own revenue base &mdash; was revised down ~12% within a month of closing, an early and unwelcome data point on diligence quality even though EBITDA and deal economics were reaffirmed; blended margin is guided to fall meaningfully (toward 26&ndash;27%) before recovering, a multi-year promise the market is paying a 40x trailing multiple for today; the COBOL-to-cloud EHR migration is, by management's own admission, "still a significant" undertaking on an 18&ndash;24 month clock; client concentration by quarter has swung enough (43% &rarr; 54% Top-10 contribution) that the same analyst had to ask about it twice; the free float is thin (~24% of shares outstanding) which can amplify price swings in either direction; and TruBridge integration risk is, per the rating agency's own words, the single central swing factor for the credit rating from here.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> with a consistent pattern of declining to over-promise, then meeting or beating the specific numbers it does commit to. The ETR guidance, the FY30 EBITDA target, and the TruBridge close timeline were all hit; the one miss (TruBridge's revenue base) was surfaced by management itself, unprompted, rather than extracted by analyst pressure &mdash; and paired immediately with a reaffirmed, even slightly improved, EPS-accretion claim. The Aquity precedent (margin trough, then genuine recovery, later rewarded by the stock's 40% rally off its March 2026 low) is the strongest evidence available that this team can execute a hard integration; it is also the reason the market is now willing to pay up before TruBridge has contributed a single reported quarter.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12&ndash;24 months resolve in the bulls' favour from today's starting price: moderate-to-favourable, roughly 50&ndash;60%.</b> The legacy business is compounding cleanly (20%+ revenue growth, margin recovering, cash conversion strong, leverage low going into the deal), and management has already shown once, in near-identical form, that it can absorb a large acquisition without the margin damage becoming permanent. What tempers a higher-conviction call is that TruBridge is roughly comparable in relative scale to the Aquity deal that took two full years to fully digest, the one hard number disclosed post-close already moved in the wrong direction, and the market's current 40x trailing / 26x forward multiple leaves very little room for a second such number to surprise badly before the stock re-rates down rather than up. The base case implies solid, not spectacular, further upside if execution simply matches the company's own stated timeline &mdash; the bull case requires TruBridge to integrate <em>faster</em> than Aquity did, which is possible given the AI-assisted migration tooling management describes, but is not yet evidenced.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) TruBridge's first reported quarter inside consolidated numbers (Q2FY27, due ~November 2026) &mdash; does the $300M revised revenue run-rate hold, and does the margin bridge track the guided 26&ndash;27% trough; (2) net debt/PBILDT versus CARE's 2x negative-trigger threshold as the TruBridge debt amortization schedule progresses past its 18-month moratorium; (3) whether Top-10 client concentration settles back toward the 37% full-year FY26 level or keeps drifting toward the 50%+ quarterly prints seen in Q4FY26/Q1FY27; (4) tangible cross-sell evidence &mdash; RCM/other-workflow attach rates into TruBridge's ~450-customer gap; (5) any second TruBridge-related revenue or cost surprise, given the first one arrived within a month of close.</div>
+      </div>
+
+      <footer>
+        Compiled from IKS's BSE/NSE filings (Announcements/AnnouncementsConv, 13&nbsp;May&ndash;18&nbsp;Aug 2026 &mdash; the Q4FY26 and Q1FY27 investor presentations and earnings-call transcripts, the full TruBridge acquisition/financing/syndication paper trail, both shareholder postal ballots, the CARE Ratings issuer-rating press release, and the Chairman-transition filing), MarketData (Yahoo Finance via yfinance, last fetched 20&nbsp;Aug&nbsp;2026 08:03 IST, including the full daily price-history series since the 19&nbsp;Dec&nbsp;2024 listing), and the tracked News feed. AnnualStatementsConv and QuarterlyStatementsConv held no files for this company at the time of writing; the annual/quarterly financial-statement trend relies on yfinance's independently recomputed series, cross-checked against company-reported figures wherever both were available. All figures are as originally reported by the company or the cited data source; where a figure could not be independently reconciled, a data gap existed, or two sources disagreed, that is stated explicitly in the relevant section rather than silently resolved or estimated. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT, consolidated) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q3FY25','Q4FY25','Q1FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [657.16, 723.96, 740.10, 814.95, 857.65, 893.63];
+    var ebitda  = [208.45, 229.44, 240.86, 284.76, 299.69, 295.34];
+    var pat     = [129.68, 147.80, 151.54, 183.33, 205.97, 193.74];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+
+    function y(v){ return padT + plotH - (v/maxV)*plotH; }
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT, consolidated" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 4;
+    for(var g=0; g<=steps; g++){
+      var gv = (maxV/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(v);
+        var bh = (padT+plotH) - by;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+by.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q2FY26 (Sep-25 quarter) is absent from the source data and is not plotted here — a gap, not a zero. None of these quarters include TruBridge.</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Dec 24', 1919.50], ['Jan 25', 1761.15], ['Feb 25', 1794.75], ['Mar 25', 1528.95],
+      ['Apr 25', 1476.20], ['May 25', 1505.60], ['Jun 25', 1610.10], ['Jul 25', 1587.00],
+      ['Aug 25', 1514.20], ['Sep 25', 1453.50], ['Oct 25', 1645.90], ['Nov 25', 1680.60],
+      ['Dec 25', 1657.80], ['Jan 26', 1551.90], ['Feb 26', 1375.80], ['Mar 26', 1328.40],
+      ['Apr 26', 1654.70], ['May 26', 1675.60], ['Jun 26', 1679.40], ['Jul 26', 1848.90],
+      ['Aug 26', 1861.60]
+    ];
+    var W = 900, H = 220, padL = 50, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="IKS monthly closing share price, December 2024 IPO to August 2026" style="width:100%;height:auto;font-size:11px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1 || i===0) ? 4.5 : 2.6;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i % 3 === 0 || i === points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','').replace(' 24','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily NSE price history via yfinance. 52-week range per MarketData snapshot is ₹1,262–1,933 (intraday extremes may fall between the monthly points plotted).</div></div>';
+  })();
+})();
+</script>

@@ -1,0 +1,1009 @@
+<title>Fedbank Financial Services (Fedfina)</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.2px; }
+  th,td{ padding:8px 12px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.5px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Gold Loan &amp; LAP NBFC</div>
+    <h1>Fedbank Financial Services Limited</h1>
+    <p class="sub">NSE/BSE: FEDFINA &middot; BSE Scrip 544027 &middot; Q4 FY26&ndash;Q1 FY27 earnings-call &amp; investor-presentation synthesis, five-year growth arc, and forward scenario framework, as of 19 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> a Federal Bank-promoted gold-loan-and-LAP NBFC (trading as Fedfina) that has spent five straight quarters delivering almost exactly what it promised &mdash; PAT crossed the psychological &#8377;100&nbsp;Cr mark in Q4&nbsp;FY26 and kept climbing to a record &#8377;114.4&nbsp;Cr in Q1&nbsp;FY27 (+52.5% YoY, ROE 15.4%), AUM grew 34.7% YoY to &#8377;21,136&nbsp;Cr, and asset quality improved even as the RBI's April&nbsp;2026 gold-loan LTV/repayment-assessment overhaul forced an industry-wide reset of how delinquencies get reported. Alongside that operating momentum, anchor private-equity investor True North exited its entire ~6.9% stake via block deal to Nomura in May&nbsp;2026 &mdash; a clean, well-telegraphed ownership transition rather than a distress sale &mdash; and the board has now asked shareholders to approve up to &#8377;2,500&nbsp;Cr of fresh debt-instrument headroom (25&nbsp;Aug&nbsp;2026 meeting), the clearest signal yet that management intends to keep pressing the growth pedal into FY27.
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (19 Aug 26)</div><div class="v">&#8377;149.80</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;5,617 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;119.1 &ndash; &#8377;178.5</div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT</div><div class="v pos">&#8377;114.4 Cr <span style="font-size:11px;">(+52.5% YoY)</span></div></div>
+      <div class="chip"><div class="k">Q1FY27 ROA / ROE</div><div class="v">2.6% / 15.4%</div></div>
+      <div class="chip"><div class="k">Q1FY27 GNPA / NNPA</div><div class="v pos">1.6% / 1.0%</div></div>
+      <div class="chip"><div class="k">Trailing P/E &middot; P/B</div><div class="v">14.8x &middot; 1.92x</div></div>
+      <div class="chip"><div class="k">CRAR (Q1FY27)</div><div class="v">20.7%</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage:</b> BSE/NSE filings in this dataset span May&ndash;August 2026 &mdash; the Q4&nbsp;FY26 (28&nbsp;Apr&nbsp;2026) and Q1&nbsp;FY27 (15&nbsp;Jul&nbsp;2026) earnings-call transcripts (both full Q&amp;A, ~19 pages each), the Q1&nbsp;FY27 investor presentation and press release, and roughly 45 other filings (ESOP allotments, investor-meet intimations, board-meeting notices, one director resignation, SAST disclosures). No annual report and no Q1&ndash;Q3&nbsp;FY26 investor presentations/transcripts exist in this dataset, so the FY22&ndash;FY26 multi-year trend below is drawn from the company's own "Growth Journey" and comparison tables inside the Q1&nbsp;FY27 presentation, cross-checked against yfinance's independent annual (FY22&ndash;FY26) and quarterly (Q2&nbsp;FY25&ndash;Q1&nbsp;FY27) financial statements. yfinance's own quarterly pull has a gap at Q2&nbsp;FY26 (Sep-25 quarter) &mdash; revenue and PAT are blank in that column &mdash; which is left as n/a rather than estimated, per this analysis's own no-estimation rule. Figures are standalone (Fedfina has no material subsidiaries) throughout.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet &amp; capital</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Guidance vs. actual</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What Fedfina does, and how it has grown</h2></div>
+      <p class="sec-dek">A Mumbai-based, Federal Bank-promoted NBFC built around a single idea &mdash; secured, collateralized lending to India's self-employed and MSME borrowers who don't fit a conventional bank's underwriting box &mdash; now running twin engines of gold loans and loan-against-property.</p>
+
+      <p class="lede">Fedbank Financial Services Limited (trading name <b>Fedfina</b>) was incorporated in 1995, received its NBFC licence in 2010, and is majority-owned by <b>Federal Bank Limited</b> (60.7% as of June 2026). It listed on the NSE/BSE in an IPO that raised &#8377;1,090&nbsp;Cr (per the company's own growth-journey disclosure), and private-equity investor True North had been a strategic partner for several years before fully exiting in May&nbsp;2026 (&sect;07). As of Q1&nbsp;FY27 the company runs <b>757 branches across 17 states and union territories</b>, employs <b>5,376 people</b> (plus 344 apprentices), and manages an AUM of <b>&#8377;21,136&nbsp;Cr</b> &mdash; a book that has grown roughly 21x since FY17.</p>
+
+      <h3>Product segments</h3>
+      <p>Fedfina organises its book around three collateralized products: <b>Gold Loans</b> (52.9% of AUM as of Q1&nbsp;FY27, average ticket &#8377;2.3&nbsp;lakh, in-house gold valuation, origination yield ~17.8%); <b>Medium Ticket LAP</b> (27.7% of AUM, average ticket &#8377;75.2&nbsp;lakh, income-based underwriting, yield ~12&ndash;12.5%, competes in Tier&nbsp;1/2 markets); and <b>Small Ticket LAP &amp; Home Loans</b> (18.5% of AUM, average ticket &#8377;15.2&nbsp;lakh, assessed-income underwriting, yield ~15&ndash;16%, Tier&nbsp;2/3/4 markets). A residual Business Loan book (once ~4% of AUM) was deliberately wound down &mdash; &#8377;886&nbsp;Cr was 100% assigned and derecognised during FY26 &mdash; leaving the company <b>99.2% secured</b> on-book. Medium Ticket and Small Ticket LAP are together referred to internally as "Mortgage."</p>
+
+      <h3>The moat, as the company frames it</h3>
+      <p>Four claims recur across the calls and presentation: (i) a <b>fully collateralized lending model</b> targeting self-employed/MSME borrowers under-served by conventional banks &mdash; gold and property collateral keep credit losses structurally low regardless of the customer's formal income documentation; (ii) <b>parentage</b> &mdash; Federal Bank ownership gives access to capital markets, an AA+/Stable rating from all four major agencies (CRISIL, CARE, India Ratings, ICRA) enabling a relatively low ~7.8% cost of borrowing, and brand trust in Tier&nbsp;2&ndash;4 markets; (iii) a <b>"twin-engine" branch-dense distribution model</b> &mdash; 757 branches plus a doorstep gold-loan channel (AUM +96.5% YoY to &#8377;1,787&nbsp;Cr) and "Vyapar" branches that co-locate gold and small-ticket LAP under one roof to raise per-branch productivity; and (iv) a <b>digital origination/underwriting/collections stack</b> (cloud LOS/LMS, real-time business-rule-engine underwriting, 14&nbsp;lakh+ app downloads, 88%+ digital registrations, 61%+ digital payments). Against that, management itself frames scale as still-building rather than dominant &mdash; no independently ranked market-share figure is disclosed anywhere in this dataset, and the company describes itself as competing on <i>execution and collateral quality</i> within an MSME credit gap it estimates at &#8377;25&nbsp;lakh Cr, rather than claiming outright leadership.</p>
+
+      <h3>The growth arc, FY17&ndash;Q1FY27</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th></th><th>FY17</th><th>FY19</th><th>FY22</th><th>FY24</th><th>FY26</th><th>Q1 FY27</th></tr></thead>
+          <tbody>
+            <tr><td>AUM (&#8377; Cr)</td><td>1,000</td><td>2,000</td><td>6,200</td><td>12,200</td><td>20,200</td><td>21,136</td></tr>
+            <tr><td>Branches</td><td>107</td><td>149</td><td>516</td><td>&mdash;</td><td>757</td><td>757</td></tr>
+            <tr><td>Employees</td><td>579</td><td>964</td><td>2,855</td><td>&mdash;</td><td>5,303</td><td>5,376</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1 FY27 investor presentation, "Our Growth Journey" slide. Milestones along the way: CARE upgraded the rating to AA (FY17&ndash;19 window), True North joined as a strategic PE partner and later fully exited (FY22&ndash;26 window; see &sect;07), the company listed via an &#8377;1,090&nbsp;Cr IPO, and the credit rating was progressively upgraded to AA+/Stable by CARE, India Ratings and eventually CRISIL. FY24 branch/employee figures were not broken out separately in the source slide (bucketed under the FY22&ndash;26 milestone group) and are marked &mdash;.</caption>
+      </div>
+      <p>Read plainly, this is a two-decade compounding story that has recently entered a distinctly profitable phase: FY26 alone added &#8377;4,342&nbsp;Cr of AUM and 148 new branches, and the five quarters covered by this dataset (Q1&nbsp;FY26&rarr;Q1&nbsp;FY27) show AUM compounding at roughly a 34% CAGR while PAT nearly doubled from &#8377;75.0&nbsp;Cr to &#8377;114.4&nbsp;Cr. &sect;03&ndash;04 unpack how that played out quarter by quarter, including a structural regulatory reset the gold-loan industry absorbed in Q1&nbsp;FY27.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item of consequence in the tracked news feed and BSE filings since December 2025.</p>
+
+      <div class="news-item">
+        <div class="news-date">19 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Board to consider raising up to &#8377;2,500 Cr via debt instruments</div>
+          <div class="news-body">Board meeting called for 25&nbsp;Aug&nbsp;2026 to approve raising funds via NCDs (INR or foreign currency) as part of an enlarged overall borrowing limit, subject to shareholder approval at the AGM. Read alongside the strong Q1 print (PAT +52.5%, AUM +34.7%, improving asset quality), this reads as management funding continued growth rather than plugging a capital shortfall &mdash; but it is debt headroom, not equity, so it doesn't address the CRAR-erosion trend in &sect;05.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">28 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Q1 FY27 standalone results confirmed: net sales +28.9% YoY, PAT +52.5% YoY</div>
+          <div class="news-body">EPS rose to &#8377;3.05 from &#8377;2.01 a year earlier; EBITDA (as computed by the wire service) up 33.2% YoY &mdash; profit growth outpacing revenue growth, consistent with the operating-leverage story in &sect;04.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">16 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (analyst)</span>
+          <div class="news-title">ICICI Securities reiterates Buy, target &#8377;200</div>
+          <div class="news-body">Cites a multi-quarter-high 15% RoE, 80bps credit cost held despite new gold-loan regulation and Gulf-region geopolitical headwinds, 35% YoY AUM growth, and management's guidance for a further 20&ndash;30bps RoA improvement in FY27 through operating leverage.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">15 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Q1 FY27 results announced: AUM growth beats management's own guidance, stock +12.8% on the day</div>
+          <div class="news-body">PAT &#8377;114.4&nbsp;Cr (+52.5% YoY); AUM +34.7% YoY to &#8377;21,136&nbsp;Cr, ahead of the 20&ndash;25% guided range; Gross NPA fell 32bps QoQ to 1.55&ndash;1.6%. The scale of the one-day move suggests the beat, plus the asset-quality improvement despite the regulatory transition (&sect;03&ndash;04), surprised the market to the upside.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">11 Jul 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Routine</span>
+          <div class="news-title">54,650 shares allotted under ESOS</div>
+          <div class="news-body">One of several routine monthly ESOP-allotment filings across this dataset (Jun, Jul, Aug 2026) &mdash; ordinary employee stock-option vesting, not individually a signal.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">12 May 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed / Ownership transition</span>
+          <div class="news-title">True North exits with ~7% stake sale via block deal</div>
+          <div class="news-body">Headline-only wire report; corroborated in detail by the Q1 FY27 earnings call (&sect;07) &mdash; True North Fund VI LLP sold its entire ~25.7&nbsp;million-share (6.86%) holding to Nomura India Equity Fund. A large, clean secondary-market exit by a long-tenured PE investor, not a distress or governance event.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">29&ndash;28 Apr 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Q4 FY26 results: strong numbers, stock fell 3.9% on the day</div>
+          <div class="news-body">PAT &#8377;100.5&nbsp;Cr (+40.3% YoY), NII +23% to &#8377;348.8&nbsp;Cr, AUM +27.5% to &#8377;20,153&nbsp;Cr, 148 new branches added in FY26. Despite the strength, the stock declined &mdash; plausibly the market weighing forward CRAR erosion, the fresh regulatory overhang just then emerging, or the gains being already priced in. Objectively the numbers themselves were not the source of the weakness.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">15 Jan 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral (thin coverage)</span>
+          <div class="news-title">Q3 FY26 net profit reported at &#8377;87.9 Cr</div>
+          <div class="news-body">Wire report carried only the bare profit figure, with no YoY comparison, margin or asset-quality detail retrievable from this dataset's news feed.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">22 Dec 2025</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Routine</span>
+          <div class="news-title">Board approves &#8377;200 Cr NCD issue</div>
+          <div class="news-body">Headline-only; a smaller, earlier instalment of the same ongoing debt-funding programme that culminates in the much larger &#8377;2,500&nbsp;Cr ask disclosed on 19&nbsp;Aug&nbsp;2026 above.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>The stock's 52-week range (&#8377;119.1&ndash;&#8377;178.5) frames a name that has been volatile around results: a &minus;3.9% reaction to a strong Q4 print in April, followed by a +12.8% single-day jump on an even stronger Q1 print in July, before drifting back to &#8377;149.80 by mid-August as the fresh &#8377;2,500&nbsp;Cr fundraise news landed. The market appears to be pricing this name off quarter-to-quarter execution against its own guidance (&sect;08) more than off any single narrative.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>AUM, disbursements, segment mix, geography &amp; guidance</h2></div>
+      <p class="sec-dek">Five quarters of accelerating AUM growth led almost entirely by gold loans, a mortgage segment still rebuilding after a self-acknowledged rough patch, slow geographic diversification, and an entity-level growth target the company has consistently beaten.</p>
+
+      <h3>Quarterly AUM &amp; disbursement trend</h3>
+      <div id="aumchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q1FY26</th><th>Q2FY26</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Total AUM</td><td>15,697</td><td>16,136</td><td>17,500</td><td>20,153</td><td>21,136</td></tr>
+            <tr><td>&nbsp;&nbsp;Gold Loan AUM</td><td>6,332</td><td>6,731</td><td>7,905</td><td>10,352</td><td>11,191</td></tr>
+            <tr><td>&nbsp;&nbsp;Mortgage (LAP+HL) AUM</td><td>9,366</td><td>9,405</td><td>9,596</td><td>9,801</td><td>9,946</td></tr>
+            <tr><td>Total Disbursements</td><td>5,933</td><td>5,205</td><td>8,606</td><td>11,665</td><td>6,760</td></tr>
+            <tr><td>&nbsp;&nbsp;Gold Loan disbursements</td><td>5,284</td><td>4,445</td><td>7,853</td><td>10,744</td><td>6,087</td></tr>
+            <tr><td>&nbsp;&nbsp;Medium Ticket LAP disb.</td><td>449</td><td>554</td><td>545</td><td>632</td><td>529</td></tr>
+            <tr><td>&nbsp;&nbsp;Small Ticket LAP &amp; HL disb.</td><td>200</td><td>206</td><td>208</td><td>289</td><td>144</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1 FY27 investor presentation, "Twin-engine business profile" slides. Mortgage AUM figures marked with an asterisk in the source (Q1FY26&ndash;Q4FY26) reflect the &#8377;886 Cr Business Loan portfolio that was progressively assigned/derecognised through FY26; Q1FY27's 9,946 is the clean post-runoff figure.</caption>
+      </div>
+      <p>Gold loans did essentially all of the work: AUM nearly doubled from &#8377;6,332&nbsp;Cr to &#8377;11,191&nbsp;Cr over five quarters (+76.7% YoY at Q1FY27), while Mortgage AUM grew a much steadier 14.5% YoY. Disbursements show the company's own acknowledged Q3/Q4-heavy seasonality &mdash; Q4FY26's &#8377;11,665&nbsp;Cr disbursement quarter dwarfs Q1/Q2, which management attributes to festive-season tonnage patterns and a back-ended push into the fiscal year-end.</p>
+
+      <h3>Gold loan operating metrics: growth without loosening underwriting</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Gold tonnage, Q1FY27</div><div class="v">12.7 t</div><div class="d">vs 11.2t a year earlier (+13.4% YoY)</div></div>
+        <div class="stat"><div class="k">AUM per gold branch</div><div class="v">&#8377;17.7 Cr</div><div class="d">vs &#8377;13.0 Cr a year earlier</div></div>
+        <div class="stat"><div class="k">Portfolio LTV</div><div class="v">67.9%</div><div class="d">up from 59.3&ndash;63.7% range, mostly a gold-price-driven optical rise</div></div>
+        <div class="stat"><div class="k">Number of gold branches</div><div class="v">632</div><div class="d">from 486 a year earlier</div></div>
+      </div>
+      <p>Management's stated formula for gold growth is deliberately tonnage-first: "we start with the tonnage growth irrespective of the price... we take price as a bonus" (Q4FY26 call). Tonnage grew 12&ndash;12.7% across the two most recent years, and management has repeatedly guided that even a fully flat gold price should still support 20&ndash;30% gold AUM growth from tonnage and branch-productivity gains alone.</p>
+
+      <h3>Segment mix &amp; geography</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>% of AUM</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Top-5 states, % of AUM</td><td>78.7%</td><td>77.9%</td><td>76.0%</td><td>75.1%</td><td>74.7%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1 FY27 investor presentation. Regional Gold-Loan AUM mix has shifted from 66% South / 27% West / 6% North (FY21) to 46% / 24% / 31% (Q1FY27); Mortgage AUM mix has shifted from 63% South / 28% West / 9% North (FY21) to 36% / 44% / 20% (Q1FY27) &mdash; a genuine, multi-year dilution of the original South-India concentration, achieved through branch expansion (horizontal growth) rather than acquisitions or new products.</caption>
+      </div>
+      <p>No independently ranked market-share or industry-position figure is disclosed anywhere in this dataset &mdash; management's only quantified positioning claims are its own AUM/branch productivity numbers and internal tonnage-growth history. Expansion is overwhelmingly <b>horizontal</b>: 148 new branches added in FY26 alone, continued penetration into existing states (Orissa specifically flagged as "wide space" in the Q4FY26 call) and further build-out in northern territories already entered. There is no disclosed vertical integration (e.g. no move into originating/servicing for third parties) in this dataset.</p>
+
+      <h3>FY27 growth guidance, restated on the Q1 call</h3>
+      <p>Management's FY27 guidance, reiterated on both the April and July 2026 calls without change: <b>entity-level AUM growth of 20&ndash;25%</b>; <b>Gold AUM growth of 25&ndash;30%</b> even assuming a flat gold price (from tonnage growth of 10&ndash;15% plus modest LTV expansion); <b>Mortgage (LAP) growth of 15&ndash;20%</b>, split opportunistically between Medium Ticket and Small Ticket LAP depending on which segment offers better risk-adjusted yield in a given quarter; and <b>200 new branches</b> for the year (versus 148 added in FY26). Q1FY27 delivered zero net-new branches &mdash; management says premises were identified and fitted out but openings slipped into Q2, with the 200-branch full-year target explicitly reaffirmed (&sect;08).</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, credit cost &amp; profitability</h2></div>
+      <p class="sec-dek">Core net interest income is growing faster than headline NII because management is deliberately winding down direct-assignment income; operating leverage is showing genuine green shoots; and a April-2026 RBI gold-loan rule change has pushed reported Stage&nbsp;II delinquencies up for reasons management and this dataset's numbers both frame as optical, not a real credit event.</p>
+
+      <h3>Quarterly P&amp;L, standalone (&#8377; Cr)</h3>
+      <div id="pnlchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q1FY26</th><th>Q2FY26</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Interest Income</td><td>491.6</td><td>n/a</td><td>n/a</td><td>582.1</td><td>657.4</td></tr>
+            <tr><td>Net Interest Income (core)</td><td>273.6</td><td>n/a</td><td>n/a</td><td>342.7</td><td>384.8</td></tr>
+            <tr><td>Net gain on Direct Assignment</td><td>&minus;5.5</td><td>n/a</td><td>n/a</td><td>6.1</td><td>&minus;12.9</td></tr>
+            <tr><td>Net Interest Income (reported)</td><td>268.2</td><td>n/a</td><td>n/a</td><td>348.8</td><td>371.9</td></tr>
+            <tr><td>Operating Expenses</td><td>174.2</td><td>n/a</td><td>n/a</td><td>215.2</td><td>210.0</td></tr>
+            <tr><td>Operating Profit (PPOP)</td><td>125.1</td><td>n/a</td><td>n/a</td><td>162.8</td><td>187.5</td></tr>
+            <tr><td>Credit Cost</td><td>24.7</td><td>n/a</td><td>n/a</td><td>27.9</td><td>34.1</td></tr>
+            <tr><td>Profit Before Tax</td><td>100.3</td><td>n/a</td><td>118.3*</td><td>134.9</td><td>153.5</td></tr>
+            <tr class="total"><td>Profit After Tax</td><td>75.0</td><td>n/a</td><td>87.9*</td><td>100.5</td><td>114.4</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>2.01</td><td>2.13*</td><td>2.33*</td><td>2.69</td><td>3.05</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1 FY27 investor presentation / press release for Q1FY26, Q4FY26, Q1FY27 columns; yfinance quarterly income statement for Q3FY26 PBT/PAT (marked *) and the Q2FY26 EPS estimate (from the earnings-surprise table, marked *) &mdash; the underlying yfinance Q2FY26 revenue/PAT line items were blank in the fetched data and are left n/a rather than estimated. No investor presentation exists in this dataset for Q2FY26 or Q3FY26, so those quarters' opex/PPOP/credit-cost detail is unavailable.</caption>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Why "Net Interest Income" understates the core-earnings growth</b>Management is consciously de-emphasising Direct Assignment (DA) income as a capital-allocation tool &mdash; net DA income fell 89% YoY in FY26 (&#8377;66&nbsp;Cr &rarr; &#8377;7&nbsp;Cr) and turned <i>negative</i> (&minus;&#8377;12.9&nbsp;Cr) in Q1FY27, because the unwinding of gains booked on past DA transactions now exceeds the smaller gains booked on new ones. Reported NII therefore grew "only" 38.7% YoY in Q1FY27 while <b>core</b> NII (interest income less interest expense, excluding DA) grew a faster 40.6% YoY &mdash; the more representative operating trend. Reading the headline NII line alone would understate underlying momentum.</div>
+      </div>
+
+      <h3>Key ratio trend</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th></th><th>Q1FY26</th><th>Q4FY26</th><th>Q1FY27</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Cost-to-Income</td><td>58.2%</td><td>56.9%</td><td class="pos">52.8%</td><td>57.6%</td><td>57.2%</td></tr>
+            <tr><td>Return on Avg. Assets (ROA)</td><td>2.3%</td><td>2.6%</td><td class="pos">2.6%</td><td>1.8%</td><td>2.4%</td></tr>
+            <tr><td>Return on Avg. Equity (ROE)</td><td>11.6%</td><td>14.0%</td><td class="pos">15.4%</td><td>9.4%</td><td>12.6%</td></tr>
+            <tr><td>Gross NPA (Stage III)</td><td>2.0%</td><td>1.9%</td><td class="pos">1.6%</td><td>2.0%</td><td>1.9%</td></tr>
+            <tr><td>Net NPA</td><td>1.2%</td><td>1.3%</td><td class="pos">1.0%</td><td>1.2%</td><td>1.3%</td></tr>
+            <tr><td>Credit cost (ann.)</td><td>0.7%*</td><td>0.7%</td><td>0.8%</td><td>1.7%</td><td>0.8%</td></tr>
+            <tr><td>CRAR</td><td>22.4%</td><td>22.4%</td><td class="neg">20.7%</td><td>21.9%</td><td>22.4%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1 FY27 investor presentation "Financials" table and press release ratios page. *Q1FY26 credit cost of 0.7% is the FY26 full-year comparable figure; the exact Q1FY26 quarterly print was not separately disclosed in this dataset. All other cells sourced directly.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>The April-2026 gold-loan LTV reset, unpacked</b>Effective 1&nbsp;Apr&nbsp;2026 the RBI required onboarding LTVs on bullet gold loans to be calculated on total amount due at maturity (principal + accrued interest), not principal alone, and mandated formal repayment-capacity assessment above &#8377;2.5&nbsp;lakh exposure. Fedfina responded by shifting from optional bullet repayment to a periodic (monthly/quarterly) interest-due structure. Because customer repayment habits haven't caught up with the new structure yet, <b>Stage II rose from 2.2% to 2.7%</b> QoQ &mdash; entirely, per management, a reporting-construct effect ("even if the customer misses a single interest servicing, the entire loan amount now gets reported as overdue") rather than a change in the underlying realisability of the gold collateral. Gross NPA nonetheless <i>improved</i> (1.9%&rarr;1.6%) over the same quarter, partly aided by ~&#8377;51&nbsp;Cr of board-policy write-offs on deep-bucket NPAs (without which Q1FY27 GNPA would have been 1.87%, roughly flat) &mdash; a detail management volunteered on the call rather than one this analysis had to dig for.</div>
+      </div>
+
+      <h3>Yields, cost of borrowing &amp; spreads</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th></th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Yields</td><td>16.0%</td><td>16.1%</td><td>16.7%</td><td>17.1%</td><td>16.7%</td></tr>
+            <tr><td>Cost of Borrowings</td><td>7.8%</td><td>7.8%</td><td>8.6%</td><td>9.0%</td><td>8.1%</td></tr>
+            <tr><td>Spreads</td><td>8.2%</td><td>8.3%</td><td>8.1%</td><td>8.2%</td><td>8.6%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1 FY27 investor presentation, annual "Yields, CoB and Spreads" chart. Daily average cost of borrowing has been falling steadily on a quarterly basis through FY27 (8.56%&rarr;8.19%&rarr;7.87%&rarr;7.83%&rarr;7.80%, Q1FY26 through Q1FY27), even as leverage rose from 4.6x to 4.89x average-total-assets/equity over the same period &mdash; management attributes the leverage jump to a temporary technical effect: new co-lending-partner regulatory alignment pushed a chunk of what would normally be off-balance-sheet CLM business onto Fedfina's own book in Q1FY27, which it expects to normalise ("de-lever") over the next few quarters as co-lending partnerships stabilise.</caption>
+      </div>
+
+      <h3>Operating leverage: real, and seasonally lumpy</h3>
+      <p>Opex as a % of average total assets improved from 5.9% (Q1FY26, annualised) to 4.8% (Q1FY27) &mdash; a genuine efficiency gain management calls "slow, but surely" playing out. But CFO C.V.&nbsp;Ganesh was explicit that Q1's improvement is partly seasonal (lower disbursement volumes mean lower sourcing/business-acquisition cost) and cautioned that "as originations pick up meaningfully in the next few quarters, we expect sourcing-related expenses and operating costs to increase corresponding to the business growth" &mdash; i.e. don't extrapolate Q1's cost ratio in isolation.</p>
+
+      <h3>Forward margin/profitability guidance</h3>
+      <p>FY27 guidance, unchanged across both calls in this dataset: <b>ROA to expand 20&ndash;30bps</b> over FY26's average of 2.4% (implying a full-year FY27 average in the region of 2.6&ndash;2.7%), delivered through "a combination of credit cost and cost-to-average-assets" that management says "might not play out quarter-to-quarter" but should net out over the year; and <b>credit cost held at or below ~1%</b> (guided range 1%&plusmn;10bps at the start of FY26, delivered at 0.8% for FY26 and Q1FY27 alike).</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet, capital adequacy &amp; capital allocation</h2></div>
+      <p class="sec-dek">A balance sheet growing faster than internally generated capital, funded through an active mix of subordinated debt, ECBs, direct assignment and co-lending &mdash; capped by a fresh &#8377;2,500 Cr NCD ask now before shareholders.</p>
+
+      <h3>Annual balance sheet trend</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total Assets</td><td>9,071</td><td>11,138</td><td>13,250</td><td>16,875</td></tr>
+            <tr><td>Total Borrowings</td><td>7,270</td><td>8,340</td><td>10,437</td><td>12,759</td></tr>
+            <tr><td>Net Worth</td><td>1,356</td><td>2,261</td><td>2,547</td><td>2,926</td></tr>
+            <tr><td>Book Value / Share (&#8377;)</td><td>&mdash;</td><td>&mdash;</td><td>68.3</td><td>78.2</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: yfinance annual balance sheet; book value/share from the Q1FY27 investor presentation's financial summary (FY24/FY23 not separately disclosed there). Company's own most recent BVPS is &#8377;80.1 as of June 2026 (Q1FY27), implying a P/B of ~1.87x at CMP &#8377;149.80 versus the trailing-annual-based 1.92x cited on yfinance.</caption>
+      </div>
+
+      <h3>Capital adequacy: comfortable, but declining as growth outpaces internal accruals</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>CRAR</th><th>Start FY26</th><th>End FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Overall CRAR</td><td>21.9%</td><td>22.4%</td><td class="neg">20.7%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q4FY26 and Q1FY27 earnings-call opening remarks. Regulatory minimum for an NBFC is 15%; CRAR remains comfortably above it, but the ~170bps sequential drop in Q1FY27 is attributed to CLM/co-lending business temporarily coming onto the balance sheet (&sect;04) rather than a change in underlying capital strength.</caption>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>How the company has funded growth without diluting equity heavily</b>FY26's capital-conservation measures, as detailed on the Q4FY26 call: 100% assignment/derecognition of the &#8377;886&nbsp;Cr Business Loan portfolio; &#8377;1,694&nbsp;Cr of direct-assignment transactions executed through the year to release capital; the gold co-lending book grown by &#8377;1,131&nbsp;Cr to &#8377;2,127&nbsp;Cr; &#8377;450&nbsp;Cr of subordinated debt raised in Q4 alone (adding ~3% to CRAR); and roughly $250&nbsp;million raised cumulatively via ECBs. The funding mix as of Q1FY27: Term Loans 40%, Net Worth 14%, Direct Assignments 14%, ECBs 12%, CPs 8%, CLM 7%, NCDs 5% &mdash; a genuinely diversified liability base for an NBFC of this size, one reason all four rating agencies affirm AA+/Stable.</div>
+      </div>
+
+      <h3>The fresh &#8377;2,500 Cr NCD ask (19 Aug 2026)</h3>
+      <p>The board has called a meeting for 25&nbsp;Aug&nbsp;2026 to approve raising up to &#8377;2,500&nbsp;Cr through non-convertible debentures (INR or foreign currency), as part of an enlarged overall borrowing limit under Section 180(1)(c) of the Companies Act, subject to shareholder approval at the AGM. This is <b>debt</b>, not equity &mdash; it funds continued AUM growth and helps manage the leverage/CRAR dynamics in &sect;04, but does not by itself replenish CRAR the way a fresh equity raise would. No dividend has been paid in the years covered by this dataset (payout ratio 0.00% per the yfinance snapshot) &mdash; consistent with a growth-stage NBFC retaining all internally generated capital.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality &mdash; a lender-specific read, not a manufacturer's</h2></div>
+      <p class="sec-dek">Operating cash flow is deeply negative every year in this dataset &mdash; the mechanical signature of a fast-growing loan book under Ind AS presentation, not an earnings-quality red flag.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, standalone</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT</td><td>180.1</td><td>244.7</td><td>225.2</td><td>343.6</td></tr>
+            <tr><td>Cash from Operations (CFO)</td><td class="neg">&minus;1,474.0</td><td class="neg">&minus;775.5</td><td class="neg">&minus;977.5</td><td class="neg">&minus;1,664.2</td></tr>
+            <tr><td>Capex</td><td>&minus;15.1</td><td>&minus;13.7</td><td>&minus;19.0</td><td>&minus;30.0</td></tr>
+            <tr><td>Financing Cash Flow</td><td>+1,631.5</td><td>+967.2</td><td>+1,187.4</td><td>+2,309.9</td></tr>
+            <tr><td>Free Cash Flow</td><td class="neg">&minus;1,489.1</td><td class="neg">&minus;789.2</td><td class="neg">&minus;996.5</td><td class="neg">&minus;1,694.2</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: yfinance annual cash-flow statement. Under Ind AS presentation for a lender, new loan disbursements run through operating activities as a cash outflow, while the borrowings raised to fund them show up in financing activities as an inflow &mdash; this is why CFO is consistently and deeply negative even as PAT grows every year.</caption>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Why the standard PAT-vs-CFO earnings-quality check doesn't transfer directly</b>The usual "does CFO growth track PAT growth" check is built for manufacturers, where a divergence often signals channel stuffing or aggressive revenue recognition. For an NBFC growing its loan book 27&ndash;35% a year, operating cash flow is mechanically a function of how much more was lent out than was collected back or funded by deposits &mdash; FY26's &minus;&#8377;1,664&nbsp;Cr CFO simply reflects the AUM growing &#8377;4,342&nbsp;Cr faster than internal accruals could fund, offset by the +&#8377;2,310&nbsp;Cr financing inflow (term loans, NCDs, ECBs, subordinated debt) detailed in &sect;05. Reading this line as a red flag the way one would at an industrial company would be a mistake; the more useful signal is the CRAR trend in &sect;05, which does capture whether balance-sheet growth is outrunning the capital base.</div>
+      </div>
+
+      <p><b>Capex</b> is small and non-strategic (&#8377;18&ndash;30&nbsp;Cr/year on branch premises, gold-storage infrastructure and IT), growing roughly in line with the branch count. There is no meaningful capex-vs-depreciation asset-expansion signal to read here in the way there would be for a manufacturer &mdash; the company's real "capex" is loan origination, which shows up in the AUM/disbursement trend in &sect;03, not in this line.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">A bank-promoted NBFC with a stable board, a management team reshuffled mid-year to concentrate gold and small-ticket LAP under one leader, and a clean, well-disclosed exit by its long-standing PE investor.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Parvez Mulla</div>
+          <div class="role">Managing Director &amp; CEO</div>
+          <div class="bio">Has led the company's post-stress "rebuild" narrative through five consecutive quarters of consistent, publicly-tracked priorities (&sect;08) &mdash; growing a fully secured book, scaling gold and LAP, reducing DA reliance, and holding credit cost near 1%.</div>
+        </div>
+        <div class="person">
+          <div class="name">C.V. Ganesh</div>
+          <div class="role">Chief Financial Officer</div>
+          <div class="bio">Walks analysts through the RoA-tree mechanics every quarter with unusual granularity (e.g. attributing the Q1FY27 leverage jump to a specific co-lending transition effect rather than leaving it unexplained).</div>
+        </div>
+        <div class="person">
+          <div class="name">Jagadeesh Rao</div>
+          <div class="role">CBO &mdash; Gold Loans &amp; Mortgage (Small Ticket), CMO</div>
+          <div class="bio">Took on the additional Small Ticket LAP/Home Loan portfolio in Q1FY27 alongside his existing gold and marketing remit, explicitly to unify command across ~500 gold branches that don't yet carry Small Ticket LAP &mdash; a resource-utilisation play, per management's own framing on the July call.</div>
+        </div>
+        <div class="person">
+          <div class="name">Shardul Kadam</div>
+          <div class="role">Chief Transformation Officer (from Q1FY27; previously CBO&ndash;ST LAP, and CRO before that)</div>
+          <div class="bio">Steered Small Ticket LAP through its post-2023/24 stress-and-rebuild period before moving into a new cross-business transformation role &mdash; a continuity move (retaining institutional memory) rather than a departure.</div>
+        </div>
+        <div class="person">
+          <div class="name">George Oommen</div>
+          <div class="role">Business Head &mdash; Gold Loans (new hire, Q1FY27)</div>
+          <div class="bio">30+ years of retail-banking experience across leading banks/financial institutions; reports to Jagadeesh Rao.</div>
+        </div>
+        <div class="person">
+          <div class="name">Shyam Srinivasan</div>
+          <div class="role">Non-Executive Chairman</div>
+          <div class="bio">Board also includes Federal Bank nominee directors K.V.S.&nbsp;Manian and Harsh Dugar, plus five independent directors (Sunil Gulati, Ramesh Sundararajan, Sonal Dave, Mona Bhide, Muralidharan Rajamani).</div>
+        </div>
+      </div>
+
+      <h3>The True North exit &amp; board change</h3>
+      <p>On 12&nbsp;May&nbsp;2026, True North Fund VI LLP &mdash; a long-standing strategic PE partner &mdash; sold its entire holding of ~25.7&nbsp;million shares (6.86% of paid-up equity) via a block deal on the exchange, acquired by <b>Nomura India Equity Fund</b> (Nomura Asset Management, as an FPI). Two days later, on 14&nbsp;May&nbsp;2026, True North's nominee director <b>Maninder Singh Juneja</b> resigned "consequent to the transaction where True North Fund VI LLP have sold the entire residual stake," with the filing explicitly confirming no other material reason for the resignation. Management's own framing on the July call was warm and unambiguous ("we remain deeply appreciative of True North's support and partnership over the years, and we warmly welcome Nomura") &mdash; nothing in the disclosed sequence (advance block-deal mechanics, immediate and fully-explained director resignation, a well-known long-only FPI as the buyer) reads as a distress signal.</p>
+
+      <h3>Other governance markers</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Credit ratings:</b> AA+/Stable from all four major agencies &mdash; CRISIL, CARE, India Ratings and ICRA &mdash; plus a short-term A1+ (reaffirmed). No downgrade anywhere in this dataset's coverage window.</li>
+        <li><b>Auditor:</b> KKC &amp; Associates LLP issued an <b>unmodified/unqualified</b> Limited Review opinion on the Q1FY27 unaudited results.</li>
+        <li><b>Ownership (30 Jun 2026):</b> Federal Bank 60.7%, FIIs 9.3% (incl. Nomura's newly acquired ~6.9%), Mutual Funds 4.2%, AIFs 3.6%, Insurance Cos 3.1%, others 19.1%. Named institutional holders beyond Federal Bank/Nomura include Bandhan MF (3.2%), Unifi Capital (2.1%), SBI Life (1.9%) and HDFC Life (1.1%).</li>
+        <li><b>Related-party transactions / contingent liabilities:</b> no annual report exists in this dataset, so these disclosures (typically found in the notes to accounts) could not be independently checked here &mdash; flagged as a genuine data gap rather than assumed clean.</li>
+        <li><b>ESOP activity:</b> five separate ESOP-allotment filings between May and August 2026 &mdash; routine vesting, not a governance flag on its own.</li>
+      </ul>
+    </section>
+
+    <!-- 08 GUIDANCE VS ACTUAL -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Guidance vs. actual, quarter by quarter</h2></div>
+      <p class="sec-dek">The single most striking thread in this dataset: management has framed its FY26 targets as explicit promises and then checked them off, one by one, on the very next call.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr style="text-align:left;"><th style="text-align:left;">Guidance given</th><th style="text-align:left;">When</th><th style="text-align:left;">What actually happened</th></tr></thead>
+          <tbody>
+            <tr><td>FY26 AUM growth "20&ndash;25% company"</td><td>Prior-year call (recapped Q4FY26, Apr 2026)</td><td class="pos">Beaten &mdash; FY26 AUM grew 27.5% YoY (41% ex-Business Loan runoff)</td></tr>
+            <tr><td>FY26 credit cost target ~1%&plusmn;10bps</td><td>Start of FY26 (recapped Q4FY26 call)</td><td class="pos">Beaten &mdash; FY26 credit cost came in at 0.8%</td></tr>
+            <tr><td>Move to &gt;99.5% secured on-book ratio (fully assign Business Loan book)</td><td>Start of FY26</td><td class="pos">Delivered &mdash; &#8377;886 Cr Business Loan portfolio 100% assigned/derecognised</td></tr>
+            <tr><td>Reduce reliance on Direct Assignment income</td><td>Start of FY26</td><td class="pos">Delivered, and then some &mdash; net DA income fell 89% YoY in FY26, turned negative in Q1FY27</td></tr>
+            <tr><td>150 new branches planned for FY26 (implied by prior-year framing)</td><td>Start of FY26</td><td class="pos">148 branches added &mdash; essentially met</td></tr>
+            <tr><td>FY27 AUM growth 20&ndash;25%; Gold AUM growth 25&ndash;30% (flat-price case); Mortgage growth 15&ndash;20%</td><td>Q4FY26 call, Apr 2026; reiterated Q1FY27 call, Jul 2026</td><td>Tracking ahead &mdash; Q1FY27 AUM +34.7% YoY, Gold AUM +76.7% YoY</td></tr>
+            <tr><td>FY27 ROA to expand 20&ndash;30bps over FY26's 2.4% average</td><td>Q4FY26 call, Apr 2026</td><td>On track &mdash; Q1FY27 ROA 2.6%, +34bps YoY</td></tr>
+            <tr><td>200 new branches for FY27</td><td>Q4FY26 call, Apr 2026; reaffirmed Q1FY27 call</td><td class="neg">Behind pace &mdash; zero net-new branches in Q1FY27, management says spillover lands in Q2, guidance unchanged</td></tr>
+            <tr><td>Gold yields to "come back" toward Q2FY26 levels by Q1FY27 after a Q3/Q4FY26 dip</td><td>Q4FY26 call, Apr 2026</td><td class="pos">Delivered &mdash; management confirmed on the July call it had "held" yields through Q1 as promised</td></tr>
+            <tr><td>Credit cost to stay sub-1% through the gold-loan regulatory transition</td><td>Q1FY27 call, Jul 2026</td><td>In progress &mdash; Q1FY27 credit cost 0.8%, within guidance one quarter in</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: both earnings-call transcripts in this dataset (28&nbsp;Apr&nbsp;2026 and 15&nbsp;Jul&nbsp;2026), which each open with an explicit recap of the prior period's stated priorities against delivered results &mdash; an unusually disciplined, checkable communication style for a company at this stage.</caption>
+      </div>
+
+      <p>The one clear miss-in-progress is <b>branch-opening pace</b>: 200 branches were guided for FY27 and zero had opened by the end of Q1, versus 148 delivered against an implied ~150 the year before. Management's explanation (premises identified and fitted out, opening administratively delayed into Q2) is plausible and the full-year target was not walked back, but it is the one line item in this dataset where guided pace and delivered pace have genuinely diverged &mdash; worth checking again at the Q2FY27 print.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">A small but unanimously bullish coverage universe, with price targets well above the current market price.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analysts covering</div><div class="v">4</div><div class="d">3 Buy, 1 Hold &mdash; unchanged over the trailing 3 months</div></div>
+        <div class="stat"><div class="k">Target mean / median</div><div class="v">&#8377;191 / &#8377;195</div><div class="d">+27&ndash;30% from CMP &#8377;149.80</div></div>
+        <div class="stat"><div class="k">Target range</div><div class="v">&#8377;175 &ndash; &#8377;200</div><div class="d">Low target still ~17% above CMP</div></div>
+      </div>
+      <p>ICICI Securities (Buy, target &#8377;200, 16&nbsp;Jul&nbsp;2026) is the one house-view identifiable by name in this dataset, and it explicitly cites the same operating metrics highlighted above &mdash; multi-quarter-high RoE, controlled credit cost despite the regulatory transition, and management's own 20&ndash;30bps RoA-improvement guidance for FY27. With every covering analyst positioned at Buy or Hold and none at Sell, there is limited room for further upgrades to independently re-rate the stock; a beat-driven re-rating from here would need to come from fundamentals outrunning already-bullish expectations, not from sentiment alone.</p>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A name trading at a below-market multiple for its growth rate, with the next leg dependent on FY27 branch-opening pace catching up and the gold-loan regulatory transition proving as purely optical as management insists.</p>
+
+      <h3>Thirteen months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Aug 2025&ndash;Aug 2026 (NSE, via yfinance). The 52-week low of &#8377;119.1 and high of &#8377;178.5 both fall within this window; note the sharp trough around Feb&ndash;Mar 2026 and the recovery into the Q1FY27 results beat in July.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">14.77x</div><div class="d">On TTM diluted EPS</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">9.30x</div><div class="d">yfinance consensus, implies continued strong EPS growth</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">1.92x</div><div class="d">~1.87x on the company's latest BVPS &#8377;80.1 (Jun-26)</div></div>
+        <div class="stat"><div class="k">Price / Sales (TTM) &middot; EV/Revenue</div><div class="v">4.25x &middot; 13.41x</div><div class="d">EV &#8377;17,714 Cr</div></div>
+      </div>
+      <p>A 14.8x trailing / 9.3x forward P/E on a company that just posted 52.5% YoY PAT growth, 15.4% ROE and beat its own AUM guidance is not an obviously demanding valuation &mdash; the gap between trailing and forward multiples reflects consensus expecting EPS to keep compounding at a rate close to what the last five quarters have actually shown. The main swing factors between the scenarios below are whether the branch-opening pace (&sect;08) catches up and whether the gold-loan regulatory transition (&sect;04) stays purely optical.</p>
+
+      <h3>Bear / base / bull, FY27E&ndash;FY28E</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Illustrative scenarios built directly from management's own FY27 guidance (AUM growth 20&ndash;25%, ROA +20&ndash;30bps over FY26's 2.4% average, credit cost sub-1%, 200 new branches) combined with a plausible range of execution and multiple outcomes. These are scenario illustrations, not point forecasts.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;115&ndash;135</div>
+          <div class="rng">&minus;23% to &minus;10% from CMP</div>
+          <ul>
+            <li>Gold prices correct sharply further, denting AUM growth beyond the tonnage-driven floor management has guided to</li>
+            <li>Stage II delinquency bump from the regulatory transition proves partly real rather than purely optical; credit cost drifts above 1%</li>
+            <li>Branch-opening pace continues to lag the 200 target, denying the operating-leverage story its distribution runway</li>
+            <li>CRAR keeps eroding toward the comfort floor, forcing a dilutive equity raise alongside the debt already being sought</li>
+            <li>FY27 ROA stalls near 2.4&ndash;2.5%; EPS growth decelerates to ~15&ndash;18%; P/E de-rates toward 10&ndash;11x</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;165&ndash;195</div>
+          <div class="rng">+10% to +30% from CMP</div>
+          <ul>
+            <li>FY27 AUM grows ~22&ndash;25% as guided; Gold AUM +25&ndash;30%, Mortgage +15&ndash;20%</li>
+            <li>ROA lands near the guided 2.6&ndash;2.7%; credit cost holds 0.8&ndash;0.9%; PAT grows ~30&ndash;35% to ~&#8377;450&ndash;465 Cr, EPS ~&#8377;12&ndash;12.5</li>
+            <li>200-branch target substantially met, even if back-loaded into H2</li>
+            <li>P/B holds near the current 1.8&ndash;2.0x on ROE trending toward the high teens</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;210&ndash;250</div>
+          <div class="rng">+40% to +67% from CMP</div>
+          <ul>
+            <li>Gold tonnage growth accelerates past guidance; Small/Medium Ticket LAP disbursement growth reaccelerates as the rebuilt collections infrastructure pays off</li>
+            <li>Operating leverage plays out faster than guided as new-branch vintage curves mature; ROA reaches or exceeds 2.8&ndash;3.0%</li>
+            <li>PAT growth 40%+, ROE crosses 18&ndash;20%</li>
+            <li>Multiple re-rates toward 2.2&ndash;2.5x P/B as best-in-class gold-loan NBFC peers command</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> five straight quarters of management stating specific, checkable priorities and then delivering on nearly all of them (&sect;08) &mdash; FY26 AUM growth, credit cost, secured-book ratio and DA wind-down all beat or met guidance; PAT crossed &#8377;100&nbsp;Cr in Q4FY26 and kept accelerating to a record &#8377;114.4&nbsp;Cr in Q1FY27 (+52.5% YoY); ROE broke into the mid-teens (15.4%) and asset quality actually <i>improved</i> through a structural regulatory transition that has muddied reported delinquency optics across the whole gold-loan sector; funding is diversified and AA+/Stable-rated across all four major agencies; and the True North exit was handled cleanly, with full disclosure and an immediate, fully-explained board resignation rather than any ambiguity.</p>
+        <p style="max-width:none;"><b>What's not good:</b> branch-opening pace for FY27 is already tracking behind the guided 200, the one line item in this dataset where delivered pace has clearly diverged from stated guidance; CRAR has declined for two straight data points (22.4%&rarr;20.7%) as growth outpaces internally generated capital, and the fresh &#8377;2,500&nbsp;Cr fundraise being sought is debt, not equity, so it doesn't directly address that trend; Small Ticket LAP disbursements remain the softest part of the book, still finding its footing after a self-acknowledged stress episode roughly 18&ndash;24 months ago; and no annual report exists in this dataset, so related-party-transaction and contingent-liability disclosures &mdash; a standard governance check &mdash; could not be independently verified here.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> unusually candidly, by the standards of what this dataset shows. Management opens nearly every call by restating its own prior-quarter promises and checking them off one by one, volunteers unfavourable detail proactively (e.g. quantifying exactly how much of the Q1FY27 GNPA improvement came from write-offs rather than organic collection), and explicitly attributes near-term ratio distortions (leverage, Stage&nbsp;II, cost-to-income) to identifiable, temporary causes rather than leaving them unexplained. The one place that discipline visibly slipped is the branch-count guidance, where the shortfall was disclosed candidly but the underlying cause (administrative delay, not demand or capital constraints) is harder to independently verify from filings alone.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: medium-to-high, roughly 55&ndash;65%.</b> The guidance-delivery track record across five consecutive quarters is genuinely strong, the valuation (14.8x trailing / 9.3x forward P/E) is not demanding for the growth rate on offer, and the one live regulatory overhang (the gold-loan LTV/reporting reset) is industry-wide rather than company-specific and has, so far, tracked exactly as management framed it. The base case in &sect;10, built directly from management's own FY27 targets, implies solid upside if the company simply keeps doing what it has done for five quarters running; the more probable source of disappointment is execution pace (branches, LAP disbursement recovery) rather than a fresh credit event.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether the 200-branch FY27 target is genuinely caught up by Q2/Q3, or whether the shortfall persists and starts to look structural rather than administrative; (2) whether Stage II delinquencies (2.7% in Q1FY27) roll into Stage III over the next 1&ndash;2 quarters as the gold-loan regulatory transition fully plays out, which would test management's "optical, not credit" framing directly; (3) CRAR trajectory once the &#8377;2,500&nbsp;Cr NCD is executed &mdash; whether it stabilises the ratio or merely funds further balance-sheet growth without addressing the underlying trend; (4) Small/Medium Ticket LAP disbursement growth, the one segment still below its stated 15&ndash;20% aspiration; (5) whether Nomura's new ~6.9% stake proves a stable long-term holding or an initial toe-hold that trades further.</div>
+      </div>
+    </section>
+
+    <footer>
+      Compiled from company BSE/NSE filings (Announcements/AnnouncementsConv, May&ndash;Aug 2026, including the Q4FY26 and Q1FY27 earnings-call transcripts, the Q1FY27 investor presentation and press release, and ~45 other BSE announcements), MarketData (Yahoo Finance via yfinance, last fetched 19 Aug 2026 19:36 IST), and the tracked News feed. All figures are as originally reported by the company or the cited data source; where a figure could not be independently reconciled, a different presentation basis was used, or a disclosure was absent (e.g. no annual report or Q1&ndash;Q3 FY26 investor materials in this dataset, a blank yfinance Q2FY26 P&amp;L line), that is stated explicitly in the relevant section rather than silently filled in or estimated. This is a research synthesis for informational purposes, not investment advice.
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- AUM bar chart (Gold vs Mortgage, ₹ Cr) ----------
+  (function(){
+    var el = document.getElementById('aumchart');
+    var quarters = ['Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var gold = [6332, 6731, 7905, 10352, 11191];
+    var mortgage = [9366, 9405, 9596, 9801, 9946];
+    var series = [
+      {label:'Gold Loan AUM', color:'var(--chart-1)', data:gold},
+      {label:'Mortgage (LAP+HL) AUM', color:'var(--chart-3)', data:mortgage}
+    ];
+    var W = 900, H = 300, padL = 52, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = 12500;
+
+    function y(v){ return padT + plotH - (v/maxV)*plotH; }
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly gold and mortgage AUM, standalone" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 4;
+    for(var g=0; g<=steps; g++){
+      var gv = (maxV/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv).toLocaleString()+'</text>';
+    }
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(v);
+        var bh = (padT+plotH) - by;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+by.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v.toLocaleString()+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '</div>';
+  })();
+
+  // ---------- Quarterly PAT / PPOP chart ----------
+  (function(){
+    var el = document.getElementById('pnlchart');
+    var quarters = ['Q1FY26','Q4FY26','Q1FY27'];
+    var ppop = [125.1, 162.8, 187.5];
+    var pat  = [75.0, 100.5, 114.4];
+    var W = 900, H = 300, padL = 52, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var minV = 0, maxV = 210;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / 3.2;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly PPOP and PAT, standalone, quarters with full investor-presentation disclosure only" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = [0,50,100,150,200];
+    steps.forEach(function(gv){
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+gv+'</text>';
+    });
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      var pv = ppop[qi], av = pat[qi];
+      var pbx = gx + groupW/2 - barW - 2;
+      var pbh = Math.abs(y(pv)-zeroY);
+      svg += '<rect x="'+pbx.toFixed(1)+'" y="'+Math.min(y(pv),zeroY).toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+pbh.toFixed(1)+'" rx="2.5" fill="'+css('--chart-1')+'"><title>PPOP '+q+': ₹'+pv+' Cr</title></rect>';
+      var abx = gx + groupW/2 + 2;
+      var abh = Math.abs(y(av)-zeroY);
+      svg += '<rect x="'+abx.toFixed(1)+'" y="'+Math.min(y(av),zeroY).toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+abh.toFixed(1)+'" rx="2.5" fill="'+css('--chart-2')+'"><title>PAT '+q+': ₹'+av+' Cr</title></rect>';
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.5"/>';
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+css('--chart-1')+';display:inline-block;"></span>Operating Profit / PPOP (₹ Cr)</span>' +
+      '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+css('--chart-2')+';display:inline-block;"></span>PAT (₹ Cr)</span>' +
+      '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:6px;">Only Q1FY26, Q4FY26 and Q1FY27 carry full PPOP/opex disclosure in this dataset (the investor presentation only tabulates these three quarters side by side); Q2FY26 and Q3FY26 PPOP were not separately disclosed and are omitted rather than estimated.</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Aug 25', 135.66], ['Sep 25', 154.42], ['Oct 25', 141.67], ['Nov 25', 146.76],
+      ['Dec 25', 150.89], ['Jan 26', 152.52], ['Feb 26', 130.87], ['Mar 26', 124.04],
+      ['Apr 26', 146.23], ['May 26', 161.69], ['Jun 26', 148.71], ['Jul 26', 153.83],
+      ['Aug 26', 149.80]
+    ];
+    var W = 900, H = 220, padL = 40, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Fedfina monthly closing share price, August 2025 to August 2026" style="width:100%;height:auto;font-size:11px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+gv.toFixed(0)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 3;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily price history. The 52-week high (~₹178.5) and low (~₹119.1) are intraday/closing extremes that may fall between the monthly points plotted.</div></div>';
+  })();
+})();
+</script>

@@ -289,6 +289,7 @@ snapstocks/                         # Cloudflare Pages project root — deploy t
     ├── fundamentals/
     │   └── template.html            # screener.in-style snapshot — THE live page for every ticker (?symbol=)
     └── deep-dive/
+        ├── coming-soon.html          # HAND-WRITTEN — fallback for any ticker with no report yet, see §8
         ├── zaggle.html               # SnapStocks-chrome SHELL — GENERATED, one per report
         ├── optiemus.html             # generated shell
         ├── nh.html                   # generated shell
@@ -403,10 +404,26 @@ itself), sector and industry; and `stock-analysis/deep-dive/reports/*.html`,
 which overlays the real company name and a `deep_dive_url` onto whichever
 mapping row matches its ticker (same `<h1>` extraction as
 `generate_deep_dive_shells.py`, plus a best-effort regex for the ticker
-itself off each report's "NSE: XXX" text). **When per-ticker fundamentals
-pages exist, update `FUNDAMENTALS_URL` (and the merge logic) in this
-script** — the site-wide search UI won't need to change at all, only the
-data it reads.
+itself off each report's "NSE: XXX" text). `fundamentals_url` for every
+entry is `stock-analysis/fundamentals/template.html?symbol=<TICKER>` — the
+one live per-ticker page described above.
+
+**Two places the fundamentals page links out, both driven by the same
+`doc.profile.deepDiveUrl` field (null when the ticker has no report) —
+never hardcode either to a specific stock's report:** the `.pill-ai`
+"Deep-dive report available" badge in `renderIdentity()` only renders when
+`deepDiveUrl` is truthy, so it just doesn't appear otherwise (no broken
+link to fix there). The subnav's "Deep-Dive Reports" tab (`#fund-deepdive-tab`)
+always renders, though, so it needs an explicit fallback: when `deepDiveUrl`
+is null, `fundamentals-page.js` points it at
+`stock-analysis/deep-dive/coming-soon.html?symbol=<TICKER>&name=<NAME>`
+instead — a real page (topnav/breadcrumbs/subnav, same shell as every other
+deep-dive page) with a personalized "No deep-dive report yet for `<name>`"
+empty-state, not a redirect to whichever stock happened to be the sample
+data before this page went live. The tab's static HTML default (before JS
+runs) points at `coming-soon.html` with no query params too, for the same
+reason — it should never be able to show *someone else's* report, even
+mid-load.
 
 Every top-level section folder (`macro-analysis/`, `sector-analysis/`,
 `stock-analysis/`) sits directly under the project root, as siblings of

@@ -148,6 +148,16 @@
     }
     document.getElementById("fund-pills").innerHTML = pills.join("");
 
+    // The subnav's "Deep-Dive Reports" tab must point at THIS stock's
+    // report, not a hardcoded example — and at the coming-soon page,
+    // never at some other stock's report, when this one doesn't have one.
+    var deepDiveTab = document.getElementById("fund-deepdive-tab");
+    if (deepDiveTab) {
+      deepDiveTab.href = doc.profile.deepDiveUrl
+        ? doc.profile.deepDiveUrl
+        : "/stock-analysis/deep-dive/coming-soon.html?symbol=" + encodeURIComponent(doc.symbol) + "&name=" + encodeURIComponent(doc.name);
+    }
+
     document.getElementById("fund-price").textContent = fmtPrice(doc.price.current);
     var priceDirEl = document.getElementById("fund-price-dir");
     var chg = doc.price.change;

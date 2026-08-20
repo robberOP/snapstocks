@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Deep-Dive — SnapStocks</title>
+<meta name="description" content="This stock doesn't have a narrative deep-dive report yet." />
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/layout.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+</head>
+<body>
+<div class="page-shell">
+
+  <header class="topnav">
+    <div class="container">
+      <a href="/" class="brand-mark">
+        <span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 8-10"/><path d="M15 5h6v6"/></svg></span>
+        <span class="wordmark">Snap<b>Stocks</b></span>
+      </a>
+      <nav class="nav-primary" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/macro-analysis/index.html">Macro Analysis <span class="soon-dot" title="Coming soon"></span></a>
+        <a href="/sector-analysis/index.html">Sector Analysis</a>
+        <a href="/stock-analysis/index.html" aria-current="page">Stock Analysis</a>
+      </nav>
+      <div class="nav-actions">
+        <label class="nav-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search ticker or sector…" autocomplete="off" data-stock-search />
+          <kbd>/</kbd>
+        </label>
+        <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="nav-drawer" data-nav-drawer aria-label="Mobile">
+      <a href="/">Home</a>
+      <a href="/macro-analysis/index.html">Macro Analysis <span class="badge-soon">Soon</span></a>
+      <a href="/sector-analysis/index.html">Sector Analysis</a>
+      <a href="/stock-analysis/index.html">Stock Analysis</a>
+      <div class="drawer-sub">
+        <a href="/stock-analysis/fundamentals/template.html">— Fundamentals</a>
+        <a href="/stock-analysis/deep-dive/zaggle.html">— Deep-Dive Reports</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="content">
+    <div class="page-header">
+      <div class="container">
+        <nav class="breadcrumbs"><a href="/">Home</a><span class="sep">/</span><a href="/stock-analysis/index.html">Stock Analysis</a><span class="sep">/</span><span class="current" id="cs-breadcrumb-current">Deep-Dive</span></nav>
+        <nav class="subnav" aria-label="Stock Analysis views">
+          <a href="/stock-analysis/fundamentals/template.html" id="cs-fundamentals-tab">Fundamentals View</a>
+          <a href="/stock-analysis/deep-dive/coming-soon.html" aria-current="page">Deep-Dive Reports</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="section-body container">
+      <div class="empty-state">
+        <span class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5M9 12h6M9 16h6"/></svg>
+        </span>
+        <h3 id="cs-heading">No deep-dive report yet</h3>
+        <p id="cs-body">We haven't written a narrative deep-dive for this stock yet — reports are added one at a time, not all at once. Check back soon, or browse the fundamentals snapshot in the meantime.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+          <a href="/stock-analysis/fundamentals/template.html" id="cs-fundamentals-cta" class="btn btn-primary">View fundamentals</a>
+          <a href="/stock-analysis/index.html" class="btn btn-secondary">Browse available deep-dives</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="cols">
+        <div><h5>Analysis</h5><ul><li><a href="/macro-analysis/index.html">Macro Analysis</a></li><li><a href="/sector-analysis/index.html">Sector Analysis</a></li><li><a href="/stock-analysis/index.html">Stock Analysis</a></li></ul></div>
+        <div><h5>Sector Analysis</h5><ul><li><a href="/sector-analysis/momentum-chart.html">Momentum Chart</a></li><li><a href="/sector-analysis/momentum-table.html">Momentum Table</a></li><li><a href="/sector-analysis/rotation.html">Rotation Graphs</a></li></ul></div>
+        <div><h5>Stock Analysis</h5><ul><li><a href="/stock-analysis/fundamentals/template.html">Fundamentals View</a></li><li><a href="/stock-analysis/deep-dive/zaggle.html">Deep-Dive Reports</a></li></ul></div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="/assets/js/nav.js"></script>
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/stock-search.js"></script>
+<script>
+  // Personalizes the empty-state from ?symbol=&name= (set by
+  // fundamentals-page.js when it links here) — both optional, since this
+  // page also needs to work as a plain, un-parameterized landing spot.
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var symbol = (params.get("symbol") || "").trim().toUpperCase();
+    var name = (params.get("name") || "").trim();
+    if (!symbol) return;
+
+    var label = name || symbol;
+    document.getElementById("cs-heading").textContent = "No deep-dive report yet for " + label;
+    document.getElementById("cs-breadcrumb-current").textContent = label + " — Deep-Dive";
+
+    var fundamentalsUrl = "/stock-analysis/fundamentals/template.html?symbol=" + encodeURIComponent(symbol);
+    document.getElementById("cs-fundamentals-tab").href = fundamentalsUrl;
+    document.getElementById("cs-fundamentals-cta").href = fundamentalsUrl;
+    document.getElementById("cs-fundamentals-cta").textContent = "View " + label + "'s fundamentals";
+  })();
+</script>
+</body>
+</html>

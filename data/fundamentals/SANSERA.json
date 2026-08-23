@@ -1,7 +1,7 @@
 {
   "symbol": "SANSERA",
   "name": "Sansera Enginee.",
-  "generatedAt": "2026-08-18T16:38:57.278592+00:00",
+  "generatedAt": "2026-08-23T11:02:45.506686+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 3452.7,
-    "change": 105.80005,
-    "changePercent": 3.1611357,
-    "previousClose": 3346.9,
-    "dayLow": 3358.3,
-    "dayHigh": 3471.0,
-    "fiftyTwoWeekLow": 1216.3,
-    "fiftyTwoWeekHigh": 3471.0,
-    "asOf": 1785751200
+    "current": 3894.3,
+    "change": -108.8999,
+    "changePercent": -2.7203214,
+    "previousClose": 4003.2,
+    "dayLow": 3857.5,
+    "dayHigh": 3999.6,
+    "fiftyTwoWeekLow": 1241.3,
+    "fiftyTwoWeekHigh": 4040.4,
+    "asOf": 1787133600
   },
   "stats": {
-    "marketCap": 215460790272.0,
-    "trailingPE": 66.55166,
-    "forwardPE": 40.668377,
-    "priceToBook": 6.9592648,
+    "marketCap": 243018219520.0,
+    "trailingPE": 74.83282,
+    "forwardPE": 43.370235,
+    "priceToBook": 7.849354,
     "bookValue": 496.13,
-    "dividendYield": 0.1,
-    "trailingEps": 51.88,
+    "dividendYield": 0.08,
+    "trailingEps": 52.04,
     "debtToEquity": 0.19023,
     "roe": 10.497215916065805,
     "roce": 13.570701345213768,
-    "return1y": 156.01661054299527,
+    "return1y": 211.95361268444537,
     "sharesOutstanding": 62403568.0
   },
   "quarterly": {
@@ -349,14 +349,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 3119.182,
-    "targetHigh": 4130.0,
-    "targetLow": 2480.0,
+    "targetMean": 3932.75,
+    "targetHigh": 4500.0,
+    "targetLow": 2500.0,
     "recommendationKey": "buy",
-    "numberOfAnalystOpinions": 11
+    "numberOfAnalystOpinions": 12
   },
   "holders": {
     "insidersPercent": 0.29209,
-    "institutionsPercent": 0.52015996
+    "institutionsPercent": 0.51085997
   }
 }

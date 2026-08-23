@@ -1,7 +1,7 @@
 {
   "symbol": "ADANIGREEN",
   "name": "Adani Green",
-  "generatedAt": "2026-08-18T16:37:09.276238+00:00",
+  "generatedAt": "2026-08-23T11:00:41.395100+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Renewable",
@@ -9,33 +9,33 @@
     "bseCode": "541450",
     "nseSymbol": "ADANIGREEN",
     "website": "https://www.adanigreenenergy.com",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/adanigreen.html",
     "peerSector": "Power",
     "peerIndustry": "Power Generation"
   },
   "price": {
-    "current": 1395.0,
-    "change": 12.0,
-    "changePercent": 0.867679,
-    "previousClose": 1383.0,
-    "dayLow": 1386.6,
-    "dayHigh": 1427.0,
+    "current": 1320.0,
+    "change": 18.199951,
+    "changePercent": 1.3980603,
+    "previousClose": 1301.8,
+    "dayLow": 1310.1,
+    "dayHigh": 1324.9,
     "fiftyTwoWeekLow": 765.0,
     "fiftyTwoWeekHigh": 1631.5,
-    "asOf": 1785750294
+    "asOf": 1787305504
   },
   "stats": {
-    "marketCap": 2297810911232.0,
-    "trailingPE": 134.52266,
-    "forwardPE": 43.3772,
-    "priceToBook": 11.911878,
+    "marketCap": 2174272536576.0,
+    "trailingPE": 126.558,
+    "forwardPE": 44.24733,
+    "priceToBook": 11.271454,
     "bookValue": 117.11,
     "dividendYield": null,
-    "trailingEps": 10.37,
+    "trailingEps": 10.43,
     "debtToEquity": 3.46548,
     "roe": 8.274480340596044,
     "roce": 6.346425543938966,
-    "return1y": 37.35723055676252,
+    "return1y": 35.607146793999014,
     "sharesOutstanding": 1647176155.0
   },
   "quarterly": {
@@ -339,14 +339,14 @@
   },
   "dividends": [],
   "analyst": {
-    "targetMean": 1570.5,
+    "targetMean": 1583.1111,
     "targetHigh": 1800.0,
-    "targetLow": 1000.0,
+    "targetLow": 980.0,
     "recommendationKey": "buy",
-    "numberOfAnalystOpinions": 8
+    "numberOfAnalystOpinions": 9
   },
   "holders": {
     "insidersPercent": 0.82274,
-    "institutionsPercent": 0.16555999
+    "institutionsPercent": 0.16982001
   }
 }

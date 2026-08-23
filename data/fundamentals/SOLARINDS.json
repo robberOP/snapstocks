@@ -1,7 +1,7 @@
 {
   "symbol": "SOLARINDS",
   "name": "Solar Industries",
-  "generatedAt": "2026-08-18T16:39:03.158502+00:00",
+  "generatedAt": "2026-08-23T11:02:50.978350+00:00",
   "profile": {
     "sector": "Basic Materials",
     "industry": "Specialty Chemicals",
@@ -14,28 +14,28 @@
     "peerIndustry": "Explosives"
   },
   "price": {
-    "current": 18659.0,
-    "change": 268.0,
-    "changePercent": 1.4572345,
-    "previousClose": 18391.0,
-    "dayLow": 18358.0,
-    "dayHigh": 18710.0,
+    "current": 19900.0,
+    "change": 140.0,
+    "changePercent": 0.708502,
+    "previousClose": 19760.0,
+    "dayLow": 19651.0,
+    "dayHigh": 20093.0,
     "fiftyTwoWeekLow": 11646.0,
-    "fiftyTwoWeekHigh": 19187.0,
-    "asOf": 1785750298
+    "fiftyTwoWeekHigh": 20422.0,
+    "asOf": 1787305504
   },
   "stats": {
-    "marketCap": 1688453906432.0,
-    "trailingPE": 100.45222,
-    "forwardPE": 56.017612,
-    "priceToBook": 26.897406,
-    "bookValue": 693.71,
+    "marketCap": 1800752070656.0,
+    "trailingPE": 90.09009,
+    "forwardPE": 56.52563,
+    "priceToBook": 28.687206,
+    "bookValue": 693.689,
     "dividendYield": 0.06,
-    "trailingEps": 185.75,
+    "trailingEps": 220.89,
     "debtToEquity": 0.23271,
     "roe": 26.724494997769703,
     "roce": 29.50773412235038,
-    "return1y": 29.05249819998838,
+    "return1y": 33.12668175526317,
     "sharesOutstanding": 90490055.0
   },
   "quarterly": {
@@ -352,14 +352,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 19375.615,
-    "targetHigh": 22004.0,
-    "targetLow": 10300.0,
+    "targetMean": 21521.54,
+    "targetHigh": 23500.0,
+    "targetLow": 11200.0,
     "recommendationKey": "buy",
     "numberOfAnalystOpinions": 13
   },
   "holders": {
     "insidersPercent": 0.43919,
-    "institutionsPercent": 0.44998002
+    "institutionsPercent": 0.45172
   }
 }

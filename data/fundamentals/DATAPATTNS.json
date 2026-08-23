@@ -1,7 +1,7 @@
 {
   "symbol": "DATAPATTNS",
   "name": "Data Pattern",
-  "generatedAt": "2026-08-18T16:37:38.710789+00:00",
+  "generatedAt": "2026-08-23T11:01:17.552115+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
@@ -14,28 +14,28 @@
     "peerIndustry": "Aerospace & Defense"
   },
   "price": {
-    "current": 4428.8,
-    "change": 147.7998,
-    "changePercent": 3.4524598,
-    "previousClose": 4281.0,
-    "dayLow": 4236.1,
-    "dayHigh": 4455.0,
+    "current": 4829.9,
+    "change": 129.6997,
+    "changePercent": 2.7594507,
+    "previousClose": 4700.2,
+    "dayLow": 4730.1,
+    "dayHigh": 5000.0,
     "fiftyTwoWeekLow": 2131.0,
-    "fiftyTwoWeekHigh": 4955.9,
-    "asOf": 1785751198
+    "fiftyTwoWeekHigh": 5000.0,
+    "asOf": 1787306400
   },
   "stats": {
-    "marketCap": 247941791744.0,
-    "trailingPE": 92.36287,
-    "forwardPE": 55.719856,
-    "priceToBook": 14.282626,
+    "marketCap": 270396964864.0,
+    "trailingPE": 101.00167,
+    "forwardPE": 59.661537,
+    "priceToBook": 15.576152,
     "bookValue": 310.083,
-    "dividendYield": 0.23,
-    "trailingEps": 47.95,
+    "dividendYield": 0.21,
+    "trailingEps": 47.82,
     "debtToEquity": 0.0030399999999999997,
     "roe": 15.632182583800411,
     "roce": 20.35297800735697,
-    "return1y": 72.25549516288928,
+    "return1y": 90.49304122038674,
     "sharesOutstanding": 55983969.0
   },
   "quarterly": {
@@ -353,14 +353,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 4295.8887,
+    "targetMean": 4550.3,
     "targetHigh": 5545.0,
     "targetLow": 3940.0,
-    "recommendationKey": "buy",
-    "numberOfAnalystOpinions": 9
+    "recommendationKey": "none",
+    "numberOfAnalystOpinions": 10
   },
   "holders": {
     "insidersPercent": 0.53234,
-    "institutionsPercent": 0.17792
+    "institutionsPercent": 0.19153999
   }
 }

@@ -1,7 +1,7 @@
 {
   "symbol": "RTNPOWER",
   "name": "RattanIndia Pow.",
-  "generatedAt": "2026-08-18T16:38:55.612309+00:00",
+  "generatedAt": "2026-08-23T11:02:43.509645+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Independent Power Producers",
@@ -9,33 +9,33 @@
     "bseCode": "533122",
     "nseSymbol": "RTNPOWER",
     "website": "https://www.rattanindiapower.com",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/rtnpower.html",
     "peerSector": "Power",
     "peerIndustry": "Power Generation"
   },
   "price": {
-    "current": 8.8,
-    "change": 0.09000015,
-    "changePercent": 1.0332968,
-    "previousClose": 8.71,
-    "dayLow": 8.67,
-    "dayHigh": 8.95,
+    "current": 7.89,
+    "change": 0.119999886,
+    "changePercent": 1.5444001,
+    "previousClose": 7.77,
+    "dayLow": 7.74,
+    "dayHigh": 7.95,
     "fiftyTwoWeekLow": 7.52,
-    "fiftyTwoWeekHigh": 12.92,
-    "asOf": 1785751198
+    "fiftyTwoWeekHigh": 12.84,
+    "asOf": 1787306402
   },
   "stats": {
-    "marketCap": 47256932352.0,
-    "trailingPE": 41.904762,
+    "marketCap": 42370134016.0,
+    "trailingPE": 37.57143,
     "forwardPE": null,
-    "priceToBook": 1.0160489,
+    "priceToBook": 0.9109802,
     "bookValue": 8.661,
     "dividendYield": null,
     "trailingEps": 0.21,
     "debtToEquity": 0.80012,
     "roe": 1.1307304682699004,
     "roce": 6.300368186616545,
-    "return1y": -34.08239745858303,
+    "return1y": -35.99670707422862,
     "sharesOutstanding": 5370105860.0
   },
   "quarterly": {
@@ -340,6 +340,6 @@
   },
   "holders": {
     "insidersPercent": 0.50163,
-    "institutionsPercent": 0.03878
+    "institutionsPercent": 0.03907
   }
 }

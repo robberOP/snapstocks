@@ -1,7 +1,7 @@
 {
   "symbol": "FIEMIND",
   "name": "Fiem Industries",
-  "generatedAt": "2026-08-18T16:37:47.771913+00:00",
+  "generatedAt": "2026-08-23T11:01:30.125037+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 2338.4,
-    "change": 15.0998535,
-    "changePercent": 0.6499313,
-    "previousClose": 2323.3,
-    "dayLow": 2306.1,
-    "dayHigh": 2358.1,
-    "fiftyTwoWeekLow": 1794.0,
-    "fiftyTwoWeekHigh": 2555.3,
-    "asOf": 1785751198
+    "current": 2241.0,
+    "change": 21.899902,
+    "changePercent": 0.9868821,
+    "previousClose": 2219.1,
+    "dayLow": 2205.2,
+    "dayHigh": 2262.0,
+    "fiftyTwoWeekLow": 1868.5,
+    "fiftyTwoWeekHigh": 2674.8,
+    "asOf": 1787133602
   },
   "stats": {
-    "marketCap": 61545889792.0,
-    "trailingPE": 24.079908,
-    "forwardPE": 17.657185,
-    "priceToBook": 5.0654626,
+    "marketCap": 58982359040.0,
+    "trailingPE": 22.441418,
+    "forwardPE": 16.80225,
+    "priceToBook": 4.854474,
     "bookValue": 461.636,
-    "dividendYield": 1.72,
-    "trailingEps": 97.11,
+    "dividendYield": 1.8,
+    "trailingEps": 99.86,
     "debtToEquity": 0.05395,
     "roe": 21.035555715773533,
     "roce": 26.438326588224157,
-    "return1y": 22.34210084970667,
+    "return1y": 21.92589448742596,
     "sharesOutstanding": 26319660.0
   },
   "quarterly": {
@@ -358,14 +358,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 2769.0,
+    "targetMean": 2835.0,
     "targetHigh": 3050.0,
-    "targetLow": 2557.0,
-    "recommendationKey": "none",
+    "targetLow": 2700.0,
+    "recommendationKey": "strong_buy",
     "numberOfAnalystOpinions": 3
   },
   "holders": {
     "insidersPercent": 0.54521,
-    "institutionsPercent": 0.111949995
+    "institutionsPercent": 0.12269
   }
 }

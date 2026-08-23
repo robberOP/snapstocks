@@ -1,0 +1,886 @@
+<title>NHPC Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Integrated Power Utility (Hydro / Solar / Wind) &middot; Central PSU</div>
+    <h1>NHPC Limited</h1>
+    <p class="sub">NSE: NHPC &middot; BSE: 533098 &middot; FY2023&ndash;FY2027(Q1) performance review, BSE-filing and earnings-call synthesis, as of 22 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> NHPC is mid-way through the biggest capacity build-out in its 50-year history &mdash; Parbati-II and part of Subansiri Lower now commissioned, Pakal Dul/Kiru due within a year, Kamala and Etalin freshly approved &mdash; and FY26 revenue grew 11.9% on that new capacity. But headline FY26 PAT growth of 25% was flattered by a roughly &#8377;900 crore one-off deferred-tax credit that management itself calls out as an adjustment; strip it out and core profit likely <em>fell</em> versus FY25. Operating cash flow fell 34% even as reported profit rose, plant availability slipped to 74.75% (partly because Teesta-V sat fully offline the entire year), &#8377;450 crore of revenue from the two newest, biggest assets remains unbooked pending CERC tariff orders, debt is up 26% YoY funding an unfinanced capex pipeline north of &#8377;1.3 lakh crore across disclosed projects, and a fatal tunnel explosion at the under-construction Teesta-VI project (10 dead, 20 July 2026) lands right as the government sold up to 6% of its own stake via OFS. The growth story is real; so is the list of things that have to go right for it to show up in per-share earnings.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (3 Aug 26)</div><div class="v">&#8377;79.25</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;79,606.90 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;71.62 &ndash; &#8377;89.22</div></div>
+      <div class="chip"><div class="k">FY26 Revenue</div><div class="v pos">+11.9% YoY</div></div>
+      <div class="chip"><div class="k">FY26 PAT (reported)</div><div class="v pos">+25.2% YoY <span style="font-size:11px;">(flattered &mdash; &sect;04)</span></div></div>
+      <div class="chip"><div class="k">Trailing P/E &middot; Fwd P/E</div><div class="v">28.6x &middot; 12.4x</div></div>
+      <div class="chip"><div class="k">Price / Book</div><div class="v">1.93x</div></div>
+      <div class="chip"><div class="k">FY26 Free Cash Flow</div><div class="v neg">&minus;&#8377;8,279 Cr</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage &amp; basis &mdash; please read before the numbers below:</b> The BSE Announcements dataset for NHPC in this pipeline spans only <b>15 May&ndash;21 Aug 2026</b> (roughly one quarter's filings), so management commentary with direct quotes exists only for the <b>Q4/FY26 earnings call (18 May 2026, transcript filed 25 May)</b> &mdash; no Q1FY27 call transcript had been filed as of this report's date, despite results being announced on 4 Aug 2026. The FY2025-26 annual report (filed 5 Aug 2026) did not convert to readable text in this pipeline (empty output), so MD&amp;A, related-party-transaction detail, contingent liabilities and the full auditor's report could not be independently reviewed; this report relies instead on the financial-results filings' own notes and ratio disclosures, which are attached to the audited/reviewed statements and cover the same ground more narrowly. Several referenced investor-presentation and Offer-for-Sale filings link out to externally hosted PDFs that were not captured as readable text in this dataset either &mdash; flagged inline wherever a claim would otherwise rest on one. <b>All figures below are consolidated</b> unless explicitly marked standalone; multi-year P&amp;L/balance-sheet/cash-flow series are sourced from MarketData/yfinance (annual FY22&ndash;FY26, quarterly Dec-24 through Mar-26 only &mdash; <b>Q2 FY26 (Sep-25) is a genuine gap</b>, absent from both the yfinance quarterly file and the Announcements window), cross-checked against the company's own Q4FY26 and Q1FY27 financial-results filings and call transcript wherever both exist. Fiscal year runs April&ndash;March.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Other call insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What NHPC does, and how it has grown</h2></div>
+      <p class="sec-dek">India's largest hydropower generator by installed capacity &mdash; a 50-year-old, majority-government-owned utility now mid-way through the biggest capacity build cycle in its history.</p>
+
+      <p class="lede">NHPC Limited (CIN L40101HR1975GOI032564), incorporated in 1975 and headquartered in Faridabad, Haryana, is a Government of India "Navratna" enterprise engaged in generation, sale and trading of electricity from hydro, wind and solar power stations across India and Nepal, alongside consultancy, project-management, design-and-engineering and O&amp;M services for third-party power projects (MarketData/overview.md business summary). Electricity generation is the company's only reportable segment per its own financial-results notes &mdash; power trading, contracts, project management and consultancy are all sub-scale and undisclosed as separate segments &mdash; and all power stations sit within a single geographical segment (India). As of early August 2026 the group's operating capacity stood at 7,651 MW following a run of commissionings over the past year (Company press release, 5 Aug 2026): Parbati-II (800 MW), four of eight units (1,000 MW) of the 2,000 MW Subansiri Lower project, Karnisar solar (300 MW, Bikaner), and the restored 510 MW Teesta-V station (fully back only from July 2026, after being offline the whole of FY26 &mdash; see &sect;03).</p>
+
+      <h3>The regulated-return moat</h3>
+      <p>NHPC operates almost entirely under CERC's cost-plus regulated-tariff framework (Tariff Regulations for the period April 2024&ndash;March 2029, notified 15 March 2024): customers are billed against an Annual Fixed Charge (AFC) set by the regulator, and construction-cost increases beyond management's control are explicitly pass-through &mdash; "whatever cost beyond our control, that is definitely allowed by the CERC," per Director (Finance) Mahesh Kumar Sharma on the Q4FY26 call. This is the core of the investment case: a growing base of "regulated equity" (management's term for the capital base on which the AFC/return is calculated) compounds into growing, contractually-underwritten cash flow as new hydro capacity is commissioned, largely insulated from merchant-power price volatility. Management quantified this directly on the call: regulated equity including Parbati-II stood at &#8377;18,309 crore as of the FY26 call, and is guided to reach &#8377;30,672 crore (hydro only) by end-FY27 as Subansiri Lower's remaining 1,000 MW, Rangit-IV (120 MW), Pakal Dul (1,000 MW) and Kiru (624 MW) come online &mdash; a 67% increase in the regulated capital base within roughly a year, before the ~1,190 MW of solar assets due in the same window are even added.</p>
+
+      <h3>Corporate structure and scale of the pipeline</h3>
+      <p>The consolidated group comprises NHPC Limited plus seven subsidiaries (NHDC Limited 51.08% owned, Chenab Valley Power Projects Ltd 50.86%, Loktak Downstream Hydroelectric Corp 74%, Bundelkhand Saur Urja Ltd 90.63%, Jalpower Corporation Ltd 100% &mdash; mid-merger into the parent, see &sect;07, Ratle Hydroelectric Power Corp 51%, NHPC Renewable Energy Ltd 100%), one joint venture (APGENCO NHPC Green Energy Ltd, 50%) and one associate (National High Power Test Laboratory, 12.5%) &mdash; per the Q1FY27 consolidated results notes. Beyond the currently-commissioning projects, management's own Q4FY26 call disclosed a pipeline whose disclosed estimated project costs sum to roughly <b>&#8377;1.3 lakh crore</b>: Subansiri Lower (&#8377;30,072 Cr total, &#8377;26,092 Cr incurred to Mar-26), Dibang Multipurpose 2,880 MW (&#8377;31,876 Cr, incl. &#8377;6,716 Cr flood-moderation grant, &#8377;4,504 Cr incurred, completion Feb-2032), Kamala HE 1,720 MW in Arunachal Pradesh (&#8377;26,070 Cr, CCEA-approved April 2026, to be built via a new JV with the Arunachal Pradesh government), Teesta-VI 500 MW (&#8377;9,167 Cr, 72% physically complete &mdash; site of the July 2026 tunnel explosion, &sect;02/&sect;07), Pakal Dul 1,000 MW and Kiru 624 MW (&#8377;12,728 Cr and &#8377;5,409 Cr, both 80%+ complete, targeted Q4FY27), Kwar 540 MW (&#8377;4,526 Cr, 33% complete), Ratle 850 MW (&#8377;5,282 Cr, only 29% complete), Uri-I Stage-II and Dulhasti Stage-II (&#8377;2,709 Cr / &#8377;2,994 Cr, board-approved Feb-2026, completion Nov-2029), plus a freshly signed (16 Jun 2026) Memorandum of Agreement with the Arunachal Pradesh government for the 3,097 MW Etalin project on a 40-year Build-Own-Operate-Transfer basis &mdash; still at the pre-feasibility stage and not yet costed. Against this, current net worth is roughly &#8377;42,500 crore and market capitalisation &#8377;79,600 crore (&sect;05, &sect;10): the growth pipeline dwarfs the balance sheet that has to fund it.</p>
+
+      <h3>How the moat is evidenced, and where it isn't</h3>
+      <p>No independently sourced market-share or competitor-ranking data was found in this dataset; NHPC's own materials describe it as India's largest hydropower generator, which is consistent with the scale of assets and pipeline disclosed above but is not independently benchmarked here. The moat itself &mdash; regulated cost-plus tariffs, government ownership giving privileged access to inter-state river-basin allocations and long project-gestation land/forest clearances &mdash; is real and structural, but it comes with the flip side documented through this report: multi-year execution timelines, tariff orders that lag commissioning by months to years (&sect;03), and safety/execution risk inherent to Himalayan tunnelling (&sect;02, &sect;07).</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">The tracked News feed only covers 31 Jul&ndash;5 Aug 2026 &mdash; a narrow window that misses several materially larger items sitting in the Announcements filings, surfaced separately below.</p>
+
+      <div class="news-item">
+        <div class="news-date">5 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Director (Projects) Sanjay Kumar Singh receives Hydro Vibhushan Award</div>
+          <div class="news-body">Recognition tied to commissioning milestones (Parbati-II, Bikaner solar, four Subansiri Lower units) rather than new disclosure &mdash; no forward guidance or financial content.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">4 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (per News tag &mdash; see &sect;04 for the more cautious read)</span>
+          <div class="news-title">Q1FY27 results: consolidated revenue +18.5% YoY, PAT +2.9% YoY, generation record</div>
+          <div class="news-body">Consolidated revenue from operations of &#8377;3,808.31 Cr (+18.5% YoY) and reported operating margin of 47.7% (company ratio-table definition, up from 44.1% in Q1FY26). Net profit attributable to owners was up a much more modest 2.9% YoY (&#8377;1,095.87 Cr vs &#8377;1,065.02 Cr) &mdash; a materially smaller PAT beat than the revenue/EBITDA growth alone would suggest, because other income fell and tax/finance costs rose (&sect;03&ndash;04). Same day: a new single-day generation record of 169.34 MU (2 Aug 2026), attributed to the 2,310 MW of capacity commissioned/restored over the trailing year.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">3 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">FY26 final dividend of &#8377;0.21/share declared; 12 Aug 2026 record date</div>
+          <div class="news-body">Combined with the &#8377;1.40/share interim already paid, total FY26 dividend is &#8377;1.61/share &mdash; down from &#8377;1.91/share for FY25, despite reported PAT growing 25% (&sect;05/&sect;06 &mdash; a capital-allocation signal worth reading alongside the capex ramp).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">31 Jul 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Paresh Ranpara assumes charge as Director (Personnel)</div>
+          <div class="news-body">HR leader from Grid-India/Gujarat power utilities fills a director seat that had sat vacant since 31 May 2026 (&sect;07) &mdash; routine PSU board mechanics, but a two-month gap in a whole-time-director seat is notable in itself.</div>
+        </div>
+      </div>
+
+      <div class="callout flag" style="margin-top:24px;">
+        <div class="icon">&#9888;</div>
+        <div><b>Material items the News feed's narrow date window misses entirely</b>Four items sit in the Announcements filings, outside the 31&nbsp;Jul&ndash;5&nbsp;Aug News window, that a stock-moving newsflow section shouldn't omit: <b>(1)</b> a fatal tunnel-gas explosion at the under-construction Teesta-VI project (500 MW, Sikkim) on 20 July 2026 &mdash; 25 personnel trapped, 10 casualties reported, per the company's own 21 July press release; <b>(2)</b> the Government of India's Offer-for-Sale of up to 6% of NHPC via two notices (1&nbsp;Jun and an oversubscription notice 2&nbsp;Jun 2026 &mdash; both filed as unreadable scanned images in this pipeline, so terms/pricing could not be independently confirmed beyond the fact of the OFS itself, corroborated by a Reuters headline in MarketData's news list); <b>(3)</b> full restoration of Teesta-V's last unit on 16 July 2026, ending a stretch of roughly two years and nine months (since the October 2023 Sikkim flash floods) with zero revenue contribution from a 510 MW asset; and <b>(4)</b> the 16 June 2026 Etalin MoA (&sect;01), a genuinely large (3,097 MW) new pipeline addition. Items (1) and (2) are squarely stock-relevant &mdash; a fatality event at an active project site, and a government stake-sale overhang &mdash; and are covered in full in &sect;05 and &sect;07.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, generation &amp; guidance</h2></div>
+      <p class="sec-dek">Revenue is growing on new capacity, but plant availability slipped and &#8377;450 crore sits unbooked pending tariff orders on the two newest, largest assets.</p>
+
+      <h3>Quarterly trend</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated</th><th>Q3FY25 (Dec-24)</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>2,286.76</td><td>2,346.97</td><td>3,213.77</td><td>2,220.73</td><td>2,815.53</td><td>3,808.31</td></tr>
+            <tr><td>EBITDA (yfinance basis)</td><td>1,346.42</td><td>1,204.89</td><td>2,031.12</td><td>484.66</td><td>1,501.73</td><td>2,352.19<sup>&Dagger;</sup></td></tr>
+            <tr><td>PAT attributable to owners</td><td>231.23</td><td>853.64</td><td>1,065.02</td><td>219.12</td><td>1,460.16</td><td>1,095.87</td></tr>
+            <tr><td>Diluted EPS (&#8377;, incl. reg. deferral)</td><td>0.23</td><td>0.85</td><td>1.06</td><td>0.22</td><td>1.45</td><td>1.09</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance quarterly income statement (Dec-24 through Mar-26), cross-checked against and extended with the company's own Q1FY26/Q4FY26/Q1FY27 financial-results filings (all reconcile exactly on revenue and owners' PAT). <b>Q2 FY26 (Sep-25) is a genuine data gap</b> &mdash; not present in yfinance's quarterly file and outside the Announcements window &mdash; and is omitted rather than estimated. &Dagger; Q1FY27 EBITDA sourced from News (4 Aug 2026 item, &#8377;2,352.19 Cr, on a 30.6% YoY growth basis) since yfinance's quarterly file had not yet loaded this quarter; not on an identical basis to the other cells and treated as indicative only.</caption>
+      </div>
+      <p>The swing from a weak Q3FY26 (EBITDA margin ~22% on the yfinance basis) to a strong Q4FY26 and Q1FY27 lines up with the operational narrative management gave on the call: Dulhasti, Chamera-III and TLDP-IV underwent MIV-repair and gate-repair shutdowns during FY26, and TLDP-III/IV specifically carried silt damage traced back to the October 2023 Teesta-V flash floods, which management said on 18 May 2026 it expected to clear "within three months." Full-year FY26 generation reached 29,619 million units, up ~16% YoY (25,548 MU in FY25), but the group's Plant Availability Factor (PAF) fell to 74.75% from 78.87% &mdash; a genuine operating miss, driven overwhelmingly by Teesta-V (510 MW) contributing zero generation for the entire fiscal year. Management's own reconciliation: ex-Teesta-V, PAF was ~80% in both years (essentially flat, close to the normative 80% standalone / 82% consolidated norm); including Teesta-V it was 75% &mdash; i.e., one non-generating asset alone cost the group roughly 4 points of consolidated availability.</p>
+
+      <h3>Two flagship new assets are being billed at 75&ndash;80% of filed tariff &mdash; &#8377;450 Cr of FY26 revenue is not yet booked</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Parbati-II and Subansiri Lower are running well below their design-energy economics, and it isn't just a billing lag</b>Parbati-II (800 MW, commissioned FY26) generated only 1,642 million units against a 3,125 MU design energy in FY26 &mdash; roughly half &mdash; largely traced to a June 2025 cloudburst event, and posted a <b>full-year loss of &#8377;150 crore</b> despite a Q4-alone profit of &#8377;104 crore (the Q4 profit itself driven by a one-off &#8377;200 Cr generation-shortfall recovery booked under revenue, not underlying improvement). Subansiri Lower similarly posted a full-year profit of &#8377;495 Cr but management quantified a further &#8377;150 Cr gross under-recovery there. Combined, management stated &#8377;450 crore of revenue "has not been booked in our book of accounts" against the tariff petitions actually filed with CERC for these two assets, pending interim/final tariff orders (Parbati-II hearing expected to conclude by end-June 2026 per the May call; Subansiri Lower's timeline runs several months behind that). Billing is currently capped at 75% of filed AFC for Parbati-II and revenue is being recognised at a conservative 80% of AFC for both projects — meaning even the reported revenue embeds a management assumption, not a locked-in number.</div>
+      </div>
+      <p>This under-recovery is a genuine, quantified near-term catalyst if and when CERC issues final orders (management says recognition would flow through with no deferral once an order lands, including interest from COD) &mdash; but it is also evidence that two of the group's largest, newest, highest-capex assets are not yet earning close to their intended regulated return, more than a year after Parbati-II's commissioning.</p>
+
+      <h3>Guidance vs. actual: commissioning timelines given on the May call</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Project / milestone</th><th>Guided (18 May 2026 call)</th><th>Actual as of 22 Aug 2026</th></tr></thead>
+          <tbody>
+            <tr><td>Teesta-V full restoration</td><td>"By end of June onwards, you can see some top-line activity"</td><td class="neg">Resumed mid-July 2026 (16 Jul) &mdash; roughly 2&ndash;4 weeks later than the call's phrasing implied</td></tr>
+            <tr><td>Rangit-IV (JPCL, 120 MW)</td><td>Expected commissioning November 2026 (96% complete at call date)</td><td>Not yet due &mdash; on track per last disclosed progress</td></tr>
+            <tr><td>Solar: Andhra Pradesh 100 MW &amp; Gujarat 600 MW (Tranche-II CPSU)</td><td>June 2026 / December 2026</td><td class="neg">No commissioning announcement found in this dataset for either as of 22 Aug 2026 &mdash; AP tranche appears to have missed its guided date</td></tr>
+            <tr><td>Parbati-II CERC tariff order</td><td>"We are expecting the final orders by the end of this quarter" (i.e. by ~30 Jun 2026)</td><td class="neg">No tariff-order announcement found in this dataset through 21 Aug 2026 &mdash; appears to have slipped</td></tr>
+            <tr><td>Indira Sagar-Omkareshwar PSP (640 MW) construction start</td><td>"Expecting to start construction... in the current financial year" (FY27)</td><td>Not yet due &mdash; no update found</td></tr>
+          </tbody>
+        </table>
+        <caption>Guided dates per the 18 May 2026 (Q4FY26) earnings-call transcript; "actual" status assessed against the Announcements filings available through 21 Aug 2026. Absence of a confirming filing is treated as "not yet delivered," not as evidence of failure &mdash; some of these may simply be undisclosed within this dataset's window.</caption>
+      </div>
+      <p>Every guided near-term milestone this report could check against subsequent filings has either not yet been confirmed or has run modestly behind the language management used in May &mdash; consistent with, not contradicting, management's own acknowledgment on the call that "cost overrun is very inherent in any hydropower project" and that time overruns can follow.</p>
+
+      <h3>Segment, geography and expansion</h3>
+      <p>No formal segment reporting exists beyond "electricity generation" as the sole reportable segment; trading/consultancy/contracts revenue is immaterial and undisclosed separately. Geographically, generation is entirely domestic (India), though NHPC's business description also references Nepal exposure (MarketData business summary) not separately quantified in the financial statements reviewed. Vertical/horizontal expansion is clear and substantial: from pure hydro into utility-scale solar (Bikaner 300 MW commissioned; further ~1,190 MW across Andhra Pradesh, Gujarat, Odisha and Kerala floating solar in the pipeline) and into pumped-storage (18 GW of PSP capacity at DPR/PFR stage across seven states, per the call) &mdash; a genuine diversification beyond conventional run-of-river hydro, though none of it yet contributes materially to reported revenue.</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; the one-off that flatters FY26</h2></div>
+      <p class="sec-dek">A roughly &#8377;900 crore non-recurring deferred-tax credit did most of the work behind FY26's 25% reported PAT growth &mdash; adjusted for it, core profit likely declined.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %, consolidated annual</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>10,478.8</td><td>9,252.5</td><td>10,379.9</td><td>11,615.3</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td class="neg">&minus;11.7%</td><td class="pos">+12.2%</td><td class="pos">+11.9%</td></tr>
+            <tr><td>EBITDA (yfinance basis)</td><td>8,250.3</td><td>8,216.1</td><td>6,871.7</td><td class="neg">6,309.2</td></tr>
+            <tr><td>EBITDA margin</td><td>78.7%</td><td>88.8%</td><td class="neg">66.2%</td><td class="neg">54.3%</td></tr>
+            <tr><td>PAT attributable to owners (reported)</td><td>3,903.3</td><td>3,596.0</td><td>3,006.7</td><td class="pos">3,765.7</td></tr>
+            <tr><td>PAT YoY growth (reported)</td><td>&mdash;</td><td class="neg">&minus;7.9%</td><td class="neg">&minus;16.4%</td><td class="pos">+25.2%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement. FY22 line items are almost entirely null in the source data and are omitted rather than estimated. EBITDA margin here compresses sharply FY24&rarr;FY26 despite revenue growth &mdash; driven by "Other Expenses" more than tripling over the same window (see below), not by revenue weakness.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Reported FY26 PAT growth of 25% overstates the underlying trend by management's own math</b>On the Q4FY26 call, when asked for an "Adjusted PAT," CFO Saroj Kumar Roy explained that NHPC's move to the 25% flat-tax regime under Section 115BAA (ahead of MAT-credit discontinuation from FY27) required restating previously-created deferred tax liabilities, producing a one-off gross benefit of &#8377;1,156 crore (&#8377;900 crore net) recognised in Q4FY26 &mdash; management's own words: <i>"if you reduce Rs. 900 Crore from the Reported PAT, you will arrive at Adjusted PAT."</i> Applying that adjustment to the FY26 full-year owners' PAT of &#8377;3,766 Cr implies an adjusted figure of roughly &#8377;2,866 Cr &mdash; <b>below FY25's reported &#8377;3,007 Cr</b>, meaning core, non-one-off profitability likely <em>contracted</em> year-on-year even as the headline number grew 25%. The tax-regime shift is a genuine, recurring positive for future years' effective tax rate (see &sect;08), but conflating this one-off restatement with organic earnings growth would materially overstate FY26's quality.</div>
+      </div>
+
+      <h3>What actually moved the P&amp;L in FY26 (company's own reconciliation)</h3>
+      <p>Per the Q4FY26 call and financial-results notes, FY26 vs FY25 (full year, consolidated): revenue up &#8377;1,235 Cr on new-capacity generation; other income down &#8377;164 Cr (a large prior-year insurance business-interruption claim on Teesta-V did not repeat); generation expenses up a modest &#8377;22 Cr (water cess); employee costs down &#8377;325 Cr (a one-off pay-anomaly reversal); finance costs up &#8377;234 Cr as Parbati-II/Subansiri/Karnisar borrowing costs began hitting the P&amp;L post-COD; depreciation up &#8377;783 Cr for the same reason; and, the largest single swing, <b>other expenses up &#8377;1,938 Cr</b> (&#8377;2,122 Cr &rarr; &#8377;4,060 Cr) &mdash; driven by higher network access charges (+&#8377;822 Cr), insurance expense (+&#8377;476 Cr), insurance-claim-related losses (+&#8377;225 Cr), provisions (+&#8377;168 Cr) and R&amp;M expense (+&#8377;111 Cr). That last item is the real explanation for the EBITDA-margin compression in the table above: revenue grew, but non-generation operating costs grew far faster, eating most of the operating leverage a capacity ramp should otherwise deliver.</p>
+
+      <h3>Company-reported margin ratios (financial-results filings)</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Consolidated operating margin, Q1FY27</div><div class="v">47.7%</div><div class="d">vs 44.1% Q1FY26, 34.4% Q4FY26</div></div>
+        <div class="stat"><div class="k">Consolidated net margin, Q1FY27</div><div class="v">30.9%</div><div class="d">vs 35.2% Q1FY26 (tax/finance-cost drag)</div></div>
+        <div class="stat"><div class="k">Interest service coverage ratio, Q1FY27</div><div class="v neg">3.61x</div><div class="d">vs 5.89x Q1FY26, 4.41x Q4FY26 &mdash; declining trend</div></div>
+      </div>
+      <p>Interest coverage falling from 5.89x to 3.61x YoY (Q1) is the clean, ratio-level confirmation of the same dynamic: finance costs are climbing as newly-commissioned assets' borrowing costs stop being capitalised and start hitting the P&amp;L, faster than EBIT is growing to absorb them.</p>
+
+      <h3>Forward margin guidance</h3>
+      <p>No explicit numeric margin target was given on the call. The clearest forward signal is qualitative and structural: management confirmed the FY26 one-off tax benefit reflects a <em>permanent</em> shift to a lower (25%) statutory rate from FY27, which should support the effective tax rate (and thus net margin, all else equal) going forward even without repeating the one-off DTL credit &mdash; a genuine, if modest, tailwind distinct from the one-off itself.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">Debt is doing almost all the work of funding the capex ramp; leverage and interest cost are both rising faster than earnings, and the dividend was cut even as reported profit grew.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated annual</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Net worth (stockholders' equity)</td><td>36,955.3</td><td>38,668.6</td><td>39,668.2</td><td>41,437.2</td></tr>
+            <tr><td>Total debt</td><td>29,539.8</td><td>34,578.0</td><td>41,574.0</td><td class="neg">52,326.7</td></tr>
+            <tr><td>Net debt</td><td>28,453.7</td><td>33,130.1</td><td>40,690.5</td><td class="neg">50,172.8</td></tr>
+            <tr><td>Debt / equity (yfinance basis)</td><td>0.80x</td><td>0.89x</td><td>1.05x</td><td class="neg">1.26x</td></tr>
+            <tr><td>Net PPE + CWIP</td><td>&mdash;</td><td>&mdash;</td><td>1,25,225.9</td><td>1,19,763.6</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet. Company's own financial-results ratio tables report a related but differently-scoped "Debt equity ratio" (paid-up debt capital basis): 1.31x at Q4FY26, 1.32x at Q1FY27, 1.09x at Q1FY26 &mdash; same rising trend, different denominator, both cited here rather than silently reconciled.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Debt is up 26% YoY and leverage keeps climbing, with a large unfinanced pipeline still ahead</b>Total debt (consolidated) rose from &#8377;41,574 Cr to &#8377;52,327 Cr in FY26 alone; the company's own paid-up-debt-capital figure climbed further still, to &#8377;56,039 Cr by Q1FY27. Net worth grew only 4.5% over the same year (retained-earnings-driven &mdash; there was no fresh equity infusion; if anything the government <i>sold</i> stake via the June 2026 OFS, &sect;02). Debt/equity has risen every year in this series (0.80x&rarr;0.89x&rarr;1.05x&rarr;1.26x, FY23&rarr;FY26), and management's own KID for a further &#8377;2,000 Cr of AI-series bonds (part of the FY27 borrowing plan, per the 15 May 2026 board outcome) confirms more debt issuance is already planned. Against a disclosed project pipeline whose costs sum to roughly &#8377;1.3 lakh crore (&sect;01), a balance sheet growing debt faster than equity every year is the central financing risk in this story.</div>
+      </div>
+
+      <h3>Capital allocation: dividend cut despite higher reported profit</h3>
+      <p>FY26 total dividend was &#8377;1.61/share (&#8377;1.40 interim + &#8377;0.21 final, 16.10% of &#8377;10 face value) versus &#8377;1.91/share for FY25 (&#8377;1.40 interim + &#8377;0.51 final) &mdash; a roughly 16% cut in per-share cash return in the same year reported PAT grew 25%. Share count is unchanged (1,004.5 crore shares throughout), so this is a genuine capital-allocation choice, not a per-share dilution effect: NHPC is retaining more of a (partly one-off-inflated, &sect;04) profit to help fund the capex programme rather than passing the reported earnings growth through to shareholders. Given the scale of the pipeline in &sect;01, that is a defensible choice for a growth-stage regulated utility, but it is worth being explicit that dividend growth has not tracked reported earnings growth.</p>
+
+      <h3>Trade receivables &amp; the regulatory-deferral mechanic</h3>
+      <p>Reported trade receivables were &#8377;2,630 Cr at 31 Mar 2026 (vs &#8377;2,573 Cr a year earlier), but &#8377;1,887 Cr of that is unbilled debtors (revenue recognised, not yet billed &mdash; consistent with the 80%-of-AFC recognition practice in &sect;03), leaving genuinely billed-and-outstanding receivables of just &#8377;743 Cr, of which &#8377;242 Cr is more than 45 days overdue. Realisation from beneficiaries against energy sales was &#8377;10,499 Cr in FY26 vs &#8377;9,943 Cr in FY25 &mdash; i.e., cash collections did grow, just not as fast as booked revenue, consistent with the CFO gap documented in &sect;06.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">FY26 is the first year in this series where operating cash flow fell short of reported profit &mdash; and free cash flow has now been negative for three of the last four years, deeply so in FY25 and FY26.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated annual</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT attributable to owners</td><td>3,903.3</td><td>3,596.0</td><td>3,006.7</td><td>3,765.7</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>4,704.6</td><td>7,252.1</td><td>5,026.2</td><td class="neg">3,293.6</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>1.21x</td><td>2.02x</td><td>1.67x</td><td class="neg">0.87x</td></tr>
+            <tr><td>Capex (cash-flow basis)</td><td>&minus;4,975.5</td><td>&minus;6,969.3</td><td>&minus;8,851.4</td><td class="neg">&minus;11,572.3</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="neg">&minus;270.9</td><td class="pos">282.8</td><td class="neg">&minus;3,825.2</td><td class="neg">&minus;8,278.7</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. Company's own Q4FY26 call cites FY26 consolidated capex of &#8377;13,689 Cr (vs &#8377;11,596 Cr FY25) &mdash; a different figure/scope than the cash-flow-statement "Purchase of PPE" line above (&#8377;11,572 Cr), both cited rather than silently reconciled; the trend direction is identical either way.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Earnings-quality check: FY26 breaks a run of clean CFO/PAT conversion</b>CFO/PAT conversion was comfortably above 1x in FY23 (1.21x), FY24 (2.02x) and FY25 (1.67x) &mdash; genuinely cash-backed profit growth in each of those years. FY26 conversion fell to 0.87x, the first sub-1x reading in this series, even as reported PAT rose 25%. Mechanically this lines up with &sect;04's finding: a large slice of FY26's reported profit growth was a non-cash deferred-tax credit, and the cash-flow statement shows "Change in Other Current Assets" swung to a &minus;&#8377;1,873 Cr use of cash in FY26 (vs &minus;&#8377;2,300 Cr in FY25, itself already a use of cash) &mdash; consistent with the growing unbilled-receivables/regulatory-deferral balance described in &sect;05. This is a real cross-check that supports, rather than contradicts, the adjusted-PAT finding in &sect;04.</div>
+      </div>
+
+      <p><b>Read plainly:</b> free cash flow has been negative in three of the last four years and increasingly so &mdash; a modest &minus;&#8377;271 Cr in FY23, briefly positive (&#8377;283 Cr) in FY24 before the capex ramp accelerated, then &minus;&#8377;3,825 Cr in FY25 and &minus;&#8377;8,279 Cr in FY26. This is funded overwhelmingly by debt: financing cash flow was strongly positive every year (+&#8377;8,928 Cr in FY26 alone, driven by &#8377;16,122 Cr of gross debt issuance against &#8377;3,403 Cr of repayment). For a utility mid-way through a multi-year capacity build this is not unusual in principle &mdash; but it does mean the entire growth pipeline in &sect;01 is currently being financed externally, and the balance sheet has to keep absorbing debt at a faster pace than operating cash flow is growing, which per &sect;04's finding is itself decelerating on a core basis.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">A classic central-PSU governance profile &mdash; competent, process-driven, superannuation-paced leadership churn, majority government ownership now being gradually reduced, and a fresh safety incident at an active project site.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Mahesh Kumar Sharma</div>
+          <div class="role">Director (Finance) &amp; CFO</div>
+          <div class="bio">Signs all financial-results filings in this dataset; led the detailed FY26/Q1FY27 P&amp;L walkthroughs on the earnings call, including the Adjusted-PAT tax-regime explanation (&sect;04).</div>
+        </div>
+        <div class="person">
+          <div class="name">Sanjay Kumar Singh</div>
+          <div class="role">Director (Projects)</div>
+          <div class="bio">Opened the Q4FY26 call with the full project-pipeline update (&sect;01, &sect;03); received the Hydro Vibhushan Award, 5 Aug 2026, for commissioning execution.</div>
+        </div>
+        <div class="person">
+          <div class="name">Suprakash Adhikari</div>
+          <div class="role">Director (Technical)</div>
+          <div class="bio">Named on the Q4FY26 call management roster; no direct quotes attributed to him in the transcript reviewed.</div>
+        </div>
+        <div class="person">
+          <div class="name">Paresh Rasiklal Ranpara <span style="font-weight:400;color:var(--ink-mute);">(new, 30 Jul 2026)</span></div>
+          <div class="role">Director (Personnel)</div>
+          <div class="bio">HR leader from Grid-India (Director HR since May 2023) and Gujarat state utilities (MGVCL, GUVNL). Filled a seat vacant since predecessor Uttam Lal's 31 May 2026 superannuation &mdash; a roughly two-month gap in a whole-time-director role.</div>
+        </div>
+        <div class="person">
+          <div class="name">Diwakar Nath Misra <span style="font-weight:400;color:var(--ink-mute);">(new, 14 May 2026)</span></div>
+          <div class="role">Government Nominee Director</div>
+          <div class="bio">2000-batch IAS officer (Assam-Meghalaya cadre), currently Additional Secretary (Hydro), Ministry of Power. Replaced Mohammad Afzal per Ministry of Power order &mdash; a routine but recurring feature of PSU board composition: nominee directors rotate with the bureaucracy, not with company performance.</div>
+        </div>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Leadership churn in this ~3-month filing window, in full</b>Beyond the two changes above: Director (Personnel) Uttam Lal retired on superannuation (31 May 2026); ED-level changes were filed for Anil Kumar Dash/Milind Ganesh Gokhale/Rajan Jairath (30 Jun 2026) and Madhusmita Panda (29 May 2026); and a new Director (Personnel), Sanjay Kumar Singh's Hydro Vibhushan award aside, none of this reflects performance-linked turnover &mdash; every departure disclosed in this window was age-based superannuation, and every arrival was a government/ministry appointment, the normal cadence for a central PSU rather than a governance red flag on its own. It is, however, a genuine amount of churn in whole-time-director and ED seats within a single quarter, worth factoring into how much continuity of institutional knowledge sits at the top at any given moment.</div>
+      </div>
+
+      <h3>Ownership: majority government-owned, now being gradually reduced</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Insider (incl. GoI promoter) holding</div><div class="v">62.48%</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">21.66%</div><div class="d">163 institutions on record</div></div>
+        <div class="stat"><div class="k">June 2026 OFS</div><div class="v">Up to 6%</div><div class="d">GoI stake sale, terms not independently verifiable in this dataset &mdash; &sect;02</div></div>
+      </div>
+      <p>NHPC remains majority-owned by the Government of India, with the implications that come with PSU status cutting both ways: preferential access to river-basin allocation, land, and forest clearances, plus an implicit sovereign backstop on a portion of its bonds ("Payable towards Bonds fully serviced by Government of India" appears as a distinct debt-capital line in every financial-results filing reviewed) &mdash; against slower decision cycles (the Jalpower Corporation merger, first proposed in 2021, was still pending a second-motion MCA hearing as of the 4 Aug 2026 filing &mdash; five years and counting for what is nominally a wholly-owned-subsidiary absorption), superannuation-paced rather than performance-paced leadership changes, and periodic OFS-driven float increases that are a supply overhang on the stock independent of operating performance. Dividend policy itself likely reflects government revenue needs as much as (or more than) NHPC's own capital-allocation preference, given the state's controlling stake.</p>
+
+      <h3>Safety: a fatal incident at an active construction site</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Teesta-VI tunnel explosion, 20 July 2026 &mdash; 10 fatalities</b>A suspected methane-gas explosion inside the under-construction Head Race Tunnel of the 500 MW Teesta-VI project (Sikkim, 72% physically complete per the May call, &#8377;9,167 Cr estimated cost) trapped 25 personnel; the company's own 21 July press release reported 10 casualties, with NDRF/SDRF and DG Mines-Safety involved in rescue operations. No subsequent filing on investigation findings, project-timeline impact, or compensation was found in this dataset through 21 Aug 2026. Beyond the human cost, this is a live execution/reputational risk for a company whose entire growth thesis rests on safely delivering Himalayan tunnelling projects (Pakal Dul, Kiru, Kwar, Ratle, Dibang, Kamala, Etalin all involve comparable tunnel works) on the schedules disclosed in &sect;01 and &sect;03.</div>
+      </div>
+
+      <h3>Auditors</h3>
+      <p>Joint statutory auditors SN Dhawan &amp; Co LLP, S. Jaykishan, and Dharam Raj &amp; Co reviewed the Q1FY27 unaudited results with no qualification noted, and issued an unmodified/clean opinion on the FY26 audited annual results per the 15 May 2026 board outcome letter. The full audited financial statements' notes, related-party-transaction schedule and contingent-liabilities disclosure sit in the FY26 annual report, which did not convert to readable text in this dataset (&sect;coverage note) &mdash; so this report cannot independently confirm related-party transaction scale or contingent-liability trends beyond what the quarterly results filings themselves disclose.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other call insights worth flagging</h2></div>
+      <p class="sec-dek">Management's own framing of cost-overrun risk, the REIA tendering pipeline, and a tax-regime shift that outlasts the one-off it created.</p>
+
+      <h3>"Cost overrun is very inherent in any hydropower project" &mdash; management's own words</h3>
+      <p>Asked directly whether other under-construction projects might see cost escalations similar to Pakal Dul/Kiru, CFO Saroj Kumar Roy answered candidly rather than defensively: <i>"Cost escalation in hydro projects are very inherent. You cannot rule out. Even though if there is no time overrun, there will be cost overrun... it is not necessary that every project will have their time overrun... [but] cost overrun is very inherent in any hydropower project."</i> He characterised current escalations across the pipeline as "not material," but the admission itself &mdash; volunteered, not extracted &mdash; is a useful baseline expectation for modelling this pipeline: assume some cost drift is structural, not a one-off surprise, and remember the CERC cost-plus framework passes most of it through to the regulated equity base (&sect;01) rather than eating into margins directly, provided the escalation is judged beyond management's control.</p>
+
+      <h3>REIA tendering: a large backlog, only partly converted</h3>
+      <p>As Renewable Energy Implementing Agency, NHPC has awarded roughly 23 GW of renewable capacity to date; management said ~13 GW of PPA/PSA signing is "likely," of which ~7 GW had actually been signed as of the May call &mdash; i.e., a genuine multi-GW backlog still awaiting contractual close, separate from NHPC's own generation pipeline. No tendering had occurred "in recent past" as of the call, suggesting the REIA pipeline itself was not being actively replenished at that point.</p>
+
+      <h3>Weather/monsoon risk explicitly downplayed</h3>
+      <p>Asked about El Ni&ntilde;o-related weaker-monsoon risk, management's response leaned on the asset mix rather than dismissing the risk outright: "most of our power stations are snow-fed... certainly good monsoon will be helping us for better generation but our generation currently also is going fairly well" &mdash; a reasonable point (snow-fed hydrology is less monsoon-dependent than run-of-river schemes on purely rain-fed rivers) but not a guarantee, and PAF has already missed its normative level in FY26 for reasons unrelated to monsoon (&sect;03).</p>
+
+      <h3>The tax-regime shift is structural, not one-off</h3>
+      <p>Beyond the Q4FY26 one-off DTL adjustment flagged in &sect;04, NHPC confirmed (Q1FY27 results notes) it has elected into the Section 200(5) option under the Income Tax Act 2025 from FY27 onward &mdash; the same lower-rate regime that produced the FY26 restatement. This should mean a structurally lower effective tax rate on ongoing operations from FY27, a genuine (if modest, and already partly reflected in consensus forward estimates &mdash; &sect;10) tailwind distinct from the one-off credit itself.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">A "buy" consensus, but the recommendation mix is more mixed than that single label suggests, and the mean target implies limited upside from current levels.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Consensus recommendation</div><div class="v">Buy</div><div class="d">6 analysts on record (yfinance)</div></div>
+        <div class="stat"><div class="k">Mean price target</div><div class="v">&#8377;90.67</div><div class="d">+14.4% vs CMP &#8377;79.25; range &#8377;72&ndash;&#8377;117</div></div>
+        <div class="stat"><div class="k">Median price target</div><div class="v">&#8377;87.00</div></div>
+      </div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Recommendation mix</th><th>Strong Buy</th><th>Buy</th><th>Hold</th><th>Sell</th><th>Strong Sell</th></tr></thead>
+          <tbody>
+            <tr><td>Current (0m)</td><td>1</td><td>3</td><td>0</td><td>1</td><td>1</td></tr>
+            <tr><td>1 month ago</td><td>1</td><td>3</td><td>1</td><td>1</td><td>1</td></tr>
+            <tr><td>2 months ago</td><td>1</td><td>3</td><td>1</td><td>1</td><td>1</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/overview.md analyst recommendations trend (yfinance). Note two of six analysts sit at Sell/Strong Sell throughout &mdash; a genuinely split view, not a unanimous buy call, despite the aggregate "buy" recommendationKey.</caption>
+      </div>
+      <p>With a mean target of &#8377;90.67 against a CMP of &#8377;79.25, the sell-side is pricing roughly 14% upside on average &mdash; but the &#8377;72&ndash;&#8377;117 range is wide (the low end sits <em>below</em> the current price), and two of six analysts are on Sell or Strong Sell even at today's price. No specific analyst commentary, model, or report excerpt was found in this dataset beyond the aggregate ratings/targets table &mdash; this section reflects the yfinance-sourced summary only, not primary sell-side research.</p>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A trailing P/E of 28.6x collapses to a forward 12.4x on consensus estimates &mdash; the market is pricing a large near-term EPS jump from capacity commissioning, which is exactly the part of this story still carrying the most execution risk.</p>
+
+      <h3>Eighteen months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Feb 2025&ndash;Aug 2026 (NSE, via yfinance daily price history, MarketData/raw/price_history.csv). The stock has traded in a comparatively narrow &#8377;72&ndash;&#8377;89 band over the past year &mdash; low beta (0.19 per MarketData) consistent with a regulated-utility profile, not a story stock swinging on newsflow.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">28.6x</div><div class="d">On TTM EPS &#8377;2.77 (excl. regulatory-deferral movements)</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">12.4x</div><div class="d">Implies consensus forward EPS &asymp;&#8377;6.40 &mdash; more than double trailing</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">1.93x</div><div class="d">Book value/share &#8377;41.15</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">26.2x</div><div class="d">Per MarketData; on a shrinking EBITDA base (&sect;04) &mdash; a genuinely rich multiple on that basis</div></div>
+      </div>
+      <p>The trailing-to-forward P/E compression (28.6x &rarr; 12.4x) is the single most important number in this section: the market is pricing consensus forward EPS at roughly &#8377;6.40, more than double the &#8377;2.77 trailing base, presumably reflecting Subansiri Lower's remaining units, Pakal Dul and Kiru reaching commercial operation, Parbati-II/Subansiri Lower tariff orders finally landing (unlocking the &#8377;450 Cr under-recovery in &sect;03), and the lower structural tax rate (&sect;08) all showing up together in FY27&ndash;28. Every one of those is plausible on management's own disclosed timelines &mdash; but &sect;03 already shows several of those same guided timelines running behind schedule, and &sect;04&ndash;06 show the FY26 "growth" leaned heavily on a non-recurring item. A 12.4x forward multiple is not expensive <em>if</em> that EPS materialises; it is a value trap if it doesn't.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built from the disclosed regulated-equity build-out, tariff-order timeline, and this report's own tabulated numbers (&sect;01&ndash;06). These are scenario illustrations only, not point forecasts &mdash; no formal management EPS/revenue guidance exists in this dataset (only capacity/commissioning timelines), and the sell-side range itself spans &#8377;72&ndash;&#8377;117 (&sect;09).</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;60&ndash;68</div>
+          <div class="rng">&minus;24% to &minus;14% from CMP</div>
+          <ul>
+            <li>Parbati-II/Subansiri Lower tariff orders keep slipping past guided dates (already happening &mdash; &sect;03); the &#8377;450 Cr under-recovery stays unbooked through FY27</li>
+            <li>Teesta-VI investigation findings and/or further Himalayan-tunnelling incidents delay the Pakal Dul/Kiru/Kwar/Ratle cluster; PAF stays below the 80% normative level on repeat outages</li>
+            <li>Debt/equity keeps climbing past 1.3x with no equity infusion; interest coverage falls further from 3.6x; a further OFS or bond issuance pressures the float/stock technically</li>
+            <li>FY27 adjusted EPS roughly flat to down versus the &sect;04 adjusted-FY26 base (&asymp;&#8377;2.9); market re-rates to 20&ndash;22x that base and/or 1.4&ndash;1.6x book</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;80&ndash;92</div>
+          <div class="rng">+1% to +16% from CMP</div>
+          <ul>
+            <li>Subansiri Lower's remaining units and Rangit-IV commission roughly on the disclosed FY27 timeline, with modest slippage consistent with the pattern already seen (&sect;03)</li>
+            <li>Tariff orders land during FY27 (later than the May-call guidance implied), partially unlocking the &#8377;450 Cr under-recovery over one to two quarters rather than all at once</li>
+            <li>Regulated equity grows toward the guided &#8377;30,672 Cr (hydro) by end-FY27; debt/equity stabilises rather than continuing to climb as fast as FY26's pace</li>
+            <li>EPS growth materialises but below the ~2.3x implied by the current forward P/E; market holds roughly today's 1.9&ndash;2.1x book / mid-teens forward multiple</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;105&ndash;120</div>
+          <div class="rng">+32% to +51% from CMP</div>
+          <ul>
+            <li>Pakal Dul, Kiru, remaining Subansiri Lower units and the solar pipeline all commission on or ahead of guided FY27 schedules; Parbati-II and Subansiri Lower both receive favourable, prompt CERC tariff orders, booking the full &#8377;450 Cr under-recovery plus interest from COD as management described</li>
+            <li>PAF recovers to the 82% consolidated normative level as the TLDP silt issue and other outages clear; no further Himalayan-tunnelling safety incidents</li>
+            <li>Consensus forward EPS of &asymp;&#8377;6.40 is met or exceeded as the lower 25% tax rate, growing regulated equity base and full-tariff recognition all land together in the same window</li>
+            <li>Market re-rates toward the sell-side target high (&#8377;117) and/or 2.3&ndash;2.6x book value as earnings visibility improves</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: at &#8377;41.15/share book value and 1.93x P/B today, even the base case above assumes the market keeps roughly today's multiple on a modestly growing book &mdash; not that it re-rates meaningfully in either direction absent a clear resolution of the tariff-order and execution-timeline questions in &sect;03 and &sect;07.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuinely large, government-backed, regulated-return capacity build-out with disclosed project costs summing to roughly &#8377;1.3 lakh crore, most of it already substantially progressed (Pakal Dul and Kiru both 80%+ complete, Rangit-IV 96%); a CERC cost-plus tariff framework that passes most uncontrollable cost escalation through to the regulated equity base rather than eating margins; regulated equity guided to grow 67% within a year (&#8377;18,309 Cr &rarr; &#8377;30,672 Cr); a structurally lower 25% tax rate from FY27; management that answers hard questions directly on calls (the candid "cost overrun is very inherent" admission, the volunteered Adjusted-PAT walk-through); a clean, unmodified audit opinion; low beta (0.19) and a comparatively narrow trading range consistent with a defensive utility profile; and a large, still-growing renewable/PSP optionality pipeline (18 GW PSP at DPR/PFR stage, ~13 GW REIA PPA/PSA pipeline).</p>
+        <p style="max-width:none;"><b>What's not good:</b> FY26's headline 25% PAT growth was substantially a one-off deferred-tax restatement by management's own admission &mdash; adjusted PAT likely <em>declined</em> versus FY25; operating cash flow fell 34% and broke a three-year run of clean CFO/PAT conversion in the same year; free cash flow has been negative in three of the last four years and increasingly so (&minus;&#8377;8,279 Cr in FY26); "Other Expenses" more than tripled since FY24, eating most of the operating leverage a capacity ramp should deliver; PAF fell to 74.75% largely because a 510 MW asset (Teesta-V) generated zero revenue for the entire fiscal year; &#8377;450 crore of revenue from the two newest, largest commissioned assets remains unbooked with tariff orders already running behind management's own guided timeline; debt is up 26% YoY funding a pipeline several multiples the size of current net worth, with interest coverage already falling (5.89x &rarr; 3.61x YoY); the dividend was cut despite higher reported profit; a fatal tunnel explosion (10 dead) just hit an active project site central to the growth thesis; and the government sold up to 6% of its own stake the same quarter, an overhang independent of operating results.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> competently and candidly on execution detail &mdash; the project-by-project cost/progress/timeline disclosure on the call is unusually granular for a PSU, and the Adjusted-PAT explanation was volunteered rather than extracted under pressure. Less reassuringly on framing: the "12% revenue growth, 25% PAT growth" headlines in the opening remarks were delivered without foregrounding the one-off tax item's scale, and several specific near-term commitments given on the May call (Parbati-II tariff order "by end of this quarter," AP solar "by June") had not visibly landed as of this report's date. No Q1FY27 call transcript exists in this dataset to check whether management addressed the Teesta-VI incident, the OFS, or the tariff-order slippage directly with analysts.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: moderate, roughly 40&ndash;50%.</b> The capacity-build thesis is real and substantially de-risked on an execution basis (most flagship projects are 70&ndash;96% physically complete), and the regulated-tariff framework means growing installed capacity should eventually show up in earnings almost mechanically. But this report's own tabulated numbers show FY26's reported growth leaned more on a tax one-off than on operating momentum, cash conversion deteriorated in the same year, and several of management's own near-term commitments have already run behind schedule &mdash; a pattern investors should expect to continue given the company's own acknowledgment that cost and time overrun are "very inherent" to hydropower construction. The market's forward P/E of 12.4x already prices a large EPS step-up; the stock's risk/reward from here depends less on whether the capacity gets built (it substantially will) than on whether the CERC tariff orders and execution timelines land inside FY27 as guided, or slip again as they already have once.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether CERC issues final/interim tariff orders on Parbati-II and Subansiri Lower within FY27 &mdash; a clean, prompt order booking the &#8377;450 Cr under-recovery plus COD-dated interest would be the single biggest near-term positive catalyst this report identified; (2) whether operating cash flow recovers back above 1x PAT conversion in FY27, or stays depressed for a second consecutive year (which would confirm rather than merely suggest a genuine earnings-quality issue); (3) PAF trend &mdash; a return toward the 80&ndash;82% normative level as Teesta-V's first full year and the TLDP silt issue clear would materially de-risk the operating story; (4) any update on the Teesta-VI tunnel-explosion investigation and its impact on that project's Sept-2029 completion target, plus whether similar incidents recur elsewhere in the tunnelling-heavy pipeline; (5) debt/equity and interest-coverage trend &mdash; continued deterioration past Q1FY27's 1.32x/3.61x would tighten financing headroom for the remaining &#8377;1+ lakh crore of pipeline capex still to be spent; (6) whether a Q1FY27 (or later) earnings call transcript becomes available to check management's own explanation of the OFS, the tunnel incident, and the tariff-order slippage against this report's independent read.</div>
+      </div>
+
+      <footer>
+        Compiled from NHPC Limited's BSE filings (Announcements/AnnouncementsConv, 15&nbsp;May&ndash;21&nbsp;Aug 2026 &mdash; financial-results filings for Q4/FY26 and Q1FY27, the Q4FY26 earnings-call transcript, board-outcome and dividend letters, project/management-change filings, and press releases), MarketData (Yahoo Finance via yfinance, fetched 3&nbsp;Aug&nbsp;2026, including the full daily price-history series), and the tracked News feed (31&nbsp;Jul&ndash;5&nbsp;Aug 2026). The FY2025-26 annual report (filed 5 Aug 2026) did not convert to readable text in this pipeline and could not be reviewed; Q2 FY26 quarterly figures and any Q1FY27 earnings-call transcript were unavailable in this dataset. Every figure is tagged to its source; where a claim rests on a filing that did not convert to readable text, or on a period this dataset does not cover, that is stated explicitly in the relevant section rather than estimated. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q3FY25','Q4FY25','Q1FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [2286.76, 2346.97, 3213.77, 2220.73, 2815.53, 3808.31];
+    var ebitda  = [1346.42, 1204.89, 2031.12, 484.66, 1501.73, 2352.19];
+    var pat     = [231.23, 853.64, 1065.02, 219.12, 1460.16, 1095.87];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT (owners)', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q2 FY26 (Sep-25) omitted — absent from both the yfinance quarterly file and the Announcements window (see coverage note). Q1FY27 EBITDA is News-sourced, not on an identical basis to the other quarters — see §03 table caption.</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Feb 25', 71.18], ['Mar 25', 80.26], ['Apr 25', 83.76], ['May 25', 85.34],
+      ['Jun 25', 83.78], ['Jul 25', 81.28], ['Aug 25', 75.86], ['Sep 25', 84.79],
+      ['Oct 25', 83.33], ['Nov 25', 75.38], ['Dec 25', 77.81], ['Jan 26', 76.81],
+      ['Feb 26', 75.33], ['Mar 26', 73.72], ['Apr 26', 83.20], ['May 26', 78.87],
+      ['Jun 26', 81.33], ['Jul 26', 78.73], ['Aug 26', 79.25]
+    ];
+    var W = 900, H = 220, padL = 48, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="NHPC Limited monthly closing share price, February 2025 to August 2026" style="width:100%;height:auto;font-size:10.5px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 2.6;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i % 2 === 0 || i === points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily NSE price history via yfinance (MarketData/raw/price_history.csv). 52-week range per MarketData snapshot: ₹71.62 – ₹89.22.</div></div>';
+  })();
+})();
+</script>

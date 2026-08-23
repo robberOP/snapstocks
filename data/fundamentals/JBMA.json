@@ -1,7 +1,7 @@
 {
   "symbol": "JBMA",
   "name": "JBM Auto",
-  "generatedAt": "2026-08-18T16:38:10.917843+00:00",
+  "generatedAt": "2026-08-23T11:02:02.922123+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 662.6,
-    "change": 4.25,
-    "changePercent": 0.64555335,
-    "previousClose": 658.35,
-    "dayLow": 660.0,
-    "dayHigh": 670.95,
+    "current": 618.65,
+    "change": -1.1999512,
+    "changePercent": -0.19358735,
+    "previousClose": 619.85,
+    "dayLow": 614.1,
+    "dayHigh": 621.15,
     "fiftyTwoWeekLow": 477.0,
     "fiftyTwoWeekHigh": 790.0,
-    "asOf": 1785751202
+    "asOf": 1787133597
   },
   "stats": {
-    "marketCap": 156701097984.0,
-    "trailingPE": 69.894516,
-    "forwardPE": 33.430878,
-    "priceToBook": 13.724677,
+    "marketCap": 146307186688.0,
+    "trailingPE": 65.258446,
+    "forwardPE": 31.213423,
+    "priceToBook": 12.814326,
     "bookValue": 48.278,
-    "dividendYield": 0.13,
+    "dividendYield": 0.14,
     "trailingEps": 9.48,
     "debtToEquity": 1.9028200000000002,
     "roe": 14.222470697601853,
     "roce": 22.49124175615761,
-    "return1y": 2.5242639593908627,
+    "return1y": 2.30404208684643,
     "sharesOutstanding": 236494264.0
   },
   "quarterly": {
@@ -366,6 +366,6 @@
   },
   "holders": {
     "insidersPercent": 0.83002,
-    "institutionsPercent": 0.0152199995
+    "institutionsPercent": 0.015520001
   }
 }

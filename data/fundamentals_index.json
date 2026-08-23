@@ -148,12 +148,12 @@
     "name": "ACME Solar Hold.",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 371.1,
-    "marketCap": 262104760320.0,
-    "peTTM": 38.336777,
+    "price": 401.6,
+    "marketCap": 283646656512.0,
+    "peTTM": 40.97959,
     "roe": 9.857093238699653,
-    "return1y": 29.575131797318498,
-    "sectorMedianPE": 28.740865
+    "return1y": 41.53310268666656,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "ACE",
@@ -184,12 +184,12 @@
     "name": "Adani Energy Sol",
     "sector": "Power",
     "industry": "Power Distribution",
-    "price": 1647.0,
-    "marketCap": 1978512572416.0,
-    "peTTM": 67.6386,
+    "price": 1541.9,
+    "marketCap": 1885673619456.0,
+    "peTTM": 63.426575,
     "roe": 8.976645007735709,
-    "return1y": 99.1656056215965,
-    "sectorMedianPE": 28.740865
+    "return1y": 89.1297709923664,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "ADANIENT",
@@ -208,12 +208,12 @@
     "name": "Adani Green",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 1395.0,
-    "marketCap": 2297810911232.0,
-    "peTTM": 134.52266,
+    "price": 1320.0,
+    "marketCap": 2174272536576.0,
+    "peTTM": 126.558,
     "roe": 8.274480340596044,
-    "return1y": 37.35723055676252,
-    "sectorMedianPE": 28.740865
+    "return1y": 35.607146793999014,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "ADANIPORTS",
@@ -232,12 +232,12 @@
     "name": "Adani Power",
     "sector": "Power",
     "industry": "Integrated Power Utilities",
-    "price": 213.65,
-    "marketCap": 4120174919680.0,
-    "peTTM": 28.87162,
+    "price": 205.5,
+    "marketCap": 3963004911616.0,
+    "peTTM": 27.77027,
     "roe": 19.764269549137563,
-    "return1y": 80.28013673553723,
-    "sectorMedianPE": 28.740865
+    "return1y": 69.55445971484446,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "ATGL",
@@ -256,11 +256,11 @@
     "name": "Aditya AMC",
     "sector": "Capital Markets",
     "industry": "Asset Management Company",
-    "price": 1017.8,
-    "marketCap": 294412648448.0,
-    "peTTM": 29.238724,
+    "price": 1013.3,
+    "marketCap": 293110939648.0,
+    "peTTM": 29.159712,
     "roe": 24.12548309358036,
-    "return1y": 19.343973090479682,
+    "return1y": 22.92986863046626,
     "sectorMedianPE": 38.145565
   },
   {
@@ -352,12 +352,12 @@
     "name": "Aequs",
     "sector": "Aerospace & Defense",
     "industry": "Aerospace & Defense",
-    "price": 249.58,
-    "marketCap": 163438493696.0,
+    "price": 259.22,
+    "marketCap": 169751298048.0,
     "peTTM": null,
     "roe": -7.618643982280346,
     "return1y": null,
-    "sectorMedianPE": 87.72354
+    "sectorMedianPE": 95.23476
   },
   {
     "symbol": "AETHER",
@@ -393,7 +393,7 @@
     "peTTM": 51.406494,
     "roe": 12.45412028268888,
     "return1y": -16.238542381866356,
-    "sectorMedianPE": 36.59246
+    "sectorMedianPE": 35.068907499999995
   },
   {
     "symbol": "AHLUCONT",
@@ -484,11 +484,11 @@
     "name": "Alkyl Amines",
     "sector": "Chemicals & Petrochemicals",
     "industry": "Specialty Chemicals",
-    "price": 1824.4,
-    "marketCap": 93311082496.0,
-    "peTTM": 51.859013,
+    "price": 1956.1,
+    "marketCap": 100047036416.0,
+    "peTTM": 44.507393,
     "roe": 11.7388032778033,
-    "return1y": -16.85781239169475,
+    "return1y": -5.120244161690687,
     "sectorMedianPE": 40.6359805
   },
   {
@@ -520,12 +520,12 @@
     "name": "Amara Raja Ener.",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 932.3,
-    "marketCap": 170634543104.0,
-    "peTTM": 19.0343,
+    "price": 935.8,
+    "marketCap": 171275124736.0,
+    "peTTM": 18.563776,
     "roe": 11.060308977942848,
-    "return1y": -4.502793555946704,
-    "sectorMedianPE": 41.24889
+    "return1y": 0.13880422458093106,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "AMBER",
@@ -652,12 +652,12 @@
     "name": "Apollo Micro Sys",
     "sector": "Aerospace & Defense",
     "industry": "Aerospace & Defense",
-    "price": 397.35,
-    "marketCap": 147655065600.0,
-    "peTTM": 125.74367,
+    "price": 384.55,
+    "marketCap": 142898593792.0,
+    "peTTM": 114.791046,
     "roe": 8.599537733370397,
-    "return1y": 123.70269817063742,
-    "sectorMedianPE": 87.72354
+    "return1y": 93.75038343587761,
+    "sectorMedianPE": 95.23476
   },
   {
     "symbol": "APOLLOTYRE",
@@ -669,7 +669,7 @@
     "peTTM": 20.156971,
     "roe": 8.210602981112903,
     "return1y": -3.0147930734986947,
-    "sectorMedianPE": 41.24889
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "APTUS",
@@ -724,12 +724,12 @@
     "name": "Asahi India Glas",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 897.05,
-    "marketCap": 228682448896.0,
-    "peTTM": 64.76895,
+    "price": 957.05,
+    "marketCap": 243978076160.0,
+    "peTTM": 55.225044,
     "roe": 8.766330373923283,
-    "return1y": 8.10070504327664,
-    "sectorMedianPE": 41.24889
+    "return1y": 14.614603515061658,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "ASHAPURMIN",
@@ -748,11 +748,11 @@
     "name": "Ashok Leyland",
     "sector": "Agricultural, Commercial & Construction Vehicles",
     "industry": "Commercial Vehicles",
-    "price": 174.55,
-    "marketCap": 1025281294336.0,
-    "peTTM": 29.484797,
+    "price": 173.1,
+    "marketCap": 1016764235776.0,
+    "peTTM": 29.190557,
     "roe": 24.372318172913467,
-    "return1y": 44.95671279140958,
+    "return1y": 50.81830726677888,
     "sectorMedianPE": 40.345116
   },
   {
@@ -784,12 +784,12 @@
     "name": "ASK Automotive",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 569.65,
-    "marketCap": 112302284800.0,
-    "peTTM": 37.725166,
+    "price": 646.35,
+    "marketCap": 127423111168.0,
+    "peTTM": 40.34644,
     "roe": 22.677141331706203,
-    "return1y": 13.326484633561272,
-    "sectorMedianPE": 41.24889
+    "return1y": 35.7849110595073,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "ASTERDM",
@@ -808,12 +808,12 @@
     "name": "Astra Microwave",
     "sector": "Aerospace & Defense",
     "industry": "Aerospace & Defense",
-    "price": 1707.1,
-    "marketCap": 162080620544.0,
-    "peTTM": 87.72354,
+    "price": 1662.2,
+    "marketCap": 157817585664.0,
+    "peTTM": 84.03437,
     "roe": 14.679372254618084,
-    "return1y": 74.25562734920686,
-    "sectorMedianPE": 87.72354
+    "return1y": 64.96764461247226,
+    "sectorMedianPE": 95.23476
   },
   {
     "symbol": "ASTRAL",
@@ -832,12 +832,12 @@
     "name": "Ather Energy",
     "sector": "Automobiles",
     "industry": "2/3 Wheelers",
-    "price": 1272.7,
-    "marketCap": 501603270656.0,
+    "price": 1438.2,
+    "marketCap": 575221727232.0,
     "peTTM": null,
     "roe": -20.10277420383032,
-    "return1y": 269.1660482006889,
-    "sectorMedianPE": 31.065447
+    "return1y": 255.51784919386367,
+    "sectorMedianPE": 30.027857
   },
   {
     "symbol": "ATLANTAELE",
@@ -868,11 +868,11 @@
     "name": "AU Small Finance",
     "sector": "Banks",
     "industry": "Other Bank",
-    "price": 1060.0,
-    "marketCap": 793582174208.0,
-    "peTTM": 28.11671,
+    "price": 1075.0,
+    "marketCap": 805179490304.0,
+    "peTTM": 28.46928,
     "roe": 13.223778460303595,
-    "return1y": 43.392038313088655,
+    "return1y": 43.35784463147549,
     "sectorMedianPE": 11.580234
   },
   {
@@ -928,11 +928,11 @@
     "name": "Avanti Feeds",
     "sector": "Food Products",
     "industry": "Animal Feed",
-    "price": 907.3,
-    "marketCap": 123615657984.0,
-    "peTTM": 20.416292,
+    "price": 866.15,
+    "marketCap": 118009159680.0,
+    "peTTM": 22.277521,
     "roe": 18.443512303025127,
-    "return1y": 32.71059450856148,
+    "return1y": 38.4178953901065,
     "sectorMedianPE": 36.5135125
   },
   {
@@ -988,11 +988,11 @@
     "name": "Axis Bank",
     "sector": "Banks",
     "industry": "Private Sector Bank",
-    "price": 1272.0,
-    "marketCap": 3957655339008.0,
-    "peTTM": 14.309821,
+    "price": 1235.0,
+    "marketCap": 3844438228992.0,
+    "peTTM": 13.896703,
     "roe": 12.270005838574912,
-    "return1y": 19.618587915705834,
+    "return1y": 15.7042297817348,
     "sectorMedianPE": 11.580234
   },
   {
@@ -1000,12 +1000,12 @@
     "name": "AXISCADES Tech.",
     "sector": "Aerospace & Defense",
     "industry": "Aerospace & Defense",
-    "price": 1572.9,
-    "marketCap": 66900922368.0,
-    "peTTM": 93.73659,
+    "price": 1597.5,
+    "marketCap": 67947245568.0,
+    "peTTM": 107.503365,
     "roe": 9.88505993586096,
-    "return1y": 27.082498704537755,
-    "sectorMedianPE": 87.72354
+    "return1y": 34.53764250917095,
+    "sectorMedianPE": 95.23476
   },
   {
     "symbol": "AZAD",
@@ -1048,12 +1048,12 @@
     "name": "Bajaj Auto",
     "sector": "Automobiles",
     "industry": "2/3 Wheelers",
-    "price": 11856.0,
-    "marketCap": 3255393583104.0,
-    "peTTM": 28.195005,
+    "price": 11645.0,
+    "marketCap": 3200090636288.0,
+    "peTTM": 27.714972,
     "roe": 27.668450676877494,
-    "return1y": 47.92806120145711,
-    "sectorMedianPE": 31.065447
+    "return1y": 42.69684019341972,
+    "sectorMedianPE": 30.027857
   },
   {
     "symbol": "BAJAJELEC",
@@ -1137,7 +1137,7 @@
     "peTTM": 34.271175,
     "roe": 11.347029608527022,
     "return1y": -6.824836679577984,
-    "sectorMedianPE": 41.24889
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "BALRAMCHIN",
@@ -1168,23 +1168,23 @@
     "name": "Banco Products",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 657.75,
-    "marketCap": 94082785280.0,
-    "peTTM": 20.439714,
+    "price": 622.75,
+    "marketCap": 89076473856.0,
+    "peTTM": 18.836962,
     "roe": 28.597891137076093,
-    "return1y": 12.120556032467862,
-    "sectorMedianPE": 41.24889
+    "return1y": 17.768438456105553,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "BANDHANBNK",
     "name": "Bandhan Bank",
     "sector": "Banks",
     "industry": "Private Sector Bank",
-    "price": 173.65,
-    "marketCap": 279763681280.0,
-    "peTTM": 20.697258,
+    "price": 169.2,
+    "marketCap": 272600072192.0,
+    "peTTM": 20.166864,
     "roe": 4.784233167329015,
-    "return1y": 1.035701691491617,
+    "return1y": 4.459919442380069,
     "sectorMedianPE": 11.580234
   },
   {
@@ -1192,11 +1192,11 @@
     "name": "Bank of Baroda",
     "sector": "Banks",
     "industry": "Public Sector Bank",
-    "price": 247.25,
-    "marketCap": 1278619287552.0,
-    "peTTM": 7.0381436,
+    "price": 245.0,
+    "marketCap": 1266983763968.0,
+    "peTTM": 6.978069,
     "roe": 11.965185884423564,
-    "return1y": 5.360795488903867,
+    "return1y": 4.182673175747852,
     "sectorMedianPE": 11.580234
   },
   {
@@ -1204,11 +1204,11 @@
     "name": "Bank of India",
     "sector": "Banks",
     "industry": "Public Sector Bank",
-    "price": 140.5,
-    "marketCap": 639649775616.0,
-    "peTTM": 5.201777,
+    "price": 141.7,
+    "marketCap": 645112987648.0,
+    "peTTM": 5.246205,
     "roe": 11.456720597440874,
-    "return1y": 29.347925641934776,
+    "return1y": 29.277107251284683,
     "sectorMedianPE": 11.580234
   },
   {
@@ -1252,23 +1252,23 @@
     "name": "Belrise Industri",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 241.86,
-    "marketCap": 233915367424.0,
-    "peTTM": 41.5567,
+    "price": 233.01,
+    "marketCap": 225356070912.0,
+    "peTTM": 41.02289,
     "roe": 9.506944225200119,
-    "return1y": 84.21930908593475,
-    "sectorMedianPE": 41.24889
+    "return1y": 73.8895604838581,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "BEML",
     "name": "BEML Ltd",
     "sector": "Agricultural, Commercial & Construction Vehicles",
     "industry": "Construction Vehicles",
-    "price": 1743.7,
-    "marketCap": 145231020032.0,
-    "peTTM": 102.6914,
+    "price": 1965.5,
+    "marketCap": 163704537088.0,
+    "peTTM": 91.93172,
     "roe": 4.818307934051626,
-    "return1y": -13.91419376612106,
+    "return1y": -3.29718799041703,
     "sectorMedianPE": 40.345116
   },
   {
@@ -1288,36 +1288,36 @@
     "name": "Bharat Dynamics",
     "sector": "Aerospace & Defense",
     "industry": "Aerospace & Defense",
-    "price": 1380.0,
-    "marketCap": 505856229376.0,
-    "peTTM": 98.01137,
+    "price": 1359.0,
+    "marketCap": 498158436352.0,
+    "peTTM": 95.23476,
     "roe": 9.91135682118708,
-    "return1y": -6.7649620085463145,
-    "sectorMedianPE": 87.72354
+    "return1y": -11.923734780579268,
+    "sectorMedianPE": 95.23476
   },
   {
     "symbol": "BEL",
     "name": "Bharat Electron",
     "sector": "Aerospace & Defense",
     "industry": "Aerospace & Defense",
-    "price": 404.35,
-    "marketCap": 2955709251584.0,
-    "peTTM": 48.25179,
+    "price": 414.0,
+    "marketCap": 3026248531968.0,
+    "peTTM": 49.285717,
     "roe": 25.270642241992036,
-    "return1y": 5.266636465806583,
-    "sectorMedianPE": 87.72354
+    "return1y": 9.545291760454623,
+    "sectorMedianPE": 95.23476
   },
   {
     "symbol": "BHARATFORG",
     "name": "Bharat Forge",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 2211.0,
-    "marketCap": 1057053999104.0,
-    "peTTM": 97.572815,
+    "price": 2063.0,
+    "marketCap": 986296877056.0,
+    "peTTM": 138.92256,
     "roe": 11.270136035674918,
-    "return1y": 86.81058816443158,
-    "sectorMedianPE": 41.24889
+    "return1y": 74.89448437673342,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "BHARTIARTL",
@@ -1413,7 +1413,7 @@
     "peTTM": 59.393227,
     "roe": 16.902502894530308,
     "return1y": 50.33497703726793,
-    "sectorMedianPE": 36.59246
+    "sectorMedianPE": 35.068907499999995
   },
   {
     "symbol": "BLACKBUCK",
@@ -1504,12 +1504,12 @@
     "name": "Bosch",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 41300.0,
-    "marketCap": 1218188935168.0,
-    "peTTM": 43.896477,
+    "price": 48460.0,
+    "marketCap": 1429381054464.0,
+    "peTTM": 60.637913,
     "roe": 18.680785708511845,
-    "return1y": 9.482278715902764,
-    "sectorMedianPE": 41.24889
+    "return1y": 27.041363028947785,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "FIRSTCRY",
@@ -1636,11 +1636,11 @@
     "name": "Canara Bank",
     "sector": "Banks",
     "industry": "Public Sector Bank",
-    "price": 127.1,
-    "marketCap": 1152879820800.0,
-    "peTTM": 5.803653,
+    "price": 129.08,
+    "marketCap": 1170839699456.0,
+    "peTTM": 5.894064,
     "roe": 16.741828570199637,
-    "return1y": 19.259465643461308,
+    "return1y": 22.03739606413862,
     "sectorMedianPE": 11.580234
   },
   {
@@ -1660,9 +1660,9 @@
     "name": "Canara Robeco",
     "sector": "Capital Markets",
     "industry": "Asset Management Company",
-    "price": 261.2,
-    "marketCap": 52087832576.0,
-    "peTTM": 23.853884,
+    "price": 254.4,
+    "marketCap": 50731790336.0,
+    "peTTM": 23.232876,
     "roe": 27.32612644598535,
     "return1y": null,
     "sectorMedianPE": 38.145565
@@ -1708,11 +1708,11 @@
     "name": "Carborundum Uni.",
     "sector": "Industrial Products",
     "industry": "Abrasives & Bearings",
-    "price": 1122.7,
-    "marketCap": 213880373248.0,
-    "peTTM": 101.50994,
+    "price": 1087.2,
+    "marketCap": 207117434880.0,
+    "peTTM": 98.56754,
     "roe": 4.993150969454503,
-    "return1y": 32.76491428747953,
+    "return1y": 29.129446356648042,
     "sectorMedianPE": 35.0527515
   },
   {
@@ -1761,7 +1761,7 @@
     "peTTM": 24.245432,
     "roe": 13.833107742553027,
     "return1y": 7.743387703718159,
-    "sectorMedianPE": 41.24889
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "CELLO",
@@ -1792,11 +1792,11 @@
     "name": "Central Bank",
     "sector": "Banks",
     "industry": "Public Sector Bank",
-    "price": 31.46,
-    "marketCap": 284757065728.0,
-    "peTTM": 6.2420635,
+    "price": 30.91,
+    "marketCap": 279778820096.0,
+    "peTTM": 6.1329365,
     "roe": 11.599115850457489,
-    "return1y": -12.382246096773313,
+    "return1y": -11.42204439667056,
     "sectorMedianPE": 11.580234
   },
   {
@@ -1828,12 +1828,12 @@
     "name": "CESC",
     "sector": "Power",
     "industry": "Integrated Power Utilities",
-    "price": 165.98,
-    "marketCap": 220018180096.0,
-    "peTTM": 14.283993,
-    "roe": 12.306464485235436,
-    "return1y": -3.0929948367234164,
-    "sectorMedianPE": 28.740865
+    "price": 155.09,
+    "marketCap": 205582712832.0,
+    "peTTM": 13.33534,
+    "roe": 12.306050753610835,
+    "return1y": 0.9757934748474457,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "CGPOWER",
@@ -1912,12 +1912,12 @@
     "name": "CIE Automotive",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 419.65,
-    "marketCap": 159199412224.0,
-    "peTTM": 17.766722,
+    "price": 406.65,
+    "marketCap": 154267697152.0,
+    "peTTM": 17.201777,
     "roe": 11.10278277425853,
-    "return1y": 2.92145762344992,
-    "sectorMedianPE": 41.24889
+    "return1y": 4.603609118845074,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "CIGNITITEC",
@@ -1948,11 +1948,11 @@
     "name": "City Union Bank",
     "sector": "Banks",
     "industry": "Private Sector Bank",
-    "price": 204.65,
-    "marketCap": 202764615680.0,
-    "peTTM": 14.462897,
+    "price": 221.03,
+    "marketCap": 218993704960.0,
+    "peTTM": 15.620495,
     "roe": 12.55322454151607,
-    "return1y": 36.06320534524159,
+    "return1y": 40.76643316413024,
     "sectorMedianPE": 11.580234
   },
   {
@@ -1996,11 +1996,11 @@
     "name": "Cochin Shipyard",
     "sector": "Industrial Manufacturing",
     "industry": "Ship Building & Allied Services",
-    "price": 1441.9,
-    "marketCap": 379336196096.0,
-    "peTTM": 53.050037,
+    "price": 1480.5,
+    "marketCap": 389491097600.0,
+    "peTTM": 57.140102,
     "roe": 12.204480375929725,
-    "return1y": -17.83700836032383,
+    "return1y": -12.766774797236302,
     "sectorMedianPE": 66.27890500000001
   },
   {
@@ -2092,12 +2092,12 @@
     "name": "Craftsman Auto",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 10338.5,
-    "marketCap": 270397587456.0,
-    "peTTM": 53.151512,
+    "price": 10779.0,
+    "marketCap": 281918636032.0,
+    "peTTM": 55.604847,
     "roe": 11.764183256435237,
-    "return1y": 64.91860291674992,
-    "sectorMedianPE": 41.24889
+    "return1y": 58.970545564464885,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "CREDITACC",
@@ -2152,11 +2152,11 @@
     "name": "CSB Bank",
     "sector": "Banks",
     "industry": "Private Sector Bank",
-    "price": 332.8,
-    "marketCap": 56402137088.0,
-    "peTTM": 8.689295,
+    "price": 314.6,
+    "marketCap": 53317648384.0,
+    "peTTM": 8.209812,
     "roe": 12.937119375068882,
-    "return1y": -21.08134262287323,
+    "return1y": -17.566863885818773,
     "sectorMedianPE": 11.580234
   },
   {
@@ -2193,7 +2193,7 @@
     "peTTM": 25.192194,
     "roe": 7.530931554585614,
     "return1y": -29.402916534086287,
-    "sectorMedianPE": 36.59246
+    "sectorMedianPE": 35.068907499999995
   },
   {
     "symbol": "DABUR",
@@ -2224,12 +2224,12 @@
     "name": "Data Pattern",
     "sector": "Aerospace & Defense",
     "industry": "Aerospace & Defense",
-    "price": 4428.8,
-    "marketCap": 247941791744.0,
-    "peTTM": 92.36287,
+    "price": 4829.9,
+    "marketCap": 270396964864.0,
+    "peTTM": 101.00167,
     "roe": 15.632182583800411,
-    "return1y": 72.25549516288928,
-    "sectorMedianPE": 87.72354
+    "return1y": 90.49304122038674,
+    "sectorMedianPE": 95.23476
   },
   {
     "symbol": "DATAMATICS",
@@ -2241,7 +2241,7 @@
     "peTTM": 25.097355,
     "roe": 12.578938164295014,
     "return1y": -11.60305109862271,
-    "sectorMedianPE": 36.59246
+    "sectorMedianPE": 35.068907499999995
   },
   {
     "symbol": "DCBBANK",
@@ -2464,12 +2464,12 @@
     "name": "Eicher Motors",
     "sector": "Automobiles",
     "industry": "2/3 Wheelers",
-    "price": 8050.0,
-    "marketCap": 2209899610112.0,
-    "peTTM": 38.344288,
+    "price": 7990.5,
+    "marketCap": 2193565548544.0,
+    "peTTM": 38.03551,
     "roe": 21.972896576315282,
-    "return1y": 50.62192848948399,
-    "sectorMedianPE": 31.065447
+    "return1y": 41.787881223735674,
+    "sectorMedianPE": 30.027857
   },
   {
     "symbol": "EIDPARRY",
@@ -2608,12 +2608,12 @@
     "name": "Endurance Tech.",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 2787.6,
-    "marketCap": 392111783936.0,
-    "peTTM": 41.24889,
+    "price": 2988.6,
+    "marketCap": 420384997376.0,
+    "peTTM": 43.42633,
     "roe": 13.912221049523302,
-    "return1y": 9.743467900159867,
-    "sectorMedianPE": 41.24889
+    "return1y": 19.71593632558045,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "ENGINERSIN",
@@ -2668,11 +2668,11 @@
     "name": "Equitas Sma. Fin",
     "sector": "Banks",
     "industry": "Other Bank",
-    "price": 76.26,
-    "marketCap": 87233536000.0,
-    "peTTM": 17.098656,
+    "price": 74.5,
+    "marketCap": 85220278272.0,
+    "peTTM": 16.445915,
     "roe": 1.6830304880495837,
-    "return1y": 28.017462694156052,
+    "return1y": 40.725353102698584,
     "sectorMedianPE": 11.580234
   },
   {
@@ -2740,12 +2740,12 @@
     "name": "Exide Inds.",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 444.7,
-    "marketCap": 377995001856.0,
-    "peTTM": 40.50091,
+    "price": 459.5,
+    "marketCap": 390574997504.0,
+    "peTTM": 41.848816,
     "roe": 6.143108339895792,
-    "return1y": 14.074819569201875,
-    "sectorMedianPE": 41.24889
+    "return1y": 24.428936330253183,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "FACT",
@@ -2764,11 +2764,11 @@
     "name": "Fedbank Financi.",
     "sector": "Finance",
     "industry": "Non Banking Financial Company (NBFC)",
-    "price": 150.37,
-    "marketCap": 56382844928.0,
-    "peTTM": 14.829388,
+    "price": 149.8,
+    "marketCap": 56169119744.0,
+    "peTTM": 14.773175,
     "roe": 11.742592529305218,
-    "return1y": 13.72711672131072,
+    "return1y": 10.823411319815847,
     "sectorMedianPE": 20.0209735
   },
   {
@@ -2788,12 +2788,12 @@
     "name": "Fiem Industries",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 2338.4,
-    "marketCap": 61545889792.0,
-    "peTTM": 24.079908,
+    "price": 2241.0,
+    "marketCap": 58982359040.0,
+    "peTTM": 22.441418,
     "roe": 21.035555715773533,
-    "return1y": 22.34210084970667,
-    "sectorMedianPE": 41.24889
+    "return1y": 21.92589448742596,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "FINCABLES",
@@ -2853,7 +2853,7 @@
     "peTTM": 19.455082,
     "roe": 28.887193486475855,
     "return1y": 3.7087580954287733,
-    "sectorMedianPE": 31.065447
+    "sectorMedianPE": 30.027857
   },
   {
     "symbol": "FORTIS",
@@ -2932,12 +2932,12 @@
     "name": "Gabriel India",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 1527.4,
-    "marketCap": 270701133824.0,
-    "peTTM": 86.14777,
+    "price": 1438.6,
+    "marketCap": 254963089408.0,
+    "peTTM": 81.692215,
     "roe": 18.42300793792854,
-    "return1y": 49.482427800509,
-    "sectorMedianPE": 41.24889
+    "return1y": 33.0962948825489,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "GAIL",
@@ -2968,12 +2968,12 @@
     "name": "Garden Reach Sh.",
     "sector": "Aerospace & Defense",
     "industry": "Aerospace & Defense",
-    "price": 2582.7,
-    "marketCap": 295853457408.0,
-    "peTTM": 42.98053,
-    "roe": 25.364946723414995,
-    "return1y": 4.334068591553949,
-    "sectorMedianPE": 87.72354
+    "price": 2601.5,
+    "marketCap": 298007035904.0,
+    "peTTM": 37.174904,
+    "roe": 28.48061769672732,
+    "return1y": 0.6675336097915132,
+    "sectorMedianPE": 95.23476
   },
   {
     "symbol": "GRWRHITECH",
@@ -3129,7 +3129,7 @@
     "peTTM": 12.411239,
     "roe": 31.533277656093244,
     "return1y": -14.791760013304112,
-    "sectorMedianPE": 28.740865
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "GODIGIT",
@@ -3172,11 +3172,11 @@
     "name": "Godrej Agrovet",
     "sector": "Food Products",
     "industry": "Animal Feed",
-    "price": 565.05,
-    "marketCap": 108692996096.0,
-    "peTTM": 23.016293,
+    "price": 588.7,
+    "marketCap": 113242316800.0,
+    "peTTM": 25.353146,
     "roe": 23.265816306444627,
-    "return1y": -30.769352719872938,
+    "return1y": -22.555138970847946,
     "sectorMedianPE": 36.5135125
   },
   {
@@ -3436,11 +3436,11 @@
     "name": "HDFC AMC",
     "sector": "Capital Markets",
     "industry": "Asset Management Company",
-    "price": 2600.6,
-    "marketCap": 1115102904320.0,
-    "peTTM": 37.948345,
+    "price": 2525.0,
+    "marketCap": 1082686636032.0,
+    "peTTM": 36.791492,
     "roe": 30.969225384696237,
-    "return1y": -5.553774871464903,
+    "return1y": -5.664713543806147,
     "sectorMedianPE": 38.145565
   },
   {
@@ -3520,12 +3520,12 @@
     "name": "Hero Motocorp",
     "sector": "Automobiles",
     "industry": "2/3 Wheelers",
-    "price": 5460.0,
-    "marketCap": 1092507467776.0,
-    "peTTM": 19.05493,
+    "price": 5709.5,
+    "marketCap": 1142706143232.0,
+    "peTTM": 20.964603,
     "roe": 26.568319467831248,
-    "return1y": 30.590523741098608,
-    "sectorMedianPE": 31.065447
+    "return1y": 25.452013466741914,
+    "sectorMedianPE": 30.027857
   },
   {
     "symbol": "HEXT",
@@ -3580,12 +3580,12 @@
     "name": "Hind.Aeronautics",
     "sector": "Aerospace & Defense",
     "industry": "Aerospace & Defense",
-    "price": 4928.0,
-    "marketCap": 3295723126784.0,
-    "peTTM": 36.102566,
+    "price": 5000.0,
+    "marketCap": 3343874785280.0,
+    "peTTM": 35.842293,
     "roe": 22.210894829380877,
-    "return1y": 8.900448537330652,
-    "sectorMedianPE": 87.72354
+    "return1y": 13.838504295458055,
+    "sectorMedianPE": 95.23476
   },
   {
     "symbol": "HCC",
@@ -3688,12 +3688,12 @@
     "name": "Hyundai Motor I",
     "sector": "Automobiles",
     "industry": "Passenger Cars & Utility Vehicles",
-    "price": 2207.0,
-    "marketCap": 1793278214144.0,
-    "peTTM": 36.27548,
+    "price": 2174.5,
+    "marketCap": 1766870614016.0,
+    "peTTM": 35.653385,
     "roe": 27.137222659504978,
-    "return1y": 6.077779582272932,
-    "sectorMedianPE": 31.065447
+    "return1y": -2.0276668724725937,
+    "sectorMedianPE": 30.027857
   },
   {
     "symbol": "IOB",
@@ -3748,9 +3748,9 @@
     "name": "ICICI AMC",
     "sector": "Capital Markets",
     "industry": "Asset Management Company",
-    "price": 3099.1,
-    "marketCap": 1531756675072.0,
-    "peTTM": 44.00881,
+    "price": 3106.0,
+    "marketCap": 1535167037440.0,
+    "peTTM": 44.213524,
     "roe": 79.07277814138479,
     "return1y": null,
     "sectorMedianPE": 38.145565
@@ -3868,11 +3868,11 @@
     "name": "Indegene",
     "sector": "Healthcare Services",
     "industry": "Healthcare Research, Analytics & Technology",
-    "price": 545.25,
-    "marketCap": 131148242944.0,
-    "peTTM": 32.866184,
+    "price": 565.6,
+    "marketCap": 136200978432.0,
+    "peTTM": 34.010822,
     "roe": 12.779176092012618,
-    "return1y": -0.2197240537524204,
+    "return1y": -0.35082708347372593,
     "sectorMedianPE": 65.02205000000001
   },
   {
@@ -4144,12 +4144,12 @@
     "name": "Inventurus Knowl",
     "sector": "IT - Services",
     "industry": "IT Enabled Services",
-    "price": 1846.4,
-    "marketCap": 309730803712.0,
-    "peTTM": 43.60888,
+    "price": 1812.3,
+    "marketCap": 304026845184.0,
+    "peTTM": 40.561775,
     "roe": 25.767604670604666,
-    "return1y": 16.860761038864716,
-    "sectorMedianPE": 36.59246
+    "return1y": 20.569946605306832,
+    "sectorMedianPE": 35.068907499999995
   },
   {
     "symbol": "IONEXCHANG",
@@ -4300,12 +4300,12 @@
     "name": "Jamna Auto Inds.",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 140.86,
-    "marketCap": 56341905408.0,
-    "peTTM": 24.41248,
+    "price": 120.5,
+    "marketCap": 48181444608.0,
+    "peTTM": 20.668955,
     "roe": 20.135860487530678,
-    "return1y": 52.97042368862268,
-    "sectorMedianPE": 41.24889
+    "return1y": 38.811435947213525,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "JSFB",
@@ -4336,12 +4336,12 @@
     "name": "JBM Auto",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 662.6,
-    "marketCap": 156701097984.0,
-    "peTTM": 69.894516,
+    "price": 618.65,
+    "marketCap": 146307186688.0,
+    "peTTM": 65.258446,
     "roe": 14.222470697601853,
-    "return1y": 2.5242639593908627,
-    "sectorMedianPE": 41.24889
+    "return1y": 2.30404208684643,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "JSLL",
@@ -4437,7 +4437,7 @@
     "peTTM": 15.073475,
     "roe": 12.805032982335723,
     "return1y": 21.69977841020182,
-    "sectorMedianPE": 41.24889
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "JMFINANCIL",
@@ -4456,12 +4456,12 @@
     "name": "JP Power Ven.",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 18.76,
-    "marketCap": 128570892288.0,
-    "peTTM": 26.800001,
+    "price": 17.1,
+    "marketCap": 117194153984.0,
+    "peTTM": 24.428572,
     "roe": 3.539280174360384,
-    "return1y": -12.459169567296208,
-    "sectorMedianPE": 28.740865
+    "return1y": -10.751563060271222,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "JSWCEMENT",
@@ -4492,12 +4492,12 @@
     "name": "JSW Energy",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 569.0,
-    "marketCap": 1042620219392.0,
-    "peTTM": 44.592476,
+    "price": 544.95,
+    "marketCap": 998551715840.0,
+    "peTTM": 42.741177,
     "roe": 7.281951357835761,
-    "return1y": 8.791005532735399,
-    "sectorMedianPE": 28.740865
+    "return1y": 2.532047936310307,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "JSWINFRA",
@@ -4780,11 +4780,11 @@
     "name": "Kirl.Pneumatic",
     "sector": "Industrial Products",
     "industry": "Compressors, Pumps & Diesel Engines",
-    "price": 1534.3,
-    "marketCap": 99673030656.0,
-    "peTTM": 37.977722,
+    "price": 736.7,
+    "marketCap": 95716769792.0,
+    "peTTM": 36.434227,
     "roe": 20.509479982255563,
-    "return1y": 17.8128570347964,
+    "return1y": 14.958686147585054,
     "sectorMedianPE": 35.0527515
   },
   {
@@ -4840,12 +4840,12 @@
     "name": "KPI Green Energy",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 380.85,
-    "marketCap": 75283374080.0,
-    "peTTM": 15.848939,
+    "price": 312.6,
+    "marketCap": 61792260096.0,
+    "peTTM": 13.550065,
     "roe": 15.69314170579291,
-    "return1y": -26.99749819887634,
-    "sectorMedianPE": 28.740865
+    "return1y": -41.327159457848516,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "KPITTECH",
@@ -4941,7 +4941,7 @@
     "peTTM": 29.57604,
     "roe": 19.763004619401485,
     "return1y": -15.548246755575299,
-    "sectorMedianPE": 36.59246
+    "sectorMedianPE": 35.068907499999995
   },
   {
     "symbol": "LT",
@@ -4996,11 +4996,11 @@
     "name": "Le Travenues",
     "sector": "Leisure Services",
     "industry": "Tour, Travel Related Services",
-    "price": 199.6,
-    "marketCap": 88032436224.0,
-    "peTTM": 116.04652,
+    "price": 172.26,
+    "marketCap": 75974279168.0,
+    "peTTM": 88.338455,
     "roe": 3.524444103507734,
-    "return1y": -13.727521794195106,
+    "return1y": -31.584374902798213,
     "sectorMedianPE": 38.306702
   },
   {
@@ -5152,12 +5152,12 @@
     "name": "Lumax Auto Tech.",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 1625.7,
-    "marketCap": 110803976192.0,
-    "peTTM": 39.719032,
+    "price": 1987.1,
+    "marketCap": 135436173312.0,
+    "peTTM": 41.789696,
     "roe": 23.041908975400005,
-    "return1y": 57.00490712027585,
-    "sectorMedianPE": 41.24889
+    "return1y": 97.46457612095281,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "LUPIN",
@@ -5176,12 +5176,12 @@
     "name": "M & M",
     "sector": "Automobiles",
     "industry": "Passenger Cars & Utility Vehicles",
-    "price": 3428.6,
-    "marketCap": 4116933509120.0,
-    "peTTM": 20.84382,
+    "price": 3415.0,
+    "marketCap": 4100602986496.0,
+    "peTTM": 20.794008,
     "roe": 18.366831782341627,
-    "return1y": 8.289228566980448,
-    "sectorMedianPE": 31.065447
+    "return1y": 5.679635185012117,
+    "sectorMedianPE": 30.027857
   },
   {
     "symbol": "M&MFIN",
@@ -5308,12 +5308,12 @@
     "name": "Maruti Suzuki",
     "sector": "Automobiles",
     "industry": "Passenger Cars & Utility Vehicles",
-    "price": 14150.0,
-    "marketCap": 4448796016640.0,
-    "peTTM": 31.065447,
+    "price": 13690.0,
+    "marketCap": 4304171171840.0,
+    "peTTM": 30.027857,
     "roe": 13.699147880245958,
-    "return1y": 14.709687021534984,
-    "sectorMedianPE": 31.065447
+    "return1y": 6.891537102645937,
+    "sectorMedianPE": 30.027857
   },
   {
     "symbol": "MASTEK",
@@ -5356,11 +5356,11 @@
     "name": "Mazagon Dock",
     "sector": "Industrial Manufacturing",
     "industry": "Ship Building & Allied Services",
-    "price": 2390.0,
-    "marketCap": 964078206976.0,
-    "peTTM": 35.966892,
-    "roe": 26.48295007216901,
-    "return1y": -11.598498045709352,
+    "price": 2552.0,
+    "marketCap": 1029425790976.0,
+    "peTTM": 38.4627,
+    "roe": 26.481822431439443,
+    "return1y": -6.365359904224401,
     "sectorMedianPE": 66.27890500000001
   },
   {
@@ -5404,24 +5404,24 @@
     "name": "Minda Corp",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 727.6,
-    "marketCap": 171248599040.0,
-    "peTTM": 48.281353,
+    "price": 738.9,
+    "marketCap": 173908180992.0,
+    "peTTM": 35.286533,
     "roe": 13.628626546128533,
-    "return1y": 43.04566482526791,
-    "sectorMedianPE": 41.24889
+    "return1y": 58.73914314989693,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "MIDHANI",
     "name": "Mishra Dhatu Nig",
     "sector": "Aerospace & Defense",
     "industry": "Aerospace & Defense",
-    "price": 403.65,
-    "marketCap": 75619786752.0,
-    "peTTM": 57.582024,
+    "price": 423.95,
+    "marketCap": 79422791680.0,
+    "peTTM": 58.800278,
     "roe": 8.587934623848433,
-    "return1y": 0.19131850163609626,
-    "sectorMedianPE": 87.72354
+    "return1y": 7.07225168063506,
+    "sectorMedianPE": 95.23476
   },
   {
     "symbol": "MMTC",
@@ -5452,12 +5452,12 @@
     "name": "Motherson Wiring",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 41.48,
-    "marketCap": 275081330688.0,
-    "peTTM": 44.12766,
+    "price": 39.26,
+    "marketCap": 260359045120.0,
+    "peTTM": 41.765957,
     "roe": 28.921682009529537,
-    "return1y": 7.958088517083691,
-    "sectorMedianPE": 41.24889
+    "return1y": 8.617164696985471,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "MOTILALOFS",
@@ -5493,7 +5493,7 @@
     "peTTM": 23.369606,
     "roe": 11.566821902342648,
     "return1y": -9.361171804905903,
-    "sectorMedianPE": 41.24889
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "BECTORFOOD",
@@ -5608,12 +5608,12 @@
     "name": "Nava",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 579.9,
-    "marketCap": 164259643392.0,
-    "peTTM": 20.829742,
+    "price": 558.95,
+    "marketCap": 158395809792.0,
+    "peTTM": 20.78654,
     "roe": 8.995341987973353,
-    "return1y": -2.4367898335514737,
-    "sectorMedianPE": 28.740865
+    "return1y": -4.1871624833857295,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "NAVINFLUOR",
@@ -5709,7 +5709,7 @@
     "peTTM": 100.37208,
     "roe": 28.455214863030175,
     "return1y": 132.74313234978894,
-    "sectorMedianPE": 36.59246
+    "sectorMedianPE": 35.068907499999995
   },
   {
     "symbol": "NETWORK18",
@@ -5764,23 +5764,35 @@
     "name": "NHPC Ltd",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 79.25,
-    "marketCap": 796069003264.0,
-    "peTTM": 28.61011,
+    "price": 76.15,
+    "marketCap": 764929376256.0,
+    "peTTM": 27.893774,
     "roe": 9.087828853218294,
-    "return1y": -3.4174334339903827,
-    "sectorMedianPE": 28.740865
+    "return1y": -5.301777420491223,
+    "sectorMedianPE": 27.3883815
+  },
+  {
+    "symbol": "NIBE",
+    "name": "Nibe",
+    "sector": "Industrials",
+    "industry": "Conglomerates",
+    "price": 1503.7,
+    "marketCap": 23238707200.0,
+    "peTTM": 442.21237,
+    "roe": 1.616427653553595,
+    "return1y": 26.006223240435506,
+    "sectorMedianPE": 442.21237
   },
   {
     "symbol": "NAM-INDIA",
     "name": "Nippon Life Ind.",
     "sector": "Capital Markets",
     "industry": "Asset Management Company",
-    "price": 1165.0,
-    "marketCap": 744779677696.0,
-    "peTTM": 46.230156,
+    "price": 1170.6,
+    "marketCap": 748853919744.0,
+    "peTTM": 46.34204,
     "roe": 32.82537120584485,
-    "return1y": 47.35197203738919,
+    "return1y": 53.719410049307136,
     "sectorMedianPE": 38.145565
   },
   {
@@ -5800,12 +5812,12 @@
     "name": "NLC India",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 298.05,
-    "marketCap": 413287055360.0,
-    "peTTM": 11.729633,
+    "price": 269.8,
+    "marketCap": 374114549760.0,
+    "peTTM": 11.255736,
     "roe": 16.36348094008946,
-    "return1y": 26.989267318951754,
-    "sectorMedianPE": 28.740865
+    "return1y": 17.541240969436956,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "NMDC",
@@ -5836,24 +5848,24 @@
     "name": "NTPC",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 350.9,
-    "marketCap": 3402560176128.0,
-    "peTTM": 10.727607,
+    "price": 340.0,
+    "marketCap": 3296866598912.0,
+    "peTTM": 10.394375,
     "roe": 13.31484227417584,
-    "return1y": 7.639153411119018,
-    "sectorMedianPE": 28.740865
+    "return1y": 4.155498810746047,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "NTPCGREEN",
     "name": "NTPC Green Ene.",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 90.7,
-    "marketCap": 764268052480.0,
-    "peTTM": 146.29031,
+    "price": 91.43,
+    "marketCap": 770419326976.0,
+    "peTTM": 147.46774,
     "roe": 2.755574818918239,
-    "return1y": -14.40974247103969,
-    "sectorMedianPE": 28.740865
+    "return1y": -11.276081904379739,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "NUVAMA",
@@ -5920,12 +5932,12 @@
     "name": "Ola Electric",
     "sector": "Automobiles",
     "industry": "2/3 Wheelers",
-    "price": 38.74,
-    "marketCap": 171179704320.0,
+    "price": 37.28,
+    "marketCap": 164728422400.0,
     "peTTM": null,
     "roe": -54.70008952551477,
-    "return1y": -7.120588518812741,
-    "sectorMedianPE": 31.065447
+    "return1y": -9.75551309615724,
+    "sectorMedianPE": 30.027857
   },
   {
     "symbol": "OLECTRA",
@@ -5937,7 +5949,7 @@
     "peTTM": 62.289154,
     "roe": 14.45884085183684,
     "return1y": -6.003702426141618,
-    "sectorMedianPE": 31.065447
+    "sectorMedianPE": 30.027857
   },
   {
     "symbol": "PAYTM",
@@ -6076,12 +6088,12 @@
     "name": "Paras Defence",
     "sector": "Aerospace & Defense",
     "industry": "Aerospace & Defense",
-    "price": 1292.3,
-    "marketCap": 104143011840.0,
-    "peTTM": 118.23422,
-    "roe": 12.144353771504191,
-    "return1y": 91.88359370135913,
-    "sectorMedianPE": 87.72354
+    "price": 1499.6,
+    "marketCap": 120848752640.0,
+    "peTTM": 128.17094,
+    "roe": 12.143840678050678,
+    "return1y": 120.28644518339149,
+    "sectorMedianPE": 95.23476
   },
   {
     "symbol": "PARKHOSPS",
@@ -6364,12 +6376,12 @@
     "name": "Power Grid Corpn",
     "sector": "Power",
     "industry": "Power - Transmission",
-    "price": 287.0,
-    "marketCap": 2669273415680.0,
-    "peTTM": 14.278606,
+    "price": 272.4,
+    "marketCap": 2533484396544.0,
+    "peTTM": 13.333333,
     "roe": 15.849647984064328,
-    "return1y": 1.1191102255994005,
-    "sectorMedianPE": 28.740865
+    "return1y": -2.7458648756338375,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "POWERMECH",
@@ -6424,12 +6436,12 @@
     "name": "Pricol Ltd",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 732.85,
-    "marketCap": 89320849408.0,
-    "peTTM": 33.296227,
+    "price": 804.6,
+    "marketCap": 98065850368.0,
+    "peTTM": 36.572727,
     "roe": 19.985815489803887,
-    "return1y": 70.17832135942372,
-    "sectorMedianPE": 41.24889
+    "return1y": 86.79906275686972,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "PFOCUS",
@@ -6484,12 +6496,12 @@
     "name": "PTC India",
     "sector": "Power",
     "industry": "Power Trading",
-    "price": 180.11,
-    "marketCap": 53314060288.0,
-    "peTTM": 8.79873,
+    "price": 156.56,
+    "marketCap": 46343061504.0,
+    "peTTM": 9.118229,
     "roe": 10.12628808665105,
-    "return1y": -0.8818839320127873,
-    "sectorMedianPE": 28.740865
+    "return1y": -6.423662665687034,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "PTCIL",
@@ -6664,12 +6676,12 @@
     "name": "Ramkrishna Forg.",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 681.15,
-    "marketCap": 124085108736.0,
-    "peTTM": 116.237206,
+    "price": 749.2,
+    "marketCap": 136481775616.0,
+    "peTTM": 128.95009,
     "roe": 2.182024589545892,
-    "return1y": 13.812139370577972,
-    "sectorMedianPE": 41.24889
+    "return1y": 31.792204734434755,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "RATEGAIN",
@@ -6712,12 +6724,12 @@
     "name": "RattanIndia Pow.",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 8.8,
-    "marketCap": 47256932352.0,
-    "peTTM": 41.904762,
+    "price": 7.89,
+    "marketCap": 42370134016.0,
+    "peTTM": 37.57143,
     "roe": 1.1307304682699004,
-    "return1y": -34.08239745858303,
-    "sectorMedianPE": 28.740865
+    "return1y": -35.99670707422862,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "RAYMONDLSL",
@@ -6820,12 +6832,12 @@
     "name": "Reliance Power",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 23.87,
-    "marketCap": 98720858112.0,
+    "price": 23.45,
+    "marketCap": 96983826432.0,
     "peTTM": null,
     "roe": -2.1003876698783372,
-    "return1y": -57.5040028175924,
-    "sectorMedianPE": 28.740865
+    "return1y": -48.393482676832924,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "RELIGARE",
@@ -6957,7 +6969,7 @@
     "peTTM": 20.698114,
     "roe": 9.574061677394722,
     "return1y": 1.3237943680536801,
-    "sectorMedianPE": 36.59246
+    "sectorMedianPE": 35.068907499999995
   },
   {
     "symbol": "SAILIFE",
@@ -7000,12 +7012,12 @@
     "name": "Samvardh. Mothe.",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 155.01,
-    "marketCap": 1632446054400.0,
-    "peTTM": 42.352455,
+    "price": 170.29,
+    "marketCap": 1793363148800.0,
+    "peTTM": 40.935097,
     "roe": 9.418588761237299,
-    "return1y": 51.82898997534863,
-    "sectorMedianPE": 41.24889
+    "return1y": 83.34507492591796,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "SANDUMA",
@@ -7036,12 +7048,12 @@
     "name": "Sansera Enginee.",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 3452.7,
-    "marketCap": 215460790272.0,
-    "peTTM": 66.55166,
+    "price": 3894.3,
+    "marketCap": 243018219520.0,
+    "peTTM": 74.83282,
     "roe": 10.497215916065805,
-    "return1y": 156.01661054299527,
-    "sectorMedianPE": 41.24889
+    "return1y": 211.95361268444537,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "SAPPHIRE",
@@ -7132,12 +7144,12 @@
     "name": "Schaeffler India",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 4028.9,
-    "marketCap": 629731819520.0,
-    "peTTM": 50.32351,
+    "price": 4104.9,
+    "marketCap": 641610874880.0,
+    "peTTM": 51.157776,
     "roe": 19.020463098300915,
-    "return1y": 5.329622160492304,
-    "sectorMedianPE": 41.24889
+    "return1y": 7.275130764468661,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "SCHNEIDER",
@@ -7288,12 +7300,12 @@
     "name": "Shriram Pistons",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 4524.4,
-    "marketCap": 199299022848.0,
-    "peTTM": 36.120068,
+    "price": 4454.0,
+    "marketCap": 196197908480.0,
+    "peTTM": 34.78057,
     "roe": 19.04461198219712,
-    "return1y": 91.53614703142848,
-    "sectorMedianPE": 41.24889
+    "return1y": 85.95865353393224,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "SHYAMMETL",
@@ -7348,23 +7360,23 @@
     "name": "SJVN",
     "sector": "Power",
     "industry": "Power Generation",
-    "price": 69.42,
-    "marketCap": 272806363136.0,
-    "peTTM": 42.851852,
+    "price": 66.06,
+    "marketCap": 259602251776.0,
+    "peTTM": 37.74857,
     "roe": 4.509356099232803,
-    "return1y": -26.444193734891137,
-    "sectorMedianPE": 28.740865
+    "return1y": -27.54102562640134,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "SKFINDIA",
     "name": "SKF India",
     "sector": "Industrial Products",
     "industry": "Abrasives & Bearings",
-    "price": 1652.8,
-    "marketCap": 81711071232.0,
-    "peTTM": 39.05482,
+    "price": 1629.7,
+    "marketCap": 80569049088.0,
+    "peTTM": 38.363934,
     "roe": 20.004663793168294,
-    "return1y": -63.849757172872245,
+    "return1y": -62.35626696935414,
     "sectorMedianPE": 35.0527515
   },
   {
@@ -7372,9 +7384,9 @@
     "name": "SKF India Indus.",
     "sector": "Industrial Products",
     "industry": "Abrasives & Bearings",
-    "price": 2724.6,
-    "marketCap": 134698680320.0,
-    "peTTM": 64.64057,
+    "price": 2800.4,
+    "marketCap": 138446061568.0,
+    "peTTM": 66.4389,
     "roe": 14.738802180316213,
     "return1y": null,
     "sectorMedianPE": 35.0527515
@@ -7444,11 +7456,11 @@
     "name": "Solar Industries",
     "sector": "Chemicals & Petrochemicals",
     "industry": "Explosives",
-    "price": 18659.0,
-    "marketCap": 1688453906432.0,
-    "peTTM": 100.45222,
+    "price": 19900.0,
+    "marketCap": 1800752070656.0,
+    "peTTM": 90.09009,
     "roe": 26.724494997769703,
-    "return1y": 29.05249819998838,
+    "return1y": 33.12668175526317,
     "sectorMedianPE": 40.6359805
   },
   {
@@ -7456,12 +7468,12 @@
     "name": "Sona BLW Precis.",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 785.0,
-    "marketCap": 488817262592.0,
-    "peTTM": 70.3405,
+    "price": 823.5,
+    "marketCap": 513773928448.0,
+    "peTTM": 73.4612,
     "roe": 10.70007078512994,
-    "return1y": 67.87238011031609,
-    "sectorMedianPE": 41.24889
+    "return1y": 84.75319888595885,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "SONATSOFTW",
@@ -7936,24 +7948,24 @@
     "name": "Tata Motors PVeh",
     "sector": "Automobiles",
     "industry": "Passenger Cars & Utility Vehicles",
-    "price": 349.3,
-    "marketCap": 1286326059008.0,
+    "price": 321.3,
+    "marketCap": 1183313035264.0,
     "peTTM": null,
     "roe": 73.51786415390656,
-    "return1y": -49.13013074771787,
-    "sectorMedianPE": 31.065447
+    "return1y": -51.25409485478723,
+    "sectorMedianPE": 30.027857
   },
   {
     "symbol": "TATAPOWER",
     "name": "Tata Power Co.",
     "sector": "Power",
     "industry": "Integrated Power Utilities",
-    "price": 382.0,
-    "marketCap": 1220619665408.0,
-    "peTTM": 31.648716,
+    "price": 374.3,
+    "marketCap": 1196015484928.0,
+    "peTTM": 31.062239,
     "roe": 9.494438547847695,
-    "return1y": -3.8721827954115606,
-    "sectorMedianPE": 28.740865
+    "return1y": -3.21999991004595,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "TATASTEEL",
@@ -7977,7 +7989,7 @@
     "peTTM": 55.50872,
     "roe": 13.931645498640199,
     "return1y": 9.631028016226734,
-    "sectorMedianPE": 36.59246
+    "sectorMedianPE": 35.068907499999995
   },
   {
     "symbol": "TTML",
@@ -8080,12 +8092,12 @@
     "name": "Tenneco Clean",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 544.6,
-    "marketCap": null,
-    "peTTM": 36.40374,
+    "price": 556.85,
+    "marketCap": 224747061248.0,
+    "peTTM": 37.347416,
     "roe": 50.40759178853498,
     "return1y": null,
-    "sectorMedianPE": 41.24889
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "TEXRAIL",
@@ -8212,11 +8224,11 @@
     "name": "Timken India",
     "sector": "Industrial Products",
     "industry": "Abrasives & Bearings",
-    "price": 3290.5,
-    "marketCap": 247507255296.0,
-    "peTTM": 57.79905,
+    "price": 3231.8,
+    "marketCap": 243091914752.0,
+    "peTTM": 56.948017,
     "roe": 14.23483698309359,
-    "return1y": 15.492667122997029,
+    "return1y": 13.412474602583716,
     "sectorMedianPE": 35.0527515
   },
   {
@@ -8272,12 +8284,12 @@
     "name": "Torrent Power",
     "sector": "Power",
     "industry": "Integrated Power Utilities",
-    "price": 1391.7,
-    "marketCap": 701282516992.0,
-    "peTTM": 29.048214,
+    "price": 1247.7,
+    "marketCap": 628720467968.0,
+    "peTTM": 27.006493,
     "roe": 12.667828027090488,
-    "return1y": 6.497912414835717,
-    "sectorMedianPE": 28.740865
+    "return1y": -2.7344296737602463,
+    "sectorMedianPE": 27.3883815
   },
   {
     "symbol": "TRANSRAILL",
@@ -8368,35 +8380,35 @@
     "name": "Tube Investments",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 2766.0,
-    "marketCap": 535421026304.0,
-    "peTTM": 84.432236,
+    "price": 2961.0,
+    "marketCap": 573167632384.0,
+    "peTTM": 94.38954,
     "roe": 8.215795577836808,
-    "return1y": -3.4916251917788537,
-    "sectorMedianPE": 41.24889
+    "return1y": -3.0773188609022126,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "TVSMOTOR",
     "name": "TVS Motor Co.",
     "sector": "Automobiles",
     "industry": "2/3 Wheelers",
-    "price": 4389.0,
-    "marketCap": 2085768003584.0,
-    "peTTM": 60.932945,
+    "price": 4361.1,
+    "marketCap": 2072509153280.0,
+    "peTTM": 60.302822,
     "roe": 31.558459889693392,
-    "return1y": 57.19683111523059,
-    "sectorMedianPE": 31.065447
+    "return1y": 44.89763554830489,
+    "sectorMedianPE": 30.027857
   },
   {
     "symbol": "TVSSCS",
     "name": "TVS Supply",
     "sector": "Transport Services",
     "industry": "Logistics Solution Provider",
-    "price": 136.9,
-    "marketCap": 60397543424.0,
-    "peTTM": 52.857143,
+    "price": 122.17,
+    "marketCap": 53898964992.0,
+    "peTTM": 83.67808,
     "roe": 5.619867223998034,
-    "return1y": 8.067566756148036,
+    "return1y": -8.427559171226704,
     "sectorMedianPE": 44.9441
   },
   {
@@ -8476,12 +8488,12 @@
     "name": "Uno Minda",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 1210.0,
-    "marketCap": 698735329280.0,
-    "peTTM": 58.229065,
+    "price": 1272.0,
+    "marketCap": 734538301440.0,
+    "peTTM": 61.06577,
     "roe": 17.528629181632226,
-    "return1y": 13.088589020105093,
-    "sectorMedianPE": 41.24889
+    "return1y": 14.492619648688118,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "UPL",
@@ -8524,11 +8536,11 @@
     "name": "UTI AMC",
     "sector": "Capital Markets",
     "industry": "Asset Management Company",
-    "price": 915.75,
-    "marketCap": 117705531392.0,
-    "peTTM": 25.543934,
+    "price": 894.6,
+    "marketCap": 114990833664.0,
+    "peTTM": 24.960938,
     "roe": 8.971214061976234,
-    "return1y": -28.15375036740421,
+    "return1y": -29.860699771442693,
     "sectorMedianPE": 38.145565
   },
   {
@@ -8632,12 +8644,12 @@
     "name": "Varroc Engineer",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 686.9,
-    "marketCap": 104957861888.0,
-    "peTTM": 46.60109,
+    "price": 830.9,
+    "marketCap": 126960967680.0,
+    "peTTM": 64.36096,
     "roe": 12.639805070503545,
-    "return1y": 31.099640745348562,
-    "sectorMedianPE": 41.24889
+    "return1y": 62.72857570253081,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "VBL",
@@ -8937,7 +8949,7 @@
     "peTTM": 19.531645,
     "roe": 9.833486681498234,
     "return1y": -46.60899924928547,
-    "sectorMedianPE": 36.59246
+    "sectorMedianPE": 35.068907499999995
   },
   {
     "symbol": "ZEEL",
@@ -8956,12 +8968,12 @@
     "name": "Zen Technologies",
     "sector": "Aerospace & Defense",
     "industry": "Aerospace & Defense",
-    "price": 1656.4,
-    "marketCap": 148973469696.0,
-    "peTTM": 82.90291,
+    "price": 1926.3,
+    "marketCap": 173255540736.0,
+    "peTTM": 96.170746,
     "roe": 10.240634821013778,
-    "return1y": 3.270693346470335,
-    "sectorMedianPE": 87.72354
+    "return1y": 35.57326953300216,
+    "sectorMedianPE": 95.23476
   },
   {
     "symbol": "ZENSARTECH",
@@ -8980,12 +8992,12 @@
     "name": "ZF Commercial",
     "sector": "Auto Components",
     "industry": "Auto Components & Equipments",
-    "price": 2447.8,
-    "marketCap": 278573121536.0,
-    "peTTM": 2.722864,
+    "price": 2616.9,
+    "marketCap": 297817604096.0,
+    "peTTM": 2.9114513,
     "roe": 14.012638391169085,
-    "return1y": 11.185843534325736,
-    "sectorMedianPE": 41.24889
+    "return1y": 18.134999230589766,
+    "sectorMedianPE": 41.02289
   },
   {
     "symbol": "ZYDUSLIFE",

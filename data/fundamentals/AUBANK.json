@@ -1,7 +1,7 @@
 {
   "symbol": "AUBANK",
   "name": "AU Small Finance",
-  "generatedAt": "2026-08-18T16:37:17.879703+00:00",
+  "generatedAt": "2026-08-23T11:00:51.845427+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Banks - Regional",
@@ -14,29 +14,29 @@
     "peerIndustry": "Other Bank"
   },
   "price": {
-    "current": 1060.0,
-    "change": 12.699951,
-    "changePercent": 1.2126373,
-    "previousClose": 1047.3,
-    "dayLow": 1038.4,
-    "dayHigh": 1060.0,
+    "current": 1075.0,
+    "change": -0.6999512,
+    "changePercent": -0.06506936,
+    "previousClose": 1075.7,
+    "dayLow": 1063.7,
+    "dayHigh": 1080.9,
     "fiftyTwoWeekLow": 682.15,
-    "fiftyTwoWeekHigh": 1090.4,
-    "asOf": 1785750302
+    "fiftyTwoWeekHigh": 1105.9,
+    "asOf": 1787132696
   },
   "stats": {
-    "marketCap": 793582174208.0,
-    "trailingPE": 28.11671,
-    "forwardPE": 17.455961,
-    "priceToBook": 3.9665315,
+    "marketCap": 805179490304.0,
+    "trailingPE": 28.46928,
+    "forwardPE": 17.700228,
+    "priceToBook": 4.0226617,
     "bookValue": 267.236,
-    "dividendYield": 0.1,
-    "trailingEps": 37.7,
+    "dividendYield": 0.09,
+    "trailingEps": 37.76,
     "debtToEquity": null,
     "roe": 13.223778460303595,
     "roce": null,
-    "return1y": 43.392038313088655,
-    "sharesOutstanding": 748662402.0
+    "return1y": 43.35784463147549,
+    "sharesOutstanding": 749004181.0
   },
   "quarterly": {
     "periods": [
@@ -354,14 +354,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 1110.0358,
+    "targetMean": 1109.3572,
     "targetHigh": 1275.0,
     "targetLow": 800.0,
     "recommendationKey": "buy",
     "numberOfAnalystOpinions": 28
   },
   "holders": {
-    "insidersPercent": 0.31288,
-    "institutionsPercent": 0.49585
+    "insidersPercent": 0.31468,
+    "institutionsPercent": 0.49855
   }
 }

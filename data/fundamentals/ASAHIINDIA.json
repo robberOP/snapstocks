@@ -1,7 +1,7 @@
 {
   "symbol": "ASAHIINDIA",
   "name": "Asahi India Glas",
-  "generatedAt": "2026-08-18T16:37:15.846509+00:00",
+  "generatedAt": "2026-08-23T11:00:49.206616+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 897.05,
-    "change": 20.5,
-    "changePercent": 2.3387144,
-    "previousClose": 876.55,
-    "dayLow": 875.0,
-    "dayHigh": 900.55,
+    "current": 957.05,
+    "change": -5.75,
+    "changePercent": -0.5972165,
+    "previousClose": 962.8,
+    "dayLow": 948.1,
+    "dayHigh": 974.0,
     "fiftyTwoWeekLow": 775.1,
     "fiftyTwoWeekHigh": 1074.0,
-    "asOf": 1785751199
+    "asOf": 1787133602
   },
   "stats": {
-    "marketCap": 228682448896.0,
-    "trailingPE": 64.76895,
-    "forwardPE": 38.665947,
-    "priceToBook": 5.8122053,
+    "marketCap": 243978076160.0,
+    "trailingPE": 55.225044,
+    "forwardPE": 41.25215,
+    "priceToBook": 6.20096,
     "bookValue": 154.339,
-    "dividendYield": 0.23,
-    "trailingEps": 13.85,
+    "dividendYield": 0.21,
+    "trailingEps": 17.33,
     "debtToEquity": 0.5586800000000001,
     "roe": 8.766330373923283,
     "roce": 10.79095217157653,
-    "return1y": 8.10070504327664,
+    "return1y": 14.614603515061658,
     "sharesOutstanding": 254927192.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         11478000000.0,
         12185800000.0,
         12203600000.0,
-        13254700000.0
+        13254700000.0,
+        13920700000.0
       ],
       "Expenses": [
         9986000000.0,
         9995800000.0,
         10942000000.0,
         10426700000.0,
-        11135400000.0
+        11135400000.0,
+        11482100000.0
       ],
       "OperatingProfit": [
         1267300000.0,
         1482200000.0,
         1243800000.0,
         1776900000.0,
-        2119300000.0
+        2119300000.0,
+        2438600000.0
       ],
       "NetProfit": [
         1054000000.0,
         924100000.0,
         561700000.0,
         995000000.0,
-        1324800000.0
+        1324800000.0,
+        1490800000.0
       ],
       "EPS": [
         4.34,
         3.8,
         2.31,
         3.9,
-        5.2
+        5.2,
+        5.85
       ]
     }
   },
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 49122100000.0,
-      "Expenses": 42499900000.0,
-      "OperatingProfit": 6622200000.0,
-      "NetProfit": 3805600000.0
+      "Sales": 51564800000.0,
+      "Expenses": 43986200000.0,
+      "OperatingProfit": 7578600000.0,
+      "NetProfit": 4372300000.0
     }
   },
   "balanceSheet": {
@@ -365,7 +372,7 @@
     "numberOfAnalystOpinions": 1
   },
   "holders": {
-    "insidersPercent": 0.67393,
-    "institutionsPercent": 0.100360006
+    "insidersPercent": 0.67384005,
+    "institutionsPercent": 0.100159995
   }
 }

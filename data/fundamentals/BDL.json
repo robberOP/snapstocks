@@ -1,7 +1,7 @@
 {
   "symbol": "BDL",
   "name": "Bharat Dynamics",
-  "generatedAt": "2026-08-18T16:37:22.654712+00:00",
+  "generatedAt": "2026-08-23T11:00:57.665235+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
@@ -14,28 +14,28 @@
     "peerIndustry": "Aerospace & Defense"
   },
   "price": {
-    "current": 1380.0,
-    "change": -18.0,
-    "changePercent": -1.2875537,
-    "previousClose": 1398.0,
-    "dayLow": 1370.0,
-    "dayHigh": 1427.7,
+    "current": 1359.0,
+    "change": 42.0,
+    "changePercent": 3.189066,
+    "previousClose": 1317.0,
+    "dayLow": 1317.0,
+    "dayHigh": 1364.7,
     "fiftyTwoWeekLow": 1086.0,
     "fiftyTwoWeekHigh": 1654.0,
-    "asOf": 1786959898
+    "asOf": 1787305504
   },
   "stats": {
-    "marketCap": 505856229376.0,
-    "trailingPE": 98.01137,
-    "forwardPE": 44.66797,
-    "priceToBook": 11.918848,
+    "marketCap": 498158436352.0,
+    "trailingPE": 95.23476,
+    "forwardPE": 43.78113,
+    "priceToBook": 11.737474,
     "bookValue": 115.783,
-    "dividendYield": 0.37,
-    "trailingEps": 14.08,
+    "dividendYield": 0.38,
+    "trailingEps": 14.27,
     "debtToEquity": 7.000000000000001e-05,
     "roe": 9.91135682118708,
     "roce": 7.216153007749495,
-    "return1y": -6.7649620085463145,
+    "return1y": -11.923734780579268,
     "sharesOutstanding": 366562500.0
   },
   "quarterly": {
@@ -358,14 +358,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 1300.6666,
-    "targetHigh": 1558.0,
-    "targetLow": 1080.0,
+    "targetMean": 1331.0,
+    "targetHigh": 1610.0,
+    "targetLow": 1050.0,
     "recommendationKey": "hold",
-    "numberOfAnalystOpinions": 12
+    "numberOfAnalystOpinions": 13
   },
   "holders": {
     "insidersPercent": 0.74926,
-    "institutionsPercent": 0.1158
+    "institutionsPercent": 0.11229999
   }
 }

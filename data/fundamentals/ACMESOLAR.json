@@ -1,7 +1,7 @@
 {
   "symbol": "ACMESOLAR",
   "name": "ACME Solar Hold.",
-  "generatedAt": "2026-08-18T16:37:08.590325+00:00",
+  "generatedAt": "2026-08-23T11:00:40.666141+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Renewable",
@@ -9,33 +9,33 @@
     "bseCode": "544283",
     "nseSymbol": "ACMESOLAR",
     "website": "https://acmesolar.in",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/acmesolar.html",
     "peerSector": "Power",
     "peerIndustry": "Power Generation"
   },
   "price": {
-    "current": 371.1,
-    "change": 8.5,
-    "changePercent": 2.3441808,
-    "previousClose": 362.6,
-    "dayLow": 362.6,
-    "dayHigh": 376.35,
+    "current": 401.6,
+    "change": 4.200012,
+    "changePercent": 1.0568727,
+    "previousClose": 397.4,
+    "dayLow": 392.9,
+    "dayHigh": 411.3,
     "fiftyTwoWeekLow": 195.9,
-    "fiftyTwoWeekHigh": 398.65,
-    "asOf": 1785751198
+    "fiftyTwoWeekHigh": 411.3,
+    "asOf": 1787306399
   },
   "stats": {
-    "marketCap": 262104760320.0,
-    "trailingPE": 38.336777,
-    "forwardPE": 14.399823,
-    "priceToBook": 4.441067,
+    "marketCap": 283646656512.0,
+    "trailingPE": 40.97959,
+    "forwardPE": 16.132376,
+    "priceToBook": 4.80607,
     "bookValue": 83.561,
-    "dividendYield": 0.06,
-    "trailingEps": 9.68,
+    "dividendYield": 0.05,
+    "trailingEps": 9.8,
     "debtToEquity": 3.93194,
     "roe": 9.857093238699653,
     "roce": 7.108220132977096,
-    "return1y": 29.575131797318498,
+    "return1y": 41.53310268666656,
     "sharesOutstanding": 706291446.0
   },
   "quarterly": {
@@ -334,14 +334,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 418.8,
+    "targetMean": 423.18182,
     "targetHigh": 460.0,
     "targetLow": 374.0,
     "recommendationKey": "strong_buy",
-    "numberOfAnalystOpinions": 10
+    "numberOfAnalystOpinions": 11
   },
   "holders": {
     "insidersPercent": 0.71656,
-    "institutionsPercent": 0.20049
+    "institutionsPercent": 0.19466999
   }
 }

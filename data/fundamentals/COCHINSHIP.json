@@ -1,7 +1,7 @@
 {
   "symbol": "COCHINSHIP",
   "name": "Cochin Shipyard",
-  "generatedAt": "2026-08-18T16:37:34.903764+00:00",
+  "generatedAt": "2026-08-23T11:01:11.390245+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
@@ -14,28 +14,28 @@
     "peerIndustry": "Ship Building & Allied Services"
   },
   "price": {
-    "current": 1441.9,
-    "change": 18.900024,
-    "changePercent": 1.3281816,
-    "previousClose": 1423.0,
-    "dayLow": 1423.5,
-    "dayHigh": 1448.6,
+    "current": 1480.5,
+    "change": -8.5,
+    "changePercent": -0.57085294,
+    "previousClose": 1489.0,
+    "dayLow": 1461.7,
+    "dayHigh": 1496.6,
     "fiftyTwoWeekLow": 1187.0,
     "fiftyTwoWeekHigh": 1979.9,
-    "asOf": 1785750301
+    "asOf": 1787305505
   },
   "stats": {
-    "marketCap": 379336196096.0,
-    "trailingPE": 53.050037,
-    "forwardPE": 32.622173,
-    "priceToBook": 6.458939,
+    "marketCap": 389491097600.0,
+    "trailingPE": 57.140102,
+    "forwardPE": 33.120804,
+    "priceToBook": 6.6318464,
     "bookValue": 223.241,
-    "dividendYield": 0.93,
-    "trailingEps": 27.18,
+    "dividendYield": 0.89,
+    "trailingEps": 25.91,
     "debtToEquity": 0.28466,
     "roe": 12.204480375929725,
     "roce": 16.664120910568812,
-    "return1y": -17.83700836032383,
+    "return1y": -12.766774797236302,
     "sharesOutstanding": 263080780.0
   },
   "quarterly": {
@@ -136,11 +136,11 @@
         7167395000.0
       ],
       "EPS": [
-        21.435,
+        null,
         11.58,
         29.77,
         31.45,
-        null
+        27.24
       ],
       "SalesGrowth": [
         null,
@@ -358,14 +358,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 1455.75,
+    "targetMean": 1461.5,
     "targetHigh": 1750.0,
-    "targetLow": 830.0,
+    "targetLow": 860.0,
     "recommendationKey": "hold",
     "numberOfAnalystOpinions": 4
   },
   "holders": {
     "insidersPercent": 0.63335,
-    "institutionsPercent": 0.07383
+    "institutionsPercent": 0.10065
   }
 }

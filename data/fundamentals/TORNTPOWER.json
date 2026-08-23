@@ -1,7 +1,7 @@
 {
   "symbol": "TORNTPOWER",
   "name": "Torrent Power",
-  "generatedAt": "2026-08-18T16:39:16.708968+00:00",
+  "generatedAt": "2026-08-23T11:03:02.219078+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Independent Power Producers",
@@ -14,28 +14,28 @@
     "peerIndustry": "Integrated Power Utilities"
   },
   "price": {
-    "current": 1391.7,
-    "change": -21.600098,
-    "changePercent": -1.5283448,
-    "previousClose": 1413.3,
-    "dayLow": 1387.2,
-    "dayHigh": 1423.8,
+    "current": 1247.7,
+    "change": -1.0,
+    "changePercent": -0.08008329,
+    "previousClose": 1248.7,
+    "dayLow": 1241.0,
+    "dayHigh": 1256.4,
     "fiftyTwoWeekLow": 1188.0,
     "fiftyTwoWeekHigh": 1824.1,
-    "asOf": 1785751203
+    "asOf": 1787306402
   },
   "stats": {
-    "marketCap": 701282516992.0,
-    "trailingPE": 29.048214,
-    "forwardPE": 27.288235,
-    "priceToBook": 3.676387,
+    "marketCap": 628720467968.0,
+    "trailingPE": 27.006493,
+    "forwardPE": 20.80679,
+    "priceToBook": 3.295989,
     "bookValue": 378.551,
-    "dividendYield": 1.42,
-    "trailingEps": 47.91,
+    "dividendYield": 1.6,
+    "trailingEps": 46.2,
     "debtToEquity": 0.7088500000000001,
     "roe": 12.667828027090488,
     "roce": 11.865269041682133,
-    "return1y": 6.497912414835717,
+    "return1y": -2.7344296737602463,
     "sharesOutstanding": 503903543.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q1FY26",
       "Q2FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-09-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         79063700000.0,
         78760000000.0,
         67778700000.0,
-        64060700000.0
+        64060700000.0,
+        81241500000.0
       ],
       "Expenses": [
         57149800000.0,
         68135800000.0,
         67589900000.0,
         57873800000.0,
-        56777300000.0
+        56777300000.0,
+        69866300000.0
       ],
       "OperatingProfit": [
         7413600000.0,
         10927900000.0,
         11170100000.0,
         9904900000.0,
-        7283400000.0
+        7283400000.0,
+        11375200000.0
       ],
       "NetProfit": [
         10595700000.0,
         7314400000.0,
         7237100000.0,
         6430800000.0,
-        3182000000.0
+        3182000000.0,
+        6388500000.0
       ],
       "EPS": [
         21.03,
         14.52,
         14.36,
         12.76,
-        6.31
+        6.31,
+        12.68
       ]
     }
   },
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 289663100000.0,
-      "Expenses": 250376800000.0,
-      "OperatingProfit": 39286300000.0,
-      "NetProfit": 24164300000.0
+      "Sales": 291840900000.0,
+      "Expenses": 252107300000.0,
+      "OperatingProfit": 39733600000.0,
+      "NetProfit": 23238400000.0
     }
   },
   "balanceSheet": {
@@ -358,14 +365,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 1492.9,
-    "targetHigh": 1700.0,
-    "targetLow": 1255.0,
-    "recommendationKey": "hold",
-    "numberOfAnalystOpinions": 10
+    "targetMean": 1522.6364,
+    "targetHigh": 1780.0,
+    "targetLow": 1270.0,
+    "recommendationKey": "none",
+    "numberOfAnalystOpinions": 11
   },
   "holders": {
-    "insidersPercent": 0.62315,
-    "institutionsPercent": 0.27251
+    "insidersPercent": 0.62308997,
+    "institutionsPercent": 0.26812
   }
 }

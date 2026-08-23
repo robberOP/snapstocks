@@ -1,7 +1,7 @@
 {
   "symbol": "KPIGREEN",
   "name": "KPI Green Energy",
-  "generatedAt": "2026-08-18T16:38:19.500287+00:00",
+  "generatedAt": "2026-08-23T11:02:12.000094+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Renewable",
@@ -9,33 +9,33 @@
     "bseCode": "542323",
     "nseSymbol": "KPIGREEN",
     "website": "https://kpigreenenergy.com",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/kpigreen.html",
     "peerSector": "Power",
     "peerIndustry": "Power Generation"
   },
   "price": {
-    "current": 380.85,
-    "change": 7.100006,
-    "changePercent": 1.8996673,
-    "previousClose": 373.75,
-    "dayLow": 375.4,
-    "dayHigh": 383.0,
-    "fiftyTwoWeekLow": 335.65,
-    "fiftyTwoWeekHigh": 552.0,
-    "asOf": 1785751199
+    "current": 312.6,
+    "change": 5.5500183,
+    "changePercent": 1.8075293,
+    "previousClose": 307.05,
+    "dayLow": 307.05,
+    "dayHigh": 322.5,
+    "fiftyTwoWeekLow": 301.2,
+    "fiftyTwoWeekHigh": 542.25,
+    "asOf": 1787306401
   },
   "stats": {
-    "marketCap": 75283374080.0,
-    "trailingPE": 15.848939,
+    "marketCap": 61792260096.0,
+    "trailingPE": 13.550065,
     "forwardPE": null,
-    "priceToBook": 2.4779272,
+    "priceToBook": 2.033872,
     "bookValue": 153.697,
-    "dividendYield": 0.23,
-    "trailingEps": 24.03,
+    "dividendYield": 0.27,
+    "trailingEps": 23.07,
     "debtToEquity": 1.5876499999999998,
     "roe": 15.69314170579291,
     "roce": 11.136485047146111,
-    "return1y": -26.99749819887634,
+    "return1y": -41.327159457848516,
     "sharesOutstanding": 197671968.0
   },
   "quarterly": {
@@ -372,7 +372,7 @@
     "numberOfAnalystOpinions": null
   },
   "holders": {
-    "insidersPercent": 0.5487,
-    "institutionsPercent": 0.052550003
+    "insidersPercent": 0.5485,
+    "institutionsPercent": 0.05288
   }
 }

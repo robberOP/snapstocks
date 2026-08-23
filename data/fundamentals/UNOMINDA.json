@@ -1,7 +1,7 @@
 {
   "symbol": "UNOMINDA",
   "name": "Uno Minda",
-  "generatedAt": "2026-08-18T16:39:19.406063+00:00",
+  "generatedAt": "2026-08-23T11:03:04.990950+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 1210.0,
-    "change": 29.5,
-    "changePercent": 2.4989412,
-    "previousClose": 1180.5,
-    "dayLow": 1185.0,
-    "dayHigh": 1219.6,
+    "current": 1272.0,
+    "change": -1.0,
+    "changePercent": -0.0785546,
+    "previousClose": 1273.0,
+    "dayLow": 1259.0,
+    "dayHigh": 1288.0,
     "fiftyTwoWeekLow": 994.0,
     "fiftyTwoWeekHigh": 1382.0,
-    "asOf": 1785750299
+    "asOf": 1787132696
   },
   "stats": {
-    "marketCap": 698735329280.0,
-    "trailingPE": 58.229065,
-    "forwardPE": 39.010777,
-    "priceToBook": 10.230223,
+    "marketCap": 734538301440.0,
+    "trailingPE": 61.06577,
+    "forwardPE": 40.18927,
+    "priceToBook": 10.7544155,
     "bookValue": 118.277,
-    "dividendYield": 0.22,
-    "trailingEps": 20.78,
+    "dividendYield": 0.21,
+    "trailingEps": 20.83,
     "debtToEquity": 0.3774,
     "roe": 17.528629181632226,
     "roce": 20.524960678501223,
-    "return1y": 13.088589020105093,
+    "return1y": 14.492619648688118,
     "sharesOutstanding": 577467206.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q1FY26",
       "Q2FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-09-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         44890900000.0,
         48140300000.0,
         50180600000.0,
-        53364100000.0
+        53364100000.0,
+        55568500000.0
       ],
       "Expenses": [
         41663200000.0,
         41052800000.0,
         44357100000.0,
         46435600000.0,
-        49253900000.0
+        49253900000.0,
+        51618000000.0
       ],
       "OperatingProfit": [
         3620000000.0,
         3838100000.0,
         3783200000.0,
         3745000000.0,
-        4110200000.0
+        4110200000.0,
+        3950500000.0
       ],
       "NetProfit": [
         2662100000.0,
         2907000000.0,
         3039900000.0,
         2766300000.0,
-        3258100000.0
+        3258100000.0,
+        2958300000.0
       ],
       "EPS": [
         4.62,
         5.05,
         5.27,
         4.79,
-        5.64
+        5.64,
+        5.11
       ]
     }
   },
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 196575900000.0,
-      "Expenses": 181099400000.0,
-      "OperatingProfit": 15476500000.0,
-      "NetProfit": 11971300000.0
+      "Sales": 207253500000.0,
+      "Expenses": 191664600000.0,
+      "OperatingProfit": 15588900000.0,
+      "NetProfit": 12022600000.0
     }
   },
   "balanceSheet": {
@@ -358,14 +365,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 1263.7778,
-    "targetHigh": 1494.0,
-    "targetLow": 950.0,
+    "targetMean": 1329.1052,
+    "targetHigh": 1532.0,
+    "targetLow": 970.0,
     "recommendationKey": "buy",
-    "numberOfAnalystOpinions": 18
+    "numberOfAnalystOpinions": 19
   },
   "holders": {
     "insidersPercent": 0.68487,
-    "institutionsPercent": 0.19159001
+    "institutionsPercent": 0.20716
   }
 }

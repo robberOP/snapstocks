@@ -1,7 +1,7 @@
 {
   "symbol": "SCHAEFFLER",
   "name": "Schaeffler India",
-  "generatedAt": "2026-08-18T16:38:58.620327+00:00",
+  "generatedAt": "2026-08-23T11:02:46.754922+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 4028.9,
-    "change": -14.300049,
-    "changePercent": -0.35368145,
-    "previousClose": 4043.2,
-    "dayLow": 4019.0,
-    "dayHigh": 4070.9,
+    "current": 4104.9,
+    "change": 31.599854,
+    "changePercent": 0.77578014,
+    "previousClose": 4073.3,
+    "dayLow": 4069.1,
+    "dayHigh": 4138.1,
     "fiftyTwoWeekLow": 3518.4,
     "fiftyTwoWeekHigh": 4467.7,
-    "asOf": 1786960790
+    "asOf": 1787133589
   },
   "stats": {
-    "marketCap": 629731819520.0,
-    "trailingPE": 50.32351,
-    "forwardPE": 40.02874,
-    "priceToBook": 10.265106,
+    "marketCap": 641610874880.0,
+    "trailingPE": 51.157776,
+    "forwardPE": 40.783833,
+    "priceToBook": 10.458744,
     "bookValue": 392.485,
-    "dividendYield": 0.87,
-    "trailingEps": 80.06,
+    "dividendYield": 0.86,
+    "trailingEps": 80.24,
     "debtToEquity": 0.00783,
     "roe": 19.020463098300915,
     "roce": 25.659083500018838,
-    "return1y": 5.329622160492304,
+    "return1y": 7.275130764468661,
     "sharesOutstanding": 156303670.0
   },
   "quarterly": {
@@ -360,6 +360,6 @@
   },
   "holders": {
     "insidersPercent": 0.74297,
-    "institutionsPercent": 0.17849001
+    "institutionsPercent": 0.18061
   }
 }

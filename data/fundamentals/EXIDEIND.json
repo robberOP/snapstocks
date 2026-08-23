@@ -1,7 +1,7 @@
 {
   "symbol": "EXIDEIND",
   "name": "Exide Inds.",
-  "generatedAt": "2026-08-18T16:37:47.125985+00:00",
+  "generatedAt": "2026-08-23T11:01:29.032065+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 444.7,
-    "change": -5.0999756,
-    "changePercent": -1.1338319,
-    "previousClose": 449.8,
-    "dayLow": 440.0,
-    "dayHigh": 460.0,
+    "current": 459.5,
+    "change": -5.75,
+    "changePercent": -1.2358947,
+    "previousClose": 465.25,
+    "dayLow": 456.55,
+    "dayHigh": 470.65,
     "fiftyTwoWeekLow": 287.0,
-    "fiftyTwoWeekHigh": 461.4,
-    "asOf": 1785751202
+    "fiftyTwoWeekHigh": 496.4,
+    "asOf": 1787133602
   },
   "stats": {
-    "marketCap": 377995001856.0,
-    "trailingPE": 40.50091,
-    "forwardPE": 25.935444,
-    "priceToBook": 2.718448,
+    "marketCap": 390574997504.0,
+    "trailingPE": 41.848816,
+    "forwardPE": 24.816856,
+    "priceToBook": 2.8089201,
     "bookValue": 163.586,
-    "dividendYield": 0.44,
+    "dividendYield": 0.43,
     "trailingEps": 10.98,
     "debtToEquity": 0.11308,
     "roe": 6.143108339895792,
     "roce": 8.811111989149177,
-    "return1y": 14.074819569201875,
+    "return1y": 24.428936330253183,
     "sharesOutstanding": 850000000.0
   },
   "quarterly": {
@@ -365,14 +365,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 384.0,
-    "targetHigh": 485.0,
-    "targetLow": 300.0,
+    "targetMean": 438.1875,
+    "targetHigh": 524.0,
+    "targetLow": 325.0,
     "recommendationKey": "hold",
     "numberOfAnalystOpinions": 16
   },
   "holders": {
-    "insidersPercent": 0.50949,
-    "institutionsPercent": 0.22997999
+    "insidersPercent": 0.50942004,
+    "institutionsPercent": 0.24420999
   }
 }

@@ -1,7 +1,7 @@
 {
   "symbol": "ADANIPOWER",
   "name": "Adani Power",
-  "generatedAt": "2026-08-18T16:37:09.546392+00:00",
+  "generatedAt": "2026-08-23T11:00:41.842279+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Independent Power Producers",
@@ -9,33 +9,33 @@
     "bseCode": "533096",
     "nseSymbol": "ADANIPOWER",
     "website": "https://www.adanipower.com",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/adanipower.html",
     "peerSector": "Power",
     "peerIndustry": "Integrated Power Utilities"
   },
   "price": {
-    "current": 213.65,
-    "change": 2.3399963,
-    "changePercent": 1.1073761,
-    "previousClose": 211.31,
-    "dayLow": 211.15,
-    "dayHigh": 215.11,
-    "fiftyTwoWeekLow": 110.45,
+    "current": 205.5,
+    "change": 1.5,
+    "changePercent": 0.7352941,
+    "previousClose": 204.0,
+    "dayLow": 202.83,
+    "dayHigh": 205.5,
+    "fiftyTwoWeekLow": 116.7,
     "fiftyTwoWeekHigh": 254.2,
-    "asOf": 1785750301
+    "asOf": 1787305498
   },
   "stats": {
-    "marketCap": 4120174919680.0,
-    "trailingPE": 28.87162,
-    "forwardPE": 26.903214,
-    "priceToBook": 6.344846,
+    "marketCap": 3963004911616.0,
+    "trailingPE": 27.77027,
+    "forwardPE": 25.876951,
+    "priceToBook": 6.1028123,
     "bookValue": 33.673,
     "dividendYield": null,
     "trailingEps": 7.4,
     "debtToEquity": 0.8233199999999999,
     "roe": 19.764269549137563,
     "roce": 15.131661540457284,
-    "return1y": 80.28013673553723,
+    "return1y": 69.55445971484446,
     "sharesOutstanding": 19284694705.0
   },
   "quarterly": {
@@ -335,11 +335,11 @@
     "targetMean": 252.55556,
     "targetHigh": 282.0,
     "targetLow": 220.0,
-    "recommendationKey": "strong_buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 9
   },
   "holders": {
     "insidersPercent": 0.71742994,
-    "institutionsPercent": 0.18754
+    "institutionsPercent": 0.18915
   }
 }

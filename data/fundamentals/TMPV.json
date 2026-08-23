@@ -1,7 +1,7 @@
 {
   "symbol": "TMPV",
   "name": "Tata Motors PVeh",
-  "generatedAt": "2026-08-18T16:39:16.390328+00:00",
+  "generatedAt": "2026-08-23T11:03:01.914297+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Manufacturers",
@@ -14,29 +14,29 @@
     "peerIndustry": "Passenger Cars & Utility Vehicles"
   },
   "price": {
-    "current": 349.3,
-    "change": 9.549988,
-    "changePercent": 2.8108866,
-    "previousClose": 339.75,
-    "dayLow": 343.5,
-    "dayHigh": 350.45,
+    "current": 321.3,
+    "change": -1.5,
+    "changePercent": -0.46468404,
+    "previousClose": 322.8,
+    "dayLow": 320.2,
+    "dayHigh": 324.0,
     "fiftyTwoWeekLow": 294.3,
     "fiftyTwoWeekHigh": 739.7,
-    "asOf": 1785750303
+    "asOf": 1787132702
   },
   "stats": {
-    "marketCap": 1286326059008.0,
+    "marketCap": 1183313035264.0,
     "trailingPE": null,
-    "forwardPE": 6.8465548,
-    "priceToBook": 1.1477445,
+    "forwardPE": 6.717461,
+    "priceToBook": 1.055741,
     "bookValue": 304.336,
-    "dividendYield": 0.88,
-    "trailingEps": -4.42,
+    "dividendYield": 0.93,
+    "trailingEps": -9.17,
     "debtToEquity": 0.70364,
     "roe": 73.51786415390656,
     "roce": 0.5532655996544388,
-    "return1y": -49.13013074771787,
-    "sharesOutstanding": 3682582902.0
+    "return1y": -51.25409485478723,
+    "sharesOutstanding": 3682891544.0
   },
   "quarterly": {
     "periods": [
@@ -365,14 +365,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 369.96,
+    "targetMean": 363.6,
     "targetHigh": 490.0,
-    "targetLow": 300.0,
+    "targetLow": 290.0,
     "recommendationKey": "hold",
     "numberOfAnalystOpinions": 25
   },
   "holders": {
     "insidersPercent": 0.44145,
-    "institutionsPercent": 0.26353002
+    "institutionsPercent": 0.26705998
   }
 }

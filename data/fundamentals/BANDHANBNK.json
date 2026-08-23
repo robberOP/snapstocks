@@ -1,7 +1,7 @@
 {
   "symbol": "BANDHANBNK",
   "name": "Bandhan Bank",
-  "generatedAt": "2026-08-18T16:37:21.365869+00:00",
+  "generatedAt": "2026-08-23T11:00:56.249369+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Banks - Regional",
@@ -14,29 +14,29 @@
     "peerIndustry": "Private Sector Bank"
   },
   "price": {
-    "current": 173.65,
-    "change": -0.480011,
-    "changePercent": -0.27566242,
-    "previousClose": 174.13,
-    "dayLow": 172.59,
-    "dayHigh": 176.25,
+    "current": 169.2,
+    "change": -1.300003,
+    "changePercent": -0.7624651,
+    "previousClose": 170.5,
+    "dayLow": 167.64,
+    "dayHigh": 170.89,
     "fiftyTwoWeekLow": 134.25,
     "fiftyTwoWeekHigh": 220.76,
-    "asOf": 1785750301
+    "asOf": 1787132700
   },
   "stats": {
-    "marketCap": 279763681280.0,
-    "trailingPE": 20.697258,
-    "forwardPE": 8.436336,
-    "priceToBook": 1.0923856,
+    "marketCap": 272600072192.0,
+    "trailingPE": 20.166864,
+    "forwardPE": 8.219493,
+    "priceToBook": 1.0643919,
     "bookValue": 158.964,
-    "dividendYield": 0.86,
+    "dividendYield": 0.88,
     "trailingEps": 8.39,
     "debtToEquity": null,
     "roe": 4.784233167329015,
     "roce": null,
-    "return1y": 1.035701691491617,
-    "sharesOutstanding": 1611078000.0
+    "return1y": 4.459919442380069,
+    "sharesOutstanding": 1611111580.0
   },
   "quarterly": {
     "periods": [
@@ -118,8 +118,8 @@
         null,
         117219870000.0,
         124859352000.0,
-        144571836000.0,
-        135637116000.0
+        144570446000.0,
+        135640247000.0
       ],
       "Expenses": [
         null,
@@ -153,8 +153,8 @@
         null,
         null,
         6.517224426200096,
-        15.78775132518708,
-        -6.18012487577456
+        15.78663807257305,
+        -6.177057100591639
       ]
     },
     "ttm": {
@@ -332,6 +332,10 @@
   },
   "dividends": [
     {
+      "date": "2026-08-17",
+      "amount": 1.5
+    },
+    {
       "date": "2025-08-14",
       "amount": 1.5
     },
@@ -364,7 +368,7 @@
     "numberOfAnalystOpinions": 23
   },
   "holders": {
-    "insidersPercent": 0.42674,
-    "institutionsPercent": 0.36972
+    "insidersPercent": 0.41349998,
+    "institutionsPercent": 0.39848998
   }
 }

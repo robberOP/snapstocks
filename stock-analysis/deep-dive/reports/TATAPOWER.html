@@ -1,0 +1,978 @@
+<title>The Tata Power Company Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(34px,5.4vw,52px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:66ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:80ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:88ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:74ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.4px; }
+  th,td{ padding:9px 12px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:160px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.6px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:28px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.4px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:96ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Power Generation, Transmission, Distribution &amp; Renewables</div>
+    <h1>The Tata Power Company Limited</h1>
+    <p class="sub">NSE: TATAPOWER &middot; BSE: 500400 &middot; Consolidated basis unless stated otherwise, FY2023&ndash;FY2027(Q1) review from BSE filings, earnings-call transcripts and market data, as of 23 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> Tata Power's underlying growth engine &mdash; regulated transmission &amp; distribution capex, a solar cell/module manufacturing business that has finally hit a profitability inflection, and a rooftop-solar franchise scaling fast enough that management just pulled its own 2030 revenue target forward to 2029 &mdash; is genuinely working. But FY26, the year management calls its best ever ("PAT crossed &#8377;5,000 crore for the first time"), is also the year operating cash flow <b>halved</b> (&#8377;12,680cr&rarr;&#8377;5,993cr) while reported profit rose, capex delivery missed its own guidance by roughly 45%, and profit attributable to Tata Power's own shareholders (as opposed to the group total including minority partners) actually <b>fell</b> &mdash; EPS declined from &#8377;12.41 to &#8377;11.71. Layer on a &#8776;$490 million unprovisioned arbitration award now awaiting a Singapore court ruling, a formal Key Audit Matter on going-concern liquidity structure, and net leverage climbing for the fourth straight year, and the "record year" headline needs more asterisks than the press release gives it.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (21 Aug 26)</div><div class="v">&#8377;374.30</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;1,19,601.55 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;342.50 &ndash; &#8377;464.90</div></div>
+      <div class="chip"><div class="k">Q1FY27 Revenue</div><div class="v pos">+5.6% YoY</div></div>
+      <div class="chip"><div class="k">FY26 Owners&rsquo; EPS</div><div class="v neg">&minus;5.6% YoY</div></div>
+      <div class="chip"><div class="k">FY26 Operating Cash Flow</div><div class="v neg">&minus;52.7% YoY</div></div>
+      <div class="chip"><div class="k">Trailing / Forward P/E</div><div class="v">31.1x / 22.3x</div></div>
+      <div class="chip"><div class="k">Net Debt / Underlying EBITDA</div><div class="v neg">3.41x (Q1FY27)</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage, gaps and basis &mdash; please read before the numbers below:</b> the BSE filing archive available for this note (AnnouncementsConv) runs only from 13&nbsp;May to 18&nbsp;Aug 2026 &mdash; a roughly 3.5-month window. Within it there are exactly <b>two</b> earnings-call transcripts (Q4/full-year FY26, call held 12 May 2026; Q1FY27, call held 28 July 2026) and one investor presentation/financial-results pair (Q1FY27, 27 July 2026). No earlier-quarter transcripts, investor presentations or standalone/consolidated result filings exist in this dataset, so quarter-over-quarter management commentary in this note is necessarily anchored to just these two calls, cross-checked against the underlying numbers wherever possible. The FY2025-26 Integrated Annual Report (filed 10 June 2026) supplies multi-year MD&amp;A, segment, governance and audit detail. Quantitative trend series come from MarketData/yfinance: annual income statement/balance sheet/cash flow for FY22&ndash;FY26 (FY22 is mostly null in the source and excluded from year-over-year tables), quarterly income statement for Q1FY26&ndash;Q1FY27 (5 quarters; the Mar-2025/Q4FY25 quarterly column is also mostly null), and daily price history from which month-end closes were derived for the price chart in &sect;10. <b>No quarterly cash-flow statement exists in the source data at all</b> &mdash; the cash-flow analysis in &sect;06 is therefore annual-only, and Q1FY27's cash generation specifically cannot be checked. Quarterly balance-sheet data exists for only three points (Mar-2025, Sep-2025, Mar-2026). Every figure below is tagged standalone or consolidated; Tata Power's own filings note figures for the "Company" (parent, standalone) separately from the "Group" (consolidated, including ~90 subsidiaries/JVs/associates listed in the FY26 auditor's report) and this note preserves that distinction rather than blending the two.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Other call insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What Tata Power does, and how it has grown</h2></div>
+      <p class="sec-dek">India's largest vertically-integrated private power company &mdash; generation, transmission, distribution and a genuinely fast-growing "new energy" arm bolted on top &mdash; built through 111 years of regulated-utility ownership and, in the last five, an aggressive push into manufacturing and rooftop solar.</p>
+
+      <p class="lede">Founded in 1915 and headquartered in Mumbai, Tata Power is organised, per its own segment reporting, into four businesses: <b>Thermal &amp; Hydro</b> (coal, gas, oil and hydro generation, including hydro pump storage and Indonesian coal mining/trading/shipping via joint ventures), <b>Transmission &amp; Distribution</b> (Mumbai and Delhi distribution licences, four Odisha discoms acquired via privatisation, Ajmer distribution, plus TBCB-model inter-state transmission lines), <b>Renewables</b> (utility-scale wind and solar generation, rooftop solar, solar cell/module manufacturing, EV charging, and third-party solar EPC &mdash; now being wound down, see &sect;04), and <b>Others</b> (project management/infrastructure services, property development, satellite communications). As of 31 March 2026 the company had 16,716 MW of installed capacity; including projects under construction, total portfolio capacity was &#8776;26.6 GW, of which 17.7 GW (including 9.8 GW under construction) is classified as clean &amp; green.</p>
+
+      <h3>FY22&ndash;FY26: a business that roughly doubled EBITDA in four years</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, company-reported<sup>&dagger;</sup></th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue</td><td>42,576</td><td>56,033</td><td>61,542</td><td>64,502</td><td>63,681</td></tr>
+            <tr><td>EBITDA (underlying)</td><td>8,192</td><td>10,068</td><td>12,701</td><td>14,468</td><td>16,090</td></tr>
+            <tr><td>PAT (total, before minority interest)</td><td>2,156</td><td>3,810</td><td>4,280</td><td>4,775</td><td>5,118</td></tr>
+          </tbody>
+        </table>
+        <caption>&dagger; Source: Q1FY27 Investor Presentation (27 Jul 2026), "Financial performance consistently improving over the years" slide. These are company-defined figures (net of regulatory deferral movements, underlying-EBITDA basis) and differ modestly from the yfinance-derived series used elsewhere in this note &mdash; see &sect;03/&sect;04 for the reconciliation and why the two series aren't identical.</caption>
+      </div>
+      <p>Read as a four-year CAGR: revenue +10.6%, EBITDA +18.5%, total PAT +18.9%. That is a genuinely strong multi-year record, and it is the number management leads with on every call. It is also, as &sect;04 shows in detail, not the same thing as growth in profit <em>attributable to Tata Power's own shareholders</em> &mdash; a distinction that matters a great deal for FY26 specifically and that the headline figures above do not surface.</p>
+
+      <h3>The moat, and where it actually sits</h3>
+      <p>Roughly two-thirds of segment revenue (T&amp;D: &#8776;60% of FY26 gross segment revenue) sits in regulated or long-term-contracted businesses &mdash; cost-plus tariffs with a permitted return on equity for Mumbai/Odisha/Delhi distribution, TBCB (tariff-based competitive bidding) concessions for new transmission lines with 25&ndash;35-year terms once commissioned. This is the classic utility moat: predictable, government-sanctioned returns, insulated from merchant power-price swings, funded by investment-grade debt. Layered on top is a genuinely differentiated new-energy franchise: an integrated 4.9 GW solar cell-and-module manufacturing plant (feeding both third-party utility-scale sales and Tata Power's own captive rooftop/utility projects, with DCR/ALMM compliance as a structural tailwind), and a rooftop-solar business management describes as India's #1 for eleven consecutive years, with 12&ndash;13% market share against a #2 competitor at just 2%, built on a 3,778-partner channel network. Captive Indonesian coal joint ventures (KPC, BSSR, AGM) partially hedge the imported-coal cost exposure of the Mundra thermal plant, though as &sect;08 discusses, Mundra's current tariff structure caps this at cost-recovery rather than profit.</p>
+      <p>What is <em>not</em> independently evidenced in this dataset: no market-share or competitive-ranking data was found for the regulated generation/transmission/distribution segments beyond management's own self-reported figures, and no geography breakdown exists outside India and the Bhutan hydro joint ventures (Khorlochhu, Dorjilung). Growth beyond the domestic market is limited to these two Bhutan projects and legacy Indonesian coal-mining stakes.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">A busy six months of order wins, capacity announcements and partnership MoUs &mdash; genuinely bullish in direction, though the one item that tried to quantify Q1FY27 margin compression could not be reconciled against this note's own computation from the company's filed numbers.</p>
+
+      <div class="news-item">
+        <div class="news-date">22 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">CEO Praveer Sinha: discom IPOs are "not a solution"</div>
+          <div class="news-body">Commentary on sector structure &mdash; discoms need multi-year strategy and technology/reliability improvements before an IPO route makes sense &mdash; rather than a company-specific development. No financial impact.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">20 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">"Ghar Ghar Solar" campaign launched in Bihar</div>
+          <div class="news-body">Tata Power Solaroof targets 5 lakh household rooftop installations in Bihar over three years, with financing from &#8377;999 upfront and up to 100% system-cost financing, layered on government subsidy of up to &#8377;98,000 for 3kW+ systems. A separate 20 Aug item: a 50 MW/100 MWh battery storage tender floated for Mumbai Distribution (15-year term, bids due 15 Sep 2026) &mdash; a procurement step, not yet a booked contract, rated neutral.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">17 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Master Research Agreement with IIT Bombay</div>
+          <div class="news-body">Joint R&amp;D across smart grids, energy storage, EV mobility, carbon capture and AI for power systems. A long-dated capability play, not a near-term revenue event.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">7 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed &mdash; two items, one unverifiable as reported</span>
+          <div class="news-title">Rooftop target pulled forward to 2029; &#8377;3,200 Cr Karnataka transmission win; a margin-compression claim this note could not reconcile</span></div>
+          <div class="news-body">Tata Power advanced its cumulative rooftop-revenue target of &#8377;30,000 Cr from 2030 to 2029, alongside a target to roughly double rooftop market share from 13% to 25% (see &sect;03). Separately, a &#8377;3,200 Cr ("Rs 32 billion") Karnataka transmission contract was reported with minimal detail on scope or margin &mdash; this reconciles with a company filing dated 30&nbsp;Jul&nbsp;2026 confirming 100% acquisition of the Ryapte Power Transmission Limited (RPTL) SPV for just &#8377;10.87 Cr in equity consideration (a &#8776;250km Karnataka transmission line, 30-month commissioning target) &mdash; the &#8377;3,200 Cr figure is the project's total TBCB value/lifetime capex, not the acquisition cost, and this note flags that distinction explicitly since the headline figure alone is easy to misread as a near-term cash inflow. A third item in this cluster, an analyst note, cited Q1FY27 "EBITDA margin compression to 21.2% from 22.9% YoY" and target-price cuts from &#8377;430/460 to &#8377;415/430 while maintaining BUY &mdash; this note's own computation from the company's filed P&amp;L (&sect;04) does not reproduce that specific margin move using either revenue base available in the filings, and the discrepancy is flagged rather than either repeated or dismissed.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">30 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">800 MW Andhra Pradesh renewable project breaks ground</div>
+          <div class="news-body">400 MW wind + 400 MW solar, with 200 MW firm-dispatchable capacity anchored to NTPC including a 25 MW/50 MWh battery system; ISTS-connected, &#8776;4,000 jobs expected.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">27 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Q1FY27 results: PAT &#8377;1,401 Cr (+11% YoY), revenue &#8377;18,898 Cr (+8% YoY, segment-view basis)</div>
+          <div class="news-body">Reported alongside &#8377;5,375 Cr of quarterly capex (a record) and Mundra's "return to full operations." See &sect;03&ndash;04 for why the Mundra framing needs a caveat and why the underlying "+8% YoY" revenue figure differs from the &#8377;19,051 Cr / +5.6% YoY figure in the audited P&amp;L (both are legitimate, differently-defined figures &mdash; reconciled in &sect;03).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Feb&ndash;Jun 2026 (selected)</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish, longer-dated</span>
+          <div class="news-title">Nuclear site evaluation; Suzlon wind-turbine supply pact; Bhutan Dorjilung hydro financing; Databricks/Salesforce AI platform rollouts</div>
+          <div class="news-body">Consistent with the growth pipeline detailed in &sect;05/&sect;08: three-state nuclear SMR site evaluation, a $515M World Bank-financed 1,125 MW Bhutan hydro JV, and enterprise AI/CRM tooling rollouts framed as productivity and grid-management investments rather than near-term revenue events.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>Month-end closing prices ran from &#8377;335.14 (Feb-2025) up to &#8377;441.81 (Apr-2026) and back to &#8377;374.30 by 21&nbsp;Aug&nbsp;2026 &mdash; a round trip that sits well inside the 52-week intraday range of &#8377;342.50&ndash;&#8377;464.90 (see &sect;10 for the full chart). Beta of just 0.34 (per MarketData) is notably low for a company carrying 1.6x net debt/equity, consistent with the market treating this largely as a regulated-utility defensive rather than a growth/beta name, despite the genuine growth-capex and leverage story documented in &sect;05.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segments &amp; guidance vs. delivered</h2></div>
+      <p class="sec-dek">Regulated T&amp;D and manufacturing did the heavy lifting in Q1FY27; rooftop guidance has actually been met and then raised; renewable capacity additions and the Odisha collection cycle are both running behind their own guided glide-path, with management attributing both to timing rather than structural issues.</p>
+
+      <h3>Quarterly trend (company-reported P&amp;L revenue, total PAT before minority interest)</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q1FY26 (Jun-25)</th><th>Q2FY26 (Sep-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>18,035.07</td><td>15,544.90<sup>&Dagger;</sup></td><td>13,948.40<sup>&Dagger;</sup></td><td>14,900.20</td><td>19,051.26</td></tr>
+            <tr><td>EBITDA (yfinance-derived, indicative)</td><td>4,059.59</td><td>4,160.60</td><td>4,111.19</td><td>4,372.49</td><td>4,489.98</td></tr>
+            <tr><td>EBITDA (company-reported, where confirmed)</td><td>3,930</td><td>n/a</td><td>n/a</td><td>4,216<sup>&sect;</sup></td><td>4,249</td></tr>
+            <tr><td>PAT &mdash; total (before minority interest)</td><td>1,262.32</td><td>1,245.39</td><td>1,194.33</td><td>1,415.52</td><td>1,400.86</td></tr>
+            <tr><td>PAT &mdash; attributable to owners</td><td>1,059.86</td><td>919.44</td><td>771.98</td><td>995.91</td><td>1,175.93</td></tr>
+            <tr><td>Minority interest as % of total PAT</td><td>16.0%</td><td class="neg">26.2%</td><td class="neg">35.4%</td><td class="neg">29.6%</td><td>16.1%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance quarterly income statement (Revenue, EBITDA, PAT splits); company-reported EBITDA/PAT figures cross-checked against the 12 May and 28 Jul 2026 earnings-call transcripts and the Q1FY27 financial-results filing. &Dagger; Q2/Q3FY26 revenue figures are yfinance-derived only; no company transcript exists in this dataset covering those quarters directly, so they could not be cross-checked against a primary filing. &sect; "&#8776;INR4,216 crores compared to INR3,829 crores last year" per the 12 May 2026 call (management's own Q4FY26 vs Q4FY25 comparison).</caption>
+      </div>
+      <p>Two things stand out. First, revenue and total PAT both stepped up meaningfully from Q2/Q3FY26's trough back through Q4FY26 into Q1FY27 &mdash; consistent with the "27th consecutive quarter of PAT and EBITDA growth" claim CEO Praveer Sinha made on the July 2026 call (a claim this note's two-call, five-quarter window cannot independently verify in full, but does not contradict either). Second, and more important: <b>minority interest's share of total profit nearly doubled</b>, from 16% in Q1FY26 to a peak of 35% in Q3FY26, before reverting to 16% in Q1FY27. Because "PAT" in most of management's headline framing (and in the FY26 "crossed &#8377;5,000 crore" milestone) refers to the total, pre-minority-interest figure, this swing is invisible in the topline narrative even though it directly determines what Tata Power's own shareholders actually earn per share &mdash; see &sect;04 for the annual-basis version of this finding, which is the single most important number in this report.</p>
+
+      <h3>Revenue reconciliation: two legitimate but different numbers</h3>
+      <p>Q1FY27 revenue from operations, as reported in the audited/reviewed consolidated P&amp;L, was &#8377;19,051.26 Cr, +5.6% YoY against Q1FY26's &#8377;18,035.07 Cr. Management's own investor-presentation slides instead lead with a <b>net-of-regulatory-deferral, segment-reconciliation</b> revenue figure &mdash; &#8377;18,881.44 Cr in Q1FY27 versus &#8377;17,452.54 Cr in Q1FY26, +8.2% YoY &mdash; which is the basis for the "+8% YoY" figure quoted in the press release and the Aug-2026 news item above. Both figures are legitimate and reconcile cleanly against each other (the difference is the net regulatory-deferral-balance movement and a small unallocable-revenue adjustment, both disclosed in the segment note); this note uses the audited P&amp;L figure as primary and flags the presentation basis wherever it is the source of a growth percentage, since the two bases produce materially different headline growth rates on the same underlying quarter.</p>
+
+      <h3>Segment mix, FY26 (annual, consolidated)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Thermal &amp; Hydro</th><th>Renewables</th><th>Transmission &amp; Distribution</th><th>Others</th><th class="total">Total (gross)</th></tr></thead>
+          <tbody>
+            <tr><td>Segment revenue (gross, pre-elimination)</td><td>11,635.93</td><td>15,027.82</td><td>41,338.59</td><td>431.79</td><td class="total">68,434.13</td></tr>
+            <tr><td>Share of gross segment revenue</td><td>17.0%</td><td>22.0%</td><td>60.4%</td><td>0.6%</td><td class="total">100%</td></tr>
+            <tr><td>Segment result (profit)</td><td>1,964.61</td><td>4,340.93</td><td>4,398.59</td><td class="neg">&minus;104.72</td><td class="total">10,599.41</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Consolidated Segment Information note, Q1FY27 financial-results filing (year-ended 31-Mar-26 column). Gross segment revenue of &#8377;68,434.13 Cr less inter-segment eliminations (&#8776;&#8377;4,819 Cr) and regulatory-deferral/unallocable adjustments reconciles to the &#8377;63,615.61 Cr "Total Segment Revenue" figure used elsewhere.</caption>
+      </div>
+      <p>Transmission &amp; Distribution is the clear scale segment by both revenue and profit contribution; Renewables and T&amp;D contribute almost identical absolute segment profit (&#8377;4,341 Cr and &#8377;4,399 Cr respectively) despite Renewables generating little more than a third of T&amp;D's revenue &mdash; consistent with Renewables carrying the higher-margin manufacturing and rooftop businesses discussed below. "Others" (project management, satellite comms, property) is a small, persistently loss-making rounding error on the segment table.</p>
+
+      <h3>Q1FY27 cluster-level detail</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Q1FY27 vs Q1FY26, &#8377; Cr</th><th>Revenue</th><th>YoY</th><th>EBITDA</th><th>YoY</th><th>PAT</th><th>YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Generation &amp; Coal cluster</td><td>5,193</td><td class="pos">+7.2%</td><td>1,027</td><td class="pos">+5.4%</td><td>635</td><td class="pos">+26.6%</td></tr>
+            <tr><td>Transmission &amp; Distribution cluster</td><td>11,441</td><td class="pos">+13.5%</td><td>1,541</td><td class="pos">+14.4%</td><td>492</td><td class="pos">+11.0%</td></tr>
+            <tr><td>Renewable cluster</td><td>3,771</td><td class="pos">+4.0%</td><td>1,696</td><td class="pos">+8.3%</td><td>612</td><td class="pos">+15.3%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1FY27 investor presentation, per-cluster financial-performance pages. These management-defined "clusters" don't net against each other or against the segment table above (inter-cluster sales aren't eliminated here), so the three rows are not directly additive to total company revenue.</caption>
+      </div>
+      <p>Within the Renewable cluster, two sub-businesses did almost all the work: <b>TP Solar (manufacturing)</b> produced a record 1,001 MW of modules in the quarter (first time crossing 1 GW/quarter, management says "virtually peaked"), with revenue up 52.6% YoY to &#8377;2,462 Cr, EBITDA up 112.9% to &#8377;626 Cr and PAT up 286.5% to &#8377;371 Cr &mdash; an unambiguous margin inflection (EBITDA margin &#8776;25.4%), driven by input-cost efficiency and a diversified sales mix (63% of module output and &gt;50% of cell output now sold to external customers, including the rooftop business). <b>Rooftop solar</b> billed &#8377;1,350 Cr of revenue in Q1FY27 versus &#8377;823 Cr in Q1FY26 (+64%), on 371 MWp installed (+37% YoY, vs. 270 MWp a year earlier). Partly offsetting both: continued curtailment of RE generation in Rajasthan and Gujarat (management quantified this at &#8776;5% industry-wide on the July call, a more specific answer than the vague "difficult to say" response given to the same question in May), and a wind-down of <b>third-party solar EPC</b>, now posting EBITDA losses for a second straight quarter (management confirmed on the July call it has deliberately exited new third-party EPC bookings, repurposing that workforce to the &#8776;5.5 GW in-house renewable pipeline, forgoing roughly &#8377;100 Cr/year of prior PAT contribution in the process).</p>
+
+      <h3>Rooftop order book: strong intake, but billing outran new orders this quarter</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Order book, end-Q4FY26</div><div class="v">&#8377;898 Cr</div></div>
+        <div class="stat"><div class="k">New orders, Q1FY27</div><div class="v pos">+&#8377;1,091 Cr</div></div>
+        <div class="stat"><div class="k">Revenue billed, Q1FY27</div><div class="v neg">&minus;&#8377;1,350 Cr</div></div>
+        <div class="stat"><div class="k">Order book, end-Q1FY27</div><div class="v">&#8377;639 Cr</div></div>
+      </div>
+      <p>The arithmetic balances cleanly (&#8377;898 + &#8377;1,091 &minus; &#8377;1,350 = &#8377;639 Cr), but the book-to-bill ratio for the quarter was 0.81x &mdash; new orders came in below what was billed, so the order book shrank even as both intake and revenue grew strongly YoY. Not alarming on its own for a business scaling this fast off a small base, but worth watching if it repeats for a second quarter.</p>
+
+      <h3>Guidance vs. delivered</h3>
+      <div class="grid-2">
+        <div class="callout pass">
+          <div class="icon">&#10003;</div>
+          <div><b>Rooftop growth guidance: met</b>May-2026 call guidance: FY27 rooftop revenue growth of "50%, 60%" (repeated as "60% to 70%" on the July call). Q1FY27 delivered +64% YoY &mdash; squarely inside the guided range, and the company separately pulled forward its cumulative &#8377;30,000 Cr rooftop-revenue target from calendar 2030 to 2029 and raised its market-share ambition from "20% in 3 years" (May call) to 25% by 2029 (Aug-2026 news) &mdash; a clean beat-and-raise on the one guided metric this note could fully verify.</div>
+        </div>
+        <div class="callout flag">
+          <div class="icon">&#9888;</div>
+          <div><b>Renewable capacity addition: behind its own quarterly pace, reaffirmed for the year</b>FY27 full-year target: 2.5&ndash;2.7 GW of RE capacity addition (guided May and reaffirmed July 2026). Q1FY27 actual commissioning: only 226 MW, with management citing transmission-evacuation delays (not execution issues on Tata Power's side) and pointing to &#8776;500 MW more "in the next few weeks." Only one quarter of data exists to judge this by &mdash; flagged as a data point to watch in Q2FY27, not yet a confirmed miss.</div>
+        </div>
+      </div>
+      <div class="callout flag" style="margin-top:16px;">
+        <div class="icon">&#9888;</div>
+        <div><b>Odisha discom AT&amp;C losses: a sharp deviation from the guided glide-path, management calls it timing</b>On the May 2026 call, management guided a steady &#8776;2 percentage-point annual reduction in Odisha AT&amp;C losses over 4&ndash;5 years, from a base where the strongest circle (North Odisha) was already near 10% and the others near 18%. The Q1FY27 investor presentation instead shows Odisha discom AT&amp;C losses at <b>26.7%</b> for the quarter. On the July call, both the CEO and CFO attributed this specifically to (i) delayed government payments for street-lighting/drinking-water connections, (ii) a heat-wave-driven moratorium on disconnections through mid-June, and (iii) a one-month billing-cycle lag on peak summer consumption &mdash; framed as a 12-month-rolling, not quarterly, metric, with collection efficiency "improving in this quarter" (Q2FY27). Odisha discom PAT still grew a modest 6% YoY in Q1FY27 (&#8377;111 Cr vs &#8377;105 Cr) and EBITDA grew 11% (&#8377;651 Cr vs &#8377;585 Cr) despite the collection-timing issue, which is at least consistent with management's "timing, not structural" explanation &mdash; but this is a single quarter's data against a multi-year guided trajectory, and the next print is the one that will tell whether it normalises as promised.</div>
+      </div>
+
+      <h3>Guidance vs. delivered: capex (see &sect;05 for the full multi-quarter history)</h3>
+      <p>The most consequential guidance-vs-actual gap in this dataset is on capex, not sales &mdash; covered in full in &sect;05, where FY26's guided &#8776;&#8377;22,000&ndash;25,000 Cr capex delivered only &#8776;&#8377;13,700 Cr, a shortfall of roughly 45%.</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, profitability &amp; the owners&rsquo;-PAT problem</h2></div>
+      <p class="sec-dek">The single most important finding in this report: FY26's headline "record PAT" was true only on a pre-minority-interest, group-total basis. Profit and EPS attributable to Tata Power's own shareholders actually fell.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Annual, consolidated</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations (&#8377; Cr)</td><td>54,117.6</td><td>60,388.0</td><td>64,127.8</td><td>61,048.6</td></tr>
+            <tr><td>EBITDA (&#8377; Cr, yfinance basis)</td><td>12,940.3</td><td>13,768.4</td><td>14,799.0</td><td>16,385.4</td></tr>
+            <tr><td>PAT &mdash; total (incl. minority interest, &#8377; Cr)</td><td>3,809.67</td><td>4,280.10</td><td>4,775.37</td><td>5,117.56</td></tr>
+            <tr><td><b>PAT &mdash; attributable to owners (&#8377; Cr)</b></td><td>3,336.44</td><td>3,696.25</td><td>3,971.00</td><td class="neg"><b>3,747.19</b></td></tr>
+            <tr><td><b>Diluted EPS (&#8377;)</b></td><td>10.43</td><td>11.56</td><td>12.41</td><td class="neg"><b>11.71</b></td></tr>
+            <tr><td>Minority interest (&#8377; Cr)</td><td>473.23</td><td>583.85</td><td>804.37</td><td>1,370.37</td></tr>
+            <tr><td>Minority interest as % of total PAT</td><td>12.4%</td><td>13.6%</td><td>16.9%</td><td class="neg">26.8%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>FY26's "record PAT" is a group-total figure &mdash; owners&rsquo; EPS fell 5.6%</b>Total consolidated PAT (before splitting out minority interest) rose 7.2% in FY26 to &#8377;5,117.56 Cr, comfortably supporting management's "PAT crossed &#8377;5,000 crore for the first time" framing on the May 2026 call. But minority interest &mdash; the share of profit going to co-investors in subsidiaries and joint ventures, not to Tata Power's own shareholders &mdash; jumped 70.4% YoY (&#8377;804.37 Cr &rarr; &#8377;1,370.37 Cr), taking its share of total group profit from 16.9% to 26.8% in a single year. The residual, profit actually attributable to Tata Power shareholders, <em>fell</em> 5.6% (&#8377;3,971.0 Cr &rarr; &#8377;3,747.19 Cr), and diluted EPS fell in step (&#8377;12.41 &rarr; &#8377;11.71). The &sect;03 quarterly table shows this wasn't a full-year phenomenon: it was concentrated in Q2&ndash;Q4FY26 (minority interest's share peaked at 35.4% in Q3FY26) before reverting to a normal &#8776;16% in Q1FY27. Neither earnings call transcript in this dataset offers a specific explanation for the swing; a plausible driver is minority stakes in fast-growing renewable subsidiaries and/or the Odisha discoms (which posted an 84% PAT jump in FY26 per the May call) claiming a larger absolute rupee share of a larger profit pool, but this note could not verify that attribution from the source data and flags it as an open question rather than a confirmed explanation.</div>
+      </div>
+
+      <h3>What moved FY26 and Q1FY27</h3>
+      <p>EBITDA margin (on the yfinance revenue base) held up: 23.9% (FY23) &rarr; 22.8% (FY24) &rarr; 23.1% (FY25) &rarr; 26.8% (FY26) &mdash; actually expanding on this measure, which sits at odds with the "margin compression" language in the news item flagged in &sect;02. On the company's own SEBI-mandated "Operating Margin" ratio (a stricter definition excluding other income, disclosed quarterly in the results filing), the picture is flatter: 15% in both Q1FY26 and Q1FY27, down from 16% for full-year FY26 &mdash; broadly stable, not the sharp compression an external analyst note described. Net profit margin (including exceptional items, same SEBI definition) was 7% in both Q1FY26 and Q1FY27, versus 8% for FY26 overall. Neither of this note's two independently-computed margin measures reproduces the specific 22.9%&rarr;21.2% move cited in the Aug-2026 analyst note flagged in &sect;02; that figure could not be reconciled from the filed data available here.</p>
+      <p>Below the EBITDA line, finance costs and D&amp;A both grew in step with the balance sheet expansion detailed in &sect;05: consolidated interest expense rose from &#8377;4,362.49 Cr (FY25) to &#8377;4,938.28 Cr (FY26), and D&amp;A from &#8377;4,116.86 Cr to &#8377;4,811.09 Cr. Interest coverage (EBIT/finance cost, company-disclosed Interest Service Coverage Ratio) held roughly flat at 2.37x for FY26 and 2.38x for Q1FY27 &mdash; adequate, but not a large cushion for a company mid-way through a multi-year, debt-funded capex programme, and one of the lower coverage ratios among large-cap Indian utilities on a like-for-like basis (this note has no peer dataset to benchmark that claim precisely, so it is offered as a qualitative observation, not a ranked comparison).</p>
+
+      <h3>Two guidance items that missed, one that's a genuine quality-of-earnings flag</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Tata Projects (associate): guided to return to profit in FY27, instead posted a wider loss in the very first FY27 quarter</b>On the May 2026 call, management stated legacy loss-making projects (the Dedicated Freight Corridor, a Barmer refinery project) were "in the final stages of closing" and guided "it will be back, and it will start making profit from FY '27." On the July 2026 call, an analyst noted Tata Projects' losses had instead <em>widened</em> in Q1FY27; management's response walked the guidance back by (at least) one quarter &mdash; "we are at something like just 10% of the legacy projects... possibly maybe one more quarter will have an impact." Consolidated Q1FY27 PAT growth (+11% at the total level) was explicitly cited by management as "offset by lower income from Tata Projects and higher corporate costs" &mdash; i.e., this is a real, quantified (if not rupee-disclosed) drag on the reported quarter, not a rounding item.</div>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>A &#8776;&#8377;250 Cr non-cash deferred-tax credit inflated the Q4FY26/FY26 PAT print</b>An analyst on the May 2026 call flagged a &#8776;&#8377;250 Cr deferred-tax-asset recognition in the standalone Q4FY26 results (management confirmed the standalone Deferred Tax line moved to a &#8377;192.60 Cr <em>credit</em> for the quarter, versus a charge in the prior quarter), on the basis of improved visibility into future profitability enabling utilisation of carried-forward tax losses. CFO Sanjeev Churiwala confirmed this "of course" flowed through to consolidated profit positively. This is a legitimate accounting entry, not an irregularity, but it is a non-cash, one-off contributor to the very quarter that pushed full-year PAT over the &#8377;5,000 Cr milestone &mdash; worth separating from the underlying operating trend.</div>
+      </div>
+      <p>On the positive side of the ledger: Delhi discom prior-period regulatory clearances contributed &#8377;333 Cr to FY25 and &#8377;783 Cr to FY26 EBITDA/PAT (a real, cash-eventual, but lumpy and hard-to-forecast tailwind &mdash; CFO Churiwala: "next year too we will have something... but to quantify at this stage... might be very, very difficult"), and TP Solar's margin inflection (&sect;03) looks structural rather than one-off, driven by yield/efficiency gains and a genuinely diversified customer mix rather than a single large order.</p>
+
+      <h3>Forward margin guidance</h3>
+      <p>No explicit consolidated EBITDA-margin or PAT-margin target was found in either transcript. The only forward profitability marker is the FY30E aspiration disclosed in the Q1FY27 investor presentation: EBITDA of &#8776;&#8377;30,000 Cr (&#8776;2x FY26's &#8377;16,090 Cr) and PAT of &#8776;&#8377;10,000 Cr (&#8776;2x FY26's &#8377;5,212 Cr<sup>&dagger;</sup>) on revenue of &#8776;&#8377;1,00,000 Cr (&#8776;1.6x) &mdash; implying EBITDA and PAT growing meaningfully faster than revenue, consistent with continued margin expansion from the manufacturing and rooftop mix-shift, if delivered.</p>
+      <p style="font-size:12.5px;color:var(--ink-mute);">&dagger; The FY30E slide's FY26 PAT base (&#8377;5,212 Cr) differs slightly from the &#8377;5,118 Cr figure used on the "financial performance" slide in &sect;01 &mdash; both are company-sourced, and the &#8776;&#8377;94 Cr gap could not be reconciled from the disclosed data; flagged rather than silently used as if identical.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet, capex delivery &amp; capital allocation</h2></div>
+      <p class="sec-dek">A four-year deleveraging trend has reversed for four years running; FY26 capex missed its own guidance by roughly 45%; a &#8776;$490 million unprovisioned arbitration award and a formal going-concern Key Audit Matter sit alongside credit ratings that keep getting upgraded regardless.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Annual, consolidated (&#8377; Cr)</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity (incl. minority interest)</td><td>34,204.1</td><td>38,332.8</td><td>42,606.0</td><td>47,538.1</td></tr>
+            <tr><td>Total debt</td><td>52,923.1</td><td>59,006.8</td><td>67,995.8</td><td>79,789.3</td></tr>
+            <tr><td>Net debt</td><td>44,784.8</td><td>51,472.8</td><td>58,413.1</td><td class="neg">70,360.8</td></tr>
+            <tr><td>Net debt / equity (company-disclosed)</td><td>1.03x</td><td>0.99x</td><td>1.05x</td><td class="neg">1.18x</td></tr>
+            <tr><td>Net debt / underlying EBITDA (company-disclosed)</td><td>2.66x</td><td>2.75x</td><td>2.93x</td><td class="neg">3.34x</td></tr>
+            <tr><td>Capital expenditure (cash-flow basis)</td><td>&minus;7,656.0</td><td>&minus;13,241.0</td><td>&minus;17,272.8</td><td>&minus;13,694.8</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet and cash flow; leverage ratios per the Q1FY27 investor-presentation "Comfortable Debt Position" slide. Q1FY27 (not annual): net debt/equity 1.25x, net debt/underlying EBITDA 3.41x &mdash; a fourth consecutive period of rising leverage on both measures, up from the FY23/FY24 low of &#8776;1.0x and 2.66x respectively.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>A multi-year deleveraging trend has reversed, for four periods running</b>Net debt/equity bottomed at 0.99x in FY24 (down from 2.19x in FY19) and has risen every period since: 1.05x (FY25), 1.18x (FY26), 1.25x (Q1FY27). Net debt/underlying EBITDA shows the same pattern, bottoming at 2.66x in FY23 and rising to 3.41x by Q1FY27. This is a direct, mechanical consequence of the capex super-cycle described below &mdash; not itself alarming for a regulated utility with visible cash-flow contracts, but a real trend reversal worth tracking against management's own statement that leverage will be kept "within the guardrails we have set for ourselves," a guardrail level that was not quantified in either transcript.</div>
+      </div>
+
+      <h3>Capex: guided &#8776;&#8377;22,000&ndash;25,000 Cr for FY26, delivered &#8776;&#8377;13,700 Cr &mdash; a &#8776;45% shortfall</h3>
+      <p>On the May 2026 call, analyst Sumit Kishore directly challenged management on this point: "the capex for the financial year has been INR130 billion. This is meaningfully below the guidance that you had given us in November in Odisha, which was INR250 billion." CEO Praveer Sinha's response: "I agree that our guidance was, I don't think INR25,000 crores, but it was, I think, about INR22,000 crores. We have fallen short because some of the projects that we were planning to execute in the last quarter could not happen" &mdash; citing right-of-way (RoW) delays for transmission lines and evacuation-infrastructure delays by other TBCB developers as the specific causes, and reiterating "our target of yearly investment continues to be the same... there may be certain deferment by a quarter or 2." This is a real, sizeable guidance miss (roughly 40&ndash;45% short of the guided range, however it is measured) attributed to phasing rather than cancellation &mdash; a distinction that matters, but one investors can only verify by watching whether the deferred spend actually shows up.</p>
+      <p>For FY27, management has now guided &#8776;&#8377;25,000 Cr of capex (50% renewables, the balance split across FGD retrofits and transmission/distribution projects), reiterated on both the May and July 2026 calls, with CFO Sanjeev Churiwala adding on the May call that FY28 capex would likely be "a similar kind of capital outlay." Q1FY27 delivered a record &#8377;5,375 Cr &mdash; on an annualised run-rate (&times;4 &#8776; &#8377;21,500 Cr) that sits modestly below the full-year target, though the CFO guided Q2FY27 capex of &#8377;6,000&ndash;6,500 Cr on the July call, implying a back-loaded delivery plan. Given FY26's own track record of guiding aggressively and missing by close to half, this note treats the FY27 &#8377;25,000 Cr figure as a target to verify quarter by quarter, not a number to build a valuation model on directly.</p>
+
+      <h3>Credit ratings: upgraded through the same period leverage has risen</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Agency (consolidated)</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th><th>Current</th></tr></thead>
+          <tbody>
+            <tr><td>CRISIL / ICRA / CARE</td><td>AA/Stable</td><td>AA/Positive</td><td>AA+/Stable</td><td>AA+/Stable</td><td>AA+/Stable</td></tr>
+            <tr><td>India Ratings</td><td>AA/Stable</td><td>AA+/Stable</td><td>AA+/Stable</td><td>AA+/Stable</td><td>AA+/Stable</td></tr>
+            <tr><td>S&amp;P Global</td><td>BB+/Stable</td><td>BB+/Stable</td><td>BBB-/Positive</td><td>BBB/Stable</td><td>BBB/Stable</td></tr>
+            <tr><td>Moody's</td><td>Ba2/Stable</td><td>Ba1/Stable</td><td>Ba1/Positive</td><td>Ba1/Positive</td><td>Ba1/Positive</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1FY27 investor presentation, "Comfortable Debt Position" slide.</caption>
+      </div>
+      <p>All four domestic agencies and both international agencies have upgraded Tata Power at least one notch since FY23, and two (S&amp;P, Moody's) carry a Positive outlook today &mdash; a genuine, independently-arrived-at endorsement of credit quality even as the leverage ratios above have been rising, presumably reflecting the growing share of contracted/regulated cash flows in the asset base. This is a real tension worth flagging rather than resolving one way: rating agencies and the balance-sheet ratios are, on their own terms, both correct, and both matter to different kinds of investors.</p>
+
+      <h3>Two unprovisioned liabilities that deserve more attention than either transcript gives them</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Kleros arbitration: &#8776;$490 million (excluding accruing interest and costs), unprovisioned, with a ruling reserved</b>The Singapore International Arbitration Centre held Tata Power in breach of non-disclosure and good-faith obligations to Kleros Capital Partners Limited, and in July/August 2025 issued a quantum and final award directing payment of <b>USD 490,320,000</b> plus simple interest at 5.33% p.a. from 30 November 2020, plus SGD 11,341,963.46 in costs with interest from 1 July 2025. Both the standalone and consolidated FY26 auditor's reports (S R B C &amp; CO LLP) carry an Emphasis of Matter on this item; the Company has appealed to the Singapore International Commercial Court, "does not foresee any affirmative payment obligation," and no provision has been recorded &mdash; the Q1FY27 filing states hearings are complete and "the order is reserved," meaning a ruling could land at any time. By this note's own arithmetic (not a company or auditor figure): the principal alone converts to roughly &#8377;4,300 Cr at current exchange rates, and &#8776;5.75 years of accrued simple interest at 5.33% adds another &#8776;30% on top &mdash; a total exposure in the rough range of <b>&#8377;5,500&ndash;6,000 Cr</b> if the appeal fails, against consolidated owners' equity of &#8377;39,467.2 Cr (&#8776;14&ndash;15% of net worth) and roughly 1.5x FY26's full-year attributable PAT. This is a real, binary, headline-risk event that could land with no further quarter's warning.</div>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Going Concern flagged as a Key Audit Matter (consolidated FY26)</b>The FY26 consolidated audit report identifies management's going-concern assessment as a Key Audit Matter, noting current liabilities of &#8377;39,223.57 Cr against current assets of &#8377;30,571.05 Cr as at 31 March 2026 &mdash; an &#8776;&#8377;8,650 Cr working-capital deficit. The auditor's stated basis for comfort: the Group's history of refinancing short-term borrowings (deliberately used, per the disclosure, to fund long-term capex at lower short-term rates), contracted long-term cash flows, and management's ability to complete "planned divestments" if needed. The audit opinion itself is <b>unmodified</b> &mdash; this is not a qualification &mdash; but it is a genuine structural liquidity characteristic of the balance sheet, not a one-off, and it is the same "planned divestments" language that maps directly onto management's own openness (see &sect;08) to monetising its Indonesian coal-mine stakes if the SPPA process and valuation line up.</div>
+      </div>
+
+      <h3>Contingent liabilities and commitments (standalone)</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Total contingent liabilities (standalone)</div><div class="v">&#8377;2,048.58 Cr</div><div class="d">vs &#8377;2,005.78 Cr, FY25 &mdash; modest YoY growth</div></div>
+        <div class="stat"><div class="k">Largest single item</div><div class="v">&#8377;896 Cr</div><div class="d">Jojobera leased-land demand; company believes recoverable via tariff if unfavourable</div></div>
+        <div class="stat"><div class="k">Capital commitments (standalone)</div><div class="v">&#8377;5,338.82 Cr</div><div class="d">vs &#8377;892.47 Cr, FY25 &mdash; a &#8776;6x jump, consistent with the capex ramp</div></div>
+      </div>
+      <p>The standalone contingent-liability book is modest relative to the balance sheet and mostly recoverable-from-consumers regulated-business disputes &mdash; not, on its own, a red flag. The Kleros exposure above sits entirely outside this table (disclosed separately as an Emphasis of Matter, not itemised within the standard contingent-liabilities note), which is precisely why it is easy to miss if a reader only checks the contingent-liabilities note and not the full audit report.</p>
+
+      <h3>The growth pipeline behind the FY27&ndash;28 capex guidance</h3>
+      <p>Bhivpuri pumped-hydro storage (2.8 GW, under construction, phased commissioning from CY2029); Khorlochhu Bhutan hydro (600 MW, PPA signed with UPPCL, regulatory approval received, targeted CY2030); Dorjilung Bhutan hydro (1,125 MW, $515M World Bank financing, financial closure targeted within &#8776;2 months of the July 2026 call); Shirwata pumped-hydro (1,800 MW, construction to start later in FY27 pending approvals); a 10 GW ingot-and-wafer plant (two phases, feeding the existing cell/module plant's mandatory-domestic-wafer requirement from June 2028); and early-stage nuclear SMR work (2&times;220 MW, three states, DPR targeted within &#8776;6 months of the May 2026 call, contingent on the SHANTI Bill regulatory framework). This is a genuinely long-dated, multi-year pipeline stretching to FY30&ndash;32 &mdash; real optionality, but also real execution risk layered on top of an FY26 track record of guiding capex aggressively and missing it by a wide margin.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">The clearest cross-statement red flag in this entire report: operating cash flow halved in FY26, the very year reported PAT hit a record.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, annual, consolidated</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT &mdash; total (before minority interest)</td><td>3,809.67</td><td>4,280.10</td><td>4,775.37</td><td>5,117.56</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>7,165.59</td><td>12,504.40</td><td>12,680.20</td><td class="neg">5,993.33</td></tr>
+            <tr><td>Capital expenditure</td><td>&minus;7,656.01</td><td>&minus;13,241.00</td><td>&minus;17,272.80</td><td>&minus;13,694.80</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="neg">&minus;490.42</td><td class="neg">&minus;736.66</td><td class="neg">&minus;4,592.65</td><td class="neg">&minus;7,701.50</td></tr>
+            <tr><td>CFO / total-PAT conversion</td><td>1.88x</td><td>2.92x</td><td>2.66x</td><td class="neg">1.17x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. No quarterly cash-flow file exists in the source data, so Q1FY27's cash generation cannot be checked against the reported quarterly profit growth.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Earnings-quality check: fails in FY26</b>CFO/PAT conversion had been comfortably above 1.8x for three straight years (FY23&ndash;FY25, reflecting substantial non-cash D&amp;A add-backs typical of a capital-intensive utility), then collapsed to 1.17x in FY26 &mdash; still technically above 1x, but a sharp break in trend precisely in the year PAT hit a headline record. The mechanical driver, per the cash-flow statement, is working capital: FY26 saw a <b>&#8377;3,969.32 Cr working-capital drag</b>, reversing FY25's &#8377;1,120.94 Cr working-capital <em>source</em>. This is consistent with, and plausibly connected to, the Odisha/Delhi discom collection-timing issues discussed in &sect;03 and the receivable/regulatory-deferral dynamics discussed throughout this report, though this note cannot fully decompose the working-capital swing from the annual cash-flow statement alone. Neither earnings call in this dataset addresses the FY26 CFO decline directly in analyst-facing terms; the closest reference is a May-2026 exchange about capex booked through "service concession agreement" balances (TBCB-project capex flowing through working capital rather than the capex line) as one contributing, technical factor.</div>
+      </div>
+
+      <p><b>Read plainly:</b> free cash flow has been negative in every year shown (FY23&ndash;FY26) and the deficit has widened for three straight years, from &#8776;&#8377;490 Cr (FY23) to &#8776;&#8377;7,700 Cr (FY26) &mdash; funded externally via debt issuance (&#8377;55,047.5 Cr gross debt issuance in FY26 alone) and equity issuance (&#8377;2,564.94 Cr). That is a normal, even expected, pattern for a utility mid-capex-cycle with regulated, long-dated returns &mdash; but it means the FY27&ndash;28 capex guidance in &sect;05 will need to be funded almost entirely externally again, at a time when net leverage is already at a four-year high and one large unprovisioned litigation exposure (&sect;05) sits on the balance sheet.</p>
+
+      <h3>Dividend</h3>
+      <p>The FY26 final dividend was &#8377;2.50/share (up from &#8377;2.25 in FY25 and &#8377;2.00 in FY24), a steady nominal increase, but the payout ratio remains modest at 20.71% (per MarketData) &mdash; consistent with a company prioritising reinvestment over distribution during this capex phase. Total cash dividends paid rose from &#8377;639.07 Cr (FY25) to &#8377;718.58 Cr (FY26).</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">Genuine management continuity and a board being strengthened with audit- and regulatory-relevant independent directors &mdash; a real positive, and one of the least contestable strengths in this report.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Dr. Praveer Sinha</div>
+          <div class="role">CEO &amp; Managing Director (since May 2018, re-appointed May 2023)</div>
+          <div class="bio">Sole executive director on the board and lead voice on both earnings calls in this dataset; drives the cluster-level operating narrative (Generation &amp; Coal, T&amp;D, Renewable) and the long-dated growth pipeline (nuclear, pumped hydro, Bhutan). No management-continuity concerns identified in this filing window.</div>
+        </div>
+        <div class="person">
+          <div class="name">Sanjeev Churiwala</div>
+          <div class="role">Chief Financial Officer</div>
+          <div class="bio">Provides the more granular, numbers-first answers on both calls &mdash; capex phasing, TBCB lease-accounting nuances, and the direct, unhedged confirmation of the deferred-tax-asset item flagged in &sect;04.</div>
+        </div>
+        <div class="person">
+          <div class="name">Deepak Kapoor</div>
+          <div class="role">Independent Director (appointed 1 Jun 2026, 5-year term to May 2031)</div>
+          <div class="bio">Former Chairman of PwC India (Partner from 1991, Managing Director 2007&ndash;2016), 30+ years in audit and business advisory; fellow of both ICAI and ICSI. A directly relevant addition to a board overseeing a Going Concern KAM and an unresolved &#8776;$490M arbitration exposure (&sect;05).</div>
+        </div>
+        <div class="person">
+          <div class="name">Ms. Nishi Vasudeva</div>
+          <div class="role">Independent Director (appointed 13 May 2026)</div>
+          <div class="bio">Joined the board alongside Mr. Kapoor as part of the same recent refresh. Her detailed professional background was not captured in the sections of the FY26 annual report reviewed for this note and is flagged as a gap rather than assumed.</div>
+        </div>
+      </div>
+
+      <p>The wider board (9 directors per the FY26 annual report) also includes <b>Rajiv Mehrishi</b> (Independent Director since October 2022) and <b>Tarun Bajaj</b> (Independent Director since May 2024) &mdash; both career senior civil servants, alongside Pramod Agrawal (Independent Director since April 2025) and Anjali Bansal (Independent Director since 2016). Board composition skews heavily independent (75% of directors per the FY26 diversity disclosure), with only one executive director (the CEO/MD) and one non-independent non-executive director. No CEO or CFO departures, and no auditor change, were identified anywhere in this filing window &mdash; a genuine point of stability worth naming explicitly, since it is not something every large-cap peer can claim.</p>
+
+      <h3>Auditor</h3>
+      <p>S R B C &amp; CO LLP (EY network) issued unmodified opinions on both the standalone and consolidated FY26 annual results and the Q1FY27 quarterly results, each carrying the same Emphasis of Matter on the Kleros arbitration (&sect;05). The consolidated FY26 opinion additionally carries Key Audit Matters on Going Concern (&sect;05) and on revenue recognition/regulatory-deferral accrual (the latter referenced in the audit report but not read in full detail for this note &mdash; flagged as a section worth a closer independent look given how much of this business's reported profit runs through regulatory-deferral mechanics, as &sect;03's revenue-reconciliation discussion illustrates).</p>
+
+      <h3>Related-party transactions</h3>
+      <p>The FY26 related-party-transaction materiality threshold (turnover-linked, since consolidated turnover exceeds &#8377;40,000 Cr) was &#8377;3,600 Cr; the Company obtained the required shareholder approval, and management states none of the year's RPTs fell under the stricter Section 188(1) disclosure requirement. Given the auditor's own annexure lists roughly 90 subsidiaries, joint ventures and associates across the standalone and consolidated financial statements, the RPT footprint is large in absolute count even if each individual transaction is routine intra-group business (financial support undertakings to subsidiaries, shared-services arrangements, and the like) rather than evidence of value being extracted to a related party outside the listed group.</p>
+
+      <h3>CSR</h3>
+      <p>Group CSR spend was &#8377;100.54 Cr in FY26; the standalone statutory obligation of &#8377;13.83 Cr was exceeded, with &#8377;18.15 Cr actually spent. No CSR-related compliance issues were identified.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other conference-call insights worth flagging</h2></div>
+      <p class="sec-dek">The Mundra "return to full operations" headline needs a return-on-equity caveat; TBCB revenue booked today is mostly construction accounting, not steady-state profit; and coal-mine monetisation remains an openly-discussed, not-yet-committed option.</p>
+
+      <h3>Mundra is running, but earning no return on equity</h3>
+      <p>Both calls in this dataset spent significant time on Mundra's regulatory status. The plant now operates under a Supplementary Power Purchase Agreement (SPPA) with Gujarat (effective retrospectively from 1 April 2025, executed 23 March 2026) while simultaneously being scheduled under Section 11 of the Electricity Act pending the remaining procurers' approvals (extended to 30 September 2026). Asked directly on the July call how the SPPA tariff works, CEO Sinha was explicit: <em>"presently, the supplementary PPA is on actual cost of coal, and all parameters... will be on actual. So it's more towards cost reimbursement and cost reflective without any margin to be made from the plant."</em> Pressed further on whether fixed costs are covered, he clarified fixed costs are recovered "but it is cost reflective... you will not get a return on equity." This materially tempers the bullish framing in the 27 July 2026 news item ("Mundra's return to full operations") &mdash; the plant is running and no longer a cash drag, which is a real improvement, but it is not yet, and under the current SPPA structure will not become, a profit contributor. Management's stated confidence is about running the plant "continuously now up to 2038," not about restoring the pre-2023 margin profile.</p>
+
+      <h3>TBCB transmission revenue today is construction accounting, not yet operating profit</h3>
+      <p>An analyst on the July call flagged that the disclosed TBCB (tariff-based competitive bidding) transmission-project EBITDA margin looked implausibly low (&#8776;13%) for what should be a high-margin regulated asset class. CFO Churiwala's clarification: <em>"right now, all our TBCB are under construction... the revenues in the PAT are more from a lease accounting perspective rather than the actual sharing of EBITDA."</em> Real operating EBITDA/PAT contribution from these projects (Jalpura-Khurja, Bikaner-Neemrana and others) is expected to start flowing from Q2FY27 as they are commissioned. This is a useful caution for anyone extrapolating current transmission-cluster margins forward: today's reported numbers understate the eventual steady-state economics of the TBCB pipeline, but only once it's actually commissioned.</p>
+
+      <h3>Coal-mine monetisation: openly discussed, not committed</h3>
+      <p>Asked on the May 2026 call whether the long-discussed plan to monetise Indonesian coal-mine stakes (KPC, BSSR, AGM) was still active now that the Mundra SPPA process was nearing completion, CEO Sinha's answer was noncommittal: <em>"it also depends on what sort of opportunity is there, what sort of valuation we get... it's a little premature."</em> This is the same optionality referenced, without naming it, in the auditor's going-concern KAM discussion of "planned divestments" (&sect;05) &mdash; a real, disclosed lever for capital recycling, but one management itself is not yet ready to commit to or size.</p>
+
+      <h3>Nuclear and other early-stage optionality</h3>
+      <p>Management confirmed active work with three (unnamed) state governments on land, water-allocation and geotechnical studies for small modular reactors (2&times;220 MW), with a detailed project report targeted in collaboration with NPCIL within roughly six months of the May 2026 call &mdash; contingent on the SHANTI Bill's passage to formally enable private nuclear participation. This remains firmly at the feasibility stage; no capex commitment or timeline beyond the DPR exists in either transcript.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">A broad, consensus-bullish sell-side following &mdash; but the company's own reported-EPS surprise history skews toward misses more often than beats, a useful discipline check on both the sell-side consensus and management's own framing.</p>
+
+      <div class="stat-row">
+        <div class="stat"><div class="k">Recommendation</div><div class="v">Buy</div><div class="d">23 analysts: 3 Strong Buy, 9 Buy, 7 Hold, 3 Sell, 1 Strong Sell</div></div>
+        <div class="stat"><div class="k">Target price (mean / median)</div><div class="v">&#8377;418 / &#8377;420</div><div class="d">Range &#8377;300 &ndash; &#8377;525</div></div>
+        <div class="stat"><div class="k">Implied upside to mean target</div><div class="v pos">+11.8%</div><div class="d">From CMP &#8377;374.30</div></div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Reported EPS has missed consensus more often than it has beaten, over the last 22 quarters</b>Of the 22 quarterly EPS-surprise data points in the MarketData earnings history (Nov-2020 through Jul-2026), 14 were negative surprises and only 8 were positive &mdash; a &#8776;64% miss rate. Recent examples include a &minus;25.6% miss in the quarter reported Feb-2026, a &minus;8.1% miss in Nov-2025, and a &minus;7.1% miss in the most recent print (Jul-2026), against beats of +8.1% (May-2026) and +2.9% (Aug-2025). This does not contradict the multi-year revenue/EBITDA/PAT growth trend documented in &sect;01/&sect;04 &mdash; the business has genuinely grown &mdash; but it is a real, mechanical check on how reliably that growth has translated into numbers matching what the sell-side itself was modelling quarter to quarter, and is worth weighing against both the consensus "Buy" rating above and management's own consistently upbeat framing on both earnings calls.</div>
+      </div>
+
+      <p>One news-sourced analyst note (7&ndash;8 Aug 2026) cited FY26&ndash;FY28E CAGR estimates of 12.9% (revenue), 13.3% (EBITDA) and 18.4% (PAT), alongside a trimmed target range of &#8377;415&ndash;430 (from &#8377;430&ndash;460) on the margin-compression concern flagged in &sect;02/&sect;04 that this note could not independently reconcile. That single data point is presented for completeness, not verified against a primary source.</p>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A 22.3x forward multiple already prices in a meaningful earnings recovery from FY26's owners'-PAT dip; the gap between that expectation and this report's own documented execution risks (capex delivery, Tata Projects, Kleros, leverage) is the central question for the next four quarters.</p>
+
+      <h3>Eighteen months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Feb 2025&ndash;Aug 2026 (NSE, via yfinance daily price history). The 52-week intraday high of &#8377;464.90 sits above every month-end close plotted &mdash; consistent with a sharp single-period spike (peaking around the Apr-2026 month-end close of &#8377;441.81) rather than a sustained level.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">31.06x</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">22.34x</div><div class="d">Implies a large jump in consensus forward EPS</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">3.03x</div><div class="d">BVPS &#8377;123.54</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">14.61x</div><div class="d">EV &#8377;1,92,525 Cr</div></div>
+      </div>
+      <p style="font-size:12.5px;color:var(--ink-mute);">Cross-check: Enterprise Value (&#8377;1,92,525.05 Cr) less Market Cap (&#8377;1,19,601.55 Cr) = &#8377;72,923.5 Cr, which reconciles almost exactly against Total Debt minus Total Cash plus Minority Interest (&#8377;79,903.32 Cr &minus; &#8377;15,050.69 Cr + &#8377;8,070.86 Cr = &#8377;72,923.49 Cr) &mdash; a clean internal-consistency pass on the MarketData figures.</p>
+      <p>The 31x trailing multiple is elevated for a regulated-utility-plus-manufacturing conglomerate, but the 22.3x forward multiple implies the market is pricing a meaningful rebound in EPS from FY26's owners'-attributable dip (&#8377;11.71) &mdash; consistent with this report's own read that FY26's minority-interest spike was likely a temporary, not structural, feature (it had already reverted by Q1FY27, &sect;04). Whether that reversion holds for the rest of FY27, and whether the FY27 capex guidance is delivered any more faithfully than FY26's was, are the two swing factors between the base and bear cases below.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built from this report's own tabulated FY26/Q1FY27 data, management's stated FY27/FY30E targets, and the specific risks documented in &sect;04&ndash;06. Scenario illustrations only, not point forecasts.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;300&ndash;330</div>
+          <div class="rng">&minus;20% to &minus;12% from CMP</div>
+          <ul>
+            <li>FY27 capex again lands well short of the &#8377;25,000 Cr guide (repeat of FY26's &#8776;45% miss); Tata Projects losses persist past the newly-pushed-back turnaround quarter</li>
+            <li>Odisha AT&amp;C losses do not normalise in Q2FY27 as management expects; minority-interest share of profit reverts toward FY26's elevated 27&ndash;35% range, pressuring owners' EPS again</li>
+            <li>Kleros appeal fails, triggering a one-time &#8776;&#8377;5,500&ndash;6,000 Cr charge (&sect;05); net debt/EBITDA breaches 3.5&ndash;4x</li>
+            <li>Operating cash flow fails to recover from FY26's collapse for a second straight year</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;390&ndash;430</div>
+          <div class="rng">+4% to +15% from CMP</div>
+          <ul>
+            <li>FY27 revenue grows &#8776;8&ndash;10% (in line with the Q1FY27 print); EBITDA grows roughly in step to slightly ahead as TP Solar margins and rooftop scale continue; Mundra stays a cost-recovery non-drag rather than a swing factor either way</li>
+            <li>Minority-interest share of total profit settles back near Q1FY27's &#8776;16% level for the rest of the year; owners' PAT recovers to &#8776;&#8377;4,000&ndash;4,300 Cr, EPS &#8776;&#8377;12.5&ndash;13.5</li>
+            <li>Capex lands in the &#8377;18,000&ndash;22,000 Cr range &mdash; better than FY26's delivery, still short of the full &#8377;25,000 Cr guide</li>
+            <li>Broadly consistent with the current analyst mean target (&#8377;418) and roughly today's 22&ndash;24x forward multiple</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;470&ndash;525</div>
+          <div class="rng">+26% to +40% from CMP</div>
+          <ul>
+            <li>FY27 capex delivers close to the full &#8377;25,000 Cr guide; TBCB projects commission on schedule and start contributing real EBITDA from Q2FY27 as management described</li>
+            <li>Rooftop and TP Solar sustain their current growth/margin trajectories; Odisha AT&amp;C losses resume the guided 2ppt/year improvement path</li>
+            <li>Kleros appeal succeeds, removing the largest single tail risk in this report; Tata Projects returns to profit as (re-)guided</li>
+            <li>Owners' PAT reaches &#8776;&#8377;4,600&ndash;5,000 Cr (EPS &#8776;&#8377;14.5&ndash;15.5), and the market re-rates toward the analyst high target (&#8377;525) on demonstrated execution against the FY30E targets</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuinely diversified, largely regulated-and-contracted business (&#8776;60% of segment revenue from Transmission &amp; Distribution) with real, credible growth optionality on top &mdash; a solar manufacturing business that has finally hit a clean margin inflection (PAT +287% YoY in Q1FY27), a rooftop-solar franchise scaling fast enough that management pulled its own target forward a full year, and a multi-year regulated transmission and hydro pipeline (Bhutan, pumped storage, TBCB) that gives real revenue visibility into the early 2030s. Credit ratings have been upgraded across the board over the last three years. Management continuity (no CEO/CFO/auditor changes in this window) and two recent, genuinely relevant independent-director additions (a former Big Four India chairman, joining a board that needs exactly that skillset given the going-concern KAM and Kleros exposure) are real governance positives.</p>
+        <p style="max-width:none;"><b>What's not good:</b> the year management calls its best ever is also the year operating cash flow halved (&#8377;12,680 Cr &rarr; &#8377;5,993 Cr) while reported profit rose &mdash; a clean earnings-quality red flag by any standard test; profit and EPS attributable to Tata Power's own shareholders actually <em>fell</em> in FY26 even as the group-total PAT figure management leads with hit a record, because minority interest's claim on profit nearly doubled; FY26 capex delivery missed its own guidance by roughly 45%, with no clear public accounting yet of exactly where the shortfall went beyond "phasing"; Tata Projects' promised return to profitability was pushed back within the very first quarter it was supposed to arrive; and net leverage has climbed for four straight periods after a multi-year deleveraging run. Layered on top: a &#8776;$490 million unprovisioned arbitration award with a ruling that could land any quarter, and a formal going-concern Key Audit Matter reflecting a genuine, structural working-capital deficit.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> candidly on specific, pointed analyst questions &mdash; the May-2026 capex-shortfall exchange and the July-2026 Tata Projects and TBCB-margin exchanges are all direct, non-evasive answers that this note could tabulate and check &mdash; but the framing on both calls consistently emphasises the group-total, "27 consecutive quarters" growth narrative over the owners'-attributable and cash-flow metrics that this report finds tell a meaningfully more mixed story for FY26 specifically. Disclosure quality is generally strong (detailed cluster-level breakdowns, explicit guidance numbers that can be checked quarter to quarter) even where the numbers themselves don't always cooperate with the narrative.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the bull case is closer to right than the bear case over the next 12 months: moderate, roughly 40&ndash;50%.</b> The structural growth story &mdash; regulated T&amp;D capex, solar manufacturing margin inflection, rooftop scale &mdash; is real and this report's own numbers do not contradict it. But FY26 delivered a genuine pattern of good-story/mixed-numbers (record headline PAT alongside falling owners' EPS, halved operating cash flow, and a large capex guidance miss), and two binary risks (Kleros, going-concern liquidity structure) sit outside the normal quarterly narrative entirely. This is a fundamentally sound, well-run utility-plus-growth conglomerate that the current consensus "Buy" rating and 22x forward multiple already give real credit for &mdash; the base case above is close to today's price, which is the honest read of a story with strong tailwinds and real, currently underweighted, execution and disclosure-quality risks.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether minority interest's share of total profit stays near Q1FY27's &#8776;16% for the rest of FY27, or reverts toward FY26's 27&ndash;35% range &mdash; this single ratio is the fastest read on whether owners' EPS growth tracks the group-total headline; (2) whether FY27 capex actually lands closer to the &#8377;25,000 Cr guide than FY26's &#8776;45%-short delivery did; (3) the outcome of the Kleros appeal at the Singapore International Commercial Court, which could land with no further warning given hearings are already complete; (4) whether operating cash flow recovers from FY26's collapse, which cannot currently be checked quarterly given the absence of quarterly cash-flow disclosure in this dataset; (5) whether Tata Projects actually turns profitable in the quarter management now targets, after missing its first guided quarter; (6) Odisha discom AT&amp;C losses in the Q2FY27 print, the direct test of management's "timing, not structural" explanation for the Q1FY27 spike to 26.7%.</div>
+      </div>
+
+      <footer>
+        Compiled from The Tata Power Company Limited's BSE filings (AnnouncementsConv, 13&nbsp;May&ndash;18&nbsp;Aug 2026 &mdash; two earnings-call transcripts, one investor presentation, one financial-results filing, the FY2025-26 Integrated Annual Report filed 10&nbsp;Jun&nbsp;2026, and assorted board-meeting/acquisition/management-change filings), MarketData (Yahoo Finance via yfinance, fetched 22&ndash;23&nbsp;Aug&nbsp;2026, including the full daily price-history series), and the tracked News feed (2&nbsp;Feb&ndash;22&nbsp;Aug 2026). This is a narrow, roughly 3.5-month filing window with only two earnings calls in it; multi-quarter guidance-vs-actual comparisons in this note are built from what those two calls and the FY26 annual report disclose, cross-checked wherever an independent number exists, and explicitly flagged as n/a or unverified where it does not. Every figure is tagged standalone or consolidated and to its source; where two sources disagreed or a figure could not be independently reconciled, that is stated in the relevant section rather than resolved by assumption. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT-total) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [18035.07, 15544.90, 13948.40, 14900.20, 19051.26];
+    var ebitda  = [4059.59, 4160.60, 4111.19, 4372.49, 4489.98];
+    var pat     = [1262.32, 1245.39, 1194.33, 1415.52, 1400.86];
+    var series = [
+      {label:'Revenue (₹ Cr)', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA, indicative (₹ Cr)', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT, total before minority interest (₹ Cr)', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 54, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and total PAT, Q1FY26 to Q1FY27" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v.toFixed(0)+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+'</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">EBITDA series is yfinance-derived (indicative); company-reported EBITDA is confirmed only for Q1FY26 (₹3,930 Cr) and Q1FY27 (₹4,249 Cr) — see §03 table.</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Feb 25', 335.14], ['Mar 25', 370.91], ['Apr 25', 379.80], ['May 25', 388.10],
+      ['Jun 25', 402.95], ['Jul 25', 395.30], ['Aug 25', 371.85], ['Sep 25', 386.26],
+      ['Oct 25', 402.41], ['Nov 25', 387.70], ['Dec 25', 377.26], ['Jan 26', 364.04],
+      ['Feb 26', 375.22], ['Mar 26', 376.42], ['Apr 26', 441.81], ['May 26', 418.16],
+      ['Jun 26', 385.50], ['Jul 26', 380.70], ['Aug 26', 374.30]
+    ];
+    var W = 900, H = 220, padL = 48, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Tata Power monthly closing share price, February 2025 to August 2026" style="width:100%;height:auto;font-size:10.5px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 2.6;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i % 2 === 0 || i === points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily NSE price history via yfinance. 52-week high/low per MarketData snapshot: ₹464.90 / ₹342.50 (intraday extremes may fall between the monthly points plotted).</div></div>';
+  })();
+})();
+</script>

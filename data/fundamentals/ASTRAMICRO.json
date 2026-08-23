@@ -1,7 +1,7 @@
 {
   "symbol": "ASTRAMICRO",
   "name": "Astra Microwave",
-  "generatedAt": "2026-08-18T16:37:17.231372+00:00",
+  "generatedAt": "2026-08-23T11:00:50.835823+00:00",
   "profile": {
     "sector": "Technology",
     "industry": "Communication Equipment",
@@ -14,28 +14,28 @@
     "peerIndustry": "Aerospace & Defense"
   },
   "price": {
-    "current": 1707.1,
-    "change": -32.200073,
-    "changePercent": -1.8513236,
-    "previousClose": 1739.3,
-    "dayLow": 1701.0,
-    "dayHigh": 1754.9,
+    "current": 1662.2,
+    "change": -22.0,
+    "changePercent": -1.3062582,
+    "previousClose": 1684.2,
+    "dayLow": 1658.3,
+    "dayHigh": 1694.0,
     "fiftyTwoWeekLow": 851.0,
     "fiftyTwoWeekHigh": 1960.0,
-    "asOf": 1786960802
+    "asOf": 1787306404
   },
   "stats": {
-    "marketCap": 162080620544.0,
-    "trailingPE": 87.72354,
-    "forwardPE": 52.79146,
-    "priceToBook": 12.331776,
+    "marketCap": 157817585664.0,
+    "trailingPE": 84.03437,
+    "forwardPE": 51.597977,
+    "priceToBook": 12.007425,
     "bookValue": 138.431,
     "dividendYield": 0.14,
-    "trailingEps": 19.46,
+    "trailingEps": 19.78,
     "debtToEquity": 0.21883,
     "roe": 14.679372254618084,
     "roce": 21.52264940582916,
-    "return1y": 74.25562734920686,
+    "return1y": 64.96764461247226,
     "sharesOutstanding": 94945008.0
   },
   "quarterly": {
@@ -358,7 +358,7 @@
     }
   ],
   "analyst": {
-    "targetMean": 1663.6666,
+    "targetMean": 1706.6666,
     "targetHigh": 2230.0,
     "targetLow": 1068.0,
     "recommendationKey": "buy",
@@ -366,6 +366,6 @@
   },
   "holders": {
     "insidersPercent": 0.30567,
-    "institutionsPercent": 0.22959
+    "institutionsPercent": 0.22715001
   }
 }

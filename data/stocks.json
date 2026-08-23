@@ -145,11 +145,11 @@
   },
   {
     "symbol": "ACMESOLAR",
-    "name": "ACMESOLAR",
+    "name": "ACME Solar Holdings Limited",
     "sector": "Power",
     "industry": "Power Generation",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=ACMESOLAR",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/acmesolar.html"
   },
   {
     "symbol": "ACUTAAS",
@@ -161,11 +161,27 @@
   },
   {
     "symbol": "ADANIENSOL",
-    "name": "ADANIENSOL",
+    "name": "Adani Energy Solutions Limited",
     "sector": "Power",
     "industry": "Power Distribution",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=ADANIENSOL",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/adaniensol.html"
+  },
+  {
+    "symbol": "ADANIGREEN",
+    "name": "Adani Green Energy Limited",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=ADANIGREEN",
+    "deep_dive_url": "/stock-analysis/deep-dive/adanigreen.html"
+  },
+  {
+    "symbol": "ADANIPOWER",
+    "name": "Adani Power Limited",
+    "sector": "Power",
+    "industry": "Integrated Power Utilities",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=ADANIPOWER",
+    "deep_dive_url": "/stock-analysis/deep-dive/adanipower.html"
   },
   {
     "symbol": "ADANIENT",
@@ -176,27 +192,11 @@
     "deep_dive_url": null
   },
   {
-    "symbol": "ADANIGREEN",
-    "name": "ADANIGREEN",
-    "sector": "Power",
-    "industry": "Power Generation",
-    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=ADANIGREEN",
-    "deep_dive_url": null
-  },
-  {
     "symbol": "ADANIPORTS",
     "name": "ADANIPORTS",
     "sector": "Transport Infrastructure",
     "industry": "Port & Port services",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=ADANIPORTS",
-    "deep_dive_url": null
-  },
-  {
-    "symbol": "ADANIPOWER",
-    "name": "ADANIPOWER",
-    "sector": "Power",
-    "industry": "Integrated Power Utilities",
-    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=ADANIPOWER",
     "deep_dive_url": null
   },
   {
@@ -321,11 +321,11 @@
   },
   {
     "symbol": "ALKYLAMINE",
-    "name": "ALKYLAMINE",
+    "name": "Alkyl Amines Chemicals Ltd (ALKYLAMINE)",
     "sector": "Chemicals & Petrochemicals",
     "industry": "Specialty Chemicals",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=ALKYLAMINE",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/alkylamine.html"
   },
   {
     "symbol": "ALOKINDS",
@@ -1177,11 +1177,11 @@
   },
   {
     "symbol": "CESC",
-    "name": "CESC",
+    "name": "CESC Limited",
     "sector": "Power",
     "industry": "Integrated Power Utilities",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=CESC",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/cesc.html"
   },
   {
     "symbol": "CGCL",
@@ -2569,11 +2569,11 @@
   },
   {
     "symbol": "INDGN",
-    "name": "INDGN",
+    "name": "Indegene Limited",
     "sector": "Healthcare Services",
     "industry": "Healthcare Research, Analytics & Technology",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=INDGN",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/indgn.html"
   },
   {
     "symbol": "INDHOTEL",
@@ -2832,6 +2832,14 @@
     "deep_dive_url": null
   },
   {
+    "symbol": "JPPOWER",
+    "name": "Jaiprakash Power Ventures Limited",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=JPPOWER",
+    "deep_dive_url": "/stock-analysis/deep-dive/jppower.html"
+  },
+  {
     "symbol": "JAMNAAUTO",
     "name": "JAMNAAUTO",
     "sector": "Auto Components",
@@ -2936,14 +2944,6 @@
     "deep_dive_url": null
   },
   {
-    "symbol": "JPPOWER",
-    "name": "JPPOWER",
-    "sector": "Power",
-    "industry": "Power Generation",
-    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=JPPOWER",
-    "deep_dive_url": null
-  },
-  {
     "symbol": "JSFB",
     "name": "JSFB",
     "sector": "Banks",
@@ -2968,6 +2968,14 @@
     "deep_dive_url": null
   },
   {
+    "symbol": "JSWENERGY",
+    "name": "JSW Energy Limited",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=JSWENERGY",
+    "deep_dive_url": "/stock-analysis/deep-dive/jswenergy.html"
+  },
+  {
     "symbol": "JSWCEMENT",
     "name": "JSWCEMENT",
     "sector": "Cement & Cement Products",
@@ -2981,14 +2989,6 @@
     "sector": "Consumer Durables",
     "industry": "Paints",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=JSWDULUX",
-    "deep_dive_url": null
-  },
-  {
-    "symbol": "JSWENERGY",
-    "name": "JSWENERGY",
-    "sector": "Power",
-    "industry": "Power Generation",
-    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=JSWENERGY",
     "deep_dive_url": null
   },
   {
@@ -3185,11 +3185,11 @@
   },
   {
     "symbol": "KPIGREEN",
-    "name": "KPIGREEN",
+    "name": "KPI Green Energy Limited",
     "sector": "Power",
     "industry": "Power Generation",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=KPIGREEN",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/kpigreen.html"
   },
   {
     "symbol": "KPIL",
@@ -3761,11 +3761,11 @@
   },
   {
     "symbol": "NAVA",
-    "name": "NAVA",
+    "name": "Nava Limited",
     "sector": "Power",
     "industry": "Power Generation",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=NAVA",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/nava.html"
   },
   {
     "symbol": "NAVINFLUOR",
@@ -3865,11 +3865,11 @@
   },
   {
     "symbol": "NHPC",
-    "name": "NHPC",
+    "name": "NHPC Limited",
     "sector": "Power",
     "industry": "Power Generation",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=NHPC",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/nhpc.html"
   },
   {
     "symbol": "NIACL",
@@ -3878,6 +3878,14 @@
     "industry": "General Insurance",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=NIACL",
     "deep_dive_url": null
+  },
+  {
+    "symbol": "NIBE",
+    "name": "Nibe Limited",
+    "sector": null,
+    "industry": null,
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=NIBE",
+    "deep_dive_url": "/stock-analysis/deep-dive/nibe.html"
   },
   {
     "symbol": "NIVABUPA",
@@ -3889,11 +3897,11 @@
   },
   {
     "symbol": "NLCINDIA",
-    "name": "NLCINDIA",
+    "name": "NLC India Limited",
     "sector": "Power",
     "industry": "Power Generation",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=NLCINDIA",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/nlcindia.html"
   },
   {
     "symbol": "NMDC",
@@ -3912,20 +3920,20 @@
     "deep_dive_url": null
   },
   {
-    "symbol": "NTPC",
-    "name": "NTPC",
-    "sector": "Power",
-    "industry": "Power Generation",
-    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=NTPC",
-    "deep_dive_url": null
-  },
-  {
     "symbol": "NTPCGREEN",
-    "name": "NTPCGREEN",
+    "name": "NTPC Green Energy Limited",
     "sector": "Power",
     "industry": "Power Generation",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=NTPCGREEN",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/ntpcgreen.html"
+  },
+  {
+    "symbol": "NTPC",
+    "name": "NTPC Limited",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=NTPC",
+    "deep_dive_url": "/stock-analysis/deep-dive/ntpc.html"
   },
   {
     "symbol": "NUVAMA",
@@ -4273,11 +4281,11 @@
   },
   {
     "symbol": "POWERGRID",
-    "name": "POWERGRID",
+    "name": "Power Grid Corporation of India Limited",
     "sector": "Power",
     "industry": "Power - Transmission",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=POWERGRID",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/powergrid.html"
   },
   {
     "symbol": "POWERINDIA",
@@ -4361,11 +4369,11 @@
   },
   {
     "symbol": "PTC",
-    "name": "PTC",
+    "name": "PTC India Limited",
     "sector": "Power",
     "industry": "Power Trading",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=PTC",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/ptc.html"
   },
   {
     "symbol": "PTCIL",
@@ -4478,6 +4486,14 @@
     "industry": "Iron & Steel Products",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=RATNAMANI",
     "deep_dive_url": null
+  },
+  {
+    "symbol": "RTNPOWER",
+    "name": "RattanIndia Power",
+    "sector": "Power",
+    "industry": "Power Generation",
+    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=RTNPOWER",
+    "deep_dive_url": "/stock-analysis/deep-dive/rtnpower.html"
   },
   {
     "symbol": "RAYMONDLSL",
@@ -4613,7 +4629,7 @@
     "sector": "Power",
     "industry": "Power Generation",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=RPOWER",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/rpower.html"
   },
   {
     "symbol": "RRKABEL",
@@ -4629,14 +4645,6 @@
     "sector": "Retailing",
     "industry": "E-Retail/ E-Commerce",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=RTNINDIA",
-    "deep_dive_url": null
-  },
-  {
-    "symbol": "RTNPOWER",
-    "name": "RTNPOWER",
-    "sector": "Power",
-    "industry": "Power Generation",
-    "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=RTNPOWER",
     "deep_dive_url": null
   },
   {
@@ -4925,7 +4933,7 @@
     "sector": "Power",
     "industry": "Power Generation",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=SJVN",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/sjvn.html"
   },
   {
     "symbol": "SKFINDIA",
@@ -5301,7 +5309,7 @@
     "sector": "Power",
     "industry": "Integrated Power Utilities",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=TATAPOWER",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/tatapower.html"
   },
   {
     "symbol": "TATASTEEL",
@@ -5525,7 +5533,7 @@
     "sector": "Power",
     "industry": "Integrated Power Utilities",
     "fundamentals_url": "/stock-analysis/fundamentals/template.html?symbol=TORNTPOWER",
-    "deep_dive_url": null
+    "deep_dive_url": "/stock-analysis/deep-dive/torntpower.html"
   },
   {
     "symbol": "TRANSRAILL",

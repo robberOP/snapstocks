@@ -1,7 +1,7 @@
 {
   "symbol": "MIDHANI",
   "name": "Mishra Dhatu Nig",
-  "generatedAt": "2026-08-18T16:38:30.731442+00:00",
+  "generatedAt": "2026-08-23T11:02:21.701291+00:00",
   "profile": {
     "sector": "Basic Materials",
     "industry": "Steel",
@@ -14,28 +14,28 @@
     "peerIndustry": "Aerospace & Defense"
   },
   "price": {
-    "current": 403.65,
-    "change": 7.649994,
-    "changePercent": 1.9318167,
-    "previousClose": 396.0,
-    "dayLow": 396.0,
-    "dayHigh": 406.9,
+    "current": 423.95,
+    "change": 3.4500122,
+    "changePercent": 0.8204548,
+    "previousClose": 420.5,
+    "dayLow": 419.55,
+    "dayHigh": 431.45,
     "fiftyTwoWeekLow": 266.65,
-    "fiftyTwoWeekHigh": 454.8,
-    "asOf": 1785751200
+    "fiftyTwoWeekHigh": 456.6,
+    "asOf": 1787306401
   },
   "stats": {
-    "marketCap": 75619786752.0,
-    "trailingPE": 57.582024,
-    "forwardPE": 33.22222,
-    "priceToBook": 4.9339333,
+    "marketCap": 79422791680.0,
+    "trailingPE": 58.800278,
+    "forwardPE": 34.281662,
+    "priceToBook": 5.1820664,
     "bookValue": 81.811,
-    "dividendYield": 0.4,
-    "trailingEps": 7.01,
+    "dividendYield": 0.38,
+    "trailingEps": 7.21,
     "debtToEquity": 0.26557,
     "roe": 8.587934623848433,
     "roce": 8.81928611223136,
-    "return1y": 0.19131850163609626,
+    "return1y": 7.07225168063506,
     "sharesOutstanding": 187340000.0
   },
   "quarterly": {
@@ -358,14 +358,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 455.0,
-    "targetHigh": 480.0,
-    "targetLow": 430.0,
-    "recommendationKey": "none",
-    "numberOfAnalystOpinions": 2
+    "targetMean": 495.0,
+    "targetHigh": 510.0,
+    "targetLow": 475.0,
+    "recommendationKey": "strong_buy",
+    "numberOfAnalystOpinions": 3
   },
   "holders": {
     "insidersPercent": 0.74,
-    "institutionsPercent": 0.075500004
+    "institutionsPercent": 0.07637
   }
 }

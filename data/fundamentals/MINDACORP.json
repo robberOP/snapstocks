@@ -1,7 +1,7 @@
 {
   "symbol": "MINDACORP",
   "name": "Minda Corp",
-  "generatedAt": "2026-08-18T16:38:31.012647+00:00",
+  "generatedAt": "2026-08-23T11:02:21.862936+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 727.6,
-    "change": 26.649963,
-    "changePercent": 3.8019776,
-    "previousClose": 700.95,
-    "dayLow": 699.5,
-    "dayHigh": 735.9,
-    "fiftyTwoWeekLow": 445.05,
-    "fiftyTwoWeekHigh": 735.9,
-    "asOf": 1785751200
+    "current": 738.9,
+    "change": -6.3499756,
+    "changePercent": -0.8520598,
+    "previousClose": 745.25,
+    "dayLow": 735.95,
+    "dayHigh": 756.8,
+    "fiftyTwoWeekLow": 468.5,
+    "fiftyTwoWeekHigh": 769.0,
+    "asOf": 1787133593
   },
   "stats": {
-    "marketCap": 171248599040.0,
-    "trailingPE": 48.281353,
-    "forwardPE": 32.65221,
-    "priceToBook": 6.4896493,
+    "marketCap": 173908180992.0,
+    "trailingPE": 35.286533,
+    "forwardPE": 31.798233,
+    "priceToBook": 6.5904374,
     "bookValue": 112.117,
-    "dividendYield": 0.23,
-    "trailingEps": 15.07,
+    "dividendYield": 0.21,
+    "trailingEps": 20.94,
     "debtToEquity": 0.55351,
     "roe": 13.628626546128533,
     "roce": 14.900158194788526,
-    "return1y": 43.04566482526791,
+    "return1y": 58.73914314989693,
     "sharesOutstanding": 235360911.0
   },
   "quarterly": {
@@ -118,15 +118,15 @@
         null,
         38982000000.0,
         42154000000.0,
-        45770000000.0,
-        55529000000.0
+        45921000000.0,
+        55729000000.0
       ],
       "OperatingProfit": [
         null,
         3297000000.0,
         3647000000.0,
-        3875000000.0,
-        5132000000.0
+        3724000000.0,
+        4932000000.0
       ],
       "NetProfit": [
         null,
@@ -325,6 +325,10 @@
   },
   "dividends": [
     {
+      "date": "2026-08-14",
+      "amount": 0.8
+    },
+    {
       "date": "2026-02-13",
       "amount": 0.6
     },
@@ -351,21 +355,17 @@
     {
       "date": "2023-02-17",
       "amount": 0.4
-    },
-    {
-      "date": "2022-07-21",
-      "amount": 0.7
     }
   ],
   "analyst": {
-    "targetMean": 737.2857,
-    "targetHigh": 841.0,
+    "targetMean": 794.0,
+    "targetHigh": 860.0,
     "targetLow": 675.0,
-    "recommendationKey": "none",
-    "numberOfAnalystOpinions": 7
+    "recommendationKey": "strong_buy",
+    "numberOfAnalystOpinions": 8
   },
   "holders": {
     "insidersPercent": 0.67469,
-    "institutionsPercent": 0.11597
+    "institutionsPercent": 0.17889999
   }
 }

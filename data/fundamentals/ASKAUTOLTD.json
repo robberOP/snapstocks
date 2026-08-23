@@ -1,7 +1,7 @@
 {
   "symbol": "ASKAUTOLTD",
   "name": "ASK Automotive",
-  "generatedAt": "2026-08-18T16:37:16.756542+00:00",
+  "generatedAt": "2026-08-23T11:00:50.192002+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 569.65,
-    "change": 41.600037,
-    "changePercent": 7.878049,
-    "previousClose": 528.05,
-    "dayLow": 529.0,
-    "dayHigh": 577.95,
+    "current": 646.35,
+    "change": 8.099976,
+    "changePercent": 1.2690914,
+    "previousClose": 638.25,
+    "dayLow": 640.55,
+    "dayHigh": 651.5,
     "fiftyTwoWeekLow": 375.3,
-    "fiftyTwoWeekHigh": 578.5,
-    "asOf": 1785751202
+    "fiftyTwoWeekHigh": 687.7,
+    "asOf": 1787133598
   },
   "stats": {
-    "marketCap": 112302284800.0,
-    "trailingPE": 37.725166,
-    "forwardPE": 27.868597,
-    "priceToBook": 8.565522,
+    "marketCap": 127423111168.0,
+    "trailingPE": 40.34644,
+    "forwardPE": 28.811306,
+    "priceToBook": 9.718818,
     "bookValue": 66.505,
-    "dividendYield": 0.35,
-    "trailingEps": 15.1,
+    "dividendYield": 0.29,
+    "trailingEps": 16.02,
     "debtToEquity": 0.51789,
     "roe": 22.677141331706203,
     "roce": 23.77991648568287,
-    "return1y": 13.326484633561272,
+    "return1y": 35.7849110595073,
     "sharesOutstanding": 197142600.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         8496700000.0,
         8912900000.0,
         10842200000.0,
-        11471200000.0
+        11471200000.0,
+        13581100000.0
       ],
       "Expenses": [
         8269900000.0,
         7704800000.0,
         7981400000.0,
         9722500000.0,
-        10447200000.0
+        10447200000.0,
+        12307000000.0
       ],
       "OperatingProfit": [
         881100000.0,
         791900000.0,
         931500000.0,
         1119700000.0,
-        1024000000.0
+        1024000000.0,
+        1274100000.0
       ],
       "NetProfit": [
         658900000.0,
         576100000.0,
         660700000.0,
         799200000.0,
-        715400000.0
+        715400000.0,
+        851200000.0
       ],
       "EPS": [
         3.34,
         2.92,
         3.35,
         4.05,
-        3.63
+        3.63,
+        4.32
       ]
     }
   },
@@ -143,10 +150,10 @@
       ]
     },
     "ttm": {
-      "Sales": 39723000000.0,
-      "Expenses": 35855900000.0,
-      "OperatingProfit": 3867100000.0,
-      "NetProfit": 2751400000.0
+      "Sales": 44807400000.0,
+      "Expenses": 40458100000.0,
+      "OperatingProfit": 4349300000.0,
+      "NetProfit": 3026500000.0
     }
   },
   "balanceSheet": {
@@ -325,14 +332,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 556.6667,
-    "targetHigh": 630.0,
-    "targetLow": 495.0,
-    "recommendationKey": "none",
+    "targetMean": 677.8333,
+    "targetHigh": 750.0,
+    "targetLow": 500.0,
+    "recommendationKey": "strong_buy",
     "numberOfAnalystOpinions": 6
   },
   "holders": {
     "insidersPercent": 0.7495,
-    "institutionsPercent": 0.20111999
+    "institutionsPercent": 0.20387
   }
 }

@@ -1,7 +1,7 @@
 {
   "symbol": "CARBORUNIV",
   "name": "Carborundum Uni.",
-  "generatedAt": "2026-08-18T16:37:28.950110+00:00",
+  "generatedAt": "2026-08-23T11:01:04.145052+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Conglomerates",
@@ -14,28 +14,28 @@
     "peerIndustry": "Abrasives & Bearings"
   },
   "price": {
-    "current": 1122.7,
-    "change": -28.900024,
-    "changePercent": -2.5095541,
-    "previousClose": 1151.6,
-    "dayLow": 1116.8,
-    "dayHigh": 1154.7,
+    "current": 1087.2,
+    "change": -38.80005,
+    "changePercent": -3.44583,
+    "previousClose": 1126.0,
+    "dayLow": 1084.4,
+    "dayHigh": 1129.8,
     "fiftyTwoWeekLow": 735.2,
     "fiftyTwoWeekHigh": 1306.9,
-    "asOf": 1786960793
+    "asOf": 1787133602
   },
   "stats": {
-    "marketCap": 213880373248.0,
-    "trailingPE": 101.50994,
-    "forwardPE": 37.18371,
-    "priceToBook": 5.483995,
+    "marketCap": 207117434880.0,
+    "trailingPE": 98.56754,
+    "forwardPE": 36.00795,
+    "priceToBook": 5.31059,
     "bookValue": 204.723,
-    "dividendYield": 0.35,
-    "trailingEps": 11.06,
+    "dividendYield": 0.36,
+    "trailingEps": 11.03,
     "debtToEquity": 0.10292,
     "roe": 4.993150969454503,
     "roce": 7.095519715127599,
-    "return1y": 32.76491428747953,
+    "return1y": 29.129446356648042,
     "sharesOutstanding": 190505384.0
   },
   "quarterly": {
@@ -360,6 +360,6 @@
   },
   "holders": {
     "insidersPercent": 0.40415,
-    "institutionsPercent": 0.3845
+    "institutionsPercent": 0.38426
   }
 }

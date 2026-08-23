@@ -1,7 +1,7 @@
 {
   "symbol": "NAVA",
   "name": "Nava",
-  "generatedAt": "2026-08-18T16:38:34.308444+00:00",
+  "generatedAt": "2026-08-23T11:02:24.602970+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Conglomerates",
@@ -9,34 +9,34 @@
     "bseCode": "513023",
     "nseSymbol": "NAVA",
     "website": "https://www.navalimited.com",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/nava.html",
     "peerSector": "Power",
     "peerIndustry": "Power Generation"
   },
   "price": {
-    "current": 579.9,
-    "change": 26.450012,
-    "changePercent": 4.7791147,
-    "previousClose": 553.45,
-    "dayLow": 556.2,
-    "dayHigh": 589.4,
+    "current": 558.95,
+    "change": 2.2000122,
+    "changePercent": 0.39515263,
+    "previousClose": 556.75,
+    "dayLow": 553.0,
+    "dayHigh": 566.0,
     "fiftyTwoWeekLow": 501.65,
     "fiftyTwoWeekHigh": 739.4,
-    "asOf": 1785751200
+    "asOf": 1787306395
   },
   "stats": {
-    "marketCap": 164259643392.0,
-    "trailingPE": 20.829742,
+    "marketCap": 158395809792.0,
+    "trailingPE": 20.78654,
     "forwardPE": null,
-    "priceToBook": 1.8775558,
-    "bookValue": 308.859,
-    "dividendYield": 1.54,
-    "trailingEps": 27.84,
+    "priceToBook": 1.8087827,
+    "bookValue": 309.02,
+    "dividendYield": 1.52,
+    "trailingEps": 26.89,
     "debtToEquity": 0.20684000000000002,
     "roe": 8.995341987973353,
     "roce": 11.091432176889661,
-    "return1y": -2.4367898335514737,
-    "sharesOutstanding": 283255096.0
+    "return1y": -4.1871624833857295,
+    "sharesOutstanding": 283381000.0
   },
   "quarterly": {
     "periods": [
@@ -319,6 +319,10 @@
   },
   "dividends": [
     {
+      "date": "2026-08-07",
+      "amount": 5.5
+    },
+    {
       "date": "2025-11-14",
       "amount": 3.0
     },
@@ -345,10 +349,6 @@
     {
       "date": "2021-08-18",
       "amount": 1.25
-    },
-    {
-      "date": "2020-03-09",
-      "amount": 0.75
     }
   ],
   "analyst": {
@@ -359,7 +359,7 @@
     "numberOfAnalystOpinions": null
   },
   "holders": {
-    "insidersPercent": 0.52803004,
-    "institutionsPercent": 0.05746
+    "insidersPercent": 0.52401,
+    "institutionsPercent": 0.056760002
   }
 }

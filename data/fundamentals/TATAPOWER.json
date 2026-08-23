@@ -1,7 +1,7 @@
 {
   "symbol": "TATAPOWER",
   "name": "Tata Power Co.",
-  "generatedAt": "2026-08-18T16:39:11.035600+00:00",
+  "generatedAt": "2026-08-23T11:02:57.595915+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Independent Power Producers",
@@ -14,28 +14,28 @@
     "peerIndustry": "Integrated Power Utilities"
   },
   "price": {
-    "current": 382.0,
-    "change": 1.2999878,
-    "changePercent": 0.341473,
-    "previousClose": 380.7,
-    "dayLow": 378.05,
-    "dayHigh": 382.9,
+    "current": 374.3,
+    "change": -0.9500122,
+    "changePercent": -0.2531678,
+    "previousClose": 375.25,
+    "dayLow": 373.05,
+    "dayHigh": 377.75,
     "fiftyTwoWeekLow": 342.5,
     "fiftyTwoWeekHigh": 464.9,
-    "asOf": 1785750297
+    "asOf": 1787305503
   },
   "stats": {
-    "marketCap": 1220619665408.0,
-    "trailingPE": 31.648716,
-    "forwardPE": 22.80642,
-    "priceToBook": 3.0920408,
+    "marketCap": 1196015484928.0,
+    "trailingPE": 31.062239,
+    "forwardPE": 22.343359,
+    "priceToBook": 3.0297143,
     "bookValue": 123.543,
-    "dividendYield": 0.66,
-    "trailingEps": 12.07,
+    "dividendYield": 0.67,
+    "trailingEps": 12.05,
     "debtToEquity": 1.68051,
     "roe": 9.494438547847695,
     "roce": 8.534834497093623,
-    "return1y": -3.8721827954115606,
+    "return1y": -3.21999991004595,
     "sharesOutstanding": 3195339547.0
   },
   "quarterly": {
@@ -365,14 +365,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 419.2608,
+    "targetMean": 418.39124,
     "targetHigh": 525.0,
     "targetLow": 299.99875,
     "recommendationKey": "buy",
     "numberOfAnalystOpinions": 23
   },
   "holders": {
-    "insidersPercent": 0.47243,
-    "institutionsPercent": 0.22584
+    "insidersPercent": 0.48708,
+    "institutionsPercent": 0.2163
   }
 }

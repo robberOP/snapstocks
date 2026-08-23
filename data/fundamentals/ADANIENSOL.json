@@ -1,7 +1,7 @@
 {
   "symbol": "ADANIENSOL",
   "name": "Adani Energy Sol",
-  "generatedAt": "2026-08-18T16:37:08.834970+00:00",
+  "generatedAt": "2026-08-23T11:00:41.020598+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Independent Power Producers",
@@ -9,34 +9,34 @@
     "bseCode": "539254",
     "nseSymbol": "ADANIENSOL",
     "website": "https://www.adanienergysolutions.com",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/adaniensol.html",
     "peerSector": "Power",
     "peerIndustry": "Power Distribution"
   },
   "price": {
-    "current": 1647.0,
-    "change": 1.5999756,
-    "changePercent": 0.09723931,
-    "previousClose": 1645.4,
-    "dayLow": 1635.8,
-    "dayHigh": 1676.0,
+    "current": 1541.9,
+    "change": -6.5999756,
+    "changePercent": -0.42621735,
+    "previousClose": 1548.5,
+    "dayLow": 1527.3,
+    "dayHigh": 1559.5,
     "fiftyTwoWeekLow": 744.9,
     "fiftyTwoWeekHigh": 1789.0,
-    "asOf": 1785750302
+    "asOf": 1787305505
   },
   "stats": {
-    "marketCap": 1978512572416.0,
-    "trailingPE": 67.6386,
-    "forwardPE": 45.55403,
-    "priceToBook": 7.78098,
+    "marketCap": 1885673619456.0,
+    "trailingPE": 63.426575,
+    "forwardPE": 42.64709,
+    "priceToBook": 7.2844524,
     "bookValue": 211.67,
     "dividendYield": null,
-    "trailingEps": 24.35,
+    "trailingEps": 24.31,
     "debtToEquity": 1.945,
     "roe": 8.976645007735709,
     "roce": 8.432426257910722,
-    "return1y": 99.1656056215965,
-    "sharesOutstanding": 1201282642.0
+    "return1y": 89.1297709923664,
+    "sharesOutstanding": 1222954468.0
   },
   "quarterly": {
     "periods": [
@@ -319,11 +319,11 @@
     "targetMean": 1747.6666,
     "targetHigh": 2060.0,
     "targetLow": 1434.0,
-    "recommendationKey": "buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 9
   },
   "holders": {
     "insidersPercent": 0.7467,
-    "institutionsPercent": 0.21430999
+    "institutionsPercent": 0.18245001
   }
 }

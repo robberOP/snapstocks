@@ -1,9 +1,39 @@
 [
   {
+    "slug": "acmesolar",
+    "name": "ACME Solar Holdings Limited",
+    "shell_url": "/stock-analysis/deep-dive/acmesolar.html",
+    "report_url": "/stock-analysis/deep-dive/reports/ACMESOLAR.html"
+  },
+  {
+    "slug": "adaniensol",
+    "name": "Adani Energy Solutions Limited",
+    "shell_url": "/stock-analysis/deep-dive/adaniensol.html",
+    "report_url": "/stock-analysis/deep-dive/reports/ADANIENSOL.html"
+  },
+  {
+    "slug": "adanigreen",
+    "name": "Adani Green Energy Limited",
+    "shell_url": "/stock-analysis/deep-dive/adanigreen.html",
+    "report_url": "/stock-analysis/deep-dive/reports/ADANIGREEN.html"
+  },
+  {
+    "slug": "adanipower",
+    "name": "Adani Power Limited",
+    "shell_url": "/stock-analysis/deep-dive/adanipower.html",
+    "report_url": "/stock-analysis/deep-dive/reports/ADANIPOWER.html"
+  },
+  {
     "slug": "alkylamine",
     "name": "Alkyl Amines Chemicals Ltd (ALKYLAMINE)",
     "shell_url": "/stock-analysis/deep-dive/alkylamine.html",
     "report_url": "/stock-analysis/deep-dive/reports/ALKYLAMINE.html"
+  },
+  {
+    "slug": "cesc",
+    "name": "CESC Limited",
+    "shell_url": "/stock-analysis/deep-dive/cesc.html",
+    "report_url": "/stock-analysis/deep-dive/reports/CESC.html"
   },
   {
     "slug": "equitasbnk",
@@ -30,16 +60,112 @@
     "report_url": "/stock-analysis/deep-dive/reports/IKS.html"
   },
   {
+    "slug": "jswenergy",
+    "name": "JSW Energy Limited",
+    "shell_url": "/stock-analysis/deep-dive/jswenergy.html",
+    "report_url": "/stock-analysis/deep-dive/reports/JSWENERGY.html"
+  },
+  {
+    "slug": "jppower",
+    "name": "Jaiprakash Power Ventures Limited",
+    "shell_url": "/stock-analysis/deep-dive/jppower.html",
+    "report_url": "/stock-analysis/deep-dive/reports/JPPOWER.html"
+  },
+  {
+    "slug": "kpigreen",
+    "name": "KPI Green Energy Limited",
+    "shell_url": "/stock-analysis/deep-dive/kpigreen.html",
+    "report_url": "/stock-analysis/deep-dive/reports/KPIGREEN.html"
+  },
+  {
+    "slug": "nhpc",
+    "name": "NHPC Limited",
+    "shell_url": "/stock-analysis/deep-dive/nhpc.html",
+    "report_url": "/stock-analysis/deep-dive/reports/NHPC.html"
+  },
+  {
+    "slug": "nlcindia",
+    "name": "NLC India Limited",
+    "shell_url": "/stock-analysis/deep-dive/nlcindia.html",
+    "report_url": "/stock-analysis/deep-dive/reports/NLCINDIA.html"
+  },
+  {
+    "slug": "ntpcgreen",
+    "name": "NTPC Green Energy Limited",
+    "shell_url": "/stock-analysis/deep-dive/ntpcgreen.html",
+    "report_url": "/stock-analysis/deep-dive/reports/NTPCGREEN.html"
+  },
+  {
+    "slug": "ntpc",
+    "name": "NTPC Limited",
+    "shell_url": "/stock-analysis/deep-dive/ntpc.html",
+    "report_url": "/stock-analysis/deep-dive/reports/NTPC.html"
+  },
+  {
     "slug": "nh",
     "name": "Narayana Hrudayalaya Ltd (NH)",
     "shell_url": "/stock-analysis/deep-dive/nh.html",
     "report_url": "/stock-analysis/deep-dive/reports/nh.html"
   },
   {
+    "slug": "nava",
+    "name": "Nava Limited",
+    "shell_url": "/stock-analysis/deep-dive/nava.html",
+    "report_url": "/stock-analysis/deep-dive/reports/NAVA.html"
+  },
+  {
+    "slug": "nibe",
+    "name": "Nibe Limited",
+    "shell_url": "/stock-analysis/deep-dive/nibe.html",
+    "report_url": "/stock-analysis/deep-dive/reports/NIBE.html"
+  },
+  {
     "slug": "optiemus",
     "name": "Optiemus Infracom Limited",
     "shell_url": "/stock-analysis/deep-dive/optiemus.html",
     "report_url": "/stock-analysis/deep-dive/reports/OPTIEMUS.html"
+  },
+  {
+    "slug": "ptc",
+    "name": "PTC India Limited",
+    "shell_url": "/stock-analysis/deep-dive/ptc.html",
+    "report_url": "/stock-analysis/deep-dive/reports/PTC.html"
+  },
+  {
+    "slug": "powergrid",
+    "name": "Power Grid Corporation of India Limited",
+    "shell_url": "/stock-analysis/deep-dive/powergrid.html",
+    "report_url": "/stock-analysis/deep-dive/reports/POWERGRID.html"
+  },
+  {
+    "slug": "rtnpower",
+    "name": "RattanIndia Power",
+    "shell_url": "/stock-analysis/deep-dive/rtnpower.html",
+    "report_url": "/stock-analysis/deep-dive/reports/RTNPOWER.html"
+  },
+  {
+    "slug": "rpower",
+    "name": "Reliance Power Limited",
+    "shell_url": "/stock-analysis/deep-dive/rpower.html",
+    "report_url": "/stock-analysis/deep-dive/reports/RPOWER.html"
+  },
+  {
+    "slug": "sjvn",
+    "name": "SJVN Limited",
+    "shell_url": "/stock-analysis/deep-dive/sjvn.html",
+    "report_url": "/stock-analysis/deep-dive/reports/SJVN.html"
+  },
+  {
+    "slug": "tatapower",
+    "name": "The Tata Power Company Limited",
+    "shell_url": "/stock-analysis/deep-dive/tatapower.html",
+    "report_url": "/stock-analysis/deep-dive/reports/TATAPOWER.html"
+  },
+  {
+    "slug": "torntpower",
+    "name": "Torrent Power Limited",
+    "shell_url": "/stock-analysis/deep-dive/torntpower.html",
+    "report_url": "/stock-analysis/deep-dive/reports/TORNTPOWER.html"
   },
   {
     "slug": "refex",

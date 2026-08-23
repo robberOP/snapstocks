@@ -1,7 +1,7 @@
 {
   "symbol": "JSWENERGY",
   "name": "JSW Energy",
-  "generatedAt": "2026-08-18T16:38:14.019467+00:00",
+  "generatedAt": "2026-08-23T11:02:05.978573+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Independent Power Producers",
@@ -9,33 +9,33 @@
     "bseCode": "533148",
     "nseSymbol": "JSWENERGY",
     "website": "https://www.jsw.in/energy",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/jswenergy.html",
     "peerSector": "Power",
     "peerIndustry": "Power Generation"
   },
   "price": {
-    "current": 569.0,
-    "change": 14.349976,
-    "changePercent": 2.5872126,
-    "previousClose": 554.65,
-    "dayLow": 557.35,
-    "dayHigh": 569.0,
+    "current": 544.95,
+    "change": 2.9500122,
+    "changePercent": 0.5442827,
+    "previousClose": 542.0,
+    "dayLow": 540.2,
+    "dayHigh": 552.0,
     "fiftyTwoWeekLow": 427.75,
     "fiftyTwoWeekHigh": 617.35,
-    "asOf": 1785750302
+    "asOf": 1787305495
   },
   "stats": {
-    "marketCap": 1042620219392.0,
-    "trailingPE": 44.592476,
-    "forwardPE": 33.489956,
-    "priceToBook": 3.2494974,
+    "marketCap": 998551715840.0,
+    "trailingPE": 42.741177,
+    "forwardPE": 32.074432,
+    "priceToBook": 3.1121504,
     "bookValue": 175.104,
-    "dividendYield": 0.36,
-    "trailingEps": 12.76,
+    "dividendYield": 0.37,
+    "trailingEps": 12.75,
     "debtToEquity": 2.2916,
     "roe": 7.281951357835761,
     "roce": 7.32002670086974,
-    "return1y": 8.791005532735399,
+    "return1y": 2.532047936310307,
     "sharesOutstanding": 1832372944.0
   },
   "quarterly": {
@@ -355,11 +355,11 @@
     "targetMean": 614.63635,
     "targetHigh": 720.0,
     "targetLow": 475.0,
-    "recommendationKey": "buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 22
   },
   "holders": {
-    "insidersPercent": 0.66581,
-    "institutionsPercent": 0.20844
+    "insidersPercent": 0.66706,
+    "institutionsPercent": 0.21414
   }
 }

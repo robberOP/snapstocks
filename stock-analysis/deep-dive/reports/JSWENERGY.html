@@ -1,0 +1,958 @@
+<title>JSW Energy Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Independent Power Producer / Thermal, Hydro &amp; Renewables</div>
+    <h1>JSW Energy Limited</h1>
+    <p class="sub">NSE: JSWENERGY &middot; BSE: 533148 &middot; FY2023&ndash;FY2027(Q1) performance review, BSE-filing and earnings-call synthesis, as of 22 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> JSW Energy is executing the most aggressive capacity build-out in its history &mdash; installed capacity jumped from 10.9 GW to 14.9 GW inside five months (Apr&ndash;Aug 2026), backed by a record &#8377;10,150 crore capital raise (QIP + promoter preferential allotment + a JSW Steel stake sale) that pulled operational net debt/EBITDA down to 4.95x from 5.2x. But the P&amp;L has not kept pace with the balance-sheet story: Q1FY27 revenue was flat and EBITDA grew only 2% YoY, while reported profit-to-shareholders fell 37% YoY as depreciation (+20%) and finance costs (+16%) from newly commissioned assets outran operating growth &mdash; a pattern management itself says will persist for another 4&ndash;5 years per project-maturation economics. FY26&rsquo;s Q4 leaned on non-operating other income for the bulk of a thin pre-tax profit, hydrology and one-off thermal outages dented Q1FY27 generation, and cash returns on net worth slid from 20% to 14% as the equity raise diluted the base faster than cash profit grew. Against this, the balance sheet is genuinely stronger, the FY27 growth targets (3 GW / &#8377;20,000 Cr capex) are tracking ahead of a straight-line pace five months in, and a live &#8377;600 crore tariff dispute with Maharashtra&rsquo;s discom has twice ruled in the company&rsquo;s favour (now before the Supreme Court on the discom&rsquo;s further appeal).</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (21 Aug 26)</div><div class="v">&#8377;544.95</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;99,855 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;427.75 &ndash; &#8377;617.35</div></div>
+      <div class="chip"><div class="k">Q1FY27 EBITDA</div><div class="v pos">+2% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT (to shareholders)</div><div class="v neg">&minus;37% YoY</div></div>
+      <div class="chip"><div class="k">Installed Capacity (10 Aug 26)</div><div class="v">14,920 MW</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">42.7x</div></div>
+      <div class="chip"><div class="k">Op. Net Debt/EBITDA</div><div class="v">4.95x <span style="font-size:11px;">(ex-CWIP)</span></div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage &mdash; please read before the numbers below:</b> BSE filings available in this dataset span roughly two months (17&nbsp;Jun&ndash;21&nbsp;Aug 2026, 50 filings) &mdash; this window contains exactly <b>one</b> earnings-call transcript and <b>one</b> investor presentation, both for Q1FY27 (quarter ended 30&nbsp;Jun 2026, results filed 22&nbsp;Jul 2026, call held 22&nbsp;Jul, transcript filed 27&nbsp;Jul). No prior quarters&rsquo; calls, presentations, or annual report are present in this dataset, so this report cannot directly quote management&rsquo;s own prior-quarter guidance language for most periods before Q1FY27 &mdash; it is stated explicitly wherever that limits a comparison. To build a multi-quarter/multi-year quantitative record regardless, this report leans heavily on: (a) MarketData/yfinance&rsquo;s independent quarterly (Q4FY25&ndash;Q1FY27, with Q2FY26/Sep-25 missing from that specific series) and annual (FY23&ndash;FY26) income statement, balance sheet and cash-flow data; (b) a company-disclosed 10-quarter &ldquo;Cash Returns on Adjusted Net Worth&rdquo; table and a 6-quarter leverage-ratio table, both embedded directly inside the single Q1FY27 investor presentation, which happen to give genuine multi-quarter trend lines despite coming from one filing; (c) the Regulation&nbsp;52(4) ratio disclosures inside the Q1FY27/Q4FY26 financial-results filing; and (d) yfinance&rsquo;s EPS-estimate-vs-actual earnings history as a market-expectations proxy for &ldquo;guidance vs. delivered&rdquo; where no formal management number exists. Every figure below is tagged to its source; two different company-disclosed EBITDA-margin figures for the same Q1FY27 quarter (57% in the presentation vs. 55.22% in the regulatory filing) are flagged explicitly in &sect;04 as a real methodology difference, not reconciled away. Figures are consolidated unless marked standalone.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Other call insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What JSW Energy does, and how it has grown</h2></div>
+      <p class="sec-dek">A thermal-heavy IPP that has spent the last three years transforming into a diversified, vertically-integrating clean-energy platform &mdash; on a scale and pace few Indian private power producers are attempting simultaneously.</p>
+
+      <p class="lede">Incorporated in 1994 and part of the Sajjan Jindal-led JSW Group (the group is described in the company&rsquo;s own press releases as a &ldquo;USD 25 billion&rdquo; conglomerate spanning steel, energy, infrastructure and cement), JSW Energy began commercial operations in 2000 with a 260&nbsp;MW thermal plant at Vijayanagar, Karnataka. Twenty-six years later, installed capacity stands at <b>14,920&nbsp;MW</b> (per the 10&nbsp;Aug&nbsp;2026 capacity-addition filing) across thermal (5,958&nbsp;MW &mdash; Vijayanagar, Ratnagiri, Barmer, Utkal, Mahanadi, and the newly-acquired Maruti Clean Coal plant), hydro (1,781&nbsp;MW &mdash; Karcham Wangtoo, Baspa, Kutehr, Tidong, all in Himachal Pradesh), wind (3,125&nbsp;MW), solar (2,360&nbsp;MW) and hybrid (1,696&nbsp;MW) assets spread across twelve states. Renewable capacity is now roughly 60% of the installed base, up from a thermal-dominated portfolio a few years ago. <span style="font-size:12.5px;color:var(--ink-mute);">(Note: the yfinance business-summary text in MarketData/overview.md still describes a stale 10,875&nbsp;MW portfolio &mdash; superseded by every capacity-addition filing reviewed in this window; this report uses the filed figures.)</span> Beyond generation, the group also runs power transmission (Jaigad Power Transco), power trading, and coal mining operations in South Africa.</p>
+
+      <h3>Strategy 3.0: 30 GW by 2030, funded and largely de-risked on paper</h3>
+      <p>Management&rsquo;s stated target &mdash; reiterated on the Q1FY27 call &mdash; is <b>30&nbsp;GW of generation capacity and 40&nbsp;GWh of energy storage by 2030</b>, funded by a disclosed &#8377;1.1 lakh crore (&#8377;1.1 trillion) capex programme through FY30. As of early August 2026 the company describes a &ldquo;total locked-in generation capacity&rdquo; of 32.4&nbsp;GW &mdash; 14.9&nbsp;GW operational, 13.5&ndash;13.6&nbsp;GW under construction (headlined by the 3,200&nbsp;MW Salboni greenfield thermal project and a 600&nbsp;MW fourth unit at Mahanadi) and a further ~4&nbsp;GW pipeline &mdash; plus 29.6&nbsp;GWh of locked-in storage (26.4&nbsp;GWh pumped hydro across two signed PPAs with MSEDCL and UPPCL, 3.2&nbsp;GWh battery). &ldquo;Locked-in&rdquo; here means land/PPA/clearance secured, not commissioned &mdash; the gap between that figure and today&rsquo;s 14.9&nbsp;GW installed base is the multi-year execution risk this report returns to throughout.</p>
+
+      <h3>Vertical integration: the more distinctive part of the current story</h3>
+      <p>Rather than staying a pure generator, JSW Energy has spent FY26&ndash;FY27 building supply-chain control over its own build-out: a wind-blade manufacturing plant at Halol, Gujarat (commissioned 8&nbsp;Jun&nbsp;2026, ~600&nbsp;MW/year of blade capacity); a 5&nbsp;GWh battery container-assembly plant in Pune, which just won its first large external order (200&nbsp;MW/400&nbsp;MWh, ~&#8377;444&nbsp;crore, from Bondada Renewable Energy, July 2026); an increased stake in Toshiba JSW Power Systems (thermal turbines/generators, raised from 2.4% to 10.7% fully-diluted in Q1FY27); and a pending scheme to absorb GE Power India&rsquo;s Durgapur boiler-manufacturing business via NCLT-approved demerger (shareholder/creditor approval obtained 20&nbsp;Jul&nbsp;2026, NCLT approval still pending). Management frames this explicitly as de-risking the thermal expansion pipeline and lowering per-MW capital cost, not as a new stand-alone profit centre &mdash; though the BESS order is a genuine new external revenue stream (CFO Prabhakaran quantified BESS assembly margins at ~$2.75&ndash;3/kWh, roughly &#8377;150&nbsp;crore of annual EBITDA potential at current scale, on the Q1FY27 call).</p>
+
+      <h3>The moat, such as it&rsquo;s evidenced</h3>
+      <p>No independent market-share or competitor-benchmark figure was found in the reviewed filings; JSW Energy&rsquo;s own materials describe it as a leading private-sector power producer without a sourced ranking. What is independently verifiable: a genuinely diversified fuel/off-taker mix (thermal 39%, renewables 61% of installed capacity; group-captive, SECI, PTC, and ten-plus state distribution utilities as off-takers, no single counterparty concentration disclosed above the low-20s%); long-residual-life PPAs on the core thermal fleet; India&rsquo;s largest private hydro portfolio by the company&rsquo;s own description (1,781&nbsp;MW, Himachal Pradesh); and now a first international foray &mdash; a shareholders&rsquo; agreement signed 12&nbsp;Aug&nbsp;2026 with Bhutan&rsquo;s Druk Green Power Corporation for the 920&nbsp;MW Punatsangchhu-III hydro project (JSW Neo Energy holding 49%), the company&rsquo;s first generation asset outside India. Whether the current pace of capacity build is executed on schedule, without cost overruns, is the open question the rest of this report tries to ground in numbers rather than press-release framing.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">A month dominated by three threads: the MSEDCL litigation escalating to the Supreme Court, a wave of credit-rating affirmations across the group&rsquo;s SPV structure, and continued capacity/capital-raise follow-through from the Q1FY27 print.</p>
+
+      <div class="news-item">
+        <div class="news-date">21 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral / overhang</span>
+          <div class="news-title">MSEDCL takes the &#8377;600 Cr tariff dispute to the Supreme Court</div>
+          <div class="news-body">The Supreme Court agreed to urgently hear Maharashtra discom MSEDCL&rsquo;s appeal against a &#8377;600 crore tariff-payment directive to JSW Energy, of which &#8377;250 crore has already been paid as interim relief. JSW&rsquo;s legal position is structurally strong &mdash; favourable rulings at MERC and then APTEL &mdash; but the further appeal keeps the remaining &#8377;350 crore realisation uncertain and extends a dispute that has now run since at least Jan 2026.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">20 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">APTEL dismisses MSEDCL&rsquo;s appeal outright, closing off a review route</div>
+          <div class="news-body">The Appellate Tribunal for Electricity dismissed MSEDCL&rsquo;s appeal as withdrawn and rejected its request for liberty to seek an MERC review &mdash; a clean win for JSW Energy that was then immediately followed (see above) by MSEDCL escalating to the Supreme Court instead. Same-day coverage also noted Axis Direct issuing a Buy on the stock (target &#8377;630) alongside NTPC and Skipper, citing the &#8377;10,150 Cr capital raise and 1,081 MW of capacity added.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">19 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed / low-information</span>
+          <div class="news-title">Technical/derivative desks place JSWENERGY on a sell list</div>
+          <div class="news-body">A roundup of technical-analysis recommendations placed JSW Energy (alongside Marico) on a sell list, with no fundamental rationale, price target, or risk factor disclosed &mdash; a short-term trading call, not a fundamentals-based view, and treated here as low-signal against everything else in this section.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">12 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">First international project: Bhutan pumped-hydro JV</div>
+          <div class="news-body">JSW Neo Energy signed a shareholders&rsquo; agreement with Bhutan&rsquo;s Druk Green Power Corporation for the 920 MW Punatsangchhu-III hydro project (49% JSW stake), with detailed project report preparation underway &mdash; a genuine, if early-stage, geographic-expansion data point (see &sect;01).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">7&ndash;10 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Maruti Clean Coal acquisition completed; capacity crosses 14.9 GW; &#8377;4,000 Cr in project debt secured</div>
+          <div class="news-body">The 300 MW Maruti Clean Coal &amp; Power thermal acquisition closed (7 Aug, &#8377;1,410 Cr enterprise value, FY26 EBITDA ~&#8377;279 Cr, described as EBITDA- and PAT-accretive from day one), taking installed capacity to 14,920 MW (10 Aug). Separately, the renewables arm secured &#8377;4,000 Cr of long-tenor bank/NaBFID debt (sub-8% to ~10%, 15&ndash;20 year tenors) to fund construction-phase renewable projects.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">1 Aug 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">Odisha pollution board fines the Utkal plant &#8377;3.17 Cr for illegal fly-ash dumping</div>
+          <div class="news-body">Odisha&rsquo;s pollution control board fined JSW Energy&rsquo;s Utkal thermal plant for dumping ~31,717 tonnes of fly ash on agricultural land without consent, reportedly during night hours, and ordered removal plus GPS tracking of future ash transport. Small in rupee terms, but a genuine environmental-compliance and governance flag &mdash; see &sect;07.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">22&ndash;31 Jul 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed &mdash; strong operations, weak headline profit</span>
+          <div class="news-title">Q1FY27 results: PAT down 37% despite record capacity additions and a &#8377;7,150 Cr capital raise</div>
+          <div class="news-body">Q1FY27 net profit to shareholders fell to &#8377;471 crore (&minus;37% YoY) on flat revenue (&#8377;5,207 crore) as depreciation and finance cost rose faster than EBITDA, alongside record quarterly organic capacity additions (873 MW) and the Tidong hydro project&rsquo;s early commissioning. Geojit reiterated a Buy with a revised &#8377;639 target (12.4x FY28E EV/EBITDA, 31&nbsp;Jul).</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b> The stock closed a 19-month round trip from &#8377;439 (Feb-2025 month-end) to &#8377;590 (May-2026 month-end) and back to &#8377;540 (Aug-2026 month-end, per MarketData daily price history) &mdash; a run that roughly tracks the balance-sheet deleveraging narrative (the May&ndash;Jun 2026 capital raise) more closely than the softer Q1FY27 P&amp;L print that followed it in late July. Full chart in &sect;10. See &sect;09 for the fuller analyst-target picture behind the individual Buy calls referenced above.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segments &amp; guidance</h2></div>
+      <p class="sec-dek">Revenue growth has been almost entirely capacity-driven rather than utilisation-driven &mdash; Q1FY27 volumes actually fell 5% YoY even as installed capacity rose 1,558 MW, because weak hydrology and a one-off thermal outage offset the new capacity&rsquo;s contribution.</p>
+
+      <h3>Quarterly trend (consolidated)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>3,189.4</td><td>5,143.4</td><td>4,081.8</td><td>4,498.6</td><td>5,207.1</td></tr>
+            <tr><td>EBITDA (yfinance basis)</td><td>1,517.9</td><td>3,059.5</td><td>2,140.7</td><td>2,605.3</td><td>3,104.7</td></tr>
+            <tr><td>PAT to shareholders</td><td>408.1</td><td>743.1</td><td>420.0</td><td>371.6</td><td>471.0</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>2.34</td><td>4.25</td><td>2.41</td><td>2.07</td><td>2.57</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance quarterly income statement. Q2FY26 (Sep-25 quarter) is absent from this specific yfinance series &mdash; a genuine data gap, not silently interpolated. Q1FY27 figures cross-check exactly against the company&rsquo;s own Q1FY27 financial-results filing (revenue &#8377;5,207.13 Cr, PAT to shareholders &#8377;470.97 Cr).</caption>
+      </div>
+      <p>Revenue is lumpy but on an up-trend driven almost entirely by capacity: Q1FY27&rsquo;s &#8377;5,207 crore was essentially flat YoY versus Q1FY26&rsquo;s &#8377;5,143 crore despite 1,558 MW (12%) more installed capacity, because net generation actually <em>fell</em> 5% YoY (12.9 BU vs 13.5 BU) &mdash; hydro generation dropped 26% YoY on weak Himachal-basin hydrology (national hydro generation was down 7% YoY; the Sutlej basin specifically down 39%) and Mahanadi lost ~184 MU to a one-off, 17-day evacuation-availability outage that management is booking under Force Majeure. Solar generation partially offset this, up 29% YoY on new capacity.</p>
+
+      <h3>Segment split: renewables now growing faster than thermal, on both revenue and EBITDA</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, Q1FY27 vs Q1FY26</th><th>Thermal</th><th>Renewables</th><th>Consolidated*</th></tr></thead>
+          <tbody>
+            <tr><td>Segment revenue, Q1FY27</td><td>3,453</td><td>1,740</td><td>5,207</td></tr>
+            <tr><td>Segment revenue, Q1FY26</td><td>3,622</td><td>1,492</td><td>5,143</td></tr>
+            <tr><td>YoY change</td><td class="neg">&minus;5%</td><td class="pos">+17%</td><td>Flat</td></tr>
+            <tr><td>EBITDA (excl. other income), Q1FY27</td><td>1,392</td><td>1,485</td><td>&mdash;</td></tr>
+            <tr><td>EBITDA (excl. other income), Q1FY26</td><td>1,569</td><td>1,212</td><td>&mdash;</td></tr>
+            <tr><td>YoY change</td><td class="neg">&minus;11%</td><td class="pos">+23%</td><td>&mdash;</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1FY27 investor presentation, Consolidated Segment Information. *Segment revenue totals differ slightly from headline consolidated revenue due to unallocated items and intercompany eliminations.</caption>
+      </div>
+      <p>This is the clearest structural signal in the quarter: renewables&rsquo; EBITDA (excl. other income) grew 23% YoY to &#8377;1,485 crore and now essentially matches thermal&rsquo;s &#8377;1,392 crore (down 11%), despite thermal still holding 39% of installed capacity. At the entity level, the newer/expanding businesses (O2 Power revenue +97% YoY to &#8377;480 Cr, Vijayanagar RE +52% to &#8377;189 Cr, Kutehr new at &#8377;193 Cr) offset declines at the larger legacy thermal entities (Mahanadi revenue &minus;17% to &#8377;1,294 Cr, Utkal &minus;15% to &#8377;516 Cr, Barmer &minus;10% to &#8377;562 Cr).</p>
+
+      <h3>FY27 guidance vs. delivered: ahead of a straight-line pace, five months in</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">FY27 capacity guidance</div><div class="v">3,000 MW</div><div class="d">Organic renewable addition target</div></div>
+        <div class="stat"><div class="k">Achieved by 10 Aug 2026</div><div class="v pos">1,166 MW</div><div class="d">~39% of target in ~4.3 months (33% = straight-line pace)</div></div>
+        <div class="stat"><div class="k">FY27 capex guidance</div><div class="v">&#8377;20,000 Cr</div><div class="d">Reaffirmed on the Q1FY27 call</div></div>
+        <div class="stat"><div class="k">Q1FY27 capex delivered</div><div class="v pos">&#8377;4,076 Cr</div><div class="d">~20% of the annual target in Q1</div></div>
+      </div>
+      <p>Both headline FY27 targets &mdash; 3 GW of organic capacity and &#8377;20,000 crore of capex &mdash; are tracking ahead of or in line with a straight-line pace after the first quarter-plus. Management explicitly quantified the implied ramp on the call: Q1FY27&rsquo;s 931 MW of organic addition alone equalled ~87% of <em>all of FY26&rsquo;s</em> organic capacity addition &mdash; implying FY26 organic additions were only around 1.05&ndash;1.3 GW for the full year. Delivering 3 GW in FY27 therefore requires roughly a 2.3&ndash;2.9x step-up in the pace of execution versus FY26, sustained for the rest of the year; Q1&rsquo;s strong print is one data point of four, not a full-year confirmation. Two projects within the 1.1 GW commissioned to date (a 300 MW captive line and a 400 MW O2 Power Rajasthan project) remain under temporary grid-access (TGNA) rather than final GNA connectivity, with management targeting conversion by end-August and September/October respectively.</p>
+
+      <h3>Market-price and demand backdrop</h3>
+      <p>India&rsquo;s power demand grew 8.5% YoY in Q1FY27 (a sharp acceleration from FY26&rsquo;s muted 0.9% full-year growth), with peak demand hitting a record 271 GW in May 2026 and July month-to-date growth running near 12%. Day-ahead merchant power prices firmed to &#8377;5.10/unit in Q1FY27 from &#8377;4.40 a year earlier (+16% YoY) &mdash; a genuine tailwind for JSW Energy&rsquo;s merchant/short-term thermal exposure (currently under 4% of open capacity, per management) and its renewable pipeline&rsquo;s economics, though the company&rsquo;s own generation didn&rsquo;t capture the demand upswing in Q1 due to the hydrology/outage issues above.</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">EBITDA margin is healthy and broadly stable near 55%, but depreciation and finance costs from newly commissioned capacity are outrunning EBITDA growth &mdash; management itself frames this as a 4&ndash;5-year maturation curve, not a one-off.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %, consolidated</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total revenue</td><td>9,910</td><td>11,265</td><td>11,484</td><td>18,692</td></tr>
+            <tr><td>EBITDA (yfinance basis)</td><td>3,851</td><td>5,723</td><td>6,060</td><td>10,795</td></tr>
+            <tr><td>EBITDA margin</td><td>38.9%</td><td>50.8%</td><td>52.8%</td><td>57.8%</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>1,169</td><td>1,633</td><td>1,655</td><td>3,185</td></tr>
+            <tr><td>Interest / finance cost</td><td>739</td><td>1,923</td><td>2,191</td><td>5,623</td></tr>
+            <tr><td>PAT to shareholders</td><td>1,478</td><td>1,723</td><td>1,951</td><td>2,239</td></tr>
+            <tr><td>PAT margin</td><td>14.9%</td><td>15.3%</td><td>17.0%</td><td class="neg">12.0%</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>8.99</td><td>10.47</td><td>11.18</td><td>12.74</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement. PAT margin computed on total revenue; note this yfinance-basis EBITDA figure uses a different methodology than the company&rsquo;s own Regulation 52(4) "Operating EBITDA Margin" disclosure discussed below &mdash; the two are not interchangeable, see the flag below.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>PAT margin fell in FY26 even as revenue nearly doubled and EBITDA margin expanded</b>FY26 revenue grew 63% and EBITDA margin expanded to 57.8% from 52.8% &mdash; yet PAT margin <em>fell</em> from 17.0% to 12.0%, because depreciation (+92% YoY) and finance costs (+157% YoY) both grew far faster than EBITDA (+78% YoY) as the FY26 capex wave (&#8377;10,311 crore, largely debt- and acquisition-funded, including the JSW Mahanadi/KSK acquisition) hit the books. Finance costs alone rose from &#8377;2,191 Cr to &#8377;5,623 Cr &mdash; a 2.6x jump in one year. This is the single clearest explanation for why the strong topline/EBITDA story in &sect;01/&sect;03 has not been showing up proportionally in bottom-line profit, and management confirmed on the Q1FY27 call that this dynamic (heavy initial-years interest/depreciation load during a moratorium/ramp period, easing over ~4&ndash;5 years as assets stabilise) should be expected to persist for the current capex wave too.</div>
+      </div>
+
+      <h3>Q1FY27 in detail: EBITDA up 2%, PAT down 37% &mdash; the D&amp;A/interest gap widens further</h3>
+      <p>Revenue was flat YoY (&#8377;5,437 Cr including other income vs &#8377;5,411 Cr) and EBITDA grew a modest 2% to &#8377;3,103 crore. Below that line, depreciation rose 20% YoY to &#8377;890 crore and finance costs rose 16% YoY to &#8377;1,519 crore (weighted average cost of debt: 8.36%, down from 9.05% a year earlier &mdash; a genuine positive on unit cost of debt even as the absolute interest bill rises with volume). The result: PBT fell to &#8377;696 crore from &#8377;1,012 crore, PAT to &#8377;533 crore from &#8377;836 crore, and PAT attributable to shareholders to &#8377;471 crore from &#8377;743 crore &mdash; a 37% YoY decline on a business whose EBITDA grew. Management&rsquo;s own explanation (CFO Q&amp;A, in response to a direct JPMorgan question on suppressed ROE) is that assets developed 2&ndash;3 years ago are commissioning now, carrying moratorium-period interest costs that decline only as the asset base matures over roughly 4&ndash;5 years.</p>
+
+      <h3>Two different company-disclosed EBITDA margins for the same quarter &mdash; a methodology flag, not an error</h3>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>57% vs. 55.22%, same quarter, both from JSW Energy&rsquo;s own filings</b>The Q1FY27 investor presentation states &ldquo;EBITDA Margin 57%&rdquo; (computed as EBITDA &#8377;3,103 Cr / Total Revenue &#8377;5,437 Cr, which includes &#8377;229 Cr of other income in the denominator). The same quarter&rsquo;s Regulation 52(4) disclosure in the financial-results filing states &ldquo;Operating EBIDTA Margin 55.22%,&rdquo; using a stricter formula that <em>excludes</em> other income from both numerator and denominator: (PBT &minus; other income + D&amp;A + finance costs) / revenue from operations. Both are legitimate, differently-scoped metrics from the same company for the same period &mdash; this report treats the regulatory 55.22% figure as the more conservative, comparable-across-periods measure and uses it for the trend table below.</div>
+      </div>
+
+      <h3>Regulation 52(4) disclosed ratios &mdash; the most precise quarter-to-quarter comparison available</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th></th><th>Q1FY26</th><th>Q4FY26</th><th>Q1FY27</th><th>FY26 (full year)</th></tr></thead>
+          <tbody>
+            <tr><td>Operating EBITDA margin</td><td>54.28%</td><td>50.08%</td><td>55.22%</td><td>53.31%</td></tr>
+            <tr><td>Net profit margin</td><td>15.34%</td><td>11.82%</td><td>9.80%</td><td>13.90%</td></tr>
+            <tr><td>Other income as % of PBT</td><td>26.4%</td><td class="neg">187.5%</td><td>33.0%</td><td>18.1%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1FY27 financial-results filing, Additional Information pursuant to Regulation 52(4). Other income % of PBT computed by this report from the disclosed consolidated P&amp;L lines (other income &divide; PBT).</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Q4FY26&rsquo;s thin PBT leaned almost entirely on non-operating income</b>Q4FY26 (Mar-26 quarter) PBT was just &#8377;187.8 crore, against &#8377;352.3 crore of other income &mdash; meaning other income was <b>187.5% of PBT</b>, i.e. the core operating business, after finance costs and depreciation, would have shown a pre-tax loss without it. Q1FY27&rsquo;s 33.0% and Q1FY26&rsquo;s 26.4% are within a more normal range for a capital-intensive utility carrying meaningful treasury income on its cash balances, but the Q4FY26 print is a genuine quality-of-earnings flag for that specific quarter and worth watching if it recurs.</div>
+      </div>
+
+      <h3>Forward margin guidance</h3>
+      <p>No explicit forward EBITDA-margin or PAT-margin target was given on the Q1FY27 call; management&rsquo;s only quantified forward profitability comment was qualitative &mdash; that PBT/PAT conversion from EBITDA should improve as the current capex-wave assets mature over 4&ndash;5 years, and that Utkal specifically is expected to show higher EBITDA going forward now that its capacity is tied up under long-term PPAs with Karnataka and Assam rather than opportunistic merchant sales. Investors have no company-sourced FY27/FY28 PAT number to hold management to; &sect;10 builds this report&rsquo;s own scenario range instead.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">A genuinely stronger balance sheet after the largest capital raise in Indian power-sector history &mdash; but the "improving leverage" headline is substantially a capital-raise event, not yet organic EBITDA-driven deleveraging.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity (shareholders)</td><td>18,629</td><td>20,832</td><td>27,361</td><td>30,752</td></tr>
+            <tr><td>Total debt</td><td>25,052</td><td>31,573</td><td>50,186</td><td>76,946</td></tr>
+            <tr><td>Net debt</td><td>21,395</td><td>28,235</td><td>46,388</td><td>71,704</td></tr>
+            <tr><td>Debt / equity (this report&rsquo;s calc)</td><td>1.34x</td><td>1.52x</td><td>1.83x</td><td>2.50x</td></tr>
+            <tr><td>Total assets</td><td>48,742</td><td>58,269</td><td>89,939</td><td>124,182</td></tr>
+            <tr><td>Cash &amp; short-term investments</td><td>4,664</td><td>4,725</td><td>5,651</td><td>8,109</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet. Debt/equity here uses shareholders&rsquo; equity only (excl. minority interest); this report&rsquo;s own calc cross-checks closely against the company&rsquo;s own disclosed consolidated Debt-Equity Ratio of 2.47x at FY26-end (Reg 52(4) filing).</caption>
+      </div>
+
+      <h3>Leverage trajectory: rising through most of FY26, pulled back down by the Q1FY27 capital raise</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th></th><th>Mar-25</th><th>Jun-25</th><th>Sep-25</th><th>Dec-25</th><th>Mar-26</th><th>Jun-26</th></tr></thead>
+          <tbody>
+            <tr><td>Net debt / EBITDA (total, incl. CWIP)</td><td>4.96x</td><td>5.95x</td><td>6.03x</td><td>6.05x</td><td>5.96x</td><td>5.53x</td></tr>
+            <tr><td>Net debt (excl. CWIP) / EBITDA</td><td>3.89x</td><td>4.66x</td><td>4.82x</td><td>4.92x</td><td>5.23x</td><td>4.95x</td></tr>
+            <tr><td>Net debt / equity</td><td>1.61x</td><td>2.14x</td><td>2.13x</td><td>2.15x</td><td>2.15x</td><td>1.70x</td></tr>
+            <tr><td>Weighted avg. cost of debt</td><td>9.05%</td><td>8.87%</td><td>8.79%</td><td>8.57%</td><td>8.36%</td><td>8.36%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1FY27 investor presentation, "Superior Credit Profile" leverage-ratio series (company-disclosed, TTM basis).</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Leverage improvement is capital-raise driven, not (yet) organic deleveraging</b>Both leverage ratios <em>rose</em> for five straight quarters (Mar-25 through Mar-26) as the capex wave outpaced EBITDA growth, before falling sharply in Jun-26 &mdash; the exact quarter of the &#8377;10,150 crore capital raise (&#8377;4,000 Cr QIP + &#8377;3,150 Cr JSW Steel stake sale + &#8377;3,000 Cr promoter preferential allotment, of which &#8377;1,125 Cr received to date). Strip out that external capital event and the underlying trend through FY26 was one of rising, not falling, leverage. Management&rsquo;s 2030 commitment is net leverage below 5x; the operational (ex-CWIP) measure is already there (4.95x) but the total including-CWIP measure (5.53x) is not, and roughly &#8377;1,875 crore of the promoter&rsquo;s preferential-allotment commitment remains uncalled (due by June 2027).</div>
+      </div>
+
+      <h3>Trade receivables and working capital</h3>
+      <p>Consolidated DSO rose to 65 days (Jun-26) from 58 days (Jun-25) &mdash; a modest but real increase against essentially flat revenue. Management&rsquo;s explanation, given directly in Q&amp;A, is structural rather than a collections problem: under Mahanadi&rsquo;s long-term PPA, plant-availability entitlement (and the associated fixed-charge revenue) is recognised once the annual 85% availability threshold is secured, but actual cash collection lags by roughly two to three quarters. As the mix continues shifting toward more long-term PPA capacity (see &sect;03), this deemed-revenue-before-cash-collection dynamic is likely to keep pushing consolidated DSO upward mechanically, which is worth distinguishing from a genuine credit-quality deterioration &mdash; but is still a real cash-timing feature to track. Standalone (parent-entity) DSO, by contrast, swung sharply from 101 days (Mar-26) to 56 days (Jun-26), evidently timing-driven at the holdco level and not something this dataset can explain further.</p>
+
+      <h3>Capex vs. depreciation: real, aggressive capacity expansion</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Capex</td><td>4,237</td><td>8,033</td><td>6,709</td><td>10,311</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>1,169</td><td>1,633</td><td>1,655</td><td>3,185</td></tr>
+            <tr><td>Capex / D&amp;A</td><td>3.6x</td><td>4.9x</td><td>4.1x</td><td>3.2x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement.</caption>
+      </div>
+      <p>Capex has consistently and substantially exceeded depreciation (3.2&ndash;4.9x every year, FY23&ndash;FY26) &mdash; unambiguous evidence the asset base is genuinely expanding, not just being maintained, consistent with the stated 30&nbsp;GW-by-2030 growth plan. On the inorganic side, the FY26 capex line also absorbed the JSW Mahanadi (formerly KSK Mahanadi, 1,800 MW, completed Mar-25) and O2 Power acquisitions; the company has since exercised its call option (9&nbsp;Apr&nbsp;2026) to acquire the remaining 26% minority stake in JSW Mahanadi, which should shrink the minority-interest drag on PAT-to-shareholders once that transaction closes (a valuer has been appointed; no completion date disclosed).</p>
+
+      <h3>Forward capex plan</h3>
+      <p>FY27 capex guidance is &#8377;20,000 crore (see &sect;03), funded per management&rsquo;s own Q1FY27 breakdown as: ~&#8377;7,000 Cr already-raised capital, an estimated ~&#8377;5,000&ndash;5,500 Cr of internal operating cash flow, and the balance (~&#8377;7,000&ndash;8,000 Cr) from incremental debt. Beyond FY27, the disclosed &#8377;1.1 lakh crore capex programme runs through FY30 with no year-by-year breakdown given in this dataset. The company also disclosed specific project-level capex colour: the Mahanadi brownfield expansion (doubling 1,800 MW to 3,600 MW) is guided at 25&ndash;30% lower per-MW capital cost than the greenfield Salboni project, given existing land/BOP infrastructure already in place for the full 3,600 MW platform.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Operating cash flow swung from a worrying FY25 divergence back to a strong FY26 recovery &mdash; but free cash flow has stayed negative every year on the sheer scale of the capex programme, and cash returns on net worth are sliding as the equity base grows faster than cash profit.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT to shareholders</td><td>1,478</td><td>1,723</td><td>1,951</td><td>2,239</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>2,084</td><td>6,234</td><td class="neg">3,838</td><td class="pos">9,898</td></tr>
+            <tr><td>Capex</td><td>&minus;4,237</td><td>&minus;8,033</td><td>&minus;6,709</td><td>&minus;10,311</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="neg">&minus;2,152</td><td class="neg">&minus;1,799</td><td class="neg">&minus;2,870</td><td class="neg">&minus;412</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>1.41x</td><td class="pos">3.62x</td><td class="neg">1.97x</td><td class="pos">4.42x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. No quarterly cash-flow file exists in the source data, so quarter-level CFO cannot be checked against the quarterly PAT swings in &sect;03&ndash;04.</caption>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Earnings quality: FY25 diverged, FY26 recovered strongly</b>FY24&rarr;FY25, PAT grew 13% but CFO fell 38% (&#8377;6,234 Cr &rarr; &#8377;3,838 Cr) &mdash; the classic profit-up/cash-down divergence this skill's methodology flags as worth investigating, and consistent with the working-capital build (change in receivables was a &minus;&#8377;727 Cr drag in FY25 per the cash-flow statement). FY26 reversed this cleanly: PAT grew 15% while CFO grew 158% to &#8377;9,898 Cr, aided by a large non-cash addback (&ldquo;Other Non-Cash Items&rdquo; of &#8377;5,181 Cr, likely deferred-tax and fair-value items tied to the year&rsquo;s acquisitions) on top of the tripled D&amp;A. Read together, the two years show CFO/PAT conversion is genuinely volatile year to year for this business, not a steady 1:1 relationship &mdash; a single year's ratio (in either direction) should not be over-read.</div>
+      </div>
+
+      <p><b>Free cash flow has been negative every year shown (FY23&ndash;FY26)</b>, narrowing from &minus;&#8377;2,870 Cr (FY25) to &minus;&#8377;412 Cr (FY26) as operating cash generation caught up with (though still trails) the capex programme. This is unsurprising and not itself a red flag for a utility mid-way through a stated multi-year, debt-and-equity-funded capacity build (financing cash flow was strongly positive every year: &#8377;7,327 Cr, &#8377;1,675 Cr, &#8377;20,223 Cr, &#8377;10,618 Cr, FY23&rarr;FY26) &mdash; but it does mean the business is not yet self-funding its own growth, and the pace at which FCF turns positive is the single cleanest signal to track for whether the capex programme is starting to pay for itself.</p>
+
+      <h3>Cash returns on net worth: a genuine and disclosed decline, explained by dilution rather than deteriorating cash profit</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Mar-25</th><th>Jun-25</th><th>Sep-25</th><th>Dec-25</th><th>Mar-26</th><th>Jun-26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT to shareholders</td><td>408</td><td>743</td><td>705</td><td>420</td><td>372</td><td>471</td></tr>
+            <tr><td>Cash PAT</td><td>744</td><td>1,579</td><td>1,512</td><td>570</td><td>699</td><td>1,464</td></tr>
+            <tr><td>Cash PAT (TTM)</td><td>3,399</td><td>4,019</td><td>4,341</td><td>4,471</td><td>4,359</td><td>4,244</td></tr>
+            <tr><td>Adjusted net worth<sup>&dagger;</sup></td><td>20,746</td><td>21,378</td><td>22,031</td><td>22,413</td><td>23,781</td><td>31,336</td></tr>
+            <tr><td>Cash return on adj. net worth (TTM)</td><td>16%</td><td>19%</td><td>20%</td><td>20%</td><td>18%</td><td class="neg">14%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1FY27 investor presentation, "Cash Returns on Adjusted Net Worth" table (company-disclosed, the fullest quarterly trend line in this dataset &mdash; 10 quarters, Mar-24 through Jun-26). Cash PAT = PAT to shareholders + depreciation +/&minus; deferred taxes &minus; dividend income +/&minus; one-offs. &dagger;Adjusted net worth excludes the value of the company&rsquo;s JSW Steel shareholding.</caption>
+      </div>
+      <p>Cash PAT has been genuinely volatile quarter to quarter (from &#8377;507 Cr in Dec-24 to &#8377;1,579 Cr in Jun-25) but the TTM cash-return trend is unambiguous: it rose from 16% (Mar-25) to a peak 20% (Sep/Dec-25), then fell to 14% by Jun-26. Management&rsquo;s own explanation, given on the call, is that the denominator jumped &mdash; adjusted net worth rose 32% quarter-on-quarter (&#8377;23,781 Cr &rarr; &#8377;31,336 Cr) purely from the Q1FY27 capital raise, while TTM cash PAT was essentially flat (&#8377;4,359 Cr &rarr; &#8377;4,244 Cr, actually down slightly). This is a dilution effect on a per-rupee-of-capital-employed basis, not a collapse in cash generation &mdash; but it is a real, disclosed metric moving in the wrong direction that a re-rating of the stock on "improving fundamentals" grounds should account for; it will only reverse once the freshly-raised capital starts generating incremental cash profit, which (per &sect;04) management itself says takes several years for newly-commissioned capacity.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">An experienced, largely stable executive team with one interesting board addition &mdash; a former JMD/CEO returning as a non-independent director &mdash; alongside a genuine, if modest, environmental-compliance flag at the Utkal plant.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Sharad Mahendra</div>
+          <div class="role">Joint Managing Director &amp; CEO (DIN 02100401)</div>
+          <div class="bio">Leads the company through the current Strategy 3.0 growth phase; fronted the Q1FY27 earnings call, articulating capacity, capex, and leverage targets and fielding detailed technical Q&amp;A on plant-level PLFs, pumped-hydro readiness and thermal equipment sourcing.</div>
+        </div>
+        <div class="person">
+          <div class="name">Chandrasekaran Prabhakaran</div>
+          <div class="role">Chief Financial Officer</div>
+          <div class="bio">Joined the CFO role per a Dec-2025 Reuters headline noting the company "raise[d] up to $1.11 billion, name[d] new CFO" (News, MarketData); handled the Q1FY27 call&rsquo;s financial/leverage detail, including the BESS-margin and gross-debt figures cited in &sect;01/&sect;03/&sect;05.</div>
+        </div>
+        <div class="person">
+          <div class="name">Bikash Chowdhury</div>
+          <div class="role">Head, Investor Relations &amp; Enterprise Risk Management</div>
+          <div class="bio">Standard IR/ERM function; present on the Q1FY27 call alongside Mahendra and Prabhakaran.</div>
+        </div>
+        <div class="person">
+          <div class="name">Sanjay Sagar</div>
+          <div class="role">Additional Director, Non-Executive Non-Independent (appointed 8 Aug 2026)</div>
+          <div class="bio">Notably, a <b>former Joint Managing Director &amp; CEO of JSW Energy itself</b> and former Managing Director of Jindal Power and Barmer Lignite Mining Company; over four decades of power/mining/infrastructure/defence experience. Currently also a director at GE Vernova T&amp;D India and two JSW Group motors entities. A former CEO returning to the board (not as an executive) reads as bench-depth/succession continuity within the JSW/Jindal Group structure rather than an independent outside check &mdash; worth noting given the role, though not itself irregular for a promoter-group company.</div>
+        </div>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Sustainability Committee independent directors named in the presentation</b>Mr. Sunil Goyal and Ms. Rupa Devi Singh are named as Independent Directors on the Sustainability Committee (Q1FY27 investor presentation); no further independent-director biographical detail was found in this filing window, and the full board composition/independent-director count could not be verified from the documents reviewed &mdash; a genuine data gap, since no annual report is present in this dataset (see the coverage note above).</div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Utkal fly-ash dumping fine: a real, if small, environmental-governance flag</b>Odisha&rsquo;s pollution control board fined the Utkal thermal plant &#8377;3.17 crore for illegally dumping ~31,717 tonnes of fly ash on agricultural land without landowner consent, reportedly conducted during night hours to avoid detection, with GPS tracking now mandated for future ash transport (News, 1&nbsp;Aug&nbsp;2026). The rupee amount is immaterial against the company&rsquo;s scale, but the described conduct (unconsented dumping, night-time timing) is a genuine compliance and reputational issue at a plant management is simultaneously touting for its long-term PPA economics (&sect;03) &mdash; worth tracking for recurrence or escalation, and a useful counterweight to the company&rsquo;s own ESG messaging (S&amp;P Global DJSI score of 82/100, MSCI "A" rating, cited in the same investor presentation).</div>
+      </div>
+
+      <h3>Auditor</h3>
+      <p><b>Deloitte Haskins &amp; Sells LLP</b> issued unmodified/clean review opinions on both the consolidated and standalone Q1FY27 results (limited review, not a full audit, as is standard for quarterly filings), with no qualification or emphasis of matter noted. The consolidated review carved out reliance on other auditors&rsquo; work for 118 of the group&rsquo;s subsidiaries (reflecting a very large number of project-level SPVs, itself a structural feature of how Indian power/renewable groups are typically organised) and flagged 12 smaller subsidiaries whose interim financials were not independently reviewed by their own auditors &mdash; both disclosed transparently in the review report rather than hidden, and immaterial in scale relative to the group.</p>
+
+      <h3>Ownership</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Insider / promoter holding</div><div class="v">66.71%</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">21.41%</div><div class="d">127 institutional holders; ~64% of free float</div></div>
+        <div class="stat"><div class="k">Float shares</div><div class="v">584.2M</div><div class="d">of 1,832.4M shares outstanding</div></div>
+      </div>
+      <p>A high but not unusual promoter holding for an Indian group company, with meaningful institutional participation (127 distinct institutional holders) in the free float &mdash; a materially broader ownership/scrutiny base than a typical small-cap. Related-party transaction disclosures and contingent-liability schedules from the full annual report were not available in this dataset (no Annual Report / AGM notice financial annexure was present in the AnnouncementsConv window reviewed) &mdash; this check is explicitly skipped for lack of data rather than assumed clean.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other Q1FY27 call insights worth flagging</h2></div>
+      <p class="sec-dek">A handful of granular disclosures from the Q&amp;A that don&rsquo;t fit neatly into the sections above but matter for the multi-year story.</p>
+
+      <h3>Thermal fleet is not hitting technical-minimum constraints, and management is deliberately building flexibility</h3>
+      <p>Asked directly about India-wide reports of thermal plants running below technical minimum during peak solar hours (12&ndash;1pm), CFO/CEO responses indicated JSW&rsquo;s own fleet has not faced this &mdash; Utkal&rsquo;s minimum load has not gone below 60%, and July round-the-clock PLF ran above 85% with availability above 90%. Management separately confirmed it is already operating some plants (Ratnagiri, Vijayanagar) at sub-50% technical minimum where required, and continues to recover fixed costs during backdowns with the flexibility to sell into the merchant market &mdash; a genuine operational hedge against rising daytime solar penetration eroding thermal utilisation nationally.</p>
+
+      <h3>Coal-cost resilience via domestic sourcing</h3>
+      <p>Seaborne coal (API4 index) rose ~25% YoY (from $90 to $113/tonne, Q1FY26 to Q1FY27), but management said the company&rsquo;s continued shift toward domestic coal (SHAKTI-scheme linkages, including for the new Maruti Clean Coal asset) has kept fuel-cost exposure to imported-coal price swings limited, with open (uncontracted) capacity now under 4%.</p>
+
+      <h3>Pumped-hydro storage: two large PPAs signed, a third in advanced discussion, one tender deliberately skipped</h3>
+      <p>Management confirmed PPAs signed for the 1,500 MW Bhavali (Maharashtra, MSEDCL) and 1,680 MW Kandhaura (UP, 1,500 MW under PPA with UPPCL) pumped-storage projects, both targeting high-teens IRRs (above the company&rsquo;s usual mid-teens benchmark) on capex "not very far" from a ~&#8377;5 Cr/MW rule of thumb the company declined to confirm precisely. A third, the Karnataka Narihalla project, is at an advanced clearance stage. Tellingly, management confirmed it deliberately <em>skipped</em> a recent SECI pumped-storage tender because it lacked Stage-1 forest clearance on any ready site &mdash; a disciplined, capital-allocation-conscious answer rather than a stretch to hit volume targets, though it also means one competitive opportunity was foregone.</p>
+
+      <h3>Debt funding math for the remaining FY27 capex</h3>
+      <p>Asked directly whether gross debt would rise by &#8377;6,000&ndash;7,000 crore to fund the balance of FY27&rsquo;s &#8377;20,000 crore capex, management&rsquo;s answer implied a smaller incremental-debt need than the questioner assumed: ~&#8377;7,000 Cr already raised plus an estimated ~&#8377;5,000&ndash;5,500 Cr of internal operating cash flow together cover roughly &#8377;12,000&ndash;12,500 Cr, leaving a smaller residual (~&#8377;7,500&ndash;8,000 Cr) to be debt-funded &mdash; and management confirmed FY28&rsquo;s capacity-addition pace is expected to stay "in the same range" as FY27&rsquo;s 3 GW, implying a similarly sized capex year ahead rather than a step-down.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">Broad sell-side coverage with a bullish tilt on average, but a wide spread of individual views &mdash; including a notable minority of outright Sell/Strong Sell calls.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analysts covering</div><div class="v">22</div><div class="d">yfinance aggregation</div></div>
+        <div class="stat"><div class="k">Recommendation mix</div><div class="v">13 Buy-ish / 3 Hold / 5 Sell-ish</div><div class="d">2 Strong Buy, 11 Buy, 3 Hold, 2 Sell, 3 Strong Sell</div></div>
+        <div class="stat"><div class="k">Target price (mean / median)</div><div class="v">&#8377;614.64 / &#8377;630</div><div class="d">Range: &#8377;475 &ndash; &#8377;720</div></div>
+        <div class="stat"><div class="k">Implied upside to mean target</div><div class="v pos">+12.8%</div><div class="d">vs. CMP &#8377;544.95</div></div>
+      </div>
+      <p>Two named calls surfaced in the News feed corroborate the broadly bullish tilt: <b>Geojit Financial Services</b> reiterated a Buy with a revised &#8377;639 target (12.4x FY28E EV/EBITDA) on 31&nbsp;Jul&nbsp;2026, explicitly citing the strong renewable capacity additions and the early Tidong hydro commissioning while acknowledging the flat Q1FY27 revenue and weak hydro/thermal generation; and <b>Axis Direct</b> issued a Buy with a &#8377;630 target on 20&nbsp;Aug&nbsp;2026, grouped with Buy calls on NTPC and Skipper, citing the capital raise and capacity-addition pace. Against this, a 19&nbsp;Aug&nbsp;2026 roundup of technical/derivative-desk calls placed the stock on a sell list with no fundamental rationale provided (&sect;02) &mdash; illustrative of how near-term trading views and longer-horizon fundamental views on this stock currently diverge. The 3-month recommendation trend (yfinance) shows a mild net shift toward Buy over Strong Buy and away from Hold over the last two months (strongBuy 4&rarr;2, buy 9&rarr;11, hold 2&rarr;3 across the &minus;2m to 0m window) &mdash; not a dramatic re-rating either way.</p>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock that ran from &#8377;439 to &#8377;590 on the deleveraging/capital-raise story, then gave back roughly a fifth of that gain once the softer Q1FY27 P&amp;L landed &mdash; now trading at 42.7x trailing and 32.1x forward earnings with no formal management EPS guidance to anchor against.</p>
+
+      <h3>Nineteen months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Feb 2025&ndash;Aug 2026 (NSE, via yfinance daily price history in MarketData/raw). The 52-week high of &#8377;617.35 (intraday) sits above every month-end close plotted &mdash; a sharper single-session move than the monthly series shows on its own.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">42.7x</div><div class="d">Forward P/E: 32.1x</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">3.11x</div><div class="d">Book value/share &#8377;175.10</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">16.2x</div><div class="d">On TTM EBITDA &#8377;10,332 Cr</div></div>
+        <div class="stat"><div class="k">Dividend yield / payout</div><div class="v">0.37% / 15.7%</div><div class="d">&#8377;2.00/share final dividend, held flat since FY22</div></div>
+      </div>
+      <p>The forward P/E discount to trailing (32.1x vs 42.7x) implies the market is already pricing meaningful earnings growth over the next year &mdash; consistent with the capacity-addition trajectory in &sect;03, but also meaning the stock has relatively little room for the PAT-suppression dynamic described in &sect;04 to persist longer than currently expected. Book value per share (&#8377;175.10) has grown substantially from the Q1FY27 capital raise and the JSW Steel stake-sale gain (&#8377;2,817 Cr, net of tax, transferred to retained earnings per the Q1FY27 filing) &mdash; a one-off boost to book value that will not repeat, and is a factor to keep in mind when reading forward P/B multiples.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E&ndash;FY28E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">This report's own construction from the tabulated FY23&ndash;FY27(Q1) data (&sect;03&ndash;06) and the Q1FY27 call commentary &mdash; not a reproduction of management guidance, since no forward EPS/revenue target was given (&sect;04). Analyst mean target of &#8377;614.64 (&sect;09) sits inside the base case below.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;420&ndash;480</div>
+          <div class="rng">&minus;23% to &minus;12% from CMP</div>
+          <ul>
+            <li>Hydrology stays weak into FY27 winter, more thermal one-offs recur (Mahanadi-style outages), and the FY27 3 GW / &#8377;20,000 Cr targets slip to 70&ndash;80% delivery &mdash; a common pattern in power-sector capex execution</li>
+            <li>Total (incl. CWIP) net debt/EBITDA stays above 5.5x rather than falling further; cash returns on net worth keep sliding toward low double digits as new capacity ramps slower than expected</li>
+            <li>The MSEDCL Supreme Court appeal drags on or narrows the company&rsquo;s recovery on the remaining &#8377;350 Cr; a repeat environmental-compliance incident adds reputational overhang</li>
+            <li>FY27 EBITDA growth slows to high single digits, PAT stays flat-to-down on continued D&amp;A/interest drag; multiple compresses toward 2.4&ndash;2.7x P/B (&#8377;420&ndash;475/share on a modestly grown book value)</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;560&ndash;660</div>
+          <div class="rng">+3% to +21% from CMP</div>
+          <ul>
+            <li>FY27 capacity addition lands at 2.4&ndash;2.8 GW (80&ndash;93% of the 3 GW target, consistent with the strong but early Q1 pace); capex broadly tracks the &#8377;20,000 Cr guidance</li>
+            <li>Hydrology normalises through H2 (management&rsquo;s own July commentary already showed Karcham/Baspa/Kutehr back above 100% PLF); revenue growth of ~15&ndash;20% as new capacity and firmer merchant tariffs (&#8377;5+/unit) contribute a full year</li>
+            <li>EBITDA margin holds near 53&ndash;56% (Reg 52(4) basis); PAT growth stays muted (single digits to low teens) as D&amp;A/interest continue outpacing EBITDA per management&rsquo;s own maturation-curve framing, partly offset by the KSK/Mahanadi minority buyout closing</li>
+            <li>Operational (ex-CWIP) leverage holds near/under 5x; stock holds a 3.0&ndash;3.5x P/B multiple as the market waits for cash returns on net worth to bottom and recover</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;700&ndash;800</div>
+          <div class="rng">+28% to +47% from CMP</div>
+          <ul>
+            <li>Full 3 GW FY27 target delivered plus further value-accretive bolt-on acquisitions (in the Maruti Clean Coal mould); Salboni/Mahanadi thermal expansion stays on its FY28/FY29 COD schedule with no cost overrun</li>
+            <li>Hydrology and thermal PLFs fully normalise; MSEDCL litigation resolves in JSW&rsquo;s favour at the Supreme Court too, releasing the remaining &#8377;350 Cr cleanly</li>
+            <li>Cash returns on adjusted net worth recover back toward 18&ndash;20% as the freshly-raised capital starts earning a full return; total net debt/EBITDA (incl. CWIP) falls durably under 5x ahead of the 2030 commitment</li>
+            <li>Revenue/EBITDA growth of 20%+ and a genuine PAT inflection as the FY24&ndash;FY26 capex vintage matures past its heavy-interest years; multiple re-rates to 3.8&ndash;4.2x P/B or ~18x EV/EBITDA, taking the stock toward or beyond the analyst high target of &#8377;720</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: today's &#8377;175.10/share book value at 3.11x P/B already prices in a fair amount of continued execution credibility. The base case above assumes that multiple holds roughly flat while book value itself grows (via retained cash PAT plus any further capital raises) &mdash; a more conservative assumption than the bull case's re-rating.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuinely diversified, fast-growing generation platform executing the largest capacity build-out in its history &mdash; installed capacity up from 10.9 GW to 14.9 GW in five months, with FY27's 3 GW / &#8377;20,000 Cr targets tracking ahead of a straight-line pace; a record &#8377;10,150 crore capital raise that materially strengthened the balance sheet without diluting via a single instrument (QIP + promoter preferential allotment + a JSW Steel stake sale); genuine vertical integration (wind blades, battery assembly with a first external order, an increased Toshiba JSW stake, a pending GE boiler-business absorption) that should lower future per-MW capex; consistent capex-over-depreciation evidence of real (not cosmetic) capacity growth every year since FY23; a strengthening renewables EBITDA contribution (+23% YoY, now roughly matching thermal despite lower installed share); a clean, unmodified audit opinion; and two consecutive regulatory/legal wins (MERC, then APTEL) in the MSEDCL tariff dispute.</p>
+        <p style="max-width:none;"><b>What's not good:</b> despite the strong topline/EBITDA and balance-sheet narrative, PAT to shareholders fell 37% YoY in Q1FY27 and FY26 full-year PAT margin actually contracted even as revenue nearly doubled, because depreciation and finance costs from newly-commissioned capacity are outrunning EBITDA growth &mdash; a dynamic management itself says will persist for years, not quarters; Q4FY26's thin pre-tax profit was almost wholly (188%) non-operating income; cash returns on adjusted net worth have slid from 20% to 14% over the last three quarters as the equity raise diluted the base faster than cash profit grew; total (incl.-CWIP) leverage only improved because of the capital raise, having risen for five straight quarters before that; consolidated receivable days are drifting up on a structural cash-collection lag tied to the growing long-term-PPA mix; free cash flow has been negative every year since FY23; and a genuine environmental-compliance incident (unconsented, night-time fly-ash dumping at Utkal) sits alongside the company's own ESG messaging.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> candidly on the mechanics, if optimistically on the framing. The Q1FY27 call directly and specifically addressed the profitability-suppression question when a JPMorgan analyst raised it, attributing it to a well-understood project-finance dynamic (moratorium-period interest, 4&ndash;5-year maturation) rather than deflecting; management also gave granular, falsifiable detail on connectivity status, PLF drivers, coal-cost hedging, and pumped-storage readiness rather than staying at a headline level, and was transparent that a recent SECI tender was deliberately skipped for lack of a ready site. Where the story is thinner is on formal forward guidance beyond capacity/capex &mdash; no EPS, margin, or PAT target exists in this dataset for investors to hold the company to, which places more weight on the tabulated numbers in this report than on any single quarter's press release.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: moderate, roughly 45&ndash;55%.</b> The growth story is real and the balance sheet is genuinely stronger &mdash; but this report's own tabulated numbers show a business whose reported profit is still being squeezed by its own growth (rising D&amp;A/interest, falling cash returns on net worth), on a stock already trading at a premium multiple (42.7x trailing, 3.1x book) that leaves limited room for execution slippage on the aggressive FY27&ndash;FY30 capacity plan. The balance of the case rests on whether FY27's 3 GW target is delivered close to guidance and whether hydrology/thermal generation normalises as management expects in H2 &mdash; both plausible on the evidence here, but neither yet confirmed beyond one quarter.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether Q2&ndash;Q4 FY27 capacity additions keep pace with Q1's strong start, or whether the 2.3&ndash;2.9x step-up implied versus FY26's actual run-rate starts slipping; (2) whether PAT growth starts converging back toward EBITDA growth as the FY24&ndash;FY26 capex vintage matures, per management's own 4&ndash;5-year framing &mdash; a widening, not narrowing, gap over the next 2&ndash;3 quarters would be a genuine warning sign; (3) whether cash returns on adjusted net worth stabilise and begin recovering from 14%, or keep falling; (4) total (incl.-CWIP) net debt/EBITDA trending durably below 5.5x on organic EBITDA growth, not just capital-raise math; (5) the outcome of MSEDCL's Supreme Court appeal on the remaining &#8377;350 Cr; (6) whether receivable days keep drifting upward past 65&ndash;70 days, which would start to look less like PPA-mix mechanics and more like genuine collection stress; and (7) whether the Utkal environmental fine proves an isolated incident or recurs at this or other plants.</div>
+      </div>
+
+      <footer>
+        Compiled from JSW Energy Limited's BSE filings (AnnouncementsConv, 50 filings dated 17&nbsp;Jun&ndash;21&nbsp;Aug 2026, including the single Q1FY27 earnings-call transcript and investor presentation available in this window &mdash; financial-results filings, capacity-addition and acquisition press releases, credit-rating actions, litigation updates, and governance/directorate filings), MarketData (Yahoo Finance via yfinance, fetched 22&nbsp;Aug&nbsp;2026 19:14 IST, including the full daily price-history series), and the tracked News feed (through 21&nbsp;Aug 2026). No prior-quarter earnings calls, investor presentations, or annual report were present in this dataset; every place this limits a "guidance vs. actual" or governance comparison is stated explicitly in the relevant section rather than silently smoothed over. Every figure is tagged to its source; where two sources or two company-disclosed metrics disagreed (see &sect;04), that is stated rather than resolved by picking one. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (PAT / Cash PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Mar-24','Jun-24','Sep-24','Dec-24','Mar-25','Jun-25','Sep-25','Dec-25','Mar-26','Jun-26'];
+    var pat  = [351, 522, 853, 168, 408, 743, 705, 420, 372, 471];
+    var cashpat = [686, 958, 1190, 507, 744, 1579, 1512, 570, 699, 1464];
+    var series = [
+      {label:'PAT to shareholders', color:'var(--chart-1)', data:pat},
+      {label:'Cash PAT', color:'var(--chart-3)', data:cashpat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, cashpat) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly PAT to shareholders and Cash PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Source: Q1FY27 investor presentation "Cash Returns on Adjusted Net Worth" table &mdash; the only complete 10-quarter series available in this dataset (see §06).</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Feb 25', 439.12], ['Mar 25', 530.10], ['Apr 25', 459.66], ['May 25', 483.29],
+      ['Jun 25', 515.35], ['Jul 25', 510.36], ['Aug 25', 483.85], ['Sep 25', 523.22],
+      ['Oct 25', 523.72], ['Nov 25', 481.81], ['Dec 25', 468.36], ['Jan 26', 447.58],
+      ['Feb 26', 482.71], ['Mar 26', 466.71], ['Apr 26', 547.44], ['May 26', 590.09],
+      ['Jun 26', 573.75], ['Jul 26', 541.90], ['Aug 26', 544.95]
+    ];
+    var W = 900, H = 220, padL = 48, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="JSW Energy Limited monthly closing share price, February 2025 to August 2026" style="width:100%;height:auto;font-size:10.5px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 2.6;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i % 2 === 0 || i === points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily NSE price history via yfinance. 52-week high/low per MarketData snapshot: ₹617.35 / ₹427.75 (intraday extremes may fall between the monthly points plotted).</div></div>';
+  })();
+})();
+</script>

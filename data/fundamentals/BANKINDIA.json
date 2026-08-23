@@ -1,7 +1,7 @@
 {
   "symbol": "BANKINDIA",
   "name": "Bank of India",
-  "generatedAt": "2026-08-18T16:37:21.785792+00:00",
+  "generatedAt": "2026-08-23T11:00:56.644958+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Banks - Regional",
@@ -14,28 +14,28 @@
     "peerIndustry": "Public Sector Bank"
   },
   "price": {
-    "current": 140.5,
-    "change": 2.550003,
-    "changePercent": 1.8484982,
-    "previousClose": 137.95,
-    "dayLow": 139.01,
-    "dayHigh": 141.66,
-    "fiftyTwoWeekLow": 109.2,
+    "current": 141.7,
+    "change": -0.40000916,
+    "changePercent": -0.28149834,
+    "previousClose": 142.1,
+    "dayLow": 141.15,
+    "dayHigh": 143.2,
+    "fiftyTwoWeekLow": 109.85,
     "fiftyTwoWeekHigh": 178.36,
-    "asOf": 1785750302
+    "asOf": 1787132700
   },
   "stats": {
-    "marketCap": 639649775616.0,
-    "trailingPE": 5.201777,
-    "forwardPE": 5.432576,
-    "priceToBook": 0.70339686,
+    "marketCap": 645112987648.0,
+    "trailingPE": 5.246205,
+    "forwardPE": 5.456296,
+    "priceToBook": 0.70940447,
     "bookValue": 199.745,
-    "dividendYield": 3.37,
+    "dividendYield": 3.27,
     "trailingEps": 27.01,
     "debtToEquity": null,
     "roe": 11.456720597440874,
     "roce": null,
-    "return1y": 29.347925641934776,
+    "return1y": 29.277107251284683,
     "sharesOutstanding": 4552667866.0
   },
   "quarterly": {
@@ -334,14 +334,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 158.25,
+    "targetMean": 157.6,
     "targetHigh": 188.0,
     "targetLow": 115.0,
     "recommendationKey": "hold",
-    "numberOfAnalystOpinions": 4
+    "numberOfAnalystOpinions": 5
   },
   "holders": {
     "insidersPercent": 0.73383003,
-    "institutionsPercent": 0.14889
+    "institutionsPercent": 0.15245
   }
 }

@@ -1,7 +1,7 @@
 {
   "symbol": "LUMAXTECH",
   "name": "Lumax Auto Tech.",
-  "generatedAt": "2026-08-18T16:38:25.671236+00:00",
+  "generatedAt": "2026-08-23T11:02:16.977104+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 1625.7,
-    "change": 57.399902,
-    "changePercent": 3.6600075,
-    "previousClose": 1568.3,
-    "dayLow": 1579.0,
-    "dayHigh": 1652.0,
-    "fiftyTwoWeekLow": 954.1,
-    "fiftyTwoWeekHigh": 1898.0,
-    "asOf": 1785751201
+    "current": 1987.1,
+    "change": -27.599976,
+    "changePercent": -1.3699299,
+    "previousClose": 2014.7,
+    "dayLow": 1969.6,
+    "dayHigh": 2038.0,
+    "fiftyTwoWeekLow": 1024.6,
+    "fiftyTwoWeekHigh": 2110.0,
+    "asOf": 1787133599
   },
   "stats": {
-    "marketCap": 110803976192.0,
-    "trailingPE": 39.719032,
-    "forwardPE": 25.473206,
-    "priceToBook": 9.154386,
-    "bookValue": 177.587,
-    "dividendYield": 0.35,
-    "trailingEps": 40.93,
+    "marketCap": 135436173312.0,
+    "trailingPE": 41.789696,
+    "forwardPE": 29.711424,
+    "priceToBook": 11.191083,
+    "bookValue": 177.561,
+    "dividendYield": 0.27,
+    "trailingEps": 47.55,
     "debtToEquity": 0.8340900000000001,
     "roe": 23.041908975400005,
     "roce": 24.675048003381193,
-    "return1y": 57.00490712027585,
+    "return1y": 97.46457612095281,
     "sharesOutstanding": 68157705.0
   },
   "quarterly": {
@@ -118,22 +118,22 @@
         null,
         17860637000.0,
         27606415000.0,
-        36366698000.0,
-        48703303000.0
+        34396354000.0,
+        46822700000.0
       ],
       "Expenses": [
         null,
         16331361000.0,
         25017611000.0,
-        33005234000.0,
-        43908891000.0
+        30924540000.0,
+        41899018000.0
       ],
       "OperatingProfit": [
         null,
         1529276000.0,
         2588804000.0,
-        3361464000.0,
-        4794412000.0
+        3471814000.0,
+        4923682000.0
       ],
       "NetProfit": [
         null,
@@ -153,8 +153,8 @@
         null,
         null,
         54.56567982429742,
-        31.732780225175922,
-        33.922807619212506
+        24.595511586709105,
+        36.12692787148312
       ]
     },
     "ttm": {
@@ -206,14 +206,14 @@
         6961169000.0,
         7581952000.0,
         8891099000.0,
-        10859016000.0
+        11098355000.0
       ],
       "Investments": [
         null,
         1042850000.0,
         1545501000.0,
         1982601000.0,
-        3422197000.0
+        3126095000.0
       ],
       "StockholdersEquity": [
         null,
@@ -318,19 +318,23 @@
         null,
         94.24615790579026,
         76.43026883425465,
-        79.5303937135013,
-        76.05857050393482
+        84.08617407531042,
+        79.11341304538183
       ],
       "WorkingCapitalDays": [
         null,
         46.89177407278363,
         26.47003513494961,
-        17.594256151603314,
-        8.03584060818216
+        18.60211695693096,
+        8.358594869582488
       ]
     }
   },
   "dividends": [
+    {
+      "date": "2026-08-06",
+      "amount": 5.5
+    },
     {
       "date": "2025-08-07",
       "amount": 5.5
@@ -358,21 +362,17 @@
     {
       "date": "2020-03-05",
       "amount": 2.0
-    },
-    {
-      "date": "2019-08-14",
-      "amount": 3.0
     }
   ],
   "analyst": {
-    "targetMean": 2042.0,
-    "targetHigh": 2261.0,
-    "targetLow": 1923.0,
-    "recommendationKey": "none",
+    "targetMean": 2323.2,
+    "targetHigh": 2560.0,
+    "targetLow": 2035.0,
+    "recommendationKey": "strong_buy",
     "numberOfAnalystOpinions": 5
   },
   "holders": {
     "insidersPercent": 0.57196,
-    "institutionsPercent": 0.19368
+    "institutionsPercent": 0.19203
   }
 }

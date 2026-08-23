@@ -1,7 +1,7 @@
 {
   "symbol": "SKFINDUS",
   "name": "SKF India Indus.",
-  "generatedAt": "2026-08-18T16:39:01.970442+00:00",
+  "generatedAt": "2026-08-23T11:02:49.931377+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Tools & Accessories",
@@ -14,21 +14,21 @@
     "peerIndustry": "Abrasives & Bearings"
   },
   "price": {
-    "current": 2724.6,
-    "change": 39.900146,
-    "changePercent": 1.486205,
-    "previousClose": 2684.7,
-    "dayLow": 2650.5,
-    "dayHigh": 2760.0,
+    "current": 2800.4,
+    "change": 132.7998,
+    "changePercent": 4.97825,
+    "previousClose": 2667.6,
+    "dayLow": 2655.8,
+    "dayHigh": 2819.4,
     "fiftyTwoWeekLow": 1994.1,
     "fiftyTwoWeekHigh": 3041.0,
-    "asOf": 1786960791
+    "asOf": 1787133600
   },
   "stats": {
-    "marketCap": 134698680320.0,
-    "trailingPE": 64.64057,
-    "forwardPE": 32.38431,
-    "priceToBook": 9.120672,
+    "marketCap": 138446061568.0,
+    "trailingPE": 66.4389,
+    "forwardPE": 32.74045,
+    "priceToBook": 9.3744135,
     "bookValue": 298.728,
     "dividendYield": 1.12,
     "trailingEps": 42.15,
@@ -230,7 +230,7 @@
     }
   ],
   "analyst": {
-    "targetMean": 2836.3333,
+    "targetMean": 2944.6667,
     "targetHigh": 3437.0,
     "targetLow": 2472.0,
     "recommendationKey": "none",
@@ -238,6 +238,6 @@
   },
   "holders": {
     "insidersPercent": 0.52575,
-    "institutionsPercent": 0.29067
+    "institutionsPercent": 0.28969
   }
 }

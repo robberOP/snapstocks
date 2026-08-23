@@ -1,0 +1,929 @@
+<title>NLC India Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Lignite/Coal Mining &amp; Power Generation &middot; Central PSU (Navratna)</div>
+    <h1>NLC India Limited</h1>
+    <p class="sub">NSE: NLCINDIA &middot; BSE: 513683 &middot; FY2022&ndash;FY2027(Q1) performance review, BSE-filing and investor-presentation synthesis, as of 22 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> A 70-year-old, government-controlled lignite-and-coal miner turned integrated power generator just delivered its best-ever year &mdash; FY26 consolidated revenue &#8377;17,490 Cr (+14%), PAT &#8377;3,769 Cr (+39%), capex &#8377;9,131 Cr (+18%, an all-time high) &mdash; while its FY26 statutory auditors attached a <b>material-uncertainty-relating-to-going-concern</b> paragraph over land shortage at its flagship Neyveli lignite mines, its Q1 FY27 CMD and Director (Power) posts are both being run on temporary &ldquo;additional charge&rdquo; by Ministry of Coal bureaucrats after back-to-back retirements, its board ran for over a year without a single independent director in apparent breach of SEBI's minimum-independence rule, and it fully wrote off &#8377;1,454 Cr of advances to a defaulting EPC contractor on its flagship UP thermal project. Free cash flow was FY26's first negative year in this dataset (&minus;&#8377;2,779 Cr) purely because capex outran even a record operating cash flow, funding a genuinely enormous &#8377;1.01 lakh crore capacity build-out through 2030. The government trimmed its stake by 2.73% in an August 2026 OFS even as Tamil Nadu's Chief Minister publicly objected to further disinvestment.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (22 Aug 26)</div><div class="v">&#8377;269.80</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;37,411 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;222.0 &ndash; &#8377;387.8</div></div>
+      <div class="chip"><div class="k">FY26 Revenue (Consol)</div><div class="v pos">+14.4% YoY</div></div>
+      <div class="chip"><div class="k">FY26 PAT (Consol)</div><div class="v pos">+38.9% YoY</div></div>
+      <div class="chip"><div class="k">Q1 FY27 PAT</div><div class="v neg">&minus;48% YoY (tax-driven)</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">11.26x</div></div>
+      <div class="chip"><div class="k">FY26 Free Cash Flow</div><div class="v neg">&minus;&#8377;2,779 Cr</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage, basis, and gaps &mdash; please read before the numbers below:</b> This report is built from <code>AnnouncementsConv</code> (fully converted BSE filings, 6&nbsp;May&ndash;10&nbsp;Aug 2026 &mdash; covering the Q4/FY26 results, investor presentation, and Q1 FY27 results cycles in clean machine-readable form) plus raw BSE PDF filings under <code>Announcements/</code> read directly for Q1&ndash;Q4 FY25, Q1&ndash;Q3 FY26 financial results and earnings-call material, the FY24 and FY25 Annual Reports, and <code>MarketData</code> (yfinance) and <code>News</code>. <b>Genuine gap:</b> the Q1 FY25 (Jun-24) and Q2 FY25 (Sep-24) BSE financial-results PDFs extract as a heavily garbled, column-scrambled text layer in this pipeline (no clean digital table, and PDF-to-image rendering was unavailable in this environment to cross-check visually) &mdash; precise consolidated P&amp;L line items for those two quarters could not be extracted with confidence and are marked <b>n/a</b> in the quarterly trend table rather than guessed; the reliable FY25 full-year and Q3&ndash;Q4 FY25 figures are used to derive a combined, clearly-labelled H1 FY25 figure by subtraction instead. Separately, every &ldquo;earnings-call-transcript&rdquo; BSE filing in this dataset (Aug-24 through Jun-26) turned out to be a short cover letter pointing to a weblink on nlcindia.in rather than an embedded transcript; where the underlying transcript content was independently retrievable it is cited as such, and where it was not, management commentary is instead sourced from investor-presentation decks, press releases, and financial-results notes. Prefer <b>consolidated</b> figures throughout unless stated otherwise; standalone is used explicitly where flagged. FY2027 Annual Report does not exist yet (year in progress); FY26 Annual Report had not yet been filed as of the data cut-off (AGM/filing cycle runs Sep&ndash;Oct).
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Other call insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What NLC India does, and how it has grown</h2></div>
+      <p class="sec-dek">India's dominant lignite miner and a fast-diversifying integrated power generator, still 72% owned by the Government of India, now mid-way through a &#8377;1.01 lakh crore capacity build-out to 2030.</p>
+
+      <p class="lede">Incorporated in 1956 as Neyveli Lignite Corporation and renamed NLC India Limited in April 2016, the company is a <b>Navratna</b> central public-sector enterprise headquartered in Neyveli, Tamil Nadu, operating under the administrative control of the Ministry of Coal. Its business spans three reported segments &mdash; <b>Mining</b> (lignite and coal), <b>Thermal Power</b> (captive/standalone plus JV capacity via subsidiaries NTPL and NUPPL), and <b>Renewable Power</b> (solar, wind and increasingly battery storage, run mostly through subsidiary NLC India Renewables Ltd, "NIRL") &mdash; plus a smaller mining/solar consultancy line and an emerging critical-minerals push. As of the FY26 investor presentation the company operates 6 mines and 17 power plants, with total mining capacity of 50.10 MTPA (30 MTPA lignite + 20 MTPA coal), thermal capacity of 5,960 MW, and renewable capacity of 1,734 MW (total installed capacity &asymp;7,694 MW/50 MTPA equivalent). Management's own claim, unverified independently in this dataset but consistent with segment mining-output data below: NLC India contributes <b>approximately 51% of India's national lignite output</b>, with Tamil Nadu (where its flagship Neyveli mines sit) holding roughly 79% of the country's lignite resource base &mdash; a genuine, geology-anchored moat that is also the source of its single biggest disclosed risk (&sect;05).</p>
+
+      <h3>FY22&ndash;FY26: five years of accelerating scale, culminating in an all-time-high year</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, &#8377; Cr unless noted</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>11,948</td><td>16,165</td><td>13,001</td><td>15,283</td><td>17,490</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td class="pos">+35.3%</td><td class="neg">&minus;19.6%</td><td class="pos">+17.6%</td><td class="pos">+14.4%</td></tr>
+            <tr><td>EBITDA (company-reported)</td><td>5,106</td><td>4,881</td><td>5,556</td><td>6,513</td><td>7,475</td></tr>
+            <tr><td>PAT (incl. non-controlling interest)</td><td>1,116</td><td>1,426</td><td>1,868</td><td>2,714</td><td>3,769</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>8.05</td><td>10.28</td><td>13.47</td><td>18.90</td><td>25.40</td></tr>
+            <tr><td>Net worth (owners)</td><td>14,076</td><td>15,169</td><td>16,531</td><td>18,723</td><td>21,525</td></tr>
+            <tr><td>Consolidated capex</td><td>2,542</td><td>3,308</td><td>4,270</td><td>7,736</td><td>9,131</td></tr>
+            <tr><td>ROCE / RONW</td><td>8.20% / 7.93%</td><td>7.57% / 9.40%</td><td>8.78% / 11.30%</td><td>10.30% / 14.49%</td><td>9.70% / 17.51%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: company's own May-2026 investor presentation "Financial Performance: Consistently Improving over the Years" and "Key Financial Ratios" slides (FY22&ndash;FY26 consolidated), cross-checked against MarketData/yfinance annual statements where both exist &mdash; revenue, PAT and net-worth figures reconcile to within rounding for FY23&ndash;FY26 (yfinance's FY22 column is largely null, so the FY22 figures above are sourced only from the company deck). EBITDA is the company's own regulatory-deferral-inclusive definition and differs modestly from yfinance's independently recomputed EBITDA (e.g. FY23: company 4,881 vs yfinance-derived 4,692) &mdash; both are shown once, not blended, in &sect;04.</caption>
+      </div>
+      <p>The FY24 revenue dip (&minus;19.6%) was a high base-effect correction after an exceptional FY23 (fuel/power price spike year across Indian utilities), not a demand problem &mdash; FY24 EBITDA and PAT both grew regardless. Since then growth has been genuinely broad-based: FY25 and FY26 both delivered double-digit revenue growth alongside margin expansion, capacity additions, and management's own repeated "all-time-highest-ever" framing for revenue, PAT, EBITDA, capex and net worth in FY26 specifically (13-May-2026 press release). RONW nearly tripled from FY23 (9.4%) to FY26 (17.5%) on genuine margin and earnings-power expansion rather than financial leverage &mdash; consolidated debt/equity actually <em>fell</em> over the same window (1.47x&rarr;1.29x, &sect;05).</p>
+
+      <h3>Capacity mix: from a pure thermal generator to a diversified energy platform</h3>
+      <p>The company's own strategic narrative frames a structural pivot: thermal capacity was 100% of the mix at incorporation (1970s), still 87% by FY2017, and is down to 77% today (FY26: 5,960 MW thermal vs 1,734 MW renewable). Management's own FY2030 target flips this further &mdash; renewable capacity is guided to reach 10,110 MW (5.5x current) against 10,020 MW thermal, taking the group to a roughly 50/50 thermal/renewable mix by 2030, with an additional 104.35 MTPA mining capacity (from 50.10 MTPA today) and a new diversification bucket (silica sand from mine overburden, coal/lignite gasification, critical minerals). See &sect;03 and &sect;05 for the detailed project pipeline and capex allocation behind this target, and &sect;10 for whether the market is currently paying for it.</p>
+
+      <h3>The moat, and its limits</h3>
+      <p>NLC India's moat is largely a captive, mine-mouth cost advantage: it owns the lignite/coal that fuels its own thermal plants, minimizing logistics cost versus fuel-imported peers, and sells power under long-tenure, cost-plus-regulated PPAs to state DISCOMs (governed by CERC tariff regulations, &sect;04) rather than competing on open-market pricing. This is a genuine structural advantage but not an unlimited one: it depends on continued access to mineable land at Neyveli, which the company's own FY26 statutory auditors flagged as a going-concern-level uncertainty (&sect;05) &mdash; the moat and the single biggest disclosed risk in this report trace back to the same asset. Diversification into renewables and thermal JVs outside Tamil Nadu (Ghatampur in Uttar Pradesh, planned Odisha and Rajasthan projects) is explicitly framed by management as reducing this single-geography, single-fuel dependency over the coming decade.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item in the tracked News feed (29&nbsp;Jun&ndash;7&nbsp;Aug 2026) &mdash; overwhelmingly order-win and capacity-expansion news for the renewables subsidiary, against a still-unresolved political fight over the government's stake sale.</p>
+
+      <div class="news-item">
+        <div class="news-date">7 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Q1 FY27 results: PAT down 48%, but on a one-off tax comparison, not an operating miss</div>
+          <div class="news-body">Consolidated Q1 FY27 PAT fell 48% YoY to &#8377;436 Cr even as revenue grew 23% and PBT grew 10% &mdash; the decline is explained almost entirely by the absence of a large prior-year deferred-tax credit (Q1 FY26's tax line was a net &minus;&#8377;245.6 Cr benefit; Q1 FY27's was a &#8377;215.3 Cr expense). Coal production rose 7.8% to 40.85 lakh tonnes and group power generation surged 25% to 8,262 MU. This report's own &sect;04 tabulation confirms the headline-vs-operating divergence the news label flagged as "ambiguous."</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">6 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Mixed / Unclear</span>
+          <div class="news-title">Government confirms plan to sell up to 3% stake</div>
+          <div class="news-body">Headline-only wire item; the Q1 FY27 results filing (&sect;05, &sect;07) confirms this executed as a 2.73% Offer for Sale a day later, raising &#8377;1,260&ndash;1,760 Cr (source notes differ slightly between the standalone and consolidated filing text) while GoI retains majority ownership.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">12 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (order wins)</span>
+          <div class="news-title">Three renewables/storage wins in one day: SECI wind LoA, Gujarat BESS auction win, fresh AAA rating</div>
+          <div class="news-body">NIRL received a Letter of Award from SECI for a 200 MW wind project in Koppal, Karnataka; NLC India won 275 MW of a 450 MW/900 MWh standalone battery storage auction in Gujarat at &#8377;2,31,989/MW/month with a 12-year PPA and viability-gap funding support; separately, India Ratings assigned a fresh IND AAA/Stable rating on &#8377;1,102 Cr of new bank facilities and affirmed AAA/A1+ across the rest of the rated debt stack (&sect;05, &sect;09).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">17 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Consultancy order from AHAsolar for 75 MW solar+BESS, following Coal India and PDCOR mandates</div>
+          <div class="news-body">A relatively small (order value undisclosed) but repeat-pattern data point: NLC India's mining/solar consultancy arm continues to win third-party mandates from other PSUs, evidence the group's in-house engineering expertise has some external commercial value beyond its own capacity build.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">21 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">NIRL tenders for 1,500 acres in Tamil Nadu for 300+ MW solar</div>
+          <div class="news-body">Land to be acquired outright by the winning contractor, not NLCIL directly &mdash; a structuring detail that, read against the Neyveli land-shortage going-concern flag in &sect;05, suggests the group may be deliberately routing new renewable land acquisition through third-party contractors rather than its own balance sheet.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">29&ndash;30 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Inox Wind wins repeat 200 MW turnkey order from NLC India (&#8377;1,600 Cr); NIRL wins 900 MW GUVNL solar LoI</div>
+          <div class="news-body">NLC India as customer for a large wind EPC order (24-month execution) and a large new solar award from Gujarat Urja Vikas Nigam with guaranteed off-take &mdash; both consistent with, and adding to, the FY2030 renewables pipeline tabulated in &sect;05.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">25 Jun 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed / Unclear</span>
+          <div class="news-title">Tamil Nadu Chief Minister publicly opposes the Centre's disinvestment plan</div>
+          <div class="news-body">Framed NLCIL as a "strategic national asset" tied to energy security and asked the PM to reconsider. The article provided no detail on likelihood of reversal; six weeks later the Centre proceeded with the 2.73% OFS regardless (7&ndash;8 Aug items above) &mdash; the political objection did not, in fact, block the sale, though it signals the disinvestment programme remains a live point of friction (&sect;07).</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What the newsflow does <em>not</em> mention</b>Not one tracked news item in this six-week window references the going-concern audit flag, the CMD/Director(Power) vacancies, the independent-director shortfall, or the &#8377;1,454 Cr BGR-ESL write-off &mdash; all four are drawn from primary BSE filings (&sect;05, &sect;07) rather than the news aggregator, and none had generated a dedicated news story as of this report's date. A reader relying on the news feed alone would see an unbroken run of renewable order wins and miss the governance and balance-sheet story entirely.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segments &amp; guidance</h2></div>
+      <p class="sec-dek">Thermal power is still ~60% of segment revenue and the swing factor quarter to quarter; mining is the moat but a land-constrained one; renewables are small in revenue today (3&ndash;4%) but by far the fastest-growing and most guided-to segment.</p>
+
+      <h3>Quarterly trend (consolidated)</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q1FY25<br>(Jun-24)</th><th>Q2FY25<br>(Sep-24)</th><th>Q3FY25<br>(Dec-24)</th><th>Q4FY25<br>(Mar-25)</th><th>Q1FY26<br>(Jun-25)</th><th>Q2FY26<br>(Sep-25)</th><th>Q3FY26<br>(Dec-25)</th><th>Q4FY26<br>(Mar-26)</th><th>Q1FY27<br>(Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from ops</td><td>n/a<sup>&dagger;</sup></td><td>n/a<sup>&dagger;</sup></td><td>4,411</td><td>3,836</td><td>3,826</td><td>4,178</td><td>4,443</td><td>5,042</td><td>4,717</td></tr>
+            <tr><td>PBT</td><td>n/a<sup>&dagger;</sup></td><td>n/a<sup>&dagger;</sup></td><td>830</td><td>912</td><td>594</td><td>921</td><td>843</td><td>1,518</td><td>652</td></tr>
+            <tr><td>PAT (incl. NCI)</td><td>n/a<sup>&dagger;</sup></td><td>n/a<sup>&dagger;</sup></td><td>696</td><td>468</td><td>839</td><td>725</td><td>724</td><td>1,481</td><td>436</td></tr>
+            <tr><td>PAT (owners)</td><td>n/a<sup>&dagger;</sup></td><td>n/a<sup>&dagger;</sup></td><td>668</td><td>482</td><td>798</td><td>665</td><td>666</td><td>1,393</td><td>484</td></tr>
+            <tr><td>Diluted EPS (&#8377;, after reg. adj.)</td><td>n/a<sup>&dagger;</sup></td><td>n/a<sup>&dagger;</sup></td><td>5.02</td><td>3.38</td><td>6.05</td><td>5.23</td><td>5.22</td><td>6.64</td><td>3.08</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: BSE financial-results filings (standalone &amp; consolidated statements), each quarter cross-checked against the following quarter's comparative column and, where available, MarketData/yfinance. &dagger; Q1 &amp; Q2 FY25: the source BSE PDFs' text layer is column-scrambled by OCR/extraction artifacts in this pipeline and could not be parsed to reliable precision &mdash; flagged n/a per this analysis's no-estimation rule rather than guessed. Derived cross-check: FY25 full-year revenue (&#8377;15,283 Cr) minus the reliably-sourced Q3+Q4 FY25 (&#8377;4,411+&#8377;3,836=&#8377;8,247 Cr) implies a combined H1 FY25 (Q1+Q2) revenue of &#8377;7,036 Cr and combined PAT of &#8377;1,550 Cr &mdash; consistent with, but not a substitute for, an actual quarterly split.</caption>
+      </div>
+      <p>The two extremes in this table tell the real story: Q4 FY26 (revenue +31% QoQ to &#8377;5,042 Cr, PAT more than tripling QoQ to &#8377;1,481 Cr) was inflated by a large positive regulatory-deferral swing (&sect;04) on top of genuine operating growth, while Q1 FY27's reported 48% PAT decline is a tax-comparison artifact, not an operating slowdown (revenue +23%, PBT +10% YoY &mdash; see &sect;02, &sect;04). A reader who only tracks headline PAT quarter to quarter would badly misread NLC India's actual operating trajectory, which has been consistently positive on revenue and PBT for seven of the last seven quarters with clean data.</p>
+
+      <h3>Segment mix (consolidated, FY26)</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Mining</div><div class="v">&#8377;8,795 Cr</div><div class="d">37% of segment revenue &middot; 47% of segment PBIT (&#8377;1,806 Cr)</div></div>
+        <div class="stat"><div class="k">Power &mdash; Thermal</div><div class="v">&#8377;14,443 Cr</div><div class="d">60% of segment revenue &middot; 55% of segment PBIT (&#8377;2,111 Cr)</div></div>
+        <div class="stat"><div class="k">Power &mdash; Renewables</div><div class="v">&#8377;726 Cr</div><div class="d">3% of segment revenue &middot; 8% of segment PBIT (&#8377;322 Cr)</div></div>
+      </div>
+      <p>Note segment revenue figures above are gross-of-intersegment (mining sells lignite to the company's own thermal plants, then thermal sells power externally) &mdash; net external revenue after eliminating &#8377;6,475 Cr of intersegment sales is the &#8377;17,490 Cr headline. Renewables punches above its 3% revenue weight on profitability (8% of PBIT) reflecting the segment's lower fuel-cost structure, though its Q1 FY27 segment PBIT share (&#8377;104 Cr of &#8377;964 Cr, ~11%) shows the gap narrowing further as capacity scales &mdash; consistent with management's stated intent to grow renewables toward parity with thermal by FY2030 (&sect;01, &sect;05).</p>
+
+      <h3>Operational KPIs and market position</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">FY26 coal production (standalone)</div><div class="v">19.14 MT</div><div class="d">+11.3% YoY, all-time high, from Talabira II &amp; III OCP</div></div>
+        <div class="stat"><div class="k">FY26 lignite output share</div><div class="v">~51%</div><div class="d">Of national all-India lignite output (management claim, FY26 YTD to Dec-25)</div></div>
+        <div class="stat"><div class="k">FY26 group power generation</div><div class="v">28.95 BU</div><div class="d">Incl. 2.26 BU renewable generation</div></div>
+        <div class="stat"><div class="k">Q1 FY27 group generation</div><div class="v">8,262 MU</div><div class="d">+25.0% YoY</div></div>
+      </div>
+
+      <h3>Guidance vs. actual &mdash; a mixed record</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Pachwara South coal mine: roughly a one-year slip</b>Management guided first coal production from the 9 MTPA Pachwara South block for March 2025 on the Q3 FY25 call, revised to "around July 2025" by the following call, and the mine actually commenced production in <b>March 2026</b> per the FY26 press release &mdash; a full year later than the original target.</div>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Ghatampur (NUPPL) Unit-3 COD: guided ~4&ndash;5 months later than originally indicated</b>Management's Q3 FY26 commentary pointed to a Jan/Feb-2026 commercial-operation date for the final 660 MW unit of the 1,980 MW Ghatampur project; it actually achieved COD on <b>13 June 2026</b> (Q1 FY27 filing note), completing the project roughly a quarter later than guided.</div>
+      </div>
+      <div class="callout pass">
+        <div class="icon">&#9679;</div>
+        <div><b>FY26 coal production target: essentially met</b>The May-2025 (Q4 FY25) call guided to ~20 MT of coal production for FY26; actual FY26 coal production came in at 19.14 MT &mdash; a 4% miss, within normal execution variance and still an all-time high.</div>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>NIRL IPO/listing timeline: has moved but has not collapsed</b>Guided as "Q4 FY26 or Q1 FY27" on the Feb-2025 call, revised to "Q2 FY27" by May-2025, and referenced as targeting "around September 2026" on the Feb-2026 call &mdash; a modest, roughly one-quarter slippage over 15 months of commentary, not a wholesale reset. The underlying corporate-approval steps (CCEA nod for NIRL's investment ceiling beyond standard Navratna limits, GoI approval for the Alternative Mechanism listing structure, board approval in Jan-2026) have each landed roughly on schedule per the news and filings reviewed.</div>
+      </div>
+      <p>No formal, numeric, standing revenue or EBITDA-margin guidance for FY27 was found stated by management on any call transcript-equivalent source in this dataset (see the coverage note above on the earnings-call-transcript gap) &mdash; the closest thing to formal guidance is the FY2030 capacity/financial roadmap in the May-2026 investor presentation, covered in full in &sect;05 and &sect;10.</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">Margins have genuinely expanded over five years, but quarter to quarter they are heavily distorted by CERC regulatory-deferral swings and a large recurring tariff under-recovery at one thermal unit &mdash; both must be stripped out to see the underlying trend.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, %</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Operating margin (company-reported)</td><td>21.14%</td><td>13.31%</td><td>19.78%</td><td>19.69%</td><td>22.39%</td></tr>
+            <tr><td>Net profit margin</td><td>9.08%</td><td>10.20%</td><td>13.27%</td><td>17.68%</td><td>20.49%</td></tr>
+            <tr><td>ROCE</td><td>8.20%</td><td>7.57%</td><td>8.78%</td><td>10.30%</td><td>9.70%</td></tr>
+            <tr><td>RONW</td><td>7.93%</td><td>9.40%</td><td>11.30%</td><td>14.49%</td><td>17.51%</td></tr>
+            <tr><td>Current ratio</td><td>1.28</td><td>1.38</td><td>1.17</td><td class="neg">0.78</td><td class="neg">0.80</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: May-2026 investor presentation "Key Financial Ratios" slide (company-defined OPM = EBIT-equivalent inc. regulatory movement, ex. other income and exceptional items, over revenue including net regulatory movement).</caption>
+      </div>
+
+      <p>Five-year margin expansion is real and broad-based &mdash; NPM roughly doubled from 9.1% (FY22) to 20.5% (FY26) &mdash; but the current ratio deteriorating from 1.38x (FY23) to 0.78&ndash;0.80x (FY25&ndash;26) is a genuine, unresolved counter-signal: working-capital coverage has weakened structurally even as profitability improved, consistent with the receivables/advances issues in &sect;05.</p>
+
+      <h3>What actually moves the quarterly number: regulatory deferral accounting</h3>
+      <p>Under CERC's cost-plus tariff framework, NLC India recognizes a "Net Movement in Regulatory Deferral Account Balances" line between operating profit and PBT &mdash; essentially income/expense truing-up against interim vs. final tariff orders. This swings hard quarter to quarter and is the single biggest reason headline PBT/PAT jump around far more than the underlying business does:</p>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated</th><th>Q3FY25</th><th>Q4FY25</th><th>Q1FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Net regulatory deferral movement</td><td>614</td><td>821</td><td>207</td><td>648</td><td>77</td></tr>
+            <tr><td>As % of PBT</td><td>74%</td><td>90%</td><td>35%</td><td>43%</td><td>12%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: BSE financial-results filings. Q2/Q3 FY26 not shown &mdash; not confirmed to reporting-quality precision from the source material reviewed; not estimated. Even where present, this line is not "other income" in the conventional sense &mdash; it is a regulator-sanctioned truing-up of prior billing against final CERC tariff orders, not a one-off, but its outsized and uneven contribution to PBT in Q3&ndash;Q4 FY25 in particular (74&ndash;90% of PBT) means those two quarters' core, steady-state earnings power was materially lower than the reported PBT implies.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>TPS-II under-recovery: a recurring cost drag that has itself missed its own guidance</b>Management referenced an internal target of keeping TPS-II's tariff under-recovery below roughly &#8377;300 Cr for FY26 on an earlier call; by nine months into FY26 the actual cumulative under-recovery had already reached &#8377;623 Cr &mdash; more than double the full-year target with one quarter still to run. This is a quantified guidance miss on the cost side that sits inside the "other expenses" and regulatory-deferral lines rather than being separately broken out in the headline P&amp;L, and it is the kind of item that is easy to miss without pulling call/analyst-meet commentary specifically.</div>
+      </div>
+
+      <h3>Q1 FY27's 48% PAT decline: a tax base-effect, not an operating deterioration</h3>
+      <p>Q1 FY27 consolidated PBT grew 10% YoY (&#8377;651.6 Cr vs &#8377;593.6 Cr) and operating performance held broadly steady, yet PAT fell 48% because the prior-year quarter (Q1 FY26) booked a net tax <em>benefit</em> of &minus;&#8377;245.6 Cr (a large deferred-tax credit), while Q1 FY27 booked a normal tax <em>expense</em> of &#8377;215.3 Cr &mdash; a roughly &#8377;461 Cr negative swing in the tax line alone, more than explaining the entire PAT decline. This is exactly the kind of divergence the underlying tabulation is built to catch: taken at face value, the "PAT nearly halved" headline that several news aggregators ran with (&sect;02) materially understates the quarter's actual operating performance.</p>
+
+      <h3>Forward margin guidance</h3>
+      <p>The company's own FY2030 roadmap (&sect;10) guides EBITDA margin (company definition, on total income) from 42.7% in FY26 to 50.6% by FY30, alongside revenue more than doubling to &#8377;37,713 Cr. Note this uses a different EBITDA definition/base than the "operating margin" (22.39% FY26) figure used elsewhere in this report &mdash; the two are not directly comparable and are presented separately rather than blended, consistent with this report's sourcing discipline.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">A genuinely enormous, credibly-funded capex programme running alongside the single most serious flag in this report: the FY26 statutory auditors' material-uncertainty-relating-to-going-concern paragraph over Neyveli land availability.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, &#8377; Cr</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Net worth (owners)</td><td>14,076</td><td>15,169</td><td>16,531</td><td>18,723</td><td>21,525</td></tr>
+            <tr><td>Total debt (standalone, paid-up)</td><td>10,239</td><td>9,348</td><td>7,969</td><td>7,525</td><td>10,157</td></tr>
+            <tr><td>Debt / equity (consolidated)</td><td>1.57x</td><td>1.47x</td><td>1.35x</td><td>1.20x</td><td>1.29x</td></tr>
+            <tr><td>Capital employed</td><td>38,998</td><td>40,676</td><td>42,472</td><td>44,931</td><td>52,559</td></tr>
+            <tr><td>Consolidated capex</td><td>2,542</td><td>3,308</td><td>4,270</td><td>7,736</td><td>9,131</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: May-2026 investor presentation. Q1 FY27 (Jun-26) consolidated: paid-up debt capital &#8377;28,133 Cr, net worth (owners) &#8377;22,069 Cr, debt/equity 1.27x, current ratio 0.81x &mdash; broadly flat vs. Q4 FY26.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Material uncertainty relating to going concern &mdash; the single biggest flag in this report</b>The joint statutory auditors' report on both the standalone and consolidated FY26 audited results (13 May 2026) includes a dedicated "Material Uncertainty Relating to Going Concern" paragraph: <i>"...the non-availability of adequate quantum of land for lignite mining operations at Neyveli mines and power generation have been elaborated upon. Such non-availability of lignite mining land may cast significant uncertainties relating to the operations of NLCIL, and eventually NLCIL's ability to continue as a going concern in future."</i> The audit opinion itself was <b>not modified</b> for this &mdash; it is a disclosure paragraph, not a qualification &mdash; but going-concern language of any kind on India's dominant lignite miner, tied to the exact asset that underpins its core moat (&sect;01), is a materially serious flag that this report's news and press-release sources never surface. This same land-availability paragraph also appeared in the Q3 FY26 review report; whether it was repeated in the Q1 FY27 limited review (a lower-assurance engagement that does not always repeat audit-level paragraphs) could not be confirmed from the review report language read for this report, which discussed only the separate VSVS/DISCOM dispute (below) &mdash; this ambiguity is flagged rather than resolved either way.</div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>&#8377;1,454 Cr written off against a defaulting EPC contractor on the flagship UP project</b>Advances recoverable from EPC contractor BGR-ESL on the NUPPL/Ghatampur project stood at &#8377;1,453.69 Cr as of Q1 FY27 (including &#8377;539.78 Cr of accrued interest and liquidated damages) &mdash; and the company has taken a <b>100% provision against the entire amount</b>, effectively writing it off in the P&amp;L/balance sheet even while stating it "continues to pursue recovery... and retains all contractual and legal rights." This is a large-scale counterparty failure on the company's single biggest recent capex project, now fully provided for rather than resolved.</div>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>VSVS/DISCOM billing dispute: small but growing, and now four years old</b>&#8377;386.51 Cr billed to DISCOMs in FY23 toward income-tax recoverable under CERC tariff regulations (the "VSVS 2020" matter) remains substantially unpaid and sub judice, with the regulatory deferral liability (principal + accrued interest) growing each quarter &mdash; &#8377;411.6 Cr at FY26-end, &#8377;413.6 Cr by Q1 FY27 &mdash; and appearing as an Emphasis of Matter in every auditors' report reviewed across this dataset (Q3 FY25 through Q1 FY27). Small relative to the balance sheet, but a persistent, unresolved litigation overhang nonetheless.</div>
+      </div>
+
+      <h3>The 2030 capex plan: &#8377;1.01 lakh crore, funded across four buckets</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Bucket</th><th>Current capacity</th><th>FY2030 target</th><th>Capex to get there (&#8377; Cr)</th></tr></thead>
+          <tbody>
+            <tr><td>Thermal power</td><td>5,960 MW</td><td>10,020 MW</td><td>44,452</td></tr>
+            <tr><td>Green/renewable energy</td><td>1,734 MW</td><td>10,110 MW</td><td>33,048</td></tr>
+            <tr><td>Mining</td><td>50.10 MTPA</td><td>104.35 MTPA</td><td>12,834</td></tr>
+            <tr><td>Diversification (OB-to-sand, gasification, etc.)</td><td>&mdash;</td><td>&mdash;</td><td>10,669</td></tr>
+            <tr class="total"><td>Total</td><td></td><td></td><td>101,003</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: May-2026 investor presentation, "NLCIL @2030" slides. Renewable build-out phasing guided as 1,734 MW (FY26) &rarr; 4,216 MW (FY27) &rarr; 5,910 MW (FY28) &rarr; 7,910 MW (FY29) &rarr; 10,110 MW (FY30); the thermal target includes the long-dated Odisha Pithead project (Phase-1 LOA issued, but COD guided only for Feb-2030/Aug-2030/Feb-2031 per unit) and the new 50:50 NALCO captive JV (1,080 MW, signed 8-Jul-2026, 25-year FSA+PPA structure).</caption>
+      </div>
+      <p>FY24's actual capex (&#8377;4,270 Cr) came in well <em>above</em> the FY24 MoU-disclosed target (management had guided roughly &#8377;2,880 Cr in an earlier annual report), and FY25&ndash;FY26 capex has stepped up sharply again (&#8377;7,736 Cr, then an all-time-high &#8377;9,131 Cr) &mdash; on the disclosed record, management has consistently executed capex at or above its own targets rather than under-delivering, a genuinely positive execution signal that is easy to overlook given the governance and going-concern flags elsewhere in this report.</p>
+
+      <h3>How it's being funded: retained capital, a new OFS, and a widening debt programme</h3>
+      <p>The August-2026 Offer for Sale (2.73% of GoI's stake, oversubscribed on the institutional tranche, raising &#8377;1,260&ndash;1,760 Cr &mdash; source language differs marginally between the standalone and consolidated filing notes and is presented as a range rather than resolved to false precision) is a stake sale by the government, not a primary capital raise for NLCIL itself, so it does not directly fund the capex programme; NLCIL's own funding mix instead leans on retained earnings (net worth +15% YoY in FY26), an expanding rated-debt programme (India Ratings assigned a fresh IND AAA/Stable rating on &#8377;1,102 Cr of new bank facilities in Aug-2026, on top of affirmed AAA/A1+ ratings across &#8377;2,500 Cr of NCDs and &#8377;6,000 Cr of commercial paper), and external commercial borrowing (a EUR 100 million KfW, Germany facility tied up during FY26). Consolidated debt/equity has actually declined over five years (1.57x&rarr;1.29x FY22-FY26) even as the absolute capex base roughly quadrupled &mdash; the leverage math still works today, but the FY2030 plan implies a further, much larger step-up in both debt and equity capital that the current AAA rating trajectory will need to keep pace with.</p>
+
+      <h3>Related-party and subsidiary structure</h3>
+      <p>The consolidated group runs through five direct subsidiaries (NTPL 89%, NUPPL 51%, NIRL 100%, NIGEL 100%, NRPL 74%), three step-down NIRL subsidiaries, one associate (MNH Shakti) and one joint venture (Coal Lignite Urja Vikas), plus the newly-signed 50:50 NALCO JV. Related-party transactions disclosed at the annual-report level were modest relative to group revenue in both FY24 and FY25 (no material scale flag found); the more notable structural item is that the Comptroller &amp; Auditor General's FY26 supplementary audit issued nil/clean comments for every consolidated entity <em>except</em> NIGEL (NLC India Green Energy Ltd), which received only a "non-audit certificate" &mdash; i.e., CAG did not complete its usual supplementary audit procedure for the group's dedicated green-energy diversification subsidiary for FY26, a minor but notable gap in an otherwise clean audit sweep.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Operating cash generation hit an all-time high in FY25, then a record capex year made FY26 free cash flow negative for the first time in this five-year dataset &mdash; a capex-led, not an earnings-led, story.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, &#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT (incl. NCI)</td><td>1,426</td><td>1,868</td><td>2,714</td><td>3,769</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>4,171</td><td>5,512</td><td>8,977</td><td>5,166</td></tr>
+            <tr><td>Capex</td><td>&minus;2,603</td><td>&minus;3,168</td><td>&minus;7,340</td><td>&minus;7,945</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="pos">1,568</td><td class="pos">2,344</td><td class="pos">1,637</td><td class="neg">&minus;2,779</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>2.93x</td><td>2.95x</td><td>3.31x</td><td class="neg">1.37x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance consolidated annual cash-flow statement. FY22 not usable (largely null in source). No quarterly cash-flow statement exists in the source data for any period, so quarter-level CFO/PAT divergence (e.g. around the Q1 FY27 tax-driven PAT decline) cannot be independently checked.</caption>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Earnings-quality check: passes, on an annual basis, every year shown</b>CFO has tracked or exceeded PAT in every year FY23&ndash;FY26 (conversion ratio never below 1.37x) &mdash; there is no sign of profit growth outrunning cash generation the way the skill's cross-checks are designed to catch. FY26's <em>lower</em> conversion (1.37x vs. 2.9&ndash;3.3x in prior years) is explained by the working-capital swing in &sect;05 (current ratio falling to 0.78&ndash;0.80x) rather than any deterioration in the quality of reported earnings itself &mdash; CFO in absolute terms (&#8377;5,166 Cr) was still NLC India's third-highest on record even in a year PAT hit an all-time high.</div>
+      </div>
+
+      <p><b>Read plainly:</b> FY26's negative free cash flow (&minus;&#8377;2,779 Cr) is a capex story, not a profitability story &mdash; capex of &#8377;7,945 Cr outran even a strong &#8377;5,166 Cr of operating cash flow. This is consistent with, and the direct mechanical result of, the all-time-high capex year documented in &sect;05, and is exactly the pattern one would expect midway through a &#8377;1.01 lakh crore multi-year build-out: FY23&ndash;FY25 show the company comfortably self-funding capex from operations (FCF positive all three years), while FY26 marks the first year the capex ramp has outpaced operating cash generation, requiring external funding (debt/OFS-adjacent capital) to plug the gap. Whether this becomes a durable, multi-year pattern (as the FY2030 plan's much larger capex figures suggest it likely will) or reverts as individual projects reach commercial operation and start generating their own cash is the single most important cash-flow question for the next several years, and no explicit management cash-flow guidance for FY27 was found in this dataset to answer it directly.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">A textbook PSU governance profile &mdash; Government of India control, Ministry of Coal-appointed leadership, CAG audit oversight &mdash; currently running with both its top executive posts on temporary "additional charge" and a multi-year pattern of falling short of SEBI's independent-director requirement.</p>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>No permanent CMD, and no permanent Director (Power), as of this report's date</b>Chairman &amp; Managing Director Shri M. Prasanna Kumar Motupalli retired on superannuation on 30 June 2026; the Ministry of Coal handed additional charge of the CMD post to Shri Sanoj Kumar Jha (an Additional Secretary at MoC, and already a part-time official/nominee director on the board) for an initial three months from 1 July 2026. One month earlier, Director (Power) Shri M. Venkatachalam had also retired on superannuation (31 May 2026), with additional charge given to Shri Rajesh Pratap Singh Sisodia (Director, Planning &amp; Projects) for three months from 1 June 2026. Both appointments are explicitly interim/additional-charge, "until appointment of a regular incumbent." A company mid-way through its largest-ever capex programme and a planned subsidiary IPO is, as of the most recent filings reviewed, being run without a permanent CEO-equivalent or a permanent power-business head.</div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Board composition appears to have run without a single independent director for an extended period</b>The May-2026 investor presentation's own "Composition of Board of Directors" slide lists only the CMD, two part-time official (government nominee) directors, and five functional/whole-time directors &mdash; zero independent directors. The first independent-director appointment found anywhere in this filing window is Shri Poonam Chandrakar, appointed 16 July 2026 for a three-year term. SEBI's LODR Regulation 17(1) requires listed companies to maintain a minimum proportion of independent directors (higher again where the Chairman is executive, as here); a PSU board with no independent directors for a sustained period is a real regulatory-compliance gap, not merely a disclosure nicety, and this dataset shows it recurring at the subsidiary level too (independent-nominee-director shortfalls flagged for NTPL/NUPPL under Reg. 24(1) in annual-report-era filings reviewed).</div>
+      </div>
+
+      <h3>Current leadership (as disclosed, subject to the vacancies above)</h3>
+      <div class="roster">
+        <div class="person">
+          <div class="name">Sanoj Kumar Jha <span style="font-weight:400;color:var(--ink-mute);">(additional charge)</span></div>
+          <div class="role">Chairman &amp; Managing Director (interim, from 1 Jul 2026); Additional Secretary, Ministry of Coal</div>
+          <div class="bio">A career Ministry of Coal bureaucrat holding the CMD post on a temporary basis while continuing his substantive MoC role; replaced as the board's separate part-time official director by Shri Gopal Singh (Joint Secretary, MoC) on 10 Jul 2026, so he now holds only the CMD additional charge, not both board seats simultaneously.</div>
+        </div>
+        <div class="person">
+          <div class="name">Rajesh Pratap Singh Sisodia <span style="font-weight:400;color:var(--ink-mute);">(additional charge)</span></div>
+          <div class="role">Director (Power), interim from 1 Jun 2026; substantively Director (Planning &amp; Projects)</div>
+          <div class="bio">Holding two functional director portfolios simultaneously on an interim basis.</div>
+        </div>
+        <div class="person">
+          <div class="name">Dr. Prasanna Kumar Acharya</div>
+          <div class="role">Director (Finance) &amp; CFO</div>
+          <div class="bio">Signatory on the financial-results filings reviewed throughout this dataset; the one core-finance leadership seat that has not turned over in this filing window.</div>
+        </div>
+        <div class="person">
+          <div class="name">Dr. Suresh Chandra Suman / Shri Samir Swarup</div>
+          <div class="role">Director (Mines) / Director (HR)</div>
+          <div class="bio">Functional directors as of the May-2026 board composition slide; no changes to these two seats found in the filing window reviewed.</div>
+        </div>
+        <div class="person">
+          <div class="name">Shri Poonam Chandrakar</div>
+          <div class="role">Independent Director (appointed 16 Jul 2026, 3-year term)</div>
+          <div class="bio">Public administrator with two decades' governance/public-policy experience across power, mining and public administration per the company's own profile disclosure; the only independent director confirmed appointed in this filing window.</div>
+        </div>
+        <div class="person">
+          <div class="name">Shri Anil Meshram (IAS) / Shri Gopal Singh (IFS)</div>
+          <div class="role">Part-time Official (Government Nominee) Directors</div>
+          <div class="bio">Anil Meshram (Principal Secretary, Energy, Govt. of Tamil Nadu) replaced Mangat Ram Sharma as the state-government nominee on 3 Jun 2026; Gopal Singh (Joint Secretary, Ministry of Coal) replaced Sanoj Kumar Jha as the central-government nominee on 10 Jul 2026 once Jha moved to the CMD additional charge &mdash; both routine nominee rotations by the appointing authorities, not resignations.</div>
+        </div>
+      </div>
+
+      <h3>The government-control picture, and what disinvestment means here</h3>
+      <p>Government of India holds 72.20% as of 15 May 2026 (pre-OFS), reduced to an implied ~69.5% after the 2.73% OFS in August 2026 (&sect;05) &mdash; majority government control is not in question either before or after. As a Navratna CPSE, NLC India gets meaningfully greater operational and capex-approval autonomy than a standard PSU, but remains subject to CAG supplementary audit (clean for FY26, &sect;05), Ministry of Coal control over top appointments (as evidenced directly by the CMD/Director changes above), DIPAM oversight of dividend policy (an annual-report-era filing referenced the company needing to seek an exemption from DIPAM's minimum-dividend guideline in at least one prior year), and periodic disinvestment at the government's discretion, which the Tamil Nadu state government has publicly, if so far unsuccessfully, opposed (&sect;02).</p>
+
+      <h3>Auditors &amp; other findings</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Statutory auditors:</b> Joint auditors Sundaram &amp; Srinivasan and PKF Sridhar &amp; Santhanam LLP issued <b>unmodified/clean opinions</b> on both standalone and consolidated FY26 results, subject to the going-concern disclosure paragraph and the VSVS Emphasis of Matter (&sect;05, both explicitly non-qualifying). The joint-auditor pairing has rotated at least once across this dataset (a predecessor, Chaturvedi &amp; Co LLP, is referenced as having audited the FY25 comparative figures) &mdash; consistent with mandated CAG/statutory audit rotation for PSUs, not itself a red flag.</li>
+        <li><b>Contingent liabilities:</b> The FY24 Annual Report discloses total contingent liabilities of approximately &#8377;34,370 Cr (standalone) &mdash; dominated by land-acquisition compensation claims (~&#8377;7,329 Cr) and tax demands (~&#8377;1,420 Cr), with the balance largely bank guarantees and other claims. This is roughly 3.3x FY24 standalone revenue; while contingent liabilities of this scale are not unusual for a capital-intensive, land-dependent PSU miner with a multi-decade operating history, the land-compensation component is directly relevant context for the going-concern flag in &sect;05.</li>
+        <li><b>Cybersecurity/compliance lapse:</b> A malware incident affecting NLCIL servers on 2 July 2024 was reported to SEBI four days later (6 July 2024) rather than within the regulator's prescribed disclosure window &mdash; a minor but real compliance lapse on cybersecurity incident reporting, noted in the FY24-era filings reviewed.</li>
+        <li><b>CSR:</b> FY24 CSR spend of &#8377;47.36 Cr against a statutory obligation of &#8377;40.27 Cr &mdash; compliant, and modestly above the mandated minimum.</li>
+      </ul>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other disclosure insights worth watching</h2></div>
+      <p class="sec-dek">Structural moves that could move the stock more than any single quarter's P&amp;L &mdash; a subsidiary IPO, a new captive-JV model, and a critical-minerals option few investors are pricing in yet.</p>
+
+      <h3>NLC India Renewables Ltd (NIRL): the value-unlock most likely to matter next</h3>
+      <p>Seven operational renewable assets totalling 1.4 GW were transferred from NLCIL to NIRL during FY26 as part of an explicit asset-monetisation exercise, and GoI has approved an "Alternative Mechanism" for listing NIRL via a fresh equity issue plus disinvestment of up to 25% of NLCIL's stake in NIRL through a public offering in the domestic market. Combined with CCEA's approval of a &#8377;7,000 Cr investment ceiling for NIRL beyond standard Navratna subsidiary limits, this reads as a genuine, GoI-sanctioned value-unlock event in preparation, guided (with modest slippage, &sect;03) toward a listing around September 2026. NIRL's own order pipeline has been prolific in the news window alone: SECI wind (200 MW, Koppal), GUVNL solar (900 MW LoI), Gujarat BESS auction win (275 MW), plus multiple JVs (NCRTC, MAHAPREIT, and a proposed one with PTC India) &mdash; a subsidiary being built out fast in the run-up to a listing.</p>
+
+      <h3>The NALCO captive-power JV: a template for future thermal growth</h3>
+      <p>The 8-July-2026 joint venture with National Aluminium Company (50:50, 1,080 MW / 4x270 MW coal-based captive thermal plant at Angul, Odisha, backed by a 25-year Fuel Supply Agreement from NLCIL's own Machhakata coal mine and a 25-year Section-62-regulated PPA for 100% of NALCO's offtake) is a genuinely different growth model from NLCIL's traditional standalone-utility approach: a captive-plus-regulated-return structure anchored to a single large industrial customer's own expansion plans, using NLCIL's own coal. If replicated, this JV model could become a meaningful, lower-execution-risk growth lever alongside the DISCOM-facing thermal and merchant/competitive-bid renewable pipelines.</p>
+
+      <h3>Critical minerals and coal-by-product diversification: optionality, not yet revenue</h3>
+      <p>NLCIL has secured composite exploration licences for phosphorite and limestone blocks in Chhattisgarh (Semhardih and Raipura), and commissioned a 1.0 MTPA washed-silica-sand plant from Mine-I overburden in February 2026 with commercial sales begun (TAMIN floated a tender for Mine-IA M-Sand in May 2026). The &#8377;10,669 Cr "Diversification" bucket of the FY2030 capex plan (&sect;05) explicitly includes coal/lignite gasification. None of this shows up as a material revenue line yet, but it is a genuine option on future demand for critical minerals and by-product monetisation that a market pricing NLC India purely as a lignite-and-thermal utility may be under-crediting.</p>
+
+      <h3>All-time-high share price, then a ~30% pullback</h3>
+      <p>NLC India traded at an all-time-high &#8377;387.80 (14 May 2026, NSE) with market capitalisation briefly exceeding &#8377;48,900 Cr (per the company's own 15-May-2026 investor presentation) &mdash; coinciding almost exactly with the FY26 results release and the going-concern disclosure becoming public. The stock has since fallen to &#8377;269.80 (22 Aug 2026), a decline of roughly 30% from that peak over just over three months, against a 52-week range of &#8377;222.0&ndash;&#8377;387.8. Whether this reflects the market digesting the going-concern/governance flags, broader utility-sector rotation, profit-taking after the OFS-driven supply, or some combination is not resolvable from this dataset alone, but the magnitude and timing are notable enough to flag explicitly (&sect;10).</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">Effectively uncovered by sell-side research in this dataset &mdash; a single tracked rating implies substantial upside, but on a sample size too thin to lean on.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analyst recommendation</div><div class="v">Buy</div><div class="d">yfinance: 1 analyst opinion on record</div></div>
+        <div class="stat"><div class="k">Price target (single analyst)</div><div class="v">&#8377;390.00</div><div class="d">Low = Mean = High = &#8377;390 (one data point)</div></div>
+        <div class="stat"><div class="k">Implied upside from CMP</div><div class="v pos">+44.6%</div><div class="d">&#8377;390 vs &#8377;269.80 CMP</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">14.49%</div><div class="d">Of which ~52.7% of free float</div></div>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>One rating is not coverage</b>With a single tracked analyst opinion, this "Buy" and &#8377;390 target should be read as one house's view, not a consensus &mdash; there is no visible spread of price targets or ratings to check it against, and it pre-dates (or does not visibly reflect) the going-concern disclosure, the leadership vacancies, or the FY26 negative-free-cash-flow print covered in this report. Given the credit-rating agencies' unanimous AAA/Stable reaffirmations (&sect;05, &sect;09) sit alongside genuinely unresolved equity-story questions (leadership, governance, land access), the gap between "the credit market is comfortable" and "there is a considered equity-research view priced in" is wider here than the single Buy rating alone would suggest.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">Management's own FY2030 roadmap implies revenue more than doubling and PAT up ~40% by FY30 &mdash; a genuinely ambitious plan the market is not obviously paying up for at 11x trailing earnings.</p>
+
+      <h3>Management's own FY2026&ndash;FY2030 roadmap</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, &#8377; Cr unless noted</th><th>FY26 (actual)</th><th>FY27E</th><th>FY28E</th><th>FY29E</th><th>FY30E</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>17,490</td><td>25,329</td><td>31,256</td><td>33,047</td><td>37,713</td></tr>
+            <tr><td>EBITDA (company definition)</td><td>7,475</td><td>12,649</td><td>15,274</td><td>17,019</td><td>20,149</td></tr>
+            <tr><td>EBITDA margin</td><td>42.7%</td><td>44.6%</td><td>48.6%</td><td>48.9%</td><td>50.6%</td></tr>
+            <tr><td>PAT</td><td>3,769</td><td>4,084</td><td>4,946</td><td>4,953</td><td>5,294</td></tr>
+            <tr><td>Total assets</td><td>65,202</td><td>98,375</td><td>121,034</td><td>143,268</td><td>159,747</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: May-2026 investor presentation, "Group Financial Overview of NLCIL Group for the Next 4 Years." This is management's own disclosed roadmap, not an independent sell-side estimate or this report's own forecast &mdash; presented as such. Implied FY26&ndash;FY30 CAGR: revenue ~21%, PAT ~9%, i.e. management's own plan implies a materially faster asset/revenue build than bottom-line growth, consistent with a multi-year gestation lag as new capacity (thermal, renewable, mining) ramps toward full utilisation.</caption>
+      </div>
+      <p>Two things stand out from management's own numbers: first, the FY27E revenue jump (+45% YoY) is far larger than anything delivered in FY22&ndash;FY26 (&sect;01) and will need the Ghatampur ramp-up, new renewable capacity, and possibly the NALCO JV all landing close to schedule to be credible; second, PAT growth (~9% CAGR) lags revenue/EBITDA growth (~21%/~28% CAGR) by a wide margin in this plan, implying rising depreciation and finance costs from the capex ramp will absorb much of the operating-leverage gain over the next four years &mdash; a detail management's own slide does not explain in narrative form (consistent with the general absence of call-transcript colour in this dataset, see the coverage note).</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">11.26x</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">9.96x</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">1.74x</div><div class="d">Book value/share &#8377;155.24</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">8.03x</div></div>
+        <div class="stat"><div class="k">Dividend yield</div><div class="v">2.67%</div><div class="d">Payout ratio 21.46%</div></div>
+      </div>
+      <p>At 11.3x trailing and under 10x forward earnings, with a P/B of 1.74x against a RONW that reached 17.5% in FY26, NLC India does not scream "expensive" &mdash; if anything, a utility/PSU compounding EPS from &#8377;8.05 (FY22) to &#8377;25.40 (FY26) at these multiples looks statistically cheap relative to its own growth. The gap between that statistical read and the market's actual ~30% drawdown since the May-2026 peak (&sect;08) is the central valuation tension in this report: either the market is pricing in real probability that the going-concern, leadership-vacancy and land-access issues in &sect;05/&sect;07 constrain the FY2030 plan's execution, or the stock is currently under-appreciating a still-intact, well-funded growth story. This report's own data supports elements of both readings and does not resolve the tension mechanically.</p>
+
+      <h3>Bear / base / bull, illustrative FY27&ndash;FY28 scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Anchored to management's own FY2030 roadmap (above) and the balance-sheet/governance findings in &sect;05&ndash;07. Genuine scenario illustrations, not point forecasts &mdash; there is no meaningful analyst consensus to anchor against (&sect;09).</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;190&ndash;230</div>
+          <div class="rng">&minus;30% to &minus;15% from CMP</div>
+          <ul>
+            <li>Neyveli land constraints materially crimp lignite output before alternative mine capacity (Mine III, Machhakata, North Dhadu) comes online; going-concern language persists or intensifies in the FY27 audit cycle</li>
+            <li>CMD/Director(Power) vacancies extend well beyond the initial 3-month additional-charge window, delaying capex decisions on the Odisha and renewable pipeline; a further independent-director compliance gap draws regulatory action</li>
+            <li>FY27 revenue growth undershoots the +45% management target materially (e.g. mid-teens actual); FCF stays negative for a second straight year as capex continues to outrun operating cash flow, forcing a larger, more dilutive capital raise</li>
+            <li>Multiple compresses toward 7&ndash;8x trailing earnings on de-rated PSU-governance risk, consistent with the stock's own 52-week low</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;270&ndash;330</div>
+          <div class="rng">0% to +22% from CMP</div>
+          <ul>
+            <li>Permanent CMD and Director (Power) appointed within FY27; going-concern flag resolved or materially de-escalated via a concrete land-resolution plan; independent-director complement brought into compliance</li>
+            <li>Ghatampur full commissioning and phased renewable additions deliver FY27 revenue growth in the 25&ndash;35% range (below management's 45% guide but still strong); PAT growth modest (single digits to low teens) as depreciation/finance-cost step-up bites</li>
+            <li>NIRL listing proceeds roughly on the guided September-2026-ish timeline, providing a partial capital-structure release valve</li>
+            <li>Multiple holds broadly in the current 9&ndash;12x forward-earnings range as the market normalises around the new leadership and audit disclosures</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;390&ndash;450</div>
+          <div class="rng">+45% to +67% from CMP</div>
+          <ul>
+            <li>Management's FY2030 roadmap executes close to plan; the going-concern flag is resolved via land settlement/alternative mine ramp-up faster than the market expects; a strong, externally-recruited permanent CMD is appointed</li>
+            <li>NIRL lists successfully near its guided window at a rich renewables-sector multiple, both realising value directly and validating the broader diversification thesis; the NALCO JV model replicates with further captive-power deals</li>
+            <li>FY27 revenue and PAT land close to management's own guided FY27E figures (&#8377;25,329 Cr / &#8377;4,084 Cr); FCF turns positive again as Ghatampur and early renewable capacity start generating steady cash</li>
+            <li>Re-rating toward the single tracked analyst's &#8377;390 target and beyond, on a re-established growth-with-governance-clarity narrative</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> genuinely broad-based five-year financial improvement &mdash; revenue nearly doubled, PAT more than tripled, RONW roughly doubled, and debt/equity actually <em>declined</em> even as capex quadrupled (FY22&ndash;FY26); FY26 was management's own "all-time-highest-ever" year on revenue, PAT, EBITDA, capex and net worth simultaneously; a dominant, geology-anchored ~51% share of India's lignite output; a credible, capital-committed &#8377;1.01 lakh crore FY2030 roadmap with capex execution that has historically matched or beaten its own targets; unanimous AAA/Stable credit ratings across every rating agency reviewed, with a freshly assigned rating on new debt as recently as August 2026; strong, cash-backed earnings quality on every annual cross-check performed (CFO has never fallen short of PAT in five years); and a fast-moving, apparently well-executed renewables build-out (NIRL) heading toward a GoI-sanctioned partial listing.</p>
+        <p style="max-width:none;"><b>What's not good:</b> the FY26 statutory auditors attached a material-uncertainty-relating-to-going-concern paragraph over land availability at the company's core Neyveli lignite mines &mdash; a serious flag on the exact asset the company's moat depends on, and one that received essentially zero coverage in the news sources reviewed for this report; both the CMD and Director (Power) posts are, as of the most recent filings, held on temporary additional charge following back-to-back retirements, with no permanent successor confirmed in this dataset; the board appears to have run for an extended period with zero independent directors, a likely SEBI LODR compliance gap only partially remedied by a single July-2026 appointment; &#8377;1,454 Cr was fully written off against a defaulting EPC contractor on the flagship Ghatampur project; FY26 free cash flow turned negative for the first time in this five-year dataset as record capex outran even record operating cash flow; a persistent, four-year-old DISCOM billing dispute continues to grow via accrued interest; the current ratio has structurally deteriorated from 1.38x to 0.78&ndash;0.80x over three years; and Pachwara South coal production and Ghatampur's final unit both landed materially behind management's own earlier guidance.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> operationally competently and financially conservatively &mdash; capex has consistently kept pace with or exceeded stated targets, credit ratings have never wavered from AAA, and the FY2030 roadmap is detailed and specific rather than vague. Governance continuity has been handled less smoothly: two senior retirements within a month of each other were bridged with interim appointments rather than pre-planned succession, and the independent-director shortfall was allowed to persist for a long stretch before a single appointment in mid-2026. Disclosure itself has been genuinely thorough at the primary-filing level (the going-concern paragraph, the BGR-ESL write-off, and the TPS-II under-recovery miss are all disclosed, not hidden) even though none of it surfaces in the secondary news coverage a casual investor would see.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve constructively (i.e., broadly toward the base/bull scenarios above) from today's starting price: moderate, roughly 45&ndash;55%.</b> The underlying operating and financial trend is genuinely strong and well-documented across five years of clean, cash-backed earnings growth, a real and growing lignite/thermal/renewable asset base, and a credibly-funded expansion plan &mdash; but this report's own tabulation surfaces a going-concern audit flag, a leadership vacuum at the top of the house, and a governance-compliance gap that collectively sit uncomfortably close together in time (all clustered in the May&ndash;July 2026 filing window) for a company simultaneously executing its largest-ever capex programme and preparing a subsidiary IPO. None of these three issues is necessarily fatal individually, and the valuation (11x trailing, 1.7x book) already prices in some caution &mdash; but a reader should not treat NLC India as a clean, low-risk PSU-utility compounder purely on the strength of its very good five-year P&amp;L trend without weighing the &sect;05/&sect;07 flags explicitly.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether a permanent CMD and Director (Power) are appointed, and how quickly &mdash; an external, power-sector-credentialed CMD appointment would be a meaningfully positive signal; (2) whether the FY27 statutory audit repeats, escalates, or resolves the going-concern land-availability paragraph &mdash; this is the single highest-weight item in this report; (3) whether the board's independent-director complement is brought fully into SEBI compliance and sustained, not just met once; (4) FY27 free cash flow &mdash; a second consecutive negative year alongside rising debt would be a genuine red flag, while a return to positive FCF as Ghatampur and early renewable capacity mature would validate the capex-cycle thesis; (5) whether the NIRL listing proceeds on anything close to its guided timeline, and at what valuation; (6) whether Q2/Q3 FY27 continue the pattern of PBT growth being obscured by regulatory-deferral and tax-line noise, or whether reported PAT starts tracking operating performance more cleanly.</div>
+      </div>
+
+      <footer>
+        Compiled from NLC India Limited's BSE filings (AnnouncementsConv, 6&nbsp;May&ndash;10&nbsp;Aug 2026 fully converted; supplemented by raw Announcements/ PDF filings for Q1&ndash;Q4 FY25, Q1&ndash;Q3 FY26 financial results, and the FY24/FY25 Annual Reports), MarketData (Yahoo Finance via yfinance, fetched 22&nbsp;Aug&nbsp;2026), and the tracked News feed (29&nbsp;Jun&ndash;7&nbsp;Aug 2026 window with items through 21 Aug 2026). Q1 and Q2 FY25 quarterly P&amp;L line items could not be extracted to reliable precision from a column-scrambled source PDF text layer in this pipeline and are marked n/a rather than estimated; every "earnings-call-transcript" BSE filing in this dataset was a cover letter linking to a weblink transcript rather than an embedded document, so management commentary is sourced from investor presentations, press releases and financial-results notes instead, as stated throughout. Every figure is tagged to its source; where sources disagreed or a figure could not be independently verified, that is stated in the relevant section. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / PBT / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q3FY25','Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [4411, 3836, 3826, 4178, 4443, 5042, 4717];
+    var pbt     = [830, 912, 594, 921, 843, 1518, 652];
+    var pat     = [696, 468, 839, 725, 724, 1481, 436];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'PBT', color:'var(--chart-3)', data:pbt},
+      {label:'PAT (incl. NCI)', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, PBT and PAT, Q3 FY25 to Q1 FY27" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q1 &amp; Q2 FY25 not plotted &mdash; source PDF text layer not reliably extractable in this pipeline (see coverage note above and &sect;03 table).</div></div>';
+  })();
+})();
+</script>

@@ -1,7 +1,7 @@
 {
   "symbol": "BANKBARODA",
   "name": "Bank of Baroda",
-  "generatedAt": "2026-08-18T16:37:21.564170+00:00",
+  "generatedAt": "2026-08-23T11:00:56.450726+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Banks - Regional",
@@ -14,28 +14,28 @@
     "peerIndustry": "Public Sector Bank"
   },
   "price": {
-    "current": 247.25,
-    "change": 4.649994,
-    "changePercent": 1.9167328,
-    "previousClose": 242.6,
-    "dayLow": 244.0,
-    "dayHigh": 248.48,
+    "current": 245.0,
+    "change": 1.0,
+    "changePercent": 0.40983605,
+    "previousClose": 244.0,
+    "dayLow": 243.15,
+    "dayHigh": 245.55,
     "fiftyTwoWeekLow": 230.81,
     "fiftyTwoWeekHigh": 325.5,
-    "asOf": 1785750301
+    "asOf": 1787132699
   },
   "stats": {
-    "marketCap": 1278619287552.0,
-    "trailingPE": 7.0381436,
-    "forwardPE": 5.7939806,
-    "priceToBook": 0.7584751,
+    "marketCap": 1266983763968.0,
+    "trailingPE": 6.978069,
+    "forwardPE": 5.751138,
+    "priceToBook": 0.7515729,
     "bookValue": 325.983,
-    "dividendYield": 3.5,
-    "trailingEps": 35.13,
+    "dividendYield": 3.48,
+    "trailingEps": 35.11,
     "debtToEquity": null,
     "roe": 11.965185884423564,
     "roce": null,
-    "return1y": 5.360795488903867,
+    "return1y": 4.182673175747852,
     "sharesOutstanding": 5171362179.0
   },
   "quarterly": {
@@ -342,14 +342,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 293.75757,
+    "targetMean": 293.20587,
     "targetHigh": 350.0,
     "targetLow": 225.0,
     "recommendationKey": "buy",
-    "numberOfAnalystOpinions": 33
+    "numberOfAnalystOpinions": 34
   },
   "holders": {
     "insidersPercent": 0.66462,
-    "institutionsPercent": 0.20289
+    "institutionsPercent": 0.20251
   }
 }

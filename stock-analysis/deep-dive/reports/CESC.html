@@ -1,0 +1,989 @@
+<title>CESC Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Integrated Power Utility &mdash; Generation, Distribution &amp; Renewables (RP-Sanjiv Goenka Group)</div>
+    <h1>CESC Limited</h1>
+    <p class="sub">NSE: CESC &middot; BSE: 500084 &middot; FY2023&ndash;FY2027(Q1) performance review, BSE-filing, investor-presentation and annual-report synthesis, as of 22 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> A 127-year-old Kolkata distribution monopoly quietly compounding through bolt-on acquisitions (Chandigarh, Feb 2025) and a newly aggressive 10&nbsp;GW renewable-energy push &mdash; anchored by an August-2026 &#8377;4,859&nbsp;crore acquisition of 1.4&nbsp;GWp of ReNew's operating solar/wind assets &mdash; while FY26 headline growth (revenue +8.9%, PAT +13.2%) looks clean until you split it apart: full-year cash-flow quality genuinely improved (operating cash flow +57% against PAT +13%, and regulatory-income's share of pre-tax profit fell from 70% to 43%), but Q4FY26 alone reversed that trend, with almost two-thirds of that quarter's pre-tax profit coming from a swing in regulatory income rather than the underlying business. Group free cash flow was nearly wiped out by the capex super-cycle (&#8377;718&nbsp;Cr &rarr; &#8377;141&nbsp;Cr in one year) even as the Board kept raising the dividend and then declared a &#8377;6/share interim payout in the same August filing that also reported a 3% YoY consolidated PAT print and a 3% EBITDA decline. Leverage is climbing (debt/equity 1.5x&rarr;1.7x) and one rating agency (CARE) has held a Negative Outlook through the year while two others (ICRA, India Ratings) sit at Stable &mdash; a live disagreement worth tracking, not a settled question.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (22 Aug 26)</div><div class="v">&#8377;155.09</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;20,558 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;138.12 &ndash; &#8377;204.50</div></div>
+      <div class="chip"><div class="k">FY26 Revenue (Consol)</div><div class="v pos">+8.9% YoY</div></div>
+      <div class="chip"><div class="k">FY26 PAT (Consol)</div><div class="v pos">+13.2% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 EBITDA (Consol)</div><div class="v neg">&minus;2.6% YoY</div></div>
+      <div class="chip"><div class="k">Trailing / Forward P/E</div><div class="v">13.3x / 10.9x</div></div>
+      <div class="chip"><div class="k">FY23&rarr;FY26 Free Cash Flow</div><div class="v neg">&#8377;1,283 Cr &rarr; &#8377;141 Cr</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage &amp; basis &mdash; please read before the numbers below:</b> This report uses <b>consolidated</b> figures throughout unless explicitly marked Standalone. The BSE filing set (AnnouncementsConv) spans 27&nbsp;Feb&ndash;15&nbsp;Aug 2026 and contains only <b>two</b> primary quarterly result sets with readable detail &mdash; audited Q4/FY26 (filed 6 May 2026) and unaudited Q1 FY27 (filed 13 Aug 2026; the Q1FY27 Financial Results and Dividend PDFs were scanned images with no extractable text in this pipeline, so the same-day Investor Presentation, which is text-native, is used instead). Both investor decks carry a prior-period comparative column, so this report can also reconstruct Q1FY26 and Q3FY26 &mdash; but <b>Q2 FY26 (Jul&ndash;Sep 2025) has no data anywhere in this dataset</b> (no filing, and not present in the quarterly columns MarketData/yfinance returned) and is flagged as a gap rather than estimated. <b>No earnings-call transcript, analyst-day deck, or Q&amp;A record exists anywhere in this dataset</b> &mdash; the "analyst-investor-meet" filings found are one-page BSE intimation letters naming which conferences the company will attend (ICICI Securities, Macquarie, Investec, EMKAY, Elara), not transcripts of what was said there. Section&nbsp;08 and the guidance-vs-actual checks in &sect;03&ndash;05 rely on investor-presentation bullet commentary and news-sourced sell-side notes instead, and this is flagged explicitly rather than presented as management's own words. The FY2025-26 Annual Report (14 Aug 2026 filing, ~1.1M characters) was reviewed via targeted search rather than end-to-end; a full contingent-liabilities figure and a complete related-party-transaction schedule were not locatable in the sections reviewed and are flagged as gaps. Company-filed figures (investor presentations, financial results) are used as the primary source for period-over-period tables; MarketData/yfinance is used for valuation multiples, ownership, analyst targets, and as supplementary multi-year (FY22&ndash;FY26) context &mdash; the two sources use slightly different revenue/EBITDA definitions in places, and each figure below is tagged to its source.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Other insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What CESC does, and how it has grown</h2></div>
+      <p class="sec-dek">A 127-year-old regulated Kolkata monopoly that funds a much younger, faster-moving expansion into other cities' distribution licences and, since 2024, a systems-level push into renewable generation and manufacturing.</p>
+
+      <p class="lede">CESC Limited, flagship of the RP-Sanjiv Goenka (RPSG) Group, has been generating and distributing electricity in Kolkata since 1899 (MarketData/overview.md; Annual Report FY26). Its core, standalone business is an integrated utility: it distributes power across 567 sq. km of licensed area (Kolkata, Howrah, Hooghly, North &amp; South 24 Parganas) to about 3.78&ndash;4.9&nbsp;million customers, and meets roughly 82% of that demand from its own embedded generation &mdash; the 750&nbsp;MW Budge Budge Generating Station (BBGS) and 135&nbsp;MW Southern (Garden Reach) station, both wholly owned, plus the 600&nbsp;MW Haldia plant held through wholly-owned subsidiary Haldia Energy Limited (HEL) under a long-term PPA. This embedded-generation model (own most of what you distribute) is the historical moat: it insulates the Kolkata licence from merchant power-price volatility and has let CESC push its own T&amp;D loss down to an all-time low of 6.11% in FY26 (from 6.5% in FY25 and 8.4% as recently as FY21 &mdash; Investor Presentation, Q4 FY26).</p>
+
+      <p>Around that core, CESC has built three growth arms, all run through subsidiaries: (1) <b>independent thermal &amp; renewable generation</b> &mdash; Dhariwal Infrastructure (600&nbsp;MW, Chandrapur), Crescent Power (40&nbsp;MW AFBC + 18&nbsp;MW solar, Tamil Nadu) &mdash; selling to CESC Kolkata, NPCL, TANGEDCO and merchant/medium-term buyers; (2) <b>distribution ventures outside Kolkata</b> &mdash; licensed distribution in Greater Noida (Noida Power Company, NPCL) and Chandigarh (Chandigarh Power Distribution, CPDL, acquired February 2025), plus input-based franchisee (IBF) contracts in Kota, Bharatpur and Bikaner (Rajasthan) and Malegaon (Maharashtra); and (3) <b>renewable energy</b>, run through subsidiary Purvah Green Power Private Limited (PGPPL), targeting 3.2&nbsp;GW by FY29 (Phase&nbsp;1) and 10&nbsp;GW by FY32 (Phase&nbsp;2) across solar, wind, hybrid and battery storage &mdash; the newest and, based on FY26&ndash;27 newsflow, currently fastest-growing part of the group (see &sect;03, &sect;05).</p>
+
+      <h3>FY23&ndash;FY26: a flattish multi-year run followed by a FY26 breakout</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted (Consol.)</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Operating revenue (yfinance basis)</td><td>14,246.4</td><td>15,293.2</td><td>16,581.5</td><td>18,041.2</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td class="pos">+7.3%</td><td class="pos">+8.4%</td><td class="pos">+8.8%</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>10.13</td><td>10.38</td><td>10.33</td><td class="pos">11.63</td></tr>
+            <tr><td>EPS YoY growth</td><td>&mdash;</td><td class="pos">+2.5%</td><td class="neg">&minus;0.5%</td><td class="pos">+12.6%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement (FY22 excluded &mdash; nearly every FY22 line item is null in the source). Figures here differ slightly from the company's own filed "Revenue from Operations" / "Gross Revenue" used in &sect;03&ndash;04 (see coverage note) &mdash; yfinance appears to net certain items differently; both are cited to their own source rather than blended.</caption>
+      </div>
+      <p>Read plainly: EPS was essentially flat for three years (&#8377;10.13 &rarr; &#8377;10.38 &rarr; &#8377;10.33, FY23&ndash;FY25) before a 12.6% jump in FY26. Section&nbsp;03&ndash;04 show that jump was real but concentrated &mdash; driven substantially by the Chandigarh acquisition ramping (its first full year), cost/procurement savings, and a large positive swing in regulatory income, not a broad-based reacceleration across every subsidiary. Section&nbsp;05 shows the CPDL deal itself, and now the much larger ReNew renewable acquisition, mark a real change in strategy: CESC has shifted from a slow, organic T&amp;D-loss-reduction compounder into a company actively using M&amp;A to add both distribution licences and, since August 2026, contracted renewable capacity.</p>
+
+      <h3>The 2025&ndash;26 pivot: renewables and, more speculatively, manufacturing</h3>
+      <p>Two developments mark a genuine strategic shift beyond the historical Kolkata-plus-bolt-on-DISCOMs model. First, the renewable buildout: Purvah Green had, by end-FY26, six RE projects (2,400&nbsp;MW) under implementation across Rajasthan, Madhya Pradesh, Karnataka and Andhra Pradesh, won via competitive bidding from SECI, NPCL, REMCL and CESC Kolkata itself, plus a further 175&nbsp;MW SECI wind LOA in Q1FY27; then, on 10 Aug 2026, Purvah signed a Share Purchase Agreement to acquire six operating ReNew solar/wind SPVs (1,411&nbsp;MWp, &gt;90% tied to 25-year SECI PPAs) for an enterprise value of &#8377;4,859&nbsp;crore &mdash; the single largest capital commitment in this filing window (see &sect;05). Second, and considerably earlier-stage: a foray into solar cell &amp; module manufacturing (a 3&nbsp;GW DCR-linked line planned for Greater Noida, with equipment-vendor finalisation and site activities underway as of the Q1FY27 deck, commissioning targeted for 2027) plus a separately disclosed, still-early Odisha in-principle approval (&#8377;4,500&nbsp;Cr, 3&nbsp;GW cells / 3&nbsp;GW modules / 5&nbsp;GWh battery &mdash; News, 22 Jan 2026). Neither manufacturing project has a signed, binding investment commitment visible in this dataset yet; both are tracked here as intent, not delivered capacity.</p>
+
+      <h3>The moat, and its limits</h3>
+      <p>The durable part of the moat is regulatory: CESC's Kolkata distribution licence is a legal monopoly in its area, its tariffs are cost-plus (West Bengal Electricity Regulatory Commission, WBERC) with a regulatory-asset true-up mechanism, and its embedded generation gives it more control over supply cost than a pure-play discom has. The weaker, less-tested part is the newer growth engines: the IBF/DF ventures outside Kolkata compete for contract renewal and carry materially worse T&amp;D-loss profiles (Malegaon at 36.3% FY26, still the group's largest structural laggard &mdash; see &sect;03), and the renewable business is a capital-intensive, execution-dependent bet in a crowded, policy-driven bidding market where CESC itself acknowledges (Annual Report, Risks &amp; Concerns) that "surplus power generation capacities expose the industry to risks associated with difficulties in executing PPAs and adverse price movements." No independent market-share or competitor-benchmark data for any segment was found in the reviewed filings; scale claims (e.g., "10&nbsp;GW by 2031-32," "Fastest Growing Utility-Scale Project Developer") are company- or award-body-sourced, not independently verified here.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item in the tracked News feed (22 Jan&ndash;21 Aug 2026), checked against the numbers rather than repeating the feed's own bullish/bearish tag at face value.</p>
+
+      <div class="news-item">
+        <div class="news-date">21 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (feed tag)</span>
+          <div class="news-title">HDFC Institutional Equities initiates sector-wide bullish call, CESC target &#8377;210&ndash;221</div>
+          <div class="news-body">A broad, six-stock bullish power-sector note (NTPC, CESC, Tata Power, Power Grid, JSW Energy, NHPC) citing India's peak demand crossing 270&nbsp;GW. This is a sector call more than a CESC-specific one &mdash; the target sits close to the existing consensus mean (&#8377;211.73, &sect;09) rather than being a fresh, differentiated view.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">20 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed (feed tag)</span>
+          <div class="news-title">Nuvana Research names CESC a preferred pick, cautious on wind-sector peers</div>
+          <div class="news-body">Cites 11.6% YoY power-demand growth (May 2026) and thermal PLF improving to 71.5%; the caution in the same note is aimed at Suzlon/Inox Wind, not CESC directly &mdash; correctly tagged "mixed" by the feed only because of that bifurcation, not because of a CESC-specific concern.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">16 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed (feed tag)</span>
+          <div class="news-title">CESC arm wins SECI award for 70 MW firm renewable power contract</div>
+          <div class="news-body">Headline-only item; no article text retrievable. Consistent in direction with the broader RE order-win pattern in &sect;03, but this specific 70&nbsp;MW figure could not be cross-checked against any investor-presentation or filing figure in this dataset.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">14 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (feed tag)</span>
+          <div class="news-title">Prabhudas Lilladher initiates BUY, target &#8377;220, citing 15% EBITDA CAGR FY26&ndash;28E</div>
+          <div class="news-body">The note explicitly flags that Q1FY27 consolidated PAT came in 7% below its own estimate on widening Malegaon losses &mdash; a real near-term caveat inside an otherwise bullish, ReNew-deal-driven thesis (12x FY28E EPS). See &sect;09 for the full note and &sect;03 for Malegaon's own numbers.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">13 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Bullish (feed tag) &mdash; this report reads it as mixed</span>
+          <div class="news-title">Q1 FY27 results: consolidated PAT &#8377;419 Cr (+3% YoY), &#8377;6/share interim dividend declared</div>
+          <div class="news-body">The feed tags this bullish, reasoning that the dividend signals confidence despite "modest" 3% profit growth. This report's own &sect;03&ndash;04 tables show the picture is less clean than that framing suggests: consolidated EBITDA actually <em>fell</em> 2.6% YoY, and standalone EBITDA fell 5.3% YoY &mdash; the interim dividend was declared in the same filing as a quarter of declining core operating profit, not simply alongside modest-but-positive growth. See &sect;06 for the cash-flow-coverage read on this dividend specifically.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">10 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (feed tag)</span>
+          <div class="news-title">Purvah Green to acquire 1.4 GWp of ReNew's operating renewable portfolio for &#8377;4,859 Cr EV</div>
+          <div class="news-body">Six SPVs (1,411&nbsp;MWp), &gt;90% tied to 25-year SECI PPAs, no regulatory approval required, targeted close before 31 Oct 2026. Genuinely transformative for the RE platform's scale and cash-generation timeline (&sect;01, &sect;05) &mdash; but it is debt- and promoter-loan-refinancing-heavy at the SPV level (&sect;05), and the feed's own rationale notes the stock was "trading flat year-to-date" despite the deal, i.e. the market's initial reaction was muted.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">3 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral (feed tag)</span>
+          <div class="news-title">Board approves &#8377;250 Cr NCD issuance, private placement</div>
+          <div class="news-body">Routine debt raise (25,000 secured, unlisted, redeemable NCDs; allotted 5 Aug 2026, maturing 30 Jun 2036). No coupon or use-of-proceeds detail in the filing reviewed; consistent with the broader FY26 pattern of rising consolidated borrowings (&sect;05).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">7 May 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (feed tag)</span>
+          <div class="news-title">ICICI Securities raises target &#8377;204&rarr;&#8377;220 on Q4FY26 beat and &#8377;32,000 Cr capex plan</div>
+          <div class="news-body">Cites Q4FY26 EBITDA +23% YoY (on the broker's own basis) and a total capex plan reported at &#8377;32,000&nbsp;crore (&#8377;23,000&nbsp;Cr for RE generation per the broker), against the company's own investor-deck figure of "&#8377;23,000+ Cr" guided specifically for the 3.2&nbsp;GW renewable Phase-1 (see &sect;05) &mdash; the broker's larger &#8377;32,000&nbsp;Cr figure appears to be a total-company estimate (RE + thermal + distribution) rather than the RE-only number the company itself discloses; this report keeps the two figures separate rather than reconciling them, since no single company-sourced total capex figure was found.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>CMP of &#8377;155.09 sits roughly 24% below the 52-week high of &#8377;204.50 and about 12% above the 52-week low of &#8377;138.12. Both the 50-day (&#8377;165.59) and 200-day (&#8377;165.33) moving averages sit above the current price &mdash; the stock has been drifting down against its own recent trend even as most of the news items above are tagged bullish, and even as the FY26 headline numbers (&sect;01, &sect;03) were genuinely good. That gap between tone and price action is worth holding onto through the rest of this report.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segments &amp; guidance vs. actual</h2></div>
+      <p class="sec-dek">FY26 growth was real and broad-based across most subsidiaries; Q1FY27 shows the first signs of deceleration, concentrated in the standalone business and Malegaon.</p>
+
+      <h3>Quarterly trend (Consolidated, company-filed figures)</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q4FY25</th><th>Q1FY26</th><th>Q2FY26</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Gross Revenue (Rev. from ops + other inc.)</td><td>4,030</td><td>5,285</td><td class="neg">n/a</td><td>4,099</td><td>4,192</td><td>5,559</td></tr>
+            <tr><td>EBITDA</td><td>1,106</td><td>1,180</td><td class="neg">n/a</td><td>1,036</td><td>1,274</td><td>1,149</td></tr>
+            <tr><td>PAT</td><td>386</td><td>407</td><td class="neg">n/a</td><td>304</td><td>459</td><td>419</td></tr>
+            <tr><td>YoY revenue growth</td><td>&mdash;</td><td>&mdash;</td><td>n/a</td><td>&mdash;</td><td class="pos">+4.0%</td><td class="pos">+5.2%</td></tr>
+            <tr><td>YoY EBITDA growth</td><td>&mdash;</td><td>&mdash;</td><td>n/a</td><td>&mdash;</td><td class="pos">+15.2%</td><td class="neg">&minus;2.6%</td></tr>
+            <tr><td>YoY PAT growth</td><td>&mdash;</td><td>&mdash;</td><td>n/a</td><td>&mdash;</td><td class="pos">+18.9%</td><td class="pos">+3.0%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Investor Presentations Q4 FY26 (6 May 2026) and Q1 FY27 (13 Aug 2026), which each carry one prior-period comparative column. <b>Q2 FY26 (Jul&ndash;Sep 2025) has no data anywhere in this dataset</b> &mdash; no BSE filing exists for it and it does not appear in the yfinance quarterly columns returned (Mar-26, Dec-25, Jun-25, Mar-25, Dec-24) &mdash; flagged as a genuine gap, not estimated.</caption>
+      </div>
+      <p>Q4FY26 looked strong on every line (revenue +4%, EBITDA +15%, PAT +19% YoY) but &sect;04 shows more than half of that quarter's PAT growth traces to a swing in non-operating regulatory income rather than the core business. Q1FY27 shows the opposite pattern in miniature: revenue still grew (+5.2%) but EBITDA fell 2.6% YoY &mdash; the first EBITDA decline in the comparable-quarter data available in this dataset &mdash; while PAT still rose 3%, again partly cushioned by items below the operating line (&sect;04).</p>
+
+      <h3>Standalone (Kolkata) vs. consolidated growth</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, Standalone</th><th>Q4FY25</th><th>Q4FY26</th><th>YoY</th><th>Q1FY26</th><th>Q1FY27</th><th>YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Gross Revenue</td><td>2,213</td><td>2,224</td><td class="pos">+0.5%</td><td>2,906</td><td>3,024</td><td class="pos">+4.1%</td></tr>
+            <tr><td>EBITDA</td><td>670</td><td>696</td><td class="pos">+3.9%</td><td>666</td><td>631</td><td class="neg">&minus;5.3%</td></tr>
+            <tr><td>PAT</td><td>218</td><td>223</td><td class="pos">+2.3%</td><td>211</td><td>220</td><td class="pos">+4.3%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Investor Presentations Q4 FY26 and Q1 FY27, Standalone Financial Performance tables. FY26 full-year standalone: Gross Revenue &#8377;9,939 Cr (+1.8% vs FY25's &#8377;9,765 Cr), EBITDA &#8377;2,673 Cr (+2.0%), PAT &#8377;852 Cr (+6.5%) &mdash; the Kolkata core grew far slower than the consolidated group (revenue +8.9%, PAT +13.2% &mdash; &sect;01), confirming that FY26's growth was disproportionately delivered by subsidiaries, not the parent licence.</caption>
+      </div>
+      <p>The standalone Kolkata business is low-single-digit-growth by design (a mature, regulated, largely built-out licence area); nearly all of the consolidated growth premium comes from subsidiaries. Q1FY27's standalone EBITDA decline (&minus;5.3% YoY) despite standalone revenue growth (+4.1%) points to cost pressure at the parent level in the seasonally weak first quarter &mdash; consistent with the Annual Report's own observation that "demand was particularly subdued in Q1 (Apr-Jun) due to a milder summer resulting in lower requirement for cooling," which pressures fixed-cost absorption in a quarter where CESC's own system demand and peak load are structurally lowest (Chart F, Annual Report FY26).</p>
+
+      <h3>Subsidiary-level contribution (Q1 FY27 vs. Q1 FY26)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, Revenue/EBITDA/PAT</th><th>Q1FY26 Rev</th><th>Q1FY27 Rev</th><th>Q1FY27 EBITDA</th><th>Q1FY27 PAT</th><th>YoY PAT</th></tr></thead>
+          <tbody>
+            <tr><td>Noida Power (NPCL)</td><td>776</td><td>857</td><td>109</td><td>52</td><td class="pos">+4% (50&rarr;52)</td></tr>
+            <tr><td>Chandigarh Power (CPDL)</td><td>212</td><td>280</td><td>18</td><td>9</td><td class="pos">+125% (4&rarr;9)</td></tr>
+            <tr><td>Haldia Energy</td><td>536</td><td>549</td><td>201</td><td>67</td><td class="neg">&minus;21% (85&rarr;67)</td></tr>
+            <tr><td>Dhariwal Infrastructure</td><td>589</td><td>543</td><td>223</td><td>127</td><td class="pos">+9% (116&rarr;127)</td></tr>
+            <tr><td>Crescent Power</td><td>54</td><td>63</td><td>32</td><td>12</td><td class="pos">+9% (11&rarr;12)</td></tr>
+            <tr><td>Kota DF</td><td>328</td><td>323</td><td>18</td><td>7</td><td class="pos">7&times; (1&rarr;7)</td></tr>
+            <tr><td>Bharatpur DF</td><td>80</td><td>76</td><td>5</td><td>2</td><td>flat</td></tr>
+            <tr><td>Bikaner DF</td><td>238</td><td>230</td><td>17</td><td>10</td><td class="pos">+100% (5&rarr;10)</td></tr>
+            <tr><td>Malegaon DF</td><td>167</td><td>211</td><td class="neg">&minus;40</td><td class="neg">&minus;43</td><td class="neg">still a loss (&minus;44&rarr;&minus;43)</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Investor Presentation Q1 FY27, "Key Subsidiaries &ndash; Financial Performance." Rajasthan-DF trio (Kota/Bharatpur/Bikaner) and Chandigarh are the clearest improvement stories; Haldia's PAT decline and Malegaon's persistent large loss are the two weak spots.</caption>
+      </div>
+
+      <h3>T&amp;D loss trend &mdash; the clearest multi-year improvement story</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">CESC Kolkata</div><div class="v">6.11%</div><div class="d">FY26, all-time low, vs 8.4% in FY21</div></div>
+        <div class="stat"><div class="k">Noida Power (NPCL)</div><div class="v">6.95%</div><div class="d">FY26 vs 8.4% in FY21</div></div>
+        <div class="stat"><div class="k">Rajasthan DF (Kota etc.)</div><div class="v">11.4%</div><div class="d">FY26 vs 16.1% in FY21</div></div>
+        <div class="stat"><div class="k">Chandigarh (CPDL)</div><div class="v">8.3%</div><div class="d">FY26 vs 12.5% at Feb'25 acquisition</div></div>
+        <div class="stat"><div class="k">Malegaon DF</div><div class="v neg">36.3%</div><div class="d">FY26 vs 44.6% in FY21 &mdash; still by far the highest</div></div>
+      </div>
+      <p>Every distribution asset has improved multi-year, and management explicitly attributes CPDL's fast post-acquisition improvement (12.5%&rarr;8.3% in one year) and Malegaon's slower one (39.7%&rarr;36.3%, "driven by vigilance drives and various loss reduction initiatives") to targeted operational programmes rather than one-off effects. Even so, Malegaon at 36.3% remains roughly six times Kolkata's loss rate and is the group's clearest structural underperformer &mdash; it posted an EBITDA loss of &#8377;112&nbsp;Cr and a net loss of &#8377;125&nbsp;Cr for full-year FY26, and Q1FY27's net loss (&minus;&#8377;43&nbsp;Cr) is barely improved on Q1FY26's (&minus;&#8377;44&nbsp;Cr) despite the T&amp;D-loss gain, i.e. the loss-reduction programme has not yet visibly reached the P&amp;L.</p>
+
+      <h3>Guidance vs. actual: renewable capex &amp; capacity</h3>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Broadly on plan, with the mix shifting from pure organic build to organic-plus-acquisition</b>The Q1FY27 investor deck presents this explicitly as "Phase-1 Guidance vs Actual": guided &#8377;23,000+&nbsp;Cr for the 3.2&nbsp;GW Phase-1 renewable plan, against a now-committed ~&#8377;18,300&nbsp;Cr organic build plus the &#8377;4,859&nbsp;Cr ReNew acquisition &mdash; a combined ~&#8377;23,159&nbsp;Cr, essentially in line with the original guidance, though management's own framing ("More Capacity, Same Envelope, Lower Risk") concedes the mix has moved from all-organic to organic-plus-M&amp;A. Separately, a broker figure of a "&#8377;320bn" (&#8377;32,000&nbsp;Cr) total capex plan appeared in a 7 May 2026 ICICI Securities note (&sect;02); no equivalent total-company figure (as opposed to the RE-specific one above) was found in any company filing reviewed, so the two numbers are kept separate rather than reconciled. On capacity: 2,400&nbsp;MW was "under implementation" at FY26-end per the Annual Report, with 296&nbsp;MW commissioned since year-end as of the report's date; the Q1FY27 deck separately states "2.2&nbsp;GWp out of 4.5&nbsp;GWp would start generating revenues by end of FY27" &mdash; a forward claim this report can track but not yet verify.</div>
+      </div>
+
+      <h3>Geography, expansion &amp; new order wins</h3>
+      <p><b>Vertical expansion:</b> the group already sells power through generation (thermal + renewables), transmission-adjacent distribution and, from 2027, potentially solar-cell/module manufacturing &mdash; a genuine attempt at backward integration into its own renewable supply chain (&sect;01). <b>Horizontal expansion:</b> five distribution geographies beyond Kolkata (Greater Noida, Chandigarh, Kota, Bharatpur, Bikaner, Malegaon) plus RE project sites across Rajasthan, Madhya Pradesh, Karnataka, Andhra Pradesh and (via the ReNew deal) Karnataka solar/wind assets. Confirmed new order wins in this filing window: a 250&nbsp;MW SECI wind LOA and a further 175&nbsp;MW SECI wind LOA (Q1FY27), two new hybrid/RTC awards from CESC Kolkata and REMCL disclosed across the two decks, and the 10&nbsp;Aug ReNew acquisition itself. No revenue-by-geography breakdown beyond the subsidiary table above was found; no export revenue is evidenced &mdash; all disclosed activity is domestic.</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">Full-year FY26 shows genuinely improving earnings quality; Q4FY26 alone tells a materially different, regulatory-income-driven story &mdash; both are real, and they point in opposite directions.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated</th><th>FY25</th><th>FY26</th><th>Q4FY25</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>EBITDA margin (on Rev. from ops)</td><td>25.4%</td><td>25.3%</td><td>28.5%</td><td>25.9%</td><td>31.1%</td><td>22.7%</td><td>20.9%</td></tr>
+            <tr><td>PAT margin (on Rev. from ops)</td><td>8.4%</td><td>8.7%</td><td>10.0%</td><td>7.6%</td><td>11.2%</td><td>7.8%</td><td>7.6%</td></tr>
+            <tr><td>Regulatory income as % of PBT</td><td>70.1%</td><td>42.6%</td><td>30.2%</td><td>42.3%</td><td class="neg">66.6%</td><td>45.5%</td><td>33.0%</td></tr>
+            <tr><td>Finance cost</td><td>1,324</td><td>1,360</td><td>335</td><td>343</td><td>317</td><td>363</td><td>312</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>1,205</td><td>1,228</td><td>304</td><td>308</td><td>304</td><td>305</td><td>291</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: computed by this report from the Investor Presentation P&amp;L tables (&sect;03) per Fundamental_Analysis.md conventions (revenue-from-operations basis, excluding regulatory income from the margin denominator). Regulatory-income-as-%-of-PBT uses reported PBT and reported net regulatory income for each period.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>The single biggest quality flag: Q4FY26's profit growth leaned heavily on regulatory income, reversing the full-year trend</b>For the full year, CESC's earnings quality genuinely <em>improved</em>: regulatory income's share of consolidated PBT fell from 70.1% (FY25) to 42.6% (FY26) &mdash; i.e. a shrinking share of profit came from the accounting recognition of future tariff true-ups, and more came from the operating business (company's own "Profit before regulatory income and tax" rose from &#8377;534&nbsp;Cr in FY25 to &#8377;1,216&nbsp;Cr in FY26, a 128% increase). But Q4FY26 alone moved the opposite way: regulatory income's share of that single quarter's PBT jumped to 66.6% (from 30.2% in Q4FY25), and the standalone entity's own disclosed EPS-excluding-regulatory-income fell from &#8377;2.15 (Q4FY25) to just &#8377;0.86 (Q4FY26) &mdash; even though headline standalone EPS <em>rose</em> (&#8377;1.64&rarr;&#8377;1.69) over the same comparison, per the company's own Note&nbsp;5(ii) disclosure in the financial results. In other words, the quarter that drove much of FY26's reported PAT growth was, on the company's own regulatory-income-adjusted numbers, a weaker underlying quarter than the year-ago period, masked by an accounting item. Q1FY27's regulatory-income share (33.0%) reverted back down &mdash; consistent with the full-year FY26 trend rather than Q4FY26's spike &mdash; but that quarter's EBITDA fell YoY regardless (&sect;03), so the underlying picture stays mixed rather than clean in either direction.</div>
+      </div>
+
+      <h3>What moved FY26 and Q1FY27</h3>
+      <p>Full-year FY26 EBITDA margin was essentially flat (25.4%&rarr;25.3%) even as absolute EBITDA grew 9.2%, i.e. the group grew in line with its existing cost structure rather than expanding or compressing unit economics. Management's own investor-deck commentary attributes part of this to "significant savings achieved in variable cost on both fuel and power procurement" during the year (Investor Presentation, Q4 FY26 Key Highlights) &mdash; consistent with cost of fuel actually falling in absolute terms (&#8377;3,838&nbsp;Cr FY26 vs &#8377;4,023&nbsp;Cr FY25) despite higher generation and sales volumes. Finance cost grew only modestly for the full year (+2.7%, &#8377;1,324&rarr;&#8377;1,360&nbsp;Cr) despite consolidated debt growing ~20% (&sect;05) &mdash; and in both Q4FY26 and Q1FY27, finance cost actually <em>fell</em> YoY (&#8377;335&rarr;&#8377;317&nbsp;Cr; &#8377;363&rarr;&#8377;312&nbsp;Cr) even as the balance sheet grew, likely reflecting refinancing at better terms and/or a rising share of new project debt being capitalised into construction-in-progress rather than expensed (CWIP rose from &#8377;403&nbsp;Cr to &#8377;2,905&nbsp;Cr consolidated &mdash; &sect;05) rather than a lower cost of debt across the whole book. Depreciation was essentially flat to slightly down across the comparable quarters despite the capex ramp &mdash; consistent with a large share of new renewable capacity still sitting in CWIP, not yet commissioned and depreciating (&sect;05).</p>
+
+      <h3>Standalone ratio detail (company-computed, Regulation 52(4) disclosures)</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Standalone Operating Margin</div><div class="v">18.4%</div><div class="d">FY26 vs 18.2% FY25; Q4FY26 21.7% vs Q4FY25 19.9%</div></div>
+        <div class="stat"><div class="k">Standalone Net Margin</div><div class="v">8.6%</div><div class="d">FY26 vs 8.2% FY25</div></div>
+        <div class="stat"><div class="k">Standalone Return on Net Worth</div><div class="v">8.7%</div><div class="d">FY26 vs 8.1% FY25 (company-disclosed, Annual Report MD&amp;A)</div></div>
+        <div class="stat"><div class="k">Standalone Interest Service Coverage</div><div class="v">2.9x</div><div class="d">Q4FY26 (quarterly); 3.1x FY26 full-year</div></div>
+      </div>
+
+      <h3>Forward margin guidance</h3>
+      <p>No formal, company-issued numeric margin guidance was found in this dataset (no earnings-call transcript exists &mdash; see coverage note). The closest available forward view is a sell-side estimate: Prabhudas Lilladher's 14 Aug 2026 note models a 15% EBITDA CAGR over FY26&ndash;28E, built around the ReNew acquisition and broader RE ramp (&sect;02, &sect;09) &mdash; a broker's own construction from the disclosed capacity/capex plan, not a verbatim management target, and treated as such throughout this report.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">Leverage is rising at the consolidated (subsidiary/project) level while the standalone parent has actually deleveraged &mdash; and one credit-rating agency disagrees with the other two on how comfortable that should feel.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, &#8377; Cr unless noted</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total debt (yfinance annual)</td><td>14,262.8</td><td>14,543.6</td><td>17,978.0</td><td>21,670.6</td></tr>
+            <tr><td>Common stock equity</td><td>10,910.4</td><td>11,445.6</td><td>12,010.7</td><td>12,530.3</td></tr>
+            <tr><td>Debt / equity</td><td>1.31x</td><td>1.27x</td><td>1.50x</td><td class="neg">1.73x</td></tr>
+            <tr><td>Net debt (yfinance annual)</td><td>12,933.2</td><td>13,087.7</td><td>15,537.8</td><td>17,110.2</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet. D/E was flat-to-improving FY23&rarr;FY24, then rose sharply across FY25 and FY26 &mdash; the two years that also saw the CPDL acquisition (Feb 2025) and the renewable capex ramp (&sect;01, &sect;06), consistent with the leverage increase being growth-funding rather than operating stress.</caption>
+      </div>
+
+      <h3>Company-disclosed FY26 ratios (Regulation 52(4))</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Consol. Debt/Equity</div><div class="v neg">1.7x</div><div class="d">vs 1.5x FY25 &mdash; company-disclosed</div></div>
+        <div class="stat"><div class="k">Consol. Interest Coverage</div><div class="v">3.1x</div><div class="d">vs 3.0x FY25 &mdash; stable despite leverage rise</div></div>
+        <div class="stat"><div class="k">Consol. Debt Service Coverage</div><div class="v neg">1.2x&ndash;1.4x</div><div class="d">down from 1.4x&ndash;1.6x FY25 (two DSCR variants disclosed)</div></div>
+        <div class="stat"><div class="k">Consol. Current Ratio</div><div class="v neg">0.9x</div><div class="d">vs 1.0x FY25; standalone only 0.4x</div></div>
+      </div>
+      <p>Interest coverage held steady even as leverage rose, because EBITDA grew roughly as fast as debt (&sect;04) &mdash; but debt-service coverage, which also captures principal repayments, weakened on both disclosed variants. Current ratios below 1.0x look weak on paper but are a structural feature of regulated Indian utilities (large regulatory-deferral and security-deposit balances sit outside standard current-asset/liability buckets) rather than a fresh liquidity concern on their own; the meaningful move to watch is the <em>direction</em> (worsening at both standalone and consolidated levels) rather than the absolute level.</p>
+
+      <h3>Where the leverage is actually building: subsidiaries, not the parent</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Standalone borrowings</div><div class="v pos">&#8377;11,026 Cr</div><div class="d">FY26, down 4.7% from &#8377;11,565 Cr FY25</div></div>
+        <div class="stat"><div class="k">Standalone net worth</div><div class="v neg">&#8377;9,717 Cr</div><div class="d">FY26, down 1.7% from &#8377;9,885 Cr FY25</div></div>
+        <div class="stat"><div class="k">Consolidated borrowings</div><div class="v neg">&#8377;21,319 Cr</div><div class="d">FY26, up 20.3% from &#8377;17,719 Cr FY25</div></div>
+      </div>
+      <p>This is a genuinely important nuance the headline D/E ratio hides: the <em>standalone</em> Kolkata entity actually reduced its own borrowings in FY26 and saw its own net worth dip slightly (large dividend payout against modest retained-profit addition &mdash; &sect;06), while essentially all of the consolidated leverage increase (+&#8377;3,600&nbsp;Cr) sits at the subsidiary/project level &mdash; principally the renewable-energy build-out and, prospectively, the ReNew acquisition financing below. This is a normal project-finance structure for capital-intensive utility/renewable expansion, but it does mean group-level leverage metrics are increasingly a read on execution risk in the newer, less-tested subsidiaries rather than on the core licence.</p>
+
+      <h3>Credit ratings: a live disagreement between agencies</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>CARE Ratings has held a Negative Outlook through the filing year while ICRA and India Ratings sit at Stable</b>Per the Annual Report's credit-rating history table: CARE Ratings affirmed "CARE AA; Negative Outlook" on both long-term bank facilities and NCDs in June 2025 and again in September 2025. Over the same period, ICRA affirmed "ICRA AA; Stable Outlook" (Jun, Jul, Sep 2025) and India Ratings affirmed "IND AA; Stable Outlook" (Feb 2026) on the same or adjacent facilities. All three agree on the AA rating level; only CARE flags a negative trajectory. No rating action (upgrade or downgrade) is disclosed as having occurred in this filing window &mdash; this is an outlook divergence, not a downgrade &mdash; but it is a genuine, unresolved disagreement among independent monitors at exactly the point the balance sheet is levering up for the RE build-out, and worth tracking at the next rating action from any of the three agencies.</div>
+      </div>
+
+      <h3>The ReNew acquisition: financed partly by refinancing the targets' own promoter debt</h3>
+      <p>The 10 Aug 2026 SPA sets an enterprise value of &#8377;4,859&nbsp;Cr for the six ReNew SPVs (1,411&nbsp;MWp), with total cash consideration payable on closing of &#8377;1,582&nbsp;Cr &mdash; comprising &#8377;589&nbsp;Cr paid to the sellers for share capital and &#8377;993&nbsp;Cr of unsecured promoter-debt infusion used to repay existing promoter debt within the target companies (net of &#8377;94&nbsp;Cr of net current assets, subject to post-closing adjustments), per the company's own Regulation 30 disclosure. A further contingent payment of up to &#8377;230&nbsp;Cr is payable only on additional realisation of a change-in-law claim. No regulatory approval is required and the deal is targeted to close before 31 Oct 2026; it is explicitly disclosed as <em>not</em> a related-party transaction. The specific external funding source for the &#8377;1,582&nbsp;Cr (existing cash, the recent &#8377;250&nbsp;Cr NCD raise, or fresh borrowing) is not disclosed in the filing reviewed and is flagged as a gap &mdash; but given the consolidated cash balance (&#8377;4,208&nbsp;Cr standalone-plus-subsidiaries at FY26-end, &sect;06) and the pattern of rising subsidiary-level debt, this report expects incremental debt to fund a meaningful share of it.</p>
+
+      <h3>Capex vs. depreciation: real, and sharply accelerating, capacity expansion</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, &#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Capex (PPE + CWIP purchases)</td><td>695.5</td><td>771.2</td><td>1,863.2</td><td class="pos">3,916.2</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>1,092.0</td><td>1,465.9</td><td>1,400.8</td><td>1,440.7</td></tr>
+            <tr><td>Capex / D&amp;A</td><td>0.6x</td><td>0.5x</td><td>1.3x</td><td class="pos">2.7x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement, cross-checked against the FY26 company-filed consolidated cash flow (capex &#8377;3,916&nbsp;Cr) &mdash; the two sources agree exactly for FY26. Capex more than doubled again in FY26 after already more than doubling in FY25, unambiguous evidence of an active, accelerating capacity build (Chandigarh integration, then the RE ramp) rather than maintenance-only spend; note capex ran <em>below</em> D&amp;A in FY23&ndash;FY24, i.e. the current heavy-investment phase is a genuinely recent (FY25&ndash;26) shift in capital intensity.</caption>
+      </div>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Operating cash flow genuinely outgrew profit for the full year &mdash; but the capex super-cycle nearly wiped out free cash flow at the group level, even as the parent's own free cash flow improved sharply and the dividend kept rising.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, &#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT (incl. NCI, yfinance basis)</td><td>1,397.3</td><td>1,447.3</td><td>1,428.9</td><td>1,617.6</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>1,978.4</td><td>2,351.4</td><td>2,581.4</td><td class="pos">4,057.5</td></tr>
+            <tr><td>Capex</td><td>&minus;695.5</td><td>&minus;771.2</td><td>&minus;1,863.2</td><td>&minus;3,916.2</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td>1,282.8</td><td>1,580.3</td><td>718.3</td><td class="neg">141.3</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>1.42x</td><td>1.62x</td><td>1.81x</td><td class="pos">2.51x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement; FCF figures cross-check exactly against the standalone/consolidated cash-flow notes in the FY26 financial results filing (CFO &#8377;4,057&nbsp;Cr, capex &#8377;3,916&nbsp;Cr).</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#9679;</div>
+        <div><b>Earnings-quality check: passes clean, and improved further, for the full year</b>CFO/PAT conversion rose every year shown, from 1.42x (FY23) to 2.51x (FY26) &mdash; consolidated CFO grew 57% in FY26 (&#8377;2,581&rarr;&#8377;4,057&nbsp;Cr) against PAT growth of only 13% (&sect;01), driven by a working-capital release (trade &amp; other payables improved by &#8377;756&nbsp;Cr, and the drag from the regulatory-deferral-account movement shrank from &minus;&#8377;1,249&nbsp;Cr to &minus;&#8377;903&nbsp;Cr YoY). This is the opposite of a red flag: cash generation outran reported profit, not the reverse.</div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>But group free cash flow has been compressed almost to zero by the capex ramp</b>Despite CFO's improvement, free cash flow fell from &#8377;718&nbsp;Cr (FY25) to just &#8377;141&nbsp;Cr (FY26) &mdash; capex simply grew faster than operating cash flow could keep up with (&sect;05). FY26's &#8377;803&nbsp;Cr consolidated dividend payment (&sect;below) was therefore not covered by the year's free cash flow at all &mdash; it was funded from the balance sheet (cash draw-down and/or fresh borrowing), not from organic group-level cash generation.</div>
+      </div>
+
+      <h3>The nuance that matters: the parent's own cash generation is strong and improving</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Standalone CFO</div><div class="v pos">&#8377;3,426 Cr</div><div class="d">FY26, +88% vs &#8377;1,821 Cr FY25</div></div>
+        <div class="stat"><div class="k">Standalone capex</div><div class="v">&#8377;742 Cr</div><div class="d">FY26, +20% vs &#8377;619 Cr FY25</div></div>
+        <div class="stat"><div class="k">Standalone free cash flow</div><div class="v pos">&#8377;2,684 Cr</div><div class="d">FY26, +123% vs &#8377;1,202 Cr FY25</div></div>
+        <div class="stat"><div class="k">Standalone dividend paid</div><div class="v">&#8377;794 Cr</div><div class="d">FY26 &mdash; covered ~3.4x by standalone FCF</div></div>
+      </div>
+      <p>Read the two cash-flow pictures side by side: the Kolkata parent generated &#8377;2,684&nbsp;Cr of free cash flow in FY26 against a &#8377;794&nbsp;Cr dividend outflow &mdash; comfortably covered, and improving. It is the <em>consolidated</em> figure &mdash; almost entirely the renewable and thermal subsidiaries' capex &mdash; that turns this into a near-zero group FCF number. That reframes the dividend-coverage flag above: this is not evidence of parent-level distress, but a direct, quantified illustration of how much cash the RE build-out (and now the ReNew acquisition) is consuming at the subsidiary level, funded by subsidiary-level debt rather than by squeezing the dividend. Whether that is a comfortable trade-off depends on whether the newly built/acquired RE capacity converts to cash-generative EBITDA on the schedule management has laid out (&sect;03, &sect;10) &mdash; something this dataset cannot yet confirm, since none of the FY26 capex has had more than one year to season.</p>
+
+      <h3>Financing activity and the dividend trajectory</h3>
+      <p>Consolidated financing cash flow was a net inflow of &#8377;1,205&nbsp;Cr in FY26 (vs &#8377;1,337&nbsp;Cr FY25) &mdash; gross non-current borrowings raised of &#8377;5,178&nbsp;Cr (vs &#8377;3,500&nbsp;Cr FY25) against repayments of &#8377;1,990&nbsp;Cr (vs &#8377;1,477&nbsp;Cr), i.e. gross borrowing nearly kept pace with the capex increase. Consolidated dividends paid rose from &#8377;603&nbsp;Cr (FY25) to &#8377;803&nbsp;Cr (FY26); per-share dividend history (MarketData) shows a step-up from &#8377;4.50/share (Jan 2025) to &#8377;6.00/share (Oct 2025), repeated again as a &#8377;6/share <em>interim</em> payout declared alongside the Q1FY27 results (13 Aug 2026, ex-date 19 Aug 2026) &mdash; TTM payout ratio 51.1% (MarketData/overview.md). No explicit management commentary on future cash-generation or dividend-policy guidance was found in this dataset (no transcript exists &mdash; see coverage note); the trend itself (rising per-share dividend, declared the same day as a quarter of falling consolidated EBITDA) is presented here without an accompanying management explanation to check it against.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">A stable, promoter-led RPSG Group board with a clean audit opinion and one relevant new hire &mdash; alongside a rating-agency disagreement and a scale of related entities (50+ subsidiaries) that is genuinely hard to track in full from public filings alone.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Dr. Sanjiv Goenka</div>
+          <div class="role">Chairman, Non-Executive, Promoter</div>
+          <div class="bio">Chairman of the RP-Sanjiv Goenka Group; also Chairman/Director of several other group-listed entities (PCBL Chemical, Saregama India, RPSG Ventures, Firstsource Solutions). Attended all 6 board meetings in FY26.</div>
+        </div>
+        <div class="person">
+          <div class="name">Mr. Shashwat Goenka</div>
+          <div class="role">Non-Executive, Promoter</div>
+          <div class="bio">Next-generation family leadership; also holds directorships/chairmanship across other RPSG Group listed entities (PCBL Chemical, Firstsource Solutions, RPSG Ventures, Spencer's Retail). Attended all 6 board meetings.</div>
+        </div>
+        <div class="person">
+          <div class="name">Mr. Vineet Sikka</div>
+          <div class="role">Executive Director &mdash; Distribution</div>
+          <div class="bio">Signs the company's financial-results filings as Managing Director&ndash;Distribution (per the FY26 results filing signature block). Attended all 6 board meetings.</div>
+        </div>
+        <div class="person">
+          <div class="name">Mr. Rajarshi Banerjee</div>
+          <div class="role">Executive Director &amp; CFO</div>
+          <div class="bio">Signs the Regulation 33(3)(d) declaration confirming the FY26 unmodified audit opinion. No CFO change disclosed in this filing window.</div>
+        </div>
+        <div class="person">
+          <div class="name">Mr. Umang Kanoria <span style="font-weight:400;color:var(--ink-mute);">(new)</span></div>
+          <div class="role">Independent Director, appointed 25 Feb 2026 (3-year term)</div>
+          <div class="bio">Fills the board seat vacated by the passing of Mr. Sunil Mitra (12 Jan 2026, an Independent Director the Board formally noted with regret). Attended only 1 of 6 meetings in FY26 &mdash; expected given his mid-year appointment.</div>
+        </div>
+        <div class="person">
+          <div class="name">Mr. Rajeev Chowdhury <span style="font-weight:400;color:var(--ink-mute);">(new KMP)</span></div>
+          <div class="role">Head of Regulatory Affairs, appointed 3 Jun 2026</div>
+          <div class="bio">28 years in power-sector regulatory affairs, tariff strategy and policy advocacy (previously Director &amp; Group Head, Regulatory at BSES; also PwC, Ortel Communication). A directly relevant hire given how large a swing factor regulatory income is in the P&amp;L (&sect;04).</div>
+        </div>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Board composition and attendance, otherwise unremarkable</b>The 8-member board (per the FY26 Corporate Governance report) mixes 2 promoter/non-executive, 2 executive and non-independent/independent directors typical of an RPSG Group entity; attendance was generally strong (6/6 for most members) with Mr. P.K. Khaitan attending 4 of 6 meetings and continuation of Mr. Paras Kumar Chowdhary as Independent Director beyond age 75 requiring shareholder approval at the FY26 AGM (standard SEBI LODR Reg. 17(1A) process, not itself a governance flag). No board-level related-party transaction beyond the small receivable balance below was located in the sections of the Annual Report reviewed.</div>
+      </div>
+
+      <h3>Auditor &amp; related-party disclosure</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Statutory auditor:</b> S.R. Batliboi &amp; Co. LLP (EY network) issued an <b>unmodified/clean opinion</b> on both standalone and consolidated FY26 results, with no qualification or emphasis of matter noted in the sections reviewed. No auditor change in this filing window.</li>
+        <li><b>Consolidation scope:</b> the FY26 consolidated results incorporate 40 audited subsidiaries (total assets &#8377;26,118&nbsp;Cr) plus 9 immaterial unaudited subsidiaries (combined total assets &#8377;0.16&nbsp;Cr) and 1 joint venture (Mahuagarhi Coal Company, nil profit/loss impact) &mdash; per the auditor's own "Other Matter" paragraph. The full Annexure-1 entity list runs to 52 names, the large majority newly incorporated Purvah Green Power SPVs (eight new subsidiaries incorporated in Q4FY26 alone) &mdash; a project-finance-style SPV structure that is standard for utility-scale renewable development but genuinely hard to track individually from public filings.</li>
+        <li><b>Related-party transactions:</b> the only explicit figure located in the sections reviewed was a "Receivable from Related Party" balance of &#8377;45.40&nbsp;Cr (vs &#8377;28.35&nbsp;Cr prior year) &mdash; small relative to group revenue (&#8377;18,570&nbsp;Cr). A complete related-party-transaction schedule was not locatable in this review and is flagged as a data gap rather than assumed clean.</li>
+        <li><b>Credit ratings:</b> see &sect;05 &mdash; CARE Ratings' Negative Outlook (vs ICRA/India Ratings Stable) is arguably as much a governance/oversight signal as a pure credit one, given it is an independent third party flagging a different risk read than two peer agencies.</li>
+      </ul>
+
+      <h3>Ownership</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Insider / promoter holding</div><div class="v">6.34%</div><div class="d">per MarketData &mdash; likely understates true RPSG Group economic control given cross-holding structures typical of the group</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">77.38%</div><div class="d">per MarketData; sits oddly against a disclosed free float of only 49.7% of shares outstanding &mdash; flagged as an internal inconsistency in the source data, not resolved here</div></div>
+        <div class="stat"><div class="k">Analyst opinions on record</div><div class="v">11</div><div class="d">1 strong buy, 9 buy, 0 hold, 0 sell, 1 strong sell (see &sect;09)</div></div>
+      </div>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other disclosure insights</h2></div>
+      <p class="sec-dek">With no earnings call in this dataset, the most useful colour comes from the investor decks' own bullet commentary and one long-running regulatory dispute worth tracking.</p>
+
+      <h3>The Sarisatoli coal-mine and WBERC true-up disputes are a recurring, unresolved theme</h3>
+      <p>Both the standalone and consolidated financial-results notes (identical language, FY26 filing) disclose an ongoing, multi-year regulatory dispute: WBERC's tariff and Annual Performance Review (APR) orders for FY2018-19 through FY2025-26 have, per the company, "deviated from past practices/extant regulations in certain matters," including issues tracing back to the Sarisatoli coal mine (operational since April 2015). CESC states it has filed or is filing appeals and is "confident of the matter being adjudicated in its favour," with adjustments to be made "on the matter reaching finality." This is directly the source of the large, volatile regulatory-income line examined in &sect;04 &mdash; it is not a one-off item but a standing, multi-year recognition process tied to litigation whose outcome is not yet final. A similar dispute is separately disclosed for subsidiary NPCL with UPERC over FY2023-24 truing-up.</p>
+
+      <h3>Renewable manufacturing ambitions remain early-stage</h3>
+      <p>The Greater Noida solar-cell/module project (3&nbsp;GW, DCR-linked) progressed from "technology selection and vendor finalisation underway" (Q4FY26 deck) to "equipment vendor finalized & LLI orders in advanced stage, site activities initiated" (Q1FY27 deck) &mdash; genuine but early-stage progress, with commissioning still targeted for 2027 in both decks (i.e. no schedule change disclosed). The separately reported Odisha manufacturing MoU (&#8377;4,500&nbsp;Cr, News 22 Jan 2026) has not resurfaced in either investor deck reviewed, and its status is unclear from this dataset &mdash; flagged as a gap rather than assumed to be progressing or shelved.</p>
+
+      <h3>BESS build-out is a real, if smaller, parallel commitment</h3>
+      <p>Both decks reference execution of 1,500&nbsp;MWh of battery energy storage capacity across RTC and Solar+BESS projects, plus a standalone-level 40&nbsp;MW/80&nbsp;MWh grid-connected BESS under installation at a CESC Kolkata substation (Annual Report) to manage renewable-power intermittency on the distribution side &mdash; a sensible complement to the generation-side RE build given the group's own growing reliance on intermittent sources.</p>
+
+      <h3>A 22-year-old litigation matter closed, immaterially</h3>
+      <p>The Calcutta High Court closed a defamation case (originally over a 2004 broadcast branding CESC a "Big Thief") on 27 Mar 2026, accepting unconditional apologies and awarding only token damages &mdash; a legacy-cleanup item with no financial materiality, included here only because it appeared in the tracked news feed.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">A broadly bullish sell-side consensus with real upside to CMP, though the crowd is not unanimous and the most recent note flags a fresh estimate miss.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Consensus recommendation</div><div class="v">Strong Buy</div><div class="d">yfinance recommendationKey</div></div>
+        <div class="stat"><div class="k">Analyst opinions</div><div class="v">11</div><div class="d">1 strong buy / 9 buy / 0 hold / 0 sell / 1 strong sell</div></div>
+        <div class="stat"><div class="k">Price target (mean / median)</div><div class="v">&#8377;211.73 / &#8377;218.00</div><div class="d">range &#8377;172&ndash;&#8377;250</div></div>
+        <div class="stat"><div class="k">Upside to mean target</div><div class="v pos">+36.5%</div><div class="d">vs CMP &#8377;155.09</div></div>
+      </div>
+
+      <h3>Named sell-side views in this dataset</h3>
+      <ul style="max-width:76ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Prabhudas Lilladher (14 Aug 2026):</b> BUY, target &#8377;220, ~12x FY28E EPS; models 15% EBITDA CAGR FY26&ndash;28E (6&ndash;11% upward EBITDA revisions attributed to the ReNew deal); explicitly flags Q1FY27 consolidated PAT ~7% below its own estimate on widening Malegaon losses.</li>
+        <li><b>ICICI Securities (7 May 2026):</b> raised target &#8377;204&rarr;&#8377;220, retained BUY, citing Q4FY26 strength and the (broker-sourced) &#8377;32,000&nbsp;Cr total capex plan; flags "lingering regulatory asset concerns" &mdash; directly consistent with the regulatory-income volatility and Sarisatoli/WBERC dispute this report identifies independently in &sect;04 and &sect;08.</li>
+        <li><b>HDFC Institutional Equities (21 Aug 2026):</b> target &#8377;210&ndash;221 as part of a six-stock sector-bullish call on India's peak power demand.</li>
+        <li><b>Nuvana Research (20 Aug 2026):</b> names CESC (with NTPC) a preferred power-sector pick.</li>
+      </ul>
+      <p>Every named target sits in a tight &#8377;204&ndash;221 band, all above CMP, and all cluster around the ReNew deal and broader RE ramp as the primary re-rating catalyst. The one discordant data point is the single "strong sell" rating buried in the 11-analyst yfinance panel &mdash; unattributed in the source data, but a reminder that the consensus, while lopsidedly bullish, is not unanimous.</p>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock trading below both its 50- and 200-day averages despite a bullish sell-side consensus and a genuinely improving full-year cash-flow story &mdash; the market appears to be pricing the Q1FY27 deceleration and leverage build more heavily than the analyst notes are.</p>
+
+      <h3>Price positioning</h3>
+      <div id="pchart"></div>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">13.34x</div><div class="d">On FY26 diluted EPS &#8377;11.63 &mdash; the two figures reconcile exactly</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">10.92x</div><div class="d">Implies consensus FY27E EPS &asymp;&#8377;14.20, i.e. &asymp;22% YoY EPS growth expected</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">1.64x</div><div class="d">Book value/share &#8377;94.47</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">10.11x</div><div class="d">Enterprise value &#8377;37,235 Cr</div></div>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>A valuation tension worth flagging</b>The market's own forward P/E (10.92x) embeds roughly 22% consensus EPS growth for FY27E &mdash; noticeably punchier than the 15% EBITDA CAGR Prabhudas Lilladher explicitly models for FY26&ndash;28E (&sect;09), and EPS growth would normally be expected to trail EBITDA growth here given rising depreciation (as RE capex is commissioned) and a larger debt load (&sect;05). Either consensus EPS estimates embed a one-off benefit (e.g. a further regulatory-income swing, per &sect;04's volatility) or the forward multiple is pricing a cleaner acceleration than the disclosed capacity/capex plan alone would suggest. This report does not have enough forward-looking company guidance in this dataset to resolve which.</div>
+      </div>
+
+      <h3>Bear / base / bull, illustrative FY27E&ndash;FY28E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">This report's own scenario construction, anchored to the 15% EBITDA CAGR FY26-28E cited via Prabhudas Lilladher's 14 Aug 2026 note, the company's own &#8377;23,000+ Cr / 3.2 GW Phase-1 renewable capex guidance (&sect;03, &sect;05), and the sell-side mean target of &#8377;211.73 (&sect;09) &mdash; not a point forecast, and not a substitute for company guidance, which does not exist in this dataset in numeric form.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;115&ndash;135</div>
+          <div class="rng">&minus;26% to &minus;13% from CMP</div>
+          <ul>
+            <li>Q2&ndash;Q3 FY27 repeat Q1FY27's EBITDA-decline pattern; Malegaon's losses widen further rather than close, as flagged in Prabhudas Lilladher's own Q1FY27 note</li>
+            <li>Regulatory income swings negative (reverting the WBERC/Sarisatoli dispute against CESC, or simply normalising down from FY26's elevated share of PBT), pressuring reported PAT even if the underlying business is stable</li>
+            <li>CARE's Negative Outlook converts into an actual downgrade as consolidated D/E pushes past 1.7x on ReNew-deal funding, raising the group's marginal cost of debt</li>
+            <li>FY27 consolidated PAT grows low-single-digits (&#8377;1,650&ndash;1,700 Cr); the market de-rates toward 9&ndash;10x trailing earnings on demonstrated execution and leverage risk</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;185&ndash;215</div>
+          <div class="rng">+19% to +39% from CMP</div>
+          <ul>
+            <li>ReNew acquisition closes on schedule (by 31 Oct 2026) and the 2.2 GWp of contracted RE capacity begins generating revenue by end-FY27 per the company's own stated target</li>
+            <li>FY27 EBITDA grows roughly in line with the 15% CAGR guide (&asymp;&#8377;5,300&ndash;5,450 Cr); PAT growth trails EBITDA growth on rising depreciation/interest as RE capex is commissioned, landing around &#8377;1,750&ndash;1,850 Cr (+8&ndash;14%)</li>
+            <li>Malegaon's T&amp;D-loss improvement finally shows up in the P&amp;L, narrowing (not eliminating) its EBITDA loss</li>
+            <li>Market holds roughly today's multiple to a modest re-rate (11&ndash;13x forward earnings), converging toward the current sell-side mean target of &#8377;211.73</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;240&ndash;270</div>
+          <div class="rng">+55% to +74% from CMP</div>
+          <ul>
+            <li>Further accretive bolt-on RE acquisitions (repeating the ReNew playbook) accelerate the path toward the 10 GW FY32 vision faster than the disclosed organic pipeline alone would allow</li>
+            <li>Solar cell/module manufacturing at Greater Noida reaches a binding, funded commitment (still absent in this dataset) and is read by the market as a genuine vertical-integration option, not just an MoU</li>
+            <li>Regulatory-income volatility resolves favourably and durably as the WBERC/Sarisatoli disputes are settled in CESC's favour, removing a recurring earnings-quality overhang</li>
+            <li>FY27&ndash;28 EBITDA CAGR exceeds the 15% guide; consolidated D/E stabilises rather than climbs further as RE assets season into cash generation, and the market re-rates the RE platform toward peer renewable-hybrid multiples</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: at 1.64x P/B and an FY26 standalone RoNW of only 8.7% (company-disclosed), CESC is not priced as a high-return compounder today &mdash; most of the bull case above requires the <em>consolidated</em> return profile to improve meaningfully as new RE capacity seasons, not simply a re-rating of the existing regulated business.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuine, multi-year, company-wide T&amp;D-loss-reduction track record culminating in an all-time-low 6.11% at Kolkata; a well-integrated Chandigarh acquisition already profitable and improving fast (PAT &#8377;4&nbsp;Cr&rarr;&#8377;9&nbsp;Cr YoY in Q1); a renewable-energy platform that is, on the one hard comparison available, executing roughly in line with its own guided capex envelope (&#8377;23,000+&nbsp;Cr guided vs ~&#8377;23,159&nbsp;Cr now committed); full-year FY26 cash-flow quality that genuinely improved (CFO growth of 57% comfortably outpacing PAT growth of 13%, and regulatory income's share of PBT falling from 70% to 43%); a standalone parent whose own free cash flow more than doubled and comfortably covers its own dividend; a clean, unmodified audit opinion from an EY-network auditor; and a heavily bullish 11-analyst sell-side consensus with a mean target 36% above CMP.</p>
+        <p style="max-width:none;"><b>What's not good:</b> Q4FY26's much-touted 19% consolidated PAT growth leaned on a large regulatory-income swing rather than the operating business, and the company's own regulatory-income-excluded standalone EPS actually fell YoY that quarter; Q1FY27 already shows consolidated and standalone EBITDA declining YoY even as revenue grew, with Prabhudas Lilladher's own note flagging a 7% PAT miss on widening Malegaon losses; group free cash flow was compressed from &#8377;718&nbsp;Cr to just &#8377;141&nbsp;Cr in a single year by the capex ramp, and the FY26 consolidated dividend of &#8377;803&nbsp;Cr &mdash; followed by a fresh &#8377;6/share interim payout in the same filing as the weak Q1FY27 print &mdash; was not covered by group-level free cash flow; consolidated leverage climbed from 1.5x to 1.7x debt/equity with debt-service coverage weakening on both disclosed variants, and CARE Ratings has held a Negative Outlook throughout the year while two peer agencies sit at Stable; Malegaon remains a large, only slowly improving structural loss-maker; and no earnings-call transcript exists anywhere in this dataset to check any of this against management's own explanation.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> pragmatically and, on the M&amp;A front, opportunistically &mdash; the Chandigarh and ReNew deals both add scale roughly on the terms guided, and the newly hired Head of Regulatory Affairs (28 years' sector experience) is a sensible response to how large a swing factor the WBERC/Sarisatoli regulatory-income dispute has become. Less transparently: no investor call or Q&amp;A record exists in this dataset for management to explain the Q4FY26 regulatory-income spike, the Q1FY27 EBITDA decline, or Malegaon's stalled turnaround in its own words, and the interim dividend was announced the same day as a quarter of falling core profitability &mdash; a sequencing pattern worth watching rather than a settled concern.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: moderate-to-favourable, roughly 55&ndash;60%.</b> The fundamentals case is more credible here than the sell-side consensus alone would suggest &mdash; full-year cash-flow quality genuinely improved and the RE platform is tracking its own capex guidance &mdash; but this report's own tabulated numbers surface a real, recent deceleration (Q1FY27 EBITDA down YoY at both standalone and consolidated levels) and a capital-allocation tension (rising dividend against collapsing group free cash flow and rising leverage) that the uniformly bullish news tone does not fully capture. None of these are disqualifying for a regulated utility mid-way through a genuine, well-telegraphed capacity build &mdash; but they are exactly the kind of items a standing analyst call would normally press management on quarter after quarter, and that pressure is not visible anywhere in this dataset.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether Q2/Q3 FY27 EBITDA returns to YoY growth or extends Q1FY27's decline, and specifically whether Malegaon's losses narrow as its T&amp;D-loss gains suggest they should; (2) regulatory income's share of PBT &mdash; a further spike toward Q4FY26's 66.6% alongside soft underlying (pre-regulatory) profit would be a repeat of this report's biggest quality flag, while a stable, lower share sustained across quarters would support the full-year FY26 trend instead; (3) whether group free cash flow recovers as FY26-vintage capex starts converting to EBITDA, or whether it stays compressed into FY27 as the ReNew deal adds further capex/debt; (4) the next rating action from CARE, ICRA or India Ratings &mdash; a CARE downgrade, or a shift by ICRA/India Ratings toward Negative, would both be meaningful; (5) whether the ReNew acquisition closes on the stated 31 Oct 2026 timeline and on disclosed terms; (6) any company disclosure that finally quantifies total group capex (reconciling the company's &#8377;23,000+ Cr RE-specific figure against the broker-sourced &#8377;32,000 Cr total) or resolves the WBERC/Sarisatoli dispute.</div>
+      </div>
+
+      <footer>
+        Compiled from CESC Limited's BSE filings (Announcements/AnnouncementsConv, 27&nbsp;Feb&ndash;15&nbsp;Aug 2026 &mdash; financial-results filings, investor-presentation "Investor Update" decks for Q4 FY26 and Q1 FY27, the FY2025-26 Annual Report, board-meeting outcomes, acquisition/order-award filings, dividend and management-change filings, and conference-intimation letters), MarketData (Yahoo Finance via yfinance, fetched 22&nbsp;Aug&nbsp;2026 18:04 IST), and the tracked News feed (22&nbsp;Jan&ndash;21&nbsp;Aug 2026). Two filings (Q1FY27 Financial Results and the Dividend announcement, both 13 Aug 2026) had tables embedded as unreadable scanned images in this pipeline; the same-day, text-native Investor Presentation is used in their place and this is stated explicitly wherever it affects a figure. Q2 FY26 (Jul&ndash;Sep 2025) has no data anywhere in this dataset and is flagged, not estimated. No earnings-call transcript or analyst Q&amp;A record exists in this dataset. Every figure is tagged to its source; where company-filed and MarketData/yfinance figures disagreed, both are shown rather than blended. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [4030, 5285, 4099, 4192, 5559];
+    var ebitda  = [1106, 1180, 1036, 1274, 1149];
+    var pat     = [386, 407, 304, 459, 419];
+    var series = [
+      {label:'Gross Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly gross revenue, EBITDA and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q2 FY26 (Jul&ndash;Sep 2025) is omitted &mdash; no data exists for it anywhere in this dataset (see coverage note). Quarters shown are in chronological order but are not evenly spaced in calendar time.</div></div>';
+  })();
+
+  // ---------- Price range chart (52-week + moving averages, no fabricated series) ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      {label:'52-Wk Low', v:138.12, kind:'range'},
+      {label:'200-Day Avg', v:165.33, kind:'avg'},
+      {label:'50-Day Avg', v:165.59, kind:'avg'},
+      {label:'CMP (22 Aug 26)', v:155.09, kind:'cmp'},
+      {label:'52-Wk High', v:204.50, kind:'range'}
+    ];
+    var W = 900, H = 160, padL = 40, padR = 40, padT = 30, padB = 40;
+    var plotW = W - padL - padR;
+    var minV = 130, maxV = 212;
+
+    function x(v){ return padL + ((v-minV)/(maxV-minV))*plotW; }
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="CESC price positioning versus 52-week range and moving averages" style="width:100%;height:auto;font-size:11px;">';
+    var midY = H/2;
+    svg += '<line x1="'+x(138.12)+'" x2="'+x(204.50)+'" y1="'+midY+'" y2="'+midY+'" stroke="'+css('--border-strong')+'" stroke-width="3" stroke-linecap="round"/>';
+
+    points.forEach(function(p){
+      var px = x(p.v);
+      var color = p.kind==='cmp' ? css('--chart-1') : (p.kind==='avg' ? css('--chart-2') : css('--ink-mute'));
+      var r = p.kind==='cmp' ? 7 : 5;
+      svg += '<circle cx="'+px.toFixed(1)+'" cy="'+midY+'" r="'+r+'" fill="'+color+'" stroke="'+css('--surface')+'" stroke-width="2"><title>'+p.label+': ₹'+p.v+'</title></circle>';
+      var labelY = (p.kind==='avg') ? midY - 22 : midY + 34;
+      svg += '<text x="'+px.toFixed(1)+'" y="'+labelY+'" text-anchor="middle" fill="'+css('--ink-soft')+'" font-weight="600">'+p.label+'</text>';
+      svg += '<text x="'+px.toFixed(1)+'" y="'+(labelY + (p.kind==="avg"?14:-14))+'" text-anchor="middle" fill="'+css('--ink-mute')+'">₹'+p.v.toFixed(2)+'</text>';
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">All five points are directly sourced (MarketData/overview.md) &mdash; no interpolated price history exists in this dataset, so no continuous price line is drawn. CMP sits below both moving averages, roughly a quarter of the way up from the 52-week low.</div></div>';
+  })();
+})();
+</script>

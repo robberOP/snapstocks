@@ -1,7 +1,7 @@
 {
   "symbol": "APOLLO",
   "name": "Apollo Micro Sys",
-  "generatedAt": "2026-08-18T16:37:14.576890+00:00",
+  "generatedAt": "2026-08-23T11:00:47.868264+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
@@ -14,28 +14,28 @@
     "peerIndustry": "Aerospace & Defense"
   },
   "price": {
-    "current": 397.35,
-    "change": 7.450012,
-    "changePercent": 1.9107494,
-    "previousClose": 389.9,
-    "dayLow": 391.05,
-    "dayHigh": 400.1,
-    "fiftyTwoWeekLow": 168.65,
+    "current": 384.55,
+    "change": -2.2000122,
+    "changePercent": -0.5688461,
+    "previousClose": 386.75,
+    "dayLow": 380.3,
+    "dayHigh": 394.5,
+    "fiftyTwoWeekLow": 179.5,
     "fiftyTwoWeekHigh": 466.5,
-    "asOf": 1785751202
+    "asOf": 1787306400
   },
   "stats": {
-    "marketCap": 147655065600.0,
-    "trailingPE": 125.74367,
-    "forwardPE": 52.62914,
-    "priceToBook": 10.443936,
+    "marketCap": 142898593792.0,
+    "trailingPE": 114.791046,
+    "forwardPE": 47.18405,
+    "priceToBook": 10.107501,
     "bookValue": 38.046,
-    "dividendYield": 0.06,
-    "trailingEps": 3.16,
+    "dividendYield": 0.07,
+    "trailingEps": 3.35,
     "debtToEquity": 0.41527000000000003,
     "roe": 8.599537733370397,
     "roce": 13.527718701945112,
-    "return1y": 123.70269817063742,
+    "return1y": 93.75038343587761,
     "sharesOutstanding": 371599512.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         1617667000.0,
         1335831000.0,
         2522201000.0,
-        2932562000.0
+        2932562000.0,
+        2512930000.0
       ],
       "Expenses": [
         1144255000.0,
         1299225000.0,
         971409000.0,
         2079346000.0,
-        2325780000.0
+        2325780000.0,
+        2051558000.0
       ],
       "OperatingProfit": [
         339680000.0,
         318442000.0,
         364422000.0,
         442855000.0,
-        606782000.0
+        606782000.0,
+        461372000.0
       ],
       "NetProfit": [
         182600000.0,
         140036000.0,
         185115000.0,
         256777000.0,
-        376195000.0
+        376195000.0,
+        269130000.0
       ],
       "EPS": [
         0.6,
         0.46,
-        0.54,
+        0.57,
         0.68,
-        1.08
+        1.08,
+        0.75
       ]
     }
   },
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 8408261000.0,
-      "Expenses": 6675760000.0,
-      "OperatingProfit": 1732501000.0,
-      "NetProfit": 958123000.0
+      "Sales": 9303524000.0,
+      "Expenses": 7428093000.0,
+      "OperatingProfit": 1875431000.0,
+      "NetProfit": 1087217000.0
     }
   },
   "balanceSheet": {
@@ -354,14 +361,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 382.5,
-    "targetHigh": 400.0,
-    "targetLow": 365.0,
-    "recommendationKey": "none",
+    "targetMean": 410.0,
+    "targetHigh": 420.0,
+    "targetLow": 400.0,
+    "recommendationKey": "hold",
     "numberOfAnalystOpinions": 2
   },
   "holders": {
-    "insidersPercent": 0.50806,
-    "institutionsPercent": 0.01654
+    "insidersPercent": 0.55256003,
+    "institutionsPercent": 0.01819
   }
 }

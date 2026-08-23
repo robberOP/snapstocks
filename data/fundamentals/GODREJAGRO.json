@@ -1,7 +1,7 @@
 {
   "symbol": "GODREJAGRO",
   "name": "Godrej Agrovet",
-  "generatedAt": "2026-08-18T16:37:52.826929+00:00",
+  "generatedAt": "2026-08-23T11:01:37.684605+00:00",
   "profile": {
     "sector": "Consumer Defensive",
     "industry": "Packaged Foods",
@@ -14,28 +14,28 @@
     "peerIndustry": "Animal Feed"
   },
   "price": {
-    "current": 565.05,
-    "change": 8.25,
-    "changePercent": 1.481681,
-    "previousClose": 556.8,
-    "dayLow": 557.05,
-    "dayHigh": 566.75,
+    "current": 588.7,
+    "change": -8.299988,
+    "changePercent": -1.3902828,
+    "previousClose": 597.0,
+    "dayLow": 585.2,
+    "dayHigh": 599.0,
     "fiftyTwoWeekLow": 506.1,
-    "fiftyTwoWeekHigh": 851.0,
-    "asOf": 1785751181
+    "fiftyTwoWeekHigh": 769.7,
+    "asOf": 1787047202
   },
   "stats": {
-    "marketCap": 108692996096.0,
-    "trailingPE": 23.016293,
-    "forwardPE": 16.644407,
-    "priceToBook": 5.3480163,
+    "marketCap": 113242316800.0,
+    "trailingPE": 25.353146,
+    "forwardPE": 17.545988,
+    "priceToBook": 5.571856,
     "bookValue": 105.656,
-    "dividendYield": 1.98,
-    "trailingEps": 24.55,
+    "dividendYield": 1.84,
+    "trailingEps": 23.22,
     "debtToEquity": 0.7275100000000001,
     "roe": 23.265816306444627,
     "roce": 23.108818520620975,
-    "return1y": -30.769352719872938,
+    "return1y": -22.555138970847946,
     "sharesOutstanding": 192359967.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         21254600000.0,
         26033200000.0,
         27132600000.0,
-        23229700000.0
+        23229700000.0,
+        28522000000.0
       ],
       "Expenses": [
         22813200000.0,
         20352300000.0,
         23915200000.0,
         25275900000.0,
-        22421000000.0
+        22421000000.0,
+        26686800000.0
       ],
       "OperatingProfit": [
         1633200000.0,
         902300000.0,
         2118000000.0,
         1856700000.0,
-        808700000.0
+        808700000.0,
+        1835200000.0
       ],
       "NetProfit": [
         1114900000.0,
         707800000.0,
         1605200000.0,
         1148200000.0,
-        1048500000.0
+        1048500000.0,
+        1345000000.0
       ],
       "EPS": [
         5.8,
         3.68,
         8.35,
         5.97,
-        5.45
+        5.45,
+        6.99
       ]
     }
   },
@@ -136,11 +143,11 @@
         4727800000.0
       ],
       "EPS": [
-        20.95,
+        null,
         15.71,
         18.71,
         22.34,
-        null
+        24.57
       ],
       "SalesGrowth": [
         null,
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 97650100000.0,
-      "Expenses": 91964400000.0,
-      "OperatingProfit": 5685700000.0,
-      "NetProfit": 4509700000.0
+      "Sales": 104917500000.0,
+      "Expenses": 98298900000.0,
+      "OperatingProfit": 6618600000.0,
+      "NetProfit": 5146900000.0
     }
   },
   "balanceSheet": {
@@ -358,14 +365,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 771.0,
-    "targetHigh": 900.0,
+    "targetMean": 749.0,
+    "targetHigh": 865.0,
     "targetLow": 645.0,
     "recommendationKey": "strong_buy",
     "numberOfAnalystOpinions": 5
   },
   "holders": {
     "insidersPercent": 0.72712,
-    "institutionsPercent": 0.10762999
+    "institutionsPercent": 0.10695
   }
 }

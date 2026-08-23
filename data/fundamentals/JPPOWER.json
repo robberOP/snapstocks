@@ -1,7 +1,7 @@
 {
   "symbol": "JPPOWER",
   "name": "JP Power Ven.",
-  "generatedAt": "2026-08-18T16:38:12.747737+00:00",
+  "generatedAt": "2026-08-23T11:02:04.917298+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Independent Power Producers",
@@ -9,33 +9,33 @@
     "bseCode": "532627",
     "nseSymbol": "JPPOWER",
     "website": "https://www.jppowerventures.com",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/jppower.html",
     "peerSector": "Power",
     "peerIndustry": "Power Generation"
   },
   "price": {
-    "current": 18.76,
-    "change": 0.4699993,
-    "changePercent": 2.5697064,
-    "previousClose": 18.29,
-    "dayLow": 18.31,
-    "dayHigh": 19.28,
+    "current": 17.1,
+    "change": 0.0,
+    "changePercent": 0.0,
+    "previousClose": 17.1,
+    "dayLow": 17.06,
+    "dayHigh": 17.39,
     "fiftyTwoWeekLow": 13.15,
     "fiftyTwoWeekHigh": 24.5,
-    "asOf": 1785751202
+    "asOf": 1787306401
   },
   "stats": {
-    "marketCap": 128570892288.0,
-    "trailingPE": 26.800001,
-    "forwardPE": -11.035294,
-    "priceToBook": 1.4403071,
+    "marketCap": 117194153984.0,
+    "trailingPE": 24.428572,
+    "forwardPE": -10.058824,
+    "priceToBook": 1.31286,
     "bookValue": 13.025,
     "dividendYield": null,
     "trailingEps": 0.7,
     "debtToEquity": 0.26634,
     "roe": 3.539280174360384,
     "roce": 6.744700696819504,
-    "return1y": -12.459169567296208,
+    "return1y": -10.751563060271222,
     "sharesOutstanding": 6853458827.0
   },
   "quarterly": {
@@ -354,6 +354,6 @@
   },
   "holders": {
     "insidersPercent": 0.32986,
-    "institutionsPercent": 0.11038999
+    "institutionsPercent": 0.111540005
   }
 }

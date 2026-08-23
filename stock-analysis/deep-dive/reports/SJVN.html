@@ -1,0 +1,913 @@
+<title>SJVN Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Power Generation &mdash; Hydro, Renewables &amp; Thermal (Central/HP Government PSU)</div>
+    <h1>SJVN Limited</h1>
+    <p class="sub">NSE: SJVN &middot; BSE: 533206 &middot; FY2023&ndash;FY2027(Q1) performance review, BSE-filing and market-data synthesis, as of 23 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> FY2025&ndash;26 was SJVN's most operationally active year ever &mdash; a record 13,302 million units generated (+25% YoY), three major commissionings (Buxar Thermal Unit-1, 1,000&nbsp;MW Bikaner Solar, Dhubri Solar), and a one-off ₹679&nbsp;crore tariff truing-up order that pushed consolidated revenue up 47% &mdash; yet consolidated profit after tax <em>fell</em> 21.5%, because the new thermal and solar assets are still losing money in their stabilisation phase (subsidiaries SGEL and STPL together lost over ₹350&nbsp;crore) and the company booked a ₹236&nbsp;crore impairment after the government reassigned its 3,097&nbsp;MW Etalin project to a sister PSU. Leverage has roughly doubled in four years (consolidated debt/equity 1.91x&rarr;2.26x in FY26 alone) to fund a still-aggressive capex programme, while the auditor's own report flags SJVN as non-compliant with SEBI's independent-director and woman-director board-composition rules, and the CMD and CFO seats have both spent most of the past two years on "additional charge" from sister PSUs rather than permanent appointments. Management has itself walked back its long-standing 25,000&nbsp;MW-by-2030 target as under review. The stock is down roughly 35% from its 52-week high and trades below both its 50- and 200-day averages.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (23 Aug 26)</div><div class="v">&#8377;66.06</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;25,960 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;63.02 &ndash; &#8377;101.45</div></div>
+      <div class="chip"><div class="k">FY26 Revenue (consol.)</div><div class="v pos">+47.4% YoY</div></div>
+      <div class="chip"><div class="k">FY26 PAT (consol.)</div><div class="v neg">&minus;21.5% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT</div><div class="v neg">&minus;1.3% YoY <span style="font-size:11px;">despite +52% revenue</span></div></div>
+      <div class="chip"><div class="k">Trailing / Forward P/E</div><div class="v">37.8x / 13.8x</div></div>
+      <div class="chip"><div class="k">FY23&ndash;FY26 Free Cash Flow</div><div class="v neg">Negative, all 4 years</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage &mdash; please read before the numbers below:</b> This company's AnnouncementsConv folder (machine-readable filing text) only spans 27&nbsp;Feb&ndash;12&nbsp;Aug 2026, covering the FY26 annual results (financial results filed 15&nbsp;May 2026, earnings-call transcript 21&nbsp;May 2026, Reg.34(1) Annual Report 6&nbsp;Aug 2026) and Q1FY27 results (31&nbsp;Jul 2026). Raw BSE filing PDFs exist back to August 2024 (covering Q1FY25 through Q3FY26 results and four further earnings-call transcripts), but this environment had no PDF-rendering tool available (poppler/pdftoppm not installed) to extract their text, so those quarters could not be independently sourced from primary filings. <b>This report therefore leans on two sources in combination:</b> the two primary-source filings above (FY26 annual, FY25 comparatives embedded within it, and Q1FY27), used wherever available and always marked as company-filed; and MarketData/yfinance's independently computed quarterly (Dec-2024 through Jun-2026) and annual (FY22&ndash;FY26) series to fill the gaps, cross-checked against company filings wherever both exist (e.g. TTM revenue from the last four yfinance quarters reconciles to within 1% of the company-filed figures). Where the two sources' definitions diverge materially &mdash; e.g. yfinance's annual "EBITDA margin" field runs far higher than the company's own filed operating-margin ratio, likely a gross-margin mislabel &mdash; this report uses the company-filed ratio and flags the discrepancy rather than the yfinance one. Every figure below is tagged to its source; n/a is used, never estimated, where neither source had a number. Consolidated figures are used throughout unless a section is explicitly marked standalone &mdash; consolidated is the more complete picture given how much of SJVN's growth capex (Buxar Thermal, most solar/wind) now sits inside subsidiaries.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Other call insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What SJVN does, and how it has grown</h2></div>
+      <p class="sec-dek">A Himalayan hydropower generator turned diversified power PSU &mdash; hydro, wind, solar and now thermal &mdash; expanding fast into new technologies while its legacy hydro fleet, already running near maturity, contributes little further growth on its own.</p>
+
+      <p class="lede">SJVN Limited (formerly Satluj Jal Vidyut Nigam Limited, renamed 2009) is a Navratna Central Public Sector Enterprise incorporated in 1988 as a joint venture between the Government of India and the Government of Himachal Pradesh, headquartered in Shimla. Its core business, and still the source of most of its cash flow, is regulated hydropower: the 1,500&nbsp;MW Nathpa Jhakri Hydro Power Station (NJHPS, its flagship, commissioned decades ago and now past 150 billion cumulative units generated) and the 412&nbsp;MW Rampur Hydro Power Station (RHPS), both in Himachal Pradesh, plus the newer 60&nbsp;MW Naitwar Mori station in Uttarakhand. Tariffs on these regulated assets are set by the Central Electricity Regulatory Commission (CERC) under an Annual Fixed Charge formula &mdash; return on equity, depreciation, interest on loans, O&amp;M and working-capital interest &mdash; which gives predictable, cost-plus economics but also caps upside on the legacy fleet. FY26 generation from NJHPS (7,506.62 MU) and RHPS (2,108 MU) grew only 1.1% and 1.6% YoY respectively &mdash; both stations are already running near their practical ceiling, so essentially <em>all</em> of the company's forward growth now has to come from new capacity, not the legacy hydro base.</p>
+
+      <p>That new capacity has diversified rapidly. SJVN now also operates the 900&nbsp;MW Arun-3 hydro project under construction in Nepal (targeting commissioning of all four units by December 2028 per the FY26 earnings call), two wind assets (Khirvire 47.6&nbsp;MW, Sadla 50&nbsp;MW), a growing solar portfolio (Charanka, Parasan, Gurhah, Gujrai, Raghanesda, Omkareshwar floating, and the newly commissioned 1,000&nbsp;MW Bikaner and 70&nbsp;MW Dhubri/Assam plants), and &mdash; its newest and largest single bet &mdash; the 1,320&nbsp;MW Buxar Thermal Power Project in Bihar, whose first 660&nbsp;MW unit began commercial operation on 14 November 2025. Total installed capacity stood at 4,196.5&nbsp;MW across 15 operational projects plus two transmission lines as of 31 March 2026, after FY26's record 1,730&nbsp;MW of capacity additions (1,070&nbsp;MW solar, 660&nbsp;MW thermal). The business remains formally a single reportable segment ("Generation and sale of power") under Ind&nbsp;AS-108, so no company-disclosed revenue-by-technology split exists; this report reconstructs the story instead from subsidiary-level disclosures made on the earnings call (see &sect;04).</p>
+
+      <h3>A second, capital-light business: Renewable Energy Implementing Agency (REIA)</h3>
+      <p>Beyond its own generation assets, SJVN also acts as a bid-implementing agency for renewable tenders on behalf of the government &mdash; awarding and then re-selling capacity to third-party developers, similar to SECI's model. Management disclosed on the FY26 call that SJVN has awarded roughly 16&nbsp;GW under this programme cumulatively, of which only about 6&nbsp;GW (&asymp;38%) had converted to signed Power Sale Agreements as of May 2026, with management candidly acknowledging that renewable tendering has slowed industry-wide (see &sect;08).</p>
+
+      <h3>Growth targets: a public walk-back</h3>
+      <p>SJVN's stated mission &mdash; repeated in the FY26 Annual Report as recently as August 2026 &mdash; is to reach 25,000&nbsp;MW of installed capacity by 2030 and 50,000+&nbsp;MW by 2040. But on the 15&nbsp;May 2026 earnings call, CMD Bhupender Gupta told analysts directly that this target is "being reviewed" because "due to one or the other reason&hellip; the projects did not come in time," citing delayed CPSU/VGF renewable-tender schemes and losses on already-commissioned projects running below design CUF, and said a revised, "realistic" business plan would be published "very soon." As of this report's coverage window (through 12 Aug 2026), no revised target had yet been filed &mdash; a real discrepancy between the written mission statement still circulating in the FY26 annual report and management's own verbal admission nine months of the same fiscal year prior that the number isn't credible any more.</p>
+
+      <h3>The moat, such as it's evidenced</h3>
+      <p>SJVN's most durable advantages are structural rather than competitive: regulated, cost-plus tariffs on its hydro fleet provide unusually stable, contracted cash flow (subject to periodic CERC tariff-order timing risk &mdash; see &sect;05); Navratna/CPSE status gives it privileged access to government-allotted hydro sites (e.g. the three Himachal Pradesh projects discussed in &sect;05 and &sect;07) and to bilateral state PPAs (658&nbsp;MW signed with Gujarat in June 2026); and its REIA role gives it deal flow without full balance-sheet exposure. Against this, capacity allocation is ultimately at the discretion of the central and state governments rather than SJVN's own strategy &mdash; illustrated starkly by the Ministry of Power's 2026 decision to reassign SJVN's entire 3,097&nbsp;MW Etalin Hydro Electric Project to sister PSU NHPC Limited (&sect;05, &sect;08), a project SJVN had already spent on and had to write off. No independent market-share or competitor-benchmarking data was found in any reviewed filing.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Six months of steady project-execution and tender news bookending a Q1FY27 results day the market read as disappointing.</p>
+
+      <div class="news-item">
+        <div class="news-date">19 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">SJVN Green Energy floats 1,000 MW solar EPC tender, Punjab &amp; Rajasthan</div>
+          <div class="news-body">Bid submission deadline 16 Sept 2026, with a five-year O&amp;M requirement. Pipeline-building activity with no disclosed pricing or profitability terms &mdash; procedural, not yet revenue-relevant.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">12 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">75 MW Jamui Solar (Bihar) commissioned, ₹1,342 Cr cost, fixed ₹2.96/unit tariff</div>
+          <div class="news-body">Expected 90 million units in year one and 3,522 MU over 25 years &mdash; long-dated, contracted revenue visibility, consistent with the fixed-tariff PPA model SJVN relies on across its solar book.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">3&ndash;7 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Q1FY27 results: revenue +52% YoY, but PAT essentially flat and margins compressed</div>
+          <div class="news-body">Consolidated Q1FY27 revenue of ₹1,394.38 Cr (+51.98% YoY) but net profit of ₹224.93 Cr, down 1.25% YoY &mdash; operating margin (company-filed, EBIT/revenue) fell to 48.17% from 68.32% a year earlier. The stock slipped on the print despite the headline revenue growth (see &sect;03&ndash;04 for the full reconciliation). Separately, Bluebird Solar won a combined 278 MW module-supply order across two SJVN projects (133 MW Gujarat, 145 MW Rajasthan) &mdash; a positive signal on continuing project pipeline execution.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">30 Jul 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral / caution</span>
+          <div class="news-title">CMD's additional charge extended a further three months</div>
+          <div class="news-body">The Ministry of Power extended Bhupender Gupta's additional-charge tenure as SJVN CMD (he is also CMD of NHPC Limited) for three more months from 1 Aug 2026, while the search for a permanent, dedicated full-time SJVN CMD continues. Gupta's execution record (Buxar 660 MW unit, 1,000 MW Bikaner Solar) is real, but the continued "additional charge" structure is itself a governance signal &mdash; see &sect;07.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">28 Jun&ndash;29 Jun 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">658 MW hydro PPA signed with Gujarat Urja Vikas Nigam Ltd</div>
+          <div class="news-body">Covers three Himachal Pradesh hydro projects &mdash; 66 MW Dhaulasidh, 210 MW Luhri Stage-I, 382 MW Sunni Dam &mdash; securing long-term offtake with a major state utility. Note: these are the same three projects for which the Himachal Pradesh state government has separately signalled intent to "take back" the allocation pending a renegotiated Implementation Agreement (see &sect;05, &sect;07) &mdash; the PPA derisks offtake but not the underlying state-allocation dispute.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">13 Feb&ndash;3 Mar 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed / procedural</span>
+          <div class="news-title">1 GW Bikaner solar commissioned via EPC partner; 600 MW wind auction (REIA) awarded to four bidders</div>
+          <div class="news-body">Tata Power Renewable commissioned the 1 GW DCR-compliant Bikaner solar project for SJVN in Rajasthan (13 Feb). Separately, KPI Green, Urdhvaga, Adyant Enersol and Lambent won SJVN's 600 MW wind power auction as REIA bid-implementing agency (3 Mar) &mdash; no further financial detail available on the latter.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>Month-end closing prices ran from &#8377;94.53 (Jan-2025) down to &#8377;63.35 at the March-2026 low, a brief bounce to &#8377;78.98 in April 2026, then a resumed slide to &#8377;65.91 by 20 Aug 2026 &mdash; a persistent, roughly 30% decline over 19 months that has continued through, not reversed by, the operationally strong FY26 newsflow above. Full chart in &sect;10. Thin institutional ownership (5.71%) against 81.85% insider/promoter (government) holding limits how much any single piece of news typically moves the float.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, capacity additions &amp; guidance</h2></div>
+      <p class="sec-dek">Headline revenue growth was real but partly a one-off regulatory catch-up; the underlying quarterly pattern is hydro-seasonal and increasingly volatile around new-asset commissioning.</p>
+
+      <h3>Annual trend (consolidated)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>n/a<sup>&dagger;</sup></td><td>n/a<sup>&dagger;</sup></td><td>3,072.01</td><td>4,528.29</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="pos">+47.4%</td></tr>
+            <tr><td>Other income</td><td>n/a</td><td>n/a</td><td>304.49</td><td>194.52</td></tr>
+            <tr><td>Total income</td><td>n/a</td><td>n/a</td><td>3,376.50</td><td>4,722.81</td></tr>
+            <tr><td>Total generation, all stations incl. subsidiaries (MU)</td><td>n/a</td><td>n/a</td><td>10,646</td><td>13,302</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: company-filed FY26 financial results (15 May 2026) and FY26 Annual Report Chairman's Statement, which give FY25 comparatives alongside FY26 audited figures &mdash; both years therefore company-filed, not yfinance-derived. &dagger; FY23/FY24 consolidated revenue-from-operations is not restated in the FY26 filing set available; yfinance's own annual income-statement series gives a differently-scoped "Total Revenue" figure (&#8377;2,567.46 Cr FY24, &#8377;2,820.67 Cr FY23) that does not clearly reconcile to the company's own revenue-from-operations definition, so it is left as n/a here rather than presented as a like-for-like figure.</caption>
+      </div>
+      <p>Consolidated revenue from operations grew 47.4% in FY26 (&#8377;3,072.01&nbsp;Cr&rarr;&#8377;4,528.29&nbsp;Cr). Management's own explanation, given on the call, is candid about how much of this was one-off: &#8377;679&nbsp;crore of the increase came from recognising earlier-year sales pursuant to a tariff truing-up order (2019&ndash;24 period) for NJHPS and RHPS, plus a provisional 2024&ndash;29 tariff order for RHPS &mdash; both received only in the final weeks of March 2026 and booked entirely in Q4FY26. Strip that out and underlying growth was driven by a full year of Buxar Unit-1 and a partial year of Bikaner Solar, both commissioning mid-year.</p>
+
+      <h3>Quarterly trend (consolidated)</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q2FY26 (Sep-25)<sup>&Dagger;</sup></th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>504.40</td><td>917.45</td><td>1,032.40</td><td>1,081.97</td><td>1,466.47</td><td>1,394.38</td></tr>
+            <tr><td>PAT (attributable to owners)</td><td class="neg">&minus;127.60</td><td>227.77</td><td>307.80</td><td>224.38</td><td class="neg">&minus;117.98</td><td>224.93</td></tr>
+            <tr><td>Diluted EPS (&#8377;, incl. reg. deferral)</td><td class="neg">&minus;0.32</td><td>0.58</td><td>0.78</td><td>0.57</td><td class="neg">&minus;0.30</td><td>0.57</td></tr>
+            <tr><td>Operating margin (%, company-filed EBIT/revenue)</td><td class="neg">2.56%</td><td>68.32%</td><td>&asymp;66.7%<sup>&Dagger;</sup></td><td>61.52%</td><td class="neg">31.35%</td><td>48.17%</td></tr>
+            <tr><td>Net profit margin (%, company-filed)</td><td class="neg">&minus;25.32%</td><td>24.81%</td><td>&asymp;29.8%<sup>&Dagger;</sup></td><td>20.73%</td><td class="neg">&minus;7.87%</td><td>16.12%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q4FY26/FY26 and Q1FY27 company-filed financial results (both give the prior comparative quarter alongside the current one, so Q4FY25, Q1FY26, Q3FY26, Q4FY26 and Q1FY27 are all company-filed). &Dagger; Q2FY26 (Sep-25) is not covered by either company filing available in this dataset and is sourced instead from MarketData/yfinance's independently computed quarterly series; its margin figures are this report's own computation from yfinance's operating-income/net-income fields on the same revenue base and are marked accordingly as less precisely comparable to the company's own filed ratio definition.</caption>
+      </div>
+      <p>The pattern is a hydro-seasonal one overlaid with one-off items: a weak, loss-making Q4FY25 (low-water-season quarter, before any truing-up benefit); a strong Q1&ndash;Q3FY26 run as monsoon-season hydro generation peaked; then a Q4FY26 net loss despite the truing-up revenue boost, because that same quarter absorbed a ₹235.86&nbsp;crore consolidated impairment charge and the bulk of new-subsidiary stabilisation losses (&sect;04); and a Q1FY27 that grew revenue 52% YoY on continuing capacity ramp-up but converted almost none of it to incremental profit, as operating margin compressed nearly 20 percentage points YoY.</p>
+
+      <h3>Capacity-addition guidance vs. delivered</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">FY26 guided (as of prior year)</div><div class="v">n/a</div><div class="d">No FY25 earnings-call transcript available in this dataset to check prior guidance against</div></div>
+        <div class="stat"><div class="k">FY26 delivered</div><div class="v">1,730 MW</div><div class="d">1,070 MW solar + 660 MW thermal (Buxar U1) &mdash; company-confirmed, a record year</div></div>
+        <div class="stat"><div class="k">FY27 guided (May-26 call)</div><div class="v">&asymp;2,284 MW</div><div class="d">Buxar U2 (660 MW), Dhaulasidh (69.5 MW), &asymp;1,555 MW solar, commissioning May-26 to Mar-27</div></div>
+        <div class="stat"><div class="k">FY28 guided (May-26 call)</div><div class="v">&asymp;650 MW</div><div class="d">Solar only &mdash; hydro pipeline (Sunni Dam, Luhri-I, Arun-3) not due until FY29&ndash;30</div></div>
+      </div>
+      <p>The one guidance vs. actual comparison this dataset does support is the long-range capacity target discussed in &sect;01: management's own 15 May 2026 admission that the 25,000&nbsp;MW-by-2030 target is under review, following repeated delays to CPSU/VGF renewable tender schemes and to SJVN's own project execution, is itself the clearest guidance-miss signal in this report &mdash; a voluntary downgrade of a previously publicised target, rather than a beat or miss on a single quarter's number.</p>
+
+      <h3>Geography &amp; expansion</h3>
+      <p>Horizontal expansion is clear: hydro&rarr;wind&rarr;solar&rarr;thermal, plus the REIA bid-implementing role and now battery energy storage (a 265 MW/530 MWh BESS tender floated for Haryana, 28 Jul 2026, worth &asymp;&#8377;636 Cr). International expansion is limited to the single Arun-3 project in Nepal. No revenue-by-geography breakdown exists (single-segment disclosure), and the domestic hydro pipeline itself is subject to state-government allocation risk (&sect;05, &sect;07) rather than purely commercial expansion decisions.</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">Consolidated PAT fell even as EBITDA grew, because two newly commissioned businesses &mdash; the solar subsidiary and Buxar Thermal &mdash; are still losing money in their stabilisation phase, and a one-off impairment landed in the same year.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / % &mdash; consolidated</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>EBITDA (company MD&amp;A-stated)</td><td>2,461.55</td><td>3,107.52</td></tr>
+            <tr><td>EBITDA growth</td><td>&mdash;</td><td class="pos">+26.2%</td></tr>
+            <tr><td>PBT</td><td>1,111.69</td><td>1,200.63</td></tr>
+            <tr><td>PAT (attributable to owners)</td><td>818.02</td><td class="neg">641.85</td></tr>
+            <tr><td>PAT growth</td><td>&mdash;</td><td class="neg">&minus;21.5%</td></tr>
+            <tr><td>Net profit margin (revenue from ops)</td><td>26.63%</td><td class="neg">14.17%</td></tr>
+            <tr><td>Return on equity (avg. shareholders' equity)</td><td>5.79%</td><td class="neg">4.51%</td></tr>
+            <tr><td>Interest service coverage (ISCR)</td><td>3.41x</td><td class="neg">2.73x</td></tr>
+            <tr><td>Debt service coverage (DSCR)</td><td>2.10x</td><td class="neg">1.92x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 financial-results filing (extract of audited results, ratio table) and FY26 Annual Report MD&amp;A ratio disclosure &mdash; both company-filed, consolidated basis.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>EBITDA grew 26%, PAT fell 22% &mdash; the gap is almost entirely new-subsidiary losses plus a one-off impairment</b>Management's own explanation, given in the Chairman's Statement and repeated on the earnings call: SJVN Green Energy Ltd (SGEL, the solar/wind subsidiary) posted a FY26 loss of ₹258&nbsp;crore (widened from ₹151&nbsp;crore in FY25) on revenue that more than doubled to ₹510&nbsp;crore, as several plants ran below design CUF and flagship 1,000&nbsp;MW Bikaner Solar had not yet reached full ramp; SJVN Thermal Pvt Ltd (Buxar Unit-1, only 3 months of FY26 operation) posted a ₹93&nbsp;crore total comprehensive loss on ₹522&nbsp;crore of revenue, running at &asymp;60% plant load factor against a &asymp;70% breakeven threshold typical for thermal plants. On top of that, a ₹235.86&nbsp;crore consolidated impairment (Ind&nbsp;AS 36) was booked in Q4FY26, driven substantially by the Etalin HEP reassignment (&sect;01, &sect;08). Finance costs also rose sharply (consolidated finance cost +74.6% YoY, ₹743.37&nbsp;Cr&rarr;₹1,297.86&nbsp;Cr) as debt funded the capex programme (&sect;05) &mdash; roughly ₹206&nbsp;crore of the increase was attributed to foreign-exchange translation on the company's dollar- and yen-denominated borrowings. Management's own guidance is that both Buxar and SGEL should turn profitable in FY27 as plant availability/CUF ramps &mdash; a claim worth tracking given the curtailment issues (&sect;08) that have already pushed some of that ramp-up into late-2026.</div>
+      </div>
+
+      <h3>Standalone vs. consolidated: a genuine divergence</h3>
+      <p>SJVN's standalone (parent-only, legacy-hydro-dominated) profitability actually <em>improved</em> in FY26: standalone PAT grew 3.9% (₹970.18&nbsp;Cr&rarr;₹1,007.90&nbsp;Cr), standalone Return on Capital Employed rose from 8.14% to 10.08%, and standalone operating margin held up (69.81%&rarr;71.67%). The entire consolidated profit decline is therefore attributable to the newer subsidiaries and the impairment &mdash; a useful diagnostic: the core, mature hydro business is performing fine on its own terms; the drag is squarely in the growth assets still being brought online.</p>
+
+      <h3>Quarterly margin volatility</h3>
+      <p>Company-filed operating margin (EBIT/revenue from operations) swung from 2.56% (Q4FY25, weak season) to 68.32% (Q1FY26, peak hydro season) to 61.52% (Q3FY26) to negative territory implied by the Q4FY26 net loss (31.35% operating margin but a net loss after finance costs and tax) and back to 48.17% (Q1FY27) &mdash; a roughly 66-percentage-point round trip inside five quarters. Some of this is normal hydro seasonality (Q1&ndash;Q2, the monsoon months, are structurally the strongest generation quarters); some of it is genuinely one-off (the truing-up order and the impairment both landed in Q4FY26 specifically).</p>
+
+      <h3>Forward margin guidance</h3>
+      <p>No formal numeric margin guidance was found in either the FY26 call transcript or the Q1FY27 filing &mdash; consistent with CPSE practice of not issuing forward EPS/margin guidance the way private-sector companies do. The only forward-looking margin signal is qualitative: management's stated expectation that Buxar and SGEL become profitable during FY27, which this report treats as a claim to verify against Q2&ndash;Q4FY27 results rather than a number to build a forecast on.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">Debt has roughly doubled in four years to fund an entirely debt-financed capex programme, contingent liabilities jumped 39% on a subsidiary guarantee, and a state-government dispute clouds part of the home-turf hydro pipeline.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr &mdash; consolidated</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity (net worth)</td><td>13,859.5</td><td>14,070.9</td><td>14,178.65</td><td>14,238.84</td></tr>
+            <tr><td>Total debt</td><td>14,059.3</td><td>20,323.2</td><td>27,025.2</td><td>32,278.0</td></tr>
+            <tr><td>Debt / equity (company-filed, paid-up debt / equity)</td><td>n/a</td><td>n/a</td><td>1.91x</td><td class="neg">2.26x</td></tr>
+            <tr><td>Current ratio (company-filed)</td><td>n/a</td><td>n/a</td><td>0.98</td><td class="neg">0.64</td></tr>
+            <tr><td>Contingent liabilities</td><td>n/a</td><td>n/a</td><td>4,104.57</td><td class="neg">5,707.05</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY23&ndash;FY24 total debt/equity from MarketData/yfinance annual balance sheet (n/a fields not disclosed by yfinance for those years, e.g. company-filed debt/equity ratio and current ratio only appear from the FY26 filing's FY25 comparative). FY25&ndash;FY26 debt/equity, current ratio and contingent liabilities are company-filed (FY26 Annual Report, Note 2.50).</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Debt has grown every year since FY23, funding capex almost entirely; equity has not been diluted once</b>Consolidated total debt rose from ₹14,059&nbsp;Cr (FY23) to ₹32,278&nbsp;Cr (FY26) &mdash; up 130% in three years &mdash; while paid-up equity share capital stayed flat at ₹3,929.80&nbsp;Cr across every year in this dataset (no equity issuance found). Debt/equity jumped from 1.91x to 2.26x in FY26 alone. Current ratio fell sharply to 0.64 (from 0.98), which the company attributes explicitly to long-term borrowings maturing within the next twelve months moving into current liabilities &mdash; a scheduling effect rather than distress per the company's own explanation, but it does mean a meaningful debt-refinancing/repayment event is due within the coming year.</div>
+      </div>
+
+      <h3>Contingent liabilities: a growing parent guarantee for a subsidiary's Nepal project</h3>
+      <p>Contingent liabilities rose 39% to ₹5,707.05&nbsp;Cr (FY26) from ₹4,104.57&nbsp;Cr (FY25). The single largest component and the entire increase's driver is a corporate guarantee the parent has extended to lenders of SJVN Arun-3 Power Development Company Pvt Ltd (the Nepal hydro subsidiary), which rose to ₹4,442.24&nbsp;Cr from ₹3,421.41&nbsp;Cr. Management states it does not expect any probable outflow given the subsidiary's asset cover, but this is a real, growing, and directly execution-linked off-balance-sheet exposure of the parent to a foreign hydro project that has already experienced delays (unexpected geological conditions on the dam's right bank, per the May-2026 call, since addressed) and now targets commissioning of all four units only by December 2028.</p>
+
+      <h3>A live dispute with the Himachal Pradesh state government over three hydro projects</h3>
+      <p>Three hydro projects &mdash; 210&nbsp;MW Luhri Stage-I, 382&nbsp;MW Sunni Dam and 66&nbsp;MW Dhaulasidh &mdash; were allotted to SJVN by the Government of Himachal Pradesh via MoU, but the formal Implementation Agreement has never been signed. SJVN began construction anyway to avoid time/cost overruns; on 22 April 2025 the state government indicated its intent to <em>consider taking back</em> these projects, and appointed an evaluator. SJVN has petitioned the Himachal Pradesh High Court, which has directed the state government not to take coercive action pending resolution, but the matter remains unresolved as of the FY26 Annual Report (filed August 2026). Expenditure already recognised on these three projects &mdash; ₹864.65&nbsp;Cr in PP&amp;E/intangibles and ₹3,068.49&nbsp;Cr in capital work-in-progress as of March 2026 &mdash; sits on the balance sheet pending that resolution. This is a direct, quantified illustration of the two-government-shareholder structure creating real friction: SJVN's home state can, and in this instance has, moved to reclaim allocated capacity.</p>
+
+      <h3>Credit ratings: stable, investment-grade</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">CRISIL</div><div class="v">AA+ Stable</div><div class="d">₹1,000 Cr Non-Convertible Debentures</div></div>
+        <div class="stat"><div class="k">CARE (long-term)</div><div class="v">AA+ Stable</div><div class="d">₹8,886.80 Cr long-term bank facilities</div></div>
+        <div class="stat"><div class="k">CARE (short-term)</div><div class="v">A1+</div><div class="d">₹500 Cr short-term bank facilities</div></div>
+      </div>
+      <p>No downgrade or rating-watch action was evidenced in this dataset &mdash; the leverage build-up above has not (yet) translated into a ratings-agency red flag, though the rising debt/equity and falling interest coverage (&sect;04) are the kind of metrics a downgrade review would focus on.</p>
+
+      <h3>Capex vs. depreciation: real capacity build, financed almost entirely by debt</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Capex (net PP&amp;E + CWIP expenditure)</td><td>6,843.86</td><td>5,649.68</td><td>6,668.76</td><td>5,699.08</td></tr>
+            <tr><td>Depreciation, amortisation &amp; impairment</td><td>396.40</td><td>557.14</td><td>676.21</td><td>1,041.98</td></tr>
+            <tr><td>Capex / D&amp;A</td><td>17.3x</td><td>10.1x</td><td>9.9x</td><td>5.5x</td></tr>
+            <tr><td>Fresh borrowings drawn, net of repayment</td><td>n/a</td><td>n/a</td><td>6,455.95</td><td>4,714.32</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement (capex, D&amp;A); FY25&ndash;FY26 net borrowings company-filed (consolidated cash flow statement in the FY26 financial results).</caption>
+      </div>
+      <p>Capex has exceeded depreciation by 5.5&ndash;17.3x every year shown, unambiguous evidence of real, ongoing capacity expansion rather than maintenance spend. FY26 capex (₹5,699&nbsp;Cr) was actually 14.5% <em>lower</em> than FY25's ₹6,669&nbsp;Cr, consistent with Buxar/Bikaner capex having been front-loaded in FY24&ndash;25 ahead of their FY26 commissioning. Management guided on the May-2026 call to a capex plan of roughly ₹9,400&nbsp;Cr for FY27, then ₹7,800&nbsp;Cr for FY28 and ₹7,500&nbsp;Cr for FY29 &mdash; a guided FY27 step-up of about 65% over FY26's delivered spend, and a figure worth watching closely given FY26's own capex undershot the prior year. Virtually the entire funding gap between operating cash flow and capex (&sect;06) has been closed with fresh debt: ₹4,714&nbsp;Cr of net new borrowings in FY26 alone, against zero equity issuance.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Free cash flow has been negative every year on record, and FY26's revenue growth came with a receivables build large enough to be a genuine earnings-quality flag.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT (attributable to owners)</td><td>1,359.30</td><td>911.44</td><td>818.02</td><td class="neg">641.85</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>1,606.48</td><td>1,309.53</td><td>2,482.95</td><td class="neg">1,859.63</td></tr>
+            <tr><td>Capex</td><td>&minus;6,843.86</td><td>&minus;5,649.68</td><td>&minus;6,668.76</td><td>&minus;5,699.08</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="neg">&minus;5,237.38</td><td class="neg">&minus;4,340.15</td><td class="neg">&minus;4,185.81</td><td class="neg">&minus;3,839.45</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>1.18x</td><td>1.44x</td><td>3.04x</td><td class="neg">2.90x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement for the full four-year series (chosen over the company filing here so all four years are on a consistent basis); FY26 figures cross-checked against and reconcile closely with the company-filed consolidated cash flow statement (CFO ₹1,859.63 Cr, capex ₹5,699.08 Cr, both matching to the rupee).</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>FY26's revenue growth came with a ₹1,454 Cr swing into receivables &mdash; a real quality-of-earnings caveat on the headline "growth"</b>CFO/PAT conversion actually looks healthy on the surface (2.9x in FY26), but that ratio is flattered by non-cash depreciation/impairment add-backs sitting inside a low PAT base. The more telling number is the working-capital line: trade receivables and unbilled revenue consumed ₹1,453.95&nbsp;Cr of cash in FY26, versus releasing ₹66.84&nbsp;Cr in FY25 &mdash; a swing of over ₹1,500&nbsp;Cr. The company's own disclosure explains why: standalone trade receivables jumped from ₹262&nbsp;Cr to ₹1,299&nbsp;Cr at year-end, of which ₹906&nbsp;Cr is <em>unbilled</em> revenue, and ₹776&nbsp;Cr of that unbilled figure relates specifically to the truing-up tariff order received in the last week of March 2026 and billed only in FY27. In other words, a meaningful share of FY26's headline revenue and profit growth was a non-cash regulatory recognition event, not fresh cash-generative demand &mdash; a legitimate accounting entitlement, not an irregularity, but a real caveat on reading FY26 as a clean "growth" year. Receivables turnover fell from 6.62x to 4.54x (standalone) as a direct result.</div>
+      </div>
+
+      <p><b>Read plainly:</b> free cash flow has been negative in <em>every</em> year shown (FY23&ndash;FY26), narrowing gradually (&minus;₹5,237&nbsp;Cr&rarr;&minus;₹3,839&nbsp;Cr) but still deeply negative, funded entirely by fresh borrowings rather than any equity issuance (&sect;05). No management commentary on a path to positive free cash flow or a formal cash-generation target was found in either available earnings call. Until CFO durably exceeds capex &mdash; not yet close, even in FY26's best year on this dataset &mdash; the company will keep needing external (debt) funding for its growth programme, and DPE-mandated dividend payouts (&sect;07) further limit how much of standalone profit can be retained to close that gap internally.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">Both the CMD and the CFO/Director-Finance seat have spent most of the past two years on "additional charge" arrangements borrowed from sister PSUs, and the company's own auditor flags a board-composition compliance failure.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Bhupender Gupta</div>
+          <div class="role">Chairman &amp; Managing Director (additional charge, from 1 May 2025; extended a further three months from 1 Aug 2026)</div>
+          <div class="bio">Also serves as Chairman &amp; Managing Director of NHPC Limited &mdash; SJVN is an additional charge, not a dedicated appointment. Credited with overseeing commissioning of the Buxar 660 MW unit and the 1,000 MW Bikaner Solar project. The Ministry of Power is still searching for a permanent, full-time SJVN CMD as of this report's coverage window.</div>
+        </div>
+        <div class="person">
+          <div class="name">Parthajit De</div>
+          <div class="role">Director (Finance) &amp; CFO, from 19 Mar 2026 / 10 Apr 2026</div>
+          <div class="bio">The third Director (Finance)/CFO-track appointment in roughly 15 months, following Rajendra Prasad Goyal (Jan&ndash;Aug 2025, on additional charge from NHPC) and Sipan Kumar Garg (Sep 2025&ndash;Mar 2026, on additional charge from THDC). Appears to be SJVN's first dedicated (non-additional-charge) finance head in this sequence.</div>
+        </div>
+        <div class="person">
+          <div class="name">CMD turnover, FY24&ndash;FY26</div>
+          <div class="role">Four individuals in roughly two years</div>
+          <div class="bio">Geeta Kapur (additional charge, to Apr-2024) &rarr; Sushil Sharma (additional charge, May&ndash;Oct 2024) &rarr; Raj Kumar Chaudhary (CMD of NHPC, additional charge, Nov-2024&ndash;Apr-2025) &rarr; Bhupender Gupta (above). None held the post as a permanent, SJVN-dedicated appointment.</div>
+        </div>
+        <div class="person">
+          <div class="name">Independent directors &amp; women representation</div>
+          <div class="role">Auditor-flagged non-compliance</div>
+          <div class="bio">The FY26 statutory auditor's report states explicitly that SJVN was <b>not in compliance</b> with SEBI LODR Regulation 17/25(6) (requiring at least half the board to be Independent Directors, and filling vacancies within a specified period) and separately not compliant with Regulation 17 / Companies Act Rule 3 (mandatory Woman Director), whose tenure lapsed 16 April 2026 without a timely replacement. This does not qualify the audit opinion on the financial statements (which remains unmodified) but is a distinct, auditor-confirmed governance shortfall &mdash; common among PSUs awaiting Government of India nominee appointments, but a real one nonetheless.</div>
+        </div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Top-of-house leadership has run on borrowed executives for most of the past two years</b>Both the CMD and Director (Finance)/CFO roles have, for most of the review period, been filled by executives on "additional charge" from sister CPSEs (NHPC, THDC) rather than dedicated, permanent SJVN appointments &mdash; a structural feature of how the Government of India staffs CPSE boards, not something SJVN's own management controls, but a genuine execution-continuity risk for a company mid-way through its largest, most technically complex capex programme to date (Nepal hydro, first-ever thermal plant, multi-state solar). Combined with the board-composition compliance gap above, this is the report's clearest governance flag.</div>
+      </div>
+
+      <h3>Auditor</h3>
+      <p>Charanjit Singh &amp; Associates, Chartered Accountants (Ludhiana/New Delhi), issued an <b>unmodified/clean opinion</b> on both the FY26 standalone and consolidated financial results (confirmed separately in a 22 May 2026 "Declaration of Unmodified Opinion" filing). The report carries several Emphasis-of-Matter paragraphs &mdash; the pending NJHPS tariff order, the Devasari HEP hold (Uttarakhand, on hold since 2021 pending Ministry of Power clearance), the Etalin HEP reassignment/held-for-sale classification, the three unsigned-Implementation-Agreement Himachal Pradesh projects (&sect;05), the CGU impairment, and a disputed Himachal Pradesh land-revenue levy &mdash; none of which modified the opinion, but which collectively describe a company navigating several live regulatory and inter-government disputes simultaneously.</p>
+
+      <h3>Ownership</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Insider / promoter holding</div><div class="v">81.85%</div><div class="d">Government of India + Government of Himachal Pradesh</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">5.71%</div><div class="d">62 institutions on record</div></div>
+        <div class="stat"><div class="k">Free float</div><div class="v">716M sh.</div><div class="d">of 3,930M shares outstanding (&asymp;18%)</div></div>
+      </div>
+      <p>An overwhelmingly government-held register typical of a Navratna PSU, with a thin free float and correspondingly thin institutional research interest (&sect;09). Senior-management (Executive Director-level) turnover below the board itself has been routine and superannuation-driven &mdash; six promotions on 31 July 2026 and two more on 1 August 2026 (offsetting two retirements) &mdash; not a governance concern in itself, distinct from the top-of-house churn flagged above.</p>
+
+      <h3>PSU ownership: what it means for this stock specifically</h3>
+      <p>Two structural implications follow directly from SJVN's dual-government ownership. First, dividend policy is DPE-directed and consistently high: FY26's total dividend of ₹1.50/share (₹1.15 interim + ₹0.35 final) implies a payout ratio of roughly 83% against standalone PAT (MarketData), leaving little internally generated capital to fund the debt-heavy capex programme documented in &sect;05&ndash;06. Second, having two government shareholders (Centre and Himachal Pradesh) with occasionally divergent interests is not merely theoretical &mdash; it has produced the live Luhri-I/Sunni Dam/Dhaulasidh dispute (&sect;05) and the separate Himachal Pradesh land-revenue levy litigation, both real and quantified exposures rather than abstract risks.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other earnings-call insights worth flagging</h2></div>
+      <p class="sec-dek">A large hydro project lost to a sister PSU, a renewable bid-agency conversion rate under 40%, and near-term curtailment on already-commissioned solar assets.</p>
+
+      <h3>Etalin HEP (3,097 MW) reassigned to NHPC</h3>
+      <p>The Ministry of Power reassigned SJVN's entire 3,097&nbsp;MW Etalin Hydro Electric Project in Arunachal Pradesh to sister PSU NHPC Limited, terminating the MoA SJVN held with the Arunachal Pradesh government. SJVN classified the related ₹736.97&nbsp;Cr of assets and ₹0.93&nbsp;Cr of liabilities as held-for-sale and booked a related impairment (&sect;04). This is a direct, material illustration that SJVN's project pipeline is ultimately allocated at the central government's discretion, not solely a function of SJVN's own strategy or execution &mdash; the same government that also (via the Ministry of Power) appoints its CMD on additional charge.</p>
+
+      <h3>REIA conversion rate: only &asymp;38% of awarded capacity has signed PPAs</h3>
+      <p>Of the roughly 16&nbsp;GW SJVN has awarded as Renewable Energy Implementing Agency, only about 6&nbsp;GW (&asymp;38%) had converted to signed Power Sale Agreements as of the May-2026 call. Management's own explanation is candid: DISCOMs already have 25&ndash;30% of near-term capacity needs tied up across all implementing agencies (SECI, NTPC, NHPC as well as SJVN), some tendered configurations no longer match DISCOM requirements, and newer tenders are pricing at ₹2.8&ndash;2.9/unit versus ₹2.53&ndash;2.54/unit on some older, unconverted tranches &mdash; a genuine demand-side uncertainty for this part of the business, not an execution failure on SJVN's part.</p>
+
+      <h3>Curtailment on newly commissioned solar assets</h3>
+      <p>Management disclosed on the call that the 1,000&nbsp;MW Bikaner Solar plant is being curtailed by roughly 120&nbsp;MW pending installation of grid-stabilisation reactor equipment (delayed to October 2026 due to limited equipment manufacturers), and flagged a further potential &asymp;300&nbsp;MW curtailment risk at upcoming Khawada (Gujarat) capacity pending transmission-line connectivity delays. These are near-term execution frictions directly relevant to how quickly the FY27 "Buxar and SGEL turn profitable" guidance (&sect;04) can actually be delivered.</p>
+
+      <h3>PAF-based incentive income turned negative in Q4FY26</h3>
+      <p>Management disclosed that Plant Availability Factor-based incentive income was down 40% YoY in Q4FY26 even as secondary-energy incentive income rose 16% &mdash; a granular signal that availability-linked incentive revenue (a real, if usually small, component of regulated hydro economics) came under some pressure in the same quarter as the impairment and subsidiary losses.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">Thin, and drifting more cautious &mdash; only two analysts on record, with the balance recently shifting toward "sell."</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Number of analyst opinions</div><div class="v">2</div><div class="d">yfinance, current month</div></div>
+        <div class="stat"><div class="k">Rating split (current month)</div><div class="v">1 Hold / 1 Sell</div><div class="d">0 Strong Buy, 0 Buy</div></div>
+        <div class="stat"><div class="k">Price target (mean / range)</div><div class="v">&#8377;69.50</div><div class="d">Low &#8377;67.00, High &#8377;72.00</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">5.71%</div><div class="d">62 institutions, thinly spread</div></div>
+      </div>
+      <p>The trailing four-month recommendation history (yfinance) shows a Buy rating present three and two months ago has since dropped out, leaving only Hold and Sell &mdash; a mild but real drift toward caution. The mean target of ₹69.50 sits only about 5% above the ₹66.06 current price, implying muted conviction either way from the small sell-side base that exists. Elara Securities hosted the FY26 earnings call (Rupesh Sankhe) and ICICI Securities (Mohit Kumar) asked detailed questions on it, indicating at least some active brokerage coverage beyond the two names captured in yfinance's aggregation, but no specific target or rating commentary from either was found in the transcript itself.</p>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Thin coverage cuts both ways</b>With only two analysts on record and a target band clustered tightly just above the current price, there is limited independent third-party modelling of SJVN's subsidiary-loss trajectory, capex delivery, or the Etalin/Himachal Pradesh disputes to compare this report's own view against &mdash; consistent with the low institutional ownership (5.71%) noted in &sect;07.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock that has fallen roughly 30% over 19 months even as generation and capacity hit record highs &mdash; now priced for a large forward earnings recovery that has not yet shown up in delivered numbers.</p>
+
+      <h3>Nineteen months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Jan 2025&ndash;Aug 2026 (NSE, via yfinance daily price history). The 52-week range of &#8377;63.02&ndash;&#8377;101.45 (MarketData snapshot) sits close to, but not identical with, the month-end closes plotted &mdash; intraday extremes can fall between the monthly points shown.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">37.75x</div><div class="d">On TTM consolidated EPS</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">13.75x</div><div class="d">Implies consensus expects EPS to roughly triple &mdash; from only 2 analysts</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">1.82x</div><div class="d">Book value/share &#8377;36.21</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">15.79x</div><div class="d">TTM basis, per MarketData</div></div>
+        <div class="stat"><div class="k">Dividend yield / payout</div><div class="v">2.27% / 83%</div><div class="d">High payout limits internal capex funding &mdash; see &sect;06&ndash;07</div></div>
+      </div>
+      <p>The gap between the 37.75x trailing and 13.75x forward P/E is the single clearest expression of the market's current view: TTM earnings are depressed by the Q4FY26 loss quarter (impairment plus subsidiary losses), and the forward multiple prices in a substantial recovery as Buxar and SGEL turn profitable per management's own guidance. Whether that recovery lands on schedule is precisely the open question this report has tried to quantify in &sect;04 and &sect;08 &mdash; and with only two thinly-conviction analysts on record (&sect;09), there is little independent modelling to lean on either way.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built from this report's own tabulated FY26 base (consolidated revenue from ops &#8377;4,528&nbsp;Cr, PAT &#8377;641.85&nbsp;Cr), management's own capacity/capex guidance (&sect;03, &sect;05), and the subsidiary-loss and curtailment dynamics in &sect;04 and &sect;08. These are scenario illustrations only, not point forecasts &mdash; management gives no formal EPS guidance (standard CPSE practice) and analyst coverage is too thin to anchor against (&sect;09). Note FY26's revenue included a non-repeating &#8377;679&nbsp;Cr truing-up benefit, so even flat underlying growth would show as a revenue decline unless new capacity (Buxar U2, &asymp;1,555 MW solar) offsets it.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;52&ndash;60</div>
+          <div class="rng">&minus;21% to &minus;9% from CMP</div>
+          <ul>
+            <li>Buxar/SGEL losses persist beyond FY27 as curtailment issues (Bikaner SVR, Khawada transmission) drag past their guided fix dates; the Nepal Arun-3 project slips further past Dec-2028</li>
+            <li>The Himachal Pradesh Luhri-I/Sunni Dam/Dhaulasidh dispute escalates or the projects are formally reclaimed by the state, putting at risk some or all of the &#8377;3,933 Cr already recognised in PP&amp;E/CWIP against those three projects</li>
+            <li>Debt/equity continues climbing past 2.26x without a matching EBITDA ramp; interest coverage falls below 2.5x, pressuring the AA+ rating</li>
+            <li>FY27 consolidated PAT stays near or below FY26's &#8377;642 Cr (EPS &asymp;&#8377;1.6); the market keeps the stock below its 200-day average</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;66&ndash;80</div>
+          <div class="rng">&minus;0% to +21% from CMP</div>
+          <ul>
+            <li>Buxar Unit-2 commissions and both thermal units stabilise near or above 70% PLF during FY27; SGEL's loss narrows materially as Bikaner reaches full capacity post-SVR fix (Oct-26) and new solar (&asymp;1,555 MW) ramps</li>
+            <li>No further one-off impairments; the FY27 capex guide of &#8377;9,400 Cr is delivered close to schedule, funded predominantly by further debt</li>
+            <li>FY27 consolidated PAT recovers to roughly &#8377;950&ndash;1,150 Cr (EPS &asymp;&#8377;2.4&ndash;2.9), back near FY25-like profitability as new capacity broadly offsets the loss of FY26's one-off truing-up revenue</li>
+            <li>Stock re-rates modestly back toward its 200-day average (&#8377;73.29) and the current analyst mean target (&#8377;69.50)</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;88&ndash;101</div>
+          <div class="rng">+33% to +53% from CMP</div>
+          <ul>
+            <li>Buxar and SGEL both turn solidly profitable in FY27 as guided; Nepal Arun-3 execution derisks visibly; the Himachal Pradesh dispute resolves in SJVN's favour</li>
+            <li>Capex delivery catches the guided FY27&ndash;29 pace (&#8377;9,400 Cr / &#8377;7,800 Cr / &#8377;7,500 Cr) without further leverage deterioration, and a revised, credible long-range capacity target is published</li>
+            <li>FY27 consolidated PAT reaches &#8377;1,250&ndash;1,450 Cr (EPS &asymp;&#8377;3.2&ndash;3.7); interest coverage stabilises or improves</li>
+            <li>Stock retests the 52-week high (&#8377;101.45) as the market re-rates the forward P/E gap discussed above</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: at &#8377;36.21/share book value, today's 1.82x P/B is not demanding for a regulated-utility-plus-growth-optionality story, and sits well below Nibe-style growth-stock multiples elsewhere in this dataset &mdash; the market's caution here is expressed mainly through the depressed trailing P/E and the sub-200-day-average price action, not through a stretched book multiple.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> FY26 was a genuine operational record &mdash; 13,302 MU generated (+25% YoY), three major commissionings (Buxar Unit-1, 1,000 MW Bikaner Solar, Dhubri Solar), 1,730 MW of capacity added in a single year, and consolidated EBITDA up 26%; standalone (parent-level, legacy-hydro) profitability actually improved, with ROCE rising from 8.14% to 10.08%; new long-dated PPAs (658 MW with Gujarat, plus the 75 MW Jamui fixed-tariff solar project) add multi-decade revenue visibility; capex has consistently and substantially exceeded depreciation every year since FY23, real evidence of capacity expansion; credit ratings remain stable investment-grade (CRISIL/CARE AA+) with no downgrade; and the auditor's opinion on the financial statements themselves is clean and unmodified.</p>
+        <p style="max-width:none;"><b>What's not good:</b> consolidated PAT fell 21.5% in FY26 despite the EBITDA growth, driven by widening losses at two newly commissioned businesses (SGEL, Buxar Thermal) and a ₹236 Cr impairment tied to losing the Etalin project to a sister PSU; debt/equity jumped to 2.26x and free cash flow has been negative every year on record, funded entirely by fresh debt with zero equity issuance; a ₹1,454 Cr swing into receivables means a real share of FY26's headline revenue growth was a non-cash regulatory recognition rather than fresh cash-generative demand; contingent liabilities rose 39% on a growing parent guarantee for the Nepal subsidiary; a live dispute with the Himachal Pradesh state government clouds ₹3,933 Cr of recognised spend on three home-state hydro projects; the CMD and CFO/Director-Finance roles have both spent most of the past two years on "additional charge" from sister PSUs rather than permanent appointments; the company's own auditor flags non-compliance with SEBI's independent-director and woman-director board-composition rules; and the stock is down roughly 30% over the past 19 months, trading below both its 50- and 200-day moving averages, against a thin, recently-more-cautious two-analyst coverage universe.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> candidly on the numbers &mdash; the earnings call directly and specifically explained the SGEL/Buxar losses, the receivables composition, and the finance-cost increase, rather than glossing over them, and management proactively walked back its own 25,000 MW-by-2030 target rather than letting it stand uncorrected. Less reassuringly on structure: the CMD and finance-leadership seats have been filled by additional-charge appointments from sister PSUs for most of the review period rather than dedicated hires, and the board-composition compliance gap has evidently persisted long enough for the auditor to flag it formally in the FY26 report.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: roughly 40&ndash;50%, a genuine coin-flip tilted slightly negative.</b> The underlying regulated-hydro business is sound and standalone profitability is actually improving, and management has been unusually candid about what went wrong at the subsidiary level in FY26 &mdash; but the consolidated numbers, the leverage trajectory, the governance-appointment structure, and a currently unresolved state-government dispute over part of the core hydro pipeline are all real, quantified drags that have to clear before the forward P/E gap (37.75x trailing vs 13.75x forward) can close in the market's favour rather than the trailing multiple simply catching down to reality.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether SGEL and Buxar Thermal actually turn profitable in FY27 as guided, or whether the curtailment issues (Bikaner SVR fix due Oct-26, Khawada transmission delay) push that into FY28; (2) receivable days and CFO &mdash; a reversion of trade receivables back toward FY25's lower base, and CFO growing back in line with PAT, would meaningfully ease the earnings-quality flag in &sect;06; (3) resolution of the Himachal Pradesh Luhri-I/Sunni Dam/Dhaulasidh dispute, one way or the other &mdash; a formal reclamation would be a material negative, a signed Implementation Agreement a material positive; (4) whether debt/equity stabilises or keeps climbing past 2.26x, and whether interest coverage recovers from 2.73x; (5) whether a permanent, dedicated CMD is finally appointed, and whether the board's independent-director/woman-director compliance gap is closed; (6) delivery against the guided ₹9,400 Cr FY27 capex plan, given FY26's own capex undershot the prior year; (7) publication of the promised revised, "realistic" long-range capacity target to replace the 25,000 MW-by-2030 figure management has already disowned verbally.</div>
+      </div>
+
+      <footer>
+        Compiled from SJVN Limited's BSE filings (AnnouncementsConv, 27&nbsp;Feb&ndash;12&nbsp;Aug 2026 machine-readable text &mdash; the FY26/Q4FY26 financial results, FY26 earnings-call transcript, FY26 Reg.34(1) Annual Report, Q1FY27 financial results, and surrounding management-change/press-release filings), MarketData (Yahoo Finance via yfinance, fetched 23&nbsp;Aug&nbsp;2026, including the full daily price-history series back to 2021), and the tracked News feed (13&nbsp;Feb&ndash;19&nbsp;Aug 2026). Raw BSE PDFs for Q1FY25 through Q3FY26 results and four further earnings-call transcripts exist in this company's Announcements folder but could not be rendered to text in this environment (no PDF-to-image tool available) and are therefore not reflected as primary-source figures in this report; MarketData/yfinance fills those specific quarterly gaps and is flagged explicitly wherever used. Every figure is tagged to its source; where a figure could not be found in either source, it is marked n/a rather than estimated. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [504.40, 917.45, 1032.40, 1081.97, 1466.47, 1394.38];
+    var pat     = [-127.60, 227.77, 307.80, 224.38, -117.98, 224.93];
+    var series = [
+      {label:'Revenue from ops (₹ Cr)', color:'var(--chart-1)', data:revenue},
+      {label:'PAT, owners (₹ Cr)', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 50, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = Math.min(0, Math.min.apply(null, pat)) * 1.25;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+'</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q2FY26 sourced from MarketData/yfinance (no company filing available for this quarter in this dataset); all others company-filed. See §03 table for full detail.</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Jan 25', 94.53], ['Feb 25', 82.55], ['Mar 25', 89.89], ['Apr 25', 92.29],
+      ['May 25', 94.51], ['Jun 25', 98.67], ['Jul 25', 91.88], ['Aug 25', 91.92],
+      ['Sep 25', 88.94], ['Oct 25', 86.68], ['Nov 25', 76.67], ['Dec 25', 73.62],
+      ['Jan 26', 71.39], ['Feb 26', 73.03], ['Mar 26', 63.35], ['Apr 26', 78.98],
+      ['May 26', 75.16], ['Jun 26', 73.15], ['Jul 26', 68.62], ['Aug 26', 65.91]
+    ];
+    var W = 900, H = 220, padL = 44, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="SJVN Limited monthly closing share price, January 2025 to August 2026" style="width:100%;height:auto;font-size:10.5px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 2.6;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i % 2 === 0 || i === points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily NSE price history via yfinance (2021–2026 series). 52-week high/low per MarketData snapshot: ₹101.45 / ₹63.02 (intraday extremes may fall between the monthly points plotted).</div></div>';
+  })();
+})();
+</script>

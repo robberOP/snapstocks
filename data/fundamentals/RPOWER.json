@@ -1,7 +1,7 @@
 {
   "symbol": "RPOWER",
   "name": "Reliance Power",
-  "generatedAt": "2026-08-18T16:38:55.099077+00:00",
+  "generatedAt": "2026-08-23T11:02:42.948287+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Independent Power Producers",
@@ -14,28 +14,28 @@
     "peerIndustry": "Power Generation"
   },
   "price": {
-    "current": 23.87,
-    "change": 0.460001,
-    "changePercent": 1.9649764,
-    "previousClose": 23.41,
-    "dayLow": 23.56,
-    "dayHigh": 24.57,
+    "current": 23.45,
+    "change": 1.3000011,
+    "changePercent": 5.8690796,
+    "previousClose": 22.15,
+    "dayLow": 22.07,
+    "dayHigh": 23.8,
     "fiftyTwoWeekLow": 20.17,
-    "fiftyTwoWeekHigh": 50.85,
-    "asOf": 1785751202
+    "fiftyTwoWeekHigh": 50.73,
+    "asOf": 1787306400
   },
   "stats": {
-    "marketCap": 98720858112.0,
+    "marketCap": 96983826432.0,
     "trailingPE": null,
-    "forwardPE": 5.2926826,
-    "priceToBook": 0.6157299,
-    "bookValue": 38.767,
+    "forwardPE": 5.1995564,
+    "priceToBook": 0.60466194,
+    "bookValue": 38.782,
     "dividendYield": null,
-    "trailingEps": -0.82,
+    "trailingEps": -0.77,
     "debtToEquity": 0.92348,
     "roe": -2.1003876698783372,
     "roce": 4.481880589895712,
-    "return1y": -57.5040028175924,
+    "return1y": -48.393482676832924,
     "sharesOutstanding": 4135770966.0
   },
   "quarterly": {
@@ -45,7 +45,8 @@
       "Q1FY26",
       "Q2FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
@@ -53,48 +54,54 @@
       "2025-06-30T00:00:00",
       "2025-09-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
         null,
-        19780100000.0,
+        null,
         18855800000.0,
         19740300000.0,
         18728400000.0,
-        18872600000.0
+        18872600000.0,
+        19563200000.0
       ],
       "Expenses": [
         null,
-        15995800000.0,
+        null,
         15271400000.0,
         15638800000.0,
         14783900000.0,
-        15161900000.0
+        15161900000.0,
+        16011900000.0
       ],
       "OperatingProfit": [
         null,
-        3784300000.0,
+        null,
         3584400000.0,
         4101500000.0,
         3944500000.0,
-        3710700000.0
+        3710700000.0,
+        3551300000.0
       ],
       "NetProfit": [
         null,
-        1255700000.0,
+        null,
         446800000.0,
         873200000.0,
         251100000.0,
-        -4940000000.0
+        -4940000000.0,
+        647100000.0
       ],
       "EPS": [
         null,
-        0.28,
+        null,
         0.106,
         0.205,
         0.06,
-        -1.194
+        -1.194,
+        0.156
       ]
     }
   },
@@ -158,10 +165,10 @@
       ]
     },
     "ttm": {
-      "Sales": 76197100000.0,
-      "Expenses": 60856000000.0,
-      "OperatingProfit": 15341100000.0,
-      "NetProfit": -3368900000.0
+      "Sales": 76904500000.0,
+      "Expenses": 61596500000.0,
+      "OperatingProfit": 15308000000.0,
+      "NetProfit": -3168600000.0
     }
   },
   "balanceSheet": {
@@ -344,7 +351,7 @@
     "numberOfAnalystOpinions": null
   },
   "holders": {
-    "insidersPercent": 0.3005,
-    "institutionsPercent": 0.10774
+    "insidersPercent": 0.29806998,
+    "institutionsPercent": 0.10434
   }
 }

@@ -1,7 +1,7 @@
 {
   "symbol": "RKFORGE",
   "name": "Ramkrishna Forg.",
-  "generatedAt": "2026-08-18T16:38:54.650940+00:00",
+  "generatedAt": "2026-08-23T11:02:42.627791+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Metal Fabrication",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 681.15,
-    "change": 30.0,
-    "changePercent": 4.607233,
-    "previousClose": 651.15,
-    "dayLow": 642.35,
-    "dayHigh": 684.7,
+    "current": 749.2,
+    "change": -5.1499634,
+    "changePercent": -0.6827021,
+    "previousClose": 754.35,
+    "dayLow": 745.0,
+    "dayHigh": 772.8,
     "fiftyTwoWeekLow": 460.15,
-    "fiftyTwoWeekHigh": 684.7,
-    "asOf": 1785751202
+    "fiftyTwoWeekHigh": 772.8,
+    "asOf": 1787133600
   },
   "stats": {
-    "marketCap": 124085108736.0,
-    "trailingPE": 116.237206,
-    "forwardPE": 34.000835,
-    "priceToBook": 3.7475657,
+    "marketCap": 136481775616.0,
+    "trailingPE": 128.95009,
+    "forwardPE": 37.397675,
+    "priceToBook": 4.1219645,
     "bookValue": 181.758,
-    "dividendYield": 0.31,
-    "trailingEps": 5.86,
+    "dividendYield": 0.27,
+    "trailingEps": 5.81,
     "debtToEquity": 0.74422,
     "roe": 2.182024589545892,
-    "roce": 5.833176204276559,
-    "return1y": 13.812139370577972,
+    "roce": 4.677381431635781,
+    "return1y": 31.792204734434755,
     "sharesOutstanding": 182170017.0
   },
   "quarterly": {
@@ -118,22 +118,22 @@
         null,
         28594238000.0,
         33388420000.0,
-        40341068000.0,
-        42380773000.0
+        36285432000.0,
+        38679488000.0
       ],
       "Expenses": [
         null,
         24152407000.0,
         28507456000.0,
-        37458340000.0,
-        39282666000.0
+        33738829000.0,
+        35816668000.0
       ],
       "OperatingProfit": [
         null,
         4441831000.0,
         4880964000.0,
-        2882728000.0,
-        3098107000.0
+        2546603000.0,
+        2862820000.0
       ],
       "NetProfit": [
         null,
@@ -153,8 +153,8 @@
         null,
         null,
         16.766251998042403,
-        20.8235310326155,
-        5.056150223885991
+        8.6766968907184,
+        6.597843454089233
       ]
     },
     "ttm": {
@@ -206,14 +206,14 @@
         18182808000.0,
         26378068000.0,
         34530967000.0,
-        39788641000.0
+        39992572000.0
       ],
       "Investments": [
         null,
         28028000.0,
         238368000.0,
         123945000.0,
-        536516000.0
+        229597000.0
       ],
       "StockholdersEquity": [
         null,
@@ -304,8 +304,8 @@
         null,
         20.389531969838117,
         13.33222084288643,
-        7.322007994332217,
-        5.833176204276559
+        5.922879594230112,
+        4.677381431635781
       ],
       "ROE": [
         null,
@@ -318,15 +318,15 @@
         null,
         98.95503685043118,
         92.91469302830143,
-        88.24863759184561,
-        68.46288988169233
+        98.1122200777436,
+        75.0141830988042
       ],
       "WorkingCapitalDays": [
         null,
         48.53028659130557,
         84.21210841962574,
-        21.042697233499123,
-        27.221889039164058
+        23.39464719615299,
+        29.826783125981397
       ]
     }
   },
@@ -368,11 +368,11 @@
     "targetMean": 634.0,
     "targetHigh": 680.0,
     "targetLow": 550.0,
-    "recommendationKey": "hold",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 4
   },
   "holders": {
-    "insidersPercent": 0.57383,
-    "institutionsPercent": 0.15047
+    "insidersPercent": 0.57367,
+    "institutionsPercent": 0.19575001
   }
 }

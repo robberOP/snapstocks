@@ -1,7 +1,7 @@
 {
   "symbol": "IXIGO",
   "name": "Le Travenues",
-  "generatedAt": "2026-08-18T16:38:09.964459+00:00",
+  "generatedAt": "2026-08-23T11:02:01.805401+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Travel Services",
@@ -14,28 +14,28 @@
     "peerIndustry": "Tour, Travel Related Services"
   },
   "price": {
-    "current": 199.6,
-    "change": 1.980011,
-    "changePercent": 1.0019284,
-    "previousClose": 197.62,
-    "dayLow": 198.13,
-    "dayHigh": 204.58,
+    "current": 172.26,
+    "change": -0.25,
+    "changePercent": -0.14491914,
+    "previousClose": 172.51,
+    "dayLow": 170.25,
+    "dayHigh": 174.8,
     "fiftyTwoWeekLow": 151.27,
     "fiftyTwoWeekHigh": 339.15,
-    "asOf": 1785751190
+    "asOf": 1787047202
   },
   "stats": {
-    "marketCap": 88032436224.0,
-    "trailingPE": 116.04652,
-    "forwardPE": 47.075474,
-    "priceToBook": 4.329624,
+    "marketCap": 75974279168.0,
+    "trailingPE": 88.338455,
+    "forwardPE": 42.132088,
+    "priceToBook": 3.7365782,
     "bookValue": 46.101,
     "dividendYield": null,
-    "trailingEps": 1.72,
+    "trailingEps": 1.95,
     "debtToEquity": 0.0215,
     "roe": 3.524444103507734,
     "roce": 4.291732886953741,
-    "return1y": -13.727521794195106,
+    "return1y": -31.584374902798213,
     "sharesOutstanding": 441044262.0
   },
   "quarterly": {
@@ -44,50 +44,57 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
         2417610000.0,
         2841390000.0,
-        3144720000.0,
+        3160500000.0,
         3175640000.0,
-        3080490000.0
+        3080490000.0,
+        3567500000.0
       ],
       "Expenses": [
         2230620000.0,
         2623390000.0,
-        2921170000.0,
+        2937000000.0,
         2950780000.0,
-        2878570000.0
+        2878570000.0,
+        3370900000.0
       ],
       "OperatingProfit": [
         186990000.0,
         218000000.0,
-        223550000.0,
+        223500000.0,
         224860000.0,
-        201920000.0
+        201920000.0,
+        196600000.0
       ],
       "NetProfit": [
         155240000.0,
         167170000.0,
-        190850000.0,
+        190900000.0,
         242610000.0,
-        319640000.0
+        319640000.0,
+        325000000.0
       ],
       "EPS": [
         0.39,
         0.42,
         0.48,
         0.56,
-        0.71
+        0.71,
+        0.72
       ]
     }
   },
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 12242240000.0,
-      "Expenses": 11373910000.0,
-      "OperatingProfit": 868330000.0,
-      "NetProfit": 920270000.0
+      "Sales": 12984130000.0,
+      "Expenses": 12137250000.0,
+      "OperatingProfit": 846880000.0,
+      "NetProfit": 1078150000.0
     }
   },
   "balanceSheet": {
@@ -325,14 +332,14 @@
   },
   "dividends": [],
   "analyst": {
-    "targetMean": 229.11111,
+    "targetMean": 223.11111,
     "targetHigh": 320.0,
-    "targetLow": 180.0,
-    "recommendationKey": "none",
+    "targetLow": 183.0,
+    "recommendationKey": "buy",
     "numberOfAnalystOpinions": 9
   },
   "holders": {
-    "insidersPercent": 0.27371,
-    "institutionsPercent": 0.50541
+    "insidersPercent": 0.27583998,
+    "institutionsPercent": 0.53827
   }
 }

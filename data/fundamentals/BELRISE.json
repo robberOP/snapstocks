@@ -1,7 +1,7 @@
 {
   "symbol": "BELRISE",
   "name": "Belrise Industri",
-  "generatedAt": "2026-08-18T16:37:23.135457+00:00",
+  "generatedAt": "2026-08-23T11:00:58.204697+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 241.86,
-    "change": 5.130005,
-    "changePercent": 2.1670277,
+    "current": 233.01,
+    "change": -3.7200012,
+    "changePercent": -1.5714111,
     "previousClose": 236.73,
-    "dayLow": 238.4,
-    "dayHigh": 244.9,
-    "fiftyTwoWeekLow": 132.5,
-    "fiftyTwoWeekHigh": 252.0,
-    "asOf": 1785751198
+    "dayLow": 232.2,
+    "dayHigh": 237.59,
+    "fiftyTwoWeekLow": 135.16,
+    "fiftyTwoWeekHigh": 268.2,
+    "asOf": 1787133602
   },
   "stats": {
-    "marketCap": 233915367424.0,
-    "trailingPE": 41.5567,
-    "forwardPE": 25.431616,
-    "priceToBook": 3.9388955,
+    "marketCap": 225356070912.0,
+    "trailingPE": 41.02289,
+    "forwardPE": 25.443106,
+    "priceToBook": 3.7947657,
     "bookValue": 61.403,
     "dividendYield": 0.23,
-    "trailingEps": 5.82,
+    "trailingEps": 5.68,
     "debtToEquity": 0.29100000000000004,
     "roe": 9.506944225200119,
     "roce": 14.694120010603395,
-    "return1y": 84.21930908593475,
+    "return1y": 73.8895604838581,
     "sharesOutstanding": 967151919.0
   },
   "quarterly": {
@@ -136,11 +136,11 @@
         4968600000.0
       ],
       "EPS": [
-        2.942501,
+        null,
         3.524782,
         3.526434,
         3.994284,
-        null
+        5.82
       ],
       "SalesGrowth": [
         null,
@@ -330,14 +330,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 255.33333,
-    "targetHigh": 270.0,
-    "targetLow": 250.0,
-    "recommendationKey": "none",
+    "targetMean": 264.83334,
+    "targetHigh": 285.0,
+    "targetLow": 248.0,
+    "recommendationKey": "strong_buy",
     "numberOfAnalystOpinions": 6
   },
   "holders": {
-    "insidersPercent": 0.61147,
-    "institutionsPercent": 0.13371
+    "insidersPercent": 0.62196,
+    "institutionsPercent": 0.1736
   }
 }

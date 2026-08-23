@@ -1,7 +1,7 @@
 {
   "symbol": "MOTHERSON",
   "name": "Samvardh. Mothe.",
-  "generatedAt": "2026-08-18T16:38:31.522535+00:00",
+  "generatedAt": "2026-08-23T11:02:22.331234+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 155.01,
-    "change": 4.2599945,
-    "changePercent": 2.825867,
-    "previousClose": 150.75,
-    "dayLow": 152.03,
-    "dayHigh": 155.01,
-    "fiftyTwoWeekLow": 89.7,
-    "fiftyTwoWeekHigh": 155.25,
-    "asOf": 1785750299
+    "current": 170.29,
+    "change": -0.11000061,
+    "changePercent": -0.06455435,
+    "previousClose": 170.4,
+    "dayLow": 169.31,
+    "dayHigh": 173.27,
+    "fiftyTwoWeekLow": 91.1,
+    "fiftyTwoWeekHigh": 173.27,
+    "asOf": 1787132700
   },
   "stats": {
-    "marketCap": 1632446054400.0,
-    "trailingPE": 42.352455,
-    "forwardPE": 23.439484,
-    "priceToBook": 3.983604,
+    "marketCap": 1793363148800.0,
+    "trailingPE": 40.935097,
+    "forwardPE": 24.576204,
+    "priceToBook": 4.376285,
     "bookValue": 38.912,
-    "dividendYield": 0.33,
-    "trailingEps": 3.66,
+    "dividendYield": 0.29,
+    "trailingEps": 4.16,
     "debtToEquity": 0.43908,
     "roe": 9.418588761237299,
     "roce": 11.496894450461266,
-    "return1y": 51.82898997534863,
+    "return1y": 83.34507492591796,
     "sharesOutstanding": 10531231231.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q1FY26",
       "Q2FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-09-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         299428300000.0,
         298760100000.0,
         311852900000.0,
-        340187500000.0
+        340187500000.0,
+        349124000000.0
       ],
       "Expenses": [
         276901100000.0,
         287142100000.0,
         284831500000.0,
         294630500000.0,
-        315934000000.0
+        315934000000.0,
+        331743900000.0
       ],
       "OperatingProfit": [
         14292000000.0,
         12286200000.0,
         13928600000.0,
         17222400000.0,
-        24253500000.0
+        24253500000.0,
+        17380100000.0
       ],
       "NetProfit": [
         10505000000.0,
         5118400000.0,
         8270000000.0,
         10237000000.0,
-        14971400000.0
+        14971400000.0,
+        10320500000.0
       ],
       "EPS": [
         1.0,
         0.48,
         0.78,
         0.97,
-        1.42
+        1.42,
+        0.98
       ]
     }
   },
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 1250228800000.0,
-      "Expenses": 1182538100000.0,
-      "OperatingProfit": 67690700000.0,
-      "NetProfit": 38596800000.0
+      "Sales": 1299924500000.0,
+      "Expenses": 1227139900000.0,
+      "OperatingProfit": 72784600000.0,
+      "NetProfit": 43798900000.0
     }
   },
   "balanceSheet": {
@@ -358,14 +365,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 156.40909,
-    "targetHigh": 182.0,
-    "targetLow": 120.0,
+    "targetMean": 171.45454,
+    "targetHigh": 195.0,
+    "targetLow": 115.0,
     "recommendationKey": "buy",
     "numberOfAnalystOpinions": 22
   },
   "holders": {
-    "insidersPercent": 0.5833,
-    "institutionsPercent": 0.27412
+    "insidersPercent": 0.59464,
+    "institutionsPercent": 0.27559
   }
 }

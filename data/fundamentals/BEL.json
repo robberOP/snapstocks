@@ -1,7 +1,7 @@
 {
   "symbol": "BEL",
   "name": "Bharat Electron",
-  "generatedAt": "2026-08-18T16:37:23.034816+00:00",
+  "generatedAt": "2026-08-23T11:00:58.037137+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
@@ -14,28 +14,28 @@
     "peerIndustry": "Aerospace & Defense"
   },
   "price": {
-    "current": 404.35,
-    "change": 3.350006,
-    "changePercent": 0.83541304,
-    "previousClose": 401.0,
-    "dayLow": 399.25,
-    "dayHigh": 405.65,
+    "current": 414.0,
+    "change": 4.600006,
+    "changePercent": 1.123597,
+    "previousClose": 409.4,
+    "dayLow": 408.65,
+    "dayHigh": 415.95,
     "fiftyTwoWeekLow": 361.2,
     "fiftyTwoWeekHigh": 473.45,
-    "asOf": 1786355101
+    "asOf": 1787305505
   },
   "stats": {
-    "marketCap": 2955709251584.0,
-    "trailingPE": 48.25179,
-    "forwardPE": 35.809616,
-    "priceToBook": 12.321358,
+    "marketCap": 3026248531968.0,
+    "trailingPE": 49.285717,
+    "forwardPE": 36.685898,
+    "priceToBook": 12.615412,
     "bookValue": 32.817,
-    "dividendYield": 0.62,
-    "trailingEps": 8.38,
+    "dividendYield": 0.6,
+    "trailingEps": 8.4,
     "debtToEquity": 0.0027300000000000002,
     "roe": 25.270642241992036,
     "roce": 31.883587832312738,
-    "return1y": 5.266636465806583,
+    "return1y": 9.545291760454623,
     "sharesOutstanding": 7309778829.0
   },
   "quarterly": {
@@ -325,6 +325,10 @@
   },
   "dividends": [
     {
+      "date": "2026-08-13",
+      "amount": 0.55
+    },
+    {
       "date": "2026-03-06",
       "amount": 1.95
     },
@@ -351,14 +355,10 @@
     {
       "date": "2023-08-17",
       "amount": 0.6
-    },
-    {
-      "date": "2023-03-24",
-      "amount": 0.6
     }
   ],
   "analyst": {
-    "targetMean": 490.2903,
+    "targetMean": 490.4516,
     "targetHigh": 550.0,
     "targetLow": 346.0,
     "recommendationKey": "strong_buy",
@@ -366,6 +366,6 @@
   },
   "holders": {
     "insidersPercent": 0.53424,
-    "institutionsPercent": 0.28927
+    "institutionsPercent": 0.28956
   }
 }

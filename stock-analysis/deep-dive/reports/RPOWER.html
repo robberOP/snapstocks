@@ -1,0 +1,945 @@
+<title>Reliance Power Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Power Generation &mdash; Coal, Gas &amp; Renewables (Independent Power Producer)</div>
+    <h1>Reliance Power Limited</h1>
+    <p class="sub">NSE: RPOWER &middot; BSE: 532939 &middot; FY2023&ndash;FY2027(Q1) performance review, BSE-filing and press-release synthesis, as of 23 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> Reliance Power has spent the past two years quietly deleveraging &mdash; consolidated debt down 30% from &#8377;21,236 Cr (FY23) to &#8377;14,812 Cr (FY26), finance costs down 19% YoY in FY26, and operating EBITDA margins holding a fairly stable 27&ndash;32% band across seven straight quarters &mdash; but that slow, genuine progress has been swamped by an escalating cluster of legal and governance shocks. On 29 April 2026, lender Export-Import Bank of the United States filed a Section 7 insolvency application against the <b>listed parent company itself</b> (not merely a subsidiary), over a $165 million guaranteed default at gas-based subsidiary Samalkot Power; two subsidiaries (Samalkot, Rajasthan Sun Technique Energy) carry a combined negative net worth exceeding &#8377;5,400 crore and are in active default; the FY26 audit opinion is qualified on going-concern grounds; a SEBI forensic audit, an Enforcement Directorate PMLA investigation with over &#8377;1,000 crore in provisional asset attachments, a prosecution complaint that saw a former Executive Director &amp; CFO arrested, and a CBI search-and-seizure at the registered office are all live and unresolved as this report is written. Meanwhile over &#8377;300 crore of investor warrants lapsed unconverted even as the board sought shareholder authorization for a fresh &#8377;9,000 crore capital raise. The stock trades at 0.6x book value and has lost more than half its value from its 52-week high.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (23 Aug 26)</div><div class="v">&#8377;23.45</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;9,698 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;20.17 &ndash; &#8377;50.73</div></div>
+      <div class="chip"><div class="k">FY26 Revenue</div><div class="v">+0.5% YoY</div></div>
+      <div class="chip"><div class="k">FY26 Consol. PAT</div><div class="v neg">&minus;&#8377;336.9 Cr (loss)</div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT</div><div class="v pos">+44.8% YoY</div></div>
+      <div class="chip"><div class="k">Debt reduction, FY23&rarr;FY26</div><div class="v pos">&minus;30%</div></div>
+      <div class="chip"><div class="k">Insolvency proceeding vs. parent</div><div class="v neg">Active, unresolved</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage, basis, and an important gap &mdash; please read before the numbers below:</b> this dataset contains <b>no earnings-call transcript and no investor-presentation filing anywhere</b> for Reliance Power &mdash; unlike companies that hold quarterly analyst calls, RPOWER's public communication is limited to BSE outcome letters, financial-results filings, press releases and the FY26 annual report. No management quote in this report is invented; every quoted or paraphrased management statement is sourced directly from a dated BSE filing. BSE filings reviewed span 15&nbsp;Dec&nbsp;2025&ndash;22&nbsp;Aug&nbsp;2026 (this report could not find filings dated earlier than Dec-2025 in the dataset, so FY23&ndash;FY24 and early-FY25 figures rely on MarketData/yfinance's annual/quarterly series rather than primary BSE filings for those periods &mdash; flagged wherever used). Quarterly P&amp;L figures for Q3FY25 through Q1FY27 are drawn directly from three separate BSE financial-results filings (30&nbsp;Jan, 21&nbsp;May, 6&nbsp;Aug 2026) whose overlapping comparative columns were cross-checked against each other and found internally consistent. <b>Basis:</b> all figures are <b>consolidated</b> unless explicitly marked standalone; the standalone (parent-only) entity is a thin holding company with near-zero own revenue and is not representative of the operating group, though its Reg.&nbsp;52(4) ratio disclosures (debt-service coverage, current ratio) are shown where relevant since consolidated equivalents aren't disclosed by the company in the same format. Two data-quality caveats are flagged explicitly in &sect;04 and &sect;06: yfinance's own annual EBITDA/revenue figures diverge meaningfully from the BSE-filed figures for FY24&ndash;FY26 (likely different treatment of discontinued operations and exceptional items), so this report leans on the BSE-sourced figures wherever both exist and states so; and no quarterly cash-flow statement exists anywhere in the source data, only annual. The filing named <code>2026-04-29_initiation-of-corporate-insolvency-resol</code> was read in full and is covered extensively in &sect;05, &sect;07 and &sect;08 given its materiality; all three dated change-in-management filings (14&nbsp;Jan, 30&nbsp;Jan, 21&nbsp;May 2026) were also read in full for &sect;07.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Other disclosure insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What Reliance Power does, and how it has grown</h2></div>
+      <p class="sec-dek">A 5,305 MW power-generation holding company built around one giant, captive-coal-backed asset &mdash; now trying to add renewables and an unfunded "AI" pivot on top of a balance sheet still working through two insolvent subsidiaries.</p>
+
+      <p class="lede">Incorporated in 1995 (CIN L40101MH1995PLC084687) and headquartered in Mumbai, Reliance Power Limited is part of the Reliance Group (the Anil Ambani&ndash;led ADAG group, distinct from Reliance Industries). It develops, owns and operates power-generation assets across coal, gas, hydro, wind and solar (MarketData/overview.md business summary), and describes itself in its own FY26 annual report as "a leading private sector power generation company in India" with total installed capacity of <b>5,305 MW</b>. The company employs 1,278 people directly (overview.md) and held its 32nd Annual General Meeting on 14 August 2026.</p>
+
+      <h3>The asset base</h3>
+      <p>The flagship asset is the <b>Sasan Ultra Mega Power Project</b> in Madhya Pradesh &mdash; 3,960 MW across six 660 MW coal-fired units, described in the FY26 MD&amp;A as "one of the largest integrated coal-based power plants globally," backed by captive coal mines that the company cites as giving it fuel security and cost competitiveness most peers lack post-2015 coal-block-auction reforms. The <b>Rosa Power Project</b> in Uttar Pradesh (1,200 MW, four 300 MW units) is the second major thermal asset. The <b>Samalkot Power Project</b> (Andhra Pradesh, gas-based, owned via subsidiary Samalkot Power Limited/SMPL) has been non-operational for years on gas-availability and commercial-viability grounds; the company now describes a "planned exit" from the asset (&sect;05, &sect;08) rather than a turnaround plan. Renewables today are small in absolute terms: a 40 MW Dhursar solar-PV plant, a 100 MW Concentrated Solar Power (CSP) thermal plant (one of India's earliest such installations) and a 5 MW wind project in Tamil Nadu.</p>
+
+      <h3>The renewables pipeline &mdash; large on paper, unfunded so far</h3>
+      <p>Per the FY26 annual report, the company has "secured" three renewable-plus-storage projects: 930 MW solar + 465 MW/1,860 MWh BESS; 350 MW solar + 175 MW/700 MWh BESS; and 650 MW solar + 750 MW/3,300 MWh BESS &mdash; roughly 1,930 MW of solar and 1,390 MW/5,860 MWh of battery storage in aggregate. Separately, an associate company, Reliance Enterprises Private Limited, has announced a 50:50 joint venture with Bhutan's Druk Holdings and Investment to develop a 500 MW solar project and a 770 MW hydroelectric project in Bhutan &mdash; but the company's own auditor note describes this associate as "only incorporated, no investment has been made as on date," so this is an announcement, not a funded commitment. &sect;05 shows why this pipeline should be read cautiously: FY26 net capex was actually negative (asset base shrinking, not growing).</p>
+
+      <h3>The newest pivot: renaming four subsidiaries toward "AI"</h3>
+      <p>On 30 June 2026 the company disclosed that, "as a step to participate in the rapidly evolving field of Artificial Intelligence," four existing subsidiaries were renamed &mdash; Reliance AI Green Power Private Limited, Reliance AI Power Private Limited, Reliance AI Data Control Private Limited and Reliance AI Data C Private Limited &mdash; and their objects amended to cover "Artificial Intelligence and technology-enabled services." The filing itself calls these "enabling steps": no capex commitment, land, customer, or partner was disclosed alongside the renaming. This report treats the AI/data-centre angle as aspirational-stage only, not an evidenced business line, until a specific project, contract or capex line appears in a subsequent filing.</p>
+
+      <h3>The moat, such as it's evidenced</h3>
+      <p>What is independently verifiable: captive coal linkage at Sasan (a genuinely scarce, hard-to-replicate advantage under India's current coal-allocation regime); long-term Power Purchase Agreements across the operating thermal fleet, which the company's own SWOT disclosure cites as giving "clear revenue and cash flow visibility"; and scale (5,305 MW, anchored by one of the world's largest single integrated coal complexes). Against that, the company's <em>own</em> FY26 MD&amp;A SWOT analysis discloses real weaknesses in its own words: "high dependence on thermal power within the active revenue-generating portfolio," "relatively limited operational renewable capacity compared to the massive upcoming project pipeline," and "legacy assets with varying operational and thermal efficiency levels across plants." No independent market-share, ranking or competitor-benchmark figure was found in any reviewed filing &mdash; every scale claim in this section is the company's own.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item in the tracked News feed (7&nbsp;Mar&ndash;18&nbsp;Aug 2026), verified against filings and figures wherever a filing exists to check against.</p>
+
+      <div class="news-item">
+        <div class="news-date">18 Aug 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">CBI Special Court issues pre-cognizance notice; ED cites &#8377;1,021 Cr in provisional attachments</div>
+          <div class="news-body">Reliance Power and subsidiary Reliance CleanGen received a pre-cognizance notice from a Special CBI Court tied to an ED complaint alleging &#8377;715 crore in PMLA violations; the ED had provisionally attached properties worth &#8377;1,021 crore, including equity shares held by Reliance Infrastructure. The item also cites a group-wide PMLA attachment total of &#8377;20,367 crore across ADAG-linked cases &mdash; a figure sourced from this news item only and not independently confirmed against a company filing in this dataset.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">14 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Dr. Avinash Gupta's appointment as Independent Director ratified at the 32nd AGM</div>
+          <div class="news-body">Confirms the appointment made by the board on 21 May 2026 (&sect;07); routine ratification, consistent with the company's own filings.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">10 Aug 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">ED files prosecution complaints against Reliance Infrastructure and Reliance Communications</div>
+          <div class="news-body">The Enforcement Directorate filed chargesheets alleging &#8377;187 crore siphoned from toll-road projects via shell entities, and &#8377;40,185 crore in total proceeds of crime in a separate RCom case. These filings target sister group entities (RInfra, RCom), not Reliance Power directly, but are relevant context given the shared promoter group and the cross-holding/receivable exposures documented in &sect;05.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">6 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed &mdash; genuine profit growth, overshadowed by parallel legal risk</span>
+          <div class="news-title">Q1FY27 results: consolidated PAT &#8377;65 Cr (+44% YoY), revenue &#8377;1,956 Cr (+4%)</div>
+          <div class="news-body">This report's own &sect;03/&sect;04 tabulation confirms these figures directly from the BSE filing (PAT &#8377;64.71 Cr vs &#8377;44.68 Cr in Q1FY26, revenue &#8377;1,956.32 Cr vs &#8377;1,885.58 Cr) &mdash; the underlying operating quarter was genuinely solid. The same filing disclosed the &#8377;302.62 crore warrant forfeiture and the going-concern qualifications on SMPL and RSTEPL (&sect;05) in the same set of notes.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">24 Jul 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">Insolvency proceedings and going-concern doubt detailed: SMPL and RSTEPL negative net worth confirmed</div>
+          <div class="news-body">Consistent with this report's own &sect;05 tabulation from the FY26 audited results: SMPL negative net worth of &#8377;2,831.95 Cr with defaults of &#8377;1,819.94 Cr, and RSTEPL negative net worth of &#8377;2,610.10 Cr with defaults of &#8377;2,113.09 Cr, both as at 31 March 2026.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">23 Jul 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">FY26 Business Responsibility &amp; Sustainability Report (BRSR) filed with third-party assurance</div>
+          <div class="news-body">Third-party reasonable assurance from Shailesh Haribhakti &amp; Associates on core ESG metrics, covering 1,278 employees and 6,321 workers; 43,156 ESCerts issued under the PAT scheme. A compliance disclosure, not a financial one &mdash; does not offset the governance concerns detailed in &sect;07.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">22 Jul 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">Auditor issues qualified opinion on FY26 annual results, citing going-concern doubt</div>
+          <div class="news-body">Confirmed directly against the primary source: Pathak H.D. &amp; Associates LLP's 21 May 2026 audit report is a qualified opinion, with the basis-for-qualification paragraphs specifically naming RSTEPL, SMPL and Dhursar Solar Power Private Limited (&sect;05).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">21 Jul 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">CBI concludes search-and-seizure at Reliance Power's registered office</div>
+          <div class="news-body">Related to transactions with Reliance Commercial Finance Limited and Reliance Home Finance Limited; the company stated full cooperation and no operational impact (&sect;07).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">30 Jun 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed &mdash; growth ambition announced alongside a live default</span>
+          <div class="news-title">Four subsidiaries renamed for AI focus; &#8377;9,000 Cr fundraising also referenced</div>
+          <div class="news-body">Covered directly in &sect;01 (AI renaming) and &sect;05 (the &#8377;9,000 Cr QIP/NCD authorization, approved 21 May 2026, still unexecuted as of this report). The news item's own framing &mdash; growth ambition sitting alongside "a pending $165.41 million US Exim IBC application against its Samalkot Power subsidiary" &mdash; matches this report's read of the balance-sheet section.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">29 Apr 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">US Exim Bank files Section 7 IBC insolvency application against the parent company</div>
+          <div class="news-body">The single most material filing in this dataset, read in full for this report. Full detail in &sect;05, &sect;07 and &sect;08. The company's position &mdash; that the underlying debt "has not fallen due" and the matter is sub judice via London arbitration &mdash; was materially weakened five weeks after this report's data window began: the arbitration tribunal ruled on 23 June 2026 that it lacked jurisdiction over SMPL's claim, and the arbitration was withdrawn on 30 July 2026 (&sect;05).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">7 Mar 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">ED conducts searches at 10&ndash;12 locations linked to Reliance Power and the ADAG group</div>
+          <div class="news-body">Part of a wider money-laundering investigation into the group; the company denied searches at its own offices specifically, per the news item. Predates, and is consistent with, the SEBI forensic audit disclosed 14 Jan 2026 and the ED prosecution complaint disclosed in the Q3FY26 results (&sect;07).</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>The current price of &#8377;23.45 sits 53.8% below the 52-week high of &#8377;50.73, but only 16.3% above the 52-week low of &#8377;20.17 &mdash; and below both the 50-day (&#8377;24.49) and 200-day (&#8377;28.05) moving averages, consistent with a sustained downtrend rather than a recent one-off shock. Given the density and escalation pattern of the litigation/regulatory newsflow above &mdash; nine of the eleven dated items in this section are tagged Bearish or Mixed &mdash; that price action looks directionally consistent with the fundamentals this report tabulates, not a market overreaction to noise. Full valuation context in &sect;10.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segments &amp; guidance</h2></div>
+      <p class="sec-dek">Seven straight quarters of essentially flat revenue in a &#8377;1,850&ndash;1,975 Cr band &mdash; a stable, mature operating business with no organic growth and, in the absence of any earnings call, no numeric guidance to check it against.</p>
+
+      <h3>Quarterly trend (consolidated)</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q3FY25 (Dec-24)</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q2FY26 (Sep-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>1,852.84</td><td>1,978.01</td><td>1,885.58</td><td>1,974.03</td><td>1,872.84</td><td>1,887.26</td><td>1,956.32</td></tr>
+            <tr><td>EBITDA (this report's calc.)</td><td>491.92</td><td>589.84</td><td>565.04</td><td>617.67</td><td>604.32</td><td>576.29<sup>&dagger;</sup></td><td>562.41</td></tr>
+            <tr><td>EBITDA margin</td><td>26.6%</td><td>29.8%</td><td>30.0%</td><td>31.3%</td><td>32.3%</td><td>30.5%<sup>&dagger;</sup></td><td>28.8%</td></tr>
+            <tr><td>PAT (reported)</td><td>41.95</td><td>125.57</td><td>44.68</td><td>87.32</td><td>25.11</td><td class="neg">&minus;494.00</td><td>64.71</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>0.097</td><td>0.280</td><td>0.106</td><td>0.205</td><td>0.060</td><td class="neg">&minus;1.194</td><td>0.156</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: BSE financial-results filings dated 30 Jan 2026, 21 May 2026 and 6 Aug 2026 (comparative columns cross-checked across all three and internally consistent). EBITDA computed per the Fundamental_Analysis.md convention: (Total Revenue &minus; Other Income) &minus; (Total Expenses &minus; Finance Cost &minus; D&amp;A). &dagger; Q4FY26 EBITDA/margin is pre-exceptional-item (excludes the &#8377;381.60 Cr RSTEPL impairment booked that quarter as an exceptional item below the EBITDA line &mdash; see &sect;04).</caption>
+      </div>
+      <p>Read plainly: this is a business with almost no organic top-line growth &mdash; revenue has moved in a narrow &#8377;1,850&ndash;1,975 Cr quarterly band for seven consecutive quarters (a peak-to-trough range of just 6.8%), consistent with a large, contracted (PPA-backed) thermal generation base rather than a growth story. Full-year revenue was effectively flat YoY: &#8377;7,619.71 Cr in FY26 versus &#8377;7,582.89 Cr in FY25, +0.49%. What moves the reported bottom line quarter to quarter is almost entirely below the EBITDA line &mdash; finance costs, exceptional items and tax &mdash; not the underlying generation business, which &sect;04 shows has actually been the most stable part of the story.</p>
+
+      <h3>Segment and geography disclosure &mdash; a real limitation</h3>
+      <p>Every financial-results filing reviewed states, verbatim: "The Group is engaged in only one Segment viz. 'Generation of Power' and hence, there is no separate reportable segment as per Ind AS-108," and "The Group's operation is predominantly confined to India." This means there is no disclosed revenue split between Sasan, Rosa, or the renewable assets in any filing reviewed &mdash; a genuine granularity gap this report cannot fill without estimating, which the analysis method this report follows prohibits. The company does still hold Indonesian coal-resource subsidiaries (five PT entities); a Share Purchase Agreement with Biotruster (Singapore) Pte Limited to sell the entire stake in these was disclosed in the Jan-2026 and Aug-2026 results filings, still subject to conditions precedent and not yet closed as of this report &mdash; a portfolio-simplification move, not a geographic expansion.</p>
+
+      <h3>Market share, ranking, new geographies</h3>
+      <p>No independent market-share or capacity-ranking figure was found in any reviewed filing. No genuinely new operating geography was evidenced in this window; the closest is the announced (but unfunded, per &sect;01) Bhutan solar+hydro JV. Horizontal expansion is real on paper &mdash; from thermal generation into solar+BESS, and now into a nominally "AI" services angle &mdash; but neither shows up yet in the revenue table above. No vertical expansion (upstream fuel, downstream distribution) beyond the existing captive-coal linkage at Sasan was evidenced.</p>
+
+      <h3>Guidance vs. actual</h3>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>No earnings call exists &mdash; this check runs on filing-disclosed commitments instead</b>There is no investor presentation or earnings-call transcript anywhere in this dataset for Reliance Power, so there is no quarterly numeric revenue/margin guidance to test a beat-or-miss pattern against, unlike the standard "guidance vs. actual" check this report's method otherwise requires. The closest testable management commitments found are operational rather than financial: (1) management's stated expectation, repeated in the Jan-2026, May-2026 and Aug-2026 filings, that the AM Green Energies equipment-sale monetization would "completely address" SMPL's lender defaults &mdash; still pending lender/regulatory approval as of the last filing reviewed; and (2) the 21 May 2026 board authorization to raise up to &#8377;9,000 crore (&#8377;6,000 Cr equity/QIP + &#8377;3,000 Cr NCDs) &mdash; an enabling resolution only, with zero rupees drawn as of this report, run alongside the concurrent, opposite signal of &#8377;300+ crore of investor warrants lapsing unconverted in the same window (&sect;05). Both are tracked as open, unresolved commitments rather than delivered guidance.</div>
+      </div>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">The operating business is the stable part of this story &mdash; EBITDA margin held a fairly tight 27&ndash;32% band across seven quarters &mdash; but interest coverage sits below or barely above 1x, and both FY25's profit and FY26's loss were decided almost entirely by one-off items below the operating line.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>7,582.89</td><td>7,619.71</td></tr>
+            <tr><td>EBITDA (this report's calc.)</td><td>2,108.25</td><td>2,363.32</td></tr>
+            <tr><td>EBITDA margin</td><td>27.8%</td><td>31.0%</td></tr>
+            <tr><td>Finance cost</td><td>2,055.86</td><td class="pos">1,666.21</td></tr>
+            <tr><td>Interest coverage (EBIT / finance cost)</td><td class="neg">0.58x</td><td class="neg">0.92x</td></tr>
+            <tr><td>Pre-exceptional PBT</td><td class="neg">&minus;183.13</td><td>236.71</td></tr>
+            <tr><td>Exceptional item</td><td class="pos">+3,230.42 (gain on deconsolidation)</td><td class="neg">&minus;381.60 (RSTEPL impairment)</td></tr>
+            <tr><td>Reported PBT</td><td>3,047.29</td><td class="neg">&minus;144.89</td></tr>
+            <tr><td>Reported PAT</td><td>2,947.83</td><td class="neg">&minus;336.89</td></tr>
+            <tr><td>PAT margin (reported)</td><td>35.7%<sup>&Dagger;</sup></td><td class="neg">&minus;4.2%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: BSE financial-results filings (30 Jan / 21 May 2026), matching prior-year comparatives across both. &Dagger; FY25's 35.7% reported net margin is not a genuine operating margin &mdash; see the flag below. Exceptional-item nature (gain vs. impairment) per Note 5/6/8 of the respective filings.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Both FY25's profit and FY26's loss were decided by a single below-the-line item, not the operating business</b>Strip out the exceptional items and the picture flips entirely. FY25's pre-exceptional PBT was actually <b>negative</b> &#8377;183.13 Cr &mdash; the reported &#8377;3,047.29 Cr profit and 35.7% net margin existed only because of a &#8377;3,230.42 Cr one-off "gain on deconsolidation of subsidiary," a figure larger than the entire year's pre-tax result. FY26 ran the same play in reverse: pre-exceptional PBT was a positive &#8377;236.71 Cr &mdash; a perfectly ordinary operating year &mdash; until a &#8377;381.60 Cr impairment at subsidiary RSTEPL (a DCF-based writedown after "the technology implemented for the project...has not delivered the desired results," per the company's own Q4FY26 filing note) flipped the year into a &#8377;336.89 Cr net loss. Read the FY25-vs-FY26 headline PAT swing as two separate one-off events bookending a genuinely stable operating business, not as a business that collapsed.</div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Interest coverage has not cleared 1x on a full-year basis in either of the last two years</b>EBIT (EBITDA less D&amp;A) covered finance cost just 0.58x in FY25 and 0.92x in FY26 &mdash; meaning the consolidated group's own operating earnings, before exceptional items, did not fully cover its own interest bill in either year. Quarterly, coverage ranged roughly 0.78x&ndash;1.06x over the last four quarters (this report's calculation from the same filings). Separately, the company's own standalone (parent-only) Reg.&nbsp;52(4) disclosures show Debt Service Coverage Ratio/Interest Service Coverage Ratio of 1.16x for FY26 but as low as 0.91x in Q4FY26 and 0.73x for FY25 &mdash; a different, narrower entity (the parent alone), but directionally telling the same story. This is the single clearest quantitative signal behind the going-concern qualifications discussed in &sect;05.</div>
+      </div>
+
+      <h3>What actually moved margins</h3>
+      <p>Unlike the PAT line, EBITDA margin has been comparatively well-behaved: 26.6% (Q3FY25) to a peak of 32.3% (Q3FY26) back down to 28.8% (Q1FY27) &mdash; a real but modest ~5.7-point range across seven quarters, not the kind of swing that would suggest operational deterioration. Finance cost fell from &#8377;2,055.86 Cr (FY25) to &#8377;1,666.21 Cr (FY26), &minus;19.0% YoY, directly tracking the debt paydown in &sect;05 &mdash; genuine progress. What has not improved: other income and exceptional items remain large relative to the core P&amp;L (other income alone was &#8377;368.81 Cr in FY26, on top of the exceptional impairment), so headline PAT will likely keep moving in ways the underlying generation business doesn't fully explain until these below-the-line items normalise.</p>
+
+      <h3>A data-quality caveat on multi-year context</h3>
+      <p>MarketData/yfinance's own annual "EBITDA" and "Total Revenue" figures diverge materially from the BSE-filed figures used above &mdash; e.g. yfinance shows FY25 EBITDA of &#8377;5,844.77 Cr on revenue of &#8377;7,153.21 Cr (an 81.7% margin, clearly distorted by folding the one-off deconsolidation gain into its own EBITDA definition) versus this report's BSE-derived FY25 EBITDA of &#8377;2,108.25 Cr (27.8% margin). This report uses the BSE-sourced, internally-cross-checked figures throughout &sect;03&ndash;04 rather than yfinance's figures, and flags this discrepancy explicitly rather than silently picking one source.</p>
+
+      <h3>Forward margin guidance</h3>
+      <p>None found. No investor presentation, earnings call, or analyst-facing margin target exists in this dataset (&sect;03, &sect;09). Any forward margin view in &sect;10 is this report's own scenario construction from the disclosed trend, not a management target.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet, capital allocation &amp; the insolvency filing</h2></div>
+      <p class="sec-dek">Genuine multi-year deleveraging at the group level sits alongside two subsidiaries that are insolvent on paper, an active Section 7 insolvency application against the listed parent itself, and capex running at roughly a tenth of depreciation despite a loudly announced &#8377;9,000 crore raise.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity (net worth)</td><td>11,595.4</td><td>11,613.9</td><td>16,337.2</td><td>16,039.4</td></tr>
+            <tr><td>Total debt</td><td>21,236.0</td><td>18,765.8</td><td>15,153.1</td><td class="pos">14,812.0</td></tr>
+            <tr><td>Net debt</td><td>21,048.8</td><td>18,330.3</td><td>14,792.5</td><td class="pos">14,307.8</td></tr>
+            <tr><td>Debt / equity</td><td>1.83x</td><td>1.62x</td><td>0.93x</td><td class="pos">0.92x</td></tr>
+            <tr><td>Net debt / EBITDA<sup>&dagger;</sup></td><td>n/a</td><td>n/a</td><td>7.02x</td><td class="neg">6.05x</td></tr>
+            <tr><td>Trade receivables</td><td>2,679.9</td><td>1,650.4</td><td>1,521.4</td><td>1,310.1</td></tr>
+            <tr><td>Receivable days</td><td>n/a</td><td>n/a</td><td>73</td><td>63</td></tr>
+            <tr><td>Total assets</td><td>48,535.4</td><td>43,758.0</td><td>41,282.9</td><td>41,292.6</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet (FY23&ndash;FY26) for the top-line series, cross-checked against the BSE-filed consolidated balance sheet as at 31 Mar 2026/2025, which matches closely. &dagger; Net debt/EBITDA computed only for FY25&ndash;FY26 using this report's BSE-derived EBITDA from &sect;04 (not yfinance's divergent EBITDA figure). FY23&ndash;FY24 EBITDA could not be reliably derived from the sources reviewed &mdash; left as n/a rather than estimated.</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#9989;</div>
+        <div><b>The deleveraging is real and worth crediting</b>Consolidated debt fell &minus;30.3% from &#8377;21,236 Cr (FY23) to &#8377;14,812 Cr (FY26); debt/equity nearly halved from 1.83x to 0.92x over the same period. The FY26 MD&amp;A's claim of "standalone bank debt-free status" checks out at the parent level specifically &mdash; the standalone entity's only listed debt as at Jun-2026 is a single &#8377;250 Cr NCD series, "secured by the Pledge of shares of subsidiary company," with the company stating "sufficient asset cover." <b>Read this claim carefully, though:</b> it describes the thin holding company only. The consolidated group &mdash; where the actual generation assets and their project debt sit &mdash; still carries &#8377;14,812 Cr of borrowings, and net debt/EBITDA at 6.05x remains high for the sector even after the improvement from 7.02x in FY25.</div>
+      </div>
+
+      <h3>Two subsidiaries are insolvent on their own books</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, as disclosed by the company</th><th>SMPL, Mar-26</th><th>SMPL, Jun-26</th><th>RSTEPL, Mar-26</th><th>RSTEPL, Jun-26</th></tr></thead>
+          <tbody>
+            <tr><td>Net worth</td><td class="neg">&minus;2,831.95</td><td class="neg">&minus;2,861.31</td><td class="neg">&minus;2,610.10</td><td class="neg">&minus;2,645.80</td></tr>
+            <tr><td>Current liabilities in excess of current assets</td><td>4,542.17</td><td>4,571.63</td><td>2,336.88</td><td>2,362.40</td></tr>
+            <tr><td>Defaulted borrowings</td><td>1,819.94</td><td>1,841.96</td><td>2,113.09</td><td>2,295.61</td></tr>
+            <tr><td>Net loss for the period</td><td>89.33 (FY26)</td><td>29.42 (Q1FY27)</td><td>728.50 (FY26)</td><td>35.73 (Q1FY27)</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Auditor's basis-for-qualification notes, 21 May 2026 (FY26 audited) and 6 Aug 2026 (Q1FY27 unaudited) financial-results filings. SMPL = Samalkot Power Limited (gas). RSTEPL = Rajasthan Sun Technique Energy Private Limited (solar CSP; the company's own filing attributes its losses to "failure of the technology implemented for the project").</caption>
+      </div>
+      <p>Combined, these two subsidiaries alone carry roughly &#8377;5,470&ndash;5,510 crore of negative net worth &mdash; larger than the entire consolidated group's reported &#8377;16,039 Cr net worth &mdash; illustrating how much of that headline equity figure sits in the healthy assets (chiefly Sasan and Rosa) while masking real distress elsewhere in the group. Dhursar Solar Power Private Limited (DSPL), a third subsidiary, is not in default but carries &#8377;272.64&ndash;276.88 Cr of related-party receivables/loans from <b>Reliance Infrastructure Limited</b>, the promoter group's other listed company; the auditors state they were unable to obtain sufficient evidence on the Expected Credit Loss assessment for these balances (a related-party exposure flagged, not resolved, in this dataset), though the company notes partial annual recoveries (&#8377;92.68 Cr in FY26, &#8377;88.68 Cr in FY25) as evidence of collectability.</p>
+
+      <h3>The insolvency filing against the parent, in detail</h3>
+      <p>On <b>29 April 2026</b>, Export-Import Bank of the United States (US Exim) filed an application under Section 7 of the Insolvency and Bankruptcy Code, 2016 against <b>Reliance Power Limited itself</b> &mdash; the listed parent, not a subsidiary &mdash; alleging default of a net debt of $165.41 million by Samalkot Power Limited (SMPL), which the parent had guaranteed. The company's stated defense: the debt "has not fallen due," and SMPL had already filed for arbitration before the London Court of International Arbitration (LCIA) against US Exim and facility agent Citibank N.A. on 29 June 2025, on the ground that no default exists. That defense weakened materially during this report's data window: on <b>23 June 2026</b>, the LCIA tribunal issued a partial final award holding it <b>did not have jurisdiction</b> over SMPL's claim (without ruling on the substantive merits either way); on <b>30 July 2026</b>, SMPL withdrew the arbitration. As of the 6 August 2026 financial-results filing &mdash; the most recent primary source in this dataset &mdash; "the management is currently evaluating the appropriate legal course of action." No NCLT admission, dismissal, or hearing date is disclosed anywhere in the reviewed filings; this is a live, unresolved proceeding as this report is written.</p>
+      <p>Management's stated resolution path runs through asset monetization rather than litigation alone: on 6 June 2026, SMPL signed an Equipment Sale Agreement with AM Green Energies B.V. for the sale of Module 2 and Module 3 equipment of the 1,508 MW (2&times;754 MW) combined-cycle plant, "subject to the lender's approval." Management states that "upon consummation of the proposed asset monetization transaction...the outstanding lender obligations to be completely addressed" &mdash; a specific, testable claim, still pending as of the last filing reviewed.</p>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Capex is running at roughly a tenth of depreciation, despite the growth narrative</b>Net cash spent on property, plant and equipment was just &minus;&#8377;115.93 Cr in FY26, against depreciation &amp; amortisation of &#8377;1,009.87 Cr &mdash; a capex/D&amp;A ratio of about 0.11x. FY24 and FY25 actually showed net cash <em>inflows</em> from PPE transactions (asset sales exceeding purchases), not capex spend at all. This sits uneasily against the loudly announced 1,930 MW solar+BESS pipeline (&sect;01), the four newly "AI"-branded subsidiaries (&sect;01), and the board's 21 May 2026 authorization to raise up to &#8377;9,000 crore (&#8377;6,000 Cr equity/QIP + &#8377;3,000 Cr NCDs) &mdash; none of which had translated into actual capital deployment as of the last filing in this dataset. Meanwhile, over &#8377;300 crore of investor warrants lapsed unconverted in the same window: 21.82 crore warrants (issued Oct-2024) lapsed in April 2026, and a further 34.32 crore warrants forfeited &#8377;302.62 crore upon lapsing during the quarter ended June 2026. Announced fundraising ambition and delivered capital are, so far, running in opposite directions.</div>
+      </div>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Cash generation has structurally declined since FY23 even as the P&amp;L looked stable, but FY26 specifically shows a genuinely reassuring signal: cash from operations stayed firmly positive despite a reported net loss.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Reported PAT</td><td>&minus;470.77</td><td>&minus;2,068.38</td><td>2,947.83</td><td class="neg">&minus;336.89</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>4,023.74</td><td>3,173.97</td><td>1,937.92</td><td>2,824.36</td></tr>
+            <tr><td>Capex (net PPE, cash-flow basis)</td><td>&minus;384.49</td><td>+51.46</td><td>+153.10</td><td>&minus;115.93</td></tr>
+            <tr class="total"><td>Free cash flow</td><td>3,639.25</td><td>3,173.97</td><td>1,937.92</td><td>2,708.43</td></tr>
+            <tr><td>CFO / PAT</td><td>n/m<sup>&dagger;</sup></td><td>n/m<sup>&dagger;</sup></td><td>0.66x</td><td>n/m<sup>&dagger;</sup></td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement, cross-checked against the BSE-filed consolidated cash-flow statement for FY26 vs FY25, which matches (CFO &#8377;2,824.36 Cr vs &#8377;1,937.92 Cr; FCF figures align to the rupee). &dagger; n/m = not meaningful; PAT was negative (FY23, FY24) or its sign diverges from CFO's for a reason unrelated to core cash generation (FY26's loss was a non-cash impairment &mdash; see &sect;04), so a ratio would mislead rather than inform.</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#9989;</div>
+        <div><b>FY26's earnings-quality read is actually reassuring, once the impairment is understood</b>FY26 reported a &#8377;336.89 Cr net loss, yet cash from operations was a healthy &#8377;2,824.36 Cr, up 45.7% YoY from FY25's &#8377;1,937.92 Cr. That divergence is explained cleanly: the loss was driven by a non-cash &#8377;381.60 Cr impairment charge at RSTEPL (&sect;04), which reduces reported profit without touching cash. This is the opposite of the more common red flag this report's method looks for (strong PAT, weak cash) &mdash; here, a weak headline PAT sits on top of genuinely strong operating cash generation.</div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>FY25 is the year to be skeptical of, not FY26</b>FY25's CFO/PAT conversion ratio of 0.66x means cash from operations covered only two-thirds of the headline PAT that year &mdash; consistent with &sect;04's finding that the bulk of FY25's reported profit was a non-cash "gain on deconsolidation of subsidiary," which by its nature generates an accounting gain without a matching operating cash inflow. Investors reading FY25's 35.7% net margin as evidence of a highly cash-generative business would have been meaningfully misled by the headline number alone.</div>
+      </div>
+
+      <p><b>The longer trend is a genuine, if less dramatic, concern:</b> free cash flow has declined from &#8377;3,639.25 Cr (FY23) to &#8377;2,708.43 Cr (FY26), a cumulative &minus;25.6% over three years, even as revenue stayed roughly flat over the same period &mdash; meaning cash generation per rupee of revenue has structurally weakened. No quarterly cash-flow statement exists anywhere in this dataset (MarketData/overview.md explicitly states "Not available" for quarterly cash flow), so this report cannot check cash conversion specifically for the quarters spanning the insolvency filing (Q4FY26&ndash;Q1FY27) &mdash; a real limitation flagged rather than papered over. No management commentary on forward cash-generation targets exists either, beyond the qualitative MD&amp;A language citing "continued reduction of debt, including through asset monetisation initiatives" and the specific AM Green transaction discussed in &sect;05.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">Genuine operational hiring alongside one of the densest regulatory-investigation ledgers this report's method has encountered &mdash; a forensic audit, an ED probe with a former CFO arrested, a CBI search, and now a parent-level insolvency application, all open at once.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Neeraj Parakh</div>
+          <div class="role">Executive Director, Chief Executive Officer &amp; Chief Financial Officer (DIN 07002249)</div>
+          <div class="bio">Signs every financial-results and board-outcome filing reviewed in this dataset. Holding the ED, CEO and CFO titles simultaneously concentrates the finance and operating functions in one individual &mdash; a governance structure worth noting on its own, independent of the investigations below.</div>
+        </div>
+        <div class="person">
+          <div class="name">Ramandeep Kaur</div>
+          <div class="role">Company Secretary</div>
+          <div class="bio">Consistent signatory across every filing in this dataset; no change disclosed in this window.</div>
+        </div>
+        <div class="person">
+          <div class="name">Sudhakar Tandon</div>
+          <div class="role">Business Head (appointed 30 Jan 2026)</div>
+          <div class="bio">37 years in the power sector spanning Tata Power, Torrent Power, NTPC and Adani Power, with a stated focus on turning around underperforming power assets and plant-availability improvement &mdash; a credible, operationally-relevant hire given the SMPL/RSTEPL distress documented in &sect;05.</div>
+        </div>
+        <div class="person">
+          <div class="name">Abhimanyu Das</div>
+          <div class="role">Regulatory / Legal Head (appointed 30 Jan 2026)</div>
+          <div class="bio">15 years already at Reliance Power prior to this appointment, plus experience at India Grid Trust; regulatory-compliance and PPA-management background, relevant given the litigation load in this section.</div>
+        </div>
+        <div class="person">
+          <div class="name">Manoj Pongde <span style="font-weight:400;color:var(--ink-mute);">(departed)</span></div>
+          <div class="role">Former Head (Business &amp; Legal) &mdash; ceased 14 Jan 2026</div>
+          <div class="bio">Cessation disclosed with no reason given beyond "Cessation as Head (Business &amp; Legal)," 16 days before the Sudhakar Tandon/Abhimanyu Das appointments and on the same day the SEBI forensic-audit disclosure was filed (below).</div>
+        </div>
+        <div class="person">
+          <div class="name">Dr. Avinash Gupta</div>
+          <div class="role">Independent Director (appointed 21 May 2026, ratified at AGM 14 Aug 2026)</div>
+          <div class="bio">Chartered Accountant and taxation expert, PhD in Taxation, LLM (International Taxation, Vienna University); currently Independent Director at Prospera Capital Limited; former Chairman, Northern India Regional Council of ICAI. A finance/audit-relevant addition, appointed the same board meeting that approved the qualified FY26 results and the new statutory auditor (below).</div>
+        </div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>A former Executive Director &amp; CFO was arrested by the ED/EOW</b>Per the Q3FY26 results filing (30 Jan 2026): the Enforcement Directorate filed a Supplementary Prosecution Complaint against the parent company, Rosa Power Supply Company Limited, Reliance NU BESS Limited and certain individuals in connection with a fake bank guarantee submitted to the Solar Energy Corporation of India (SECI); "one former Key Managerial Personnel has been arrested" under Section 19 of the PMLA. The company's own stated position is that it and its subsidiaries "acted bona fide, are victims of fraud by third parties, have not been held guilty of any wrongdoing" &mdash; the company's characterization, not yet tested to a final judicial outcome as of this report. In July 2026, the Economic Offences Wing (EOW), Delhi filed a chargesheet on the same matter. Separately, the company and Rosa filed petitions before the Delhi High Court seeking quashing of the ED's case at the pre-cognizance stage.</div>
+      </div>
+
+      <h3>Auditor rotation &mdash; timing worth watching, not necessarily a red flag on its own</h3>
+      <p>Pathak H.D. &amp; Associates LLP &mdash; the firm that issued the FY26 <b>qualified</b> audit opinion citing going-concern doubt at three subsidiaries (&sect;05) &mdash; was replaced as statutory auditor by <b>M/s Kailash Chand Jain &amp; Co.</b>, appointed for a fresh five-year term (32nd AGM through the 37th), at the <em>same</em> 21 May 2026 board meeting that approved those qualified results. Indian company law mandates periodic auditor rotation, so this may well be routine timing rather than a reaction to the qualification &mdash; the filing gives no indication either way &mdash; but the coincidence of an auditor change landing in the same board meeting as a going-concern-qualified opinion is the kind of item this report's method flags as a governance watch-item rather than lets pass silently.</p>
+
+      <h3>The full regulatory-investigation ledger, in one place</h3>
+      <ul style="max-width:76ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>SEBI forensic audit</b> (disclosed 14 Jan 2026): appointed in relation to alleged violations of the SEBI Act 1992, SCRA 1956 and Companies Act 2013; ongoing, outcome not yet disclosed as of the last filing reviewed.</li>
+        <li><b>SEBI show-cause notice</b> (Oct 2025): concerning Reliance Infrastructure's exposure to CLE Private Limited; the company states it has "zero exposure to CLE Private Limited."</li>
+        <li><b>ED PMLA investigation</b>: office search July 2025; provisional attachment of the "Reliance Centre" leasehold property and 5 MW wind assets, extended for 365 days by Adjudicating Authority order dated 18 May 2026; further attachment of receivables from Sasan Power and Reliance CleanGen disclosed after Q1FY27 quarter-end; company states it will appeal.</li>
+        <li><b>ED/EOW prosecution complaint</b> on the SECI fake-bank-guarantee matter, with the former ED &amp; CFO arrest noted above.</li>
+        <li><b>CBI search-and-seizure</b> at the registered office (Jul 2026), regarding transactions with Reliance Commercial Finance Limited and Reliance Home Finance Limited &mdash; two other group NBFCs; company states "no impact on the business operations."</li>
+        <li><b>CBI Special Court pre-cognizance notice</b> (Aug 2026, per News) tied to a &#8377;715 Cr PMLA complaint, with &#8377;1,021 Cr of assets provisionally attached (News-sourced; not yet independently corroborated by a company filing in this dataset).</li>
+      </ul>
+
+      <h3>Ownership</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Insider holding</div><div class="v">29.81%</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">10.43%</div><div class="d">44 institutions on record</div></div>
+        <div class="stat"><div class="k">Free float</div><div class="v">~69.6%</div><div class="d">2.88 Bn of 4.14 Bn shares</div></div>
+      </div>
+      <p>A far more widely-held register than a typical small-cap promoter-controlled company &mdash; free float runs roughly 70% &mdash; but institutional ownership at 10.4% is still thin for a company of this market capitalisation, and &sect;09 shows there is no analyst community applying independent, ongoing scrutiny to management's monetization and resolution claims documented above.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other disclosure insights that could move the stock</h2></div>
+      <p class="sec-dek">With no earnings call to draw on, everything here comes from primary BSE filings &mdash; the insolvency application's unresolved status is the dominant item, but not the only one worth tracking.</p>
+
+      <h3>The CIRP application's status is genuinely unknown from this dataset</h3>
+      <p>The most important gap in this report: no filing reviewed discloses an NCLT hearing date, admission order, or dismissal for the US Exim Section 7 application (&sect;05). The last primary-source update (6 Aug 2026) states only that "the management is currently evaluating the appropriate legal course of action" &mdash; the same language used across the Jan, May and Aug 2026 filings without material change, even as the underlying legal position weakened (the LCIA jurisdiction ruling, &sect;05). Investors should treat this as a live, binary-outcome risk to monitor directly via NCLT case listings, not something this dataset can resolve.</p>
+
+      <h3>Portfolio simplification: the Indonesian coal-asset divestment</h3>
+      <p>Reliance Power Netherlands B.V. and Reliance Natural Resources (Singapore) Pte Limited signed a Share Purchase Agreement with Biotruster (Singapore) Pte Limited to sell the entire stake in five Indonesian coal-resource entities (PT Avaneesh Coal Resources, PT Heramba Coal Resources, PT Sumukha Coal Services, PT Brayan Bintang Tiga Energi and PT Sriwijaya Bintang Tiga Energi). As of the Q1FY27 filing, completion remains "subject to certain conditions precedent," and the assets have not been reclassified as held-for-sale since the sale is not yet judged "highly probable" under Ind AS 105. A genuine simplification move, but unclosed.</p>
+
+      <h3>Employee incentive alignment</h3>
+      <p>The Nomination and Remuneration Committee granted 99,92,103 Employee Stock Options in the quarter ended December 2025, vesting equally over four annual tranches subject to performance conditions &mdash; a modest, standard incentive-alignment step taken in the same quarter the SEBI forensic audit and the ED arrest were disclosed.</p>
+
+      <h3>A media clarification worth noting for what it implies</h3>
+      <p>On 16 April 2026, the company issued a media statement clarifying that two individuals (Amitabh Jhunjhunwala, former Group Managing Director; Amit Bapna, former Reliance Capital CFO) "left the Group in September/December 2019...nearly seven years ago" and have had no association since. That the company felt it necessary to publicly rebut media queries linking seven-years-departed executives to current events is itself a symptom of how intensely the broader ADAG-group distress narrative (Reliance Capital, Reliance Home Finance, Reliance Communications insolvencies in prior years) continues to attach to Reliance Power's own newsflow, whether or not any specific allegation has merit.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">None found in the source data &mdash; which puts the full weight of independent verification on filings like this one, at exactly the moment the stakes (an active parent-level insolvency application) are highest.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analyst recommendation</div><div class="v">None</div><div class="d">yfinance recommendationKey: "none"</div></div>
+        <div class="stat"><div class="k">Price targets</div><div class="v">N/A</div><div class="d">No low/mean/median/high target available</div></div>
+        <div class="stat"><div class="k">Number of opinions</div><div class="v">N/A</div></div>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>A forward P/E exists despite no visible analyst behind it &mdash; treat with caution</b>MarketData/overview.md shows "Forward P/E: 5.20" alongside "Analyst Recommendation: none" and no price target of any kind. A forward P/E ordinarily implies at least one underlying forward-earnings estimate somewhere in the data feed, but no analyst, estimate count, or target accompanies it here &mdash; an internally inconsistent data point this report treats as unreliable rather than builds a valuation narrative around (see &sect;10). With zero sell-side coverage, there is no independent community modelling the CIRP outcome, the SMPL/RSTEPL resolution timeline, or the &#8377;9,000 Cr raise on an ongoing basis &mdash; a real gap given the size and number of open, material uncertainties documented in &sect;05 and &sect;07.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">Trading at 0.6x book with an unresolved parent-level insolvency application on the table &mdash; a valuation that already prices in meaningful distress, but not necessarily the full range of outcomes.</p>
+
+      <h3>Where the price sits today</h3>
+      <div id="rangechart"></div>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Price / Book</div><div class="v">0.60x</div><div class="d">Book value/share &#8377;38.78</div></div>
+        <div class="stat"><div class="k">Price / Sales (TTM)</div><div class="v">1.26x</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">9.02x</div><div class="d">EV &#8377;22,805 Cr vs Mkt Cap &#8377;9,698 Cr</div></div>
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">N/A</div><div class="d">TTM earnings negative</div></div>
+      </div>
+      <p>Note the wide gap between Enterprise Value (&#8377;22,805 Cr) and market capitalisation (&#8377;9,698 Cr) &mdash; EV runs 2.35x equity value, a direct function of the &#8377;14,812 Cr debt load still sitting in the consolidated group (&sect;05). A P/B of 0.60x already signals the market is pricing in real distress rather than treating this as a "normal" cyclical utility re-rating candidate; whether that's the right amount of distress to price in is the central question &sect;10's scenarios below try to frame, not resolve. The forward P/E of 5.20x shown in the source data is treated as unreliable per the &sect;09 caveat and is not used here.</p>
+
+      <h3>Bear / base / bull, illustrative 12&ndash;18-month scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">This report's own construction from the tabulated trend and the open items in &sect;05, &sect;07 and &sect;08 &mdash; not a management forecast (none exists, per &sect;03) and not an analyst consensus (none exists, per &sect;09). Given the CIRP application is the dominant unresolved variable, weighting is skewed toward the downside relative to a typical utility scenario set.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;12&ndash;18</div>
+          <div class="rng">&minus;49% to &minus;23% from CMP</div>
+          <ul>
+            <li>NCLT admits the US Exim CIRP application against the parent, or a similar creditor action succeeds elsewhere in the group; moratorium and resolution-professional oversight disrupt normal operations and capital-markets access</li>
+            <li>The AM Green equipment-sale/lender settlement at SMPL fails to close; RSTEPL's negative net worth deepens further; a further consolidated impairment is booked</li>
+            <li>The SEBI forensic audit, ED or CBI matters produce a material financial penalty or further asset attachment; the &#8377;9,000 Cr raise fails to materialise (consistent with the &#8377;300+ Cr warrant-lapse pattern already seen)</li>
+            <li>Interest coverage falls back below FY25's 0.58x low; book value erodes further on additional writedowns; P/B compresses toward 0.3&ndash;0.4x on a heightened distress discount</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;22&ndash;28</div>
+          <div class="rng">&minus;6% to +19% from CMP</div>
+          <ul>
+            <li>The CIRP application is contested successfully, settled, or resolved via the AM Green monetization route addressing SMPL's default, without disrupting the parent's governance or listing status</li>
+            <li>Consolidated revenue stays roughly flat in the &#8377;7,600&ndash;7,900 Cr band (consistent with the 7-quarter trend in &sect;03); EBITDA margin holds 28&ndash;32%; the group returns to modest full-year profitability (indicative PAT &#8377;150&ndash;350 Cr) as finance costs keep easing with continued deleveraging</li>
+            <li>SEBI/ED/CBI matters remain open through the period without crystallising into a material financial penalty within the window</li>
+            <li>Stock re-rates modestly toward 0.7&ndash;0.8x book as the most acute going-concern risk (the parent-level CIRP) is resolved, even if RSTEPL/SMPL-level distress persists in a ring-fenced way</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;35&ndash;45</div>
+          <div class="rng">+49% to +92% from CMP</div>
+          <ul>
+            <li>SMPL's default is fully resolved via the AM Green sale plus a lender settlement; the CIRP application against the parent is formally dismissed or withdrawn; the FY27 audit opinion drops the going-concern qualification</li>
+            <li>The &#8377;9,000 Cr QIP/NCD authorization executes at least partially, funding real construction on the 1,930 MW solar+BESS pipeline rather than remaining a board resolution</li>
+            <li>The SEBI forensic audit concludes without material adverse findings; net debt/EBITDA falls toward 4&ndash;5x as deleveraging continues</li>
+            <li>Renewable capacity begins contributing measurably to revenue diversification beyond the current thermal-dominated base; stock re-rates toward 1.0&ndash;1.2x book as the distress discount unwinds</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">These ranges are wide by design &mdash; a reflection of how binary the dominant variable (the CIRP outcome) genuinely is, not an attempt at false precision. Given the number of unresolved, materially adverse items open at once (&sect;05, &sect;07), this report weights the bear case more heavily than a typical base-case-anchored scenario set would.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> real, measurable multi-year deleveraging &mdash; consolidated debt down 30% since FY23, debt/equity nearly halved to 0.92x, finance costs down 19% YoY in FY26; a fairly stable operating business with EBITDA margins holding a 27&ndash;32% band across seven straight quarters, anchored by one of the world's largest integrated coal complexes (Sasan) with genuine captive-fuel security; cash from operations that stayed firmly positive in FY26 despite a reported net loss, cleanly explained by a non-cash impairment rather than a cash-flow problem; credible new operational leadership (Sudhakar Tandon, Abhimanyu Das) with real sector pedigree, plus a finance-credentialed new Independent Director; and a genuinely broad public float (~70%) rather than the concentrated promoter control common at distressed small-caps.</p>
+        <p style="max-width:none;"><b>What's not good:</b> an active Section 7 insolvency application against the <em>listed parent itself</em>, filed 29 April 2026, with the company's own legal defense (the LCIA arbitration) having lost on jurisdictional grounds during this report's own data window, and no resolution disclosed as of the last filing reviewed; two subsidiaries (SMPL, RSTEPL) carrying a combined negative net worth exceeding &#8377;5,400 crore and in active default; a qualified FY26 audit opinion citing going-concern doubt at three subsidiaries; consolidated interest coverage below 1x in FY25 and barely above 1x in FY26; capex running at roughly a tenth of depreciation despite an announced 1,930 MW renewables pipeline and a &#8377;9,000 crore fundraising authorization, alongside over &#8377;300 crore of investor warrants that lapsed unconverted in the same window; a simultaneous SEBI forensic audit, an ED PMLA investigation with over &#8377;1,000 crore in provisional asset attachments, a former Executive Director &amp; CFO arrested in an ED/EOW prosecution complaint, and a CBI search-and-seizure at the registered office &mdash; all open at once; an auditor rotation landing the same day as the qualified opinion; and zero analyst coverage to independently stress-test any of management's monetization or resolution claims.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> operationally, with real if modest progress &mdash; debt reduction, targeted operational hires, and a specific (if unclosed) asset-monetization path for the SMPL default. Publicly, every filing note in this dataset leans on a consistent "no impact on the business operations" framing for each new investigation, without an earnings call or investor presentation anywhere to field a direct analyst question on any of it. The pattern across the last three quarters is a company processing a genuinely serious cluster of legal and governance risk almost entirely through compliance-driven BSE disclosure language, which is the minimum required, not the maximum an investor might want given the stakes.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: low-to-moderate, roughly 25&ndash;35%.</b> The operating business tabulated in &sect;03&ndash;04 and &sect;06 is genuinely more stable than the newsflow alone would suggest, and the deleveraging trend in &sect;05 is real. But the single dominant variable &mdash; whether NCLT admits the parent-level CIRP application &mdash; is unresolved, binary, and outside this dataset's ability to forecast, and it sits on top of a stack of simultaneously open, separately material regulatory investigations with no visible timeline to resolution and no analyst community independently pressure-testing management's claims. That combination argues for treating the current 0.6x-book valuation as a reasonable starting discount for real risk, not a bargain.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) NCLT's decision on the US Exim Section 7 application &mdash; admission vs. dismissal/settlement is the single highest-weight event this report tracks; (2) whether the AM Green equipment-sale/lender settlement at SMPL actually closes; (3) the outcome of the SEBI forensic audit; (4) whether Q2/Q3 FY27 sustain the 27&ndash;32% EBITDA-margin band and the positive CFO trend seen through Q1FY27, or show operational deterioration; (5) whether the &#8377;9,000 Cr QIP/NCD authorization is ever actually drawn upon, at what terms, and whether the warrant-lapse pattern repeats; (6) any escalation or resolution of the ED/CBI/EOW matters, particularly the outstanding provisional asset attachments.</div>
+      </div>
+
+      <footer>
+        Compiled from Reliance Power Limited's BSE filings (Announcements/AnnouncementsConv, dated 15&nbsp;Dec&nbsp;2025&ndash;22&nbsp;Aug&nbsp;2026 &mdash; financial-results outcome letters and audited/unaudited statements, the FY26 annual report (Reg.&nbsp;34(1), including its Management Discussion &amp; Analysis), change-in-management filings, the corporate-insolvency-initiation filing, and press releases), MarketData (Yahoo Finance via yfinance, fetched 23&nbsp;Aug&nbsp;2026 00:59 IST), and the tracked News feed (7&nbsp;Mar&ndash;18&nbsp;Aug 2026). No earnings-call transcript or investor-presentation filing exists anywhere in this dataset for this company &mdash; stated explicitly wherever it limits a section, rather than papered over. No filing older than 15&nbsp;Dec&nbsp;2025 was found in the source data; FY23&ndash;FY24 and early-FY25 figures rely on MarketData/yfinance's own annual/quarterly series, flagged wherever used, including one explicit divergence between yfinance's and the BSE filings' own EBITDA/revenue methodology (&sect;04). Every figure is tagged to its source; where a figure could not be independently verified or a period could not be found, that is stated in the relevant section rather than estimated. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q3FY25','Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [1852.84, 1978.01, 1885.58, 1974.03, 1872.84, 1887.26, 1956.32];
+    var ebitda  = [491.92, 589.84, 565.04, 617.67, 604.32, 576.29, 562.41];
+    var pat     = [41.95, 125.57, 44.68, 87.32, 25.11, -494.00, 64.71];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA (this report calc.)', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 54, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = Math.min(0, Math.min.apply(null, ebitda.concat(pat))) * 1.15;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q4FY26 EBITDA shown pre-exceptional-item (excludes the ₹381.60 Cr RSTEPL impairment); source: three BSE financial-results filings, see §03/§04 for full sourcing.</div></div>';
+  })();
+
+  // ---------- Price range / moving-average position chart ----------
+  (function(){
+    var el = document.getElementById('rangechart');
+    var low = 20.17, high = 50.73, cmp = 23.45, ma50 = 24.49, ma200 = 28.05;
+    var W = 900, H = 130, padL = 50, padR = 50, padT = 20, padB = 34;
+    var plotW = W - padL - padR;
+    function x(v){ return padL + ((v-low)/(high-low))*plotW; }
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Current price versus 52-week range and moving averages" style="width:100%;height:auto;font-size:11.5px;">';
+    var trackY = 58;
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+trackY+'" y2="'+trackY+'" stroke="'+css('--border-strong')+'" stroke-width="3" stroke-linecap="round"/>';
+
+    var marks = [
+      {v: low, label:'52-Wk Low', sub:'₹20.17', color: css('--critical'), dy:-14},
+      {v: ma50, label:'50-Day MA', sub:'₹24.49', color: css('--ink-mute'), dy:34},
+      {v: ma200, label:'200-Day MA', sub:'₹28.05', color: css('--ink-mute'), dy:52},
+      {v: high, label:'52-Wk High', sub:'₹50.73', color: css('--good'), dy:-14}
+    ];
+    marks.forEach(function(m){
+      var mx = x(m.v);
+      svg += '<line x1="'+mx.toFixed(1)+'" x2="'+mx.toFixed(1)+'" y1="'+(trackY-8)+'" y2="'+(trackY+8)+'" stroke="'+m.color+'" stroke-width="2"/>';
+      svg += '<text x="'+mx.toFixed(1)+'" y="'+(trackY+m.dy)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+m.label+'</text>';
+      svg += '<text x="'+mx.toFixed(1)+'" y="'+(trackY+m.dy+13)+'" text-anchor="middle" fill="'+css('--ink')+'" font-weight="700">'+m.sub+'</text>';
+    });
+
+    var cx = x(cmp);
+    svg += '<circle cx="'+cx.toFixed(1)+'" cy="'+trackY+'" r="7" fill="'+css('--accent')+'" stroke="'+css('--surface')+'" stroke-width="2"/>';
+    svg += '<text x="'+cx.toFixed(1)+'" y="'+(trackY-20)+'" text-anchor="middle" fill="'+css('--accent-ink')+'" font-weight="700">CMP ₹23.45</text>';
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Current price sits 53.8% below the 52-week high and below both the 50-day and 200-day moving averages — consistent with a sustained downtrend. Source: MarketData/overview.md trading snapshot, 23 Aug 2026.</div></div>';
+  })();
+})();
+</script>

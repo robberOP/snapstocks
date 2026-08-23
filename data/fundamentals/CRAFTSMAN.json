@@ -1,7 +1,7 @@
 {
   "symbol": "CRAFTSMAN",
   "name": "Craftsman Auto",
-  "generatedAt": "2026-08-18T16:37:36.227582+00:00",
+  "generatedAt": "2026-08-23T11:01:13.827029+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 10338.5,
-    "change": 465.0,
-    "changePercent": 4.709576,
-    "previousClose": 9873.5,
-    "dayLow": 9922.5,
-    "dayHigh": 10400.0,
-    "fiftyTwoWeekLow": 6255.0,
-    "fiftyTwoWeekHigh": 10400.0,
-    "asOf": 1785751200
+    "current": 10779.0,
+    "change": -111.5,
+    "changePercent": -1.0238281,
+    "previousClose": 10890.5,
+    "dayLow": 10612.5,
+    "dayHigh": 10930.0,
+    "fiftyTwoWeekLow": 6324.0,
+    "fiftyTwoWeekHigh": 10960.0,
+    "asOf": 1787133598
   },
   "stats": {
-    "marketCap": 270397587456.0,
-    "trailingPE": 53.151512,
-    "forwardPE": 29.218836,
-    "priceToBook": 7.555958,
+    "marketCap": 281918636032.0,
+    "trailingPE": 55.604847,
+    "forwardPE": 30.463783,
+    "priceToBook": 7.8779,
     "bookValue": 1368.258,
-    "dividendYield": 0.11,
-    "trailingEps": 194.51,
+    "dividendYield": 0.1,
+    "trailingEps": 193.85,
     "debtToEquity": 1.11011,
     "roe": 11.764183256435237,
     "roce": 13.997169146059548,
-    "return1y": 64.91860291674992,
+    "return1y": 58.970545564464885,
     "sharesOutstanding": 26154433.0
   },
   "quarterly": {
@@ -336,11 +336,11 @@
     "targetMean": 11371.125,
     "targetHigh": 12800.0,
     "targetLow": 9699.0,
-    "recommendationKey": "buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 8
   },
   "holders": {
     "insidersPercent": 0.42414,
-    "institutionsPercent": 0.39098
+    "institutionsPercent": 0.39279997
   }
 }

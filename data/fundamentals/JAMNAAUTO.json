@@ -1,7 +1,7 @@
 {
   "symbol": "JAMNAAUTO",
   "name": "Jamna Auto Inds.",
-  "generatedAt": "2026-08-18T16:38:10.485695+00:00",
+  "generatedAt": "2026-08-23T11:02:02.443392+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,29 +14,29 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 140.86,
-    "change": 9.680008,
-    "changePercent": 7.37918,
-    "previousClose": 131.18,
-    "dayLow": 132.49,
-    "dayHigh": 141.6,
-    "fiftyTwoWeekLow": 87.75,
+    "current": 120.5,
+    "change": -2.0800018,
+    "changePercent": -1.6968526,
+    "previousClose": 122.58,
+    "dayLow": 120.23,
+    "dayHigh": 122.9,
+    "fiftyTwoWeekLow": 89.74,
     "fiftyTwoWeekHigh": 152.6,
-    "asOf": 1785751199
+    "asOf": 1787133602
   },
   "stats": {
-    "marketCap": 56341905408.0,
-    "trailingPE": 24.41248,
-    "forwardPE": 18.781334,
-    "priceToBook": 4.893181,
+    "marketCap": 48181444608.0,
+    "trailingPE": 20.668955,
+    "forwardPE": 15.649351,
+    "priceToBook": 4.1859174,
     "bookValue": 28.787,
-    "dividendYield": 1.6,
-    "trailingEps": 5.77,
+    "dividendYield": 1.71,
+    "trailingEps": 5.83,
     "debtToEquity": 0.13054,
     "roe": 20.135860487530678,
     "roce": 27.981624966391077,
-    "return1y": 52.97042368862268,
-    "sharesOutstanding": 399985135.0
+    "return1y": 38.811435947213525,
+    "sharesOutstanding": 399846000.0
   },
   "quarterly": {
     "periods": [
@@ -365,14 +365,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 188.0,
-    "targetHigh": 188.0,
-    "targetLow": 188.0,
-    "recommendationKey": "none",
+    "targetMean": 193.0,
+    "targetHigh": 193.0,
+    "targetLow": 193.0,
+    "recommendationKey": "strong_buy",
     "numberOfAnalystOpinions": 1
   },
   "holders": {
     "insidersPercent": 0.53082,
-    "institutionsPercent": 0.06342
+    "institutionsPercent": 0.07571
   }
 }

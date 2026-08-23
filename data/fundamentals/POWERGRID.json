@@ -1,7 +1,7 @@
 {
   "symbol": "POWERGRID",
   "name": "Power Grid Corpn",
-  "generatedAt": "2026-08-18T16:38:46.964321+00:00",
+  "generatedAt": "2026-08-23T11:02:35.977610+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Regulated Electric",
@@ -9,33 +9,33 @@
     "bseCode": "532898",
     "nseSymbol": "POWERGRID",
     "website": "https://www.powergrid.in",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/powergrid.html",
     "peerSector": "Power",
     "peerIndustry": "Power - Transmission"
   },
   "price": {
-    "current": 287.0,
-    "change": 2.75,
-    "changePercent": 0.96745825,
-    "previousClose": 284.25,
-    "dayLow": 283.9,
-    "dayHigh": 287.0,
+    "current": 272.4,
+    "change": 7.600006,
+    "changePercent": 2.870093,
+    "previousClose": 264.8,
+    "dayLow": 264.2,
+    "dayHigh": 275.95,
     "fiftyTwoWeekLow": 250.0,
     "fiftyTwoWeekHigh": 324.95,
-    "asOf": 1785750300
+    "asOf": 1787305502
   },
   "stats": {
-    "marketCap": 2669273415680.0,
-    "trailingPE": 14.278606,
-    "forwardPE": 14.3859215,
-    "priceToBook": 2.6551702,
-    "bookValue": 108.091,
-    "dividendYield": 4.31,
-    "trailingEps": 20.1,
+    "marketCap": 2533484396544.0,
+    "trailingPE": 13.333333,
+    "forwardPE": 13.942561,
+    "priceToBook": 2.5210316,
+    "bookValue": 108.051,
+    "dividendYield": 4.5,
+    "trailingEps": 20.43,
     "debtToEquity": 1.50813,
     "roe": 15.849647984064328,
     "roce": 11.154526635290411,
-    "return1y": 1.1191102255994005,
+    "return1y": -2.7458648756338375,
     "sharesOutstanding": 9300603819.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         122753500000.0,
         111962200000.0,
         123950900000.0,
-        116656100000.0
+        116656100000.0,
+        114967200000.0
       ],
       "Expenses": [
         49112400000.0,
         52472600000.0,
         51799500000.0,
         51235700000.0,
-        58946300000.0
+        58946300000.0,
+        50887200000.0
       ],
       "OperatingProfit": [
         63217900000.0,
         70280900000.0,
         60162700000.0,
         72715200000.0,
-        57709800000.0
+        57709800000.0,
+        64080000000.0
       ],
       "NetProfit": [
         38616300000.0,
         41428700000.0,
         36305800000.0,
         41849600000.0,
-        45463300000.0
+        45463300000.0,
+        35984200000.0
       ],
       "EPS": [
         4.15,
         4.4,
-        3.9,
+        3.67,
         4.5,
-        4.89
+        4.89,
+        3.87
       ]
     }
   },
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 475322700000.0,
-      "Expenses": 214454100000.0,
-      "OperatingProfit": 260868600000.0,
-      "NetProfit": 165047400000.0
+      "Sales": 467536400000.0,
+      "Expenses": 212868700000.0,
+      "OperatingProfit": 254667700000.0,
+      "NetProfit": 159602900000.0
     }
   },
   "balanceSheet": {
@@ -358,14 +365,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 329.48,
+    "targetMean": 321.68,
     "targetHigh": 400.0,
-    "targetLow": 283.0,
+    "targetLow": 277.0,
     "recommendationKey": "buy",
     "numberOfAnalystOpinions": 25
   },
   "holders": {
     "insidersPercent": 0.52908003,
-    "institutionsPercent": 0.36316
+    "institutionsPercent": 0.35911998
   }
 }

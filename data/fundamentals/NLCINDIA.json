@@ -1,7 +1,7 @@
 {
   "symbol": "NLCINDIA",
   "name": "NLC India",
-  "generatedAt": "2026-08-18T16:38:38.005326+00:00",
+  "generatedAt": "2026-08-23T11:02:27.374021+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Regulated Electric",
@@ -9,33 +9,33 @@
     "bseCode": "513683",
     "nseSymbol": "NLCINDIA",
     "website": "https://www.nlcindia.in",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/nlcindia.html",
     "peerSector": "Power",
     "peerIndustry": "Power Generation"
   },
   "price": {
-    "current": 298.05,
-    "change": 0.1499939,
-    "changePercent": 0.05035042,
-    "previousClose": 297.9,
-    "dayLow": 296.6,
-    "dayHigh": 301.3,
+    "current": 269.8,
+    "change": -2.25,
+    "changePercent": -0.82705384,
+    "previousClose": 272.05,
+    "dayLow": 269.0,
+    "dayHigh": 274.8,
     "fiftyTwoWeekLow": 222.0,
     "fiftyTwoWeekHigh": 387.8,
-    "asOf": 1785751200
+    "asOf": 1787306402
   },
   "stats": {
-    "marketCap": 413287055360.0,
-    "trailingPE": 11.729633,
-    "forwardPE": 11.038888,
-    "priceToBook": 1.9199055,
+    "marketCap": 374114549760.0,
+    "trailingPE": 11.255736,
+    "forwardPE": 9.955719,
+    "priceToBook": 1.7379316,
     "bookValue": 155.242,
-    "dividendYield": 2.42,
-    "trailingEps": 25.41,
+    "dividendYield": 2.67,
+    "trailingEps": 23.97,
     "debtToEquity": 0.82,
     "roe": 16.36348094008946,
     "roce": 9.327833059112695,
-    "return1y": 26.989267318951754,
+    "return1y": 17.541240969436956,
     "sharesOutstanding": 1386636609.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         38360000000.0,
         38256100000.0,
         44430500000.0,
-        50424600000.0
+        50424600000.0,
+        47167500000.0
       ],
       "Expenses": [
         30456100000.0,
         35551600000.0,
         34301700000.0,
         35601200000.0,
-        39628300000.0
+        39628300000.0,
+        39112700000.0
       ],
       "OperatingProfit": [
         13658600000.0,
         2808400000.0,
         3954400000.0,
         8829300000.0,
-        10796300000.0
+        10796300000.0,
+        8054800000.0
       ],
       "NetProfit": [
         6680900000.0,
         4819600000.0,
         7975900000.0,
         6660300000.0,
-        13934600000.0
+        13934600000.0,
+        4842700000.0
       ],
       "EPS": [
         5.02,
         3.48,
-        6.05,
+        4.72,
         5.22,
-        10.05
+        10.05,
+        3.08
       ]
     }
   },
@@ -136,11 +143,11 @@
         35222000000.0
       ],
       "EPS": [
-        7.879281,
+        null,
         10.28,
         13.371059,
         18.9,
-        null
+        25.4
       ],
       "SalesGrowth": [
         null,
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 171471200000.0,
-      "Expenses": 145082800000.0,
-      "OperatingProfit": 26388400000.0,
-      "NetProfit": 33390400000.0
+      "Sales": 180278700000.0,
+      "Expenses": 148643900000.0,
+      "OperatingProfit": 31634800000.0,
+      "NetProfit": 33413500000.0
     }
   },
   "balanceSheet": {
@@ -365,7 +372,7 @@
     "numberOfAnalystOpinions": 1
   },
   "holders": {
-    "insidersPercent": 0.72522,
-    "institutionsPercent": 0.15618
+    "insidersPercent": 0.72523004,
+    "institutionsPercent": 0.14488
   }
 }

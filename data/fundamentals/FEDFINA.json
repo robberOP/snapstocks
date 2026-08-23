@@ -1,7 +1,7 @@
 {
   "symbol": "FEDFINA",
   "name": "Fedbank Financi.",
-  "generatedAt": "2026-08-18T16:37:47.587441+00:00",
+  "generatedAt": "2026-08-23T11:01:29.811422+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Credit Services",
@@ -9,33 +9,33 @@
     "bseCode": "544027",
     "nseSymbol": "FEDFINA",
     "website": "https://www.fedfina.com",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/fedfina.html",
     "peerSector": "Finance",
     "peerIndustry": "Non Banking Financial Company (NBFC)"
   },
   "price": {
-    "current": 150.37,
-    "change": -3.4600067,
-    "changePercent": -2.2492404,
-    "previousClose": 153.83,
-    "dayLow": 149.8,
-    "dayHigh": 156.8,
+    "current": 149.8,
+    "change": -1.0599976,
+    "changePercent": -0.7026366,
+    "previousClose": 150.86,
+    "dayLow": 149.3,
+    "dayHigh": 151.5,
     "fiftyTwoWeekLow": 119.07,
     "fiftyTwoWeekHigh": 178.48,
-    "asOf": 1785751198
+    "asOf": 1787133597
   },
   "stats": {
-    "marketCap": 56382844928.0,
-    "trailingPE": 14.829388,
-    "forwardPE": 9.396656,
-    "priceToBook": 1.923013,
+    "marketCap": 56169119744.0,
+    "trailingPE": 14.773175,
+    "forwardPE": 9.302903,
+    "priceToBook": 1.9157236,
     "bookValue": 78.195,
     "dividendYield": null,
     "trailingEps": 10.14,
     "debtToEquity": 4.6734100000000005,
     "roe": 11.742592529305218,
     "roce": 3.2932558900678774,
-    "return1y": 13.72711672131072,
+    "return1y": 10.823411319815847,
     "sharesOutstanding": 374960731.0
   },
   "quarterly": {
@@ -335,11 +335,11 @@
     "targetMean": 191.25,
     "targetHigh": 200.0,
     "targetLow": 175.0,
-    "recommendationKey": "none",
+    "recommendationKey": "strong_buy",
     "numberOfAnalystOpinions": 4
   },
   "holders": {
-    "insidersPercent": 0.69036,
-    "institutionsPercent": 0.15758
+    "insidersPercent": 0.61781,
+    "institutionsPercent": 0.15784
   }
 }

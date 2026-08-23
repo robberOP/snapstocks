@@ -1,7 +1,7 @@
 {
   "symbol": "BEML",
   "name": "BEML Ltd",
-  "generatedAt": "2026-08-18T16:37:23.296355+00:00",
+  "generatedAt": "2026-08-23T11:00:58.377469+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Conglomerates",
@@ -14,28 +14,28 @@
     "peerIndustry": "Construction Vehicles"
   },
   "price": {
-    "current": 1743.7,
-    "change": -6.7000732,
-    "changePercent": -0.38277385,
-    "previousClose": 1750.4,
-    "dayLow": 1740.0,
-    "dayHigh": 1768.0,
+    "current": 1965.5,
+    "change": 57.0,
+    "changePercent": 2.9866388,
+    "previousClose": 1908.5,
+    "dayLow": 1895.3,
+    "dayHigh": 1975.0,
     "fiftyTwoWeekLow": 1355.0,
     "fiftyTwoWeekHigh": 2275.75,
-    "asOf": 1785751198
+    "asOf": 1787047202
   },
   "stats": {
-    "marketCap": 145231020032.0,
-    "trailingPE": 102.6914,
-    "forwardPE": 24.559155,
-    "priceToBook": 4.9502335,
+    "marketCap": 163704537088.0,
+    "trailingPE": 91.93172,
+    "forwardPE": 27.166552,
+    "priceToBook": 5.5799074,
     "bookValue": 352.246,
-    "dividendYield": 0.74,
-    "trailingEps": 16.98,
-    "debtToEquity": 0.10568,
+    "dividendYield": 0.68,
+    "trailingEps": 21.38,
+    "debtToEquity": 0.10529,
     "roe": 4.818307934051626,
     "roce": 5.909686384922157,
-    "return1y": -13.91419376612106,
+    "return1y": -3.29718799041703,
     "sharesOutstanding": 83289000.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         16525300000.0,
         6339900000.0,
         10832700000.0,
-        17941700000.0
+        17941700000.0,
+        8196200000.0
       ],
       "Expenses": [
         8340000000.0,
         12486100000.0,
         7030400000.0,
         11009200000.0,
-        15451300000.0
+        15451300000.0,
+        8410500000.0
       ],
       "OperatingProfit": [
         417700000.0,
         4039200000.0,
         -690500000.0,
         -176500000.0,
-        2490400000.0
+        2490400000.0,
+        -214300000.0
       ],
       "NetProfit": [
         244100000.0,
         2875500000.0,
         -641100000.0,
         -223800000.0,
-        1798200000.0
+        1798200000.0,
+        -270100000.0
       ],
       "EPS": [
         5.86,
         69.05,
         -15.4,
         -2.69,
-        71.59
+        71.59,
+        -3.24
       ]
     }
   },
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 51639600000.0,
-      "Expenses": 45977000000.0,
-      "OperatingProfit": 5662600000.0,
-      "NetProfit": 3808800000.0
+      "Sales": 43310500000.0,
+      "Expenses": 41901400000.0,
+      "OperatingProfit": 1409100000.0,
+      "NetProfit": 663200000.0
     }
   },
   "balanceSheet": {
@@ -358,14 +365,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 2048.6667,
-    "targetHigh": 2246.0,
-    "targetLow": 1940.0,
-    "recommendationKey": "none",
+    "targetMean": 2101.0,
+    "targetHigh": 2332.0,
+    "targetLow": 1960.0,
+    "recommendationKey": "strong_buy",
     "numberOfAnalystOpinions": 3
   },
   "holders": {
-    "insidersPercent": 0.54216,
-    "institutionsPercent": 0.21406001
+    "insidersPercent": 0.54218,
+    "institutionsPercent": 0.22399999
   }
 }

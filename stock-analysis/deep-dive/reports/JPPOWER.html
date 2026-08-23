@@ -1,0 +1,897 @@
+<title>Jaiprakash Power Ventures Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Independent Power Producer / Thermal &amp; Hydro Generation</div>
+    <h1>Jaiprakash Power Ventures Limited</h1>
+    <p class="sub">NSE: JPPOWER &middot; BSE: 532627 &middot; FY2023&ndash;FY2027(Q1) performance review, BSE-filing and annual-report synthesis, as of 22 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> JPPOWER just changed hands. Its promoter, Jaiprakash Associates Limited (JAL), went through NCLT insolvency; Adani Enterprises won JAL's resolution plan in March 2026; and as part of implementing that plan, JAL's entire 24% stake in JPPOWER was sold to Adani Power for &#8377;2,993.6 crore on 20 May 2026, followed two days later by the wholesale resignation of every Jaypee-era executive director and two independent directors, replaced by three Adani Power nominees. That governance reset landed on top of a business whose FY26 numbers were already deteriorating: consolidated revenue grew a thin 1.5% while consolidated PAT fell 44.6% (&#8377;813.6 Cr &rarr; &#8377;450.6 Cr) as plant-level operating profit (PBIDT) fell 24% even as plant load factors <em>improved</em> at both thermal stations &mdash; a margin story, not a volume story. Capex collapsed to just &#8377;7.9 crore against &#8377;472.8 crore of depreciation, the coal-mining subsidiary business is being surrendered, no dividend has been paid, and disclosed contingent claims against the company nearly quadrupled to &#8377;9,126 crore &mdash; a sum close to the entire market capitalisation &mdash; driven mainly by an Andhra Pradesh mining-department dispute inherited from a defunct sand-mining contract. Adani Power itself has already re-pledged 19% of the company's shares to its own acquisition lenders. This is a leveraged-buyout-style change of control landing on a still-distressed balance sheet, not a clean growth re-rating.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (22 Aug 26)</div><div class="v">&#8377;17.10</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;11,719 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;13.15 &ndash; 24.50</div></div>
+      <div class="chip"><div class="k">FY26 Revenue (consol.)</div><div class="v pos">+1.5% YoY</div></div>
+      <div class="chip"><div class="k">FY26 PAT (consol.)</div><div class="v neg">&minus;44.6% YoY</div></div>
+      <div class="chip"><div class="k">Contingent claims</div><div class="v neg">&#8377;9,126 Cr</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">24.4x</div></div>
+      <div class="chip"><div class="k">FY26 Free Cash Flow</div><div class="v pos">&#8377;1,293 Cr</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage, basis and gaps &mdash; please read before the numbers below:</b> This company's <code>AnnouncementsConv</code> set contains only 50 filings, all dated 12&nbsp;Mar&ndash;30&nbsp;Jul 2026 &mdash; there is no earnings-call transcript and no investor presentation anywhere in the source data for JPPOWER (unlike some peer reports in this series), so sections&nbsp;3, 4 and 8 lean on the audited Q4/FY26 financial-results filing (4 May 2026), the unaudited Q1FY27 results outcome letter (20 Jul 2026), the FY2025-26 Annual Report's Management Discussion &amp; Analysis (filed 4 Jul 2026), and the News feed &mdash; no management quotes are fabricated anywhere in this report. Figures are <b>consolidated</b> unless explicitly marked standalone; the two bases are near-identical for JPPOWER since its subsidiaries (Jaypee Arunachal Power, Jaypee Meghalaya Power, Sangam Power Generation, Bina Mines &amp; Supply) are pre-operational or small. A genuine data gap: neither the BSE filing set nor MarketData/yfinance's quarterly series contains a Q2 FY26 (Sep-2025 quarter) financial result &mdash; it is shown as a blank in every quarterly table below rather than estimated. Where BSE-filed figures could be cross-checked against yfinance's independently-sourced quarterly and annual statements (EBITDA, PAT, operating/investing/financing cash flow, capex, free cash flow), they reconcile exactly &mdash; noted explicitly in &sect;06. The News dataset contains only four dated items (23&nbsp;Jul&nbsp;2025 &ndash; 17&nbsp;Aug&nbsp;2026); this is a thin newsflow record for an eleven-month window and is stated as such, not padded out.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Disclosure insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What JPPOWER does, and how it got here</h2></div>
+      <p class="sec-dek">A 2,220 MW thermal-and-hydro generator built by the Jaypee Group, rebuilt once already through a 2019 debt restructuring, now changing owners a second time via its parent's insolvency.</p>
+
+      <p class="lede">Incorporated in 1994 as Jaiprakash Hydro-Power Limited and renamed Jaiprakash Power Ventures Limited in December 2009, the New Delhi-headquartered company owns and operates three power plants totalling 2,220 MW: the 400 MW Vishnuprayag hydro-electric plant in Chamoli, Uttarakhand (operating since October 2006); the 500 MW (2&times;250 MW) Bina thermal plant in Sagar, Madhya Pradesh (since 2012&ndash;13); and the 1,320 MW (2&times;660 MW) Nigrie supercritical thermal plant in Singrauli, Madhya Pradesh (since 2014&ndash;15). It also runs a 2 MTPA cement grinding unit at Nigrie (currently generating nil turnover per the FY26 Annual Report) and, until recently, the captive Amelia (North) coal mine (2.8 MTPA operating capacity against a 3.92 MTPA licence) feeding the Nigrie plant, plus the right of exploration on the adjacent Bandha North coal block (MarketData/overview.md; AnnualReport FY25-26).</p>
+
+      <h3>Revenue mix: a mix of regulated long-term PPAs and merchant exposure</h3>
+      <p>Each plant sells power under a different structure. Vishnuprayag supplies 88% of net generation to Uttar Pradesh Power Corporation (UPPCL) under a long-term PPA, with the remaining 12% given free to the Uttarakhand government. Bina supplies 70% of installed capacity (65% to Madhya Pradesh Power Management Co. at MPERC-determined tariff, plus 5% to the state government) with the balance sold as merchant power on exchanges or bilaterally. Nigrie supplies roughly 37.5% long-term (30% + 7.5%) to the same Madhya Pradesh counterparties, with a larger merchant tranche (5,799 MU of the plant's 10,267.5 MU gross FY26 generation was sold as merchant sales). The FY26 Annual Report's MD&amp;A is candid that this merchant tail is a real operating risk, not just an upside optionality: it states MPPMCL has been "giving restricted schedule to BINA TPP... erratic and fluctuating schedules of dispatch... forcing Company to sell balance power to power exchanges at un-remunerative tariff."</p>
+
+      <h3>Plant performance, FY26 vs FY25 &mdash; genuine operating improvement</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>FY2025-26</th><th>Plant availability</th><th>Plant load factor</th><th>Net saleable energy (MU)</th></tr></thead>
+          <tbody>
+            <tr><td>Vishnuprayag Hydro (400 MW)</td><td>99.30%</td><td>n/a (hydro)</td><td>1,515.97 (FY25: 1,589.17)</td></tr>
+            <tr><td>Bina Thermal (500 MW)</td><td>93.39%</td><td class="pos">75.21% (FY25: 68.64%)</td><td>2,963.01</td></tr>
+            <tr><td>Nigrie Thermal (1,320 MW)</td><td>97.43%</td><td class="pos">88.79% (FY25: 80.93%)</td><td>9,666.23</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY2025-26 Annual Report, MD&amp;A &sect;1&ndash;2.3. Total saleable energy generation for the year: 14,145.21 MU vs 12,980.99 MU in FY25 (+9.0%). Vishnuprayag's own generation fell YoY "due to hydrology" per the MD&amp;A.</caption>
+      </div>
+      <p>This is the central tension of the FY26 year, carried through this whole report: the plants themselves ran <em>better</em> &mdash; PLF at both thermal stations rose meaningfully, and total saleable generation grew 9.0% &mdash; yet, as &sect;03&ndash;04 show, revenue barely moved and profit fell sharply. The gap sits in realisation (merchant/exchange tariffs, MPPMCL curtailment) and in costs below the operating line, not in the plants' physical performance.</p>
+
+      <h3>A company that has already been restructured once</h3>
+      <p>JPPOWER's balance sheet still carries the scars of a 2019 "Framework Agreement" debt restructuring with its lenders, including &#8377;3,805.53 crore of Compulsorily Convertible Cumulative Preference Shares (CCPS, 29-year maturity) issued to lenders as part of that plan &mdash; see &sect;05 for why this remains a live equity-dilution overhang. Coal mining has now become a source of retreat rather than growth: in May 2026 the Board approved surrendering both the Amelia (North) and Bandha North coal mines, citing "recent changes in Government coal policies, their economic viability and sociological aspects" (BSE filing, 16 May 2026) &mdash; a formal admission that a core input-security asset is no longer viable to run.</p>
+
+      <h3>The moat, such as it's evidenced</h3>
+      <p>The real asset is licensed, long-lived generation capacity with multi-decade PPAs for a meaningful share of output, plus captive fuel logistics at Nigrie &mdash; assets that are genuinely hard to replicate (land, environmental clearances, transmission interconnection, PPA vintage). Against that: no independent market-share or competitor-benchmark data was found in any reviewed filing; the coal-mining leg of the captive-fuel-security moat is being actively surrendered; and roughly a third to a half of thermal output is merchant-exposed to power-exchange pricing and a state utility's own curtailment decisions, which the company's own MD&amp;A describes as loss-making at the margin. No new generation capacity has been commissioned in over a decade; the only announced expansion &mdash; a &#8377;300 crore, 50 MW solar PV project at the Madhya Pradesh site, board-approved in August 2025 (News) &mdash; has no execution update anywhere in the AnnouncementsConv filing set covering March&ndash;July 2026, and is not mentioned in the FY26 Annual Report's outlook section at all.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">A thin four-item News feed spanning thirteen months &mdash; but the two 2026 items describe the single most important thing that has happened to this stock in years.</p>
+
+      <div class="news-item">
+        <div class="news-date">17 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral &mdash; adjacent, not JPPOWER-specific</span>
+          <div class="news-title">Vedanta appeals NCLAT against Adani's win of Jaiprakash Associates</div>
+          <div class="news-body">Vedanta Group has appealed to the NCLAT against the NCLT's approval of Adani Enterprises' &#8377;14,535 crore resolution bid for Jaiprakash Associates Limited (JAL) &mdash; JPPOWER's former promoter &mdash; which was approved 17 March 2026 with 89% creditor support after Adani outbid Vedanta and Dalmia Bharat. This is a dispute over JAL's own insolvency process, one level up from JPPOWER itself; it does not directly change JPPOWER's operations or financials, but an NCLAT reversal would introduce fresh uncertainty over the JAL resolution plan whose implementation is what delivered Adani Power its 24% JPPOWER stake and board seats (&sect;07&ndash;08). This risk is not otherwise flagged anywhere in JPPOWER's own BSE filings reviewed.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">23 May 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed &mdash; ownership stability vs. dilution/leverage read</span>
+          <div class="news-title">Adani Power confirmed as 24% acquirer of JPPOWER for &#8377;2,994 Cr</div>
+          <div class="news-body">Adani Power's acquisition of Jaiprakash Associates' 24% JPPOWER stake, implementing JAL's own NCLT-approved resolution plan, valuing JPPOWER's equity at roughly &#8377;12,475 crore for that block and giving JAL a liquidity exit. The News summary frames this as bringing "operational stability and Adani's financial backing" to JPPOWER's assets. This report's own tabulated numbers (&sect;03&ndash;06) support the "stability of ownership" read only partially: the deal itself brings no fresh growth capital into JPPOWER (it is a share purchase from JAL to Adani Power, not a rights issue or preferential allotment into the company), and Adani Power immediately re-pledged 19.01% of JPPOWER's total share capital to its own acquisition lenders (&sect;08) &mdash; a leveraged acquisition structure, not a debt-free strategic injection.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">28 Aug 2025</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed &mdash; unclear until executed</span>
+          <div class="news-title">Board approves &#8377;300 Cr, 50 MW solar PV project</div>
+          <div class="news-body">Board approval for a solar PV project at the existing Madhya Pradesh thermal site, pending lender and regulatory approvals, drove a reported 4.99% intraday stock surge. No execution update, capex drawdown, or mention in the FY26 Annual Report's outlook section (&sect;01, &sect;10) was found in the filing window covered by this report (through 30 Jul 2026) &mdash; the project's status a year on is a genuine open question this report could not resolve from the available data.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">23 Jul 2025</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral &mdash; procedural</span>
+          <div class="news-title">Board meeting scheduled to consider Q1 FY26 results</div>
+          <div class="news-body">A purely procedural announcement of the 30 Jul 2025 board-meeting date; no figures disclosed in the item itself.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What the News feed doesn't cover</b>Every other material event in this report &mdash; the wholesale board reconstitution (22 May 2026), the two independent-director resignations, the Chairman-family director's own July 2026 resignation, the share-pledge disclosures, the coal-mine surrender, the CRISIL rating-watch move, and the FY26 results themselves &mdash; comes exclusively from BSE filings, not from the News dataset, which carries only the four items above. A reader relying on News alone would miss essentially the entire governance story in &sect;07&ndash;08.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segments &amp; guidance</h2></div>
+      <p class="sec-dek">Revenue grew across FY26 despite a lost quarter of data; the real story is that operating profit (PBIDT) fell 24% on that similar-to-higher revenue base &mdash; a cost and realisation problem, not a volume problem.</p>
+
+      <h3>Quarterly trend</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q2FY26 (Sep-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>1,340.91</td><td>1,583.16</td><td>n/a</td><td>1,155.57</td><td>1,386.43</td><td>1,775.70</td></tr>
+            <tr><td>EBITDA (segment PBIDT)<sup>&dagger;</sup></td><td>414.20</td><td>649.08</td><td>n/a</td><td>229.44</td><td>205.71</td><td>789.81</td></tr>
+            <tr><td>EBITDA margin (on total income)</td><td>30.3%</td><td>39.8%</td><td>n/a</td><td>18.9%</td><td>14.0%</td><td>43.7%</td></tr>
+            <tr><td>PAT (consolidated)</td><td>155.67</td><td>278.13</td><td>n/a</td><td>3.77</td><td class="neg">&minus;13.37</td><td>468.84</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>0.15</td><td>0.31</td><td>n/a</td><td>0.00</td><td class="neg">&minus;0.02</td><td>0.52</td></tr>
+          </tbody>
+        </table>
+        <caption>&dagger; Company-reported segment "profit before finance charges, depreciation, exceptional items and tax," sourced directly from the standalone/consolidated segment notes in each financial-results filing; this figure includes other income and reconciles exactly with MarketData/yfinance's own quarterly "EBITDA" field for every quarter where both exist. Q2 FY26 (Sep-25) is absent from both the BSE filing set and yfinance's quarterly series &mdash; shown as n/a, not estimated. Q1FY27's EBITDA excludes a separately-disclosed &#8377;193.63 Cr exceptional charge for the coal-mine surrender (&sect;04).</caption>
+      </div>
+      <p>The pattern across the five available quarters is a sharp margin round-trip rather than a steady trend: EBITDA margin ran from 30.3% (Q4FY25) up to 39.8% (Q1FY26), collapsed to 18.9% and then 14.0% through Q3&ndash;Q4FY26, then jumped back to 43.7% in Q1FY27. The Q1FY27 print is flattered by two one-off items explained fully in &sect;04 (a large one-time deferred-tax reversal from a tax-regime switch, netted against a &#8377;193.63 Cr exceptional charge for the coal-mine surrender) &mdash; on a clean, run-rate basis the underlying trend through the five known quarters is one of margin compression, not expansion, even as revenue itself held up or grew.</p>
+
+      <h3>Segment results: Power vs Coal vs Other</h3>
+      <p>JPPOWER discloses one true operating segment (power) plus a small captive coal segment and a residual "Others/Cement Grinding" segment that has run at a small loss every period shown (&minus;&#8377;1.5 to &minus;&#8377;4.2 Cr per quarter, cement grinding turnover itself is nil per the FY26 Annual Report). The Power segment's own PBIDT fell from &#8377;443.5 Cr (Q4FY25) to &#8377;212.9 Cr (Q4FY26) &mdash; down roughly 52% YoY in the same quarter that plant-level PLF was improving (&sect;01) &mdash; underscoring that the margin pressure sits in realisation and cost, not generation volume.</p>
+
+      <h3>Full-year FY26 vs FY25</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated</th><th>FY2024-25</th><th>FY2025-26</th><th>YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>5,462.19</td><td>5,563.46</td><td class="pos">+1.9%</td></tr>
+            <tr><td>Total income (incl. other income)</td><td>5,707.55</td><td>5,791.61</td><td class="pos">+1.5%</td></tr>
+            <tr><td>EBITDA (segment PBIDT)</td><td>2,099.98</td><td>1,595.15</td><td class="neg">&minus;24.0%</td></tr>
+            <tr><td>PAT (consolidated)</td><td>813.55</td><td>450.63</td><td class="neg">&minus;44.6%</td></tr>
+            <tr><td>Total saleable energy generation (MU)</td><td>12,980.99</td><td>14,145.21</td><td class="pos">+9.0%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: 4 May 2026 financial-results filing (segment notes, standalone/consolidated P&amp;L) and FY26 Annual Report &sect;5.2.</caption>
+      </div>
+
+      <h3>Geography, market share &amp; expansion</h3>
+      <p>All generation is domestic and concentrated in two states (Madhya Pradesh: Bina, Nigrie, cement, coal; Uttarakhand: Vishnuprayag). No independent market-share or ranking data was found. No new geography, product line, or capacity has been added in the periods covered by this dataset; the sole announced expansion (the August 2025 solar project, &sect;01/&sect;02) has no execution trail in the filings reviewed. If anything, the FY26&ndash;27 direction is contraction: the coal-mining segment is being surrendered (&sect;01), not grown.</p>
+
+      <h3>Guidance vs. actual</h3>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>No formal numeric sales or margin guidance found &mdash; this check is skipped for lack of data</b>With no earnings call or investor presentation anywhere in this dataset, the only forward-looking company statement located is the FY26 Annual Report's one-paragraph "Outlook" section (&sect;10), which is qualitative only ("outlook... remains positive," "aims to... optimize costs and improve financial performance") and contains no numeric target for revenue, margin, capex or generation that FY27 actuals could be checked against. This is a genuine limitation on how far this report's guidance-vs-actual analysis can go for JPPOWER, stated rather than papered over.</div>
+      </div>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">FY26's margin compression came from a near-doubling of "other expenses" and a large receivables provision, not from finance cost or depreciation &mdash; both of which actually fell. Every reported profitability ratio the company itself discloses moved the wrong way.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Standalone, per FY26 Annual Report</th><th>FY2024-25</th><th>FY2025-26</th><th>% change</th></tr></thead>
+          <tbody>
+            <tr><td>Current ratio</td><td>2.41</td><td>2.70</td><td class="pos">+12%</td></tr>
+            <tr><td>Debt-equity ratio</td><td>0.31</td><td>0.27</td><td class="pos">&minus;13%</td></tr>
+            <tr><td>Debt service coverage ratio</td><td>2.73</td><td>2.22</td><td class="neg">&minus;18%</td></tr>
+            <tr><td>Return on equity</td><td>6.81%</td><td>3.51%</td><td class="neg">&minus;48%</td></tr>
+            <tr><td>Net profit ratio</td><td>14.84%</td><td>7.94%</td><td class="neg">&minus;47%</td></tr>
+            <tr><td>Return on capital employed</td><td>10.27%</td><td>7.00%</td><td class="neg">&minus;32%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY2025-26 Annual Report &sect;5.3 "Key Financial Ratios" table (company's own SEBI-mandated disclosure of ratios moving &ge;25% YoY, with company-stated reasons). Every decline is attributed by the company solely to "Decline in Profit After tax in FY 2025-26" &mdash; no further operational explanation is given in this table.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>The margin hit came from "other expenses" and a receivables provision, not from financing or depreciation</b>Standalone full-year "Other expenses" nearly doubled, from &#8377;204.90 Cr (FY25) to &#8377;387.53 Cr (FY26) &mdash; the single largest driver of the EBITDA decline. The FY26 cash-flow statement separately shows a &#8377;57.09 Cr "Provision for Doubtful Advances/Trade Receivables" booked during the year (vs. just &#8377;0.17 Cr in FY25) &mdash; a fresh provision against collectability that is worth watching given the receivable-days trend in &sect;05. By contrast, finance costs <em>fell</em> (&#8377;414.13 Cr &rarr; &#8377;374.89 Cr standalone) and depreciation was flat (&#8377;470.20 Cr &rarr; &#8377;472.80 Cr) &mdash; so the standard "rising interest burden ate the margin" story does not apply here; this was an operating-cost and provisioning story.</div>
+      </div>
+
+      <h3>Interest coverage and leverage on earnings</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Interest coverage (EBIT/finance cost)</div><div class="v neg">3.08x</div><div class="d">FY26, down from 4.06x FY25</div></div>
+        <div class="stat"><div class="k">Net debt / EBITDA</div><div class="v neg">1.65x</div><div class="d">FY26, up from 1.38x FY25 &mdash; EBITDA fell faster than debt was repaid</div></div>
+        <div class="stat"><div class="k">Other income as % of PBT</div><div class="v">30.5%</div><div class="d">FY26 (&#8377;227.4 Cr of &#8377;738.1 Cr PBT, standalone); FY25 was 20.1%</div></div>
+      </div>
+      <p>Debt/equity and DSCR both still read as respectable in isolation (0.27x and 2.22x), and net debt continued falling in absolute terms (&#8377;2,873 Cr &rarr; &#8377;2,625 Cr, &sect;05) &mdash; but because the earnings base shrank faster than the debt did, both net-debt/EBITDA and interest coverage moved in the wrong direction. Other income's rising share of PBT (20.1% &rarr; 30.5%) is a mild version of the "profit growth increasingly non-operating" flag the analysis method calls for &mdash; not dramatic on its own, but consistent with the core power-generation P&amp;L doing the work of the profit decline while non-operating income cushioned it somewhat.</p>
+
+      <h3>The Q1FY27 profit number needs unpacking, not taking at face value</h3>
+      <p>Q1FY27's reported consolidated PAT of &#8377;468.84 Cr (EPS &#8377;0.52) looks like a strong turnaround, but the filing itself flags why it isn't comparable: the company adopted the new corporate tax regime (Section 115BAA) from FY25-26 onward, which in Q1FY27 triggered a one-time reversal of &#8377;140.78 Cr of previously-recognised MAT credit entitlement <em>and</em> a &#8377;248.87 Cr reversal of deferred tax liability, a net one-time tax benefit of roughly &#8377;108 Cr that the company explicitly states makes "the tax provision for the current quarter... not comparable with previous periods" (Q1FY27 results, note 9). Separately, the quarter also booked a &#8377;193.63 Cr exceptional charge for the Amelia/Bandha coal-mine surrender (&sect;01). Strip both one-offs out and the underlying quarter is far closer to Q1FY26's &#8377;278.13 Cr than the headline number suggests &mdash; a useful caution against reading Q1FY27 as evidence the FY26 margin problem has been fixed.</p>
+
+      <h3>Forward margin guidance</h3>
+      <p>None found in numeric form. The FY26 Annual Report's Outlook (&sect;10) states an intent to "optimize costs and improve financial performance" and cites "lower finance cost post implementation of the Debt Resolution Plan" as a positive, but sets no target margin, cost ratio, or profit figure for FY27.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">Deleveraging is real and continuing &mdash; but capex has essentially stopped, a &#8377;3,805.53 Cr convertible-preference-share overhang from the 2019 restructuring still sits on the balance sheet, and disclosed contingent claims nearly quadrupled in one year.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated, as at 31 Mar</th><th>FY2024</th><th>FY2025</th><th>FY2026</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity (incl. CCPS)</td><td>11,467.60</td><td>12,281.20</td><td>12,732.26</td></tr>
+            <tr><td>&nbsp;&nbsp;of which CCPS (equity-classified)</td><td>3,805.53</td><td>3,805.53</td><td>3,805.53</td></tr>
+            <tr><td>Total debt (borrowings, current + non-current)</td><td>4,246.04</td><td>3,778.25</td><td>3,391.08</td></tr>
+            <tr><td>Net debt</td><td>4,210.75</td><td>2,873.08</td><td>2,625.30</td></tr>
+            <tr><td>Trade receivables</td><td>1,186.39</td><td>943.23</td><td>1,090.78</td></tr>
+            <tr><td>Receivable days (on revenue)</td><td>64</td><td>63</td><td>72</td></tr>
+            <tr><td>Trade payables</td><td>n/a</td><td>221.47</td><td>276.80</td></tr>
+            <tr><td>Cash &amp; equivalents</td><td>31.04</td><td>892.54</td><td>754.95</td></tr>
+            <tr><td>Total assets</td><td>17,303.34</td><td>17,785.60</td><td>17,957.64</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet, cross-checked line-by-line against the 4 May 2026 financial-results filing's audited standalone/consolidated balance sheet (matches exactly for FY25/FY26). Receivable days computed on the &sect;03 revenue base per Fundamental_Analysis.md conventions.</caption>
+      </div>
+
+      <p>The debt trend is a genuine positive: total debt has fallen for three straight years (&#8377;4,246 Cr &rarr; &#8377;3,778 Cr &rarr; &#8377;3,391 Cr), and the annual-report ratio table (&sect;04) confirms debt/equity improved to 0.27x. Set against that: cash fell &#8377;892.5 Cr &rarr; &#8377;754.95 Cr even as debt fell too (some of the FY25 cash pile, built from a strong FY25 CFO, has since been drawn down &mdash; see &sect;06), and receivable days ticked up from 63 to 72, a mild but real deterioration that lines up with the fresh doubtful-receivables provision flagged in &sect;04.</p>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Disclosed contingent claims jumped from &#8377;2,116 Cr to &#8377;9,126 Cr in one year &mdash; the single biggest balance-sheet flag in this report</b>Note 44 of the FY26 audited financial statements shows "Claims against the Company not acknowledged as debts" rising from &#8377;2,115.94 Cr (FY25) to &#8377;9,126.20 Cr (FY26) &mdash; a 4.3x increase in twelve months, against a market capitalisation of &#8377;11,719 Cr. The overwhelming driver is an Andhra Pradesh Directorate of Mines &amp; Geology (DMG) dispute inherited from a now-expired sand-mining sub-contract: cumulative show-cause/demand notices alleging illegal extraction reached &#8377;8,557.04 Cr by 31 Mar 2026 and a further &#8377;857.34 Cr by 30 Jun 2026, with formal demand notices (as opposed to show-cause notices) of &#8377;2,216.54 Cr (Mar-26) rising to &#8377;3,478.87 Cr (Jun-26) &mdash; the latter stayed by the Andhra Pradesh High Court, and management states the underlying sub-contracted operations were not the Company's direct liability. <b>Separately</b> &mdash; and this report could not confirm whether it is included in the &#8377;9,126 Cr figure or sits outside it &mdash; ICICI Bank (lead lender) has separately claimed &#8377;5,696.51 Cr in "recompense" under the 2019 Framework Agreement, which the Company disputes and management states is "presently... nothing... payable/due." Both statutory auditors, Lodha &amp; Co LLP, issued a <b>qualified opinion</b> on both the FY26 annual results and the Q1FY27 review, citing non-provisioning against a further corporate guarantee to JAL's lenders (originally USD 15 million, admitted at &#8377;511.73 Cr by JAL's resolution professional) as one of several qualification items. This is a large, actively litigated, and only partially quantified liability overhang that sits well outside the headline P&amp;L and balance-sheet ratios.</div>
+      </div>
+
+      <h3>The 2019 restructuring's CCPS overhang is still live</h3>
+      <p>&#8377;3,805.53 Cr of Compulsorily Convertible Cumulative Preference Shares, issued to lenders as part of the 2019 Framework Agreement debt restructuring, sit on the balance sheet as "Instrument entirely equity in nature," carrying a 29-year maturity. The FY26 Annual Report states plainly that "since the CCPS shall be converted upon maturity at a rate as per prevailing SEBI Regulations at that time, the likely impact thereof cannot be worked as on today" &mdash; i.e., existing equity shareholders face an unquantified future dilution event whose scale depends on the conversion-date share price, not a fixed ratio.</p>
+
+      <h3>Capex has effectively stopped</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated</th><th>FY2024</th><th>FY2025</th><th>FY2026</th></tr></thead>
+          <tbody>
+            <tr><td>Capex (purchase of PPE, incl. intangibles/CWIP)</td><td>198.69</td><td>242.75</td><td class="neg">7.86</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>465.11</td><td>470.20</td><td>472.80</td></tr>
+            <tr><td>Capex / D&amp;A</td><td>0.43x</td><td>0.52x</td><td class="neg">0.02x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement, cross-checked against the FY26 financial-results filing's audited cash-flow statement (matches exactly).</caption>
+      </div>
+      <p>Capex has run well below depreciation every year shown (a mature, no-longer-expanding asset base is normal for a plant fleet with no units younger than a decade), but FY26 capex of just &#8377;7.86 Cr against &#8377;472.80 Cr of depreciation is not maintenance spend by any reasonable definition &mdash; it is close to zero net reinvestment. No specific multi-year capex plan for FY27/FY28 was disclosed in any reviewed filing; the only forward capital-spend signal in this dataset is the still-unexecuted August 2025 solar project (&sect;01&ndash;02), whose &#8377;300 Cr budget would, if it proceeds, represent a meaningful step-up from FY26's near-zero base &mdash; but this report found no evidence it has moved past board approval.</p>
+
+      <h3>No dividend</h3>
+      <p>The FY26 Annual Report's Directors' Report lists "Proposed Dividend" as nil for both FY25 and FY26. Consistent with continued deleveraging priorities and the Framework Agreement's terms (which typically restrict distributions while restructured debt remains outstanding), this is unsurprising but confirms JPPOWER remains a pure capital-appreciation (or capital-preservation) proposition for equity holders, not an income one.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Free cash flow stayed solidly positive through the profit decline &mdash; a genuine earnings-quality pass &mdash; but FY26's cash generation itself fell in step with, not faster than, the profit decline.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, consolidated</th><th>FY2024</th><th>FY2025</th><th>FY2026</th></tr></thead>
+          <tbody>
+            <tr><td>PAT (consolidated)</td><td>1,021.95</td><td>813.55</td><td>450.63</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>1,927.20</td><td>1,714.28</td><td>1,300.99</td></tr>
+            <tr><td>Capex</td><td>&minus;198.69</td><td>&minus;242.75</td><td>&minus;7.86</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td>1,728.51</td><td>1,471.53</td><td>1,293.13</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>1.89x</td><td>2.11x</td><td class="pos">2.89x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement; every figure reconciles exactly against the FY26 financial-results filing's audited standalone/consolidated cash-flow statement (CFO, capex, financing and investing cash flow all match to the rupee). No quarterly cash-flow file exists in the source data for either BSE filings or MarketData, so quarterly CFO/PAT divergence (e.g. around the noisy Q1FY27 print in &sect;04) cannot be checked.</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#9679;</div>
+        <div><b>Earnings-quality check: passes clean</b>CFO has comfortably exceeded PAT in every year shown, and the conversion ratio actually <em>improved</em> as PAT fell (1.89x &rarr; 2.11x &rarr; 2.89x) &mdash; the opposite of the "PAT growing faster than CFO" red flag the analysis method warns against. This is typical and expected for a capital-intensive generator with heavy non-cash depreciation (&#8377;472.80 Cr in FY26 alone) relative to a comparatively modest PAT base, and it means FY26's profit decline was not accompanied by any hidden deterioration in cash generation &mdash; the cash decline tracked the reported-earnings decline, it didn't outrun it.</div>
+      </div>
+
+      <p><b>Read plainly:</b> free cash flow of &#8377;1,293 Cr in FY26, on a market cap of &#8377;11,719 Cr, is an 11% free-cash-flow yield &mdash; a genuinely attractive number in isolation, and the reason net debt keeps falling even with earnings under pressure. Financing cash flow was negative every year shown (&minus;&#8377;963.8 Cr, &minus;&#8377;891.9 Cr, &minus;&#8377;762.2 Cr, FY24&rarr;FY26) &mdash; consistently used to pay down debt and interest rather than fund growth capex or dividends, which is exactly what a company still working through a formal debt-restructuring framework should be doing. The open question, addressed in &sect;10, is whether this same free-cash-flow generation continues once (if) the surrendered coal mines' compensation processes conclude, the DMG and ICICI Framework Agreement disputes in &sect;05 are resolved one way or another, and/or Adani Power's new board redirects capital toward the diversification (solar, per &sect;01&ndash;02) that has so far only been announced, not funded.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">The entire Jaypee-era executive leadership resigned in a single board meeting on 22 May 2026, replaced by Adani Power nominees &mdash; followed six weeks later by the last remaining Jaypee-family director's own resignation.</p>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Complete change of executive control inside 48 hours of the Adani Power share sale closing</b>On 20 May 2026, Jaiprakash Associates (JAL) signed the Share Purchase Agreement selling its 24% JPPOWER stake to Adani Power. Two days later, on 22 May 2026, JPPOWER's Board accepted the resignations of Sunil Kumar Sharma (Vice Chairman &amp; Whole-time Director), Suren Jain (Managing Director &amp; CEO), and Praveen Kumar Singh (Whole-time Director) &mdash; the entire Jaypee-era executive leadership &mdash; plus two Independent Directors (Dr. Dinesh Kumar Likhi, Prof. Suresh Chandra Saxena), and appointed three Adani Power executives as Additional Directors: <b>Savan Jayendra Patel</b> (Chief Commercial Officer, Adani Power, designated Whole-time Director), <b>Jayadeb Nanda</b> (former COO, Adani Power; 34 years in the power sector, ex-NTPC), and <b>Naresh Telgu</b> (Adani Group pumped-storage/hydro portfolio executive). No new Managing Director/CEO appointment was found in any filing reviewed through 30 Jul 2026; Q1FY27's results outcome letter is instead signed by Savan Jayendra Patel as Whole-time Director, suggesting an interim executive structure rather than a completed leadership transition.</div>
+      </div>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Savan Jayendra Patel</div>
+          <div class="role">Whole-time Director (w.e.f. 22 May 2026); Adani Power CCO</div>
+          <div class="bio">Chartered Accountant, joined Adani Group in 1998. Chief Commercial Officer of Adani Power, directing coal procurement, power sales/scheduling, business development and fuel-logistics risk management across Adani Power's thermal fleet. Currently the primary signatory on JPPOWER's board and results filings.</div>
+        </div>
+        <div class="person">
+          <div class="name">Jayadeb Nanda</div>
+          <div class="role">Additional Director (w.e.f. 22 May 2026)</div>
+          <div class="bio">34 years in the power sector; former Advisor (O&amp;M) and COO, Adani Power; started as an executive trainee at NTPC, rising to Executive Director, Eastern Region. B.Sc Engineering (Electrical), Sambalpur University.</div>
+        </div>
+        <div class="person">
+          <div class="name">Naresh Telgu</div>
+          <div class="role">Additional Director (w.e.f. 22 May 2026)</div>
+          <div class="bio">Three decades in energy project development; currently drives Adani Group's ~25 GW pumped-storage and ~5 GW hydro portfolio. Engineering and finance background across Asia, Africa and the Middle East.</div>
+        </div>
+        <div class="person">
+          <div class="name">Manoj Gaur <span style="font-weight:400;color:var(--ink-mute);">(departed)</span></div>
+          <div class="role">Chairman &amp; Non-Executive Director &mdash; resigned 6 Jul 2026</div>
+          <div class="bio">Listed as Chairman and Key Managerial Personnel in the FY26 Annual Report's related-party disclosures. His resignation, six weeks after the executive-team clear-out, effectively ends direct Jaypee-family board presence at JPPOWER.</div>
+        </div>
+      </div>
+
+      <p>Two further routine board changes followed in July 2026: Independent Director Smt. Binata Sengupta completed her maximum statutory tenure (two three-year terms) and ceased on 1 Jul 2026, replaced by Smt. Shruti Anup Shah and Shri Jayant Misra (appointed 4 May, effective 1 Jul 2026); and Independent Director Dr. Vandana R. Singh similarly completed her maximum tenure and ceased on 26 Jul 2026. These read as ordinary term-limit rotations under Companies Act Section 149(11) rather than governance-crisis departures, and are noted here mainly because they compound with the extraordinary May 2026 exodus to leave the board almost entirely reconstituted within a five-month window.</p>
+
+      <h3>Auditor</h3>
+      <p><b>Statutory auditor:</b> Lodha &amp; Co LLP issued a <b>qualified opinion</b> on both the FY26 audited annual results and the Q1FY27 limited review &mdash; the same qualification items recur across at least three consecutive periods (non-provisioning against the SBI/JAL corporate guarantee; non-provisioning against the &#8377;5,696.51 Cr ICICI recompense claim), a pattern of unresolved, not one-off, audit qualifications (&sect;05). The FY26 audit report also carries emphasis-of-matter paragraphs on the UPPCL dues dispute and an Entry Tax matter at Nigrie. <b>Internal Auditor:</b> BDO India Services Private Limited was appointed for FY27 (from 4 May 2026), replacing R. Nagpal Associates &mdash; a step up to a larger, more recognised firm.</p>
+
+      <h3>Ownership</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Insider holding</div><div class="v">32.99%</div><div class="d">MarketData snapshot, post-transaction</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">11.15%</div><div class="d">40 institutions on record</div></div>
+        <div class="stat"><div class="k">Free float</div><div class="v">40.4%</div><div class="d">2,772.0M of 6,853.5M shares outstanding</div></div>
+      </div>
+      <p>Adani Power's 24% block is, on the numbers reviewed, a large single holding but not a majority stake &mdash; yet it came bundled with wholesale board control (above), sourced entirely through implementation of JAL's own NCLT-approved insolvency resolution plan rather than a direct open-offer transaction with JPPOWER's public shareholders. This is a structurally important distinction worth stating plainly: minority shareholders of JPPOWER did not receive, and per the filings reviewed here have not been offered, an open-offer exit at the ~&#8377;18.20/share implied valuation of the JAL-to-Adani Power block trade (&#8377;2,993.6 Cr &divide; 164.48 Cr shares), even though effective board and executive control changed hands.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other disclosure insights &mdash; SAST/SEBI filings, credit ratings</h2></div>
+      <p class="sec-dek">With no earnings call in this dataset, the SEBI takeover-regulation disclosures are the richest signal available on how the new ownership structure is actually financed.</p>
+
+      <h3>Adani Power has already re-pledged 19% of JPPOWER to its own acquisition lenders</h3>
+      <p>On 21 and 27 May 2026, Adani Power (through security trustee IDBI Trusteeship Services Ltd) disclosed creating a fresh pledge over 1,20,05,09,431 JPPOWER equity shares (17.517% of total share capital) plus a non-disposal undertaking over a further 10,21,88,566 shares (1.49%) &mdash; together, <b>19.01% of JPPOWER's entire share capital</b>, or 79.2% of Adani Power's newly-acquired 24% stake, encumbered in favour of lenders financing the acquisition. The disclosure states this is a continuation of a pre-existing pledge structure the Resolution Plan specifically preserved (the shares were already pledged by JAL to its own lenders; Adani Power "has created a fresh pledge over the Pledged Shares" rather than releasing and re-encumbering from a clean base), financing loans totalling roughly &#8377;13,313 Cr across several facilities (&#8377;2,150 Cr + &#8377;7,315 Cr + &#8377;46 Cr + &#8377;2,258 Cr + &#8377;1,200 Cr + &#8377;500 Cr + &#8377;150 Cr per the Annexure-II disclosure) with a disclosed security cover ratio of just 0.16x on the largest tranche and 0.11x on the non-disposal-undertaking tranche &mdash; i.e., the pledged JPPOWER shares alone cover only a small fraction of the underlying borrowing, meaning this collateral is only one part of a much larger financing package behind the JAL acquisition, not a fully-covered pledge in isolation.</p>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading this correctly</b>A high pledge ratio on newly-acquired shares is not automatically bearish for JPPOWER's own operations &mdash; it reflects how Adani Power financed the JAL acquisition, not JPPOWER's own balance sheet. But it is directly relevant to minority shareholders: it means the identity of JPPOWER's largest shareholder is itself leveraged against these very shares, and a stress event at Adani Power's acquisition-financing level (unrelated to JPPOWER's own operating performance) could in principle trigger pledge enforcement and a forced-seller dynamic in the stock. This is a standard feature of leveraged Indian holding-company acquisitions, not unique to this situation, but it is a real and disclosed risk factor.</div>
+      </div>
+
+      <h3>Credit ratings: one watch-negative revision, one rating quietly withdrawn</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">CRISIL, Long-term Bank Facilities</div><div class="v neg">BBB / Watch Negative</div><div class="d">Revised from BBB/Stable, 11 Mar 2026 (two days before JAL's NCLT approval); reaffirmed 23 Apr 2026</div></div>
+        <div class="stat"><div class="k">India Ratings, Bank loan facilities</div><div class="v">Withdrawn</div><div class="d">3 Jul 2026, at the Company's own request, citing no envisaged need for short-term bank facilities</div></div>
+      </div>
+      <p>CRISIL's move to "Watch Negative" on &#8377;5,600 Cr of long-term bank facilities landed just before the JAL resolution plan's formal NCLT approval &mdash; consistent with rating agencies pricing in genuine uncertainty around the change-of-control process, not (per the timing) a reaction to JPPOWER's own FY26 operating numbers. As of the last filing in this dataset (3 Jul 2026), that Watch Negative status had not yet been resolved either way. Separately, India Ratings' withdrawal of JPPOWER's short-term (INR 5,000 Cr) bank facility rating at the company's own request, stating it does not envisage needing short-term bank facilities going forward, is consistent with the FY26 deleveraging trend (&sect;05) but also reduces the amount of independent third-party credit monitoring on the company going forward.</p>
+
+      <h3>The DMG sand-mining dispute: an inherited, escalating liability from a discontinued business</h3>
+      <p>Detailed in &sect;05, this deserves restating here as a disclosure-quality point: the underlying sand-mining contracts in Andhra Pradesh expired in May 2023 and were, per the company, entirely sub-contracted on a back-to-back basis, with the Company itself asserting it holds a "No Due Certificate" from the Directorate of Mines &amp; Geology. Despite this, demand notices have escalated in every quarterly filing reviewed (&#8377;2,216.54 Cr at Mar-26 &rarr; &#8377;3,478.87 Cr at Jun-26, i.e. +57% in one quarter), and FIRs have reportedly been filed by DMG against company officials. Management's position has been consistent across every filing reviewed, but the escalating notice values themselves are an objective, disclosed fact regardless of which side is ultimately right.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">None found in the source data &mdash; consistent with a stock whose defining event of the year is a change-of-control transaction, not a quarterly-earnings story sell-side desks typically track closely.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analyst recommendation</div><div class="v">None</div><div class="d">yfinance recommendationKey: "none"</div></div>
+        <div class="stat"><div class="k">Price targets</div><div class="v">N/A</div><div class="d">No low/mean/median/high target available</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">11.15%</div><div class="d">40 institutions on record, per MarketData</div></div>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>No independent research desk is modelling the post-Adani story yet</b>With zero sell-side price targets on record and no earnings call in this dataset, there is no visible external community stress-testing management's (thin) outlook commentary, the DMG/ICICI contingent-liability overhang, or how Adani Power intends to use its new board seats. That places the full weight of independent verification on primary BSE filings &mdash; which is what this report has drawn on throughout.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock trading mid-range within its 52-week band, on a book-value multiple that already implies the market is pricing new ownership as a stabilising force &mdash; before the DMG and ICICI overhangs are resolved either way.</p>
+
+      <h3>Where the price sits today</h3>
+      <div id="pchart"></div>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">24.4x</div><div class="d">TTM basis, includes the tax-boosted Q1FY27 quarter (&sect;04)</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">1.31x</div><div class="d">Book value/share &#8377;13.03</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">11.87x</div><div class="d">TTM EBITDA &#8377;1,530 Cr, EV &#8377;18,161 Cr</div></div>
+        <div class="stat"><div class="k">Price / Sales (TTM)</div><div class="v">2.04x</div></div>
+      </div>
+      <p>Forward P/E in the MarketData snapshot shows as negative (&minus;10.06x), an artefact of a negative consensus forward-EPS estimate on a stock with essentially no analyst coverage (&sect;09) rather than a meaningful figure &mdash; it is not usable and is flagged here rather than repeated as if reliable. TTM revenue growth of 12.2% and TTM earnings growth of 67.7% (MarketData) are both materially inflated by the one-time-boosted Q1FY27 quarter described in &sect;04 and should not be read as the underlying FY26-exit run-rate, which &sect;03&ndash;04 show was closer to flat revenue and declining margins.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built from this report's own tabulated FY26 base (&sect;03&ndash;06) and the disclosed but unresolved contingent-liability and governance items in &sect;05, &sect;07 and &sect;08. These are scenario illustrations only, not point forecasts &mdash; there is no analyst consensus to anchor against (&sect;09), no formal management guidance exists in this dataset (&sect;03), and the single largest swing factor (resolution of the DMG and ICICI claims) is a binary legal outcome this report cannot handicap.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;11&ndash;13</div>
+          <div class="rng">&minus;36% to &minus;24% from CMP</div>
+          <ul>
+            <li>DMG demand notices (&#8377;3,479 Cr and rising, &sect;05/&sect;08) or the ICICI &#8377;5,697 Cr recompense claim crystallise partially against the Company, forcing fresh provisions and a further capital call</li>
+            <li>Merchant/exchange realisations stay weak on MPPMCL curtailment (&sect;01), keeping EBITDA near the depressed Q3&ndash;Q4FY26 run-rate (&sect;03) rather than recovering</li>
+            <li>Adani Power's pledge (19.01% of shares, &sect;08) faces stress at the holding-company level, unrelated to JPPOWER's own operations, creating a forced-seller overhang</li>
+            <li>FY27 PAT falls toward &#8377;250&ndash;350 Cr; market de-rates to 0.85&ndash;1.0x book (&asymp;&#8377;13.5&ndash;14/share book)</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;16&ndash;19</div>
+          <div class="rng">&minus;6% to +11% from CMP</div>
+          <ul>
+            <li>Both major contingent claims remain disputed and unresolved through FY27 (as they have been for multiple years already) with no material cash outflow; PLF gains from FY26 are sustained but merchant realisations stay similarly volatile</li>
+            <li>FY27 PAT normalises to roughly &#8377;550&ndash;650 Cr (excluding further one-off tax/exceptional items); book value grows modestly to &asymp;&#8377;13.5&ndash;14/share on retained earnings</li>
+            <li>New Adani-nominated board settles into a steady-state operating posture; no major capex commitment yet, no dividend resumption</li>
+            <li>Market continues to price a modest 1.2&ndash;1.4x book multiple reflecting "new owner, unresolved legacy risk"</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;23&ndash;28</div>
+          <div class="rng">+35% to +64% from CMP</div>
+          <ul>
+            <li>DMG and/or ICICI claims are substantially settled or dismissed, removing the &#8377;9,126 Cr contingent-liability overhang from the market's discount calculation</li>
+            <li>Adani Power funds the announced solar project (&sect;01) and/or brings additional generation capacity into the platform, restoring a credible growth narrative after a decade of none</li>
+            <li>Continued strong FCF generation (&sect;06) funds faster deleveraging; CRISIL's Watch Negative is resolved back to Stable or upgraded</li>
+            <li>Market re-rates toward 1.8&ndash;2.2x book on "clean Adani-backed IPP" positioning, retesting the 52-week high of &#8377;24.50</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: at &#8377;13.03/share book and today's &#8377;17.10 price, the market is already paying a 31% premium to book for a company with a still-unresolved ~&#8377;9,126 Cr contingent-claims overhang and zero dividend &mdash; consistent with the market pricing Adani Power's ownership itself as a stabilising, credit-enhancing event, ahead of (not because of) any resolution of the specific legal items in &sect;05/&sect;08.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> genuine, verifiable operating improvement at the plant level &mdash; PLF up sharply at both thermal stations (Bina 68.6%&rarr;75.2%, Nigrie 80.9%&rarr;88.8%) and total saleable generation up 9.0% YoY; continued deleveraging with total debt down for three straight years and net debt/equity improving to 0.27x; consistently strong free cash flow (&#8377;1,293 Cr in FY26, an 11% FCF yield on market cap) with a CFO/PAT conversion ratio that actually improved as earnings fell, a clean earnings-quality pass; and a new large, well-capitalised strategic shareholder (Adani Power) with direct sector expertise now controlling the board, which could in time bring capital discipline and growth capital this company has lacked for a decade.</p>
+        <p style="max-width:none;"><b>What's not good:</b> FY26 consolidated PAT fell 44.6% even as revenue and generation both grew &mdash; a cost/realisation problem the company's own disclosures trace mainly to a near-doubling of "other expenses" and a fresh receivables provision, not to financing or depreciation; every profitability ratio the company itself discloses (ROE, ROCE, net profit ratio, DSCR) declined 18&ndash;48% YoY; capex has collapsed to near-zero (&#8377;7.9 Cr against &#8377;472.8 Cr of depreciation) with no funded growth plan on record; disclosed contingent claims against the company nearly quadrupled to &#8377;9,126 Cr in a single year, against a market cap of &#8377;11,719 Cr, with the statutory auditor issuing a qualified opinion in three consecutive periods on related and unrelated legacy guarantee/claim items; the coal-mining business is being surrendered outright; no dividend has been paid; a &#8377;3,805.53 Cr convertible-preference-share overhang from the 2019 restructuring remains unquantified in its eventual dilution impact; and 19.01% of the company's total share capital is now pledged by its new largest shareholder to finance its own acquisition, an external leverage risk unrelated to JPPOWER's own operations.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> the outgoing Jaypee-era management's FY26 Annual Report frames the year's results as "continued sustain[ment] at an optimal level due to operational efficiency and lower finance cost," a characterisation this report's own tabulated ratios do not fully support given the 44.6% PAT decline. There is no earnings call or investor presentation in this dataset to test management's framing against analyst questions. The incoming Adani Power-nominated board has, in its first ~10 weeks on record (through 30 Jul 2026), delivered one clean quarterly filing (Q1FY27, albeit with the one-time tax and exceptional items flagged in &sect;04), formalised the coal-mine surrender process, and made no public statement yet on capital allocation, the solar project, or a strategy for the DMG/ICICI legacy claims &mdash; a "wait and observe" opening posture that is itself informative, if not yet reassuring either way.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: moderate, roughly 40&ndash;50%.</b> A credible, better-capitalised, sector-expert owner has just taken board control of a company generating genuinely strong free cash flow off an improving operating asset base &mdash; the ingredients for a re-rating exist. But this report's own numbers show FY26 profitability actually deteriorated on nearly every self-disclosed metric even before the ownership change, the balance sheet carries a near-quadrupled and only partially resolvable contingent-claims overhang close to the entire market cap, and the new owner has already leveraged 19% of the company's own shares to fund the acquisition. None of that is necessarily fatal, and the deleveraging/FCF trend gives real downside support &mdash; but the bull case here depends much more on how Adani Power resolves inherited legacy liabilities and whether it funds genuine growth capex than on anything the FY26 numbers alone would support.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) any resolution &mdash; settlement, dismissal, or crystallisation &mdash; of the DMG (&#8377;3,479 Cr and rising) and ICICI recompense (&#8377;5,697 Cr) claims, the single largest swing factor in this note; (2) whether a permanent MD/CEO is appointed under the new board, and what capital-allocation priorities that appointment signals; (3) whether the August 2025 solar project (or any other capex commitment) actually moves past board approval into funded execution &mdash; capex has been near-zero for a full year now; (4) receivable days and the doubtful-receivables provision trend &mdash; a further rise past FY26's 72 days, alongside another large provision, would be a genuine deterioration rather than the mild uptick seen so far; (5) whether CRISIL's Watch Negative resolves to Stable/upgrade or to a downgrade; (6) any change in Adani Power's own pledge/encumbrance level on its 24% JPPOWER stake, which is a leverage risk sitting one level above this company's own balance sheet.</div>
+      </div>
+
+      <footer>
+        Compiled from Jaiprakash Power Ventures Limited's BSE filings (Announcements/AnnouncementsConv, 50 filings dated 12&nbsp;Mar&ndash;30&nbsp;Jul 2026, all with readable text &mdash; the Q4/FY26 audited financial-results filing, the Q1FY27 unaudited results outcome letter, the FY2025-26 Annual Report, change-in-management and director-resignation filings, SEBI SAST (Regulations 10(6), 29(2), 31(1)/31(2)) disclosures, and credit-rating intimations), MarketData (Yahoo Finance via yfinance, fetched 22&nbsp;Aug&nbsp;2026 19:06 IST), and the tracked News feed (23&nbsp;Jul&nbsp;2025 &ndash; 17&nbsp;Aug&nbsp;2026, four items). No earnings-call transcript or investor presentation exists anywhere in the source data for this company; every qualitative claim in this report is traced to a BSE filing, the Annual Report's MD&amp;A/Directors' Report, or News, not to a fabricated management quote. Q2 FY26 (Sep-2025 quarter) financial data is absent from every source reviewed and is shown as a gap, not estimated. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [1340.91, 1583.16, null, 1155.57, 1386.43, 1775.70];
+    var ebitda  = [414.20, 649.08, null, 229.44, 205.71, 789.81];
+    var pat     = [155.67, 278.13, null, 3.77, -13.37, 468.84];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA (segment PBIDT)', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var allRev = revenue.filter(function(v){return v!==null;});
+    var allNeg = ebitda.concat(pat).filter(function(v){return v!==null;});
+    var maxV = Math.max.apply(null, allRev) * 1.12;
+    var minV = Math.min(0, Math.min.apply(null, allNeg)) * 1.15;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      if(revenue[qi]===null){
+        svg += '<text x="'+(gx+groupW/2)+'" y="'+(padT+plotH/2)+'" text-anchor="middle" fill="'+css('--ink-mute')+'" font-style="italic">n/a</text>';
+      } else {
+        series.forEach(function(s, si){
+          var v = s.data[qi];
+          var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+          var by = y(Math.max(v,0));
+          var bh = Math.abs(y(v) - zeroY);
+          var top = v>=0 ? y(v) : zeroY;
+          svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+        });
+      }
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q2 FY26 (Sep-25 quarter) is genuinely absent from both the BSE filing set and MarketData/yfinance\'s quarterly series — shown as a labelled gap, not estimated.</div></div>';
+  })();
+
+  // ---------- Price range visual (no monthly time series available in source data) ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var lo = 13.15, hi = 24.50, cmp = 17.10, ma50 = 17.58, ma200 = 17.23;
+    var W = 900, H = 130, padL = 40, padR = 40, padT = 34, padB = 34;
+    var plotW = W - padL - padR;
+    function x(v){ return padL + ((v-lo)/(hi-lo))*plotW; }
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="52-week price range with current price and moving averages" style="width:100%;height:auto;font-size:11.5px;">';
+    var trackY = 62;
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+trackY+'" y2="'+trackY+'" stroke="'+css('--border-strong')+'" stroke-width="6" stroke-linecap="round"/>';
+    svg += '<text x="'+padL+'" y="'+(trackY+26)+'" text-anchor="start" fill="'+css('--ink-mute')+'">₹'+lo.toFixed(2)+' (52-wk low)</text>';
+    svg += '<text x="'+(W-padR)+'" y="'+(trackY+26)+'" text-anchor="end" fill="'+css('--ink-mute')+'">₹'+hi.toFixed(2)+' (52-wk high)</text>';
+
+    // 200D MA marker
+    svg += '<line x1="'+x(ma200).toFixed(1)+'" x2="'+x(ma200).toFixed(1)+'" y1="'+(trackY-14)+'" y2="'+(trackY+14)+'" stroke="'+css('--chart-3')+'" stroke-width="2"/>';
+    svg += '<text x="'+x(ma200).toFixed(1)+'" y="'+(trackY-20)+'" text-anchor="middle" fill="'+css('--chart-3')+'">200D avg ₹'+ma200.toFixed(2)+'</text>';
+
+    // 50D MA marker
+    svg += '<line x1="'+x(ma50).toFixed(1)+'" x2="'+x(ma50).toFixed(1)+'" y1="'+(trackY-14)+'" y2="'+(trackY+14)+'" stroke="'+css('--chart-2')+'" stroke-width="2"/>';
+    svg += '<text x="'+x(ma50).toFixed(1)+'" y="'+(trackY+40)+'" text-anchor="middle" fill="'+css('--chart-2')+'">50D avg ₹'+ma50.toFixed(2)+'</text>';
+
+    // CMP marker
+    svg += '<circle cx="'+x(cmp).toFixed(1)+'" cy="'+trackY+'" r="7" fill="'+css('--chart-1')+'" stroke="'+css('--surface')+'" stroke-width="2.5"/>';
+    svg += '<text x="'+x(cmp).toFixed(1)+'" y="'+(trackY-24)+'" text-anchor="middle" font-weight="700" fill="'+css('--chart-1')+'">CMP ₹'+cmp.toFixed(2)+'</text>';
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">No monthly/daily price time series exists in the source MarketData for this company — only the current snapshot (52-week range, 50-day and 200-day moving averages) was available, so a full price-history chart is not shown rather than fabricated. Beta of 0.33 (MarketData) indicates unusually low correlation with broad-market moves, consistent with a thinly-traded, event-driven stock.</div></div>';
+  })();
+})();
+</script>

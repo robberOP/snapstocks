@@ -1,7 +1,7 @@
 {
   "symbol": "BHARATFORG",
   "name": "Bharat Forge",
-  "generatedAt": "2026-08-18T16:37:23.671522+00:00",
+  "generatedAt": "2026-08-23T11:00:58.760772+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 2211.0,
-    "change": 11.199951,
-    "changePercent": 0.50913495,
-    "previousClose": 2199.8,
-    "dayLow": 2192.0,
-    "dayHigh": 2232.5,
+    "current": 2063.0,
+    "change": 1.0,
+    "changePercent": 0.048496608,
+    "previousClose": 2062.0,
+    "dayLow": 2021.3,
+    "dayHigh": 2072.0,
     "fiftyTwoWeekLow": 1100.5,
-    "fiftyTwoWeekHigh": 2238.0,
-    "asOf": 1785750303
+    "fiftyTwoWeekHigh": 2295.0,
+    "asOf": 1787305499
   },
   "stats": {
-    "marketCap": 1057053999104.0,
-    "trailingPE": 97.572815,
-    "forwardPE": 45.17676,
-    "priceToBook": 11.034145,
+    "marketCap": 986296877056.0,
+    "trailingPE": 138.92256,
+    "forwardPE": 42.815487,
+    "priceToBook": 10.295541,
     "bookValue": 200.378,
-    "dividendYield": 0.39,
-    "trailingEps": 22.66,
+    "dividendYield": 0.41,
+    "trailingEps": 14.85,
     "debtToEquity": 0.7647499999999999,
     "roe": 11.270136035674918,
     "roce": 15.606890870105843,
-    "return1y": 86.81058816443158,
+    "return1y": 74.89448437673342,
     "sharesOutstanding": 478088632.0
   },
   "quarterly": {
@@ -345,14 +345,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 1876.9131,
+    "targetMean": 1990.2916,
     "targetHigh": 2500.0,
-    "targetLow": 1060.0,
+    "targetLow": 1200.0,
     "recommendationKey": "hold",
-    "numberOfAnalystOpinions": 23
+    "numberOfAnalystOpinions": 24
   },
   "holders": {
     "insidersPercent": 0.4773,
-    "institutionsPercent": 0.37285998
+    "institutionsPercent": 0.37563
   }
 }

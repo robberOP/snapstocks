@@ -1,7 +1,7 @@
 {
   "symbol": "OLAELEC",
   "name": "Ola Electric",
-  "generatedAt": "2026-08-18T16:38:40.002478+00:00",
+  "generatedAt": "2026-08-23T11:02:29.291534+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Manufacturers",
@@ -14,28 +14,28 @@
     "peerIndustry": "2/3 Wheelers"
   },
   "price": {
-    "current": 38.74,
-    "change": 0.08000183,
-    "changePercent": 0.20693697,
-    "previousClose": 38.66,
-    "dayLow": 38.5,
-    "dayHigh": 39.18,
+    "current": 37.28,
+    "change": -1.3300018,
+    "changePercent": -3.444708,
+    "previousClose": 38.61,
+    "dayLow": 37.0,
+    "dayHigh": 38.74,
     "fiftyTwoWeekLow": 22.25,
     "fiftyTwoWeekHigh": 71.25,
-    "asOf": 1785751199
+    "asOf": 1787133602
   },
   "stats": {
-    "marketCap": 171179704320.0,
+    "marketCap": 164728422400.0,
     "trailingPE": null,
-    "forwardPE": -12.516073,
-    "priceToBook": 5.0993814,
+    "forwardPE": -12.465141,
+    "priceToBook": 4.9072,
     "bookValue": 7.597,
     "dividendYield": null,
-    "trailingEps": -4.16,
+    "trailingEps": -3.94,
     "debtToEquity": 0.82453,
     "roe": -54.70008952551477,
     "roce": -29.74286292771816,
-    "return1y": -7.120588518812741,
+    "return1y": -9.75551309615724,
     "sharesOutstanding": 4418680703.0
   },
   "quarterly": {
@@ -44,50 +44,57 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
-        10450000000.0,
+        null,
         6110000000.0,
         8280000000.0,
         4700000000.0,
-        2650000000.0
+        2650000000.0,
+        4550000000.0
       ],
       "Expenses": [
-        16430000000.0,
+        null,
         14760000000.0,
         12300000000.0,
         9110000000.0,
-        7230000000.0
+        7230000000.0,
+        7470000000.0
       ],
       "OperatingProfit": [
-        -5980000000.0,
+        null,
         -8650000000.0,
         -4020000000.0,
         -4410000000.0,
-        -4580000000.0
+        -4580000000.0,
+        -2920000000.0
       ],
       "NetProfit": [
-        -5640000000.0,
+        null,
         -8700000000.0,
         -4280000000.0,
         -4870000000.0,
-        -5000000000.0
+        -5000000000.0,
+        -3360000000.0
       ],
       "EPS": [
-        -1.28,
+        null,
         -1.97,
         -0.97,
         -1.1,
-        -1.13
+        -1.13,
+        -0.75
       ]
     }
   },
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 21740000000.0,
-      "Expenses": 43400000000.0,
-      "OperatingProfit": -21660000000.0,
-      "NetProfit": -22850000000.0
+      "Sales": 20180000000.0,
+      "Expenses": 36110000000.0,
+      "OperatingProfit": -15930000000.0,
+      "NetProfit": -17510000000.0
     }
   },
   "balanceSheet": {
@@ -325,14 +332,14 @@
   },
   "dividends": [],
   "analyst": {
-    "targetMean": 31.5375,
+    "targetMean": 29.875,
     "targetHigh": 40.0,
     "targetLow": 20.0,
     "recommendationKey": "underperform",
     "numberOfAnalystOpinions": 8
   },
   "holders": {
-    "insidersPercent": 0.39278,
-    "institutionsPercent": 0.23857
+    "insidersPercent": 0.39256,
+    "institutionsPercent": 0.24408
   }
 }

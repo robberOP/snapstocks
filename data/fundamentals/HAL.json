@@ -1,7 +1,7 @@
 {
   "symbol": "HAL",
   "name": "Hind.Aeronautics",
-  "generatedAt": "2026-08-18T16:37:56.570784+00:00",
+  "generatedAt": "2026-08-23T11:01:42.930160+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
@@ -14,28 +14,28 @@
     "peerIndustry": "Aerospace & Defense"
   },
   "price": {
-    "current": 4928.0,
-    "change": 18.0,
-    "changePercent": 0.36659878,
-    "previousClose": 4910.0,
-    "dayLow": 4895.4,
-    "dayHigh": 4960.0,
+    "current": 5000.0,
+    "change": 2.0,
+    "changePercent": 0.040016007,
+    "previousClose": 4998.0,
+    "dayLow": 4972.0,
+    "dayHigh": 5092.0,
     "fiftyTwoWeekLow": 3479.1,
-    "fiftyTwoWeekHigh": 4978.0,
-    "asOf": 1786355100
+    "fiftyTwoWeekHigh": 5149.9,
+    "asOf": 1787305502
   },
   "stats": {
-    "marketCap": 3295723126784.0,
-    "trailingPE": 36.102566,
-    "forwardPE": 29.091232,
-    "priceToBook": 8.030295,
+    "marketCap": 3343874785280.0,
+    "trailingPE": 35.842293,
+    "forwardPE": 29.072277,
+    "priceToBook": 8.147621,
     "bookValue": 613.676,
-    "dividendYield": 0.41,
-    "trailingEps": 136.5,
+    "dividendYield": 0.4,
+    "trailingEps": 139.5,
     "debtToEquity": 0.0016,
     "roe": 22.210894829380877,
     "roce": 13.798778352103266,
-    "return1y": 8.900448537330652,
+    "return1y": 13.838504295458055,
     "sharesOutstanding": 668775000.0
   },
   "quarterly": {
@@ -325,6 +325,10 @@
   },
   "dividends": [
     {
+      "date": "2026-08-14",
+      "amount": 10.0
+    },
+    {
       "date": "2026-02-18",
       "amount": 35.0
     },
@@ -351,21 +355,17 @@
     {
       "date": "2023-03-20",
       "amount": 10.0
-    },
-    {
-      "date": "2022-11-18",
-      "amount": 10.0
     }
   ],
   "analyst": {
-    "targetMean": 5178.96,
-    "targetHigh": 6300.0,
+    "targetMean": 5450.9614,
+    "targetHigh": 6800.0,
     "targetLow": 3200.0,
     "recommendationKey": "buy",
-    "numberOfAnalystOpinions": 25
+    "numberOfAnalystOpinions": 26
   },
   "holders": {
     "insidersPercent": 0.71639,
-    "institutionsPercent": 0.15748
+    "institutionsPercent": 0.15939
   }
 }

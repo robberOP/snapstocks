@@ -1,7 +1,7 @@
 {
   "symbol": "KIRLPNU",
   "name": "Kirl.Pneumatic",
-  "generatedAt": "2026-08-18T16:38:18.696735+00:00",
+  "generatedAt": "2026-08-23T11:02:11.354481+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Specialty Industrial Machinery",
@@ -14,29 +14,29 @@
     "peerIndustry": "Compressors, Pumps & Diesel Engines"
   },
   "price": {
-    "current": 1534.3,
-    "change": 9.600098,
-    "changePercent": 0.62963843,
-    "previousClose": 1524.7,
-    "dayLow": 1514.2,
-    "dayHigh": 1552.0,
-    "fiftyTwoWeekLow": 990.1,
-    "fiftyTwoWeekHigh": 2197.1,
-    "asOf": 1786960790
+    "current": 736.7,
+    "change": -23.5,
+    "changePercent": -3.0912917,
+    "previousClose": 760.2,
+    "dayLow": 732.9,
+    "dayHigh": 767.8,
+    "fiftyTwoWeekLow": 495.05,
+    "fiftyTwoWeekHigh": 1098.55,
+    "asOf": 1787133598
   },
   "stats": {
-    "marketCap": 99673030656.0,
-    "trailingPE": 37.977722,
-    "forwardPE": 29.792234,
-    "priceToBook": 7.98063,
+    "marketCap": 95716769792.0,
+    "trailingPE": 36.434227,
+    "forwardPE": 28.609709,
+    "priceToBook": 3.8319297,
     "bookValue": 192.253,
     "dividendYield": 0.79,
-    "trailingEps": 40.4,
+    "trailingEps": 20.22,
     "debtToEquity": 0.00265,
     "roe": 20.509479982255563,
     "roce": 26.441969770843492,
-    "return1y": 17.8128570347964,
-    "sharesOutstanding": 64963190.0
+    "return1y": 14.958686147585054,
+    "sharesOutstanding": 129926380.0
   },
   "quarterly": {
     "periods": [
@@ -320,42 +320,42 @@
   "dividends": [
     {
       "date": "2026-07-03",
-      "amount": 8.5
+      "amount": 4.25
     },
     {
       "date": "2026-01-30",
-      "amount": 3.5
+      "amount": 1.75
     },
     {
       "date": "2025-07-15",
-      "amount": 6.5
+      "amount": 3.25
     },
     {
       "date": "2025-02-07",
-      "amount": 3.5
+      "amount": 1.75
     },
     {
       "date": "2024-07-12",
-      "amount": 4.0
+      "amount": 2.0
     },
     {
       "date": "2024-02-06",
-      "amount": 2.5
+      "amount": 1.25
     },
     {
       "date": "2023-07-12",
-      "amount": 3.0
+      "amount": 1.5
     }
   ],
   "analyst": {
-    "targetMean": 1800.0,
-    "targetHigh": 1930.0,
-    "targetLow": 1715.0,
+    "targetMean": 900.0,
+    "targetHigh": 965.0,
+    "targetLow": 857.5,
     "recommendationKey": "none",
     "numberOfAnalystOpinions": 3
   },
   "holders": {
     "insidersPercent": 0.45895,
-    "institutionsPercent": 0.29968
+    "institutionsPercent": 0.30309
   }
 }

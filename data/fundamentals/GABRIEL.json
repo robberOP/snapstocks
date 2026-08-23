@@ -1,7 +1,7 @@
 {
   "symbol": "GABRIEL",
   "name": "Gabriel India",
-  "generatedAt": "2026-08-18T16:37:49.654331+00:00",
+  "generatedAt": "2026-08-23T11:01:32.517264+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 1527.4,
-    "change": 85.599976,
-    "changePercent": 5.9370213,
-    "previousClose": 1441.8,
-    "dayLow": 1461.0,
-    "dayHigh": 1542.0,
+    "current": 1438.6,
+    "change": -29.0,
+    "changePercent": -1.9760152,
+    "previousClose": 1467.6,
+    "dayLow": 1433.2,
+    "dayHigh": 1474.9,
     "fiftyTwoWeekLow": 795.7,
-    "fiftyTwoWeekHigh": 1542.0,
-    "asOf": 1785751199
+    "fiftyTwoWeekHigh": 1600.0,
+    "asOf": 1787133592
   },
   "stats": {
-    "marketCap": 270701133824.0,
-    "trailingPE": 86.14777,
-    "forwardPE": 38.103355,
-    "priceToBook": 16.054235,
+    "marketCap": 254963089408.0,
+    "trailingPE": 81.692215,
+    "forwardPE": 35.8881,
+    "priceToBook": 15.120874,
     "bookValue": 95.14,
-    "dividendYield": 0.35,
-    "trailingEps": 17.73,
+    "dividendYield": 0.34,
+    "trailingEps": 17.61,
     "debtToEquity": 0.10642,
     "roe": 18.42300793792854,
     "roce": 22.787152570220965,
-    "return1y": 49.482427800509,
+    "return1y": 33.0962948825489,
     "sharesOutstanding": 177230023.0
   },
   "quarterly": {
@@ -319,6 +319,10 @@
   },
   "dividends": [
     {
+      "date": "2026-08-12",
+      "amount": 3.1
+    },
+    {
       "date": "2025-11-21",
       "amount": 1.9
     },
@@ -345,21 +349,17 @@
     {
       "date": "2022-11-17",
       "amount": 0.9
-    },
-    {
-      "date": "2022-07-27",
-      "amount": 1.0
     }
   ],
   "analyst": {
     "targetMean": 1570.4286,
     "targetHigh": 1721.0,
     "targetLow": 1315.0,
-    "recommendationKey": "buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 7
   },
   "holders": {
     "insidersPercent": 0.64338994,
-    "institutionsPercent": 0.15639
+    "institutionsPercent": 0.16244
   }
 }

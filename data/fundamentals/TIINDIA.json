@@ -1,7 +1,7 @@
 {
   "symbol": "TIINDIA",
   "name": "Tube Investments",
-  "generatedAt": "2026-08-18T16:39:14.661061+00:00",
+  "generatedAt": "2026-08-23T11:03:00.641956+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Conglomerates",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 2766.0,
-    "change": 13.0,
-    "changePercent": 0.4722121,
-    "previousClose": 2753.0,
-    "dayLow": 2723.2,
-    "dayHigh": 2813.0,
+    "current": 2961.0,
+    "change": 2.0,
+    "changePercent": 0.0675904,
+    "previousClose": 2959.0,
+    "dayLow": 2898.3,
+    "dayHigh": 2972.0,
     "fiftyTwoWeekLow": 2164.9,
     "fiftyTwoWeekHigh": 3419.9,
-    "asOf": 1785750297
+    "asOf": 1787132698
   },
   "stats": {
-    "marketCap": 535421026304.0,
-    "trailingPE": 84.432236,
-    "forwardPE": 36.418697,
-    "priceToBook": 6.9067116,
+    "marketCap": 573167632384.0,
+    "trailingPE": 94.38954,
+    "forwardPE": 39.825153,
+    "priceToBook": 7.3936276,
     "bookValue": 400.48,
     "dividendYield": 0.16,
-    "trailingEps": 32.76,
+    "trailingEps": 31.37,
     "debtToEquity": 0.27724,
     "roe": 8.215795577836808,
     "roce": 12.786093377020368,
-    "return1y": -3.4916251917788537,
+    "return1y": -3.0773188609022126,
     "sharesOutstanding": 193572320.0
   },
   "quarterly": {
@@ -118,15 +118,15 @@
         null,
         128713900000.0,
         147611000000.0,
-        173141600000.0,
-        205144800000.0
+        173249400000.0,
+        205492000000.0
       ],
       "OperatingProfit": [
         null,
         15595600000.0,
         15738200000.0,
-        16009800000.0,
-        17067000000.0
+        15902000000.0,
+        16719800000.0
       ],
       "NetProfit": [
         null,
@@ -325,6 +325,10 @@
   },
   "dividends": [
     {
+      "date": "2026-08-07",
+      "amount": 1.5
+    },
+    {
       "date": "2026-02-10",
       "amount": 2.0
     },
@@ -351,17 +355,13 @@
     {
       "date": "2023-02-15",
       "amount": 2.0
-    },
-    {
-      "date": "2022-07-20",
-      "amount": 1.5
     }
   ],
   "analyst": {
-    "targetMean": 3402.0,
-    "targetHigh": 3870.0,
-    "targetLow": 2783.0,
-    "recommendationKey": "none",
+    "targetMean": 3331.8333,
+    "targetHigh": 3649.0,
+    "targetLow": 2682.0,
+    "recommendationKey": "buy",
     "numberOfAnalystOpinions": 6
   },
   "holders": {

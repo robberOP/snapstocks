@@ -1,0 +1,516 @@
+<title>RattanIndia Power</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+</style>
+
+<div class="shell">
+  <div class="cover">
+    <div class="cover-eyebrow">Stock Analysis <div class="dot"></div> Deep Dive</div>
+    <h1>RattanIndia Power</h1>
+    <div class="sub">Turnaround play in thermal generation with resolving balance sheet and stable PPA. NSE: RTNPOWER</div>
+
+    <div class="thesis">
+      <span class="ai-pill">AI Thesis</span> RattanIndia Power is operating a strong asset at <b>Amravati with 92% PLF</b> and <b>1,200 MW PPA with MSEDCL</b>. After massive debt reduction, from ₹21,020 Cr (FY23) to ₹3,710 Cr (FY26), the company is pivoting to positive net profits (₹46.59 Cr in FY26) with resolving interest burdens, making it a compelling turnaround play in the resilient thermal power sector.
+    </div>
+
+    <div class="chips">
+      <div class="chip">
+        <div class="k">CMP</div>
+        <div class="v tab">₹7.89</div>
+      </div>
+      <div class="chip">
+        <div class="k">Market Cap</div>
+        <div class="v tab">₹4,237 Cr</div>
+      </div>
+      <div class="chip">
+        <div class="k">P/E</div>
+        <div class="v tab">37.57</div>
+      </div>
+      <div class="chip">
+        <div class="k">Q1 FY27 YoY Growth</div>
+        <div class="v pos tab">Turnaround</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">1</span> <span class="t">Business & Moats</span></a></li>
+      <li><a href="#news"><span class="n">2</span> <span class="t">Recent News & Events</span></a></li>
+      <li><a href="#revenue"><span class="n">3</span> <span class="t">Revenue & Operations</span></a></li>
+      <li><a href="#expenses"><span class="n">4</span> <span class="t">Margins & Expenses</span></a></li>
+      <li><a href="#balance"><span class="n">5</span> <span class="t">Balance Sheet & Cash Flow</span></a></li>
+      <li><a href="#management"><span class="n">6</span> <span class="t">Management</span></a></li>
+      <li><a href="#outlook"><span class="n">7</span> <span class="t">Valuation & Outlook</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section id="business">
+      <div class="sec-head"><div class="sec-num">01</div><h2>Business & Moats</h2></div>
+      <div class="sec-dek">A core baseload energy supplier to Maharashtra with high-efficiency coal plants.</div>
+      
+      <p>RattanIndia Power Limited (RTNPOWER) operates coal-based thermal power plants with an installed capacity of 2,700 MW (Phase 1: 1,350 MW commissioned at Amravati, Maharashtra). It sells 1,200 MW via a Power Purchase Agreement (PPA) to MSEDCL, and additional capacity in the open market.</p>
+      
+      <h3>Key Business Moats</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="pill bull"><div class="d"></div>Stable Revenue</div>
+          <p style="margin-top:12px; font-size:14px;"><strong>1,200 MW PPA</strong> with MSEDCL ensures consistent offtake and regulated returns over the long term.</p>
+        </div>
+        <div class="card">
+          <div class="pill bull"><div class="d"></div>Captive Infrastructure</div>
+          <p style="margin-top:12px; font-size:14px;"><strong>Fuel Supply Agreement (FSA)</strong> with SECL for 6.10 MMT of coal, 60 MCM water allocation, and a dedicated 35 km railway siding.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="sec-head"><div class="sec-num">02</div><h2>Recent News & Events</h2></div>
+      <div class="sec-dek">Key regulatory breakthroughs and group-level updates.</div>
+
+      <div class="card">
+        <div class="news-item">
+          <div class="news-date">Aug 2026</div>
+          <div>
+            <div class="news-title">RattanIndia Enterprises Q1FY26 Results</div>
+            <div class="news-body">Group company reported mixed results highlighting NCLT litigations. Though operations run independently, it adds slight uncertainty at the group level.</div>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-date">May 2025</div>
+          <div>
+            <div class="news-title">Favorable APTEL Order</div>
+            <div class="news-body">APTEL allowed RPL's appeal regarding Change in Law for 100% ash utilization and increased transportation charges. MERC/Supreme Court litigations are currently ongoing for the recovery of these regulatory receivables.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="revenue">
+      <div class="sec-head"><div class="sec-num">03</div><h2>Revenue & Operations</h2></div>
+      <div class="sec-dek">Strong rebound in plant efficiency and steady top-line execution.</div>
+
+      <p>Over recent quarters, the company has shown a turnaround story by improving its Plant Load Factor (PLF) and Plant Availability Factor (PAF) steadily, standing out as one of the best performing plants in Maharashtra.</p>
+      
+      <div class="twrap">
+        <table>
+          <caption>Quarterly Performance Snapshot (₹ Cr)</caption>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Q1 FY27</th>
+              <th>Q4 FY26</th>
+              <th>Q1 FY26</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Total Income</td>
+              <td>875.58</td>
+              <td>864.15</td>
+              <td>930.03</td>
+            </tr>
+            <tr>
+              <td>PLF (%)</td>
+              <td>92.43%</td>
+              <td>82.10%</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>PAF (%)</td>
+              <td>98.15%</td>
+              <td>87.88%</td>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The company also sold 17.99 MUs on the power exchange in Q1 FY27, generating ₹15.05 Cr additional revenue outside its PPA.</p>
+    </section>
+
+    <section id="expenses">
+      <div class="sec-head"><div class="sec-num">04</div><h2>Margins & Expenses</h2></div>
+      <div class="sec-dek">Significant deleveraging drops finance costs, enabling PAT positivity.</div>
+
+      <p>The turnaround is most visible in the bottom line, driven by massive deleveraging which slashed finance costs, and steady fuel costs.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin-top:0">Finance Costs Dropping</h3>
+          <p>Interest expense has significantly decreased from ₹148.17 Cr in Q1 FY26 to <strong>₹85.93 Cr in Q1 FY27</strong>. This is the direct result of debt restructuring.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">PAT Turnaround</h3>
+          <p>The company turned PAT positive, posting <strong>₹44.36 Cr</strong> in Q1 FY27 compared to a loss of ₹14.60 Cr in the same quarter last year.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="balance">
+      <div class="sec-head"><div class="sec-num">05</div><h2>Balance Sheet & Cash Flow</h2></div>
+      <div class="sec-dek">From severe distress to stable footing through intense debt resolution.</div>
+
+      <p>The balance sheet has undergone a major transformation. Total debt was reduced from a staggering ₹21,020 Cr in FY23 down to ₹3,710 Cr in FY26. Net debt currently stands at ₹3,627 Cr.</p>
+
+      <div class="twrap">
+        <table>
+          <caption>Cash Flow Trends (₹ Cr)</caption>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>FY26</th>
+              <th>FY25</th>
+              <th>FY24</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Operating Cash Flow</td>
+              <td>372.18</td>
+              <td>409.95</td>
+              <td>1305.73</td>
+            </tr>
+            <tr>
+              <td>Free Cash Flow</td>
+              <td>294.33</td>
+              <td>293.25</td>
+              <td>1207.18</td>
+            </tr>
+            <tr>
+              <td>Debt Repayment</td>
+              <td class="neg">-509.92</td>
+              <td class="neg">-334.36</td>
+              <td class="neg">-1691.54</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Stable FCF generation ensures the company can comfortably service its remaining debt profile.</p>
+    </section>
+
+    <section id="management">
+      <div class="sec-head"><div class="sec-num">06</div><h2>Management</h2></div>
+      <div class="sec-dek">Strong execution on operational turnaround.</div>
+
+      <p>Promoter holding remains healthy at 50.16%. The management successfully restructured massive debt over the last few years and brought the plant to top-tier operational metrics, achieving an impressive 92% PLF and ensuring steady cash flows.</p>
+    </section>
+
+    <section id="outlook">
+      <div class="sec-head"><div class="sec-num">07</div><h2>Valuation & Outlook</h2></div>
+      <div class="sec-dek">Bull and Bear scenarios.</div>
+
+      <p>At a CMP of ₹7.89, RattanIndia Power trades at a P/E of 37.57 and a Price-to-Book of 0.91, reflecting a market that is slowly pricing in its turnaround story.</p>
+
+      <div class="grid-2">
+        <div class="card" style="border-top:4px solid var(--good)">
+          <h3 style="margin-top:0">Bull Case</h3>
+          <p>Resolution of regulatory receivables (MSEDCL Change in Law), sustained 90%+ PLF, and continued interest cost reduction could lead to multi-fold PAT expansion, pushing the stock price closer to its book value of ₹8.66 or higher.</p>
+        </div>
+        <div class="card" style="border-top:4px solid var(--critical)">
+          <h3 style="margin-top:0">Bear Case</h3>
+          <p>Adverse ruling in Supreme Court against the APTEL order, coal supply disruptions, or inability to service the remaining ₹3,700 Cr debt could stress equity value and halt the turnaround momentum.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

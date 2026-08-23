@@ -1,7 +1,7 @@
 {
   "symbol": "INDGN",
   "name": "Indegene",
-  "generatedAt": "2026-08-18T16:38:04.703767+00:00",
+  "generatedAt": "2026-08-23T11:01:56.209972+00:00",
   "profile": {
     "sector": "Healthcare",
     "industry": "Health Information Services",
@@ -9,34 +9,34 @@
     "bseCode": "544172",
     "nseSymbol": "INDGN",
     "website": "https://www.indegene.com",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/indgn.html",
     "peerSector": "Healthcare Services",
     "peerIndustry": "Healthcare Research, Analytics & Technology"
   },
   "price": {
-    "current": 545.25,
-    "change": 30.099976,
-    "changePercent": 5.842953,
-    "previousClose": 515.15,
-    "dayLow": 512.3,
-    "dayHigh": 554.85,
+    "current": 565.6,
+    "change": -2.1000366,
+    "changePercent": -0.36992013,
+    "previousClose": 567.7,
+    "dayLow": 560.4,
+    "dayHigh": 574.0,
     "fiftyTwoWeekLow": 414.0,
     "fiftyTwoWeekHigh": 596.8,
-    "asOf": 1785751202
+    "asOf": 1787133597
   },
   "stats": {
-    "marketCap": 131148242944.0,
-    "trailingPE": 32.866184,
-    "forwardPE": 20.281754,
-    "priceToBook": 4.1848955,
+    "marketCap": 136200978432.0,
+    "trailingPE": 34.010822,
+    "forwardPE": 20.81026,
+    "priceToBook": 4.3410854,
     "bookValue": 130.29,
-    "dividendYield": 0.44,
-    "trailingEps": 16.59,
+    "dividendYield": 0.4,
+    "trailingEps": 16.63,
     "debtToEquity": 0.05043,
     "roe": 12.779176092012618,
     "roce": 15.307999207719082,
-    "return1y": -0.2197240537524204,
-    "sharesOutstanding": 240528646.0
+    "return1y": -0.35082708347372593,
+    "sharesOutstanding": 240807964.0
   },
   "quarterly": {
     "periods": [
@@ -341,14 +341,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 607.125,
-    "targetHigh": 705.0,
+    "targetMean": 620.625,
+    "targetHigh": 735.0,
     "targetLow": 500.0,
-    "recommendationKey": "buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 8
   },
   "holders": {
     "insidersPercent": 0.55667,
-    "institutionsPercent": 0.20667
+    "institutionsPercent": 0.21908002
   }
 }

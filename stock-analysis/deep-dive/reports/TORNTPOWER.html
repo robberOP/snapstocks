@@ -1,0 +1,913 @@
+<title>Torrent Power Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note · Integrated Power Utility — Generation, Transmission &amp; Distribution</div>
+    <h1>Torrent Power Limited</h1>
+    <p class="sub">NSE: TORNTPOWER · BSE: 532779 · FY2022–FY2027(Q1) performance review, BSE-filing and press-release synthesis, as of 23 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> Torrent Power is mid-way through the largest capex programme in its history — capex nearly doubled to &#8377;8,681 Cr in FY26, the renewable pipeline target was raised from ~5.95 GWp to ~6.25 GWp between the May and August 2026 investor decks, and the company closed a &#8377;3,632 Cr acquisition of the 1,400 MW Nabha coal plant on 25 June 2026 — while its regulated Distribution business kept doing exactly what it's known for (loss of 2.33%, ranked #1 nationally among 65 DISCOMs, EBITDA +10% YoY in Q1FY27). The bill for that expansion is arriving in real time: free cash flow turned negative (&minus;&#8377;2,240 Cr) in FY26 for the first time in the visible record, finance costs jumped 38% YoY in Q1FY27 as debt funded the Nabha deal and a fresh &#8377;10,000 Cr NCD programme, net debt/equity has roughly doubled toward ~0.97x, and return ratios slid from FY25's flattered highs (RONW 18.4%, aided by a one-off &#8377;637 Cr deferred-tax reversal and a &#8377;3,440 Cr equity raise) to a more pedestrian 12.2% in FY26. The thermal/gas Generation segment, exposed to LNG price and supply swings, actually posted a segment <em>loss</em> in Q4FY26. The stock has fallen roughly 12% since Q1 results day to &#8377;1,247.70, near its 52-week low and below both its 50- and 200-day averages, even as both CRISIL and India Ratings affirm AA+/Stable and a well-credentialed external CFO (ex-Indus Towers) takes over from a retiring one.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (23 Aug 26)</div><div class="v">&#8377;1,247.70</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;62,872 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;1,188 &ndash; &#8377;1,824</div></div>
+      <div class="chip"><div class="k">FY26 Revenue</div><div class="v">&minus;0.7% YoY</div></div>
+      <div class="chip"><div class="k">FY26 Capex</div><div class="v pos">+98% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT</div><div class="v neg">&minus;11% YoY</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">27.0x</div></div>
+      <div class="chip"><div class="k">FY26 Free Cash Flow</div><div class="v neg">&minus;&#8377;2,240 Cr</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage &amp; basis &mdash; please read before the numbers below:</b> BSE filings in AnnouncementsConv/ span 7&nbsp;Apr&ndash;20&nbsp;Aug 2026 (50 dated entries), which in practice covers only two quarterly results cycles first-hand: audited Q4/FY26 (12 May 2026) and unaudited Q1&nbsp;FY27 (3 Aug 2026), plus the FY26 Integrated Annual Report (10 Jul 2026, reviewed via targeted section search rather than end-to-end given its length). Both filings tagged &ldquo;earnings-call-transcript&rdquo; (15 May, 6 Aug 2026) and all ten &ldquo;analyst-investor-meet&rdquo; filings in this window are one- or two-page BSE cover letters/dial-in notices only &mdash; the actual Q&amp;A transcript is hosted externally on the company's own website and was not part of this dataset, so no direct management-commentary-in-their-own-words quote from an earnings call could be sourced. This report instead draws management framing from the press release accompanying each result (which carries a Vice Chairman &amp; MD quote) and investor-presentation slide text. For everything before Q4&nbsp;FY26 &mdash; the FY22&ndash;FY25 annual trend and the Q1&ndash;Q3&nbsp;FY26 quarterly trend &mdash; this report relies on MarketData/yfinance's independently computed series, cross-checked against the company's own comparatives wherever both exist (they reconcile closely: yfinance's FY23&ndash;FY26 shareholder-profit figures match the investor presentation's own 5-year TCI chart to within rounding). All figures are <b>consolidated</b> unless explicitly marked standalone; no quarterly cash-flow statement exists anywhere in the source data, only annual.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Other call/disclosure insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What Torrent Power does, and how it has grown</h2></div>
+      <p class="sec-dek">A rare Indian private-sector play spanning the entire power value chain &mdash; generation, transmission and distribution &mdash; now in the middle of doubling its generation footprint.</p>
+
+      <p class="lede">Incorporated in 2004 and based in Ahmedabad, Torrent Power is part of the Torrent Group (which also owns listed Torrent Pharmaceuticals and Torrent Gas, the latter filing draft IPO papers for up to $418m in August 2026 &mdash; News, &sect;02). The company sits across three operating segments per its own Ind&nbsp;AS&nbsp;108 disclosure: <b>Generation</b> (thermal &mdash; gas and coal &mdash; plus LNG regasification/trading), <b>Transmission &amp; Distribution</b> (licensed distribution in Ahmedabad, Gandhinagar, Surat, Dahej SEZ, Dholera SIR and the UT of Dadra &amp; Nagar Haveli/Daman &amp; Diu, plus franchised distribution in Bhiwandi, Agra and Shil-Mumbra-Kalwa, plus the transmission subsidiary TPGL), and <b>Renewables</b> (wind and solar). As of 30 June 2026 the company had 6.6 GWp of operational generation capacity (2.7 GW gas, 1.8 GW coal including the newly acquired Nabha plant, 2.1 GWp renewables) plus 388 ckm of 220kV and 952 ckm of 400kV transmission lines, and distributed ~31 billion units annually to 4.29 million customers (Investor Presentation, Q1&nbsp;FY27).</p>
+
+      <h3>Five-year arc: FY22's low base to FY26's capex supercycle</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>14,257</td><td>25,694</td><td>27,183</td><td>29,165</td><td>28,966</td></tr>
+            <tr><td>EBITDA</td><td>3,826</td><td>5,141</td><td>4,903</td><td>5,795</td><td>5,864</td></tr>
+            <tr><td>TCI (ex-minority interest)</td><td class="neg">454</td><td>2,117</td><td>1,833</td><td>2,989</td><td>2,416</td></tr>
+            <tr><td>Net worth</td><td>10,289</td><td>11,979</td><td>13,295</td><td>18,968</td><td>20,704</td></tr>
+            <tr><td>ROCE</td><td>10.3%</td><td>14.0%</td><td>11.6%</td><td>12.7%</td><td>10.3%</td></tr>
+            <tr><td>RONW</td><td>14.2%</td><td>19.1%</td><td>14.5%</td><td class="pos">18.4%</td><td class="neg">12.2%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Investor Presentation Q1&nbsp;FY27 (&ldquo;Significant Ramp Up in Operations Over Last 5 Years&rdquo; slide) and FY26 Integrated Annual Report; cross-checked against MarketData/yfinance's independently computed annual series, which match closely. FY22's TCI is depressed by a &#8377;928 Cr net-of-tax impairment provision (yfinance shows a &#8377;1,300 Cr gross impairment that year) &mdash; not a core-earnings collapse.</caption>
+      </div>
+      <p>Revenue nearly doubled from FY22 to FY23 as the low base normalised post-impairment, then grew more modestly through FY25 before FY26 revenue actually <em>declined</em> fractionally (&minus;0.7%) even as EBITDA rose 1.2% &mdash; the mix shift (below) explains why. FY25's headline RONW of 18.4% flatters the trend: it was aided by a one-off &#8377;637&nbsp;Cr non-cash deferred-tax-liability reversal and a &#8377;3,440&nbsp;Cr equity raise that lifted net worth 42.7% in a single year (yfinance balance-sheet series). Strip those two effects out and FY26's 12.2% RONW &mdash; the lowest print in this five-year window &mdash; reads less like a bad year in isolation and more like a return to a lower, capex-diluted baseline as the current expansion programme (&sect;05) weighs on returns before new assets start earning.</p>
+
+      <h3>The moat: a regulated distribution franchise that is genuinely best-in-class</h3>
+      <p>The clearest, most independently evidenced competitive advantage is Distribution, not Generation. Licensed distribution loss stood at 2.33% in FY26 &mdash; the company states this ranks #1 nationally among 65 DISCOMs &mdash; and its Ahmedabad and Surat circles received an A+ grade, ranking first out of 54 utilities nationwide in the 14th Integrated Ratings for FY25 (individual score of 100.00, per the April 2026 India Ratings credit note). The Bhiwandi franchisee &mdash; the country's first private distribution-franchisee arrangement of its kind &mdash; has cut AT&amp;C losses from 58.77% at takeover to ~5.4% in FY26; Agra similarly from 58% to ~9.1%. Power availability across licensed areas is 99.9%. These are hard-to-replicate, multi-decade operational track records under regulated cost-plus/ROE tariff structures (CERC-regulated transmission earns a post-tax ROE of 15&ndash;15.5% plus incentives per the Investor Presentation) &mdash; a genuinely defensible base that the current Generation/Renewables expansion is being built on top of, not instead of.</p>
+
+      <h3>Segment mix: revenue is concentrated in Distribution, profit less so</h3>
+      <div id="mixchart"></div>
+      <p>FY26 consolidated segment revenue was 74% Transmission &amp; Distribution, 22% Generation and just 4% Renewables (before inter-segment elimination, on a &#8377;33,591 Cr gross-segment-revenue base) &mdash; but segment EBITDA (segment result) was a less lopsided 62% T&amp;D, 22% Generation and 16% Renewables, meaning the small Renewables segment already punches well above its revenue weight in profit terms, while Generation's profit share roughly tracks its revenue share. This mix is the backdrop for &sect;03's finding that the Generation segment's profitability is also the most volatile of the three by a wide margin.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item in the tracked News feed (3&ndash;20 Aug 2026) &mdash; a busy window dominated by the Nabha acquisition close, the Q1 results, a CFO transition and a split analyst reaction.</p>
+
+      <div class="news-item">
+        <div class="news-date">20 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">New CFO: Vikas Poddar (ex-Indus Towers) replaces retiring Saurabh Mashruwala</div>
+          <div class="news-body">Board accepted Saurabh Mashruwala's resignation (planned retirement, effective close of business 20 Aug; he continues as Executive Director through transition) and approved Vikas Poddar &mdash; a Chartered Accountant and NUS MBA with 27 years' experience, most recently CFO of Indus Towers (a listed, USD&nbsp;3.5B-revenue telecom-infrastructure company), with prior finance-leadership roles at Vodafone and ITC &mdash; effective 21 Aug. News feed tagged this Neutral on the basis that no financial detail accompanied it; this report reads the succession itself, and the credentials of the replacement, more constructively &mdash; see &sect;07.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">19 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral / Mixed</span>
+          <div class="news-title">Torrent Gas draft IPO papers ($418m); two new hydrogen SPVs incorporated</div>
+          <div class="news-body">Torrent Gas Limited (a separate Torrent Group entity, not Torrent Power) filed updated draft IPO papers for up to $418 million &mdash; headline-only, no article text retrievable. Separately, Torrent Power's wholly-owned Torrent Green Energy Pvt Ltd incorporated two immaterial step-down SPVs (Torrent Urja 50 and 51, &#8377;5 lakh capital each) for hydrogen/ammonia and renewable generation activity &mdash; routine corporate-structuring, not a capital event.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">12 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Torrent Group commits &#8377;43,000+ Cr across Madhya Pradesh projects</div>
+          <div class="news-body">A 1,600 MW thermal plant in Anuppur (&#8377;22,000 Cr, PPA already signed 27 Jan 2026, environmental clearance received, land acquired, EPC awarded to L&amp;T and Tata Projects), a 1,500 MW pumped-storage project (&#8377;7,500 Cr) and an 800 MW thermal project (&#8377;11,000 Cr) &mdash; concrete, approval-backed commitments, not aspirational announcements.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">10 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">GERC approves &#8377;4.87/kWh tariff for 250 MW FDRE procurement</div>
+          <div class="news-body">Gujarat Electricity Regulatory Commission approved a competitively bid, 25-year firm-and-dispatchable renewable energy tariff (TGEPL as successful bidder), helping Torrent bridge a renewable shortfall against Gujarat's RPO trajectory of 41.36% by FY29 &mdash; de-risks a portion of the renewable buildout with a locked, long-tenor tariff.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">4 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed &mdash; results, guidance and a split analyst call, same day</span>
+          <div class="news-title">Q1FY27 results, &#8377;10,000 Cr FY27 renewables capex guidance, and diverging analyst ratings</div>
+          <div class="news-body">Consolidated Q1FY27 net profit fell 12.66% YoY (an alternate figure to the &minus;10.75%/&minus;11% quoted elsewhere in this dataset &mdash; see &sect;03 caveat) as finance costs surged 38.12% to &#8377;292.99 Cr; management guided &#8377;10,000 Cr of FY27 capex for renewables alone, phased across a 4.6 GW commissioning schedule through FY29, with the newly acquired Nabha plant projected to deliver &#8377;1,000 Cr of steady-state annual EBITDA. Same day: Jefferies maintained Buy and raised its target price (no figure retrievable); Elara Capital initiated/reiterated a Reduce rating with a &#8377;1,385 target &mdash; notably still <em>above</em> the current &#8377;1,247.70 price despite the bearish rating (&sect;09).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">3 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Q1FY27 results released; Sabarmati coal retirement plan; &#8377;35,000 Cr borrowing limit approved at AGM</div>
+          <div class="news-body">Revenue grew 2.75% YoY to &#8377;8,124 Cr; Distribution and Renewable segment EBITDA grew 10% and 6% respectively while overall PAT declined on higher finance costs. Separately: the 362 MW Sabarmati coal plant will retire by December 2030 (redevelopment pressure ahead of the 2030 Commonwealth Games venue), to be replaced by an 800 MW unit pending central coal-allocation approval and an undecided location &mdash; several contingencies still open. At the same-day AGM, shareholders unanimously approved raising the Company's overall borrowing limit to &#8377;35,000 Cr and confirmed the FY26 total dividend of &#8377;20/share.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>The Investor Presentation itself states Torrent Power's own market capitalisation was ~&#8377;71,330 Cr as of 30 June 2026 (implying a share price around &#8377;1,415); by 23 Aug 2026 MarketData shows market cap of &#8377;62,872 Cr at &#8377;1,247.70/share &mdash; an ~12% decline in under two months, coinciding almost exactly with the Q1 results, the Elara downgrade and the finance-cost/leverage disclosures discussed in &sect;04&ndash;05. The stock now sits near its 52-week low of &#8377;1,188 (high &#8377;1,824) and below both its 50-day (&#8377;1,391) and 200-day (&#8377;1,417) moving averages &mdash; the market appears to be actively re-pricing the leverage/margin story, not ignoring it.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segment mix &amp; guidance</h2></div>
+      <p class="sec-dek">Revenue growth has been low-single-digit to flat for two years running, masking a much more volatile story underneath: a Generation segment that swung to an outright loss in Q4FY26.</p>
+
+      <h3>Quarterly trend (consolidated)</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q2FY26 (Sep-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue</td><td>6,456</td><td>7,906</td><td>7,876</td><td>6,778</td><td>6,406</td><td>8,124</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="neg">&minus;0.8%</td><td class="pos">+2.8%</td></tr>
+            <tr><td>EBITDA (PBDIT)</td><td>1,245</td><td>1,588</td><td>1,584</td><td>1,472</td><td>1,220</td><td>1,619</td></tr>
+            <tr><td>EBITDA margin</td><td>19.3%</td><td>20.1%</td><td>20.1%</td><td>21.7%</td><td>19.0%</td><td>19.9%</td></tr>
+            <tr><td>PAT (attributable to shareholders)</td><td>1,060</td><td>731</td><td>724</td><td>643</td><td class="neg">318</td><td>639</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>21.03</td><td>14.52</td><td>14.36</td><td>12.76</td><td class="neg">6.31</td><td>12.68</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance quarterly income statement for the full six-quarter series (only Q4FY26 and Q1FY27 are independently corroborated by a company BSE filing in this dataset, and they match to the rupee). Q4FY25's unusually high PAT/EPS reflects a large one-off tax credit (&sect;04), not an operating peak.</caption>
+      </div>
+      <p>Two things stand out. First, Q4FY26 was genuinely weak even before the tax-credit base effect is considered: PAT fell 69% YoY and EBITDA margin compressed to 19.0%, the low point of the series. Second, Q1FY27 recovered sharply quarter-on-quarter (revenue +27%, EBITDA +33%, PAT +100%, per the company's own Q1FY27 press release) but was still down 11% YoY on PAT &mdash; a real, not just seasonal, deceleration once the Q4FY25 tax-credit distortion is stripped out. <b>Note on a data discrepancy:</b> the News feed carries two different figures for Q1FY27 PAT decline &mdash; &minus;10.75% in one item (3 Aug) and &minus;12.66% in another (4 Aug) &mdash; alongside this report's own &minus;11% computed from the company's press release (&#8377;661.85 Cr vs &#8377;741.58 Cr, whole-group basis). All three are directionally consistent (a low-double-digit decline); the exact figure likely differs by which PAT base (pre- vs post-minority-interest, or the &minus;12.66% figure possibly referencing a different consolidated cut) each source used, and this report has not been able to reconcile them exactly from the data available.</p>
+
+      <h3>Segment revenue &amp; profit trend &mdash; the Generation swing is the real story</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Segment result (PBDIT), &#8377; Cr</th><th>Q1FY26</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY27</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Generation</td><td>435.95</td><td>463.35</td><td class="neg">&minus;38.93</td><td>373.19</td><td>1,563.10</td><td>1,319.73</td></tr>
+            <tr><td>Transmission &amp; Distribution</td><td>856.80</td><td>927.86</td><td>1,111.37</td><td>944.18</td><td>3,359.68</td><td>3,792.80</td></tr>
+            <tr><td>Renewables</td><td>349.69</td><td>195.08</td><td>186.28</td><td>369.00</td><td>887.22</td><td>1,012.42</td></tr>
+            <tr class="total"><td>Total segment result</td><td>1,642.44</td><td>1,586.29</td><td>1,258.72</td><td>1,686.37</td><td>5,810.00</td><td>6,124.95</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Consolidated Segment Information, Financial Results filings (12 May, 3 Aug 2026).</caption>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Generation posted an outright segment loss in Q4FY26</b>From +&#8377;233.87 Cr a year earlier to <b>&minus;&#8377;38.93 Cr</b> in Q4FY26 &mdash; a swing of nearly &#8377;273 Cr in one segment, one quarter. Management's own commentary attributes gas-based generation's weakness to &ldquo;dynamic power demand scenario and gas market volatility&rdquo; (Q4 press release) and, for Q1FY27, to &ldquo;geopolitical disruptions, which affected LNG supplies&rdquo; (Q1 press release) &mdash; language that recurs across both quarters in this dataset, suggesting this isn't a one-off but a structural exposure. Roughly half of Torrent's ~1.5 GW of gas-based capacity is explicitly flagged in the Investor Presentation as available for &ldquo;short-term and merchant market opportunities&rdquo; rather than tied to a firm PPA &mdash; the flexibility that management frames as an opportunity is the same exposure that produced this loss.</div>
+      </div>
+      <p>By contrast, T&amp;D delivered the steadiest and strongest growth of the three segments &mdash; segment result +34.7% YoY in Q4FY26 and +10.2% YoY in Q1FY27 (matching the press release's rounded &ldquo;+10%&rdquo; claim) &mdash; and Renewables grew a more modest 5.5% YoY in Q1FY27 (management's rounded &ldquo;+6%&rdquo;) after actually declining YoY in Q4FY26. The FY25&rarr;FY26 annual comparison shows the same pattern at lower resolution: T&amp;D segment result +12.9%, Renewables +14.1%, Generation &minus;15.6%.</p>
+
+      <h3>Capacity build-out: the growth engine for the next three years</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Operational + pipeline capacity</div><div class="v">~12.3 GWp</div><div class="d">Up from 6.6 GWp operational (Q1FY27 Investor Presentation)</div></div>
+        <div class="stat"><div class="k">Renewable pipeline</div><div class="v">~4.6 GWp / &#8377;29,638 Cr</div><div class="d">Target raised from ~4.3 GWp/&#8377;27,830 Cr just one quarter earlier (May IP)</div></div>
+        <div class="stat"><div class="k">Pumped storage</div><div class="v">3 GW / &#8377;14,000 Cr</div><div class="d">2 GW/16,000 MWh tied to MSEDCL, SCOD Oct'28, &#8377;1,680 Cr annual revenue</div></div>
+        <div class="stat"><div class="k">Thermal committed</div><div class="v">3 GW / &gt;&#8377;30,000 Cr</div><div class="d">1,600 MW Anuppur (under construction) + 1,400 MW Nabha (acquired)</div></div>
+      </div>
+      <p>New geographies opened in this window: Punjab (via the Nabha acquisition), Madhya Pradesh (Anuppur thermal + associated pumped storage), and continued build-out in Maharashtra and Uttar Pradesh for pumped storage. Horizontal expansion is clear (coal re-entry via Nabha/Anuppur after a long renewables-and-gas focus; pumped storage as a new asset class; a Green Hydrogen pilot at 72 TPA). This is capacity-led growth, not demand growth in the existing distribution franchise &mdash; the distribution business itself grew units distributed only marginally (~31 billion units, flat year-on-year per both investor presentations).</p>
+
+      <h3>Guidance vs. delivered</h3>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>No formal quarterly revenue/EBITDA/PAT guidance found &mdash; but capacity/capex guidance is testable, and the direction has been consistently upward</b>Torrent Power does not appear, anywhere in this dataset, to give a point-estimate numeric guide for revenue, EBITDA or PAT (consistent with the absence of a readable earnings-call transcript &mdash; see the coverage note above). What is testable: the renewable capacity <em>target</em> itself was raised from ~5.95 GWp (May 2026 deck) to ~6.25 GWp (Aug 2026 deck) within a single quarter &mdash; guidance moving up, not down, even as near-term earnings came under pressure. FY27 capex guidance of &#8377;10,000 Cr for renewables alone (News, 4 Aug 2026) is a genuine forward number this report can check in subsequent quarters; as of this write-up only Q1FY27 has elapsed and the company's own capex run-rate (FY26: &#8377;8,681 Cr across all segments, +98% YoY) suggests the pace is plausible, though Q1FY27's capex was dominated by the one-off &#8377;3,632 Cr Nabha acquisition rather than organic renewable build.</div>
+      </div>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">EBITDA margin has held up reasonably well; the real pressure is below the line, where finance costs and depreciation from the capex programme are eating into PAT faster than EBITDA is growing.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / % unless noted</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>EBITDA margin</td><td>20.0%</td><td>18.1%</td><td>20.0%</td><td>20.2%</td></tr>
+            <tr><td>PAT margin (shareholders)</td><td>8.2%</td><td>6.8%</td><td>10.4%</td><td class="neg">8.4%</td></tr>
+            <tr><td>Finance cost</td><td>803</td><td>918</td><td>1,017</td><td>893</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>1,284</td><td>1,378</td><td>1,497</td><td>1,613</td></tr>
+            <tr><td>Interest coverage (EBIT / finance cost)</td><td>4.79x</td><td>3.81x</td><td>4.20x</td><td>4.71x</td></tr>
+            <tr><td>Tax provision</td><td>877</td><td>687</td><td class="pos">194</td><td>847</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement. FY25's unusually low tax provision reflects the one-off &#8377;637 Cr deferred-tax reversal discussed in &sect;01; FY26's tax reverts to a more normal level, which mechanically explains most of FY26's YoY PAT decline shown in &sect;01.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Finance costs are the swing factor now, and they're accelerating fast in real time</b>Annual finance cost actually <em>fell</em> FY25&rarr;FY26 (&#8377;1,017 Cr &rarr; &#8377;893 Cr, on debt repayment ahead of the current capex wave &mdash; &sect;06), which makes the Q1FY27 move especially sharp by contrast: quarterly finance cost jumped from &#8377;212 Cr (Q1FY26) to &#8377;293 Cr (Q1FY27), a 38% YoY increase in a single quarter (company press release, News), as the &#8377;3,632 Cr Nabha acquisition and the &#8377;10,000 Cr NCD programme (&sect;05) both hit the balance sheet within the same window. This is the mechanical reason Q1FY27 PAT fell 11% YoY despite EBITDA growing 2% &mdash; the gap between operating profit growth and bottom-line decline is now being driven almost entirely by financing cost, not operating cost inflation.</div>
+      </div>
+
+      <h3>What moved FY26 and Q1FY27</h3>
+      <p>FY26 EBITDA grew a modest 1.2% on flat-to-declining revenue, so the EBITDA margin held around 20% &mdash; a reasonably stable print. Below EBITDA, D&amp;A rose 7.7% (&#8377;1,497 Cr &rarr; &#8377;1,613 Cr) as new renewable and thermal assets under construction started depreciating, consistent with the capex-vs-depreciation cross-check in &sect;05. PAT margin's apparent FY25&rarr;FY26 decline (10.4%&rarr;8.4%) is mostly a base-effect artefact of FY25's abnormally low tax charge rather than a genuine deterioration in operating economics &mdash; but the Q4FY26 segment-level Generation loss (&sect;03) and the Q1FY27 finance-cost jump are real, current-period pressures layered on top of that base effect, not just an accounting comparison problem.</p>
+
+      <h3>Quarterly margin volatility, driven almost entirely by Generation</h3>
+      <p>Consolidated EBITDA margin has actually been fairly stable quarter to quarter (19.0%&ndash;21.7% across the six quarters in &sect;03) &mdash; markedly less volatile than the segment-level swings in &sect;03 would suggest, because T&amp;D's steady ~62% share of segment profit smooths the group number even as Generation whipsaws underneath it. This is a genuine structural strength: an investor looking only at the consolidated margin line would miss the Q4FY26 Generation-segment loss entirely.</p>
+
+      <h3>Forward margin guidance</h3>
+      <p>None found in numeric form (see &sect;03). Management's own framing for FY26 in the results press release cited &ldquo;improved operational performance of licensed and franchised distribution businesses,&rdquo; renewable growth &ldquo;partly offset by higher interest and depreciation cost as the growth continues,&rdquo; and gas-based generation &ldquo;remaining constrained&rdquo; &mdash; directionally consistent with everything tabulated above, and about as close to explicit forward margin guidance as this dataset gets.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">A historically conservative balance sheet (AA+/Stable at both rating agencies) that is being deliberately, rapidly levered up to fund a multi-year capacity build &mdash; debt/equity has roughly doubled inside one quarter.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>Mar-25</th><th>Sep-25</th><th>Mar-26</th><th>Jun-26 (Q1FY27)</th></tr></thead>
+          <tbody>
+            <tr><td>Total assets</td><td>36,573</td><td>40,309</td><td>45,193</td><td>56,777<sup>&dagger;</sup></td></tr>
+            <tr><td>Total debt</td><td>8,840</td><td>10,431</td><td>13,971</td><td>n/a<sup>&Dagger;</sup></td></tr>
+            <tr><td>Net debt</td><td>8,448</td><td>10,037</td><td>12,966</td><td>n/a</td></tr>
+            <tr><td>Total equity (incl. minority)</td><td>18,216</td><td>19,419</td><td>19,709</td><td>~21,275<sup>&dagger;</sup></td></tr>
+            <tr><td>Net debt / equity</td><td>0.46x</td><td>0.52x</td><td>0.66x</td><td class="neg">~0.97x<sup>&sect;</sup></td></tr>
+            <tr><td>Net debt / EBITDA (annual basis)</td><td>1.41x</td><td>&mdash;</td><td>2.06x</td><td>&mdash;</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance quarterly balance sheet (Mar-25, Sep-25, Mar-26) and consolidated segment assets/liabilities in the Financial Results filings. &dagger; Jun-26 total assets/equity are total segment assets/liabilities from the Q1FY27 Financial Results filing, which include the Nabha acquisition's provisional purchase-price allocation. &Dagger; A standalone Jun-26 debt figure was not separately disclosed in the filings reviewed. &sect; ~0.97x is the ratio cited in a News item (4 Aug 2026) rather than independently recomputed by this report from a disclosed debt figure &mdash; flagged as a single-source figure, not verified against a company balance-sheet line.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Leverage has roughly doubled in the space of two quarters</b>Net debt/equity moved from 0.46x (Mar-25) to 0.66x (Mar-26) to an implied ~0.97x by Jun-26 &mdash; a genuinely fast re-leveraging, driven by the debt-funded &#8377;3,632 Cr Nabha acquisition (completed 25 June 2026, right at quarter-end) and a &#8377;10,000 Cr NCD private-placement programme approved by the board on 12 May 2026. Segment assets show exactly where the capital went: Generation segment assets alone jumped from &#8377;4,426 Cr (Mar-26) to &#8377;14,545 Cr (Jun-26), a &gt;3x increase in one quarter. Total group borrowing headroom was separately raised to &#8377;35,000 Cr at the 3 Aug 2026 AGM (unanimous shareholder approval) &mdash; management is deliberately choosing to lever the balance sheet for growth, not being forced into it, but the pace bears close watching against the Net debt/EBITDA trend, which was already back up to 2.06x at FY26-end (from FY25's 1.41x) before the Nabha deal and NCD draw-down are even reflected in an annual figure.</div>
+      </div>
+
+      <h3>Credit ratings: unaffected so far, both AA+/Stable</h3>
+      <p>Both CRISIL Ratings (23 Apr 2026) and India Ratings (16 Apr 2026) affirmed Torrent Power's long-term rating at <b>AA+/Stable</b> and short-term at <b>A1+</b>, even while assigning fresh ratings to new NCD issuance (&#8377;4,000 Cr from CRISIL; &#8377;3,700 Cr from India Ratings) &mdash; both actions predate the Nabha close and the full NCD draw-down, so they should be read as a snapshot of credit quality going into this leverage cycle, not a verdict on it. India Ratings' own note explicitly flags gas-based plants operating at &ldquo;lower [PLF] in the first nine months of fiscal 2026, as power demand grew at a slower pace,&rdquo; corroborating the Generation-segment weakness independently documented in &sect;03&ndash;04 from a source outside the company's own filings.</p>
+
+      <h3>Capex vs. depreciation: unambiguous, accelerating capacity expansion</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Capex</td><td>3,089</td><td>3,656</td><td>4,330</td><td>8,681</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>1,284</td><td>1,378</td><td>1,497</td><td>1,613</td></tr>
+            <tr><td>Capex / D&amp;A</td><td>2.4x</td><td>2.7x</td><td>2.9x</td><td>5.4x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement (capex); FY26 capex figure cross-checks against the Annual Report's own &#8377;8,681 Cr disclosure (&ldquo;&gt;95% Y-o-Y&rdquo;) almost exactly.</caption>
+      </div>
+      <p>Capex has exceeded depreciation every year in this window, and the ratio nearly doubled again in FY26 (2.9x&rarr;5.4x) &mdash; unambiguous evidence this is a genuine capacity build, not maintenance spend or financial engineering. 75.1% of FY26 capex was directed to environmentally/socially beneficial categories (mainly renewable generation and distribution reliability/safety upgrades) per the Annual Report's BRSR disclosure, up from 69.75% in FY25.</p>
+
+      <h3>Contingent liabilities &amp; related-party notes</h3>
+      <p>Standalone disputed claims (income tax, sales/service tax, customs, stamp duty, VAT, GST, other) totalled &#8377;463.9 Cr as at 31 March 2026, up from ~&#8377;267 Cr a year earlier &mdash; the increase is almost entirely a new &#8377;214.4 Cr disputed GST demand (of which &#8377;189.4 Cr relates to a March 2026 demand order on rent for electricity distribution transformers in Agra, which the company is contesting and for which the relevant UP government authority has itself indicated the rent should not apply). At ~1% of the FY26 balance sheet this is not currently material, but it is a genuine new item worth tracking rather than a housekeeping footnote. No auditor qualification, emphasis of matter beyond standard Key Audit Matters, or change of statutory auditor was found in the Annual Report or the board outcome letter (which explicitly states the FY26 auditor's report &ldquo;contains unmodified opinion&rdquo;). This report did not exhaustively review the Annual Report's full related-party-transaction note given its length (33,600+ lines); no unusual or outsized related-party item surfaced in the sections searched, but that is a targeted-search finding, not an exhaustive one, and should be read as such.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Operating cash generation itself remains healthy and comfortably exceeds reported profit &mdash; free cash flow turned negative purely because capex growth has outpaced it, not because of an earnings-quality problem.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>TCI (ex-minority interest)</td><td>2,117</td><td>1,833</td><td>2,989</td><td>2,416</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>3,456</td><td>4,258</td><td>4,805</td><td>5,464</td></tr>
+            <tr><td>Capex</td><td>&minus;3,089</td><td>&minus;3,656</td><td>&minus;4,330</td><td>&minus;7,705</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td>367</td><td>602</td><td>475</td><td class="neg">&minus;2,240</td></tr>
+            <tr><td>CFO / TCI conversion</td><td>1.63x</td><td>2.32x</td><td>1.61x</td><td>2.26x</td></tr>
+            <tr><td>Financing cash flow (CFF)</td><td>&minus;341</td><td>&minus;551</td><td>&minus;1,216</td><td class="pos">3,101</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. No quarterly cash-flow statement exists anywhere in the source data.</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#10003;</div>
+        <div><b>Earnings-quality check: passes clean</b>Unlike the earnings-quality failures that show up when profit growth outpaces cash generation, Torrent Power's CFO has tracked or exceeded TCI in every year shown (CFO/TCI conversion between 1.6x and 2.3x, consistently &gt;1x thanks to the large non-cash D&amp;A add-back) &mdash; a clean pass. FY26's negative free cash flow is a capex-intensity story, not an earnings-quality one: CFO itself grew a healthy 13.7% YoY (&#8377;4,805 Cr &rarr; &#8377;5,464 Cr) while capex nearly doubled (&#8377;4,330 Cr &rarr; &#8377;7,705 Cr, per the cash-flow statement basis, which differs slightly from the &#8377;8,681 Cr Annual-Report capex figure in &sect;05 due to differing capitalisation/timing conventions between the two sources).</div>
+      </div>
+
+      <p><b>Read plainly:</b> FY26 is the first year in this five-year window where free cash flow turned negative, and the company financed the gap externally &mdash; CFF swung from &minus;&#8377;1,216 Cr (FY25, still funding growth mostly from the prior year's equity raise and internal generation) to +&#8377;3,101 Cr (FY26, net new debt issuance of &#8377;5,016 Cr). Management's own capex guidance (&sect;03: &#8377;10,000 Cr for FY27 renewables alone) implies FCF stays negative for at least another year, and likely longer once the Anuppur thermal project (&gt;&#8377;30,000 Cr committed) and the 3 GW pumped-storage project (&#8377;14,000 Cr) draw down in earnest. No management commentary on a target date for FCF turning positive, or a specific multi-year capex-funding plan beyond the disclosed &#8377;35,000 Cr overall borrowing-limit headroom, was found in this dataset.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">An orderly, well-credentialed CFO succession and a clean audit opinion &mdash; the governance picture here reads considerably steadier than the balance-sheet re-leveraging happening alongside it.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Jinal Mehta</div>
+          <div class="role">Vice Chairman &amp; Managing Director</div>
+          <div class="bio">The public face of results commentary in both press releases reviewed (Q4FY26, Q1FY27). Framed FY26 as milestone year, citing &gt;&#8377;30,000 Cr thermal commitments, LNG partnerships with BP and JERA, and the Nabha acquisition as evidence of a &ldquo;diversified energy platform&rdquo; strategy, while explicitly flagging &ldquo;near-term challenges posed by the Middle East turmoil&rdquo; affecting the gas business &mdash; consistent, non-evasive framing of the same Generation-segment weakness independently found in &sect;03&ndash;05.</div>
+        </div>
+        <div class="person">
+          <div class="name">Vikas Poddar</div>
+          <div class="role">Chief Financial Officer, effective 21 Aug 2026</div>
+          <div class="bio">Chartered Accountant, MBA (National University of Singapore), 27 years' experience. Immediately prior: CFO of Indus Towers, a listed, ~USD 3.5B-revenue telecom-infrastructure company &mdash; a comparably capital-intensive, infrastructure-heavy business. Earlier finance-leadership roles at Vodafone (Head of FP&amp;A/Decision Support India; Regional Finance Controller and Finance Director, UK) and ITC. An external, credentialed hire into a business entering its most debt-funded phase in years.</div>
+        </div>
+        <div class="person">
+          <div class="name">Saurabh Mashruwala <span style="font-weight:400;color:var(--ink-mute);">(retiring)</span></div>
+          <div class="role">Outgoing CFO &amp; Executive Director &mdash; resigned 20 Aug 2026</div>
+          <div class="bio">Stated reason: planned retirement. Continues as Executive Director through the transition period rather than departing immediately &mdash; an orderly handover, in clear contrast to an abrupt or unexplained exit.</div>
+        </div>
+        <div class="person">
+          <div class="name">Radhika Haribhakti</div>
+          <div class="role">Non-Executive Independent Director &mdash; re-appointed for a second, final 5-year term</div>
+          <div class="bio">Term runs 7 Aug 2026 &ndash; 6 Aug 2031, approved by the board 12 May 2026 subject to (and since received, per the AGM outcome) shareholder approval. Routine renewal of an existing independent director rather than a new appointment.</div>
+        </div>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#10003;</div>
+        <div><b>CFO transition reads as orderly, not distressed</b>Unlike a sudden or unexplained departure, this is a disclosed planned retirement with the outgoing CFO staying on as Executive Director for transition support, and a successor with directly relevant capital-intensive-infrastructure CFO experience already announced and started within a day of the resignation taking effect. The timing &mdash; coinciding with the company's biggest leverage increase in years &mdash; is worth watching for how the new CFO frames capital allocation going forward, but nothing in the disclosed facts here reads as a governance red flag on its own.</div>
+      </div>
+
+      <h3>Auditor &amp; credit rating actions</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Statutory auditor:</b> unmodified/clean opinion on FY26 audited results, per the 12 May 2026 board outcome letter and the Annual Report's Key Audit Matters section (no qualification or emphasis of matter beyond standard KAM disclosure found).</li>
+        <li><b>Credit ratings:</b> CRISIL AA+/Stable (reaffirmed 23 Apr 2026) and India Ratings IND AA+/Stable (affirmed 16 Apr 2026), both with A1+ short-term &mdash; unchanged through this filing window (&sect;05).</li>
+      </ul>
+
+      <h3>Ownership</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Promoter holding</div><div class="v">51.09%</div><div class="d">Investor Presentation, as of 30 Jun 2026</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">26.81%</div><div class="d">MarketData, 135 institutions</div></div>
+        <div class="stat"><div class="k">Public / other</div><div class="v">48.91%</div><div class="d">Per the Investor Presentation's Promoter/Public split</div></div>
+      </div>
+      <p>Note a source discrepancy this report cannot fully resolve: MarketData/yfinance's own &ldquo;insiders percent held&rdquo; field shows 62.31%, materially above the company's own 51.09% promoter-holding disclosure in its Investor Presentation. This is most likely a classification difference (yfinance's &ldquo;insiders&rdquo; category may bundle promoter entities with other affiliated holders differently than the company's own promoter/public split), but this report has not been able to independently reconcile the two figures and flags both rather than picking one silently.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other disclosure insights</h2></div>
+      <p class="sec-dek">With no readable earnings-call transcript in this dataset, the most useful additional colour comes from the credit-rating agencies' independent monitoring notes and the Sabarmati retirement filing.</p>
+
+      <h3>What the rating agencies see that the company's own press releases understate</h3>
+      <p>India Ratings' 16 April 2026 note is more explicit than either results press release about the scale of the gas-generation weakness, stating plants ran at lower PLF &ldquo;in the first nine months of fiscal 2026, as power demand grew at a slower pace,&rdquo; and separately notes the DGEN plant's PLF profile shifted materially year over year &mdash; independent, third-party corroboration (not just company self-reporting) of the Generation-segment volatility this report documents in &sect;03&ndash;05 from the segment tables. Both agencies nonetheless affirmed AA+/Stable, meaning this weakness was already known to, and judged non-rating-moving by, independent credit analysts as of April 2026 &mdash; before the subsequent Nabha acquisition and NCD draw-down added the additional leverage documented in &sect;05.</p>
+
+      <h3>Sabarmati retirement: a genuinely open-ended replacement plan</h3>
+      <p>The 3 Aug 2026 announcement that the 362 MW Sabarmati coal plant will retire by December 2030 is notable less for the retirement itself (a small, old plant, and only ~6% of current coal capacity even after Nabha) than for how unresolved the replacement is: the planned 800 MW unit's location is explicitly &ldquo;work in progress,&rdquo; central-government coal allocation approval is still pending, and land negotiations for the ash pond with the Gujarat government are ongoing. This is a multi-year, multi-contingency project still at an early planning stage &mdash; a useful reminder that not every capacity number in &sect;03's pipeline table carries the same execution certainty as, say, the Anuppur project (PPA signed, land in place, EPC awarded).</p>
+
+      <h3>Distribution-sector policy tailwind, unquantified</h3>
+      <p>A Reuters item referenced in MarketData's news headlines (10 Oct 2025, outside this report's core News window but relevant context) notes India has proposed opening the retail power sector nationwide to private firms &mdash; a structural tailwind for an incumbent private distribution operator like Torrent Power if it materialises, though no company-specific commentary on this proposal, nor any quantification of the opportunity, was found in the filings reviewed for this report.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">A genuinely split sell-side view &mdash; a Buy with a raised target and a Reduce with a target still above the current price, both issued the same day.</p>
+
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analyst mean target</div><div class="v">&#8377;1,522.64</div><div class="d">Range &#8377;1,270 &ndash; &#8377;1,780, on 11 analysts</div></div>
+        <div class="stat"><div class="k">Implied upside to mean</div><div class="v pos">+22.1%</div><div class="d">From CMP &#8377;1,247.70</div></div>
+        <div class="stat"><div class="k">Recommendation mix (current)</div><div class="v">4 SB / 2 B / 4 H / 1 S</div><div class="d">Strong Buy / Buy / Hold / Sell &mdash; 0 Strong Sell</div></div>
+      </div>
+      <p>The recommendation mix has actually improved over the trailing three months even as the share price fell: three months ago it was 2 Strong Buy / 1 Buy / 5 Hold / 1 Sell / 1 Strong Sell; today it is 4 Strong Buy / 2 Buy / 4 Hold / 1 Sell / 0 Strong Sell (MarketData). Read together with the price decline documented in &sect;02, this could mean analysts see the sell-off as overdone, or simply that ratings have lagged the price move &mdash; this report cannot distinguish the two from the data available. Individually: Jefferies maintained Buy and raised its target on 4 Aug 2026 (no specific figure retrievable from the News source); Elara Capital issued a Reduce rating the same day with an explicit &#8377;1,385 target &mdash; which, notably, still implies ~11% upside from the current &#8377;1,247.70 price despite being the more bearish of the two calls referenced in this dataset, illustrating just how far the stock has fallen since early August.</p>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock trading near its 52-week low on a forward P/E that already implies meaningful earnings growth &mdash; the next few quarters need to show that growth arriving, not just being promised.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">27.0x</div><div class="d">On TTM EPS &asymp;&#8377;46.2</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">20.8x</div><div class="d">Implies consensus FY27E EPS &asymp;&#8377;60, i.e. ~30% growth priced in</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">3.30x</div><div class="d">Book value/share &#8377;378.55 (Mar-26)</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">13.10x</div><div class="d">On TTM EBITDA &#8377;5,735 Cr</div></div>
+      </div>
+      <p>The gap between trailing (27.0x) and forward (20.8x) P/E is doing a lot of work here: it implies the market (or at least the consensus estimates yfinance is drawing from) expects roughly 30% EPS growth over the next year &mdash; a big ask against a base year (FY26) where EPS actually fell 21.7% (&#8377;61.23&rarr;&#8377;47.95) and a Q1FY27 that just printed another 11% YoY PAT decline. Whether that forward number is achievable depends almost entirely on whether the Generation segment's volatility (&sect;03) subsides and whether the new Nabha/renewable capacity starts contributing net-of-financing-cost profit fast enough to outrun the depreciation and interest expense still to come from the capex programme in &sect;05&ndash;06.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built from the segment trends in &sect;03&ndash;04, the disclosed capex/capacity pipeline in &sect;03&amp;05, and the leverage trajectory in &sect;05. These are this report's own scenario illustrations, not a restatement of any single analyst's model &mdash; no formal company guidance on FY27 PAT exists in this dataset (&sect;03), and the two sell-side data points available (&sect;09) disagree with each other by more than &#8377;100/share of implied target.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;950&ndash;1,100</div>
+          <div class="rng">&minus;24% to &minus;12% from CMP</div>
+          <ul>
+            <li>Generation segment repeats the Q4FY26 loss pattern in further quarters as LNG price/supply volatility persists; Distribution's steady ~10% EBITDA growth is not enough to offset it</li>
+            <li>Net debt/equity pushes past 1.0x as the &#8377;10,000 Cr FY27 renewables capex and Anuppur/PSP disbursements continue; finance costs keep rising faster than EBITDA, interest coverage falls toward 3&ndash;3.5x from FY26's 4.71x</li>
+            <li>FY27 EPS stays flat-to-down (&#8377;45&ndash;50) against the ~&#8377;60 the forward P/E currently implies; market de-rates to 18&ndash;20x trailing, roughly in line with, or below, Elara Capital's &#8377;1,385 target</li>
+            <li>Free cash flow stays negative for a second consecutive year with no clear turnaround signalled</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;1,250&ndash;1,480</div>
+          <div class="rng">+0% to +19% from CMP</div>
+          <ul>
+            <li>Generation stabilises (no repeat quarterly loss) but stays the most volatile segment; T&amp;D and Renewables continue compounding at their recent ~6&ndash;10% pace; Nabha contributes a partial year toward its guided &#8377;1,000 Cr steady-state EBITDA</li>
+            <li>FY27 EPS of &#8377;52&ndash;58, still below the ~&#8377;60 forward-P/E-implied consensus but a genuine recovery from FY26's &#8377;47.95; net debt/equity peaks near 1.0x before moderating as new capacity starts contributing cash flow late in the year</li>
+            <li>Free cash flow remains negative but the gap narrows as capex intensity moderates post-Nabha; dividend held at or near FY26's &#8377;20/share given the ~43% payout ratio and stated confidence in cash generation</li>
+            <li>Multiple holds roughly at today's 27x trailing / low-20s forward, consistent with the AA+/Stable rating and the analyst mean target of &#8377;1,523</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;1,600&ndash;1,850</div>
+          <div class="rng">+28% to +48% from CMP</div>
+          <ul>
+            <li>Gas-market/LNG volatility eases and Generation segment returns to consistent profitability across all four quarters; Nabha ramps to or beyond its guided &#8377;1,000 Cr steady-state EBITDA within the year</li>
+            <li>Renewable pipeline (4.6 GWp, tariffs already locked with SECI/MSEDCL/own-discom off-takers) commissions on schedule, adding contracted, de-risked EBITDA; FY27 EPS reaches or exceeds the ~&#8377;60 forward-P/E-implied level</li>
+            <li>Net debt/EBITDA rolls back toward FY25's 1.41x as new capacity cash flow outpaces further capex draws; interest coverage recovers above 5x</li>
+            <li>Market re-rates toward the analyst high target of &#8377;1,780, rewarding both EPS growth and de-risking of the leverage story simultaneously</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: at 3.30x P/B on &#8377;378.55/share book value (Mar-26), the stock is not statistically cheap on an asset basis for a regulated utility, though it is well inside its own recent range (P/B has moved from 0.40x net-debt/equity-implied conservatism in FY25 toward a more leveraged FY26/Q1FY27 balance sheet without the multiple itself re-rating higher &mdash; if anything it has compressed alongside the price decline in &sect;02).</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuinely best-in-class regulated Distribution franchise (2.33% licensed distribution loss, #1 nationally among 65 DISCOMs, A+/#1 Integrated Rating for Ahmedabad and Surat, Bhiwandi AT&amp;C losses cut from 58.77% to 5.4%) that keeps compounding steadily (segment EBITDA +10% YoY in Q1FY27) regardless of what's happening elsewhere in the business; a large, substantially de-risked capacity pipeline with tariffs and PPAs already locked in for much of the renewable and thermal build (Anuppur's PPA signed, land in place, EPC awarded; PSP tied to a 40-year MSEDCL agreement); Nabha adds a contracted, 25-year-PPA coal asset with guided &#8377;1,000 Cr steady-state EBITDA; both CRISIL and India Ratings affirm AA+/Stable even as leverage rises; a clean, unmodified FY26 audit opinion; healthy underlying cash generation with CFO consistently exceeding profit (no earnings-quality red flag, unlike the FCF-negative headline alone might suggest); and an orderly CFO succession into a well-credentialed external hire with directly relevant capital-intensive-infrastructure experience.</p>
+        <p style="max-width:none;"><b>What's not good:</b> the Generation (thermal/gas) segment posted an outright segment loss in Q4FY26 and remains the most volatile piece of the business, exposed to LNG price and supply swings management itself has flagged in two consecutive quarters' press releases; FY26 free cash flow turned negative for the first time in this five-year record as capex nearly doubled, and FY27 guidance (&#8377;10,000 Cr renewables capex alone) implies that continues for at least another year; net debt/equity has roughly doubled in two quarters toward ~0.97x on the debt-funded Nabha acquisition and a fresh &#8377;10,000 Cr NCD programme, with total group borrowing headroom raised to &#8377;35,000 Cr; return ratios have fallen from FY25's flattered highs (RONW 18.4%, aided by a one-off tax reversal and an equity raise) to a more ordinary 12.2% in FY26; finance costs jumped 38% YoY in Q1FY27 alone and are now the single biggest swing factor in quarterly PAT; and no readable earnings-call transcript exists anywhere in this dataset, meaning this report could not check management's own real-time framing and defence of any of these numbers in a Q&amp;A setting.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> consistently and without evasion on the disclosure side &mdash; both quarters' press releases name the same headwinds (gas market volatility, financing costs from growth capex) that this report's own segment and cash-flow tables independently confirm, rather than papering over them with a rosier narrative. On execution, the approach has been aggressive and front-loaded: closing a large debt-funded acquisition, raising a large NCD programme, and lifting the renewable capacity target, all within roughly one quarter, while return ratios and free cash flow both moved the wrong way at the same time. That is a coherent, disclosed strategy &mdash; not a governance failure &mdash; but it is also a strategy that requires the next several quarters of capacity commissioning and Generation-segment stabilisation to go right before the balance-sheet trade-off it has made starts paying for itself.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: moderate, roughly 45&ndash;55%.</b> This is a fundamentally different risk profile from a speculative story stock: the core Distribution franchise is real, regulated, and independently rated AA+/Stable, and most of the capacity pipeline carries locked-in tariffs rather than merchant-price exposure. But the company has chosen, in real time, to trade near-term margin and leverage comfort for a multi-year capacity bet, and the two things a bull needs to see next &mdash; the Generation segment stabilising and the new capacity starting to earn a return net of its own financing cost &mdash; have not yet shown up in the numbers this report could tabulate. The stock's ~12% fall since Q1 results, to near its 52-week low and below both moving averages, looks like the market pricing exactly this uncertainty rather than overreacting to noise.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether the Generation segment returns to consistent quarterly profitability, or repeats the Q4FY26 loss pattern &mdash; the single biggest swing factor in this report's numbers; (2) net debt/equity and net debt/EBITDA over the next two quarters, once the Nabha acquisition and NCD draw-down are fully reflected in a reported balance sheet, against the ~0.97x currently only sourced from a single News item; (3) whether free cash flow narrows toward breakeven as FY27 capex proceeds, or stays as deeply negative as FY26; (4) finance-cost growth relative to EBITDA growth each quarter &mdash; a repeat of Q1FY27's 38% YoY jump against 2% EBITDA growth would be a clear negative signal; (5) whether Nabha's contribution tracks toward its guided &#8377;1,000 Cr steady-state EBITDA on the schedule management has implied; (6) whether a readable earnings-call transcript becomes available in a future filing window, which would materially improve this report's ability to check management's own explanation of these trends against the numbers.</div>
+      </div>
+
+      <footer>
+        Compiled from Torrent Power Limited's BSE filings (AnnouncementsConv/, 50 dated entries spanning 7&nbsp;Apr&ndash;20&nbsp;Aug 2026 &mdash; financial results, investor presentations, press releases, credit-rating actions, board-meeting outcomes, management-change filings, and the FY26 Integrated Annual Report), MarketData (Yahoo Finance via yfinance, last fetched 23&nbsp;Aug&nbsp;2026 01:45 IST), and the tracked News feed (3&ndash;20 Aug 2026). The two filings tagged &ldquo;earnings-call-transcript&rdquo; and all ten &ldquo;analyst-investor-meet&rdquo; filings in this window are BSE cover letters only, not the underlying Q&amp;A transcript &mdash; stated explicitly wherever it limits a claim below, rather than papered over. Every figure is tagged to its source; where two sources disagreed or a figure could not be independently verified, that is stated in the relevant section. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [6456, 7906, 7876, 6778, 6406, 8124];
+    var ebitda  = [1245, 1588, 1584, 1472, 1220, 1619];
+    var pat     = [1060, 731, 724, 643, 318, 639];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Source: MarketData/yfinance quarterly income statement. Q4FY26 and Q1FY27 independently corroborated by company BSE filings (§03).</div></div>';
+  })();
+
+  // ---------- Segment revenue vs EBITDA mix (FY26) ----------
+  (function(){
+    var el = document.getElementById('mixchart');
+    var segs = [
+      {label:'Generation', color:'var(--chart-1)', rev:22, ebitda:22},
+      {label:'Transmission & Distribution', color:'var(--chart-3)', rev:74, ebitda:62},
+      {label:'Renewables', color:'var(--chart-2)', rev:4, ebitda:16}
+    ];
+    var W = 900, H = 170, padL = 170, padR = 60, padT = 30, padB = 20;
+    var rowH = 46;
+    var plotW = W - padL - padR;
+
+    function bar(y0, label, values){
+      var s = '<text x="'+(padL-12)+'" y="'+(y0+18)+'" text-anchor="end" fill="'+css('--ink-soft')+'" font-size="12.5" font-weight="600">'+label+'</text>';
+      var xcur = padL;
+      values.forEach(function(v){
+        var w = (v.pct/100)*plotW;
+        s += '<rect x="'+xcur.toFixed(1)+'" y="'+y0+'" width="'+w.toFixed(1)+'" height="26" fill="'+v.color+'"><title>'+v.name+': '+v.pct+'%</title></rect>';
+        if(v.pct >= 8){
+          s += '<text x="'+(xcur + w/2).toFixed(1)+'" y="'+(y0+17)+'" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700">'+v.pct+'%</text>';
+        }
+        xcur += w;
+      });
+      return s;
+    }
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="FY26 segment revenue versus EBITDA mix" style="width:100%;height:auto;font-size:11px;">';
+    svg += '<text x="'+padL+'" y="14" fill="'+css('--ink-mute')+'" font-size="11" letter-spacing="0.04em">FY26 REVENUE MIX</text>';
+    svg += bar(20, 'Revenue', [
+      {name:'Generation', color:css('--chart-1'), pct:22},
+      {name:'T&D', color:css('--chart-3'), pct:74},
+      {name:'Renewables', color:css('--chart-2'), pct:4}
+    ]);
+    svg += '<text x="'+padL+'" y="'+(20+26+22)+'" fill="'+css('--ink-mute')+'" font-size="11" letter-spacing="0.04em">FY26 SEGMENT EBITDA MIX</text>';
+    svg += bar(20+26+30, 'EBITDA', [
+      {name:'Generation', color:css('--chart-1'), pct:22},
+      {name:'T&D', color:css('--chart-3'), pct:62},
+      {name:'Renewables', color:css('--chart-2'), pct:16}
+    ]);
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:8px 0 2px;font-size:12.5px;color:var(--ink-soft);">' +
+      segs.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+'</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + svg + legend + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:2px;">Source: Consolidated Segment Information, FY26 Financial Results filing (revenue before inter-segment elimination; EBITDA = segment result, PBDIT basis).</div></div>';
+  })();
+})();
+</script>

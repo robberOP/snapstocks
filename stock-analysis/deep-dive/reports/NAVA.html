@@ -1,0 +1,962 @@
+<title>Nava Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Ferro Alloys / Power Generation / Diversified Mining &amp; Agribusiness (India&ndash;Zambia&ndash;C&ocirc;te d&rsquo;Ivoire)</div>
+    <h1>Nava Limited</h1>
+    <p class="sub">NSE: NAVA &middot; BSE: 513023 &middot; FY2023&ndash;FY2027(Q1) performance review, BSE-filing, investor-presentation and earnings-call synthesis, as of 22 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> Nava is really two businesses wearing one ticker &mdash; a wafer-thin-margin (&asymp;2.5&ndash;2.6% segment result margin) domestic ferro-alloys volume business that supplies most of the topline, and a high-margin (&asymp;48&ndash;49%) power-and-mining engine &mdash; chiefly the 65%-owned Maamba coal plant in Zambia &mdash; that generates almost all of the profit. FY26 consolidated revenue grew 7.7% but PAT fell 27.6%, largely because Maamba's power-division tax holiday ended and a non-cash Zambian-Kwacha deferred-tax charge hit the P&amp;L; standalone profit's much-touted &ldquo;116% jump&rdquo; to a record &#8377;911 crore leaned on a &#8377;404 crore one-off gain booked when Nava's own wholly-owned Singapore subsidiary bought back its shares &mdash; an intra-group transaction that nets to zero on consolidation, not new operating value. The flagship 300&nbsp;MW Zambia expansion has just slipped from a January-2027 to a July-2027 commissioning date, blamed on West Asia shipping disruption. Set against this: cash from operations remains genuinely strong (2.2x consolidated PAT), leverage is still low (0.21x consolidated debt/equity, and near-zero at the standalone level), and a legacy $200mn+ Zambian utility receivables overhang has been worked down to just $13.4 million. There is no sell-side analyst coverage at all to check any of this against.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (22 Aug 26)</div><div class="v">&#8377;558.95</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;15,839.58 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;501.65 &ndash; &#8377;739.40</div></div>
+      <div class="chip"><div class="k">FY26 Revenue (Consol)</div><div class="v pos">+7.7% YoY</div></div>
+      <div class="chip"><div class="k">FY26 PAT (Consol)</div><div class="v neg">&minus;27.6% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT (Consol, YoY)</div><div class="v neg">&minus;16.6% YoY <span style="font-size:11px;">(+144.2% QoQ)</span></div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">20.79x</div></div>
+      <div class="chip"><div class="k">FY23&ndash;FY26 Free Cash Flow</div><div class="v">Positive, but shrinking</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage, basis &amp; gaps &mdash; please read before the numbers below:</b> Consolidated figures are used throughout unless explicitly marked <b>standalone</b>; both are disclosed by the company side by side each quarter and the distinction matters a great deal here (see &sect;04). Machine-readable BSE filings in <code>AnnouncementsConv/</code> run 6&nbsp;Feb&ndash;19&nbsp;Aug 2026 (earnings-call transcripts and investor presentations for Q3FY26, Q4FY26/FY26 and Q1FY27); for the two prior quarters (Q1FY26 and Q2FY26, reported Aug and Nov 2025) this report read the raw, not-yet-converted PDF filings directly from <code>Announcements/</code>. Quarterly detail therefore spans <b>Q4FY25 through Q1FY27 (six quarters)</b> at the P&amp;L line-item level; anything earlier (FY22&ndash;FY24 quarters) is not available at quarterly granularity in this dataset &mdash; only annual figures exist for those years, sourced from <code>MarketData/overview.md</code> (yfinance). No quarterly cash-flow statement exists in the source data at all, only annual. Credit-rating filings (Jan-2026, Feb-2025) exist as raw PDFs but were not reviewed in this pass &mdash; rating rationale/outlook is a flagged gap. No sell-side analyst report, price target, or earnings-call moderator from a large broking house beyond the call arranger (ICICI Securities) was found anywhere in this dataset &mdash; &sect;09 reflects that thin coverage honestly rather than inventing consensus. <b>Separately:</b> the tracked News feed for this ticker returned three items about entirely unrelated organisations that merely share the word "Nava" &mdash; a US AI-infrastructure startup, a US employee-benefits platform acquired by Alliant Insurance, and a Kerala state-government citizen outreach programme. These are explicitly excluded from &sect;02 and flagged as noise, not signal.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Other call insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What Nava does, and how it has grown</h2></div>
+      <p class="sec-dek">A 1972-vintage Hyderabad ferro-alloys manufacturer that reinvented itself as a Zambia-anchored power-and-mining group, and is now placing a third, much longer-dated bet on African agribusiness.</p>
+
+      <p class="lede">Incorporated in 1972 and renamed from Nava Bharat Ventures Limited to Nava Limited in July 2022, the group (per <code>MarketData/overview.md</code>) runs four reportable lines: <b>Ferro Alloys</b> (silico-manganese and, until recently, ferro-silicon, produced at Paloncha/Telangana and Dhenkanal/Odisha), <b>Energy</b> (150&nbsp;MW + 114&nbsp;MW coal plants at Paloncha, a 150&nbsp;MW plant at Dhenkanal, a smaller Dharmavaram unit, and the 300&nbsp;MW Maamba coal-fired plant in Zambia), <b>Mining</b> (coal mining and sales in Zambia, plus early-stage manganese/lithium exploration in Zambia and C&ocirc;te d&rsquo;Ivoire), and <b>Others</b> (a small women's-health pharmaceutical distribution business in Singapore/Malaysia, O&amp;M services, and the fast-growing agribusiness build-out). The company has 18 direct and step-down subsidiaries as of March 2026 (FY26 Annual Report), with <b>Nava Global Pte Limited</b> (Singapore) as the holding vehicle for all overseas strategic investments.</p>
+
+      <h3>The segment-margin split is the single most important fact about this business</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>FY26, &#8377; Cr</th><th>Ferro Alloys</th><th>Energy</th><th>Mining</th><th>Others</th><th>Total</th></tr></thead>
+          <tbody>
+            <tr><td>Net segment revenue</td><td>1,192.15</td><td>2,910.02</td><td>184.62</td><td>4.13</td><td>4,290.92</td></tr>
+            <tr><td>% of total revenue</td><td>27.8%</td><td>67.8%</td><td>4.3%</td><td>0.1%</td><td>100%</td></tr>
+            <tr><td>Segment result</td><td>31.14</td><td>1,409.37</td><td>109.60</td><td>&minus;25.16</td><td>1,524.95<sup>&dagger;</sup></td></tr>
+            <tr><td>Segment margin (result/revenue)</td><td class="neg">2.6%</td><td class="pos">48.4%</td><td class="pos">59.4%</td><td>&mdash;</td><td>35.5%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 Annual Report, Note 40(a) Business Segment disclosure (standalone-plus-subsidiary segment note, consolidated basis), converted from &#8377; Lakh. &dagger; Segment result of &#8377;1,524.95 Cr reconciles to consolidated PBT of &#8377;1,502.02 Cr after deducting &#8377;11.93 Cr finance cost and adding &#8377;-10.99 Cr net unallocable items.</caption>
+      </div>
+      <p>Ferro Alloys supplies 28% of revenue on a 2.6% result margin; Energy supplies 68% of revenue on a 48% margin and effectively all of the group's profit. Mining is small (4% of revenue) but the second-best margin (59%, though down from 86% in FY25). This is not a new pattern &mdash; FY25's segment note shows an almost identical split (Ferro Alloys 2.5% margin, Energy 48.9%, Mining 85.9%) &mdash; and it means that, whatever the ferro-alloys volume story in &sect;03 says about "growth," the stock's economics are overwhelmingly a call on Zambian power generation, not on Indian metals.</p>
+
+      <h3>How it got here: from an Indian ferro-alloys maker to a Zambian power company with an Indian listing</h3>
+      <p>The value-defining decision in Nava's history was building and operating the 300&nbsp;MW Maamba Energy Limited (MEL) mine-to-mouth coal power plant in Zambia, 65%-owned via Nava Global with Zambia's state-linked ZCCM Investments Holdings PLC holding the remaining 35%. MEL has been powerful enough, on its own, to fund a 116% jump in FY26 standalone PAT (largely via one-off and dividend flows, &sect;04) and to be the single business line management now spends most of its call time discussing. The company is now doubling down on Zambia with a second-phase 300&nbsp;MW thermal expansion (total group thermal capacity would reach 600&nbsp;MW), a 100&nbsp;MW solar plant (Maamba Solar Energy Limited, MSEL), and &mdash; a genuinely new direction &mdash; large-scale commercial agriculture: a 400,000-tree, four-division avocado plantation (Nava Avocado Limited) and an integrated sugar estate with a 2,500&nbsp;TCD sugar plant, 30&nbsp;KLPD distillery and 20&nbsp;MW co-generation plant (Kawambwa Sugar Limited), both in Zambia. Manganese exploration in C&ocirc;te d&rsquo;Ivoire (340.42 sq km concession) and lithium exploration in Zambia round out a genuinely diversified, if scattered, growth pipeline.</p>
+
+      <h3>The moat, such as it's evidenced</h3>
+      <p>No independent market-share or competitor-ranking data was found in any filing reviewed. What is verifiable: MEL is described in the company's own materials as "Zambia's largest mine-to-mouth power plant" (FY26 press release boilerplate, unverified independently), a genuinely defensible position given the capital intensity and multi-year permitting/construction timelines of thermal power in that market. In ferro alloys, roughly 70% of production is committed under long-term (Japanese mills, ~40%) and quarterly fixed-base (Indian steelmakers) contracts, per the Q1FY27 call, which insulates realised pricing from the ~10&ndash;15% spot-market exposure &mdash; a real but modest moat against a genuinely commoditised, EU-safeguard-duty-affected export market. The agribusiness and mining-exploration bets are multi-year options, not yet moats: avocado peak revenue ($22mn/year) is not expected until "post-2032" per management's own May-2026 call answer, and lithium exploration is currently stalled by a competing tin-licence claim under Zambian government review.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item in the tracked News feed (24&nbsp;Feb&ndash;20&nbsp;Aug 2026) that is actually about this company, with three unrelated "Nava"-named organisations explicitly separated out.</p>
+
+      <div class="news-item">
+        <div class="news-date">20 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Q1FY27 recap: PAT +144.2% QoQ, but MEL Phase&nbsp;II pushed out again</div>
+          <div class="news-body">Coverage of the 14&nbsp;Aug results framed the quarter around consolidated PAT of &#8377;332.8 crore, up 144.2% QoQ on higher plant load factors and lower coal costs, set against the roughly one-quarter-plus delay to MEL Phase&nbsp;II's commissioning (see &sect;03) and a note that part of the PAT surge reflects non-recurring items (the &sect;04 other-income/dividend dynamic) rather than pure operating improvement &mdash; both halves of this are independently supported by this report's own tabulation.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">19 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Unrelated &mdash; not this company</span>
+          <div class="news-title">Alliant Insurance acquires "Nava Benefits," a US employee-benefits AI platform</div>
+          <div class="news-body">A US-based, VC-funded ($90.2mn raised) employee-benefits technology platform with no connection to Nava Limited. Excluded from analysis; flagged only to document the naming collision in this dataset.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">14 Aug 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">Q1FY27 results, read YoY: net profit &minus;11%, EBITDA margin compresses 590bps</div>
+          <div class="news-body">The same results, read against the prior-year quarter rather than QoQ: consolidated net profit down 11% YoY to &#8377;277.2 crore<sup>&Dagger;</sup> despite revenue up 1.56% to &#8377;1,211.8 crore, with EBITDA down 10.5% and a computed margin falling from 49.3% to 43.5%. Segment commentary cited in this coverage: Energy segment result down &#8377;46 crore YoY, Mining segment result roughly halved. Both the QoQ-bullish and YoY-bearish framings of this same result are true simultaneously &mdash; see &sect;04 for why the margin figure here (43.5%) differs from the company's own stated 46.0% EBITDA margin.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">20 Jul 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">FY26 full-year recap: record standalone profit, but consolidated PAT down 27.6%</div>
+          <div class="news-body">Standalone income &#8377;2,24,174 lakh (+24.5% YoY) and standalone PAT &#8377;91,093 lakh (+116.0% YoY), with a record &#8377;8.50/share total dividend recommended &mdash; against consolidated PAT down 27.6%, attributed to higher tax liability at Maamba Energy Limited. The coverage itself flags the tension between these two headline numbers; &sect;04 traces exactly how much of the standalone figure was a one-off, non-operating gain.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">16 May 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">Q4FY26 results: revenue +12.24% YoY, net profit &minus;45.76% YoY</div>
+          <div class="news-body">Consolidated net sales &#8377;1,142.85 crore (+12.24% YoY) but net profit fell 45.76% YoY to &#8377;127.13 crore (on a pre-minority-interest basis this report tabulates as &#8377;136.3 crore &mdash; see &sect;03 for the exact figures) while EBITDA grew just 0.95%, with EPS falling from &#8377;8.10 to &#8377;4.49 &mdash; the quarter this report's &sect;04 identifies as containing the year's peak tax-expense hit (&#8377;188.8 crore).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">9 Apr 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Unrelated &mdash; not this company</span>
+          <div class="news-title">"Nava," an AI-infrastructure startup, raises $22mn Series B</div>
+          <div class="news-body">A GPU-cloud/AI-infrastructure startup backed by Greenoaks Capital, expanding across Asia-Pacific &mdash; no connection to Nava Limited. Excluded from analysis.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">24 Feb 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Unrelated &mdash; not this company</span>
+          <div class="news-title">Supreme Court stays order on Kerala's "Nava Kerala" citizen-response programme</div>
+          <div class="news-body">A Kerala state-government public-outreach initiative, unrelated to Nava Limited's business, operations, or financials. Excluded from analysis.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>Nava's share price sits at &#8377;558.95 (22 Aug 2026), roughly 24% below its 52-week high of &#8377;739.40 and just above its 52-week low of &#8377;501.65 &mdash; and below both its 50-day (&#8377;587.32) and 200-day (&#8377;584.23) moving averages, consistent with a stock that has been derating through the FY26 margin-compression and MEL-delay newsflow documented above rather than one riding a clean uptrend. See &sect;10 for the full valuation picture.</div>
+      </div>
+      <p style="font-size:12.5px;color:var(--ink-mute);">&Dagger; This YoY-framed &#8377;277.2 crore PAT figure (from a third-party recap of the same 14&nbsp;Aug filing) does not exactly match this report's own tabulated &#8377;332.8 crore consolidated PAT for Q1FY27 in &sect;03 (sourced directly from the company's investor presentation); the discrepancy likely reflects a different profit line (e.g. before minority interest / before discontinued-ops adjustment) used by the recap's source. Both figures are reported here rather than silently reconciled.</p>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segments &amp; guidance vs. delivered</h2></div>
+      <p class="sec-dek">Steady mid-single-digit-to-double-digit top-line growth across six quarters, powered by Zambia and ferro-alloy volumes &mdash; but the flagship capacity-expansion timeline has now slipped, and one capex data point is internally inconsistent across two consecutive earnings calls.</p>
+
+      <h3>Quarterly trend, consolidated</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q4FY25<br>(Mar-25)</th><th>Q1FY26<br>(Jun-25)</th><th>Q2FY26<br>(Sep-25)</th><th>Q3FY26<br>(Dec-25)</th><th>Q4FY26<br>(Mar-26)</th><th>Q1FY27<br>(Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>1,018.2</td><td>1,193.2</td><td>963.7</td><td>991.1</td><td>1,142.8</td><td>1,211.8</td></tr>
+            <tr><td>Total income (incl. other income)</td><td>1,055.8</td><td>1,232.6</td><td>989.7</td><td>1,061.5</td><td>1,194.8</td><td>1,268.8</td></tr>
+            <tr><td>EBITDA</td><td>419.2</td><td>627.7</td><td>341.3</td><td>513.0</td><td>423.2</td><td>583.5</td></tr>
+            <tr><td>EBITDA margin (on total income)</td><td>39.7%</td><td>50.9%</td><td>34.5%</td><td>48.3%</td><td>35.4%</td><td>46.0%</td></tr>
+            <tr><td>PAT (for the period)</td><td>302.8</td><td>399.1</td><td>177.5</td><td>325.7</td><td>136.3</td><td>332.8</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>8.10</td><td>10.89</td><td>4.58</td><td>7.84</td><td>4.49</td><td>9.80</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Nava Limited investor presentations, Q4FY25 through Q1FY27 (Announcements/AnnouncementsConv, consolidated basis). Q4FY25 sourced via the Q4FY26 presentation's YoY comparison column; Q1FY26/Q2FY26 sourced from raw PDFs in Announcements/ (not yet converted at the time of this report).</caption>
+      </div>
+      <p>Revenue is genuinely lumpy quarter to quarter (a ferro-alloys planned shutdown in Odisha shaved Q2FY26 and Q1FY27; a Zambia bi-annual maintenance shutdown periodically dents MEL) but has grown in five of the last six quarters on a YoY basis. Margins are far more volatile than revenue &mdash; EBITDA margin swung from 50.9% (Q1FY26) to 34.5% (Q2FY26) back to 48.3% (Q3FY26) and down again to 35.4% (Q4FY26), a range of roughly 16 percentage points inside a single year &mdash; see &sect;04 for the drivers.</p>
+
+      <h3>Segment story: Zambia mining/energy volumes did the heavy lifting in FY26; India ferro-alloys volumes are recovering off a low base</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Silico-manganese, tons</th><th>FY25</th><th>FY26</th><th>YoY</th><th>Q1FY27</th><th>Q1FY27 YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Production</td><td>104,165</td><td>127,486</td><td class="pos">+22.4%</td><td>24,462</td><td class="neg">&minus;13.2%</td></tr>
+            <tr><td>Sales</td><td>94,686</td><td>134,410</td><td class="pos">+42.0%</td><td>29,133</td><td class="neg">&minus;2.2%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q4&amp;FY26 and Q1FY27 investor presentations. Q1FY27 volumes were depressed by a planned shutdown at the Odisha plant (resumed 1 Aug 2026, per the Q1FY27 call); ferro-silicon has effectively been discontinued in favour of silico-manganese, per the Q4FY26 call.</caption>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="k">MEL (Zambia) Q1FY27 revenue</div><div class="v">US$65.3mn</div><div class="d">+7.5% QoQ on higher availability/coal sales</div></div>
+        <div class="stat"><div class="k">Indian Energy avg. PLF, Q1FY27</div><div class="v">85.4%</div><div class="d">vs 71.5% FY26 average &mdash; sharp improvement</div></div>
+        <div class="stat"><div class="k">Mining (external coal), FY26</div><div class="v">471,976 MT</div><div class="d">+6.4% YoY</div></div>
+      </div>
+      <p>The clearest single operational positive in this dataset: Indian energy plant-load factors jumped after Singareni Collieries cut coal prices in September 2025, letting Nava bid competitively into bilateral contracts year-round rather than only in peak season (Q4FY26 call) &mdash; average domestic PLF for Q1FY27 was 85.4% versus a 71.5% FY26 average and 69.4% FY25 average.</p>
+
+      <h3>Guidance vs. delivered: the flagship MEL Phase&nbsp;II project has slipped six months in one quarter</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Commissioning date pushed from January 2027 to July 2027</b>At the Q4FY26 call (15&nbsp;May 2026), management guided MEL's 300&nbsp;MW Phase&nbsp;II thermal expansion for commissioning "during the early part of January 2027." Three months later, at the Q1FY27 call (14&nbsp;Aug 2026), the same management guided "Q2 of FY27-28... around the June-July timeframe" &mdash; a slip of roughly six months, attributed to "logistical delays with shipment of critical material and equipment" from the West Asia conflict. Management maintains there is "no material impact on project capex," and the FY26 Annual Report states the debt-funding mix (US$290mn Zambian-bank debt + US$100mn sponsor equity against the $400mn outlay) is unchanged. The 100&nbsp;MW solar project has also slipped, more modestly: guided "H1 FY27" (Feb-2026 call) &rarr; "July 2026" (May-2026 call) &rarr; "end of September 2026" (Aug-2026 call), a roughly two-to-three-month slip that the company appears close to absorbing.</div>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9678;</div>
+        <div><b>A capex-spend figure that doesn't reconcile across two consecutive calls</b>At the Q2FY26 call (7&nbsp;Nov 2025), the then-CFO stated MEL Phase&nbsp;II spend stood at "$226 million" of the $400mn outlay as of the September-2025 quarter-end. Three months later, at the Q3FY26 call (5&nbsp;Feb 2026), management stated cumulative spend was "around close to $190 million" as of the December-2025 quarter-end &mdash; a lower cumulative figure than the prior quarter, which is not mathematically possible for money already spent. This report flags the discrepancy rather than silently picking one number; it likely reflects the two speakers describing different scopes (e.g. total committed vs. drawn-down cash, or debt-plus-equity vs. debt-only), but neither call clarified this. The FY26 Annual Report's own cleaner, audited-adjacent figure is used instead where precision matters (see &sect;05): debt drawn for MEL Phase&nbsp;II was US$214.6mn as of 31&nbsp;March 2026.</div>
+      </div>
+
+      <h3>Other guidance vs. delivered</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">FY27 Si-Mn sales guidance</div><div class="v">&asymp;130,000 t</div><div class="d">Guided Q4FY26 call. Q1FY27 actual: 29,133 t (shutdown-affected) &mdash; too early to call</div></div>
+        <div class="stat"><div class="k">FY27 consol. EBITDA margin guidance</div><div class="v">35&ndash;40%</div><div class="d">Guided Q4FY26 call, on explicit prompting. Q1FY27 actual: 46.0% &mdash; a beat (see &sect;04 quality caveat)</div></div>
+        <div class="stat"><div class="k">MEL sustainable EBITDA margin</div><div class="v">45&ndash;50%</div><div class="d">Guided Q1FY27 call. Realised range last 5 quarters: 45%&ndash;77%, converging as one-off ECL reversals taper</div></div>
+      </div>
+      <p>Management was explicitly reluctant to give forward margin guidance on the Q4FY26 call ("It is very dynamic... very hard for us today to give you an exact number"), only offering the 35&ndash;40% band after repeated analyst pressure &mdash; a pattern of guidance being extracted rather than volunteered, worth bearing in mind when weighing any number in this section.</p>
+
+      <h3>New geographies &amp; vertical/horizontal expansion</h3>
+      <p><b>Geographic:</b> the group's centre of gravity keeps shifting toward Africa &mdash; Zambia (power, mining, now agribusiness) and C&ocirc;te d&rsquo;Ivoire (manganese exploration, with plans for a ferro-alloys plant and biomass co-gen plant via subsidiary Nava Alloys CI). <b>Vertical:</b> the Kawambwa sugar project integrates plantation, processing, distillery and power generation in one site. <b>Horizontal:</b> the pivot from a two-segment (ferro alloys + power) business into commercial agriculture and critical-minerals exploration is a genuine but multi-year, pre-revenue diversification &mdash; avocado's first small commercial harvest (150 MT) landed in FY26, with full production not expected until FY28 and peak revenue ($22mn/year) not until "post-2032" per management's own words.</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, profitability &amp; the standalone-vs-consolidated gap</h2></div>
+      <p class="sec-dek">FY26 consolidated PAT fell 27.6% on a tax-holiday expiry and a non-cash currency-translation charge, even as the standalone entity reported a "116% profit jump" that was almost half a one-off, related-party gain.</p>
+
+      <h3>Annual trend &mdash; consolidated vs. standalone diverge sharply in FY26</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %, Consolidated</th><th>FY25</th><th>FY26</th><th>YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>3,983.5</td><td>4,290.9</td><td class="pos">+7.7%</td></tr>
+            <tr><td>EBITDA</td><td>1,986.8</td><td>1,905.2</td><td class="neg">&minus;4.1%</td></tr>
+            <tr><td>EBITDA margin</td><td>48.05%</td><td>42.54%</td><td class="neg">&minus;551 bps</td></tr>
+            <tr><td>PBT</td><td>1,608.5</td><td>1,502.1</td><td class="neg">&minus;6.6%</td></tr>
+            <tr><td>Tax expense</td><td>172.8</td><td>462.1</td><td class="neg">+167.5%</td></tr>
+            <tr><td>PAT (for the period)</td><td>1,434.0</td><td>1,038.6</td><td class="neg">&minus;27.6%</td></tr>
+            <tr><td>PAT margin</td><td>34.68%</td><td>23.19%</td><td class="neg">&minus;1,149 bps</td></tr>
+            <tr><td>ROE (audited, per Annual Report)</td><td>16.17%</td><td>10.29%</td><td class="neg">&minus;588 bps</td></tr>
+            <tr><td>ROCE (audited, per Annual Report)</td><td>17.18%</td><td>13.00%</td><td class="neg">&minus;418 bps</td></tr>
+            <tr><td>Interest coverage (audited)</td><td>63.15x</td><td>126.90x</td><td class="pos">+101.0%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 Annual Report "Key Ratios" table (audited, both bases) and investor presentation P&amp;L. Interest coverage improved sharply because finance cost nearly halved (&#8377;25.9 Cr&rarr;&#8377;11.9 Cr) even as leverage rose (&sect;05) &mdash; MEL Phase&nbsp;II interest is being capitalised during construction, per the Q1FY27 call, not expensed.</caption>
+      </div>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %, Standalone</th><th>FY25</th><th>FY26</th><th>YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>1,612.0</td><td>1,924.7</td><td class="pos">+19.4%</td></tr>
+            <tr><td>EBITDA (before exceptional item)</td><td>563.2</td><td>702.8</td><td class="pos">+24.8%</td></tr>
+            <tr><td>EBITDA margin</td><td>31.28%</td><td>31.35%</td><td>+7 bps</td></tr>
+            <tr><td>PBT before exceptional item</td><td>526.5</td><td>666.6</td><td class="pos">+26.6%</td></tr>
+            <tr><td>Exceptional item, net</td><td>&mdash;</td><td>403.9</td><td>&mdash;</td></tr>
+            <tr><td>PBT including exceptional item</td><td>526.5</td><td>1,070.1</td><td class="pos">Doubled</td></tr>
+            <tr><td>PAT (for the period)</td><td>421.7</td><td>910.9</td><td class="pos">+116.0%</td></tr>
+            <tr><td>PAT margin</td><td>23.42%</td><td>40.64%</td><td class="pos">+1,722 bps</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 Annual Report Key Ratios table and MD&amp;A. The exceptional gain of &#8377;403.95 Cr is explicitly described in the MD&amp;A as arising "from the buyback of shares carried out by subsidiary Nava Global Pte Ltd."</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>The headline "116% standalone profit jump" is roughly half a related-party financial-engineering gain, not operating growth</b>Strip out the &#8377;403.9 Cr exceptional item and standalone PBT still grew a genuinely strong 26.6% YoY (on 19.4% revenue growth) &mdash; a real, creditable operating improvement. But the company's own 15&nbsp;May press release is headlined <em>"Nava Records Its Highest-Ever Jump in Standalone Profit at 116%, Reaching &#8377;911 Crore"</em> without foregrounding that roughly 44% of that PBT figure (&#8377;403.9 Cr of &#8377;1,070.1 Cr) came from Nava Global Pte Ltd &mdash; Nava's own 100%-owned Singapore subsidiary &mdash; buying back its own shares from its parent. This is an intra-group capital transaction: it fully eliminates on consolidation (consolidated PAT actually <em>fell</em> 27.6% the same year) and reflects Nava monetising part of its own investment, not new value created by the underlying businesses. It mechanically also explains why standalone PAT then <em>fell</em> 44.4% QoQ into Q1FY27 (&#8377;478.1 Cr&rarr;&#8377;266.0 Cr) &mdash; the one-off simply didn't repeat.</div>
+      </div>
+
+      <h3>What drove the FY26 consolidated decline</h3>
+      <p>Three factors, all disclosed by management: (1) MEL's power division began paying tax at 15% from FY26, having exhausted its Zambian tax holiday &mdash; a structural, recurring step-up in the effective tax rate, not a one-off; (2) a non-cash deferred-tax provision of &#8377;261 Cr (FY26) plus a further &#8377;25.2 Cr (Q1FY27) was booked against unrealised gains from Zambian-Kwacha appreciation on MEL's USD-denominated loan balances &mdash; management insists this is "notional," reversible, and has zero impact on current cash flow, and this report cannot independently verify or dispute that characterisation from the data available, only note that it has now recurred for two consecutive periods; (3) employee costs rose 49.2% YoY in FY26 (&#8377;253.1 Cr&rarr;&#8377;377.6 Cr), attributed on calls to ESOP fair-value re-marking, wage revisions, and India's new Labour Codes &mdash; a real, cash-relevant cost step-up that management described as "sustainable" going forward (Q4FY26 call), i.e. not expected to reverse.</p>
+
+      <h3>Other income is doing real work on the margin headline</h3>
+      <p>Q1FY27's much-touted 46.0% consolidated EBITDA margin included &#8377;57.0 Cr of other income, up 44.8% YoY, driven substantially by a US$15mn dividend received from Nava Global. A pure-operating-basis margin calculation (excluding other income; see the 14&nbsp;Aug news recap in &sect;02) comes out closer to 43.5% &mdash; still respectable, but a meaningfully different number from the one in the company's own presentation. This is worth tracking every quarter: MEL's dividend upstream cadence is lumpy (Nava Global's stated policy is a <em>minimum</em> 30% of PAT, confirmed on three separate calls), so other income &mdash; and therefore the reported EBITDA margin &mdash; will keep swinging with it.</p>
+
+      <h3>Segment margin volatility: Mining's margin nearly halved YoY</h3>
+      <p>Per &sect;01's segment table, Mining's segment margin fell from 85.9% (FY25) to 59.4% (FY26) &mdash; the annual report attributes this to "increase in mining costs and forex losses made with appreciation of Zambian Kwacha," the same currency dynamic hitting the tax line. Ferro Alloys' margin was essentially flat and thin at 2.5&ndash;2.6% both years &mdash; management's own framing on the Q4FY26 call ("the metals business... is volume-driven rather than margin-driven") is an honest description of a business that will likely never re-rate the group's overall profitability on its own.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">A near-debt-free Indian parent funding a genuinely large, project-financed Zambian capex programme &mdash; plus a record dividend, a buyback, and a related-party subsidiary sale of a power asset that deserves a closer look.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr, Consolidated</th><th>Mar-23</th><th>Mar-24</th><th>Mar-25</th><th>Mar-26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity (stockholders')</td><td>6,025.4</td><td>6,908.8</td><td>7,611.2</td><td>8,745.3</td></tr>
+            <tr><td>Total debt</td><td>3,074.5</td><td>413.7</td><td>893.2</td><td>2,226.4</td></tr>
+            <tr><td>Debt / equity (audited)</td><td>&mdash;</td><td>&mdash;</td><td>0.09x</td><td>0.21x</td></tr>
+            <tr><td>Cash &amp; short-term investments</td><td>833.1</td><td>265.8</td><td>1,554.3</td><td>3,493.0</td></tr>
+            <tr><td>Trade receivables</td><td>2,337.2</td><td>1,767.9</td><td>1,409.3</td><td>948.7</td></tr>
+            <tr><td>Net PP&amp;E (incl. CWIP)</td><td>5,207.0</td><td>5,098.7</td><td>5,777.5</td><td>7,934.0</td></tr>
+            <tr><td>Total assets</td><td>11,160.0</td><td>9,698.1</td><td>11,271.8</td><td>14,372.4</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet; D/E ratios cross-checked against the FY26 Annual Report's own audited Key Ratios table.</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#10003;</div>
+        <div><b>Leverage remains genuinely low, and almost all of it sits outside the Indian parent</b>Consolidated debt/equity of 0.21x (FY26, up from 0.09x FY25) is still conservative in absolute terms, and the standalone (listed-entity-only) debt/equity is just <b>0.009x</b> &mdash; the FY26 Annual Report itself calls out that the Company "has an issue in terms of capital right now" being untrue (Q1FY27 Q&amp;A: "we don't need to sell the assets... we have enough equity and cash"). The FY26 debt increase (&#8377;893 Cr&rarr;&#8377;2,226 Cr) is almost entirely project-finance debt drawn at the MEL/MSEL Zambian subsidiary level against the Phase&nbsp;II thermal and solar builds (US$290mn debt tied up, US$214.6mn drawn as of Mar-26 for thermal; US$63mn tied up, US$13.4mn drawn for solar) &mdash; a structure that, by design, ring-fences the growth capex away from the listed Indian parent's own balance sheet.</div>
+      </div>
+
+      <h3>Capex ramped hard in FY26 &mdash; and receivables improved sharply at the same time</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Capex (consolidated)</td><td>100.5</td><td>165.5</td><td>851.9</td><td>1,807.2</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>306.2</td><td>318.7</td><td>352.4</td><td>391.2</td></tr>
+            <tr><td>Capex / D&amp;A</td><td>0.3x</td><td>0.5x</td><td>2.4x</td><td>4.6x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement; the FY26 figure independently matches the FY26 Annual Report's own MD&amp;A statement of &#8377;1,80,719 Lakh consolidated capex spend.</caption>
+      </div>
+      <p>Capex has clearly overtaken depreciation &mdash; the group was still sub-maintenance-capex as recently as FY23&ndash;FY24, and FY26's 4.6x ratio is unambiguous evidence of genuine capacity expansion (MEL Phase&nbsp;II, MSEL solar, the sugar and avocado projects), not window-dressing. Trade receivables meanwhile fell from &#8377;2,337 Cr (Mar-23) to &#8377;949 Cr (Mar-26) even as revenue grew &mdash; the opposite of the classic "rising receivables alongside rising revenue" red flag, and directly attributable to the ZESCO arrears recovery documented in &sect;06.</p>
+
+      <h3>Contingent liabilities: modest, standalone-level guarantees, rising in line with scale</h3>
+      <p>Standalone contingent liabilities (guarantees excluding financial guarantees) stood at &#8377;677.1 Cr as of 31&nbsp;March 2026, up from &#8377;623.5 Cr a year earlier (+8.6%) &mdash; against standalone net worth of &#8377;4,286.9 Cr, a manageable 15.8% ratio that has not grown materially faster than the balance sheet itself. The FY26 statutory auditor's report carries an unmodified/clean opinion, with one Key Audit Matter flagged &mdash; the judgement involved in classifying ongoing tax/regulatory litigation as a provision versus a disclosed contingent liability under Ind AS 37, a standard audit-matter disclosure rather than evidence of a specific problem.</p>
+
+      <h3>Capital returned to shareholders: a record dividend, a parent-level buyback, and a subsidiary-level buyback</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>FY26 total dividend:</b> &#8377;8.50/share (&#8377;3.00 interim, declared Nov-2025 as the "highest-ever interim dividend," + &#8377;5.50 final) &mdash; the highest in company history, per the company's own framing, funded from profits.</li>
+        <li><b>FY25 standalone buyback:</b> &#8377;363.2 Cr, reducing Nava Limited's own share count from &asymp;29.02 Cr to &asymp;28.3 Cr (MarketData annual cash-flow and balance-sheet data).</li>
+        <li><b>FY26 Nava Global buyback:</b> a separate, US$50mn buyback of Nava Global Pte Ltd's own shares from its 100% parent, Nava Limited &mdash; the transaction that generated the &#8377;403.9 Cr standalone exceptional gain discussed in &sect;04, explained by management as monetising part of the investment "to utilize accumulated free reserves, and boost liquidity for future acquisitions and projects with no change in voting rights" (Annual Report).</li>
+      </ul>
+
+      <h3>A related-party transaction worth watching: the sugar-project EPC contract</h3>
+      <p>The Kawambwa Sugar Limited integrated sugar project's EPC (engineering, procurement, construction) contract was awarded to <b>Nava Bharat Projects Limited</b>, a wholly-owned intra-group subsidiary &mdash; disclosed in the Annual Report's MD&amp;A but without any stated competitive-tender process against external EPC contractors. Because NBPL is 100%-owned, there is no minority-shareholder value transfer in the way a third-party related party would create, but it does mean the project's cost discipline rests entirely on internal governance rather than a market test. Separately, MD&amp;CEO Ashwin Devineni draws his remuneration from Nava Global Pte Ltd (Singapore) rather than the listed entity &mdash; disclosed at USD 2,203,235 per annum plus a one-time USD 1.5mn bonus paid by the Singapore subsidiary in FY26 (AOC-2 related-party disclosure) &mdash; a structure that is transparent on paper but places a meaningful share of top-management pay outside the listed entity's own P&amp;L.</p>
+
+      <h3>Forward capex commitments disclosed</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">MEL Phase&nbsp;II (300 MW)</div><div class="v">$400mn</div><div class="d">70:30ish debt:equity per sponsor; commissioning now Jul-2027</div></div>
+        <div class="stat"><div class="k">MSEL Solar (100 MW)</div><div class="v">$90mn</div><div class="d">Debt $63mn fully tied up; commissioning ~Sep-2026</div></div>
+        <div class="stat"><div class="k">Kawambwa Sugar</div><div class="v">$200mn</div><div class="d">Debt via bilateral FIs, still being arranged; commissioning Mar-2028</div></div>
+        <div class="stat"><div class="k">Nava Avocado</div><div class="v">$55mn</div><div class="d">100% equity-funded from India; plantation completion ~May-2027</div></div>
+      </div>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Operating cash flow comfortably outpaces reported profit &mdash; a clean earnings-quality pass &mdash; but free cash flow has compressed hard as capex has ramped into the growth-project phase.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT (consolidated, for the period)</td><td>1,266.2<sup>&dagger;</sup></td><td>1,378.4<sup>&dagger;</sup></td><td>1,434.0</td><td>1,038.6</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>1,223.4</td><td>3,184.9</td><td>2,157.1</td><td>2,312.3</td></tr>
+            <tr><td>Capex</td><td>&minus;100.5</td><td>&minus;165.5</td><td>&minus;851.9</td><td>&minus;1,807.2</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td>1,123.0</td><td>3,019.4</td><td>1,305.1</td><td>505.1</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>0.97x</td><td>2.31x</td><td>1.50x</td><td>2.23x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. &dagger; FY23/FY24 PAT shown here is pre-tax-provision "Net Income From Continuing Operations" per the source field, used only for the CFO/PAT ratio; see &sect;04 for the PAT figures used elsewhere in this report. No quarterly cash-flow statement exists in the source data, so quarter-level CFO/PAT cannot be checked against the &sect;03/&sect;04 quarterly P&amp;L.</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#10003;</div>
+        <div><b>Earnings-quality check: passes clean</b>CFO has run at 1.5&ndash;2.3x reported PAT in every year shown &mdash; the opposite of a company inflating paper profit without cash backing. FY26's 2.23x conversion, in a year PAT actually fell 27.6%, is particularly reassuring: the working-capital release from the ZESCO arrears recovery (below) more than offset the profit decline at the cash-flow level.</div>
+      </div>
+
+      <h3>The ZESCO arrears recovery is the single cleanest cash-flow positive in this dataset</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>US$ mn, MEL arbitration-award arrears</th><th>FY25<br>(Mar-25)</th><th>Q2FY26<br>(Sep-25)</th><th>Q3FY26<br>(Dec-25)</th><th>Q4FY26<br>(Mar-26)</th><th>Q1FY27<br>(Jun-26 / as of report date)</th></tr></thead>
+          <tbody>
+            <tr><td>Outstanding arrears</td><td>&asymp;202.0</td><td>55.5</td><td>30.5</td><td>28.0</td><td>18.4 / <b>13.4</b></td></tr>
+          </tbody>
+        </table>
+        <caption>Source: quarterly investor presentations and earnings-call Q&amp;A, Feb&ndash;Aug 2026. "As of report date" figure ($13.4mn) is post a further $15mn realised during Q1FY27, per the 14&nbsp;Aug 2026 press release; management stated on the Q4FY26 call it expects the remaining balance within roughly six months.</caption>
+      </div>
+      <p>A multi-year legacy receivable from Zambia's state utility ZESCO &mdash; over $200mn outstanding as recently as March 2025 &mdash; has been worked down to $13.4mn, "more than 90% of ZESCO Arrears successfully recovered" per the FY26 results press release. This directly explains both the sharp fall in consolidated trade receivables (&sect;05) and a meaningful share of FY26's strong CFO, and stands as the clearest example in this dataset of a management commitment (steady, quarter-by-quarter recovery) actually being delivered on schedule.</p>
+
+      <h3>Free cash flow: still positive, but compressing as capex intensifies</h3>
+      <p>FCF fell from a FY24 peak of &#8377;3,019 Cr to just &#8377;505 Cr in FY26 &mdash; not because operating cash generation deteriorated (CFO was actually higher in FY26 than FY25) but because capex more than doubled in the same year. FY26's &#8377;505 Cr FCF still comfortably covered the year's &#8377;253.9 Cr cash dividend outflow, so the dividend is not being funded by debt or asset sales today &mdash; but with MEL Phase&nbsp;II, the solar plant, the sugar estate and the avocado plantation all still mid-construction, FCF is likely to stay compressed, and possibly turn negative, through FY27&ndash;FY28 before the new capacity starts contributing. No explicit multi-year FCF or dividend-sustainability guidance was found in any call reviewed &mdash; a genuine gap for anyone trying to model the payout going forward.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">A promoter-family-led board (Devineni family) with genuine professional depth and a Zambia-specific independent director, a mid-year CFO transition, and a thin, illiquid shareholder register that leaves little external scrutiny pressure.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Ashwin Devineni</div>
+          <div class="role">Managing Director &amp; CEO (re-designated May 2025); son of Chairman D. Ashok</div>
+          <div class="bio">Leads all quarterly calls; remuneration is drawn from Nava Global Pte Ltd (Singapore), not the listed entity, at USD 2,203,235 p.a. plus a one-time USD 1.5mn bonus in FY26 (AOC-2 disclosure) &mdash; see &sect;05.</div>
+        </div>
+        <div class="person">
+          <div class="name">Nikhil Devineni</div>
+          <div class="role">Executive Director; son of Chairman D. Ashok</div>
+          <div class="bio">Retires by rotation and stands for re-appointment at the FY26 AGM. Handles much of the mining-exploration and agribusiness Q&amp;A on calls.</div>
+        </div>
+        <div class="person">
+          <div class="name">GRK Prasad</div>
+          <div class="role">Executive Director; with Nava since 1995</div>
+          <div class="bio">Fellow of ICAI and ICSI; 30-year company veteran overseeing corporate strategy, internal controls and financial processes. Re-appointed for a further two years from 28&nbsp;Jun 2026.</div>
+        </div>
+        <div class="person">
+          <div class="name">P. Trivikrama Prasad Pinnamaneni</div>
+          <div class="role">Non-Executive Director (from 15&nbsp;May 2026); former Managing Director for 40+ years</div>
+          <div class="bio">Continues association post-retirement as a Non-Independent Director; disclosed as related to Chairman D. Ashok, though "not within the meaning of Section 2(77)" of the Companies Act.</div>
+        </div>
+        <div class="person">
+          <div class="name">Mwelwa Chibesakunda</div>
+          <div class="role">Independent Director (re-appointed for a further 5 years from Nov-2026)</div>
+          <div class="bio">Zambian lawyer, Managing Partner of a DLA Piper Africa-associated firm; also serves on the board of Maamba Energy Ltd itself &mdash; a genuinely relevant local-market appointment given MEL's scale, though also a director overlap worth noting between the parent's board and its material subsidiary.</div>
+        </div>
+        <div class="person">
+          <div class="name">B. Srinivasa Rao <span style="font-weight:400;color:var(--ink-mute);">(new)</span></div>
+          <div class="role">Chief Financial Officer, effective 4&nbsp;Mar 2026</div>
+          <div class="bio">Succeeded K.V.S. Vithal, who resigned as CFO effective 3&nbsp;Mar 2026. No adverse reason for the departure was found in the filings reviewed &mdash; a genuine gap; the transition itself appears to have been smooth (Vithal fielded the Q2FY26 and prior calls, Rao the Q3FY26 call onward with no apparent disruption to reporting cadence).</div>
+        </div>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9678;</div>
+        <div><b>Family-controlled but professionally staffed &mdash; a moderate governance profile typical of an Indian promoter conglomerate</b>Chairman D. Ashok's two sons (Ashwin, Nikhil) hold the MD&amp;CEO and Executive Director seats, and a 40-year former MD (related to the Chairman, though outside the strict statutory "relative" definition) has just joined the board as a Non-Executive Director &mdash; a continuity/succession pattern rather than an arm's-length professional board. Against that: five Independent Directors including one woman (Mrs B. Shanti Sree) and a director with directly relevant Zambian legal/local expertise (Chibesakunda); a clean, unmodified FY26 audit opinion; seven board meetings held in FY26 (a normal cadence); and related-party transactions that are individually small and disclosed via the standard AOC-2 mechanism, with the one item worth continued monitoring being the intra-group EPC award to Nava Bharat Projects Limited (&sect;05).</div>
+      </div>
+
+      <h3>Ownership &amp; the analyst-scrutiny gap</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Insider / promoter holding</div><div class="v">52.40%</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">5.68%</div><div class="d">46 institutions on record, thinly spread</div></div>
+        <div class="stat"><div class="k">Free float</div><div class="v">131.8mn sh.</div><div class="d">of 283.4mn shares outstanding</div></div>
+      </div>
+      <p>A majority-promoter register with limited institutional presence is common for Indian mid-caps of this vintage, but combined with zero sell-side analyst coverage (&sect;09), it means quarterly management commentary &mdash; rather than an external analyst community modelling the numbers independently &mdash; carries an unusually large share of the market's information about this stock.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other call insights worth flagging</h2></div>
+      <p class="sec-dek">A multi-quarter unresolved land-monetisation question, a currency mechanic that keeps distorting reported tax expense, and an early-stage exploration optionality book that isn't investable yet.</p>
+
+      <h3>The Nacharam land bank: four straight quarters of the same unresolved question</h3>
+      <p>Nava holds roughly 65 acres of land at Nacharam, Hyderabad (plus smaller Dharmavaram/Samalkot holdings), carried at historical cost per Ind AS &mdash; a materially depressed book value per share relative to what management itself repeatedly acknowledges is a rising real-estate market. Across at least four consecutive earnings calls (Nov-2025, Feb-2026, May-2026, Aug-2026), individual/retail shareholders pressed management for a monetisation plan or even an indicative valuation; each time, management confirmed a third-party study was "currently ongoing" or "options are being evaluated" without giving a timeline, a valuation range, or a decision. Management's stated rationale &mdash; that holding the land through its appreciation was the right call, and that the company has "adequate cash to fund" its growth projects without needing to sell &mdash; is coherent, but the repeated non-answer across a full year of calls is itself a data point: either the study is taking unusually long, or management has decided monetisation isn't a near-term priority and hasn't said so plainly.</p>
+
+      <h3>Zambian-Kwacha appreciation: a genuine natural-hedge claim, only partially tested</h3>
+      <p>Management's explanation for the recurring deferred-tax charge (&sect;04) is that Kwacha appreciation against the US dollar is fundamentally a positive (a stronger local economy, more reliable receivables collection) and that operating cash flows are unaffected because MEL's PPA and O&amp;M costs remain USD-denominated by statutory carve-out even after a 2025 Zambian law requiring local transactions in Kwacha. On employee-cost inflation specifically, management argues coal sales (now increasingly priced in Kwacha) provide a natural hedge against rising Kwacha-denominated local wage costs. This is a plausible mechanism, but the size of the offset was not quantified on any call reviewed, and the deferred-tax charge itself has now recurred in two consecutive periods (&#8377;261 Cr FY26, &#8377;25.2 Cr Q1FY27) &mdash; worth tracking as a real, if largely non-cash, drag on reported consolidated profit rather than dismissing as fully "notional."</p>
+
+      <h3>Exploration optionality: promising early signals, nothing investable yet</h3>
+      <p>Manganese exploration across a 340&ndash;360 sq km C&ocirc;te d&rsquo;Ivoire concession has covered only 2 sq km of detailed exploration to date, with "prima facie indications" described as promising and the company now working to convert the exploration licence into an exploitation licence (Q1FY27 call) &mdash; metallurgical study reports are targeted for December 2026 (Annual Report). Lithium exploration in Zambia's Kalomo/Mapatizya district is stalled: a competing company has claimed part of the same area under a separate tin licence, and Nava says it will not proceed further until the Zambian government resolves the overlap. Neither should be modelled as a near-term revenue or value contributor.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">None on record &mdash; the same gap this report flags throughout: there is no external, consensus-anchored check on any of the numbers above.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analyst recommendation</div><div class="v">None</div><div class="d">yfinance recommendationKey: "none"</div></div>
+        <div class="stat"><div class="k">Price targets</div><div class="v">N/A</div><div class="d">No low/mean/median/high target available</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">5.68%</div><div class="d">46 institutions, thin individual positions</div></div>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Earnings-call Q&amp;A is dominated by individual investors and small/family-office wealth managers, not large broking houses</b>ICICI Securities moderates each call, but the analyst roster asking questions across the six quarters reviewed &mdash; Sanmati Consultants, Kapoor &amp; Co, MoneyGrow, Scientific Investing, Nirbhay Assets Management, PCS Securities, SVAN Investments, Nirmal Bang Securities, Craving Alpha Wealth Fund, B&amp;K Securities, SG Kankani &amp; Associates, RLP Securities, and several unaffiliated "Individual Investor" callers &mdash; skews heavily toward boutique/retail participants rather than the large sell-side desks that typically publish formal estimates and price targets for a &#8377;15,800+ Cr market-cap company. That absence of institutional-analyst modelling places the full weight of independent scrutiny on primary filings like the ones this report is built from.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock trading below both its 50- and 200-day averages and 24% off its 52-week high, at a still-moderate 20.8x trailing earnings, with its next major re-rating catalyst (MEL Phase&nbsp;II) now pushed a year further out than originally planned.</p>
+
+      <h3>Where the price sits today</h3>
+      <div id="pchart"></div>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">20.79x</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">1.81x</div><div class="d">Book value/share &#8377;309.02</div></div>
+        <div class="stat"><div class="k">Price / Sales (TTM)</div><div class="v">3.68x</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">10.13x</div><div class="d">EV &#8377;16,570.51 Cr</div></div>
+      </div>
+      <p>At 20.79x trailing earnings and 1.81x book, Nava is priced as a moderate, non-heroic industrial/utility hybrid &mdash; not a growth story priced for perfection (unlike some peers with zero analyst coverage), but also not obviously cheap given FY26's profit decline and the MEL Phase&nbsp;II delay. TTM revenue growth of just 1.6% and TTM earnings growth of &minus;10.0% (per MarketData) both understate the underlying quarterly volatility documented in &sect;03&ndash;04, and overstate how "flat" the business has actually been.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built from this report's own tabulated trend (&sect;03&ndash;06) and the guidance discussed there. These are scenario illustrations only, not point forecasts &mdash; there is no analyst consensus to anchor against (&sect;09), and management itself has repeatedly declined to give firm forward margin guidance.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;460&ndash;540</div>
+          <div class="rng">&minus;18% to &minus;3% from CMP</div>
+          <ul>
+            <li>MEL Phase&nbsp;II slips again past July 2027; ferro-alloys pricing stays pressured by EU safeguard duties and Middle East disruption; another Kwacha-driven deferred-tax charge recurs in FY27</li>
+            <li>Consolidated EBITDA margin settles nearer 35% (the low end of guidance) with limited other-income support once the current dividend-flow cadence normalises</li>
+            <li>FCF turns negative for a year or two as capex peaks across four simultaneous projects (MEL Phase&nbsp;II, solar, sugar, avocado) before any of them contribute meaningfully</li>
+            <li>Consolidated FY27 PAT falls further to roughly &#8377;850&ndash;950 Cr (EPS &asymp;&#8377;30&ndash;34); market de-rates to &asymp;15&ndash;16x P/E or &asymp;1.5x P/B</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;580&ndash;700</div>
+          <div class="rng">+4% to +25% from CMP</div>
+          <ul>
+            <li>Solar (100 MW) commissions on the guided ~Sep-2026 timeline and contributes a partial year; ferro-alloys volumes hold near the guided ~130,000t run-rate; Indian energy PLFs stay elevated on the lower Singareni coal-price base</li>
+            <li>Consolidated EBITDA margin lands in management's own guided 35&ndash;40% band as one-off ECL reversals and other-income swings fade</li>
+            <li>ZESCO arrears fully collected, releasing the last of the working-capital tailwind; CFO/PAT conversion stays above 1.5x</li>
+            <li>Consolidated FY27 PAT of roughly &#8377;1,050&ndash;1,200 Cr (EPS &asymp;&#8377;37&ndash;42); market holds roughly its current 18&ndash;20x multiple or &asymp;1.8x P/B</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;720&ndash;800</div>
+          <div class="rng">+29% to +43% from CMP</div>
+          <ul>
+            <li>No further MEL Phase&nbsp;II slippage from the July-2027 date; solar ramps ahead of plan; ferro-alloys pricing recovers as export-market disruptions ease and India's own infrastructure-driven steel demand firms</li>
+            <li>Manganese exploration in C&ocirc;te d&rsquo;Ivoire converts to an exploitation permit, adding a credible new growth leg without near-term capital risk</li>
+            <li>The Nacharam land question is finally resolved (JV or partial monetisation), unlocking a real, if hard-to-size, book-value gap</li>
+            <li>Consolidated FY27 PAT reaches &#8377;1,300&ndash;1,450 Cr (EPS &asymp;&#8377;46&ndash;51); market re-rates modestly to &asymp;20&ndash;22x forward P/E and retests the 52-week high of &#8377;739</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: at &#8377;309.02/share book value and 1.81x P/B today, even the bull case above implies only a modest further multiple expansion (to &asymp;2.0&ndash;2.2x P/B on a growing book), not a re-rating to a materially richer valuation regime &mdash; a business mix this dependent on a single Zambian power asset and a near-zero-margin metals business has not, on this data, earned a premium multiple yet.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuinely low-leverage balance sheet at the listed-entity level (standalone D/E of 0.009x) funding a large, real capex programme that sits mostly ring-fenced at the Zambian project-subsidiary level; operating cash flow that consistently and comfortably exceeds reported profit (CFO/PAT of 1.5&ndash;2.3x every year shown, including the year PAT fell); a textbook receivables clean-up, with a $200mn+ Zambian utility arrears overhang worked down to $13.4mn on a documented, delivered schedule; a record FY26 dividend (&#8377;8.50/share) and multiple channels of cash return; a sharp, verifiable operational improvement in Indian energy plant-load factors following a September-2025 coal-price cut; standalone operating profit (ex the one-off) that genuinely grew 26.6% on 19.4% revenue growth; and a board that, while family-led, includes credible independent directors with directly relevant expertise, on a clean unmodified audit opinion.</p>
+        <p style="max-width:none;"><b>What's not good:</b> consolidated PAT fell 27.6% in FY26 even as revenue grew, on a structural tax-holiday expiry plus a recurring non-cash currency charge that has now hit two consecutive periods; the company's own headline "116% standalone profit jump" leaned on a &#8377;404 crore intra-group buyback gain that fully eliminates on consolidation, without that context foregrounded in the press release; EBITDA margin has swung across a roughly 16-percentage-point range within a single year and is meaningfully inflated in at least one recent quarter by a dividend-driven other-income spike; the flagship MEL Phase&nbsp;II 300&nbsp;MW expansion &mdash; the project management itself points to as the next leg of growth &mdash; has slipped six months in a single quarter, to July 2027; a capex-spend figure was internally inconsistent across two consecutive earnings calls with no reconciliation offered; free cash flow has compressed from &#8377;3,019 Cr (FY24) to &#8377;505 Cr (FY26) as four growth projects run simultaneously; a multi-hundred-acre land bank has sat "under evaluation" through at least four straight quarters of shareholder questions with no resolution; and there is zero sell-side analyst coverage to independently check any of this against.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> candidly on the headline numbers (management proactively explains the MEL tax-holiday expiry and the deferred-tax mechanic on every call, in some detail) but more evasively on forward-looking specifics &mdash; margin guidance was extracted only after repeated analyst pressure and immediately hedged ("very dynamic... very hard to give an exact number"), the land-bank question has been deflected identically for a year, and the Phase&nbsp;II delay announcement leaned on an external, largely unverifiable cause (West Asia shipping disruption) without a fully reconciled capex-spend trail behind it. The overall tone across six quarters of transcripts is confident and shareholder-friendly (frequent references to dividend policy, buybacks, and "adequate cash") rather than defensive, which is a genuine positive for a promoter-controlled company, but it has not yet translated into the kind of precise, checkable forward guidance an institutional analyst base would normally demand.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: moderate, roughly 40&ndash;50%.</b> The balance sheet, cash-conversion and receivables-recovery evidence in this report is genuinely strong and largely under-appreciated in a stock trading 24% below its 52-week high &mdash; but the two things that would actually re-rate it (a clean MEL Phase&nbsp;II delivery and a stabilised, guidance-consistent consolidated margin) are precisely the two things that have most recently disappointed, and neither has a credible near-term catalyst to resolve it before mid-to-late FY27 at the earliest. This is a business with real, demonstrated cash-generation quality wrapped in a headline-profit presentation that has repeatedly needed unpacking to understand what's actually recurring &mdash; a "trust but verify" stock, not a clean growth compounder or a clear value trap.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether the July-2027 MEL Phase&nbsp;II date holds through the next two quarters, or slips again &mdash; a second slip would be a much stronger signal than the first; (2) whether consolidated EBITDA margin converges toward management's own guided 35&ndash;40% band on a <em>pure-operating</em> basis (excluding other income), rather than swinging with the Nava Global dividend cadence; (3) whether the deferred-tax charge from Kwacha appreciation reverses as management claims, or recurs for a third straight period; (4) free cash flow &mdash; a further fall toward zero or negative as all four growth projects peak simultaneously would test the dividend's sustainability, while a stabilisation above &#8377;500&ndash;700 Cr would support it; (5) any resolution (or continued non-answer) on the Nacharam land bank; (6) whether any sell-side analyst initiates coverage, which would materially change how much independent scrutiny this stock receives going forward.</div>
+      </div>
+
+      <footer>
+        Compiled from Nava Limited's BSE filings (Announcements/AnnouncementsConv, machine-readable filings 6&nbsp;Feb&ndash;19&nbsp;Aug 2026 &mdash; earnings-call transcripts and investor presentations for Q3FY26, Q4FY26/FY26 and Q1FY27; raw PDF filings from Announcements/ for Q1FY26 and Q2FY26 investor presentations and earnings-call transcripts, reported Aug and Nov 2025; the FY26 Annual Report filed 3&nbsp;Aug 2026, including its audited Key Ratios table, MD&amp;A, segment note, related-party AOC-2 disclosure and independent auditor's report; and change-in-directorate filings dated 15&nbsp;May 2026), MarketData (Yahoo Finance via yfinance, fetched 22&nbsp;Aug&nbsp;2026 19:30 IST), and the tracked News feed (24&nbsp;Feb&ndash;20&nbsp;Aug 2026, with three unrelated same-name organisations explicitly excluded). No quarterly cash-flow statement, and no FY22&ndash;FY24 quarterly P&amp;L detail, exists in the source data; credit-rating filings were not reviewed in this pass. Every figure is tagged to its source; where two sources disagreed or a figure could not be independently verified, that is stated in the relevant section. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [1018.2, 1193.2, 963.7, 991.1, 1142.8, 1211.8];
+    var ebitda  = [419.2, 627.7, 341.3, 513.0, 423.2, 583.5];
+    var pat     = [302.8, 399.1, 177.5, 325.7, 136.3, 332.8];
+    var series = [
+      {label:'Revenue from ops', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT, consolidated" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Consolidated basis. Source: quarterly investor presentations, Q4FY25&ndash;Q1FY27 (see &sect;03 table for exact figures and sourcing).</div></div>';
+  })();
+
+  // ---------- Price range chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var lo = 501.65, hi = 739.40, d200 = 584.23, d50 = 587.32, cmp = 558.95;
+    var W = 900, H = 130, padL = 60, padR = 60, padT = 26, padB = 30;
+    var plotW = W - padL - padR;
+    function x(v){ return padL + ((v-lo)/(hi-lo))*plotW; }
+    var y0 = H/2;
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Nava share price versus its 52-week range and moving averages" style="width:100%;height:auto;font-size:11.5px;">';
+    svg += '<line x1="'+x(lo)+'" x2="'+x(hi)+'" y1="'+y0+'" y2="'+y0+'" stroke="'+css('--border-strong')+'" stroke-width="3" stroke-linecap="round"/>';
+
+    function marker(v, label, color, dy, bold){
+      var px = x(v);
+      svg += '<circle cx="'+px.toFixed(1)+'" cy="'+y0+'" r="'+(bold?7:5)+'" fill="'+color+'" stroke="'+css('--surface')+'" stroke-width="2"/>';
+      svg += '<text x="'+px.toFixed(1)+'" y="'+(y0+dy)+'" text-anchor="middle" fill="'+css(bold?'--ink':'--ink-mute')+'" font-weight="'+(bold?700:600)+'">'+label+'</text>';
+    }
+    marker(lo, '52W Low ₹'+lo.toFixed(2), css('--critical'), 44, false);
+    marker(hi, '52W High ₹'+hi.toFixed(2), css('--good'), -30, false);
+    marker(d200, '200D avg', css('--chart-2'), -30, false);
+    marker(d50, '50D avg', css('--chart-2'), 44, false);
+    marker(cmp, 'CMP ₹'+cmp.toFixed(2), css('--accent'), 44, true);
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Snapshot as of 22 Aug 2026. Source: MarketData/overview.md (yfinance). No daily/monthly price-history series was available in the source data for a full trend line, so only these five reference points are plotted &mdash; not fabricated intermediate values.</div></div>';
+  })();
+})();
+</script>

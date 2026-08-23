@@ -1,7 +1,7 @@
 {
   "symbol": "BOSCHLTD",
   "name": "Bosch",
-  "generatedAt": "2026-08-18T16:37:26.618528+00:00",
+  "generatedAt": "2026-08-23T11:01:01.550982+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 41300.0,
-    "change": 215.0,
-    "changePercent": 0.52330536,
-    "previousClose": 41085.0,
-    "dayLow": 41105.0,
-    "dayHigh": 41600.0,
+    "current": 48460.0,
+    "change": -270.0,
+    "changePercent": -0.55407345,
+    "previousClose": 48730.0,
+    "dayLow": 48315.0,
+    "dayHigh": 49130.0,
     "fiftyTwoWeekLow": 28610.0,
-    "fiftyTwoWeekHigh": 42985.0,
-    "asOf": 1785750301
+    "fiftyTwoWeekHigh": 49130.0,
+    "asOf": 1787132693
   },
   "stats": {
-    "marketCap": 1218188935168.0,
-    "trailingPE": 43.896477,
-    "forwardPE": 40.103905,
-    "priceToBook": 8.205261,
+    "marketCap": 1429381054464.0,
+    "trailingPE": 60.637913,
+    "forwardPE": 42.474308,
+    "priceToBook": 9.627771,
     "bookValue": 5033.356,
-    "dividendYield": 0.66,
-    "trailingEps": 940.85,
+    "dividendYield": 0.55,
+    "trailingEps": 799.17,
     "debtToEquity": 0.008,
     "roe": 18.680785708511845,
     "roce": 24.21767446785979,
-    "return1y": 9.482278715902764,
+    "return1y": 27.041363028947785,
     "sharesOutstanding": 29496100.0
   },
   "quarterly": {
@@ -332,6 +332,10 @@
   },
   "dividends": [
     {
+      "date": "2026-08-04",
+      "amount": 270.0
+    },
+    {
       "date": "2025-07-29",
       "amount": 512.0
     },
@@ -358,21 +362,17 @@
     {
       "date": "2021-07-12",
       "amount": 115.0
-    },
-    {
-      "date": "2020-08-03",
-      "amount": 105.0
     }
   ],
   "analyst": {
-    "targetMean": 44288.8,
-    "targetHigh": 48165.0,
-    "targetLow": 37499.0,
-    "recommendationKey": "none",
+    "targetMean": 51439.0,
+    "targetHigh": 57500.0,
+    "targetLow": 43728.0,
+    "recommendationKey": "strong_buy",
     "numberOfAnalystOpinions": 5
   },
   "holders": {
     "insidersPercent": 0.70666003,
-    "institutionsPercent": 0.17459999
+    "institutionsPercent": 0.18059999
   }
 }

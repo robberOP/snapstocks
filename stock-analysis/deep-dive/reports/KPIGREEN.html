@@ -1,0 +1,1067 @@
+<title>KPI Green Energy Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Renewable Energy IPP/EPC &middot; Solar, Wind &amp; Hybrid</div>
+    <h1>KPI Green Energy Limited</h1>
+    <p class="sub">NSE: KPIGREEN &middot; BSE: 542323 &middot; FY2021&ndash;FY2027(Q1) performance review, BSE-filing and earnings-call synthesis, as of 22 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> KPI Green has compounded revenue, EBITDA and PAT at roughly 90&ndash;100% CAGR since FY21 on the back of a captive/EPC (&ldquo;CPP&rdquo;) engine, and is now mid-pivot into capital-intensive, 25-year annuity Independent Power Producer (&ldquo;IPP&rdquo;) assets &mdash; total portfolio up from 4.06 GW to 6.94 GW in a single year. But the CMD&rsquo;s public growth guidance has been cut in stages over five quarters (historically &ldquo;70&ndash;80%&rdquo;, then &ldquo;60&ndash;70%&rdquo; as of May&nbsp;2025, then &ldquo;40&ndash;50%&rdquo; as of May&nbsp;2026), and Q1&nbsp;FY27 delivered just 16% revenue growth &mdash; below even the lowered bar &mdash; with PAT down 14% YoY as interest cost (+111%) and depreciation (+70%) on the newly-energised IPP fleet outran EBITDA growth (+21%). Net debt/EBITDA has more than doubled in a year, from 1.73x (FY25) to 4.39x (FY26); inventory days have also roughly doubled; the CFO resigned the same day Q1&nbsp;FY27 results were filed, replaced same-day by an externally-hired successor; and the FY25 Annual Report discloses related-party sales equal to roughly 41% of standalone revenue, alongside a personal royalty to the promoter that doubled year-on-year with no stated basis. The stock trades near 52-week lows, well under both its 50- and 200-day averages, despite five straight years of accelerating absolute profit.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (21 Aug 26)</div><div class="v">&#8377;312.60</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;6,179 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;301.20 &ndash; &#8377;542.25</div></div>
+      <div class="chip"><div class="k">FY26 Revenue Growth</div><div class="v pos">+56% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT</div><div class="v neg">&minus;14% YoY</div></div>
+      <div class="chip"><div class="k">Net Debt/EBITDA</div><div class="v neg">1.73x&rarr;4.39x (FY25&rarr;FY26)</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">13.55x</div></div>
+      <div class="chip"><div class="k">Growth Guidance Cuts</div><div class="v neg">4 in 7 quarters</div></div>
+      <div class="chip"><div class="k">FY25 Related-Party Sales</div><div class="v neg">~41% of standalone revenue</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage, basis and gaps &mdash; please read before the numbers below:</b> This report draws on eight consecutive quarters of company filings (Q2&nbsp;FY25 through Q1&nbsp;FY27, i.e. Sep&nbsp;2024&ndash;Jun&nbsp;2026 quarter-ends), the FY21&ndash;FY26 annual trend and FY23&ndash;FY26 balance-sheet/cash-flow series from MarketData/yfinance, the company&rsquo;s own investor presentations and financial-results filings (BSE Announcements/AnnouncementsConv), seven earnings-call transcripts (Q3&nbsp;FY26&rsquo;s transcript file is corrupted, containing a BSE 404 error page rather than the actual call, independently confirmed &mdash; so Q3&nbsp;FY26 has financial figures but <b>no management Q&amp;A or guidance colour anywhere in this report</b>), the FY25 (17th) Annual Report&rsquo;s Directors&rsquo; Report, MD&amp;A, Corporate Governance Report and financial-statement notes (288 pages, read in full), and the tracked News feed (21&nbsp;Jan&ndash;21&nbsp;Aug 2026). All figures are <b>consolidated</b> unless explicitly marked standalone. Two internally-reported balance-sheet figures for FY26 &mdash; the investor presentation&rsquo;s &ldquo;Net Worth &#8377;3,273&nbsp;Cr&rdquo; and the financial-results filing&rsquo;s ratio-disclosure &ldquo;Net Worth &#8377;3,034&nbsp;Cr&rdquo; &mdash; are not a contradiction once reconciled (the former includes minority interest of &#8377;239&nbsp;Cr, the latter is parent-only); both are used below, each labelled by basis, to avoid papering over the difference. Separately, the FY25 Annual Report itself states <b>three different debt-to-equity figures for the same FY25 year</b> in three different sections (0.33x, 0.43x, 0.61x) &mdash; flagged explicitly in &sect;05 rather than silently picking one. Full independent-director tenure/DIN detail and a precise multi-year (pre-FY25) related-party-transaction time series were not fully extracted in the time available and are noted as gaps where relevant.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Other call insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What KPI Green does, and how it has grown</h2></div>
+      <p class="sec-dek">A Gujarat-rooted solar/wind EPC contractor that has spent six years compounding at near-100% and is now converting itself into a 25-year annuity power producer &mdash; the single biggest strategic and financial swing in this report.</p>
+
+      <p class="lede">Incorporated in 2008, listed on BSE&rsquo;s SME platform in 2019, migrated to the BSE/NSE Main Board in 2021, and renamed from K.P.I. Global Infrastructure Limited to KPI Green Energy Limited in 2022&ndash;2023 (sources differ on the exact year: yfinance dates the rename to April&nbsp;2022, the FY25 Annual Report&rsquo;s own history section to 2023 &mdash; both are the company&rsquo;s own records, and this report flags rather than resolves the discrepancy), the Surat, Gujarat-headquartered company operates as an independent power producer and captive/EPC solar-wind contractor under the &ldquo;Solarism&rdquo; brand. It reports through two formal, statutory (Ind&nbsp;AS Note&nbsp;50) segments &mdash; <b>Sale of Power &amp; Solar Power Plant</b> (99.98% of FY25 revenue, &#8377;1,735.13&nbsp;Cr) and <b>Sale of Plots</b> (&#8377;0.32&nbsp;Cr, functionally immaterial) &mdash; but management&rsquo;s own internal split, used throughout its investor communication and not broken out in the audited segment note, is between <b>IPP</b> (Independent Power Producer: KPI builds, owns and operates solar/wind/hybrid plants and sells the power under 25-year Power Purchase Agreements, mostly to Gujarat Urja Vikas Nigam Limited, GUVNL) and <b>CPP</b> (Captive Power Producer / EPC: KPI builds plants for corporate &amp; industrial clients &mdash; L&amp;T, Colourtex, UPL, Tata Motors, the Indian Air Force, Coal India, Adani Green, Aditya Birla Renewables &mdash; and for utility-scale government tenders). The company is part of the wider KP Group, founded in 1994 by promoter Dr.&nbsp;Faruk G.&nbsp;Patel, who remains Chairman &amp; Managing Director and is also MD of sister listed entity K.P.&nbsp;Energy Limited and a director of KP Green Engineering Limited &mdash; all three under common promoter control (FY25 Annual Report). The group states 32+ years of operating history, ~9.2&nbsp;GW of group capacity, and a public 10&nbsp;GW-by-2030 target (2026-08-11 investor presentation).</p>
+
+      <h3>FY21&ndash;FY26: five years of near-100% compounding, now pivoting on capital intensity</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th><th>CAGR</th></tr></thead>
+          <tbody>
+            <tr><td>Total income</td><td>104</td><td>232</td><td>647</td><td>1,031</td><td>1,755</td><td>2,742</td><td class="pos">92%</td></tr>
+            <tr><td>EBITDA</td><td>64</td><td>110</td><td>211</td><td>343</td><td>581</td><td>1,006</td><td class="pos">73%</td></tr>
+            <tr><td>PAT (total, incl. minority)</td><td>14</td><td>43</td><td>110</td><td>162</td><td>325</td><td>509</td><td class="pos">104%</td></tr>
+            <tr><td>Cash profit (PAT + D&amp;A)</td><td>39</td><td>73</td><td>154</td><td>222</td><td>453</td><td>788</td><td class="pos">82%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: company investor presentations (2026-05-06, 2026-08-11), cross-checked against MarketData/yfinance annual income statement (FY23&ndash;FY26 figures agree to within rounding). FY21&ndash;FY22 not independently cross-checkable against yfinance (nulled in that source) but sourced from the company&rsquo;s own FY26 earnings deck growth-CAGR slide.</caption>
+      </div>
+      <div id="qchart"></div>
+      <p>Every year from FY21 to FY26 delivered accelerating absolute profit, and the CAGR figures above are genuinely rare for a company of this size. But the composition of that growth has shifted hard: FY26 alone saw fixed assets more than double (&#8377;2,524&nbsp;Cr&rarr;&#8377;5,427&nbsp;Cr) and total debt roughly triple (see &sect;05), as the company committed capital to 25-year IPP assets rather than the faster-cycling, less capital-intensive EPC/CPP business that built the earlier track record. Sections&nbsp;03&ndash;06 show this transition is not yet cash-flow-neutral, and Q1&nbsp;FY27 is the first quarter in this dataset where the strain shows up in PAT itself, not just the balance sheet.</p>
+
+      <h3>Capacity build: from 4.06 GW to 6.94 GW in one year</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Total portfolio (Q1 FY27)</div><div class="v">6.94 GW</div><div class="d">1.87 GW installed + 5.07 GW WIP; up 71% YoY from 4.06 GW</div></div>
+        <div class="stat"><div class="k">IPP / CPP split</div><div class="v">2.57 / 4.37 GW</div><div class="d">up from 1.72/2.34 GW a year earlier</div></div>
+        <div class="stat"><div class="k">Land bank</div><div class="v">8,657 acres</div><div class="d">up from 6,275 acres, Q1 FY26</div></div>
+        <div class="stat"><div class="k">Power evacuation capacity</div><div class="v">5.10 GW</div><div class="d">up from 3.2 GW, Q1 FY26</div></div>
+      </div>
+      <p>Fresh order bookings of 2.88 GW in the trailing year, against 0.85 GW actually commissioned, is itself informative: order intake is running well ahead of energisation, which is normal for a capacity ramp of this scale but also means the revenue and cash-flow benefit of most of the current order book has not yet arrived &mdash; a point management itself makes repeatedly on calls (&ldquo;stabilisation period&rdquo; language, &sect;04).</p>
+
+      <h3>The moat, such as it&rsquo;s evidenced</h3>
+      <p>No independent market-share or competitor-benchmark figure was found anywhere in this dataset &mdash; every scale claim (&ldquo;one of India&rsquo;s leading players in Gujarat,&rdquo; a historical win-rate of ~75% on bids, per the CFO on the 2026-05-18 call) is self-reported. What is independently verifiable: a genuinely large and growing land bank (5,946+ acres at FY25-end per the Annual Report, up 168% YoY; 8,657 acres by Q1&nbsp;FY27) and power-evacuation position (3.26+ GW at FY25-end, up from 846&nbsp;MW in Mar-2023; 5.10&nbsp;GW by Q1&nbsp;FY27) &mdash; both classic, hard-to-replicate entry barriers for solar/wind development in India, and specifically cited by management as the two resources gating competitors&rsquo; growth, not KPI&rsquo;s own; 133 operating sites; long-tenure (25-year) PPAs with GUVNL, an investment-grade Gujarat state discom counterparty; a Network Operations Centre built on IBM&rsquo;s Maximo platform monitoring 200+ client sites, plus robotic panel-cleaning technology claimed at ~98% efficiency (FY25 Annual Report); a first-mover green bond structure (&sect;05); and marquee C&amp;I/PSU order wins (Coal India, Adani Green, Aditya Birla Renewables, MAHAGENCO). Whether this constitutes a durable moat versus simply being an early, well-capitalised entrant into a policy-driven, currently-uncrowded segment of a fast-growing but competitive sector is not something this dataset can independently settle.</p>
+
+      <h3>Group structure and the KP Energy / KP Green Engineering relationship</h3>
+      <p>KPI Green Energy Limited sits inside a wider, promoter-controlled group that runs to 50+ entities by the Annual Report&rsquo;s own count, of which two &mdash; <b>K.P.&nbsp;Energy Limited (KPEL)</b>, focused on wind EPC/Balance-of-Plant, and <b>KP Green Engineering Limited</b> &mdash; are separately listed under the same promoter, Dr.&nbsp;Faruk&nbsp;G.&nbsp;Patel. Management disclosed on the 2026-08-12 call that KP Energy pays KPI a 2% royalty on EPC execution value for wind/hybrid Balance-of-Plant work subcontracted to it; one investor (Anil Sarin, K16 Advisors, Q2&nbsp;FY26 call) explicitly challenged this as potential &ldquo;revenue double-counting&rdquo; between the two listed entities, and management committed to adding an RPT-clarity slide to the following quarter&rsquo;s presentation &mdash; a commitment this report could not verify was fulfilled. That 2% royalty framing turns out to understate the scale of intra-group flow considerably: the FY25 Annual Report&rsquo;s related-party note shows KPI sold &#8377;246.75&nbsp;Cr of goods/services <i>to</i> K.P.&nbsp;Energy Ltd (versus just &#8377;0.71&nbsp;Cr in FY24) and separately <i>purchased</i> &#8377;269.93&nbsp;Cr of goods/services plus &#8377;305.14&nbsp;Cr of capital goods (a new line item, zero in FY24) <i>from</i> the same entity &mdash; the fuller related-party picture is developed in &sect;07, and it is materially more significant than the royalty arrangement alone suggests. Subsidiary <b>Sun Drops Energia Limited</b> (BESS/battery storage, international projects) and step-down subsidiary <b>KPGC One Private Limited</b> (incorporated June 2026) round out the visible group structure; Sun Drops itself has been guided toward an IPO/DRHP filing every quarter since May&nbsp;2025 without one materialising, and was partly diluted via a promoter-personal private placement in October 2024 (&sect;07).</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">A dense run of order wins and commissioning milestones through July&ndash;August 2026, bracketed by a weak quarterly result, a CFO exit, and a related-party acquisition &mdash; each verified against, not just repeated from, the underlying numbers.</p>
+
+      <div class="news-item">
+        <div class="news-date">21 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed &mdash; related-party acquisition</span>
+          <div class="news-title">Sun Drops Energia to acquire DEK and Mavericks Green Energy for &#8377;55.8 Cr, via CCPS share swap</div>
+          <div class="news-body">Subsidiary Sun Drops Energia approved acquiring up to 100% of DEK and Mavericks Green Energy Limited (DMGEL), a solar EPC/BESS project-development company, for &#8377;55.80 Cr, paid entirely in Compulsorily Convertible Preference Shares (15,89,781 CCPS) &mdash; no cash outlay. The company&rsquo;s own Regulation&nbsp;30 disclosure states this <b>is a related-party transaction</b>: promoter Dr.&nbsp;Faruk G.&nbsp;Patel personally holds 8.95% of DMGEL&rsquo;s equity, and the deal is priced per an independent registered valuer&rsquo;s report dated 20&nbsp;Aug&nbsp;2026 &mdash; one day before the transaction was announced. DMGEL&rsquo;s own disclosed turnover has grown quickly (&#8377;30.6&nbsp;Cr FY24 &rarr; &#8377;150.0&nbsp;Cr FY25 &rarr; &#8377;214.0&nbsp;Cr FY26), giving the deal plausible strategic logic, but a promoter-linked counterparty and a valuation report dated the day before announcement are exactly the kind of related-party pattern worth tracking rather than taking at face value.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">18 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">130 MW more energised at Bharuch hybrid project; 72.9% of 370 MW now complete</div>
+          <div class="news-body">Cumulative energised capacity at the Bharuch hybrid (wind-solar) project reached 269.7 MW of the total 370 MW, under a long-term GUVNL PPA &mdash; concrete, verifiable execution progress on one of the larger IPP projects referenced throughout the call transcripts (&sect;03).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">18 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Advait Greenergy wins &#8377;116 Cr EPC order from KPI for 200 MW Bikaner (Rajasthan) project</div>
+          <div class="news-body">A 12-month EPC turnkey contract, following an earlier &#8377;250.59 Cr order from PGVCL for underground power-distribution work in Gujarat &mdash; over &#8377;366 Cr in contract awards in a roughly two-month window, evidence of continued order momentum even as the quarterly headline growth number (Q1 FY27, below) disappointed.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">13 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Management change</span>
+          <div class="news-title">Kapil Kriplani appointed Group CFO, effective 11 Aug 2026, replacing Salim Yahoo</div>
+          <div class="news-body">Kriplani brings 21 years&rsquo; experience including roles at Glenmark Pharmaceuticals, Reliance Capital and Vedanta. The appointment was effective the same day as Salim Yahoo&rsquo;s resignation was filed &mdash; a same-day, no-vacancy transition (&sect;07) &mdash; but it lands directly on top of a weak quarterly result, a sequencing worth noting.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">11 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Q1 FY27 results: revenue +16% YoY, EBITDA +21%, PAT &minus;14% on higher interest and depreciation</div>
+          <div class="news-body">Total income &#8377;710 Cr (+16% YoY), EBITDA &#8377;262 Cr (+21%, margin 37%), but PAT fell to &#8377;95 Cr (&minus;14% YoY) as interest cost more than doubled (&#8377;80 Cr vs &#8377;38 Cr) and depreciation rose 70% (&#8377;51 Cr vs &#8377;30 Cr) on the rapidly-growing IPP asset base. This is the first quarter in the eight covered here where PAT declined YoY. See &sect;03&ndash;04 for the full guidance-versus-actual reconciliation, which is considerably less flattering than the headline EBITDA growth alone suggests.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">27 Jul 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Governance</span>
+          <div class="news-title">Postal ballot: Rajesh Shrivastava appointed WTD (100% promoter support); Venu Birappa re-appointment draws only 51.52% institutional support</div>
+          <div class="news-body">63.08% voting participation overall. Shrivastava&rsquo;s appointment passed near-unanimously. Independent director Venu Birappa&rsquo;s re-appointment passed on total votes but institutional investors specifically split closer to even (51.52% for, 48.49% against) &mdash; a genuine, quantifiable signal of institutional caution on a governance matter, not routine noise.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">21 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">GP Eco Solutions wins &#8377;58.31 Cr order from KPI for solar trackers, 200 MW Khavda project</div>
+          <div class="news-body">Roughly 14% of FY26 consolidated revenue in a single order &mdash; a useful scale reference for how large individual project awards are relative to the annual top line.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">20 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">200 MW commissioned for Coal India at Khavda, two-thirds of the 300 MW project</div>
+          <div class="news-body">Concrete delivery against the marquee Coal India contract first announced in Q3&nbsp;FY25 (&sect;03) &mdash; roughly 15 months from award to two-thirds commissioning.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">19 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish, regulatory</span>
+          <div class="news-title">CEIG charging permission granted for 100 MW(AC)/128 MW(DC) MAHAGENCO project in Maharashtra</div>
+          <div class="news-body">A regulatory milestone enabling commissioning of the Maharashtra state-utility project first begun in Q3&nbsp;FY25 &mdash; further evidence of the multi-state expansion (Gujarat&rarr;Maharashtra&rarr;Rajasthan&rarr;Odisha&rarr;Madhya Pradesh) management has described on every call since FY25.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Earlier context (Jan&ndash;May 2026), covered in depth in &sect;03&ndash;05 rather than repeated here</b>Q3 FY26 results (21&nbsp;Jan, PAT +48% YoY to &#8377;126 Cr, 9M PAT +60% to &#8377;354 Cr) coincided with a &#8377;3,200 Cr SBI term-loan sanction and the listing of a &#8377;670 Cr green bond &mdash; India&rsquo;s first externally credit-enhanced issuance of its kind. Q4 FY26 results (6&nbsp;May, PAT +49% to &#8377;155.48 Cr) came with a final dividend of &#8377;0.25/share plus a special dividend of &#8377;0.15/share. A &#8377;979 Cr Canara Bank facility for a 150&nbsp;MW wind project was announced 17&nbsp;Mar&nbsp;2026. On 26&nbsp;May&nbsp;2026 the company announced plans for a ~$1 billion infrastructure investment trust (InvIT) by FY27/28, backed by 1.5&ndash;2&nbsp;GW of operating assets &mdash; a potential future monetisation/deleveraging route discussed further in &sect;10.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segment mix &amp; guidance versus actual</h2></div>
+      <p class="sec-dek">Eight straight quarters of double-digit-to-triple-digit YoY revenue growth, an IPP mix finally beginning to move (10%&rarr;17% of revenue in one quarter) &mdash; and a public growth-guidance number that has been cut three times in fifteen months while the actual delivery gap has widened, not narrowed.</p>
+
+      <h3>Quarterly trend, Q2 FY25 &ndash; Q1 FY27</h3>
+      <div id="qtrend"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q2FY25</th><th>Q3FY25</th><th>Q4FY25</th><th>Q1FY26</th><th>Q2FY26</th><th>Q3FY26<sup>&Dagger;</sup></th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Total income</td><td>361</td><td>466</td><td>578</td><td>614</td><td>641</td><td>676</td><td>810</td><td>710</td></tr>
+            <tr><td>Total income YoY growth</td><td>+67%</td><td>+41%</td><td>+97%</td><td>+75%</td><td>+78%</td><td>+45%</td><td>+40%</td><td class="neg">+16%</td></tr>
+            <tr><td>EBITDA</td><td>134</td><td>145</td><td>169</td><td>217</td><td>232</td><td>251</td><td>305</td><td>262</td></tr>
+            <tr><td>EBITDA margin</td><td>37.2%</td><td>31.0%</td><td>29.3%</td><td>35.3%</td><td>36.2%</td><td>37.1%</td><td>37.7%</td><td>36.9%</td></tr>
+            <tr><td>PAT (total, incl. minority)</td><td>70</td><td>85</td><td>104</td><td>111</td><td>117</td><td>126</td><td>155</td><td class="neg">95</td></tr>
+            <tr><td>PAT YoY growth</td><td>+101%</td><td>+68%</td><td>+142%</td><td>+68%</td><td>+67%</td><td>+48%</td><td>+49%</td><td class="neg">&minus;14%</td></tr>
+            <tr><td>Basic EPS (&#8377;)</td><td>5.55</td><td>6.44</td><td>5.04</td><td>5.28</td><td>5.53</td><td>5.97</td><td>7.36</td><td class="neg">4.34</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: quarterly financial-results filings and investor presentations, cross-checked against yfinance quarterly income statement where overlapping (Q4FY25&ndash;Q1FY27). &Dagger; Q3 FY26&rsquo;s earnings-call transcript file is corrupted in this dataset (a BSE 404 error page, not the actual call) &mdash; the P&amp;L figures above are sourced cleanly from the financial-results filing and investor presentation, but no management commentary exists anywhere in this report for that quarter. Q4FY25 EPS of &#8377;5.04 (vs total PAT of &#8377;104.18 Cr) reflects the parent-attributable share used for EPS, not the total-incl.-minority PAT figure in the row above &mdash; both are as officially reported.</caption>
+      </div>
+      <p>Growth has been genuinely strong and broad-based for seven of these eight quarters &mdash; but the trend in the YoY growth row is the more important story than any single quarter&rsquo;s absolute number: growth decelerated from Q4&nbsp;FY25&rsquo;s +97% to Q1&nbsp;FY27&rsquo;s +16% in five quarters, a steady deceleration rather than a one-off wobble, and Q1&nbsp;FY27 is the first quarter where PAT actually fell YoY.</p>
+
+      <h3>Revenue mix: IPP finally moving, but still the minority</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Q1 FY26 IPP / CPP mix</div><div class="v">10% / 90%</div></div>
+        <div class="stat"><div class="k">Q4 FY26 IPP / CPP mix</div><div class="v">10% / 90%</div></div>
+        <div class="stat"><div class="k">Q1 FY27 IPP / CPP mix</div><div class="v pos">17% / 83%</div><div class="d">first material move toward IPP in the dataset</div></div>
+      </div>
+      <p>Management has stated a long-run target IPP share of 20&ndash;25% of revenue (repeated across the Q4FY25, Q1FY26 and Q1FY27 calls, though the exact target number has itself drifted between 20% and 25% across calls). The jump to 17% in Q1&nbsp;FY27 reflects newly-energised capacity (Q1&nbsp;FY27 IPP unit generation was ~4x the prior-year quarter and already equalled 65% of all of FY26&rsquo;s IPP generation, per the CFO&rsquo;s opening remarks on the 2026-08-12 call) &mdash; a genuine operating milestone, even as it also explains why interest and depreciation (&sect;04) grew faster than revenue in the same quarter: the assets are now on the balance sheet and depreciating/servicing debt, but their full-year revenue contribution has not yet arrived.</p>
+
+      <h3>Order book and geographic expansion</h3>
+      <p>Management cited a CPP/EPC order book north of &#8377;5,000 Cr as of the Q1&nbsp;FY27 call (up from &#8377;3,000+ Cr at the Q4&nbsp;FY25 call, 1.76&nbsp;GW at the time), alongside 2.88&nbsp;GW of fresh capacity bookings in the trailing year. Geographic expansion beyond the Gujarat home base has been genuinely realised, not just announced: Maharashtra (MAHAGENCO, 100&nbsp;MW, execution begun Q3&nbsp;FY25, CEIG permission obtained Jul&nbsp;2026), Rajasthan (MoU Q3&nbsp;FY25, first EPC order &sect;02 Jul&nbsp;2026), plus MoUs in Odisha and Madhya Pradesh not yet converted to disclosed orders in this dataset. International expansion (Botswana &mdash; a ~5&nbsp;GW government MoU with a 500&nbsp;MW first phase; UAE &mdash; a data-centre/BESS project via the Fabtech Group/F&nbsp;Plus Healthcare alliance; a Saudi Arabia office opened per the Q4&nbsp;FY25 call) remains at the MoU/early-execution stage &mdash; management itself said on the Q1&nbsp;FY27 call that Botswana will contribute &ldquo;no revenue this year,&rdquo; i.e. FY27.</p>
+
+      <h3>Guidance versus actual &mdash; the central finding of this report</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Growth guidance has been cut at least four times across seven quarters, and the delivery gap has widened, not narrowed</b>The softening shows up earlier than a single headline cut. At the Q2&nbsp;FY25 call (Nov&nbsp;2024), the CFO gave &ldquo;60% to 70%&hellip; minimum&rdquo; for FY25 revenue growth. By the Q3&nbsp;FY25 call (Feb&nbsp;2025), the CFO&rsquo;s own words already showed daylight opening between his number and the CMD&rsquo;s: <i>&ldquo;I said 60% to 70% in the last [quarter] and Faruk sir said 50% to 60%&hellip; you can take 60% as a common factor in both&rdquo;</i> &mdash; the first sign, seven quarters before the more explicit cut, that the CMD&rsquo;s public commitments and the CFO&rsquo;s own working number were starting to diverge. By the Q4&nbsp;FY25 call (19&nbsp;May&nbsp;2025) guidance was reaffirmed at &ldquo;at least 60% to 70%&rdquo; for FY26, with a PAT-margin target of 17&ndash;19%. <b>FY26 actual: revenue grew 56%</b> &mdash; below the guided band &mdash; while EBITDA grew 73% and PAT grew 57% (at the low end); PAT margin came in at 19%, within the guided band. At the Q4&nbsp;FY26 call (12&nbsp;May&nbsp;2026), the CFO confirmed under direct analyst questioning (Ashish&nbsp;Rampuria) that guidance had been stepped down again, to &ldquo;40% to 50%&rdquo; for FY27 &mdash; itself down from &ldquo;50% to 60%&rdquo; used 1&ndash;2 quarters prior, and from the &ldquo;70&ndash;80%&rdquo; then &ldquo;60&ndash;70%&rdquo; CAGR language the CMD used historically through FY23&ndash;FY24. Management attributed this to sector-wide deceleration and, for the first time on any call in this dataset, &ldquo;geopolitical conditions&rdquo; affecting input costs (steel, cables, logistics) &mdash; a repeat investor on the Q1&nbsp;FY27 call explicitly noted this was the first time that term had ever appeared on a KPI Green call. <b>Q1&nbsp;FY27 actual: revenue grew just 16%</b> &mdash; a large miss even against the already-lowered 40&ndash;50% full-year guide, and the CFO admitted on the same call the company had itself &ldquo;expected 20%, 30%&rdquo; growth for the quarter specifically, attributing the shortfall to utility-scale billing delays with Coal India, Adani Group and Aditya Birla Group customers pushed into the next quarter. Separately, the CFO explicitly walked back the 16&ndash;18% PAT-margin guidance under repeated questioning from a self-identified long-term investor (&ldquo;Subash&rdquo;): FY27 PAT margin &ldquo;will be lesser&rdquo; than guided, with no replacement number offered.</div>
+      </div>
+      <p>To be fair to management: the FY26 EBITDA and PAT-margin guidance broadly held even as the revenue-growth number missed, which is a meaningfully better outcome than a broad-based miss across every line. But the pattern of the CMD&rsquo;s public/media growth commitments running ahead of what the CFO can defend on calls &mdash; visible as early as Q3&nbsp;FY25 and explicit by Q4&nbsp;FY26 &mdash; and of the gap between guided and delivered growth widening at the same time the guided number itself keeps falling, is the single most important, well-evidenced signal in this dataset, and it should anchor how any forward guidance from this management is read going forward (see &sect;10).</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, cost structure &amp; profitability</h2></div>
+      <p class="sec-dek">EBITDA margin has genuinely, steadily improved (29%&rarr;38% over eight quarters); PAT margin has not followed in Q1 FY27, as interest cost more than doubled and depreciation rose 70% YoY on the newly-energised IPP fleet, and interest coverage nearly halved in a single quarter.</p>
+
+      <h3>Two very different margin stories on two different lines</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %</th><th>Q1FY26</th><th>Q2FY26</th><th>Q3FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>EBITDA margin</td><td>35.3%</td><td>36.2%</td><td>37.1%</td><td>37.7%</td><td>36.9%</td></tr>
+            <tr><td>PAT margin</td><td>18.1%</td><td>18.3%</td><td>18.6%</td><td>19.1%</td><td class="neg">13.4%</td></tr>
+            <tr><td>Interest cost</td><td>38</td><td>43</td><td>49</td><td>53</td><td class="neg">80</td></tr>
+            <tr><td>Interest cost YoY growth</td><td>+41%</td><td>+87%</td><td>+227%</td><td>+279%</td><td class="neg">+111%</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>30</td><td>32</td><td>33</td><td>39</td><td class="neg">51</td></tr>
+            <tr><td>Depreciation YoY growth</td><td>+114%</td><td>+113%</td><td>+120%</td><td>+144%</td><td class="neg">+70%</td></tr>
+            <tr><td>Interest coverage (EBITDA / interest)<sup>&dagger;</sup></td><td>5.71x</td><td>5.40x</td><td>5.12x</td><td>5.75x</td><td class="neg">3.28x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: company financial-results filings/investor presentations. &dagger; This report&rsquo;s own computation (EBITDA/interest cost, the two rows above); it closely matches the company&rsquo;s own disclosed Interest Service Coverage Ratio of 5.68x for Q1FY26 in the Reg.&nbsp;52(4) ratio table, confirming the method.</caption>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Q1 FY27&rsquo;s PAT-margin collapse is real, quantifiable, and interest-driven &mdash; not a one-off accounting item</b>EBITDA margin actually held up fine in Q1&nbsp;FY27 (36.9%, in line with the recent 35&ndash;38% range) &mdash; the deterioration is entirely below the EBITDA line. Interest cost more than doubled YoY (&#8377;38&nbsp;Cr&rarr;&#8377;80&nbsp;Cr) and depreciation rose 70% (&#8377;30&nbsp;Cr&rarr;&#8377;51&nbsp;Cr), while EBITDA itself grew only 21%. Interest coverage fell from a comfortable ~5.1&ndash;5.8x range across the prior four quarters to 3.28x in a single quarter &mdash; still a workable multiple, but a genuine, sharp step-down, not noise. Management&rsquo;s explanation (newly-drawn project debt now fully expensed rather than capitalised as &ldquo;interest during construction,&rdquo; while the associated revenue ramps in over the following year) is mechanically plausible and consistent with the segment-mix shift in &sect;03, but it is also exactly the kind of margin dynamic that deserves independent tracking rather than management&rsquo;s own framing being taken at face value &mdash; the CFO&rsquo;s own &ldquo;peak interest cost&rdquo; guidance was inconsistent across two calls (&#8377;300 Cr/year at the Q4FY26 call in May 2026 vs &#8377;450 Cr/year at the Q1FY27 call in August 2026, for what was described as broadly the same IPP capacity build), a discrepancy this report flags rather than resolves.</div>
+      </div>
+
+      <h3>&ldquo;Cash profit&rdquo; &mdash; a legitimate but partial counter-argument</h3>
+      <p>Management&rsquo;s preferred non-GAAP metric, &ldquo;cash profit&rdquo; (PAT + depreciation), grew a much healthier +6% YoY in Q1&nbsp;FY27 (&#8377;176&nbsp;Cr vs &#8377;163&nbsp;Cr), against PAT&rsquo;s &minus;14%. Depreciation genuinely is a non-cash charge on 25-year assets, and the argument that PAT understates near-term cash generation during a capex ramp has real merit &mdash; but it does not neutralise the interest-cost problem (a real cash cost), and it does not change the fact that PAT, not cash profit, is what determines EPS, dividend cover and the per-share value a shareholder actually owns. Both figures are presented here rather than only the one management foregrounds.</p>
+
+      <h3>Cost-pressure commentary: EPC margins vs. sister company KP Energy</h3>
+      <p>On the Q1&nbsp;FY27 call, an analyst noted that KP Energy Limited&rsquo;s (the separately-listed sister EPC company) EBITDA margin had fallen sharply, from 22% to 12%, versus KPI Green&rsquo;s own much smaller ~300bps of margin pressure in the same period. Management&rsquo;s explanation: KP Energy is a pure EPC business with no IPP-segment cost-sharing cushion, whereas ~17&ndash;18% of KPI Green&rsquo;s own revenue now comes from the much higher-margin IPP segment, diluting the impact of the same input-cost inflation (steel, cables, logistics, cranes) both companies describe facing. This is a plausible, mechanically consistent explanation, and the magnitude gap (10 points vs 3 points of margin pressure) is large enough that it is worth independently verifying against KP Energy&rsquo;s own filings before treating it as fully resolved &mdash; outside this report&rsquo;s scope, but flagged for a reader tracking the wider KP Group.</p>
+
+      <h3>Forward margin guidance</h3>
+      <p>As noted in &sect;03, the FY27 PAT-margin guidance of 16&ndash;18% (carried over from the earlier 17&ndash;19% FY26 guide) was explicitly walked back on the Q1&nbsp;FY27 call with no replacement number given, only that &ldquo;H2 will cover a portion&rdquo; of the shortfall and the &ldquo;full benefit&rdquo; would not show until FY28. EBITDA margin guidance has been more stable: management continues to target a blended 32&ndash;37% band depending on the IPP/CPP mix (IPP EBITDA margin 85&ndash;90%, CPP/EPC 16&ndash;22%), which is broadly consistent with what has actually been delivered across all eight quarters in this dataset.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">A genuine, well-disclosed capex programme funded by a mix of debt, a green bond, a QIP and a warrant issue &mdash; but net debt/EBITDA has more than doubled in a single year, and the debt-to-equity ratio management repeatedly cites as &ldquo;comfortable&rdquo; tells a materially rosier story than net debt/EBITDA does.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity (incl. minority interest)</td><td>257.92</td><td>835.68</td><td>2,629.79</td><td>3,273.35</td></tr>
+            <tr><td>Total debt</td><td>675.51</td><td>1,036.47</td><td>1,474.87</td><td class="neg">5,196.95</td></tr>
+            <tr><td>Net debt</td><td>508.94</td><td>777.62</td><td>1,006.10</td><td class="neg">4,416.37</td></tr>
+            <tr><td>Net debt / EBITDA</td><td>2.45x</td><td>2.30x</td><td>1.73x</td><td class="neg">4.39x</td></tr>
+            <tr><td>Fixed assets</td><td>n/a</td><td>n/a</td><td>2,524</td><td>5,427</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet (total debt, net debt, equity) cross-checked against the company&rsquo;s own investor-presentation balance-sheet summary for FY25/FY26 net worth and fixed assets (which agree). Net debt/EBITDA computed per Fundamental_Analysis.md conventions using the &sect;01 EBITDA series. Note: the company&rsquo;s own Q4FY25 earnings call cited a lower FY25 total-debt figure (&#8377;1,125.48&nbsp;Cr, D/E 0.43x) than the &#8377;1,474.87&nbsp;Cr used here from yfinance&rsquo;s standardised balance sheet &mdash; likely a lease-liability or other classification difference between the two sources; both are legitimate readings of the same underlying accounts and the direction of the FY26 leverage spike is unaffected either way, but the absolute FY25 debt figure should be treated as approximate within roughly this range rather than precise to the rupee.</caption>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Net debt/EBITDA more than doubled in FY26, even as leverage had been genuinely improving through FY23&ndash;FY25</b>The trend from FY23 to FY25 was a real de-risking story: net debt/EBITDA fell from 2.45x to 1.73x as the September&nbsp;2024 &#8377;1,000&nbsp;Cr QIP was partly used to repay debt (management&rsquo;s own framing on the Q2&nbsp;FY25 call). FY26 reversed this sharply: total debt roughly tripled (&#8377;1,475&nbsp;Cr&rarr;&#8377;5,197&nbsp;Cr) as the IPP capex programme drew down the &#8377;3,200&nbsp;Cr SBI facility, the &#8377;670&nbsp;Cr green bond, a &#8377;979&nbsp;Cr Canara Bank facility and the Feb-2026 warrant issue, pushing net debt/EBITDA to 4.39x. Management&rsquo;s own commentary consistently frames leverage via the debt-to-equity ratio (guided as &ldquo;comfortable,&rdquo; with a stated ceiling of &ldquo;3:1 max&rdquo; on the Q1FY27 call) rather than net debt/EBITDA &mdash; the D/E ratio benefits from the rapidly-growing equity base (QIP, warrants, retained earnings) in the denominator in a way net debt/EBITDA does not, and the two measures now tell visibly different stories about how levered the balance sheet actually is.</div>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>The FY25 Annual Report itself states three different debt-to-equity figures for the same year</b>The front-matter highlights cite FY25 D/E of 0.33x; a KPI summary table elsewhere in the same document shows 0.43x; and the MD&amp;A&rsquo;s own statutory ratio-disclosure table (which pairs FY25 at 0.61x against FY24 at 1.05x, with the explanatory note &ldquo;decreased due to increase in equity&rdquo;) gives a third figure. All three appear in the company&rsquo;s own audited FY25 Annual Report. This report treats the MD&amp;A statutory table&rsquo;s 0.61x as the most defensible single figure (it is the one paired with a like-for-like FY24 comparator and an explanation), but flags the inconsistency itself as a genuine disclosure-quality issue, distinct from (though similar in kind to) the FY26 net-worth basis difference noted in the coverage note above &mdash; a reader relying on any single number pulled from this company&rsquo;s own materials should check which table it came from.</div>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Standalone ROE actually declined in FY25, even as PAT grew 143%</b>Per the FY25 Annual Report&rsquo;s own MD&amp;A ratio table, standalone return on equity fell from 13.86% (FY24) to 12.64% (FY25), and standalone operating margin compressed from 27.29% to 23.52% &mdash; both moving the wrong direction in the same year absolute PAT grew fastest (standalone PAT +143% YoY per the same report). The mechanical explanation is straightforward and not necessarily concerning on its own: the September-2024 &#8377;1,000&nbsp;Cr QIP plus a 1:2 bonus issue expanded the equity base faster than profit grew that year, mechanically diluting ROE even as absolute returns to the business improved. But it is a concrete, sourced illustration of a pattern worth watching as the FY26 capex programme continues: rapid growth in absolute profit does not automatically mean per-unit-of-capital returns are improving, particularly for a company that has now also taken on substantially more debt (&sect;05, above) on top of the equity dilution already seen.</div>
+      </div>
+
+      <h3>How the capex has been funded</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">QIP (Sep 2024)</div><div class="v">&#8377;1,000 Cr</div><div class="d">Morgan Stanley, Goldman Sachs, BofA, Societe Generale, Motilal Oswal, Okoworld</div></div>
+        <div class="stat"><div class="k">SBI term-loan sanction</div><div class="v">&#8377;3,200 Cr</div><div class="d">for the 250 MW + 370 MW GUVNL IPP projects; largest-ever KP Group sanction</div></div>
+        <div class="stat"><div class="k">Green bond (NCD)</div><div class="v">&#8377;670 Cr</div><div class="d">5-yr, 8.50% coupon, 65% GuarantCo partial guarantee, AA+(CE) CRISIL/ICRA &mdash; India&rsquo;s first externally credit-enhanced issuance of its kind</div></div>
+        <div class="stat"><div class="k">Canara Bank facility</div><div class="v">&#8377;979 Cr</div><div class="d">150 MW wind project, 75:25 debt:equity, 25-yr GUVNL PPA</div></div>
+        <div class="stat"><div class="k">Warrant preferential issue (Feb 2026)</div><div class="v">&#8377;475 Cr</div><div class="d">only 25% (&#8377;118.75 Cr) received upfront as of Jun-2026; balance due over 18 months</div></div>
+      </div>
+      <p>The February-2026 warrant issue (1.01 Cr convertible warrants at &#8377;470.30 each) allocated proceeds to IPP-project development (&#8377;237.5 Cr), working capital (&#8377;118.75 Cr) and general corporate purposes (&#8377;118.75 Cr). The independent monitoring agency, India Ratings &amp; Research, reported <b>&ldquo;no deviation from the objects&rdquo;</b> and full utilisation of the received IPP-object tranche within the quarter it was received &mdash; a clean pass on fund-utilisation discipline, in contrast to some peer companies&rsquo; monitoring-agency reports that flag vendor concentration or capex-object slippage. As of 30&nbsp;June&nbsp;2026, &#8377;356.25&nbsp;Cr of the &#8377;475&nbsp;Cr issue size remained uncalled from warrant holders.</p>
+
+      <h3>Working capital: receivable and inventory days both rising</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th></th><th>Q1FY26</th><th>Q4FY26</th><th>Q1FY27</th></tr></thead>
+          <tbody>
+            <tr><td>Debtor days (consolidated)</td><td>86.3</td><td>99.8</td><td class="neg">107.1</td></tr>
+            <tr><td>Inventory days (consolidated)</td><td>131.4</td><td>263.1</td><td class="neg">327.8</td></tr>
+            <tr><td>Total debt / total assets (standalone)</td><td>0.31</td><td>0.52</td><td class="neg">0.57</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: quarterly financial-results filings, Regulation 52(4) additional-information ratio tables.</caption>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Inventory days have more than doubled in a year &mdash; management&rsquo;s explanation is plausible but the magnitude still warrants a flag</b>Management attributes the inventory build (131&rarr;328 days, consolidated) to a deliberate hedge against &ldquo;geopolitical&rdquo; component-availability risk &mdash; pre-buying panels, turbines, steel and cables ahead of price/availability disruption, and pointed to Q1&nbsp;FY26 inventory having &ldquo;come down to some extent&rdquo; sequentially by the Q1&nbsp;FY27 call. That is a coherent story for a capex-heavy IPP build-out, and it is corroborated by the same &ldquo;geopolitical conditions&rdquo; language used to explain the margin and billing-delay issues in &sect;03&ndash;04. But a 2.5x increase in inventory days within twelve months is large by any standard, and debtor days rising at the same time revenue growth is decelerating (rather than accelerating) is the specific combination the skill&rsquo;s working-capital checks flag as worth independent scrutiny rather than accepting management&rsquo;s framing outright.</div>
+      </div>
+
+      <h3>Zero standalone net debt (Sep 2024) &mdash; a since-reversed milestone</h3>
+      <p>As of 30&nbsp;September&nbsp;2024 (Q2&nbsp;FY25), the company reported a zero net-debt position on a standalone basis, following the &#8377;1,000&nbsp;Cr QIP. This was a genuine, verifiable milestone at the time, and management cited it explicitly as evidence of financial discipline. It has since been fully reversed by the FY26 capex programme (standalone debt/total-assets ratio 0.57x as of Q1&nbsp;FY27, above) &mdash; not a criticism of the earlier claim, but a reminder that balance-sheet snapshots in a fast-growing, capital-intensive business date quickly and should not be extrapolated forward.</p>
+
+      <h3>Forward capex plans</h3>
+      <p>Management has guided a cumulative IPP investment of &ldquo;&#8377;5,000&ndash;6,000 Cr&rdquo; through FY27/28 (Q1&nbsp;FY27 call), on top of the &ldquo;~&#8377;4,000 Cr&rdquo; figure guided a year earlier (Q4&nbsp;FY25 call) for the 1.5&nbsp;GW IPP tranche then in progress &mdash; broadly consistent scaling given the portfolio has grown since, though the two figures are not a clean apples-to-apples guidance track given the shifting capacity base each referred to. No annual report or MD&amp;A-level multi-year capex table was available to cross-check these figures against (see coverage note).</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Cash from operations has grown faster than PAT at the full-year level for the last two years running &mdash; a clean pass on the skill&rsquo;s core earnings-quality check &mdash; but FY24 saw operating cash flow turn negative even as PAT grew, and free cash flow has been negative in every year on record as the capex programme has scaled.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT (total, incl. minority)</td><td>109.63</td><td>161.66</td><td>319.58<sup>&dagger;</sup></td><td>476.13<sup>&dagger;</sup></td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>159.38</td><td class="neg">&minus;57.49</td><td>207.73</td><td>424.07</td></tr>
+            <tr><td>Capex</td><td>&minus;311.86</td><td>&minus;186.64</td><td>&minus;1,505.07</td><td>&minus;3,035.07</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="neg">&minus;152.48</td><td class="neg">&minus;244.13</td><td class="neg">&minus;1,297.33</td><td class="neg">&minus;2,611.01</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>1.45x</td><td class="neg">&minus;0.36x</td><td>0.65x</td><td>0.89x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement; parent-attributable PAT used for the conversion ratio (&dagger; yfinance &ldquo;Net Income,&rdquo; parent-only) since CFO in Ind-AS consolidated accounts is a parent-plus-subsidiaries measure most comparably read against parent-attributable, not total, PAT. No quarterly cash-flow statement exists in the source data (overview.md explicitly states this), so Q1FY27&rsquo;s cash conversion cannot be independently checked against the reported PAT decline.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>FY24&rsquo;s CFO/PAT divergence is a genuine historical earnings-quality flag, since resolved but worth remembering</b>In FY24, PAT grew a strong 47% YoY (&#8377;110&nbsp;Cr&rarr;&#8377;162&nbsp;Cr per the total-PAT series) while cash from operations turned <b>negative</b> (&minus;&#8377;57.49&nbsp;Cr), a conversion ratio of &minus;0.36x &mdash; exactly the CFO/PAT divergence pattern the skill&rsquo;s earnings-quality check is designed to catch. The mechanical driver, per yfinance&rsquo;s working-capital breakdown, was a large working-capital build (&minus;&#8377;375&nbsp;Cr change in working capital that year) consistent with a company scaling revenue 60%+ YoY on milestone-billed EPC contracts. CFO has since recovered strongly (FY25 &#8377;208&nbsp;Cr, FY26 &#8377;424&nbsp;Cr, both comfortably ahead of the prior year), and FY26&rsquo;s CFO growth (+104% YoY) actually outpaced PAT growth (+57% to +49% depending on which PAT base is used) &mdash; a clean pass at the most recent full-year data point. But the FY24 episode is a reminder that this business&rsquo;s cash conversion can diverge materially from its reported profit in a single working-capital-heavy year, and the rising receivable/inventory days documented in &sect;05 are the leading indicators worth watching for a repeat.</div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>A specific, dated instance of management stating something the company&rsquo;s own later audited numbers contradict</b>On the Q3&nbsp;FY25 earnings call (Feb&nbsp;2025), when asked about cash generation, the CFO stated that &ldquo;last year also cash flows were positive&rdquo; &mdash; referring to FY24. The company&rsquo;s own audited FY25 financial-results filing (published three months later, May&nbsp;2025) shows FY24 cash from operations was in fact <b>&minus;&#8377;57.49&nbsp;Cr</b>, i.e. negative, exactly the figure in the table above. This is a small, specific, easily-checked instance of a management statement on a live call being directly contradicted by the same company&rsquo;s own subsequently-published audited numbers &mdash; not necessarily deliberate misstatement (FY24 numbers were provisional/unaudited at the time of the Q3&nbsp;FY25 call), but the kind of concrete data point that should raise the bar for how literally other unaudited claims made on the same calls are taken, including the growth and margin guidance discussed throughout this report.</div>
+      </div>
+
+      <p><b>Free cash flow has been negative in every year shown</b> (FY23&ndash;FY26), and has worsened every year as the capex programme has scaled &mdash; from &minus;&#8377;152&nbsp;Cr in FY23 to &minus;&#8377;2,611&nbsp;Cr in FY26. This is expected, and arguably appropriate, for a company deliberately building a 25-year annuity asset base with debt and equity raised specifically for that purpose (&sect;05) &mdash; it is not, on its own, an earnings-quality problem in the way the FY24 CFO/PAT divergence was. But it does mean the business remains structurally dependent on external capital (debt and equity markets) rather than self-funding, and management&rsquo;s own framing of cash generation on calls (CFO growth, &ldquo;cash profit&rdquo;) never engages with free cash flow directly &mdash; a gap in how the story is told, even if the underlying capex is genuinely productive.</p>
+
+      <h3>Management commentary and forward cash-flow guidance</h3>
+      <p>On the Q4&nbsp;FY26 call, management stated that &ldquo;roughly 44&ndash;45% of declared EBITDA has been delivered as cash flow&rdquo; and argued that the IPP segment specifically improves cash conversion going forward because, unlike CPP/EPC, it &ldquo;does not require any working capital&rdquo; once operational &mdash; a reasonable structural argument, though it is in some tension with the rising inventory/receivable days documented in &sect;05, which are driven by the CPP/EPC side of the business that still generates 83% of revenue. On the Q1&nbsp;FY27 call, the CFO offered an informal, unaudited estimate of the quarter&rsquo;s own operating cash flow (&ldquo;PAT around &#8377;94&nbsp;Cr plus depreciation of around &#8377;45&nbsp;Cr, so approximately &#8377;140&ndash;150&nbsp;Cr&rdquo;) &mdash; a rough PAT-plus-D&amp;A proxy rather than an actual cash-flow-statement figure, since no quarterly CFO statement is published or exists in this dataset.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">A same-day CFO transition, a credibly credentialed new Whole-Time Director, an auditor upgrade to a BDO member firm &mdash; alongside a related-party acquisition, a repeatedly-slipped subsidiary IPO, and a director re-appointment that institutional shareholders only narrowly supported.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Dr. Faruk G. Patel</div>
+          <div class="role">Chairman &amp; Managing Director; Promoter</div>
+          <div class="bio">Founded the wider KP Group in 1994 as a first-generation entrepreneur. The single most-quoted voice on growth guidance in this dataset, largely via media interviews relayed on calls by the CFO rather than direct on-call commentary &mdash; the pattern of his public growth commitments running ahead of what the CFO can defend on calls is a recurring theme (&sect;03).</div>
+        </div>
+        <div class="person">
+          <div class="name">Prof. Sunil Kumar Maheshwari</div>
+          <div class="role">Vice-Chairman, Non-Executive Director (appointed 3 Jul 2026)</div>
+          <div class="bio">Former Professor of HR Management &amp; Strategy at IIM Ahmedabad, former Dean (Alumni &amp; External Relations); entered public service via the Indian Railway Personnel Service (Civil Services 1988); has advised organisations across power, energy, infrastructure and banking. Governance-focused addition, not operationally executive.</div>
+        </div>
+        <div class="person">
+          <div class="name">Rajesh Shrivastava</div>
+          <div class="role">Whole-Time Director (appointed ~Jul 2026, postal ballot 27 Jul 2026, 100% promoter support)</div>
+          <div class="bio">37 years across power, infrastructure and renewables, including Reliance New Energy, Aditya Birla Renewables, Adani Green Energy, Toshiba JSW Power Systems and NTPC &mdash; associated with 30+ GW of power projects. Gold Medallist in Civil Engineering, M.Tech IIT Bombay, executive education at INSEAD. A directly relevant, credible addition to the board given the IPP scale-up underway.</div>
+        </div>
+        <div class="person">
+          <div class="name">Mohmed Sohil Dabhoya</div>
+          <div class="role">Whole-Time Director (DIN 07112947)</div>
+          <div class="bio">The board member who signs the great majority of BSE filings reviewed in this dataset across the entire period covered &mdash; the most operationally consistent signatory on the board.</div>
+        </div>
+        <div class="person">
+          <div class="name">Dr. Alok Das</div>
+          <div class="role">Group Chief Executive Officer</div>
+          <div class="bio">The primary technical/operational voice on earnings calls alongside the CFO, fielding sector-policy and project-execution questions (curtailment, REIA/SECI consolidation, BESS mandates).</div>
+        </div>
+        <div class="person">
+          <div class="name">Salim S. Yahoo <span style="font-weight:400;color:var(--ink-mute);">(departed)</span></div>
+          <div class="role">Former Chief Financial Officer &mdash; resigned 11 Aug 2026</div>
+          <div class="bio">Signed every quarterly result reviewed in this dataset through Q1&nbsp;FY27. Stated reason on the earnings call: &ldquo;stepping away due to personal family commitments.&rdquo; The most quoted management voice across every earnings call in this dataset &mdash; his departure coincides exactly with the weakest quarter (Q1&nbsp;FY27) and the guidance walk-back covered in &sect;03&ndash;04.</div>
+        </div>
+        <div class="person">
+          <div class="name">Kapil Kriplani <span style="font-weight:400;color:var(--ink-mute);">(incoming)</span></div>
+          <div class="role">Group Chief Financial Officer, effective 11 Aug 2026</div>
+          <div class="bio">21 years&rsquo; experience including Glenmark Pharmaceuticals, Reliance Capital and Vedanta. Appointed the same day Salim Yahoo&rsquo;s resignation was filed &mdash; a clean, no-vacancy handover, in contrast to companies that leave the CFO seat open for months. First earnings call was Q1&nbsp;FY27&rsquo;s own results call, where he spoke only briefly in closing remarks.</div>
+        </div>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Board composition (per the FY25 Annual Report)</b>Ten members, 60% independent by the company&rsquo;s own classification: independent directors Venu Birappa, Satya Gopal (appointed 11&nbsp;Mar&nbsp;2025), Sharadchandra Patil, Dr.&nbsp;Tejpalsingh Bisht, CA Shanker Baheria and Prof.&nbsp;Moh.&nbsp;Hanif Dalchawal, plus non-executive directors Amit Khandelwal and Adv.&nbsp;Bhadrabala Joshi. The board met 19 times and board committees met 25 times in FY25 &mdash; a reasonably active governance cadence. No board resignations occurred in FY25; the year&rsquo;s changes were additive (Satya Gopal&rsquo;s appointment, Dabhoya&rsquo;s WTD reappointment for a fresh 5-year term, and the hiring of Dr.&nbsp;Alok Das as Group CEO and Surinder Kumar Negi as COO, both new roles/hires that year). The Corporate Governance Report states explicitly that there is &ldquo;no inter-se relationship between the directors&rdquo; &mdash; true on its narrow terms (no two board members are related to each other) &mdash; but the related-party note in the same annual report discloses numerous transactions with &ldquo;Relative of KMP&rdquo; family members (Patel family: Gulammahmad Alibhai, Rashida, Aayesha, Vahida, Umar, Zara, Hassan and Affan Patel; also members of the Dabhoya family), a promoter-family transaction pattern that the narrow &ldquo;no inter-se relationship between directors&rdquo; framing does not really address. Full independent-director tenure/DIN detail was not extracted from the annual report in the time available.</div>
+      </div>
+
+      <h3>Related-party transactions: a materially concentrated flow of business, and a doubled personal royalty to the promoter</h3>
+      <p>The FY25 Annual Report&rsquo;s related-party note (standalone basis, against standalone revenue of &#8377;1,592&nbsp;Cr) discloses a scale of intra-group dealing well beyond routine: KPI <b>sold</b> &#8377;246.75&nbsp;Cr of goods/services to K.P.&nbsp;Energy Ltd (versus just &#8377;0.71&nbsp;Cr in FY24 &mdash; a more-than-300x jump), &#8377;261.88&nbsp;Cr to subsidiary Sun Drops Energia, and &#8377;143.97&nbsp;Cr to wholly-owned subsidiary KPIG Energia &mdash; combined related-party sales of roughly <b>&#8377;653&nbsp;Cr, or about 41% of standalone revenue</b>. In the other direction, KPI <b>purchased</b> &#8377;269.93&nbsp;Cr of goods/services plus a new &#8377;305.14&nbsp;Cr of capital goods (zero in FY24) from K.P.&nbsp;Energy Ltd, and &#8377;141.29&nbsp;Cr of capital goods from KP Green Engineering Limited &mdash; combined related-party purchases of roughly <b>&#8377;716&nbsp;Cr</b>. Separately, and worth flagging on its own terms: KPI paid a <b>royalty of &#8377;23.67&nbsp;Cr to Chairman &amp; promoter Dr.&nbsp;Faruk&nbsp;G.&nbsp;Patel personally in FY25, roughly double the &#8377;11.64&nbsp;Cr paid in FY24</b>; the annual report does not specify what intellectual property or asset this royalty compensates for. The company states all related-party transactions are conducted at arm&rsquo;s length and in the ordinary course of business, and states that Section&nbsp;188(1) of the Companies Act (requiring board/shareholder approval for certain related-party contracts) does not apply and that Form&nbsp;AOC-2 disclosure is accordingly not required.</p>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>This is the most significant governance flag in this report</b>Roughly 41% of standalone revenue flowing to related parties, a personal royalty to the promoter that doubled in a single year with no stated basis, and capital-goods purchases from a promoter-controlled sister company that went from zero to &#8377;305&nbsp;Cr YoY are, individually and collectively, well beyond what &ldquo;ordinary course of business at arm&rsquo;s length&rdquo; typically implies for a company of this size. None of this is necessarily improper &mdash; a genuinely integrated, common-promoter group can legitimately transact heavily with itself, and the company&rsquo;s statutory auditor issued an unmodified opinion covering these transactions (below) &mdash; but the concentration and the unexplained royalty jump are exactly the kind of related-party pattern this skill&rsquo;s methodology requires be surfaced explicitly rather than accepted on the company&rsquo;s own &ldquo;arm&rsquo;s length&rdquo; characterisation. Separately, the company was fined &#8377;5,900 by each stock exchange for a one-day-delayed related-party disclosure relating to prior periods &mdash; a minor item in isolation, but consistent with related-party disclosure being an area of demonstrated friction, not just volume.</div>
+      </div>
+      <p>Adding to this picture: subsidiary Sun Drops Energia&rsquo;s board approved a private placement of shares <b>to Dr.&nbsp;Faruk&nbsp;Patel personally</b> on 11&nbsp;Oct&nbsp;2024, diluting KPI Green&rsquo;s own stake and converting Sun Drops from a wholly-owned to a non-wholly-owned subsidiary &mdash; a second instance, alongside the &sect;02 DEK/Mavericks acquisition (also a Sun Drops-level, promoter-linked transaction, disclosed nearly two years later), of the promoter taking a direct personal equity position inside a KPI Green subsidiary rather than at the listed-company level.</p>
+
+      <h3>Contingent liabilities and the auditor&rsquo;s key audit matters</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Contingent liabilities (FY25)</div><div class="v pos">&#8377;0.88 Cr</div><div class="d">standalone and consolidated, unchanged YoY &mdash; two disputed income-tax demands under appeal, no guarantees or other litigation</div></div>
+        <div class="stat"><div class="k">Auditor opinion</div><div class="v">Unmodified</div><div class="d">K A Sanghavi &amp; Co LLP, both standalone and consolidated FY25</div></div>
+      </div>
+      <p>On the positive side of the ledger: contingent liabilities are genuinely small and clean (&#8377;0.88&nbsp;Cr, roughly 0.05% of revenue, entirely two disputed income-tax demands for AY14-15 and AY15-16, with no bank guarantees, corporate guarantees or other pending litigation disclosed) &mdash; a real, sourced positive that should be weighed alongside the related-party flags above rather than lost beneath them. The auditor&rsquo;s key audit matters flag two specific areas of judgement: on the <b>standalone</b> financial statements, the impairment assessment of &#8377;206.6&nbsp;Cr of investments in, and &#8377;131.1&nbsp;Cr of loans to, subsidiaries (a matter directly relevant given the scale of intra-group activity documented above); and on the <b>consolidated</b> financial statements, revenue recognition for unbilled power sales, which are estimated monthly ahead of formal confirmation from the state transmission utility (GETCO). No fraud was reported by the auditor under Section&nbsp;143(12) of the Companies Act, and the secretarial audit was also unqualified.</p>
+
+      <h3>A gap in the company&rsquo;s own disclosed risk factors</h3>
+      <p>The FY25 Annual Report&rsquo;s own risk-factors disclosure covers supply chain, land acquisition for transmission infrastructure, market competition, climate/seasonal dependency, project execution and regulatory/policy change &mdash; but does not list <b>customer concentration</b> or <b>grid-connectivity/evacuation delay</b> as standalone risk categories, despite the related-party sales concentration documented above and the GSECL/government-substation evacuation delays management itself discussed at length on the Q4&nbsp;FY26 call (&sect;03, the Khavda revenue-recognition delay). This is a gap between what the company discloses as risk and what its own transaction and operational record shows, worth noting rather than assuming is immaterial.</p>
+
+      <h3>Auditor transition: a mid-year upgrade to a BDO member firm</h3>
+      <p>K&nbsp;A&nbsp;Sanghavi &amp; Co LLP served as statutory auditor through every quarter reviewed in this dataset, issuing an unmodified/clean review conclusion each time (&ldquo;Emphasis of Matter &mdash; No such thing requires to be mentioned&rdquo; is the standard boilerplate used every quarter without exception), and the FY25 annual audit opinion was likewise unmodified. On 11&nbsp;Aug&nbsp;2026, the board approved <b>MSKC &amp; Associates LLP, a member firm of BDO International</b>, as the new statutory auditor for a 5-year term (through the 2031 AGM), subject to shareholder approval at the ensuing AGM. The outgoing CFO framed this explicitly as a governance-improvement step on the Q1&nbsp;FY27 call (&ldquo;we have added BDO, which is one of the top 5&hellip; a very positive action to increase the confidence of stakeholders&hellip; lenders and everything&rdquo;), a framing this report treats as a genuine positive step rather than routine rotation, given the timing alongside the CFO transition and growing debt-investor base (the green bond, SBI facility) that would benefit from a larger-network audit signature &mdash; and, this report would add, given the scale of related-party activity a larger, more internationally-networked audit firm may be better resourced to scrutinise.</p>
+
+      <h3>The DEK/Mavericks related-party acquisition</h3>
+      <p>As detailed in &sect;02, the 21&nbsp;Aug&nbsp;2026 acquisition of DEK and Mavericks Green Energy Limited by subsidiary Sun Drops Energia is explicitly disclosed as a related-party transaction because promoter Dr.&nbsp;Faruk&nbsp;G.&nbsp;Patel personally holds 8.95% of the target&rsquo;s equity. The company states the deal was priced &ldquo;at arm&rsquo;s length&rdquo; per an independent registered valuer&rsquo;s report (Abhishek Chhajed, IBBI-registered) dated the day before the transaction was announced. This is properly disclosed under SEBI&rsquo;s related-party rules and the target company&rsquo;s own growth (revenue roughly 7x from FY24 to FY26) gives it plausible commercial logic &mdash; but a promoter-linked counterparty, paid entirely in convertible preference shares of a subsidiary rather than cash, fits the wider pattern documented above of related-party structuring happening one level below the listed entity, and this report flags it rather than clears it.</p>
+
+      <h3>Institutional ownership and the Sun Drops IPO that keeps slipping</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Promoter/insider holding</div><div class="v">54.85%</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">5.29%</div><div class="d">21 institutions, per yfinance</div></div>
+        <div class="stat"><div class="k">Institutional support, Birappa re-appointment</div><div class="v">51.52%</div><div class="d">vs. near-unanimous promoter support (&sect;02)</div></div>
+      </div>
+      <p>Management has repeatedly named marquee-sounding institutional holders on earnings calls &mdash; Vanguard, the Abu Dhabi Investment Authority, Okoworld, a pension fund, and (per a mid-call correction on the Q1&nbsp;FY27 transcript, initially misspoken as &ldquo;Blackstone&rdquo;) BlackRock &mdash; in response to a retail investor&rsquo;s question about the stock&rsquo;s underperformance and thin institutional support. These names may well be accurate as individual line items, but they sit awkwardly against the dataset&rsquo;s own aggregate figure of just 5.29% institutional holding across 21 institutions &mdash; a gap between the narrative of a broad, high-quality institutional base and the thin actual float-based holding percentage that this report flags rather than reconciles.</p>
+      <p>Subsidiary <b>Sun Drops Energia&rsquo;s</b> IPO/DRHP has been guided as imminent on every call since May&nbsp;2025 (&ldquo;most probably by end of this financial year,&rdquo; Q4&nbsp;FY25 call; &ldquo;most probably next financial year,&rdquo; Q2&nbsp;FY26 call; &ldquo;shortly&hellip; this financial year,&rdquo; Q4&nbsp;FY26 call) without a DRHP being filed as of this report&rsquo;s date &mdash; a repeated, never-firmly-dated slippage pattern, distinct from (and arguably more concerning than) the growth-guidance cuts in &sect;03 because it involves the same specific commitment being repeated rather than a number being explicitly revised down.</p>
+
+      <h3>Promoter share pledge</h3>
+      <p>Roughly 50% of promoter shareholding remains pledged as collateral for pre-IPO project financing with SBI. Unlike the growth and IPO guidance above, this specific commitment has held steady rather than slipped further: &ldquo;awaiting confirmation&rdquo; with no firm date at the Q4&nbsp;FY25 call (May&nbsp;2025) firmed to &ldquo;by March 2027&rdquo; at the Q2&nbsp;FY26 call (November&nbsp;2025) and was reiterated, not revised, at the Q4&nbsp;FY26 call (May&nbsp;2026) &mdash; a rare example in this dataset of a management commitment becoming more precise over time rather than less.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other conference-call insights worth noting</h2></div>
+      <p class="sec-dek">A cancelled EPC order handled transparently, an unexplained market-cap decline through Q3 FY26, and management&rsquo;s own framing of why the stock has fallen even as reported profit has kept growing.</p>
+
+      <h3>The Sai Bandhan Infinium order cancellation (Q4 FY25 call)</h3>
+      <p>An investor asked directly about a BSE filing disclosing the cancellation of a 66&nbsp;MW EPC order from Sai Bandhan Infinium. Management&rsquo;s explanation: this was an EPC/CPP contract, not an IPP project (i.e., no long-term PPA was at risk), cancelled by KPI itself after the end-customer changed the plant design and failed to achieve financial closure for the project. This is a useful data point on execution risk in the CPP/EPC book specifically &mdash; orders can and do fall away when a customer&rsquo;s own financing falls through &mdash; and management&rsquo;s willingness to explain a cancellation in detail on a live call, unprompted by a scripted answer, reads as a genuine transparency positive rather than evasiveness.</p>
+
+      <h3>Q3 FY26&rsquo;s unexplained items &mdash; a real analytical gap</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>No management commentary exists anywhere in this dataset for Q3 FY26</b>, because the earnings-call transcript file for that quarter is corrupted (a BSE website 404 error page saved as the transcript PDF, independently confirmed rather than assumed). Three items from that quarter have no management explanation available as a result: (1) <b>market capitalisation fell</b> from &#8377;10,646&nbsp;Cr (Q1&nbsp;FY26) to &#8377;10,090&nbsp;Cr (Q2) to &#8377;8,733&nbsp;Cr (Q3) &mdash; a ~18% decline over two quarters &mdash; despite PAT growing every quarter in the same window; (2) <b>interest cost jumped 227% YoY</b> in Q3&nbsp;FY26 specifically, a sharper single-quarter acceleration than the surrounding quarters show; and (3) <b>hybrid-portfolio CUF (capacity utilisation factor) dipped</b> from 52.34% (Q2&nbsp;FY26) to 48.7% (Q3&nbsp;FY26), a operating-performance metric moving the wrong direction with no stated cause. None of these are necessarily red flags on their own &mdash; CUF dips seasonally, market cap moves on sentiment as much as fundamentals, and interest-cost timing depends on disbursement schedules &mdash; but the complete absence of management commentary for this specific quarter is itself a genuine coverage gap that a reader should weigh, not assume away.</div>
+      </div>
+
+      <h3>Management&rsquo;s own explanation for the share-price underperformance</h3>
+      <p>Asked directly, twice, across two different calls (Q4&nbsp;FY26 and Q1&nbsp;FY27) why the stock has fallen roughly 60% from its highs while reported growth has stayed strong, management&rsquo;s answer has been consistent: broader &ldquo;geopolitical&rdquo; sector de-rating affecting the whole renewable-energy space, not a company-specific issue, plus reassurance that the promoter continues buying shares and that institutional holders remain invested (the names cited in &sect;07). Neither call addressed the guidance-cut pattern (&sect;03) or the leverage acceleration (&sect;05) directly as a possible contributor to the de-rating, which this report&rsquo;s own numbers suggest is at least as plausible an explanation as sector-wide sentiment.</p>
+
+      <h3>Stock splits: four in roughly two years</h3>
+      <p>The company executed stock splits in January 2023 (2:1), February 2024 (1.5:1), July 2024 (2:1) and January 2025 (1.5:1) &mdash; a cumulative ~9x increase in share count over roughly two years, purely a cosmetic/liquidity action that does not itself dilute per-share value. This is relevant context for management&rsquo;s own repeated framing of the stock having delivered &ldquo;100x returns&rdquo; to early shareholders (Q1&nbsp;FY27 call) &mdash; a claim about total value creation that is directionally supportable given the underlying profit growth in &sect;01, but the split-adjusted share count means per-share price appreciation alone understates how much of that 100x is genuinely fundamental growth versus how retail-friendly the resulting low absolute share price has made the stock for momentum trading.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">No formal sell-side ratings or price targets found in this dataset &mdash; the closest thing to independent scrutiny is a recurring cast of boutique brokerages, PMS funds and family offices asking pointed questions on every call.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analyst recommendation</div><div class="v">None</div><div class="d">yfinance recommendationKey: &ldquo;none&rdquo;</div></div>
+        <div class="stat"><div class="k">Price targets</div><div class="v">N/A</div><div class="d">no low/mean/median/high target available</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">5.29%</div><div class="d">21 institutions on record</div></div>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>A skeptical buy-side audience exists, even without formal published coverage</b>Earnings calls are consistently moderated by boutique broking/institutional-equities firms (Share India Securities, Anand Rathi Institutional Equities, Ernst&nbsp;&amp;&nbsp;Young as call coordinator) and attended by a recurring roster of PMS funds, family offices and individual investors (Plus91 Asset Management, K16 Advisors, Nvest Analytical Advisors, PINC Wealth, IndoAlps Wealth, Seven Alpha Investors, RH PMS, Antara Capital, Serene Alpha, AYM Investments, among others) who have repeatedly pressed management on guidance credibility, EPS dilution, ROE/ROCE decline, working-capital build and the gap between reported growth and share-price performance &mdash; several of the specific findings in this report (the guidance-cut pattern, the CPP-execution-vs-guidance mismatch, the inventory build) were first surfaced by these participants&rsquo; direct questions on calls, not volunteered by management. This is a real, if informal, form of market scrutiny, but it is not a substitute for published sell-side estimates, ratings or price targets, none of which exist in the data reviewed for this report.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock trading near 52-week lows, under both its 50- and 200-day moving averages, at a below-historical-range P/E for a company that has grown PAT at a 104% five-year CAGR &mdash; the question is whether that reflects a market correctly pricing in the guidance-and-leverage pattern documented above, or an overcorrection against a still-genuinely-growing business.</p>
+
+      <h3>Eighteen months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Feb 2025&ndash;Aug 2026 (NSE, via yfinance daily price history; August 2026 point is the 21&nbsp;Aug close, not a full month-end).</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">13.55x</div><div class="d">on TTM EPS ~&#8377;23</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">2.03x</div><div class="d">book value/share &#8377;153.70</div></div>
+        <div class="stat"><div class="k">Price / Sales (TTM)</div><div class="v">2.22x</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">10.82x</div><div class="d">TTM EBITDA &#8377;1,002 Cr</div></div>
+      </div>
+      <p>At 13.55x trailing earnings, the stock is not priced for the ~90&ndash;100% multi-year CAGR documented in &sect;01 &mdash; it is priced closer to a mature, moderate-growth industrial. That can be read two ways: either the market has already absorbed the guidance-cut and leverage-acceleration story in &sect;03&ndash;05 and is now roughly fairly valuing a business whose growth rate is genuinely normalising, or the market is over-extrapolating one weak quarter (Q1&nbsp;FY27) against a five-year record of consistent, real profit growth. This report&rsquo;s own numbers support elements of both readings, which is itself the honest conclusion &mdash; the scenarios below try to make that explicit rather than resolve it artificially.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built from the &sect;01&ndash;06 tabulated numbers and management&rsquo;s own (repeatedly revised) guidance. Scenario illustrations only, not point forecasts &mdash; there is no analyst consensus to anchor against (&sect;09), and this management&rsquo;s own forward growth number has moved three times in fifteen months.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;180&ndash;230</div>
+          <div class="rng">&minus;42% to &minus;26% from CMP</div>
+          <ul>
+            <li>FY27 revenue growth stays in the high-teens/low-20s%, repeating Q1&rsquo;s pattern rather than the H2 recovery management has promised; the guided PAT margin never returns above 14&ndash;15%</li>
+            <li>Net debt/EBITDA continues rising past 4.4x as capex outpaces IPP cash generation; interest coverage stays below 4x</li>
+            <li>Inventory/receivable days stay elevated or rise further, with a working-capital-driven CFO/PAT divergence (as in FY24) recurring</li>
+            <li>Sun Drops IPO continues slipping with no DRHP filed; a fourth guidance cut is announced</li>
+            <li>Market de-rates further toward book value, P/B compressing to 1.2&ndash;1.5x on demonstrated execution/guidance-credibility risk</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;300&ndash;370</div>
+          <div class="rng">&minus;4% to +18% from CMP</div>
+          <ul>
+            <li>The delayed utility-scale billing (Coal India, Adani, Aditya Birla) that management blamed for Q1&rsquo;s miss does flow through in H2 FY27 as promised, lifting full-year revenue growth into the high-20s%</li>
+            <li>PAT margin partially recovers toward 15&ndash;16% as IPP capacity stabilises per management&rsquo;s own 12-month timeline, though not back to the 17&ndash;19% originally guided</li>
+            <li>Net debt/EBITDA plateaus around 4&ndash;4.5x rather than continuing to climb, as capex intensity moderates once the current IPP tranche is substantially energised</li>
+            <li>Market holds roughly the current 13&ndash;15x trailing multiple, reflecting a business the market now treats as growing meaningfully but not exceptionally</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;440&ndash;520</div>
+          <div class="rng">+41% to +66% from CMP</div>
+          <ul>
+            <li>IPP stabilisation completes ahead of schedule; management&rsquo;s own &ldquo;&gt;&#8377;1,000 Cr IPP-segment revenue run-rate&rdquo; target (85&ndash;90% EBITDA margin) is substantially achieved in FY27</li>
+            <li>Interest coverage recovers back above 5x as revenue catches up to the now-fully-expensed interest base; PAT margin returns to the high-teens</li>
+            <li>The ~$1bn InvIT plan (announced May 2026, targeted FY27/28) progresses, offering a credible deleveraging and capital-recycling path that eases the net debt/EBITDA concern in &sect;05</li>
+            <li>Sun Drops Energia finally files its DRHP, crystallising a subsidiary-value-unlock the market is not currently pricing</li>
+            <li>Market re-rates back toward the stock&rsquo;s own historical multiple range (high-teens P/E) on restored growth-and-guidance credibility, approaching the 52-week high</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: at &#8377;153.70/share book value, even the bear case above (P/B ~1.2&ndash;1.5x) does not imply the market prices the company below the equity actually invested in the ground &mdash; a reasonable floor given the tangible, verifiable asset base (land, evacuation infrastructure, operating plants) documented in &sect;01 and &sect;05, distinct from the earnings-multiple compression that is the more live risk.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What&rsquo;s good:</b> a genuinely rare five-year track record &mdash; revenue, EBITDA and PAT compounding at roughly 92%, 73% and 104% CAGR respectively from FY21 to FY26, not a one-year spike; EBITDA margin has steadily, genuinely improved (29%&rarr;38% over eight quarters) even through the current cost-pressure period; a large, real, independently-verifiable capacity build (4.06&nbsp;GW&rarr;6.94&nbsp;GW portfolio in one year) backed by tangible land bank and power-evacuation assets, not just announcements; capex has consistently and substantially exceeded depreciation, real evidence of capacity expansion rather than financial engineering; a well-structured, well-disclosed funding programme (India&rsquo;s first externally credit-enhanced green bond, a &#8377;3,200&nbsp;Cr SBI sanction, a clean &ldquo;no deviation&rdquo; monitoring-agency report on warrant proceeds); consistently clean/unmodified audit opinions plus a credible upgrade to a BDO member-firm auditor; a same-day, no-vacancy CFO transition and a credibly-credentialed new Whole-Time Director with directly relevant 30GW+ sector experience; and management that, on balance, answers hard questions on calls rather than deflecting them (the Sai Bandhan cancellation, the CPP-execution-vs-guidance gap, the KP Energy margin comparison).</p>
+        <p style="max-width:none;"><b>What&rsquo;s not good:</b> growth guidance has been cut at least four times across seven quarters (historically 70&ndash;80%, then 60&ndash;70% by May&nbsp;2025 with visible internal softening as early as Feb&nbsp;2025, then 40&ndash;50% by May&nbsp;2026) while the actual delivery gap versus guidance has widened rather than narrowed, culminating in Q1&nbsp;FY27&rsquo;s 16% revenue growth against a 40&ndash;50% full-year guide and an explicit on-call walk-back of the PAT-margin target with no replacement number offered; net debt/EBITDA has more than doubled within a single year (1.73x&rarr;4.39x, FY25&rarr;FY26) even as management continues to frame leverage as &ldquo;comfortable&rdquo; using a debt-to-equity ratio that is flattered by a rapidly-growing equity base &mdash; and the FY25 Annual Report itself discloses three different D/E figures for the same year; interest coverage nearly halved in one quarter (5.75x&rarr;3.28x, Q4FY26&rarr;Q1FY27); standalone ROE actually declined in FY25 despite 143% PAT growth; inventory days more than doubled and debtor days have risen for three consecutive quarters, alongside decelerating rather than accelerating revenue growth; free cash flow has been negative and worsening every year since FY23, FY24 specifically showed a genuine CFO/PAT earnings-quality divergence, and a CFO statement on a Q3&nbsp;FY25 call claiming positive prior-year cash flow was directly contradicted by the company&rsquo;s own subsequently-published audited numbers; <b>related-party sales ran to roughly 41% of standalone FY25 revenue, related-party purchases to roughly &#8377;716&nbsp;Cr, and a personal royalty paid to the promoter doubled year-on-year to &#8377;23.67&nbsp;Cr with no stated basis</b>; the CFO resigned the same day a weak quarterly result was filed; a subsidiary IPO has been guided as imminent on every call for over a year without materialising, and that same subsidiary was separately, quietly diluted via a promoter-personal private placement; a second Sun Drops-level related-party acquisition was disclosed with a valuation report dated the day before announcement; and a director re-appointment drew only 51.52% institutional support &mdash; a specific, quantifiable governance caution signal, not vague sentiment.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> transparently on individual operating items (order cancellations, margin comparisons, working-capital drivers all get direct, detailed answers on calls) but less convincingly on the two patterns that matter most &mdash; the CMD&rsquo;s public growth commitments have consistently run ahead of what the CFO can defend on calls, and the scale of related-party dealing disclosed in the annual report is nowhere addressed on any earnings call reviewed for this report, despite direct investor questions about inter-group revenue flows that management answered narrowly (the KP Energy royalty specifically) without ever surfacing the much larger &#8377;653&nbsp;Cr/&#8377;716&nbsp;Cr sales/purchase flows or the doubled promoter royalty. Neither of the two most-asked questions across every call in this dataset &mdash; why has the stock fallen so much, and when will guidance actually be met &mdash; has been answered with anything more specific than &ldquo;geopolitical conditions&rdquo; and reassurance. The CFO who built and explained the FY21&ndash;FY26 track record (Salim Yahoo) exited at exactly the point this pattern became most visible, handing the explaining-it-going-forward job to a CFO with no track record on this specific story yet.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls&rsquo; favour from today&rsquo;s starting price: moderate, roughly 35&ndash;45%.</b> This is a fundamentally different risk profile than a story with no real earnings behind it: the five-year growth record is genuine, the asset base is real and verifiable, contingent liabilities are clean, and the current 13.55x trailing P/E already reflects meaningful market skepticism rather than unpriced risk. But this report&rsquo;s own tabulated numbers &mdash; the guidance-cut pattern, the leverage acceleration, the working-capital build, the CFO exit timed to the weakest quarter, and now a related-party-transaction concentration (~41% of standalone revenue) and a doubled promoter royalty that neither shows up in nor is addressed by any earnings-call transcript in this dataset &mdash; describe a company mid-transition from an EPC-led growth story to a capital-intensive IPP annuity story, with governance disclosures that deserve more scrutiny than the earnings-call narrative alone provides. The next two-to-three quarters&rsquo; delivery against the (already-lowered) 40&ndash;50% FY27 guide, and whether the FY26 annual report (once available) shows the related-party concentration easing or deepening, are the two most important things to watch.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether Q2/Q3 FY27 revenue growth actually recovers into the high-20s/30s% as management promised on the Q1FY27 call, or whether the deceleration continues, which would likely force a fifth guidance cut; (2) the FY26 Annual Report&rsquo;s related-party note, once available &mdash; whether the ~41% related-party sales concentration and the doubled promoter royalty seen in FY25 persist, deepen, or ease, and whether management addresses this directly on a future call rather than leaving it unaddressed as it has been through Q1&nbsp;FY27; (3) net debt/EBITDA &mdash; a move past 5x without a clear deleveraging catalyst (the InvIT plan, &sect;10) would meaningfully worsen the credit and equity story, while a plateau or reversal below 4x would be a strong positive; (4) interest coverage &mdash; a further fall below 3x would be a genuine stress signal, while a recovery back above 5x would validate management&rsquo;s &ldquo;temporary stabilisation-period&rdquo; explanation; (5) inventory and receivable days &mdash; continued increases alongside decelerating revenue would be a stronger red flag than the current data already is; (6) whether Sun Drops Energia actually files a DRHP, and whether the InvIT plan produces a concrete filing rather than remaining an announced intention; (7) whether the new CFO&rsquo;s communication on the next 1&ndash;2 calls closes or widens the gap between the CMD&rsquo;s public growth commitments and what gets delivered.</div>
+      </div>
+
+      <footer>
+        Compiled from KPI Green Energy Limited&rsquo;s BSE filings (Announcements/AnnouncementsConv: financial-results filings and investor presentations for Q2&nbsp;FY25 through Q1&nbsp;FY27; earnings-call transcripts for Q2&nbsp;FY25 through Q1&nbsp;FY27 excluding Q3&nbsp;FY26, whose transcript file is corrupted; the FY25 (17th) Annual Report&rsquo;s Directors&rsquo; Report, MD&amp;A, Corporate Governance Report, related-party note and auditor&rsquo;s report, 288 pages, read in full; management-change, related-party-acquisition, monitoring-agency and postal-ballot filings dated May&ndash;Aug&nbsp;2026), MarketData (Yahoo Finance via yfinance, fetched 22&nbsp;Aug&nbsp;2026, including the full daily price-history series back to August&nbsp;2021), and the tracked News feed (21&nbsp;Jan&ndash;21&nbsp;Aug 2026). Every figure is tagged to its source; where two sources disagreed or a figure could not be independently verified, that is stated in the relevant section, including three internal inconsistencies in the company&rsquo;s own disclosures (FY26 net-worth basis, FY25 debt-to-equity across three tables, and a Q3&nbsp;FY25 cash-flow claim later contradicted by audited figures). This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Annual bar chart (Revenue / EBITDA / PAT, FY21-FY26) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var years = ['FY21','FY22','FY23','FY24','FY25','FY26'];
+    var revenue = [104, 232, 647, 1031, 1755, 2742];
+    var ebitda  = [64, 110, 211, 343, 581, 1006];
+    var pat     = [14, 43, 110, 162, 325, 509];
+    var series = [
+      {label:'Total income', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / years.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Annual total income, EBITDA and PAT, FY21-FY26" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    years.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '</div>';
+  })();
+
+  // ---------- Quarterly trend chart (Total income / EBITDA / PAT, Q2FY25-Q1FY27) ----------
+  (function(){
+    var el = document.getElementById('qtrend');
+    var quarters = ['Q2FY25','Q3FY25','Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [361, 466, 578, 614, 641, 676, 810, 710];
+    var ebitda  = [134, 145, 169, 217, 232, 251, 305, 262];
+    var pat     = [70, 85, 104, 111, 117, 126, 155, 95];
+    var series = [
+      {label:'Total income', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.4);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly total income, EBITDA and PAT, Q2FY25 to Q1FY27" style="width:100%;height:auto;font-size:10.5px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        var fill = s.color;
+        if(s.label==='PAT' && qi===7){ fill = css('--critical'); }
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-2.5).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2" fill="'+fill+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q1FY27 PAT (red bar) is the first YoY decline in this eight-quarter series &mdash; see §04 for the interest/depreciation drivers.</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Feb 25', 373.42], ['Mar 25', 405.01], ['Apr 25', 379.31], ['May 25', 483.12],
+      ['Jun 25', 497.09], ['Jul 25', 498.99], ['Aug 25', 478.56], ['Sep 25', 436.26],
+      ['Oct 25', 526.56], ['Nov 25', 430.29], ['Dec 25', 467.27], ['Jan 26', 389.00],
+      ['Feb 26', 377.30], ['Mar 26', 350.00], ['Apr 26', 439.05], ['May 26', 410.00],
+      ['Jun 26', 395.55], ['Jul 26', 366.85], ['Aug 26', 312.60]
+    ];
+    var W = 900, H = 220, padL = 48, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="KPI Green Energy monthly closing share price, February 2025 to August 2026" style="width:100%;height:auto;font-size:10.5px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 2.6;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i % 2 === 0 || i === points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily NSE price history via yfinance (August 2026 point is the 21 Aug intraday close). 52-week high/low per MarketData snapshot: ₹542.25 / ₹301.20.</div></div>';
+  })();
+})();
+</script>

@@ -1,0 +1,962 @@
+<title>Adani Energy Solutions Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Power Transmission, Distribution &amp; Utility Infrastructure</div>
+    <h1>Adani Energy Solutions Limited</h1>
+    <p class="sub">NSE: ADANIENSOL &middot; BSE: 539254 &middot; FY2023&ndash;FY2027(Q1) performance review, BSE-filing, earnings-call and investor-presentation synthesis, as of 22 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> AESL is mid-way through a genuine step-change &mdash; the Mumbai HVDC line fully commissioned in March 2026, smart-meter installs blowing past the FY26 target (83 lakh vs. 70 lakh guided), and a brand-new Energy Solutions Platform contributing &#8377;590 crore of segment EBITDA in its very first full quarter &mdash; and Q1FY27 delivered on it: consolidated EBITDA up 58% YoY to a record &#8377;3,178 crore and PAT up 130% to &#8377;1,237 crore. But the growth is being bought with leverage that management itself is watching closely: net debt/EBITDA sits at 4.5x, at the low end of the company's own 4.5&ndash;4.7x ceiling, funding a capex programme guided at &#8377;21,000&ndash;25,000 crore a year through FY28; free cash flow has been negative in three of the last four fiscal years; payable days nearly doubled to 132 in FY26; and the CFO who set that FY27 guidance in April resigned "for personal reasons" five weeks later, with a new CFO delivering the much stronger Q1 print. A large chunk of Q1's Energy Solutions upside was explicitly flagged by management as monsoon-timing-driven rather than structural.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (22 Aug 26)</div><div class="v">&#8377;1,541.90</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;1,88,567 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;744.90 &ndash; &#8377;1,789.00</div></div>
+      <div class="chip"><div class="k">Q1FY27 EBITDA</div><div class="v pos">+58% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT</div><div class="v pos">+130% YoY</div></div>
+      <div class="chip"><div class="k">FY26 PAT (owners)</div><div class="v pos">+115.3% YoY</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">63.4x</div></div>
+      <div class="chip"><div class="k">FY23&ndash;FY26 Free Cash Flow</div><div class="v neg">Negative in 3 of 4 years</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage, gaps and basis &mdash; please read before the numbers below:</b> the BSE filing archive available for this report (AnnouncementsConv) spans only <b>28 April&ndash;21 August 2026</b> &mdash; roughly two quarters of primary-source disclosure: the Q4/FY26 earnings call (30 Apr 2026, for the quarter and year ended 31 March 2026) and the Q1FY27 earnings call, investor presentation and financial results (21&ndash;28 July 2026, quarter ended 30 June 2026), plus the FY26 Integrated Annual Report (31 May 2026). <b>No earnings-call transcript or investor presentation for Q1FY26, Q2FY26 or Q3FY26 exists in this filing set</b> &mdash; those quarters are reconstructed below from MarketData/yfinance's independently computed quarterly financial statements (which itself has one gap: the Sep-2025/Q2FY26 quarter is absent from the loaded series) and from News/news.md's pre-summarized coverage of those results, both flagged explicitly wherever used. No quarterly cash-flow statement exists in the source data at all &mdash; only annual. All figures are <b>consolidated</b> unless stated as standalone; AESL's standalone entity is substantially a holding company (73% of standalone total assets is investments in and loans to subsidiaries, per the FY26 audit's key audit matter), so consolidated is the economically meaningful basis throughout. One quarter's headline profit figure sourced from News (Q4FY26 PAT "&#8377;772 crore, +8.2% YoY") does not reconcile cleanly against the company's own filed Q4FY26 numbers (&#8377;683.78 crore to owners / &#8377;722.65 crore including minority interest) &mdash; this discrepancy is flagged, not resolved, in &sect;03.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Call &amp; disclosure insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What AESL does, and how it has grown</h2></div>
+      <p class="sec-dek">India's largest private transmission company and a top-rated Mumbai/Mundra distribution utility, now adding two new growth legs &mdash; smart metering and an integrated energy-solutions/trading platform &mdash; on top of the regulated core.</p>
+
+      <p class="lede">Incorporated in 2013 and renamed from Adani Transmission Limited to Adani Energy Solutions Limited in July 2023, AESL is headquartered in Ahmedabad and operates through four reportable segments (per the FY26 consolidated segment note): <b>Transmission</b> (power transmission lines, largely Tariff-Based Competitive Bidding/TBCB fixed-tariff assets plus some cost-plus Regulated Asset Base/RAB assets), <b>Distribution</b> (retail power distribution in Mumbai through subsidiary Adani Electricity Mumbai Ltd/AEML, plus the Mundra SEZ distribution business), <b>Smart Meter</b> (smart-metering rollout under Design-Build-Finance-Own-Operate-Transfer/DBFOOT contracts with state discoms), and the newly renamed <b>Energy Solutions Platform</b> (formerly "Trading" &mdash; power procurement/supply structuring for C&amp;I customers and data centres, plus commodity/power trading). A residual "Others" segment captures EPC contracting. AESL operates as a subsidiary of the S.B. Adani Family Trust (MarketData/overview.md); its Non-Executive Chairman is Gautam S. Adani (annual report, board profile).</p>
+
+      <h3>Scale, as of June 2026 (Q1FY27 investor presentation)</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Transmission network</div><div class="v">27,949 ckm</div><div class="d">20,023 ckm operational, 7,926 ckm under construction; only private player with 4 HVDC lines</div></div>
+        <div class="stat"><div class="k">TBCB market share, FY26</div><div class="v">29%</div><div class="d">Of projects that went to bidding; company guiding to hold 25&ndash;30%</div></div>
+        <div class="stat"><div class="k">Distribution (AEML)</div><div class="v">3.29 Mn</div><div class="d">Customers in Mumbai &amp; Mundra; rated India's #1 private distribution company for 4 straight years (management claim, Q4FY26 call)</div></div>
+        <div class="stat"><div class="k">Smart meters installed</div><div class="v">13.4 Mn</div><div class="d">Cumulative, on a 24.6 Mn orderbook (~19% RDSS market share); +22.3 Mn pending via IntelliSmart acquisition</div></div>
+      </div>
+
+      <h3>A four-year build from a pure transmission utility to a diversified platform</h3>
+      <p>Management's own framing on the Q4FY26 call is a useful anchor: standalone operating profit (their term, roughly core EBIT) was "range-bound between &#8377;4,000 crore and &#8377;4,500 crore" for four straight years, FY20&ndash;FY23, before breaking out to "closer to &#8377;6,000 crore" in FY24, "&#8377;7,000 crore" in FY25, and "about &#8377;8,000 crore" (consolidated EBITDA &#8377;8,726 crore, confirmed in the same call) in FY26. That inflection continued directly into Q1FY27: consolidated EBITDA of &#8377;3,178 crore in a single quarter is already 36% of the entire FY26 total. The step-up is attributable to three concurrent developments: the Mumbai HVDC line (Kudus&ndash;Aarey, ~&#8377;7,000 crore project cost, commissioned in full on 15 March 2026 &mdash; the world's first compact HVDC substation, per News, 15 Apr 2026), the smart-meter rollout scaling past its own FY26 target, and the Energy Solutions Platform going from an "incubation" business management first flagged verbally on prior calls to a full &#8377;1,906 crore-revenue, &#8377;590 crore-EBITDA segment in Q1FY27 alone.</p>
+
+      <h3>The moat, as evidenced in the filings</h3>
+      <p>AESL's most defensible asset is regulatory: TBCB-won transmission and DBFOOT-won smart-meter contracts carry long-dated, largely availability- or installation-linked tariffs (20&ndash;25-year concessions), and RAB-based assets (AEML distribution, the new Mumbai HVDC line) earn a regulator-set return on an expanding asset base rather than competing on price quarter to quarter. Management is explicit that this RAB growth is the core engine: AEML's Regulated Asset Base has grown from &#8377;5,400 crore at acquisition (2018) to over &#8377;10,500 crore today (Q4FY26 call), and the transmission RAB has added roughly &#8377;7,000 crore via the single Mumbai HVDC project. A second, harder-to-replicate asset is credit quality under scale: management highlighted that most individual project SPVs now carry AAA or AA+ domestic ratings even as consolidated capex has roughly tripled since FY23 (annual capex FY23 &#8377;4,702 crore &rarr; FY26 &#8377;14,432 crore, &sect;05) &mdash; unusual discipline for a fast-scaling infra platform, and the credit-rating filings reviewed (CRISIL/ICRA reaffirmations through June&ndash;August 2026, &sect;07) corroborate that the parent AESL/AEML ratings have not been downgraded through this expansion. What is <em>not</em> independently verifiable from this filing set is the "India's #1 distribution company" and "largest smart-metering platform" claims &mdash; both are management's own framing rather than a third-party ranking found in the reviewed documents.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">A dense run of order wins, a large capital raise and an M&amp;A deal inside a five-week window in July&ndash;August 2026, layered on top of the Q1FY27 results beat.</p>
+
+      <div class="news-item">
+        <div class="news-date">18 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">London/Abu Dhabi investor conference scheduled for early September</div>
+          <div class="news-body">Routine SEBI Reg. 30 intimation of one-on-one and group investor meetings, 7&ndash;9 September 2026, as part of AESL's annual investor conference &mdash; procedural, no new business disclosure.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">14 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">~&#8377;8,386 crore Andhra Pradesh transmission win (Vizag), SPA executed</div>
+          <div class="news-body">AESL won a competitive-bid 30-month BOOT transmission project in Vizag, Andhra Pradesh &mdash; substations and 765kV lines supporting upcoming green hydrogen/ammonia capacity in the region &mdash; and executed the Share Purchase Agreement for Vizag Power Transmission Limited the same day, following the original media release on 24 July 2026. At ~&#8377;8,386 crore this single award equals more than a third of the low end of the company's own FY27 total capex guidance (&sect;03, &sect;05).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">13 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">MSCI India Index August rejig adds AESL</div>
+          <div class="news-body">MSCI's August rebalancing added AESL and Lenskart Solutions to the India Index while removing three other names; Reuters estimated ~&#8377;600 million of net passive inflow across the additions, against ~&#8377;140&ndash;170 million of outflow from the removals &mdash; a mechanical, passive-flow-positive catalyst rather than a fundamental one.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">7 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">&#8377;3,500 crore QIP closes 3x oversubscribed at &#8377;1,615/share; stock fell ~3% same day</div>
+          <div class="news-body">AESL raised &#8377;3,500 crore via Qualified Institutional Placement, allotting 2,16,71,826 shares at &#8377;1,615 (confirmed against the 30 Jul 2026 QIP-committee filing); proceeds are earmarked for capex, debt repayment and acquisitions including the &#8377;3,050 crore IntelliSmart deal. News flagged the same-day ~3% share-price decline as likely reflecting dilution/profit-taking even as the underlying Q1 results (below) were strong &mdash; a case where a genuinely oversubscribed capital raise still met a negative near-term price reaction.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">21&ndash;28 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Q1FY27 results: operational revenue +54% YoY, PAT +130% YoY; IntelliSmart acquisition signed</div>
+          <div class="news-body">Consolidated Q1FY27 operational revenue of &#8377;7,117 crore (+54% YoY) and PAT of &#8377;1,237 crore/&#8377;1,149 crore to owners (+130%/+124% YoY, depending on basis), on record EBITDA of &#8377;3,178 crore (+58% YoY). The 130% PAT growth outpacing 54% revenue growth signals real operating leverage (&sect;04), but a 57% capex increase in the same quarter (&sect;05) underlines how much investment is funding this growth. AESL separately signed a binding agreement (9 Jun 2026) to acquire 100% of IntelliSmart Infrastructure Pvt Ltd from NIIF and EESL for &#8377;3,050 crore, adding 22.3 million smart meters and, once closed (still pending CCI approval as of the Q1 call), making AESL India's largest smart-metering platform at 47+ million meters combined.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">23&ndash;30 Apr 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Q4/FY26 results and Mumbai HVDC commissioning</div>
+          <div class="news-body">Q4FY26 consolidated revenue grew 16.7% YoY to &#8377;7,443 crore, with FY26 EBITDA reaching a record &#8377;8,726 crore (+12.7% YoY per News) on a &#8377;1.5 lakh crore transmission tendering pipeline and a 71,779-meter-equivalent smart-meter orderbook. News' cited Q4FY26 PAT of "&#8377;772 crore, +8.2% YoY" does not reconcile against the company's own filed figures (&sect;03) and is flagged rather than repeated as fact. Separately, subsidiary AEMIL commissioned the 1,000 MW Kudus&ndash;Aarey HVDC line in Mumbai on 15 March 2026 &mdash; the world's first compact HVDC substation &mdash; and the stock hit a 52-week high on the announcement.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>Month-end closes ran from &#8377;748 (Jan-2025) down to a 52-week-adjacent low around &#8377;651 (Feb-2025), stayed rangebound through most of 2025, then broke out sharply from &#8377;895 (Jan-2026) to &#8377;1,645 (Jul-2026) as the Q4FY26/Mumbai-HVDC and Q1FY27 results landed, before easing back to &#8377;1,541.90 by 22 Aug 2026 &mdash; a period that includes both the QIP-related dip noted above and the MSCI-inclusion lift. Full chart in &sect;10.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segments &amp; guidance vs. delivered</h2></div>
+      <p class="sec-dek">Six quarters of acceleration, capped by a Q1FY27 print in which the brand-new Energy Solutions Platform did almost as much revenue as the entire Smart Meter segment &mdash; and one quarter (Q2FY26) this dataset cannot independently verify.</p>
+
+      <h3>Quarterly trend (consolidated)</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q2FY26 (Sep-25)<sup>&Dagger;</sup></th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>6,374.58</td><td>6,819.28</td><td>&asymp;6,596</td><td>6,729.65</td><td>7,443.27</td><td>9,711.08</td></tr>
+            <tr><td>Revenue YoY growth</td><td>n/a</td><td class="pos">+26.7%</td><td class="pos">+6.7%</td><td class="pos">+15%</td><td class="pos">+16.7%</td><td class="pos">+42.4%</td></tr>
+            <tr><td>EBITDA</td><td>2,261.77</td><td>2,016.90</td><td>&asymp;2,126</td><td>2,210.19</td><td>2,372.14</td><td>3,178.12</td></tr>
+            <tr><td>PAT (incl. minority interest)</td><td>713.66</td><td>538.94</td><td>&asymp;534&ndash;574</td><td>574.06</td><td>722.65</td><td>1,236.56</td></tr>
+            <tr><td>PAT attributable to owners</td><td>647.15</td><td>512.48</td><td>n/a</td><td>552.31</td><td>683.78</td><td>1,149.06</td></tr>
+            <tr><td>PAT YoY growth (incl. NCI)</td><td>n/a</td><td>swing from loss</td><td class="neg">&minus;20.9%</td><td class="neg">&minus;2%</td><td class="pos">+1.3%<sup>&sect;</sup></td><td class="pos">+129.5%</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>5.50</td><td>4.27</td><td>n/a</td><td>4.60</td><td>5.69</td><td>9.57</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance quarterly income statement (Q4FY25&ndash;Q1FY27) cross-checked against the Q1FY27 financial-results filing (21 Jul 2026), which independently reproduces the Mar-26 and Jun-25 comparatives exactly. &Dagger; Q2FY26 (Sep-25) is missing entirely from the yfinance quarterly series loaded for this company &mdash; a genuine gap in the source data &mdash; so its figures here are taken from News' summary of the results (27 Oct 2025) instead and are not directly comparable in precision to the other columns. &sect; News (23 Apr 2026) reported Q4FY26 PAT of &#8377;772 crore, +8.2% YoY &mdash; this does not reconcile against either filed figure above (&#8377;683.78 Cr owners = +5.7% YoY off the &#8377;647.15 Cr base, or &#8377;722.65 Cr incl. NCI = +1.3% YoY off &#8377;713.66 Cr); this report uses the company-filed figures and flags the News figure as an unreconciled discrepancy rather than silently adopting either.</caption>
+      </div>
+      <p>The pattern from Q1FY26 is a steady, if lumpy, re-acceleration: a soft Q1 and Q2FY26 (PAT down YoY in both, largely a high FY25 comparison base plus the Energy Solutions Platform still in "incubation"), stabilising in Q3FY26 (PAT down just 2%), then a sharp break higher from Q4FY26 into Q1FY27 as the Mumbai HVDC line's revenue began accruing on a full-tariff basis and the Energy Solutions Platform scaled from near-zero to a real contributor. Q1FY27's +54% operational-revenue growth is flattered by an unusually weak Q1FY26 base in one specific segment &mdash; Energy Solutions revenue was just &#8377;18&ndash;210 crore in Q1FY26 (depending on the revenue-recognition basis used) versus &#8377;1,906 crore in Q1FY27 &mdash; so a material share of the headline growth rate is a low-base effect in a single new segment, not a broad-based re-rating of the mature transmission/distribution businesses (which grew a more modest 4.8%&ndash;52% depending on segment, per the table below).</p>
+
+      <h3>Segment mix, Q1FY27 vs. Q1FY26 (total revenue from operations, &#8377; Cr)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Segment</th><th>Q1FY26</th><th>Q1FY27</th><th>YoY</th><th>Q1FY27 EBITDA</th><th>EBITDA YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Transmission</td><td>2,189</td><td>3,336</td><td class="pos">+52.4%</td><td>1,686</td><td class="pos">+41.7%</td></tr>
+            <tr><td>Distribution (AEML)</td><td>3,360</td><td>3,520</td><td class="pos">+4.8%</td><td>583</td><td class="pos">+18.3%</td></tr>
+            <tr><td>Smart Metering (Ind AS basis)</td><td>975</td><td>793</td><td class="neg">&minus;18.7%</td><td>150</td><td class="pos">+54.6%</td></tr>
+            <tr><td>Energy Solutions Platform</td><td>210</td><td>1,906</td><td class="pos">+807.6%</td><td>590</td><td>New segment</td></tr>
+            <tr class="total"><td>Consolidated total</td><td>6,820</td><td>9,711</td><td class="pos">+42.4%</td><td>3,178</td><td class="pos">+57.6%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1FY27 financial-results segment note and investor presentation (both 21 Jul 2026). Smart Metering revenue fell YoY on a total-revenue-from-operations basis purely because of Ind AS 115 Service Concession Arrangement accounting (construction-phase revenue recognition varies with capex timing, not underlying installation volume) &mdash; the "operating revenue" (billing on already-commissioned meters, the more economically meaningful figure) actually rose from &#8377;68 crore to &#8377;161 crore, a point CFO Ashok Jagetiya had to clarify live on the Q1FY27 call after an analyst flagged the apparent decline.</caption>
+      </div>
+
+      <h3>Operational scale metrics, Q1FY27 vs. Q1FY26</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Transmission network</div><div class="v">27,949 ckm</div><div class="d">vs 26,696 ckm &mdash; power transformation capacity up 32% to 1,23,175 MVA</div></div>
+        <div class="stat"><div class="k">Distribution units sold</div><div class="v">3,260 MU</div><div class="d">vs 2,939 MU (+10.9%); distribution loss rose to 5.16% from 4.24%, attributed to an extreme heatwave, still within the 5.31% regulatory ceiling</div></div>
+        <div class="stat"><div class="k">Smart meters installed/month</div><div class="v">2.4x</div><div class="d">Avg. run-rate Q1FY27 vs Q1FY26; cumulative base 5.5 Mn &rarr; 13.4 Mn; &gt;23,000/day average in Q1FY27</div></div>
+        <div class="stat"><div class="k">Energy Solutions volume</div><div class="v">13,181 MU</div><div class="d">Across long-term PPA sales (&#8377;1,838 Cr revenue), power-management services and merchant/trading</div></div>
+      </div>
+
+      <h3>Guidance vs. delivered</h3>
+      <div class="callout pass">
+        <div class="icon">&#9679;</div>
+        <div><b>Smart meters: FY26 guidance beaten</b>On the Q4FY26 call, CEO Kandarp Patel stated the company had targeted ~70 lakh (7.0 million) smart-meter installations for FY26 and delivered 82.29&ndash;83 lakh (~8.2&ndash;8.3 million) &mdash; a clear beat, independently consistent with the cumulative-base numbers in the Q1FY27 presentation (31 lakh at FY25-start + ~82&ndash;83 lakh installed in FY26 tracks to the ~1.1&ndash;1.14 crore base referenced going into FY27). For FY27, management guided to "a minimum of 1 crore [10 million]" meters; Q1FY27 alone added roughly 7.9 million meters to the cumulative base (5.5 Mn&rarr;13.4 Mn), putting the company on a pace consistent with, though not yet proof of, that full-year target after one quarter.</div>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Transmission tendering pipeline: roughly flat YoY, per management's own admission</b>On the Q4FY26 call, an analyst asked whether the ~&#8377;1.5 lakh crore identified transmission bidding pipeline (with &#8377;80,000&ndash;1,00,000 crore expected to actually finalise over the next 12 months) had grown versus the same point the prior year; CFO/management's answer was "it has almost remained the same" &mdash; a candid, non-promotional admission that the pipeline is not visibly expanding even as the company's own capex guidance is rising, worth weighing against the bullish framing elsewhere on the same call.</div>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Mumbai HVDC revenue: guided at &#8377;1,300 crore full-year tariff from FY27</b>Management stated on the Q4FY26 call that the Mumbai HVDC project (commissioned 15 March 2026) would start accruing its full-year regulated tariff of ~&#8377;1,300 crore from FY27 once the regulator approves final tariff, and separately quantified ~&#8377;1,600 crore of incremental revenue run-rate from FY26's other transmission capitalisations. This is a specific, checkable number for the FY27 results to be measured against.</div>
+      </div>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">EBITDA margin has compressed on a percentage basis as revenue mix shifts toward lower-margin construction/trading pass-through lines, even as absolute EBITDA and PAT both scaled sharply &mdash; and management has explicitly declined to give forward EBITDA guidance except once.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>13,065.1</td><td>16,355.0</td><td>23,575.0</td><td>27,202.6</td></tr>
+            <tr><td>Revenue YoY growth</td><td>n/a</td><td class="pos">+25.2%</td><td class="pos">+44.1%</td><td class="pos">+15.4%</td></tr>
+            <tr><td>Normalized EBITDA</td><td>6,042.11</td><td>6,213.51</td><td>7,490.80</td><td>8,323.43</td></tr>
+            <tr><td>EBITDA margin (normalized)</td><td>46.2%</td><td>38.0%</td><td>31.8%</td><td class="neg">30.6%</td></tr>
+            <tr><td>PAT attributable to owners</td><td>1,236.50</td><td>1,137.28</td><td>1,059.97</td><td>2,282.54</td></tr>
+            <tr><td>PAT YoY growth</td><td>n/a</td><td class="neg">&minus;8.0%</td><td class="neg">&minus;6.8%</td><td class="pos">+115.3%</td></tr>
+            <tr><td>PAT margin</td><td>9.5%</td><td>7.0%</td><td>4.5%</td><td>8.4%</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>11.10</td><td>10.20</td><td>9.05</td><td>19.00</td></tr>
+            <tr><td>Return on equity</td><td>n/a<sup>&dagger;</sup></td><td>9.3%</td><td>6.1%</td><td>9.6%</td></tr>
+            <tr><td>Interest coverage (EBIT / finance cost)</td><td>1.62x</td><td>1.66x</td><td>1.34x</td><td>1.91x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement; ratios computed per Fundamental_Analysis.md conventions. &dagger; FY23 ROE requires an FY22 equity base, which is almost entirely null in the source data. FY25's dip in PAT margin, ROE and interest coverage lines up with a one-off exceptional regulatory charge of ~&#8377;1,506 crore that pushed Q1FY25 to a net loss (News, 24 Jul 2025) &mdash; not a structural deterioration.</caption>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9888;</div>
+        <div><b>EBITDA margin is compressing on a percentage basis &mdash; largely a mix effect, not a demand or pricing problem</b>Normalized EBITDA margin has fallen every year shown, from 46.2% (FY23) to 30.6% (FY26). The driver is revenue mix, not deteriorating unit economics in the core regulated businesses: EPC/construction revenue under Ind AS 115 Service Concession Arrangements (recognised at cost-plus-nil-margin during the build phase), the Energy Solutions Platform's inherently lower-margin power-trading/pass-through revenue, and the fast-scaling smart-meter construction line all carry structurally thinner margins than transmission's core availability-based tariff revenue, and all three are growing faster than the core. Segment-level margins in &sect;03 show transmission and distribution both still expanding EBITDA at 42%/18% YoY in Q1FY27 &mdash; the consolidated percentage compression is a denominator effect from mixing in lower-margin lines, which investors should not read as core-business margin erosion without checking the segment table.</div>
+      </div>
+
+      <h3>What drove FY26 and Q1FY27</h3>
+      <p>FY26 PAT growth of 115.3% is real and broad-based rather than a low base effect: FY25's own PAT was already the trough year for the reasons in the caption above, and FY26 EBITDA itself grew a genuine 15.4% while finance costs and D&amp;A rose more slowly in relative terms (interest coverage <em>improved</em> to 1.91x from 1.34x), which is the opposite of what a one-off-driven recovery would look like. Q1FY27's 130% PAT growth is more segment-concentrated: &#8377;570 crore of the Energy Solutions Platform's &#8377;590 crore EBIT came from long-term power-supply positions rather than trading/services (per CEO Kandarp Patel on the Q1FY27 call), and management was explicit under analyst questioning that this quarter's strong merchant-market pricing was influenced by a delayed monsoon pushing power demand and prices higher than the prior year &mdash; a factor management itself flagged as not fully repeatable quarter to quarter ("there will also be quarter-to-quarter variability, because the average rate in the market during summer period... would be higher as compared to the monsoon or winter"). Investors should not extrapolate Q1FY27's Energy Solutions margin run-rate linearly into subsequent quarters without discounting for this.</p>
+
+      <h3>Forward margin/EBITDA guidance</h3>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>One explicit number on record: ~&#8377;11,500 crore consolidated EBITDA for FY27</b>Management is unusually disciplined about not giving forward EBITDA guidance ("as management, we would not give guidance on the EBITDA numbers," CFO Kunjal Mehta, Q4FY26 call) &mdash; but CEO Kandarp Patel did commit to one specific figure under direct questioning from a long-standing shareholder (Bharat Shah): FY27 consolidated EBITDA "could be around &#8377;11,500 crore," up from FY26's &#8377;8,726 crore (+31.8% implied). Separately, management reiterated a standing multi-year target that transmission-segment EBITDA alone should roughly triple over 36&ndash;40 months from the FY26 base, once the current under-construction pipeline (locked-in tariff value &#8377;9,510 crore, &sect;05) fully commissions, alongside smart-meter EBITDA reaching &#8377;2,400&ndash;3,000 crore and distribution EBITDA &#8377;3,000&ndash;3,200 crore on a run-rate basis. These are the specific numbers this report's next update should check the company against.</div>
+      </div>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">Leverage is rising in absolute terms to fund a tripling of annual capex since FY23, but stayed inside management's own stated ceiling in Q1FY27 &mdash; funded by a mix of debt, a &#8377;3,500 crore QIP and a &#8377;3,050 crore acquisition, against a capital-commitments line that tripled in one year.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity (net worth)</td><td>11,749.2</td><td>12,641.5</td><td>22,068.2</td><td>25,427.5</td></tr>
+            <tr><td>Total debt</td><td>34,270.0</td><td>37,069.7</td><td>39,926.0</td><td>49,176.4</td></tr>
+            <tr><td>Net debt</td><td>34,008.2</td><td>36,266.8</td><td>37,666.4</td><td>47,163.9</td></tr>
+            <tr><td>Debt / equity</td><td>2.92x</td><td>2.93x</td><td>1.81x</td><td>1.93x</td></tr>
+            <tr><td>Net debt / EBITDA (normalized)</td><td>5.63x</td><td>5.84x</td><td>5.03x</td><td>5.67x</td></tr>
+            <tr><td>Trade receivables</td><td>1,437.59</td><td>1,564.95</td><td>2,382.66</td><td>3,620.34</td></tr>
+            <tr><td>Receivable days</td><td>40</td><td>35</td><td>37</td><td>49</td></tr>
+            <tr><td>Trade payables (total)</td><td>3,008.45</td><td>3,082.24</td><td>5,537.89</td><td class="neg">9,809.66</td></tr>
+            <tr><td>Payable days</td><td>84</td><td>69</td><td>86</td><td class="neg">132</td></tr>
+            <tr><td>Total assets</td><td>53,931.8</td><td>58,578.8</td><td>73,960.1</td><td>92,834.9</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet; days computed on the &sect;04 revenue base per Fundamental_Analysis.md conventions.</caption>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9888;</div>
+        <div><b>Payable days nearly doubled in FY26 &mdash; worth monitoring, though likely capex-linked rather than distress</b>Payable days jumped from 86 (FY25) to 132 (FY26), a materially larger stretch than the receivable-days move over the same period (37&rarr;49). The FY26 capital-commitments note (below) shows contracts for future capital spend more than tripling in the same year, so heavier trade credit from equipment/EPC vendors during an active capex ramp is a plausible, non-distress explanation &mdash; consistent with cash from operations remaining strongly positive and rising through FY26 (&sect;06). It is nonetheless the kind of working-capital metric that deserves tracking each quarter, particularly if it keeps stretching after the capex ramp itself decelerates.</div>
+      </div>
+
+      <h3>Company's own leverage metric: 4.5x net debt/EBITDA in Q1FY27, at the low end of its 4.5&ndash;4.7x guided band</h3>
+      <p>On the Q4FY26 call, CFO Kunjal Mehta reiterated a standing leverage policy: "we'll continue to maintain that leverage in the ratio of around 4.5x to 4.7x." The Q1FY27 investor presentation discloses the company's own net-debt/EBITDA figure at <b>4.5x</b>, up from <b>3.2x at FY25</b> &mdash; inside the guided band, though at its very floor rather than comfortably within it, and using a narrower net-debt definition (excludes &#8377;1,405 crore of unsecured shareholder sub-debt) than the broader yfinance-derived 5.67x shown in the table above. Both measures point the same direction: leverage has risen meaningfully as capex accelerated, and management's own guided ceiling leaves limited further headroom before the next major capex wave (FY28 guidance of &#8377;22,000&ndash;25,000 crore, below) would need to be funded by more equity rather than debt alone &mdash; which is consistent with the July 2026 QIP actually happening.</p>
+
+      <h3>Capex vs. depreciation: unambiguous, accelerating capacity expansion</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Capex (purchase of PPE)</td><td>4,702.21</td><td>5,429.54</td><td>9,378.14</td><td>14,431.80</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>1,607.74</td><td>1,776.08</td><td>1,905.95</td><td>1,978.23</td></tr>
+            <tr><td>Capex / D&amp;A</td><td>2.9x</td><td>3.1x</td><td>4.9x</td><td>7.3x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. FY26 company-reported total capex (&#8377;15,300 crore, per the Q4FY26 call) differs modestly from the &#8377;14,432 crore PPE-purchase line here, likely reflecting Service Concession Arrangement financial-asset additions booked outside conventional PPE.</caption>
+      </div>
+      <p>Capex has run 2.9&ndash;7.3x depreciation every year since FY23 and accelerated sharply &mdash; unambiguous evidence of real capacity build, not maintenance spend. Estimated capital commitments (contracts signed but not yet executed) jumped from &#8377;12,312 crore (Mar-25) to <b>&#8377;38,255 crore</b> (Mar-26), a 3.1x increase in a single year, per the FY26 annual report's commitments note &mdash; a leading indicator that the FY27/FY28 capex guidance below is already substantially contracted rather than aspirational.</p>
+
+      <h3>Forward capex guidance: FY27 &#8377;21,000&ndash;22,000 crore, FY28 &#8377;22,000&ndash;25,000 crore</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY27 guidance (Apr-26 call)</th><th>FY28 guidance (Apr-26 call)</th></tr></thead>
+          <tbody>
+            <tr><td>Transmission</td><td>15,500</td><td>~20,000</td></tr>
+            <tr><td>Distribution</td><td>2,350</td><td>~2,000</td></tr>
+            <tr><td>Smart metering</td><td>3,900</td><td>1,500 (order-book-based; excludes unwon tenders)</td></tr>
+            <tr class="total"><td>Total</td><td>21,000&ndash;22,000</td><td>22,000&ndash;25,000</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q4FY26 earnings call (management Q&amp;A with analyst Mohit Kumar, ICICI Securities, 24 Apr 2026). Separately, management disclosed a locked-in four-year transmission capex commitment of &#8377;77,000 crore, and stated FY26 capitalisation of &#8377;15,300 crore breaks down as transmission &#8377;10,260 Cr / distribution &#8377;1,511 Cr / smart metering &#8377;3,556 Cr.</caption>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Q1FY27 actual capex: &#8377;3,498 crore &mdash; a data point to watch, not yet a miss</b>Total Q1FY27 capex of &#8377;3,498 crore (+57% YoY) annualises to roughly &#8377;14,000 crore if flat through the year, below the &#8377;21,000&ndash;22,000 crore FY27 guidance &mdash; but capex at infrastructure developers is typically weighted toward later quarters as land/ROW/procurement work completes, and transmission capex specifically already grew 2.2x YoY in Q1 (segment breakdown: transmission &#8377;2,199 Cr vs &#8377;1,025 Cr; distribution &#8377;460 Cr vs &#8377;345 Cr; smart metering roughly flat at &#8377;838 Cr vs &#8377;853 Cr), consistent with an accelerating trajectory. One quarter is not enough to call this a guidance miss, but it is the single most useful number to check against the next quarter's print.</div>
+      </div>
+
+      <h3>Capital raised in this window: &#8377;3,500 crore QIP, plus a &#8377;3,050 crore acquisition</h3>
+      <p>AESL closed a Qualified Institutional Placement on 30 July 2026, allotting 2,16,71,826 equity shares at &#8377;1,615 per share (a 3x-oversubscribed book, per News) for gross proceeds of &#8377;3,500 crore, earmarked for capex, debt repayment and acquisitions. The largest named use is the binding agreement (signed 9 June 2026) to acquire 100% of IntelliSmart Infrastructure Private Limited from NIIF and the Energy Efficiency Services Limited for &#8377;3,050 crore &mdash; still subject to Competition Commission of India approval as of the Q1FY27 call (22 Jul 2026) and therefore not yet consolidated into any of the financials in this report. Post-QIP, MarketData's insider-holding snapshot (fetched 22 Aug 2026, i.e. after the raise) shows 74.67% held by insiders; a News item from 20 April 2026 (pre-QIP) had separately reported promoter holding at 72.73%, and the two figures are not directly comparable given the intervening dilutive raise and differing insider/promoter classification &mdash; both are reported here rather than reconciled to a single number.</p>
+
+      <h3>Contingent liabilities &amp; commitments: immaterial legacy claims, one legacy dispute resolved</h3>
+      <p>Total contingent liabilities were &#8377;1,799.21 crore at FY26-end versus &#8377;1,795.05 crore at FY25-end (annual report, note 44) &mdash; essentially flat and equal to roughly 2% of consolidated net worth, dominated by a &#8377;1,381.28 crore legacy claim from Vidarbha Industries Power Limited relating to FY19 fuel costs (unchanged YoY, meaning no fresh escalation) and various tax/service-tax disputes, none individually material. Separately, the FY26 annual report discloses that Reliance Infrastructure Limited's 2022 arbitration claims under the original AEML share-purchase agreement were "amicably resolved" during the year, with R-Infra withdrawing all claims &mdash; a resolved legacy overhang rather than a new one.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Operating cash flow has grown every year and consistently exceeds reported profit &mdash; a clean earnings-quality signal &mdash; but free cash flow has still been negative in three of the last four years as capex outpaces even that strong operating cash generation.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT (attributable to owners)</td><td>1,236.50</td><td>1,137.28</td><td>1,059.97</td><td>2,282.54</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>3,776.99</td><td>6,037.62</td><td>9,044.51</td><td>10,996.70</td></tr>
+            <tr><td>Capex</td><td>&minus;4,702.21</td><td>&minus;5,429.54</td><td>&minus;9,378.14</td><td>&minus;14,431.80</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="neg">&minus;925.22</td><td class="pos">608.08</td><td class="neg">&minus;333.63</td><td class="neg">&minus;3,435.12</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>3.05x</td><td>5.31x</td><td>8.53x</td><td>4.82x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. No quarterly cash-flow statement exists in the source data, so Q1FY27's reported cash conversion cannot be independently checked against its reported profit growth.</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#9679;</div>
+        <div><b>Earnings-quality check: passes clean</b>CFO has grown every year (&#8377;3,777 Cr &rarr; &#8377;6,038 Cr &rarr; &#8377;9,045 Cr &rarr; &#8377;10,997 Cr, FY23&rarr;FY26) and has run at 3.0x&ndash;8.5x reported PAT throughout &mdash; a wide margin above 1x consistent with a regulated-asset business where depreciation and deferred-tax add-backs are large relative to accounting profit. There is no sign here of the "profit growing while cash flow stalls" pattern this skill's methodology specifically checks for; if anything the opposite risk applies &mdash; CFO growth has occasionally outpaced PAT growth (e.g. FY25), meaning the conversion ratio itself is volatile and should not be extrapolated as a fixed multiple.</div>
+      </div>
+
+      <p><b>Read plainly:</b> free cash flow was negative in FY23, FY25 and FY26 (positive only in FY24), and FY26's shortfall of &#8377;3,435 crore is the largest of the four years shown &mdash; not because operating cash generation weakened (it grew 21.6% YoY) but because capex grew even faster (+53.9% YoY). This is a company self-consciously choosing to outspend its own strong and growing operating cash flow to build the next leg of RAB-linked earnings, funded by the debt and equity issuance detailed in &sect;05, rather than a business burning cash to stay afloat. On the Q4FY26 call, CFO Kunjal Mehta was asked directly about this dynamic (an analyst calculated FY26 operating cash flow of ~&#8377;10,000&ndash;11,000 crore against capex of &#8377;14,431 crore) and answered by describing the funding structure rather than disputing the shortfall: "most of our assets, we generally finance it in the ratio of 70:30 [debt:equity]... so balance is tied up through the debts. From that position, we are fully comfortable to meet all our existing capex requirements." Whether that comfort holds through the larger FY27/FY28 capex guidance (&sect;05) without further dilutive equity raises is one of the open questions in this report's outlook section.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">An experienced executive bench with a genuinely credentialed independent-director slate, offset by a CFO transition mid-guidance-cycle and one still-pending US legal matter involving a non-executive director.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Gautam S. Adani</div>
+          <div class="role">Non-Executive Chairman &amp; Promoter Director (since Jun 2015)</div>
+          <div class="bio">Founder and Chairman of the Adani Group. Holds a single equity share personally; does not sit on AESL's audit or stakeholders' committees. Also Non-Executive/Promoter director across most other listed Adani group companies.</div>
+        </div>
+        <div class="person">
+          <div class="name">Anil Sardana</div>
+          <div class="role">Managing Director (since May 2018)</div>
+          <div class="bio">40+ years in infrastructure (Energy &amp; Telecom); former CEO/MD of Tata Power (7+ years) and Tata Teleservices; earlier NTPC (14 yrs) and BSES (7 yrs). Simultaneously serves as Managing Director of <b>Adani Power Limited</b> since July 2020 &mdash; a dual-MD role across two listed group companies worth noting for bandwidth, even though both are within the same conglomerate.</div>
+        </div>
+        <div class="person">
+          <div class="name">Kandarp Patel</div>
+          <div class="role">Whole-time Director &amp; CEO (redesignated May 2025; CEO since Nov 2022)</div>
+          <div class="bio">Leads investor-facing commentary on both earnings calls reviewed; consistent, specific answers on capex/capitalisation guidance across the Apr-26 and Jul-26 calls (&sect;03&ndash;05).</div>
+        </div>
+        <div class="person">
+          <div class="name">Ashok Jagetiya</div>
+          <div class="role">Chief Financial Officer (from 31 May 2026)</div>
+          <div class="bio">Appointed the day after predecessor Kunjal Mehta's resignation; led the Q1FY27 earnings call (22 Jul 2026) delivering the strongest quarterly beat in this dataset, five weeks into the role.</div>
+        </div>
+        <div class="person">
+          <div class="name">Kunjal Mehta <span style="font-weight:400;color:var(--ink-mute);">(departed)</span></div>
+          <div class="role">Former CFO &mdash; resigned 30 May 2026</div>
+          <div class="bio">Stated reason: "personal reasons." Set the FY27/FY28 capex guidance and the 4.5&ndash;4.7x leverage band on the Q4FY26 call (24&ndash;30 Apr 2026) just five weeks before departing.</div>
+        </div>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9888;</div>
+        <div><b>A CFO transition mid-guidance-cycle &mdash; but continuity, not a reset, is what actually happened</b>Kunjal Mehta set specific FY27/FY28 capex figures and the leverage ceiling on the 24&ndash;30 Apr 2026 call, then resigned 30 May 2026 "due to personal reasons," with Ashok Jagetiya appointed the very next day. Rather than resetting guidance, the new CFO's first quarter (Q1FY27, reported 21&ndash;28 Jul 2026) delivered a leverage ratio (4.5x) squarely inside the inherited 4.5&ndash;4.7x band and capex tracking the inherited plan (&sect;05) &mdash; a continuity signal worth noting explicitly, since a CFO change five weeks after setting multi-year guidance could easily have gone the other way. Separately, the Chief People Officer also changed on 1 July 2026 (Samir Prakash &rarr; Pramath Nath), stated cause "Organizational Restructuring" &mdash; a different, lower-materiality rationale from the CFO change, included here for completeness rather than as a related concern.</div>
+      </div>
+
+      <h3>Board composition (as of 31 March 2026, per the FY26 annual report)</h3>
+      <p>8 directors: 2 Non-Executive Promoter Directors (Gautam S. Adani &mdash; Chairman, Rajesh S. Adani, who are brothers and the only related pair on the board), 2 Executive Directors (Anil Sardana, Kandarp Patel), and 4 Non-Executive Independent Directors (Hemant Nerurkar, Chandra Iyengar, Lisa Caroline MacCallum, Anil Ahuja) &mdash; 50% independent, meeting SEBI's requirement for a board with a non-executive chairman who is a promoter. Gender diversity stands at 25% (2 of 8 directors). The Audit Committee and Nomination &amp; Remuneration Committee are both 100% Independent Directors, per the Q1FY27 investor presentation's governance annexure.</p>
+
+      <h3>The US DOJ/SEC matter involving a non-executive director</h3>
+      <div class="callout note">
+        <div class="icon">&#9888;</div>
+        <div><b>Pending court approval of a settlement, not a new development</b>Per the Q1FY27 financial-results notes, a non-executive director of the Company (unnamed in the reviewed filing text) was indicted by the US DOJ and separately named in a US SEC civil complaint (Eastern District of New York) during FY25, on securities- and wire-fraud-conspiracy-related counts; the Company itself has not been named in either matter. During Q1FY27, the US SEC filed for entry of final judgement (the director consenting without admitting or denying the allegations, 15 May 2026) and the US DOJ separately moved to dismiss the indictment with prejudice (18 May 2026) &mdash; both still pending court approval as of the 21 Jul 2026 filing date. Directionally this points toward resolution, but it is not yet final, and this report cannot independently verify the director's identity or role beyond what the filing itself discloses.</div>
+      </div>
+
+      <h3>Auditor &amp; related-party disclosure</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Statutory auditor:</b> Walker Chandiok &amp; Co LLP issued an <b>unmodified/clean opinion</b> on both the FY26 standalone and consolidated financial statements. The standalone audit's sole Key Audit Matter is the carrying value of &#8377;26,242 crore of investments in and loans to subsidiaries &mdash; 73.22% of standalone total assets &mdash; a routine but material concentration typical of a holding-company structure with SPV subsidiaries, not a going-concern flag.</li>
+        <li><b>Related-party transactions:</b> the annual report states all RPTs were conducted at arm's length, in the ordinary course of business, and Audit Committee-approved; this report did not extract the underlying rupee quantum of intra-group transactions from the 49,000-line annual report given time constraints, but notes that AEML has multiple long-dated related-party power-purchase agreements with Adani Green Energy and Adani Power group entities (disclosed in the commitments note, &sect;05) &mdash; standard for a vertically integrated conglomerate, but a structural feature worth being aware of when assessing input-cost independence.</li>
+      </ul>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other call &amp; disclosure insights</h2></div>
+      <p class="sec-dek">Management's own words on right-of-way, China-sourcing, the data-centre opportunity, and a leverage debate they visibly did not want to have on record.</p>
+
+      <h3>Right-of-way: managed proactively, not eliminated</h3>
+      <p>Asked twice across the two calls about right-of-way (ROW) challenges &mdash; a chronic industry issue in Indian transmission construction &mdash; management's answer was consistent: AESL does not rely solely on state-machinery compensation processes, runs its own parallel ground-level negotiation process, and concentrates projects in regions where it already has operating presence and local knowledge. CEO Kandarp Patel stated explicitly that "no project of AESL got delayed because of delay in the equipment delivery," a supply-chain claim distinct from (and not addressing) potential ROW-driven delays, which management characterised as present but manageable rather than resolved.</p>
+
+      <h3>No exposure to Chinese equipment on TBCB projects</h3>
+      <p>In response to a direct analyst question about Chinese-sourced equipment shortages, management stated AESL "can't source equipment from China" for its Tariff-Based Competitive Bidding projects (a bid-condition restriction) and does not envisage any such imports; separately noted that domestic supply-chain constraints for transformers, GIS and reactors are "easing out" as OEMs including GE and Hitachi expand India manufacturing capacity.</p>
+
+      <h3>The leverage question management visibly deflected</h3>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>A shareholder did the borrowing-level math live on the Q4FY26 call &mdash; and got a promise to "walk through it separately," not an answer</b>Long-time shareholder Bharat Shah calculated that maintaining the stated 4.5&ndash;4.7x leverage ratio through a high-growth profit phase implies absolute borrowings reaching &#8377;1,25,000&ndash;1,50,000 crore. CFO Kunjal Mehta's response was to defer: "I'll walk you through separately about our... entire borrowing program for the next 4-5 years." CEO Kandarp Patel then asserted "we are not reaching that number" without providing an alternative figure, before the moderator closed the call. This is the one moment across both transcripts where a specific, uncomfortable quantitative implication of management's own stated policy was raised directly and not answered on the record.</div>
+      </div>
+
+      <h3>Data-centre demand: real, but described as still nascent</h3>
+      <p>On the Q1FY27 call, management (Raj Kumar Jain, Head of Energy Solutions Platform) quantified data-centre-specific Energy Solutions volume as "very negligible" currently (one contract, ~20&ndash;25 MW), against a much larger disclosed market-potential figure of 7.5+ GW by 2030&ndash;31 across data centres, distribution-company round-the-clock contracts and conventional C&amp;I. The company has secured ~4 GW of renewable supply (~4,000 MW from Adani Green Energy, the balance third-party) against this opportunity but has tied up demand-side contracts for only ~350 MW of that capacity so far, with the balance sold on exchanges/bilateral contracts in the interim &mdash; underscoring that the platform's current financial contribution is running ahead of its long-term-contracted, annuity-like end state that management says it is working toward.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">A buy-leaning sell-side consensus with meaningful upside to the mean target, and a slightly more cautious mix over the most recent month.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analysts covering</div><div class="v">9</div></div>
+        <div class="stat"><div class="k">Mean target</div><div class="v">&#8377;1,747.67</div><div class="d">+13.4% above CMP of &#8377;1,541.90</div></div>
+        <div class="stat"><div class="k">Target range</div><div class="v">&#8377;1,434 &ndash; &#8377;2,060</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">18.25%</div><div class="d">Across 89 institutions on record</div></div>
+      </div>
+
+      <h3>Rating mix, last three months</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Period</th><th>Strong Buy</th><th>Buy</th><th>Hold</th><th>Sell</th></tr></thead>
+          <tbody>
+            <tr><td>Current (0m)</td><td>2</td><td>4</td><td>3</td><td>0</td></tr>
+            <tr><td>1 month ago</td><td>3</td><td>3</td><td>3</td><td>0</td></tr>
+            <tr><td>2 months ago</td><td>3</td><td>3</td><td>2</td><td>0</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance recommendation trend. No Sell/Strong Sell ratings on record in any of the last three months. Mix has drifted marginally more cautious (one fewer Strong Buy, one more Hold) even as the mean target (&#8377;1,747.67) still implies double-digit upside &mdash; a modest but real signal worth tracking alongside the leverage and capex-pacing questions in &sect;05.</caption>
+      </div>
+      <p>No further analyst commentary, model detail or sector-comparison notes were found in this filing set; the yfinance <code>recommendationKey</code> field itself reads "none" despite the numeric buy/hold breakdown above existing, which this report treats as a data-field quirk rather than an absence of coverage.</p>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock that broke out of an 18-month range on the back of two consecutive results beats, now trading at 63x trailing and 43x forward earnings &mdash; pricing in a good chunk of management's own FY27 EBITDA target already.</p>
+
+      <h3>19 months of price action</h3>
+      <div id="pchart"></div>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">63.4x</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">42.7x</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">7.28x</div><div class="d">Book value/share &#8377;211.67</div></div>
+        <div class="stat"><div class="k">EV / EBITDA (TTM)</div><div class="v">24.2x</div></div>
+      </div>
+      <p>At 63.4x trailing and 42.7x forward earnings, AESL is priced for a good part of management's own guided FY27 EBITDA step-up (&#8377;8,726 Cr &rarr; ~&#8377;11,500 Cr, +31.8%, &sect;04) to actually land, plus continued double-digit revenue growth. TTM revenue growth of 42.4% and TTM earnings growth of 124.1% (both per MarketData) are real but were both flattered by the Q1FY27 base effects discussed in &sect;03&ndash;04 (a near-empty Energy Solutions comparison quarter, a delayed-monsoon merchant-pricing tailwind) &mdash; the forward multiple assumes a good share of this growth rate, not just the absolute EBITDA level, continues.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built around management's own disclosed FY27 EBITDA guidance (~&#8377;11,500 Cr), the 4.5&ndash;4.7x leverage band, and the &#8377;21,000&ndash;22,000 Cr FY27 capex guidance in &sect;04&ndash;05 &mdash; not this report's own independent forecast. Treat as scenario illustrations, not point forecasts; a 9-analyst consensus exists (&sect;09) but individual analyst models were not available in this dataset to cross-check against.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;1,050&ndash;1,300</div>
+          <div class="rng">&minus;32% to &minus;16% from CMP</div>
+          <ul>
+            <li>Energy Solutions margins normalise sharply lower once the delayed-monsoon pricing tailwind management flagged (&sect;04) fades; FY27 EBITDA lands materially below the &#8377;11,500 Cr guide (&#8377;9,500&ndash;10,000 Cr)</li>
+            <li>Capex execution lags the &#8377;21,000&ndash;22,000 Cr guidance (as Q1FY27's run-rate already suggests, &sect;05) without a corresponding tariff/revenue delay benefit, pressuring returns</li>
+            <li>Net debt/EBITDA breaches the 4.7x ceiling, forcing a further dilutive capital raise beyond the July 2026 QIP; the unanswered "&#8377;1,25,000&ndash;1,50,000 Cr borrowings" question from &sect;08 becomes live</li>
+            <li>Payable-day stretch (&sect;05) continues past FY26's 132 days, drawing scrutiny as a working-capital red flag rather than a capex-timing artefact</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;1,550&ndash;1,900</div>
+          <div class="rng">+0.5% to +23% from CMP</div>
+          <ul>
+            <li>FY27 EBITDA lands close to management's &#8377;11,500 Cr guide; capex execution accelerates through the year toward the &#8377;21,000&ndash;22,000 Cr full-year target as Q1's transmission-capex pace (already 2.2x YoY) continues</li>
+            <li>Leverage holds inside the 4.5&ndash;4.7x band; the IntelliSmart acquisition closes (CCI approval received) and begins contributing modestly to smart-meter scale</li>
+            <li>Mumbai HVDC's full &#8377;1,300 Cr guided annual tariff begins flowing through FY27 revenue broadly as management described (&sect;03)</li>
+            <li>Market sustains a rich but not expanding growth multiple, roughly 38&ndash;45x forward earnings, in line with today's 42.7x</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;2,000&ndash;2,300</div>
+          <div class="rng">+30% to +49% from CMP</div>
+          <ul>
+            <li>FY27 EBITDA beats the &#8377;11,500 Cr guide on further large transmission wins (Vizag &#8377;8,386 Cr already booked, &sect;02) converting to capitalised revenue faster than modelled</li>
+            <li>Energy Solutions Platform converts a larger share of its open positions into long-term annuity-style contracts (management's stated intent, &sect;04) without giving up the current margin profile</li>
+            <li>Leverage stays controlled without a further dilutive raise, as strong CFO growth (&sect;06) increasingly self-funds the FY28 capex step-up</li>
+            <li>Market re-rates the multiple higher (48&ndash;55x forward) on the data-centre/C&amp;I optionality (7.5 GW+ market potential, &sect;08) becoming a visible earnings contributor rather than a stated ambition</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuine, multi-year earnings inflection that is now showing up in hard numbers, not just narrative &mdash; FY26 PAT +115.3%, Q1FY27 EBITDA +58% and PAT +130% YoY, all cross-checked across the financial-results filing, investor presentation and MarketData; the Mumbai HVDC line commissioned on time and management already guiding its specific FY27 tariff contribution; a smart-meter rollout that beat its own FY26 target (83 lakh vs. 70 lakh guided) and is tracking toward the FY27 target after one quarter; consistently strong and growing operating cash flow that has run 3.0x&ndash;8.5x reported PAT every year since FY23, a clean earnings-quality signal; capex running 2.9x&ndash;7.3x depreciation, unambiguous evidence of real capacity expansion; capital commitments that tripled in FY26, suggesting the forward capex guidance is substantially contracted, not aspirational; a clean, unmodified audit opinion; stable-to-improving domestic and international credit ratings even as the balance sheet has scaled sharply; a legacy R-Infra arbitration resolved amicably during the year; and a leverage ratio that, on management's own metric, sat inside its stated 4.5&ndash;4.7x policy band as of Q1FY27.</p>
+        <p style="max-width:none;"><b>What's not good:</b> free cash flow has been negative in three of the last four fiscal years, including the largest shortfall on record in FY26 (&minus;&#8377;3,435 Cr), as capex growth (+53.9% YoY) outran even strong CFO growth (+21.6% YoY); payable days nearly doubled to 132 in FY26, a working-capital metric that management has not directly addressed on record; EBITDA margin has compressed on a percentage basis for four straight years as low-margin construction/trading revenue grows faster than the core; a material share of Q1FY27's headline growth reflects a low prior-year base in one new segment and a monsoon-timing tailwind management itself flagged as not fully repeatable; the CFO who set the FY27/FY28 guidance departed five weeks after the call that gave it; a specific, shareholder-calculated implication of the company's own leverage policy (&#8377;1,25,000&ndash;1,50,000 Cr of eventual borrowings) was raised on the Q4FY26 call and deferred rather than answered; one News-sourced Q4FY26 PAT figure does not reconcile against the company's own filed numbers; a non-executive director remains under a US DOJ/SEC matter pending final court approval; and Q1FY27's actual capex run-rate, annualised, tracks below the low end of FY27 guidance after one quarter.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> with real specificity on operational metrics (smart-meter counts, ckm added, segment capex splits down to the crore) and real discipline about not over-promising on EBITDA &mdash; the one number given (&#8377;11,500 Cr FY27) was extracted under direct, repeated shareholder questioning rather than volunteered. That same discipline showed a limit on the borrowing-level question in &sect;08, where a specific, uncomfortable calculation was deferred rather than engaged with. The CFO transition appears to have been absorbed cleanly &mdash; guidance was not reset, and the new CFO's first quarter beat rather than missed &mdash; but five weeks is a short runway to judge genuine continuity, and this report's next update should specifically check whether the FY27 capex and EBITDA guidance are being tracked to, or quietly walked back.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood that AESL's own FY27 guidance (~&#8377;11,500 Cr EBITDA, &#8377;21,000&ndash;22,000 Cr capex, 4.5&ndash;4.7x leverage) is substantially met over the next 12 months: moderate-to-high, roughly 55&ndash;65%.</b> The quantitative record supports the growth story more than it undermines it &mdash; cash conversion is clean, capex commitments are substantially contracted, and Q1FY27 delivered rather than disappointed &mdash; but the business is running with limited leverage headroom against an aggressive multi-year capex plan, a fresh CFO, a still-unanswered question about the endpoint of its own borrowing policy, and a valuation that already prices in a meaningful share of the guided step-up. This is a story where the operational execution has, so far, been better than the balance-sheet discipline required to fund it comfortably &mdash; and the next two to three quarters should show clearly which of those two trends is actually in charge.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether quarterly capex accelerates through FY27 toward the &#8377;21,000&ndash;22,000 Cr full-year guidance, or continues to run below the implied pace set in Q1; (2) net debt/EBITDA on the company's own metric &mdash; a move past 4.7x without a further equity raise already flagged would be the clearest signal of a funding-model strain; (3) whether Energy Solutions Platform EBITDA holds up once the delayed-monsoon pricing tailwind normalises, or reverts sharply lower; (4) payable days &mdash; a further stretch past FY26's 132 days after the current capex wave matures would shift this from a capex-timing explanation toward a genuine working-capital concern; (5) whether the IntelliSmart acquisition closes on schedule and what it does to smart-meter segment margins once consolidated; (6) whether a specific FY27/FY28 consolidated borrowings figure is ever put on the record, resolving the question management deferred on the Q4FY26 call.</div>
+      </div>
+
+      <footer>
+        Compiled from Adani Energy Solutions Limited's BSE filings (Announcements/AnnouncementsConv, dated 28 Apr&ndash;21 Aug 2026 &mdash; the Q4/FY26 and Q1FY27 earnings-call transcripts, the Q1FY27 investors' presentation and financial-results filing, the FY26 Integrated Annual Report, credit-rating reaffirmations, the QIP and IntelliSmart/Vizag acquisition filings, and management-change filings), MarketData (Yahoo Finance via yfinance, fetched 22 Aug 2026, including the full daily price-history series), and the tracked News feed (31 Jul 2024&ndash;18 Aug 2026). No primary-source earnings call, investor presentation or financial-results filing for Q1FY26, Q2FY26 or Q3FY26 exists in this dataset; those quarters are sourced from MarketData/yfinance's quarterly statements (with a confirmed gap at Q2FY26/Sep-2025) and from News' results summaries, both flagged wherever used. No quarterly cash-flow statement exists in the source data. Every figure is tagged to its source; where two sources disagreed or a figure could not be independently verified, that is stated in the relevant section. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [6374.58, 6819.28, 6729.65, 7443.27, 9711.08];
+    var ebitda  = [2261.77, 2016.90, 2210.19, 2372.14, 3178.12];
+    var pat     = [713.66, 538.94, 574.06, 722.65, 1236.56];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT (incl. NCI)', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 52, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q2FY26 (Sep-25) is not plotted here — missing from the yfinance quarterly series loaded for this company; News reported approx. revenue ₹6,596 Cr, EBITDA ₹2,126 Cr, PAT ₹534 Cr for that quarter (see §03 table and caption for the full gap disclosure).</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Jan 25', 748.35], ['Feb 25', 650.90], ['Mar 25', 872.00], ['Apr 25', 899.65],
+      ['May 25', 867.20], ['Jun 25', 881.75], ['Jul 25', 808.40], ['Aug 25', 764.15],
+      ['Sep 25', 872.25], ['Oct 25', 986.20], ['Nov 25', 994.55], ['Dec 25', 1027.35],
+      ['Jan 26', 894.80], ['Feb 26', 1011.55], ['Mar 26', 934.90], ['Apr 26', 1342.25],
+      ['May 26', 1513.30], ['Jun 26', 1491.40], ['Jul 26', 1645.40], ['Aug 26', 1541.90]
+    ];
+    var W = 900, H = 220, padL = 52, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Adani Energy Solutions Limited monthly closing share price, January 2025 to August 2026" style="width:100%;height:auto;font-size:10.5px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 2.6;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i % 2 === 0 || i === points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily NSE price history via yfinance (Aug-26 point is 20 Aug, the latest full trading day in the source data — 21 Aug had no close recorded). 52-week range per MarketData snapshot: ₹744.90 – ₹1,789.00 (intraday extremes can fall between the monthly points plotted).</div></div>';
+  })();
+})();
+</script>

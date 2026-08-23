@@ -1,7 +1,7 @@
 {
   "symbol": "CIEINDIA",
   "name": "CIE Automotive",
-  "generatedAt": "2026-08-18T16:37:33.799122+00:00",
+  "generatedAt": "2026-08-23T11:01:09.922446+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 419.65,
-    "change": 11.049988,
-    "changePercent": 2.7043533,
-    "previousClose": 408.6,
-    "dayLow": 409.45,
-    "dayHigh": 422.0,
+    "current": 406.65,
+    "change": -3.0500183,
+    "changePercent": -0.7444516,
+    "previousClose": 409.7,
+    "dayLow": 405.7,
+    "dayHigh": 410.55,
     "fiftyTwoWeekLow": 381.1,
     "fiftyTwoWeekHigh": 526.0,
-    "asOf": 1785751203
+    "asOf": 1787133592
   },
   "stats": {
-    "marketCap": 159199412224.0,
-    "trailingPE": 17.766722,
-    "forwardPE": 14.724561,
-    "priceToBook": 2.0560899,
+    "marketCap": 154267697152.0,
+    "trailingPE": 17.201777,
+    "forwardPE": 14.268421,
+    "priceToBook": 1.9923959,
     "bookValue": 204.101,
     "dividendYield": 1.71,
-    "trailingEps": 23.62,
+    "trailingEps": 23.64,
     "debtToEquity": 0.0663,
     "roe": 11.10278277425853,
     "roce": 13.428618470168665,
-    "return1y": 2.92145762344992,
+    "return1y": 4.603609118845074,
     "sharesOutstanding": 379362377.0
   },
   "quarterly": {
@@ -343,11 +343,11 @@
     "targetMean": 500.2,
     "targetHigh": 560.0,
     "targetLow": 450.0,
-    "recommendationKey": "buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 5
   },
   "holders": {
     "insidersPercent": 0.66418,
-    "institutionsPercent": 0.22657
+    "institutionsPercent": 0.22624001
   }
 }

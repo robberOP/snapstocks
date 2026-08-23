@@ -1,7 +1,7 @@
 {
   "symbol": "VARROC",
   "name": "Varroc Engineer",
-  "generatedAt": "2026-08-18T16:39:20.648810+00:00",
+  "generatedAt": "2026-08-23T11:03:06.720136+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 686.9,
-    "change": 7.700012,
-    "changePercent": 1.1336884,
-    "previousClose": 679.2,
-    "dayLow": 681.25,
-    "dayHigh": 706.95,
+    "current": 830.9,
+    "change": -13.0,
+    "changePercent": -1.5404669,
+    "previousClose": 843.9,
+    "dayLow": 823.55,
+    "dayHigh": 852.4,
     "fiftyTwoWeekLow": 462.0,
-    "fiftyTwoWeekHigh": 706.95,
-    "asOf": 1785751195
+    "fiftyTwoWeekHigh": 874.85,
+    "asOf": 1787133595
   },
   "stats": {
-    "marketCap": 104957861888.0,
-    "trailingPE": 46.60109,
-    "forwardPE": 20.673775,
-    "priceToBook": 5.890626,
+    "marketCap": 126960967680.0,
+    "trailingPE": 64.36096,
+    "forwardPE": 22.891598,
+    "priceToBook": 7.125522,
     "bookValue": 116.609,
-    "dividendYield": 0.22,
-    "trailingEps": 14.74,
+    "dividendYield": 0.18,
+    "trailingEps": 12.91,
     "debtToEquity": 0.50855,
     "roe": 12.639805070503545,
     "roce": 20.819797953730916,
-    "return1y": 31.099640745348562,
+    "return1y": 62.72857570253081,
     "sharesOutstanding": 152786400.0
   },
   "quarterly": {
@@ -116,16 +116,16 @@
     "rows": {
       "Sales": [
         null,
-        68049020000.0,
-        73607870000.0,
-        80123140000.0,
+        67958260000.0,
+        73498990000.0,
+        80024750000.0,
         87245040000.0
       ],
       "Expenses": [
         null,
-        65450550000.0,
-        69386040000.0,
-        75589190000.0,
+        65359790000.0,
+        69277160000.0,
+        75490800000.0,
         82198570000.0
       ],
       "OperatingProfit": [
@@ -143,18 +143,18 @@
         2250310000.0
       ],
       "EPS": [
-        -72.642526,
+        null,
         -53.66,
         34.43,
         4.01,
-        null
+        14.73
       ],
       "SalesGrowth": [
         null,
         null,
-        8.168890602686123,
-        8.851322555590862,
-        8.888693079177875
+        8.153136940233608,
+        8.878707040736206,
+        9.022571142052929
       ]
     },
     "ttm": {
@@ -316,21 +316,25 @@
       ],
       "DebtorDays": [
         null,
-        32.027132793389235,
-        24.389062609745398,
-        30.96638499190122,
+        32.06990585103268,
+        24.425192101279215,
+        31.004457995807545,
         30.73018706851415
       ],
       "WorkingCapitalDays": [
         null,
-        -58.89688345254641,
-        -22.990905048604176,
-        -10.922010170844528,
+        -58.975541751657566,
+        -23.02496333623088,
+        -10.935438723644872,
         -12.966859090213038
       ]
     }
   },
   "dividends": [
+    {
+      "date": "2026-08-07",
+      "amount": 1.5
+    },
     {
       "date": "2025-08-08",
       "amount": 1.0
@@ -345,14 +349,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 646.4,
-    "targetHigh": 785.0,
-    "targetLow": 490.0,
+    "targetMean": 750.4,
+    "targetHigh": 897.0,
+    "targetLow": 540.0,
     "recommendationKey": "hold",
     "numberOfAnalystOpinions": 5
   },
   "holders": {
     "insidersPercent": 0.75,
-    "institutionsPercent": 0.12835
+    "institutionsPercent": 0.12358
   }
 }

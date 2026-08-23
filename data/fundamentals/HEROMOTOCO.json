@@ -1,7 +1,7 @@
 {
   "symbol": "HEROMOTOCO",
   "name": "Hero Motocorp",
-  "generatedAt": "2026-08-18T16:37:59.007757+00:00",
+  "generatedAt": "2026-08-23T11:01:46.686409+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Manufacturers",
@@ -14,29 +14,29 @@
     "peerIndustry": "2/3 Wheelers"
   },
   "price": {
-    "current": 5460.0,
-    "change": 74.0,
-    "changePercent": 1.3739324,
-    "previousClose": 5386.0,
-    "dayLow": 5388.0,
-    "dayHigh": 5460.5,
-    "fiftyTwoWeekLow": 4310.1,
+    "current": 5709.5,
+    "change": -36.0,
+    "changePercent": -0.6265773,
+    "previousClose": 5745.5,
+    "dayLow": 5664.5,
+    "dayHigh": 5767.5,
+    "fiftyTwoWeekLow": 4671.5,
     "fiftyTwoWeekHigh": 6388.5,
-    "asOf": 1785750299
+    "asOf": 1787132698
   },
   "stats": {
-    "marketCap": 1092507467776.0,
-    "trailingPE": 19.05493,
-    "forwardPE": 17.253733,
-    "priceToBook": 5.055205,
+    "marketCap": 1142706143232.0,
+    "trailingPE": 20.964603,
+    "forwardPE": 17.53418,
+    "priceToBook": 5.286207,
     "bookValue": 1080.075,
-    "dividendYield": 3.43,
-    "trailingEps": 286.54,
+    "dividendYield": 3.22,
+    "trailingEps": 272.34,
     "debtToEquity": 0.035699999999999996,
     "roe": 26.568319467831248,
     "roce": 31.90830235439901,
-    "return1y": 30.590523741098608,
-    "sharesOutstanding": 200092938.0
+    "return1y": 25.452013466741914,
+    "sharesOutstanding": 200141207.0
   },
   "quarterly": {
     "periods": [
@@ -45,7 +45,8 @@
       "Q1FY26",
       "Q2FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
@@ -53,48 +54,54 @@
       "2025-06-30T00:00:00",
       "2025-09-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
         null,
-        99698100000.0,
+        null,
         97277500000.0,
         122183900000.0,
         124868200000.0,
-        129782800000.0
+        129782800000.0,
+        131263500000.0
       ],
       "Expenses": [
         null,
-        87332000000.0,
+        null,
         85204600000.0,
         105646200000.0,
         108592100000.0,
-        112768100000.0
+        112768100000.0,
+        116000700000.0
       ],
       "OperatingProfit": [
         null,
-        12366100000.0,
+        null,
         12072900000.0,
         16537700000.0,
         16276100000.0,
-        17014700000.0
+        17014700000.0,
+        15262800000.0
       ],
       "NetProfit": [
         null,
-        11613300000.0,
+        null,
         17052900000.0,
         13088900000.0,
         12675500000.0,
-        14600000000.0
+        14600000000.0,
+        14123600000.0
       ],
       "EPS": [
         null,
-        58.01,
+        null,
         85.17,
         65.34,
         63.3,
-        72.91
+        72.91,
+        70.53
       ]
     }
   },
@@ -158,10 +165,10 @@
       ]
     },
     "ttm": {
-      "Sales": 474112400000.0,
-      "Expenses": 412211000000.0,
-      "OperatingProfit": 61901400000.0,
-      "NetProfit": 57417300000.0
+      "Sales": 508098400000.0,
+      "Expenses": 443007100000.0,
+      "OperatingProfit": 65091300000.0,
+      "NetProfit": 54488000000.0
     }
   },
   "balanceSheet": {
@@ -365,14 +372,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 5840.9707,
-    "targetHigh": 7800.0,
-    "targetLow": 4200.0,
+    "targetMean": 6255.4287,
+    "targetHigh": 7760.0,
+    "targetLow": 4700.0,
     "recommendationKey": "buy",
-    "numberOfAnalystOpinions": 34
+    "numberOfAnalystOpinions": 35
   },
   "holders": {
-    "insidersPercent": 0.37431,
-    "institutionsPercent": 0.37772998
+    "insidersPercent": 0.37422,
+    "institutionsPercent": 0.38494
   }
 }

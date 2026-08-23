@@ -1,7 +1,7 @@
 {
   "symbol": "AXISCADES",
   "name": "AXISCADES Tech.",
-  "generatedAt": "2026-08-18T16:37:19.587068+00:00",
+  "generatedAt": "2026-08-23T11:00:53.523324+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Engineering & Construction",
@@ -14,28 +14,28 @@
     "peerIndustry": "Aerospace & Defense"
   },
   "price": {
-    "current": 1572.9,
-    "change": 19.400024,
-    "changePercent": 1.2487946,
-    "previousClose": 1553.5,
-    "dayLow": 1535.8,
-    "dayHigh": 1599.0,
+    "current": 1597.5,
+    "change": -3.0999756,
+    "changePercent": -0.19367585,
+    "previousClose": 1600.6,
+    "dayLow": 1570.0,
+    "dayHigh": 1621.7,
     "fiftyTwoWeekLow": 1063.3,
     "fiftyTwoWeekHigh": 2211.0,
-    "asOf": 1785751189
+    "asOf": 1787306398
   },
   "stats": {
-    "marketCap": 66900922368.0,
-    "trailingPE": 93.73659,
+    "marketCap": 67947245568.0,
+    "trailingPE": 107.503365,
     "forwardPE": null,
-    "priceToBook": 9.2098255,
+    "priceToBook": 9.353866,
     "bookValue": 170.785,
     "dividendYield": null,
-    "trailingEps": 16.78,
+    "trailingEps": 14.86,
     "debtToEquity": 0.52834,
     "roe": 9.88505993586096,
     "roce": 15.651484762608506,
-    "return1y": 27.082498704537755,
+    "return1y": 34.53764250917095,
     "sharesOutstanding": 42533489.0
   },
   "quarterly": {
@@ -340,6 +340,6 @@
   },
   "holders": {
     "insidersPercent": 0.073249996,
-    "institutionsPercent": 0.01691
+    "institutionsPercent": 0.01672
   }
 }

@@ -1,7 +1,7 @@
 {
   "symbol": "ASHOKLEY",
   "name": "Ashok Leyland",
-  "generatedAt": "2026-08-18T16:37:16.372546+00:00",
+  "generatedAt": "2026-08-23T11:00:49.822828+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Farm & Heavy Construction Machinery",
@@ -14,28 +14,28 @@
     "peerIndustry": "Commercial Vehicles"
   },
   "price": {
-    "current": 174.55,
-    "change": 8.37001,
-    "changePercent": 5.0367136,
-    "previousClose": 166.18,
-    "dayLow": 169.13,
-    "dayHigh": 175.0,
-    "fiftyTwoWeekLow": 114.96,
+    "current": 173.1,
+    "change": -3.25,
+    "changePercent": -1.8429259,
+    "previousClose": 176.35,
+    "dayLow": 173.1,
+    "dayHigh": 176.1,
+    "fiftyTwoWeekLow": 125.85,
     "fiftyTwoWeekHigh": 215.42,
-    "asOf": 1785750301
+    "asOf": 1787132700
   },
   "stats": {
-    "marketCap": 1025281294336.0,
-    "trailingPE": 29.484797,
-    "forwardPE": 21.492466,
-    "priceToBook": 6.6190133,
-    "bookValue": 26.371,
-    "dividendYield": 2.11,
-    "trailingEps": 5.92,
+    "marketCap": 1016764235776.0,
+    "trailingPE": 29.190557,
+    "forwardPE": 21.162586,
+    "priceToBook": 7.1393223,
+    "bookValue": 24.246,
+    "dividendYield": 1.98,
+    "trailingEps": 5.93,
     "debtToEquity": 3.4473700000000003,
     "roe": 24.372318172913467,
     "roce": 14.515600445562965,
-    "return1y": 44.95671279140958,
+    "return1y": 50.81830726677888,
     "sharesOutstanding": 5873854552.0
   },
   "quarterly": {
@@ -365,14 +365,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 184.3871,
-    "targetHigh": 250.0,
+    "targetMean": 189.69698,
+    "targetHigh": 240.0,
     "targetLow": 155.0,
     "recommendationKey": "buy",
-    "numberOfAnalystOpinions": 31
+    "numberOfAnalystOpinions": 33
   },
   "holders": {
-    "insidersPercent": 0.40132,
-    "institutionsPercent": 0.27898002
+    "insidersPercent": 0.36363998,
+    "institutionsPercent": 0.34315
   }
 }

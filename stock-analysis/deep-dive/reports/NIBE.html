@@ -1,0 +1,916 @@
+<title>Nibe Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Defence Systems Manufacturing / Aerospace &amp; Precision Components</div>
+    <h1>Nibe Limited</h1>
+    <p class="sub">NSE: NIBE &middot; BSE: 535136 &middot; FY2023&ndash;FY2027(Q1) performance review, BSE-filing and press-release synthesis, as of 20 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> Nibe has spent the past five months rebuilding its public identity from a defence-component fabricator into a vertically integrated weapons-systems player &mdash; test-firing a rocket launcher (Suryastra), a loitering-munition system (VayuAstra) that just won a &#8377;563 crore Indian Army contract, and a vehicle-mounted mortar (Garudastra), while inaugurating a 200-acre Shirdi complex with its own 155mm-shell, TNT and RDX capacity. The newsflow has been genuinely strong. The underlying numbers have not kept pace: FY26 revenue fell 6.5% and parent PAT fell 79%, and the year's entire pre-tax profit was almost wholly (&#8377;3.92 Cr of &#8377;3.93 Cr) non-operating income rather than the core business. Cash from operations turned deeply negative as receivable days nearly tripled to 178, and Q1FY27 &mdash; reported the very same day as the VayuAstra contract and a &#8377;134.67 crore capital raise &mdash; swung back to a &#8377;12 crore net loss on revenue down 23% YoY, just one quarter after a blowout Q4FY26. Two C-suite exits (CFO, then CEO) in three months were followed by the Chairman &amp; Managing Director appointing himself CEO, and a subsidiary was quietly sold to that same promoter at cost, with no independent valuation disclosed. The stock trades at 442x trailing earnings with zero analyst coverage to check any of this against.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (20 Aug 26)</div><div class="v">&#8377;1,503.70</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;2,323.87 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;809.60 &ndash; &#8377;1,848.00</div></div>
+      <div class="chip"><div class="k">FY26 Revenue</div><div class="v neg">&minus;6.5% YoY</div></div>
+      <div class="chip"><div class="k">FY26 PAT (parent)</div><div class="v neg">&minus;78.9% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 Revenue</div><div class="v neg">&minus;23% YoY <span style="font-size:11px;">(News-sourced)</span></div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">442.2x</div></div>
+      <div class="chip"><div class="k">FY23&ndash;FY26 Free Cash Flow</div><div class="v neg">Negative, all 4 years</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage &amp; an entity-naming caution &mdash; please read before the numbers below:</b> BSE filings in this dataset span 5&nbsp;Mar&ndash;18&nbsp;Aug 2026 (47 of 48 listed filings had machine-readable text). The two Financial Results filings that matter most &mdash; audited Q4/FY26 (29 May 2026) and unaudited Q1FY27 (14 Aug 2026) &mdash; had their P&amp;L tables embedded as scanned images with zero extractable text in this pipeline, so no company-filed P&amp;L line item could be independently sourced from BSE for either. This report instead leans on MarketData/yfinance's independently computed annual (FY23&ndash;FY26; FY22 is mostly null) and quarterly (Q4FY25&ndash;Q4FY26; Q1FY27 not yet loaded there) series, cross-checked wherever possible &mdash; e.g. the four FY26 quarters sum exactly to the annual revenue, EBITDA and PAT totals, a clean internal-consistency pass &mdash; plus one Q1FY27 headline figure sourced from a News aggregator's summary of the results, which independently reconciles against yfinance's own Q1FY26 base (see &sect;03). No quarterly cash-flow file exists in the source data at all. <b>Separately:</b> Nibe's own filings and press releases move fluidly between the listed entity (Nibe Limited), "Nibe Group" generally, and at least three distinctly named subsidiaries &mdash; Nibe Defence &amp; Aerospace Limited (NDAL), Nibe Aeronautics Limited (sold to the promoter personally in April 2026), and Nibe Space Private Limited &mdash; plus one land-lease reference to a fourth, unverified entity ("Global Defence Industries Limited") found only in incidental newsprint, not a company filing. This report is exclusively about the listed Nibe Limited (BSE 535136) and flags, rather than silently resolves, every place a disclosure blurs that line. It is also entirely unrelated to NIBE Industrier AB, a Swedish heating-technology company that shares nothing but the name and turned up in general news search for this ticker (excluded from &sect;02).
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Disclosure insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What Nibe does, and how it has grown</h2></div>
+      <p class="sec-dek">A components fabricator that has spent one year publicly reinventing itself as a weapons-systems house &mdash; largely through subsidiaries whose exact relationship to the listed entity isn't always made clear.</p>
+
+      <p class="lede">Incorporated in 2005 as Kavita Fabrics Limited and renamed Nibe Limited in July 2020, the Pune (Chakan/MIDC)-headquartered company fabricates and machines components for the defence sector &mdash; pieces for the Pinaka launcher system, modular bridge systems, hull and turret assemblies, BrahMos missile canisters, rudder-blade assemblies, and small-arms components (upper/lower receiver assemblies, trigger mechanisms, bolts, breech blocks). A second, smaller line of business covers aircraft charter, management, leasing and fractional ownership; a third covers ruggedised electronics &mdash; panel PCs, network switches, joystick consoles, cable harnesses (MarketData/overview.md). Promoter and Chairman &amp; Managing Director <b>Ganesh Ramesh Nibe</b>'s own disclosed biography is an unusually rapid pivot: starting as "a small entrepreneur in sugar cane juice and furnace oil distribution," moving into electrical substation contracting after his engineering education, founding a contracting business in 2013, then entering "critical heavy defence component fabrication" in 2021 &mdash; from which Nibe Limited's four Pune/Bengaluru plants grew (per the company's own 14 Aug 2026 filing).</p>
+
+      <h3>FY23&ndash;FY26: a component-fabrication ramp that peaked in FY25</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total revenue</td><td>105.30</td><td>281.84</td><td>507.32</td><td>474.45</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td class="pos">+167.6%</td><td class="pos">+80.0%</td><td class="neg">&minus;6.5%</td></tr>
+            <tr><td>EBITDA</td><td>10.11</td><td>38.31</td><td>64.65</td><td>48.68</td></tr>
+            <tr><td>PAT attributable to Nibe shareholders</td><td>1.57</td><td>18.98</td><td>26.73</td><td>5.63</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>1.51</td><td>15.33</td><td>19.46</td><td>n/a<sup>&dagger;</sup></td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement. FY22 is not usable &mdash; nearly every FY22 P&amp;L line item is null in the source data. &dagger; FY26 annual diluted EPS/share-count fields are null despite the underlying Q4FY26 quarterly EPS (&#8377;17.70) existing &mdash; an incomplete annual roll-up in the source, flagged rather than estimated.</caption>
+      </div>
+      <p>Read plainly: three years of explosive growth (FY24 revenue +168%, FY25 +80%) gave way to an actual FY26 <em>contraction</em> (&minus;6.5%) and a 79% collapse in profit attributable to shareholders &mdash; a very different picture from the one told by this year's press releases. Section&nbsp;03 shows this wasn't a smooth deceleration either: FY26 revenue was earned almost entirely in a single blowout quarter.</p>
+
+      <h3>The FY26 pivot: from fabricator to systems integrator</h3>
+      <p>Starting in January 2026, Nibe's public narrative shifted decisively toward finished weapons systems rather than components: a &#8377;293 crore Indian Army Emergency Procurement contract for the <b>Suryastra</b> universal rocket-launcher system (Jan 2026, confirmed directly to "Nibe Limited" per the company's own 16 Jun rebuttal filing, see &sect;08); successful test firing of Suryastra at ITR Chandipur (150km range, CEP 1.5m; 300km range, CEP 2m &mdash; 18&ndash;19 May 2026); technical trials of the <b>VayuAstra</b> loitering-munition system against an Army RFP at Pokhran and Joshimath/Malari (100km range, anti-personnel and anti-armour modes, &gt;90-minute endurance &mdash; 21 May 2026); a demonstration of the <b>Garudastra</b> 120mm vehicle-mounted mortar system to the Army at Mhow (17 Jun 2026); and, on 14 Aug 2026, a signed &#8377;563.35 crore VayuAstra supply contract as the Army's L2 (second-lowest) vendor under the Fast Track Procurement route &mdash; alongside Tata Advanced Systems, whose larger share made up the balance of a combined ~&#8377;1,577 crore programme (News, 14 Aug 2026). Backing this, the company inaugurated a 200-acre <b>Shirdi Defence Manufacturing Complex</b> on 23 May 2026 (Union Defence Minister Rajnath Singh and Maharashtra CM Devendra Fadnavis in attendance), with a stated 5-lakh-shell/year 155mm ammunition line plus in-house TNT and RDX plants &mdash; genuine backward/vertical integration into explosives and propellants, not just a components upgrade.</p>
+
+      <h3>Group structure: a listed parent, several distinctly named subsidiaries, and blurred press-release attribution</h3>
+      <p>Nibe Limited's defence-systems business flows substantially through <b>Nibe Defence &amp; Aerospace Limited (NDAL)</b>, a subsidiary &mdash; the VayuAstra contract press release itself notes the defence portfolio sits "through its subsidiary NIBE Defence &amp; Aerospace Limited," and NDAL separately received a <b>lifetime DPIIT licence</b> under the Arms Act for manufacturing/proof-testing firearms and ammunition of caliber above 12.7mm (6 Jun 2026 filing). A second subsidiary, <b>Nibe Space Private Limited</b>, won two separate MSEDCL (Maharashtra State Electricity Distribution) contracts for GIS-based network mapping (&#8377;12.58 Cr, 4 May 2026; &#8377;12.15 Cr, 18 Aug 2026 &mdash; both 42-month executions). A third, <b>Nibe Aeronautics Limited (NAL)</b> &mdash; formerly a step-down subsidiary held through NDAL &mdash; was sold in its entirety to the promoter, Ganesh Nibe, personally, for a consideration set only at "not less than the original investment" of &#8377;1.52 crore, with no independent valuation disclosed (announced 30&nbsp;Mar, completed 9&nbsp;Apr 2026; see &sect;05 and &sect;07 for the governance read on this). A fourth name, "Global Defence Industries Limited," surfaced only once, incidentally, in Marathi newsprint reporting a 49-year, 1,500-acre land lease in Ahilyanagar allocated via a state cabinet sub-committee rather than competitive tender &mdash; this report could not verify its relationship to Nibe Limited from any company filing and flags it as unconfirmed rather than including it as fact. The 23 May Shirdi-complex press release itself is captioned "in relation to the entire Nibe Group" and uses "About NIBE Group" boilerplate, not "About Nibe Limited" &mdash; a pattern that recurs across this dataset and makes it genuinely hard, from public disclosure alone, to know which legal entity's balance sheet ultimately captures each announced capability or contract.</p>
+
+      <h3>The moat, such as it's evidenced</h3>
+      <p>No independent market-share, ranking, or competitor-benchmark data was found in any reviewed filing or press release &mdash; every scale claim in this dataset is self-reported. What is independently verifiable: a lifetime DPIIT arms licence (an unusual, hard-to-replicate regulatory approval) held by NDAL; a large, genuinely new manufacturing footprint (Shirdi, plus the existing four Pune/Bengaluru plants); a disclosed foreign-technology collaboration agreement (dated March 2025) underlying the Suryastra system's initial architecture, which the company itself has publicly confirmed exists (see &sect;08); and now direct participation, as a named vendor, in two live Indian Army procurement programmes. Whether that adds up to a durable moat or a first-mover position in a crowded, policy-driven indigenisation wave is not something this dataset can settle independently.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item in the tracked News feed (14&ndash;19 Aug 2026), with the unrelated Swedish company explicitly separated out.</p>
+
+      <div class="news-item">
+        <div class="news-date">19 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Second MSEDCL GIS-mapping order, &#8377;12.58 Cr</div>
+          <div class="news-body">Nibe Space Private Limited (subsidiary) secured a &#8377;12.58 crore MSEDCL contract for GIS-based mapping/digitisation of Maharashtra's electricity distribution network over 42 months. Coverage framed this as secondary to the &#8377;563.35 crore VayuAstra defence contract signed five days earlier (&sect;01) &mdash; the article itself flagged that scaling this fast will require "careful working capital management and successful execution at the Shirdi manufacturing complex to avoid balance sheet strain," a caution this report's &sect;05&ndash;06 findings independently support.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">19 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Unrelated &mdash; not this company</span>
+          <div class="news-title">Marshall Wace short position in "Nibe" &mdash; the Swedish company, not this one</div>
+          <div class="news-body">A hedge fund re-entered a public short position (0.50%) in <b>NIBE Industrier AB</b>, a Swedish heating-technology manufacturer, bringing total disclosed short interest in <em>that</em> company to 6.38%. This item is entirely unrelated to Nibe Limited (BSE 535136) and is included here only to flag &mdash; and exclude &mdash; the naming collision described in the coverage note above.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">17 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Unrelated &mdash; not this company</span>
+          <div class="news-title">New Managing Director at "NIBE AB" &mdash; again the Swedish subsidiary</div>
+          <div class="news-body">NIBE Industrier AB appointed Jonas Bjuhr (ex-Hydro) as MD of its largest subsidiary, "NIBE AB," effective December 2026. No connection to Nibe Limited; excluded from this report's analysis.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">15 Aug 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">Q1FY27 results: revenue &#8377;63 Cr (&minus;23% YoY), net loss &#8377;12 Cr</div>
+          <div class="news-body">Consolidated Q1FY27 revenue of &#8377;63 crore, down 23% YoY, with a net loss of &#8377;12 crore versus a &#8377;1 crore net profit in Q1FY26, alongside a reported gross loss of &#8377;14 crore. This aggregator-sourced figure independently reconciles with yfinance's own Q1FY26 revenue base of &#8377;82.50 Cr (&minus;23% off that base &asymp; &#8377;63.5 Cr) &mdash; see &sect;03 for the full cross-check and the primary-source data gap this figure fills.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">14 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed &mdash; good news and bad news, same day</span>
+          <div class="news-title">&#8377;563.35 Cr Army loitering-munition contract and a &#8377;134.67 Cr capital raise, filed alongside a quarterly loss</div>
+          <div class="news-body">The same 14 Aug 2026 board meeting that approved the weak Q1FY27 results (above) also produced: the signed VayuAstra contract (&#8377;563.35 Cr, L2 vendor share &mdash; &sect;01); confirmation of &#8377;134.67 crore cumulative proceeds raised via the Mar/Jun 2026 preferential-issue programme (running total, not a single-day raise &mdash; &sect;05); the Chairman/MD's self-appointment as CEO (&sect;07); and a new Internal Auditor. Media coverage (including a separate item citing "NIBE Private Limited" as a co-contractor alongside Tata Advanced Systems on the &#8377;1,577 Cr combined programme) should be read against the company's own filing, which attributes its &#8377;563.35 Cr share specifically to Nibe Limited acting through NDAL &mdash; a further instance of the entity-naming ambiguity flagged throughout this report.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>Nibe's month-end closing price ran from &#8377;983.94 (Feb-2025) to as high as &#8377;1,757.48 (May-2025), then fell hard through the second half of FY26 to a 52-week low of &#8377;817.20 (Mar-2026, month-end close; &#8377;809.60 intraday per fast_info), before recovering to &#8377;1,499.10 by 20 Aug 2026 &mdash; a round trip that roughly tracks the underlying earnings volatility documented in &sect;03&ndash;04 more closely than the press-release newsflow alone would suggest. Full chart in &sect;10. Institutional ownership of just 4.25% and a float of only 6.67 million of 15.50 million shares outstanding help explain how pronounced these swings have been.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, order wins &amp; guidance</h2></div>
+      <p class="sec-dek">A genuinely lumpy, milestone-billing revenue pattern &mdash; one mega-quarter surrounded by two loss-making ones &mdash; with no formal management guidance found anywhere in this dataset to hold the company to.</p>
+
+      <h3>Quarterly trend</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q2FY26 (Sep-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)<sup>&Dagger;</sup></th></tr></thead>
+          <tbody>
+            <tr><td>Revenue</td><td>112.59</td><td>82.50</td><td>73.37</td><td>59.08</td><td>259.50</td><td>&asymp;63</td></tr>
+            <tr><td>EBITDA</td><td>20.18</td><td>8.76</td><td class="neg">&minus;3.96</td><td class="neg">&minus;9.07</td><td>52.95</td><td>n/a<sup>&sect;</sup></td></tr>
+            <tr><td>EBITDA margin</td><td>17.9%</td><td>10.6%</td><td class="neg">&minus;5.4%</td><td class="neg">&minus;15.4%</td><td>20.4%</td><td>n/a</td></tr>
+            <tr><td>PAT</td><td>7.64</td><td>1.90</td><td class="neg">&minus;8.44</td><td class="neg">&minus;17.06</td><td>29.23</td><td class="neg">&minus;12</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>6.02</td><td>0.72</td><td class="neg">&minus;6.69</td><td class="neg">&minus;11.76</td><td>17.70</td><td>n/a</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance quarterly income statement, Q4FY25&ndash;Q4FY26. &Dagger; Q1FY27 revenue/PAT per a News aggregator's summary of the 14 Aug 2026 results filing (yfinance had not yet loaded this quarter as of the MarketData fetch); a reported gross loss of &#8377;14 Cr was also disclosed but is a different subtotal than EBITDA and is not conflated with it here. &sect; EBITDA not disclosed in the aggregator summary reviewed &mdash; left as a gap rather than estimated. The four FY26 quarters shown (Q1&ndash;Q4) sum exactly to the FY26 annual revenue (&#8377;474.45 Cr), EBITDA (&#8377;48.68 Cr) and PAT (&#8377;5.63 Cr) totals in &sect;01/&sect;04 &mdash; a clean internal-consistency check.</caption>
+      </div>
+      <p>The pattern is stark: a soft-but-profitable Q1FY26, two consecutive loss-making quarters (Q2&ndash;Q3FY26), then a blowout Q4FY26 in which revenue jumped 4.4x quarter-on-quarter to &#8377;259.50 Cr &mdash; on its own, 55% of the entire year's revenue landed in one quarter. Nine weeks later, Q1FY27 reverted just as sharply, back down to roughly a quarter of Q4FY26's revenue and into a net loss. This is consistent with milestone/delivery-based billing typical of defence-order execution, but it also means any single quarter (including the strong one that made FY26's headline numbers look better than the full year actually was) says very little about the underlying run-rate on its own.</p>
+
+      <h3>Confirmed order wins in this filing window</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Suryastra (Army EP)</div><div class="v">&#8377;293 Cr</div><div class="d">Jan 2026, attributed directly to Nibe Limited per the 16 Jun rebuttal filing</div></div>
+        <div class="stat"><div class="k">VayuAstra (Army FTP)</div><div class="v">&#8377;563.35 Cr</div><div class="d">14 Aug 2026, L2 vendor share, via subsidiary NDAL; 30 sets/300 units, 12-month execution</div></div>
+        <div class="stat"><div class="k">MSEDCL GIS mapping &times;2</div><div class="v">&#8377;24.73 Cr</div><div class="d">4 May + 18 Aug 2026, via Nibe Space Pvt Ltd, 42-month executions each</div></div>
+      </div>
+      <p>Combined disclosed order value across this ~5.5-month window: <b>&asymp;&#8377;881 Cr</b> &mdash; against FY26 full-year revenue of just &#8377;474 Cr, a meaningful step-up in revenue visibility <em>if</em> executed to schedule. Two of the three order streams (Suryastra, VayuAstra) run through the Army procurement system with multi-year delivery tranches rather than lump-sum billing; the MSEDCL contracts alone are 42-month drip executions. None of this converts to revenue instantly, and &sect;05&ndash;06 show the company's own capex-utilisation pace has already lagged its own preferential-issue schedule once.</p>
+
+      <h3>Geography, market share &amp; expansion</h3>
+      <p>No revenue-by-geography breakdown was found in any reviewed filing &mdash; every confirmed contract in this dataset is domestic (Indian Army, MSEDCL). No export revenue or new-country entry is evidenced. <b>Horizontal expansion</b> is clear and significant: from components/sub-assembly fabrication into complete weapons systems (rocket launchers, loitering munitions, mortars) and into an unrelated GIS/mapping services line (Nibe Space). <b>Vertical expansion</b> is also evidenced: backward integration into explosives/propellant manufacturing (in-house TNT and RDX plants at Shirdi) rather than sourcing these inputs externally.</p>
+
+      <h3>Guidance vs. actual</h3>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>No formal numeric guidance found &mdash; this check is largely skipped for lack of data</b>Unlike companies that hold quarterly earnings calls with explicit forward guidance, no earnings-call transcript or analyst-day deck was found anywhere in this filing set; Nibe's public communication is limited to BSE outcome letters, press releases and order-award filings. The closest available comparison is a rumour-verification episode: on 9 Jul 2026 the company declined to confirm press reports of a rumoured &#8377;1,600 crore Tata-Nibe loitering-munition tender ("no formal communication confirming award... speculative in nature"). Five weeks later, on 14 Aug 2026, it signed a real contract for its own L2 vendor share of &#8377;563.35 Cr within a combined ~&#8377;1,577 Cr programme with Tata Advanced Systems &mdash; broadly consistent in direction with the rumour, though the company itself never confirmed a specific number in advance, so this is not really a guidance beat or miss in the conventional sense.</div>
+      </div>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">FY26's entire pre-tax profit was almost wholly non-operating income, finance costs nearly doubled, and interest coverage collapsed to just above 1x.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>EBITDA margin</td><td>9.6%</td><td>13.6%</td><td>12.7%</td><td class="neg">10.3%</td></tr>
+            <tr><td>PAT margin (attributable to parent)</td><td>1.5%</td><td>6.7%</td><td>5.3%</td><td class="neg">1.2%</td></tr>
+            <tr><td>Return on equity</td><td>2.1%</td><td>11.8%</td><td>11.5%</td><td class="neg">1.6%</td></tr>
+            <tr><td>Interest coverage (EBIT / finance cost)</td><td>2.00x</td><td>5.29x</td><td>6.21x</td><td class="neg">1.26x</td></tr>
+            <tr><td>Other income as % of PBT</td><td>0.6%</td><td>0.0%</td><td>12.5%</td><td class="neg">99.7%</td></tr>
+            <tr><td>Finance cost (interest expense)</td><td>3.29</td><td>6.05</td><td>7.60</td><td class="neg">15.19</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement; ratios computed per Fundamental_Analysis.md conventions from the &sect;01 P&amp;L table.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>FY26's profit was almost entirely non-operating &mdash; the single biggest flag in this report</b>PBT for FY26 was just &#8377;3.93 Cr &mdash; and other/non-operating income was &#8377;3.92 Cr of it, <b>99.7% of the total</b>. Strip out that other income and operating profit after interest was effectively zero. This isn't a one-off blip either: interest coverage (EBIT/finance cost) fell from a comfortable 6.21x in FY25 to just 1.26x in FY26, as finance costs nearly doubled (&#8377;7.60 Cr&rarr;&#8377;15.19 Cr) on rising borrowings (&sect;05) while EBIT itself fell. Whatever the headline PAT print says, FY26's core, operating, interest-adjusted business barely broke even.</div>
+      </div>
+
+      <h3>What moved FY26</h3>
+      <p>EBITDA margin held up reasonably (13.6%&rarr;12.7%&rarr;10.3%, FY24 to FY26) even as absolute EBITDA fell 24.7% on the FY26 revenue decline &mdash; a function of the P&amp;L, not evidence the business itself deteriorated in unit economics. The real damage came below the EBITDA line: D&amp;A nearly doubled again (&#8377;17.44 Cr&rarr;&#8377;29.56 Cr) as the company's expanding fixed-asset base (Shirdi, new plant &amp; equipment &mdash; &sect;05) started depreciating, and finance costs rose in step with a larger debt load. No management commentary explaining the FY26 margin/PBT dynamics in analyst-facing terms was found in this filing set (see the guidance-vs-actual gap in &sect;03) &mdash; the numbers here are drawn directly from the financial statements, not from a management explanation.</p>
+
+      <h3>Quarterly margin volatility</h3>
+      <p>The lumpiness described in &sect;03 shows up starkly in margins too: EBITDA margin swung from +17.9% (Q4FY25) to +10.6% (Q1FY26) to <em>negative</em> &minus;5.4% and &minus;15.4% (Q2&ndash;Q3FY26) back to +20.4% (Q4FY26) &mdash; a four-quarter round trip covering more than 35 percentage points of margin. Q1FY27's reported gross loss of &#8377;14 Cr on &#8377;63 Cr revenue (News, &sect;03) suggests the pattern of loss-making off-peak quarters has not gone away even as the order book has grown.</p>
+
+      <h3>Forward margin guidance</h3>
+      <p>None found. No investor presentation, earnings call, or analyst-facing margin target was located in this dataset (see &sect;03, &sect;09). Any forward margin view in this report's &sect;10 scenarios is this report's own construction from the disclosed order book, not a management target.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">Genuine, heavy capacity expansion funded largely by equity &mdash; but capex-object utilisation has already lagged its own schedule, and an independent monitoring agency has twice flagged single-vendor concentration.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity (net worth)</td><td>74.49</td><td>160.81</td><td>231.98</td><td>348.40</td></tr>
+            <tr><td>Total debt</td><td>49.00</td><td>73.46</td><td>77.28</td><td>119.66</td></tr>
+            <tr><td>Debt / equity</td><td>0.66x</td><td>0.46x</td><td>0.33x</td><td>0.34x</td></tr>
+            <tr><td>Net debt / EBITDA</td><td>2.93x</td><td>1.28x</td><td>0.99x</td><td class="neg">1.70x</td></tr>
+            <tr><td>Trade receivables</td><td>35.52</td><td>41.93</td><td>151.33</td><td class="neg">231.36</td></tr>
+            <tr><td>Receivable days</td><td>123</td><td>54</td><td>109</td><td class="neg">178</td></tr>
+            <tr><td>Trade payables</td><td>3.62</td><td>23.51</td><td>86.19</td><td>120.73</td></tr>
+            <tr><td>Payable days</td><td>16</td><td>38</td><td>77</td><td>130</td></tr>
+            <tr><td>Total assets</td><td>153.35</td><td>316.20</td><td>441.84</td><td>652.96</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet; days computed on the &sect;01 revenue base per Fundamental_Analysis.md conventions.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Receivable days have nearly tripled since FY24</b>From 54 days (FY24) to 109 (FY25) to <b>178 days (FY26)</b>, even as revenue itself fell &mdash; the opposite of the usual "rising receivables alongside rising revenue" pattern, and arguably a starker signal: the company is waiting longer to collect on a <em>smaller</em> revenue base. Payable days have stretched in parallel (16&rarr;130 over the same period), meaning working capital is increasingly funded by leaning on suppliers as well as the equity/debt raises below. This is consistent with, and likely the direct driver of, the negative FY26 operating cash flow in &sect;06.</div>
+      </div>
+
+      <h3>Capital raised: a &#8377;251.85 Cr preferential issue, still only partly called up</h3>
+      <p>A Feb&ndash;Mar 2026 preferential issue (warrants + fully-paid equity shares) totalling &#8377;251.85 crore in face value was allotted across two allottee groups: the promoter, Ganesh Ramesh Nibe (10,01,500 warrants), and non-promoter investors including Eminence Global Fund PCC, Venus Investments VCC and North Star Opportunities Fund VCC. Warrants require only 25% upfront, called up progressively; Eminence's full 5,60,500-warrant allocation converted across two tranches (8 Jun and 14 Jul 2026), but the promoter's own 10,01,500 warrants remain unconverted, due by 4 Sept 2027. Cumulative proceeds actually received rose from &#8377;104.48 Cr (Mar-26 quarter-end) to &#8377;134.67 Cr (Jun-26 quarter-end) &mdash; with <b>&#8377;117.20 Cr still owed by warrant holders</b> as of Jun-26, per the independent Crisil Ratings monitoring-agency report.</p>
+
+      <h3>Fund utilisation: capex is running well behind its own schedule</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Object (&#8377; Lakh)</th><th>Allocated</th><th>Used by Mar-26</th><th>Used by Jun-26</th></tr></thead>
+          <tbody>
+            <tr><td>Capex</td><td>12,685</td><td class="neg">0 (0%)</td><td class="neg">2,400 (19%)</td></tr>
+            <tr><td>Repayment of borrowing</td><td>7,500</td><td>7,500 (100%)</td><td>7,500 (100%, unchanged)</td></tr>
+            <tr><td>Working capital</td><td>2,500</td><td>2,311 (92%)</td><td>2,311 (92%, unchanged)</td></tr>
+            <tr><td>General corporate purposes</td><td>2,500</td><td>0 (0%)</td><td>1,253 (50%)</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Statement of Deviation &amp; Variation filings (29 May, 14 Aug 2026) and Crisil Ratings Monitoring Agency reports (14 May, 14 Aug 2026). No formal "deviation" was declared in either filing &mdash; the object categories themselves permit this pace &mdash; but the pattern is notable regardless.</caption>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>The independent monitoring agency flagged vendor concentration twice, in consecutive quarters</b>Crisil's Q4FY26 report noted the entire &#8377;25 Cr working-capital object was spent with a single vendor, Finolex J-Power Systems Ltd. Its Q1FY27 report noted ~87.5% of the quarter's capex spend went to a single vendor, Shearstone Constructions Private Limited. Separately, the &#8377;75 Cr "repayment of borrowing" object was used entirely to repay an Inter-Corporate Deposit from Globaz Technologies Private Limited &mdash; a private lender, not a bank &mdash; whose relationship to Nibe was not disclosed as related-party in the filings reviewed, but is also not clearly ruled out as one.</div>
+      </div>
+
+      <h3>A related-party subsidiary sale, at cost, with no independent valuation disclosed</h3>
+      <p>On 30 Mar 2026, subsidiary NDAL signed a Share Purchase Agreement to sell its subsidiary, Nibe Aeronautics Limited, to the promoter, Ganesh Nibe, personally &mdash; explicitly disclosed as a related-party transaction, completed 9 Apr 2026 for &#8377;1.52 crore, "not less than the original investment amount." No independent valuation figure was disclosed; the filing states the price was set "based on valuation and commercial negotiations" without naming an appraiser or methodology. NAL's own FY25 financials were immaterial (nil turnover, &#8377;1.91 Cr net worth), so the rupee amount here is small &mdash; but a subsidiary being formed, held, and then sold to the controlling promoter within roughly a year, at a price with no independent benchmark, is a governance pattern worth tracking if it recurs at larger scale.</p>
+
+      <h3>Capex vs. depreciation: real capacity expansion, consistently</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Capex</td><td>55.90</td><td>113.49</td><td>70.18</td><td>112.54</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>3.52</td><td>6.28</td><td>17.44</td><td>29.56</td></tr>
+            <tr><td>Capex / D&amp;A</td><td>15.9x</td><td>18.1x</td><td>4.0x</td><td>3.8x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement.</caption>
+      </div>
+      <p>Capex has exceeded depreciation by 3.8&ndash;18.1x every year since FY23 &mdash; unambiguous, consistent evidence of real capacity build (the four existing plants, now Shirdi) rather than maintenance-only spend. No specific multi-year rupee capex plan for FY27/FY28 was disclosed in any reviewed filing; the only forward capex signal is the still-largely-unspent &#8377;126.85 Cr capex object from the FY26 preferential issue (19% utilised as of Jun-26).</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Free cash flow has been negative in every year for which data exists, and FY26 turned operating cash flow negative even as reported profit stayed positive.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT (attributable to parent)</td><td>1.57</td><td>18.98</td><td>26.73</td><td>5.63</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td class="neg">&minus;31.13</td><td class="pos">18.18</td><td class="pos">25.03</td><td class="neg">&minus;34.52</td></tr>
+            <tr><td>Capex</td><td>&minus;55.90</td><td>&minus;113.49</td><td>&minus;70.18</td><td>&minus;112.54</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="neg">&minus;87.03</td><td class="neg">&minus;95.31</td><td class="neg">&minus;45.15</td><td class="neg">&minus;147.06</td></tr>
+            <tr><td>CFO / PAT conversion</td><td class="neg">&minus;19.83x</td><td>0.96x</td><td>0.94x</td><td class="neg">&minus;6.13x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. No quarterly cash-flow file exists in the source data, so Q1FY27 cash conversion cannot be checked against the reported quarterly loss.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Earnings-quality check: fails clean in FY26</b>FY24 and FY25 both showed clean, near-1:1 CFO/PAT conversion (0.96x, 0.94x) &mdash; genuinely cash-backed profit. FY26 broke that pattern: PAT was positive (&#8377;5.63 Cr) but CFO was deeply negative (&minus;&#8377;34.52 Cr), a conversion ratio of &minus;6.13x. The mechanical driver is the receivables build documented in &sect;05 &mdash; receivable days nearly tripling to 178 pulls cash further and further behind booked revenue. No management commentary explaining this divergence (e.g. as "normal unbilled revenue" on government contracts, the explanation companies in similar positions often give) was found in this filing set &mdash; another consequence of there being no earnings call or investor presentation in this dataset to ask the question of.</div>
+      </div>
+
+      <p><b>Read plainly:</b> free cash flow has been negative in <em>every</em> year shown (FY23&ndash;FY26), funded by continuous equity issuance (the preferential issues in &sect;05) and debt draws (CFF was strongly positive every year: &#8377;95.71 Cr, &#8377;110.81 Cr, &#8377;29.69 Cr, &#8377;127.04 Cr, FY23&rarr;FY26). That is not unusual for a young, capex-heavy manufacturer scaling into new capacity &mdash; but it does mean the current order book (&sect;03) needs to convert into cash, not just booked revenue, before the business is self-funding. Until CFO turns durably positive for more than one year at a time, the safest assumption is that further capex and working-capital needs will keep being funded externally.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">Two C-suite exits in three months, filled by the Chairman &amp; Managing Director appointing himself CEO &mdash; alongside one credible, defence-relevant independent-director addition.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Ganesh Ramesh Nibe</div>
+          <div class="role">Chairman, Managing Director &amp; (from 14 Aug 2026) CEO; Promoter</div>
+          <div class="bio">Self-disclosed career arc from sugar-cane-juice/furnace-oil distribution, to electrical substation contracting (founded 2013), to critical heavy defence component fabrication (2021), from which Nibe Limited grew. Now holds Chairman, MD and CEO titles simultaneously. Name appears inconsistently across filings ("Nibe Ganesh Ramesh," "Ganesh Nibe," "Ganesh Ramesh Nibe") &mdash; same individual (DIN 02932622) in each instance reviewed.</div>
+        </div>
+        <div class="person">
+          <div class="name">Rajagopalan Madhavan</div>
+          <div class="role">Independent Director (appointed 25 Mar 2026, ratified by postal ballot 19 Jun 2026, term to 2031)</div>
+          <div class="bio">Mechanical engineer (NIT Raipur), M.Tech (IIT Madras); former Chairman &amp; Managing Director of Hindustan Aeronautics Limited (HAL); formerly Executive Director, Accessories Division, Lucknow (Su-30 airframe/engine accessories). A directly relevant, credible addition given Nibe's defence pivot. Shareholder vote: 99.99% in favour.</div>
+        </div>
+        <div class="person">
+          <div class="name">Jigar Shah <span style="font-weight:400;color:var(--ink-mute);">(departed)</span></div>
+          <div class="role">Former CFO &mdash; resigned 11 Apr 2026</div>
+          <div class="bio">Stated reason: "Health Issue." No successor CFO appointment was found anywhere in this 5.5-month filing window &mdash; the CFO seat's status as of this report's date is a genuine data gap, worth checking directly.</div>
+        </div>
+        <div class="person">
+          <div class="name">Prakash Hari Khose <span style="font-weight:400;color:var(--ink-mute);">(departed)</span></div>
+          <div class="role">Former CEO &mdash; resigned 25 Jun 2026</div>
+          <div class="bio">Stated reason: "personal reason." The CEO seat sat vacant for roughly seven weeks before being filled &mdash; by the company's own Chairman &amp; Managing Director (see above), rather than an external professional hire.</div>
+        </div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Governance concentration: Chairman, MD and CEO are now the same person</b>Two KMP departures in three months (CFO, then CEO) is already a clustering worth noting; filling the CEO vacancy by having the controlling promoter and Chairman/MD take the title himself &mdash; rather than hiring externally &mdash; concentrates executive control further, at a company that in the same window also completed a related-party subsidiary sale to that same individual (&sect;05) and has raised the bulk of its recent growth capital via promoter-linked preferential allotments (&sect;05). No CFO replacement was found in this dataset either, leaving the finance function's day-to-day leadership unclear from public filings alone.</div>
+      </div>
+
+      <h3>Auditor &amp; other appointments</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Statutory auditor:</b> Kailash Chand Jain &amp; Co. issued an <b>unmodified/clean opinion</b> on FY26 results per the 29 May 2026 board outcome letter; the full auditor's report and notes were not independently reviewable due to the scanned-PDF gap noted in the coverage note above, so any qualifications or emphases of matter within it could not be checked directly.</li>
+        <li><b>Internal Auditor:</b> BDO India Services Private Limited appointed for FY27 (14 Aug 2026), replacing ADV &amp; Associates, Chartered Accountants, whose term completed &mdash; a step up to a larger, more recognised firm.</li>
+        <li><b>Cost Auditor:</b> Dhananjay Laxman Gawade &amp; Co. re-appointed for FY27, routine renewal.</li>
+      </ul>
+
+      <h3>Ownership &amp; insider activity</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Promoter / insider holding</div><div class="v">64.08%</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">4.25%</div><div class="d">A single institution</div></div>
+        <div class="stat"><div class="k">Free float</div><div class="v">6.67M sh.</div><div class="d">of 15.50M shares outstanding</div></div>
+      </div>
+      <p>A thin, promoter-dominated register with almost no institutional presence, consistent with the stock's wide 52-week range (&sect;10). Insider-transaction records (MarketData) show the promoter (under the name "Nibe (Ganesh Ramesh)") acquiring small tranches of shares in 2024&ndash;2025 at prices between &#8377;4.35 and &#8377;16.64/share &mdash; far below the current &#8377;1,503.70 &mdash; almost certainly reflecting founder/preferential-allotment share acquisitions at or near par value rather than open-market purchases at prevailing prices, and should not be read as a "promoter buying cheap versus today's price" signal. Five further records for "AEGIS Investment Fund" (an institutional holder) carry no transaction-direction field and read as periodic shareholding-disclosure snapshots rather than confirmed trades.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other disclosure insights</h2></div>
+      <p class="sec-dek">A media rebuttal that partially concedes the point it's rebutting, and a rumour-verification filing that aged well in direction, if not in exact numbers.</p>
+
+      <h3>The "screwdriver-giri" allegation, and Nibe's rebuttal</h3>
+      <p>On 16 Jun 2026, Nibe issued a press release titled "Nibe Limited Refutes Misleading Allegations," responding to a Bharat Shakti article that characterised the Suryastra system as effectively imported technology re-badged as indigenous ("screwdriver-giri"). The rebuttal is worth reading carefully rather than taking at face value: it states the initial system architecture "leverages global partnerships under a <b>March 2025 agreement</b>" &mdash; i.e., it confirms a foreign-technology collaboration underlies the system &mdash; while asserting that production itself is "fundamentally rooted in domestic development" at the new Shirdi complex, and separately confirms the &#8377;293 crore January 2026 Army contract discussed in &sect;01/&sect;03. The company also threatened formal legal action against the publication. This report treats the rebuttal as a partial concession (foreign IP/collaboration exists) combined with a domestic-manufacturing claim (production/localisation), rather than a clean denial either way.</p>
+
+      <h3>The rumour-verification episode</h3>
+      <p>On 9 Jul 2026, responding to a Hindu BusinessLine report that "Tata, Nibe [are] likely to bag Indian Army's &#8377;1,600 crore loitering munition tender," Nibe filed a formal Rumour Verification stating it "has not received any formal communication confirming award of the tender," calling the report "speculative in nature." Five weeks later, the real VayuAstra contract was signed for Nibe's own L2-vendor share of &#8377;563.35 crore, within a combined Tata+Nibe programme reported at ~&#8377;1,577 crore (News, 14 Aug). Directionally, the rumour proved broadly accurate; the specific &#8377;1,600 Cr figure it cited does not exactly match the eventual combined ~&#8377;1,577 Cr figure, and Nibe's own confirmed share (&#8377;563.35 Cr) was always going to be a portion, not the whole, of any such combined programme &mdash; a nuance easy to lose in headline-only coverage.</p>
+
+      <h3>DPIIT lifetime arms licence</h3>
+      <p>On 6 Jun 2026, subsidiary NDAL was granted a lifetime licence by DPIIT (Ministry of Commerce &amp; Industry) under the Arms Act 1959/Arms Rules 2016 to manufacture and proof-test firearms and ammunition of caliber above 12.7mm &mdash; an unusual, hard-to-obtain regulatory approval that supports the moat discussion in &sect;01, though it was granted to the subsidiary, not the listed entity directly.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">None on record &mdash; which puts the full weight of independent verification on filings like this one.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analyst recommendation</div><div class="v">None</div><div class="d">yfinance recommendationKey: "none"</div></div>
+        <div class="stat"><div class="k">Price targets</div><div class="v">N/A</div><div class="d">No low/mean/median/high target available</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">4.25%</div><div class="d">One institution on record</div></div>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>No independent analyst is stress-testing this story</b>With zero sell-side coverage and institutional ownership barely above 4%, there is no visible research community modelling Nibe's order-book conversion, margin trajectory, or capex pace on a quarterly cadence. Combined with the absence of any earnings call or investor presentation in this dataset (&sect;03, &sect;08), that places unusually high weight on primary BSE filings for verification &mdash; and on the specific data gap noted throughout this report (the two Financial Results filings' P&amp;L tables being unreadable scans) as a genuine limitation on how far even that verification can go today.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock that has already round-tripped from &#8377;984 to &#8377;1,757 to &#8377;817 and back to &#8377;1,499 within eighteen months, now trading at 442x trailing earnings with no analyst consensus to anchor against.</p>
+
+      <h3>Eighteen months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Feb 2025&ndash;Aug 2026 (NSE, via yfinance daily price history). Note the 52-week high of &#8377;1,848 (intraday, per fast_info) sits above every single month-end close plotted &mdash; a sharp single-session spike rather than a sustained level, consistent with the thin float discussed in &sect;07.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">442.2x</div><div class="d">On TTM diluted EPS &#8377;3.39</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">6.26x</div><div class="d">Book value/share &#8377;239.66</div></div>
+        <div class="stat"><div class="k">Price / Sales (TTM)</div><div class="v">5.11x</div></div>
+        <div class="stat"><div class="k">EV / EBITDA (derived)<sup>&dagger;</sup></div><div class="v">&asymp;49.7x</div><div class="d">On FY26 EBITDA; see caveat below</div></div>
+      </div>
+      <p style="font-size:12.5px;color:var(--ink-mute);">&dagger; No enterprise-value field exists in the source data; this figure is this report's own computation (market cap + FY26 total debt &minus; FY26 cash, over FY26 EBITDA) and mixes a spot market cap with five-month-stale FY-end balance-sheet figures &mdash; treat as indicative only, not a precise multiple.</p>
+      <p>A 442x trailing P/E is priced almost entirely for a future that the FY26 numbers and the Q1FY27 print have not yet delivered: TTM earnings are tiny (&#8377;3.39 EPS) largely because FY26 profit collapsed and Q1FY27 posted a loss, not because the market is pricing a modest, steady grower at a modest multiple. Whether this is "cheap on FY28 numbers" or "priced for perfection with no room for the execution risk documented in &sect;05&ndash;06" depends entirely on how quickly the &asymp;&#8377;881 Cr disclosed order book converts to cash profit &mdash; something no analyst estimate exists to check this report's own view against.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built from the disclosed order book (&sect;03) and the historical volatility pattern in &sect;03&ndash;04. These are scenario illustrations only, not point forecasts &mdash; there is no analyst consensus to anchor against (&sect;09), no formal management guidance exists in this dataset (&sect;03), and the company has shown its own numbers can move ~35 percentage points of margin or swing from profit to loss within a single quarter.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;850&ndash;1,050</div>
+          <div class="rng">&minus;43% to &minus;30% from CMP</div>
+          <ul>
+            <li>Order execution repeats the FY26 Q2&ndash;Q3 loss pattern through multiple FY27 quarters; receivable days stay elevated past 178, CFO stays negative for a second straight year</li>
+            <li>Capex-object utilisation keeps lagging its own schedule (only 19% used a full quarter after the money was raised); the &#8377;117 Cr still owed by warrant holders creates a funding gap, forcing a further, possibly dilutive raise</li>
+            <li>The CFO seat remains unfilled and/or another KMP departure occurs, deepening governance concerns already flagged in &sect;07</li>
+            <li>FY27 PAT stays depressed (&#8377;10&ndash;20 Cr); book value grows only modestly (&asymp;&#8377;260&ndash;280/share); the market de-rates P/B toward 3.2&ndash;3.8x on demonstrated execution risk</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;1,400&ndash;1,750</div>
+          <div class="rng">&minus;7% to +16% from CMP</div>
+          <ul>
+            <li>VayuAstra and Suryastra execute broadly on their multi-year tranche schedules; the MSEDCL contracts bill on their 42-month drip; quarterly volatility persists but full-year FY27 revenue recovers to roughly &#8377;650&ndash;800 Cr</li>
+            <li>FY27 PAT of &#8377;35&ndash;50 Cr (EPS &asymp;&#8377;22&ndash;31 on &asymp;1.6 Cr diluted shares, assuming continued warrant conversion); operating cash flow turns positive for at least part of the year as receivable days ease from FY26's peak</li>
+            <li>A permanent CFO is appointed; capex-object utilisation catches up toward the original schedule</li>
+            <li>Market holds a still-rich growth-premium multiple given the defence-indigenisation theme, roughly 55&ndash;65x forward earnings</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;2,000&ndash;2,600</div>
+          <div class="rng">+33% to +73% from CMP</div>
+          <ul>
+            <li>Shirdi complex ramps ahead of schedule; additional large Army/DRDO orders land on top of the disclosed &#8377;881 Cr; receivables genuinely improve as milestone billing converts to cash faster</li>
+            <li>FY27 PAT reaches &#8377;65&ndash;85 Cr (EPS &asymp;&#8377;40&ndash;52 on &asymp;1.65 Cr diluted shares as the promoter's remaining warrants convert); CFO turns durably positive</li>
+            <li>Governance concerns ease &mdash; e.g. a professional CEO/CFO structure is restored, or the concentrated Chairman-MD-CEO role demonstrates it isn't a problem in practice</li>
+            <li>Market sustains a "national defence champion" growth premium (&asymp;50&ndash;55x forward), and the stock retests or exceeds its all-time high of &#8377;2,001</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: today's &#8377;239.66/share book value at 6.26x P/B is already among the richer starting points for this kind of business. Even the base case above assumes the market keeps paying a premium multiple on a growing book, not that it re-rates higher still &mdash; a meaningfully more conservative assumption than the bull case's continued premium.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuinely credible pivot into a structurally growing theme &mdash; India's defence-indigenisation push &mdash; backed by real, tested products (Suryastra, VayuAstra, Garudastra), a large new manufacturing complex with backward integration into explosives (TNT/RDX), a lifetime DPIIT arms licence, and now a confirmed &#8377;563.35 crore Army contract as an L2 vendor alongside Tata Advanced Systems; a newly added Independent Director with directly relevant credentials (former HAL Chairman &amp; MD); capex has consistently and substantially exceeded depreciation every year since FY23, real evidence of capacity expansion rather than financial engineering; a clean, unmodified audit opinion; and an independent monitoring agency finding no formal deviation in preferential-issue fund utilisation despite the pace concerns below.</p>
+        <p style="max-width:none;"><b>What's not good:</b> FY26 revenue and PAT both fell even as the defence narrative accelerated, and FY26's entire pre-tax profit was 99.7% non-operating income &mdash; the core, interest-adjusted business barely broke even; cash from operations went deeply negative despite positive reported profit, driven by receivable days nearly tripling to 178; revenue and margins have swung wildly quarter to quarter, including a net loss just one quarter after a record-setting Q4FY26; two C-suite exits (CFO, CEO) in three months were followed by the Chairman/MD appointing himself CEO rather than hiring externally, with no CFO replacement found in this dataset at all; a subsidiary was sold to that same promoter at cost with no independent valuation disclosed; an independent monitoring agency flagged single-vendor concentration in two consecutive quarters; capex-object utilisation from the company's own capital raise ran at 0% and then 19% in its first two quarters; roughly &#8377;117 Cr of the raise remains uncalled from warrant holders; and the stock trades at 442x trailing earnings with zero analyst coverage to check any of this against.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> aggressively and effectively on the public-relations front &mdash; test-firing demonstrations, a firm (if partially conceding) rebuttal to a media allegation, and a correctly cautious non-confirmation of an unconfirmed tender rumour that then broadly played out. Less transparently on the numbers: no earnings call or investor presentation exists in this dataset to explain the FY26 margin collapse, the Q2&ndash;Q3FY26 losses, the receivables build, or the Q1FY27 reversal in management's own words &mdash; and the company's largest contract win, largest capital raise, and CEO appointment were all announced on the same day as a weak quarterly result, a sequencing pattern worth watching for going forward.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: moderate-to-low, roughly 30&ndash;40%.</b> The defence-indigenisation order book is real and the largest contract (&#8377;563 Cr VayuAstra) is signed, not rumoured &mdash; but this report's own tabulated numbers tell a materially rougher story than the press-release newsflow alone: a genuine FY26 earnings decline, an operating business that barely covered its own interest cost, cash flow that has failed the basic PAT-conversion test, and a governance structure that just concentrated further at exactly the moment more independent oversight might have been reassuring. None of these are necessarily fatal for a young, capex-heavy manufacturer scaling into a large new order book &mdash; but they are the kind of items a standing analyst community would normally be pressing management on quarter after quarter, and none of that pressure currently exists for this stock.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether Q2/Q3 FY27 repeat the FY26 pattern of loss-making off-peak quarters, or whether revenue and margin stabilise as the VayuAstra/Suryastra order book converts on schedule; (2) receivable days &mdash; a reversion back toward the 100&ndash;120-day range would meaningfully de-risk the single biggest quantitative flag in this note, while a move past 178 would not; (3) whether cash from operations turns durably positive, rather than the one-year-on/one-year-off pattern seen in FY24&ndash;FY26; (4) whether a permanent CFO is appointed, and whether the Chairman-MD-CEO concentration is unwound in favour of a more conventional executive structure; (5) capex-object utilisation catching up to its own preferential-issue schedule, and whether the remaining &#8377;117 Cr of warrant money is called on time; (6) whether subsequent BSE filings clarify, rather than further blur, which legal entity within the "Nibe Group" actually captures the revenue and profit from each newly announced contract.</div>
+      </div>
+
+      <footer>
+        Compiled from Nibe Limited's BSE filings (Announcements/AnnouncementsConv, 47 of 48 filings dated 5&nbsp;Mar&ndash;18&nbsp;Aug 2026 with readable text &mdash; financial-results outcome letters, press releases, order-award filings, monitoring-agency and deviation-statement reports, management-change filings, and postal-ballot results), MarketData (Yahoo Finance via yfinance, fetched 20&nbsp;Aug&nbsp;2026 09:32 IST, including the full daily price-history series), and the tracked News feed (14&ndash;19 Aug 2026). Two Financial Results filings (29 May and 14 Aug 2026) had P&amp;L tables embedded as unreadable scanned images in this pipeline; this is stated explicitly wherever it affects a figure below, rather than estimated or silently omitted. Every figure is tagged to its source; where two sources disagreed or a figure could not be independently verified, that is stated in the relevant section. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26'];
+    var revenue = [112.59, 82.50, 73.37, 59.08, 259.50];
+    var ebitda  = [20.18, 8.76, -3.96, -9.07, 52.95];
+    var pat     = [7.64, 1.90, -8.44, -17.06, 29.23];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = Math.min(0, Math.min.apply(null, ebitda.concat(pat))) * 1.15;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q1FY27 (Jun-26, revenue ≈₹63 Cr, PAT −₹12 Cr per News, EBITDA not disclosed) is not plotted here — yfinance has not yet loaded this quarter; see §03 table for the sourced figures.</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Feb 25', 983.94], ['Mar 25', 1040.39], ['Apr 25', 1317.88], ['May 25', 1757.48],
+      ['Jun 25', 1655.87], ['Jul 25', 1628.90], ['Aug 25', 1188.50], ['Sep 25', 1474.20],
+      ['Oct 25', 1208.30], ['Nov 25', 1089.60], ['Dec 25', 1110.40], ['Jan 26', 1030.00],
+      ['Feb 26', 1009.90], ['Mar 26', 817.20], ['Apr 26', 1074.05], ['May 26', 1442.90],
+      ['Jun 26', 1663.90], ['Jul 26', 1379.00], ['Aug 26', 1499.10]
+    ];
+    var W = 900, H = 220, padL = 48, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Nibe Limited monthly closing share price, February 2025 to August 2026" style="width:100%;height:auto;font-size:10.5px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 2.6;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i % 2 === 0 || i === points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily NSE price history via yfinance. 52-week high/low per MarketData snapshot: ₹1,848.00 / ₹809.60 (intraday extremes may fall between the monthly points plotted).</div></div>';
+  })();
+})();
+</script>

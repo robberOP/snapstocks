@@ -1,7 +1,7 @@
 {
   "symbol": "CUB",
   "name": "City Union Bank",
-  "generatedAt": "2026-08-18T16:37:37.446425+00:00",
+  "generatedAt": "2026-08-23T11:01:15.666811+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Banks - Regional",
@@ -14,28 +14,28 @@
     "peerIndustry": "Private Sector Bank"
   },
   "price": {
-    "current": 204.65,
-    "change": -1.8500061,
-    "changePercent": -0.8958868,
-    "previousClose": 206.5,
-    "dayLow": 202.6,
-    "dayHigh": 210.48,
+    "current": 221.03,
+    "change": -1.1499939,
+    "changePercent": -0.5175956,
+    "previousClose": 222.18,
+    "dayLow": 219.58,
+    "dayHigh": 225.85,
     "fiftyTwoWeekLow": 145.125,
     "fiftyTwoWeekHigh": 245.38,
-    "asOf": 1785751202
+    "asOf": 1787133597
   },
   "stats": {
-    "marketCap": 202764615680.0,
-    "trailingPE": 14.462897,
-    "forwardPE": 10.57427,
-    "priceToBook": 1.9191275,
+    "marketCap": 218993704960.0,
+    "trailingPE": 15.620495,
+    "forwardPE": 11.420626,
+    "priceToBook": 2.0727327,
     "bookValue": 106.637,
-    "dividendYield": 0.97,
+    "dividendYield": 0.9,
     "trailingEps": 14.15,
     "debtToEquity": null,
     "roe": 12.55322454151607,
     "roce": null,
-    "return1y": 36.06320534524159,
+    "return1y": 40.76643316413024,
     "sharesOutstanding": 990787237.0
   },
   "quarterly": {
@@ -353,7 +353,7 @@
     "numberOfAnalystOpinions": 23
   },
   "holders": {
-    "insidersPercent": 0.06797,
-    "institutionsPercent": 0.52356
+    "insidersPercent": 0.089949995,
+    "institutionsPercent": 0.54428
   }
 }

@@ -1,41 +1,41 @@
 {
   "symbol": "ZFCVINDIA",
   "name": "ZF Commercial",
-  "generatedAt": "2026-08-18T16:39:24.965037+00:00",
+  "generatedAt": "2026-08-23T11:03:15.408400+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
     "exchange": "NSE",
     "bseCode": "533023",
     "nseSymbol": "ZFCVINDIA",
-    "website": "https://www.zf.com/india/en/home/home.html",
+    "website": "https://www.zf.com/mobile/en/company/investor_relations/zf_cv_india_investor_relations/zf_cv_india_ir.html",
     "deepDiveUrl": null,
     "peerSector": "Auto Components",
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 2447.8,
-    "change": 29.900146,
-    "changePercent": 1.2366164,
-    "previousClose": 2417.9,
-    "dayLow": 2400.0,
-    "dayHigh": 2468.5,
+    "current": 2616.9,
+    "change": -55.80005,
+    "changePercent": -2.0877783,
+    "previousClose": 2672.7,
+    "dayLow": 2612.0,
+    "dayHigh": 2675.5,
     "fiftyTwoWeekLow": 2050.3333,
     "fiftyTwoWeekHigh": 3044.0,
-    "asOf": 1785751195
+    "asOf": 1787133595
   },
   "stats": {
-    "marketCap": 278573121536.0,
-    "trailingPE": 2.722864,
-    "forwardPE": 36.76756,
-    "priceToBook": 7.548229,
+    "marketCap": 297817604096.0,
+    "trailingPE": 2.9114513,
+    "forwardPE": 39.30755,
+    "priceToBook": 8.069678,
     "bookValue": 324.288,
-    "dividendYield": 0.17,
-    "trailingEps": 898.98,
+    "dividendYield": 0.15,
+    "trailingEps": 898.83,
     "debtToEquity": null,
     "roe": 14.012638391169085,
     "roce": 18.54345683058946,
-    "return1y": 11.185843534325736,
+    "return1y": 18.134999230589766,
     "sharesOutstanding": 113805504.0
   },
   "quarterly": {
@@ -355,11 +355,11 @@
     "targetMean": 2928.25,
     "targetHigh": 3060.0,
     "targetLow": 2800.0,
-    "recommendationKey": "strong_buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 4
   },
   "holders": {
     "insidersPercent": 0.60268,
-    "institutionsPercent": 0.28002
+    "institutionsPercent": 0.28597
   }
 }

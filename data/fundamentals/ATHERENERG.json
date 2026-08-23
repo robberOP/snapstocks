@@ -1,7 +1,7 @@
 {
   "symbol": "ATHERENERG",
   "name": "Ather Energy",
-  "generatedAt": "2026-08-18T16:37:17.503438+00:00",
+  "generatedAt": "2026-08-23T11:00:51.221256+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Manufacturers",
@@ -14,29 +14,29 @@
     "peerIndustry": "2/3 Wheelers"
   },
   "price": {
-    "current": 1272.7,
-    "change": 12.399902,
-    "changePercent": 0.98388493,
-    "previousClose": 1260.3,
-    "dayLow": 1242.0,
-    "dayHigh": 1289.9,
-    "fiftyTwoWeekLow": 349.35,
-    "fiftyTwoWeekHigh": 1345.0,
-    "asOf": 1785751202
+    "current": 1438.2,
+    "change": -27.600098,
+    "changePercent": -1.8829373,
+    "previousClose": 1465.8,
+    "dayLow": 1431.0,
+    "dayHigh": 1473.3,
+    "fiftyTwoWeekLow": 407.7,
+    "fiftyTwoWeekHigh": 1580.0,
+    "asOf": 1787133602
   },
   "stats": {
-    "marketCap": 501603270656.0,
+    "marketCap": 575221727232.0,
     "trailingPE": null,
-    "forwardPE": -380.96805,
-    "priceToBook": 18.9311,
+    "forwardPE": 550.4714,
+    "priceToBook": 21.392872,
     "bookValue": 67.228,
     "dividendYield": null,
-    "trailingEps": -13.99,
+    "trailingEps": -10.11,
     "debtToEquity": 0.25819,
     "roe": -20.10277420383032,
     "roce": -13.429757656474067,
-    "return1y": 269.1660482006889,
-    "sharesOutstanding": 394125309.0
+    "return1y": 255.51784919386367,
+    "sharesOutstanding": 399959479.0
   },
   "quarterly": {
     "periods": [
@@ -45,7 +45,8 @@
       "Q1FY26",
       "Q2FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
@@ -53,48 +54,54 @@
       "2025-06-30T00:00:00",
       "2025-09-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
         null,
-        6760800000.0,
-        6446000000.0,
+        null,
+        6445800000.0,
         8989000000.0,
         9536000000.0,
-        11746600000.0
+        11746600000.0,
+        12169200000.0
       ],
       "Expenses": [
         null,
-        8936100000.0,
-        8270000000.0,
+        null,
+        8270200000.0,
         10740000000.0,
         10560000000.0,
-        12960400000.0
+        12960400000.0,
+        12891600000.0
       ],
       "OperatingProfit": [
         null,
-        -2175300000.0,
-        -1824000000.0,
+        null,
+        -1824400000.0,
         -1751000000.0,
         -1024000000.0,
-        -1213800000.0
+        -1213800000.0,
+        -722400000.0
       ],
       "NetProfit": [
         null,
-        -2343600000.0,
-        -1782000000.0,
+        null,
+        -1782300000.0,
         -1541000000.0,
         -846000000.0,
-        -1002300000.0
+        -1002300000.0,
+        -510900000.0
       ],
       "EPS": [
         null,
-        -6.292225,
-        -5.0,
+        null,
+        -5.23,
         -4.0,
         -2.22,
-        -2.62
+        -2.62,
+        -1.33
       ]
     }
   },
@@ -150,10 +157,10 @@
       ]
     },
     "ttm": {
-      "Sales": 36717600000.0,
-      "Expenses": 42530400000.0,
-      "OperatingProfit": -5812800000.0,
-      "NetProfit": -5171300000.0
+      "Sales": 42440800000.0,
+      "Expenses": 47152000000.0,
+      "OperatingProfit": -4711200000.0,
+      "NetProfit": -3900200000.0
     }
   },
   "balanceSheet": {
@@ -319,14 +326,14 @@
   },
   "dividends": [],
   "analyst": {
-    "targetMean": 1288.7,
-    "targetHigh": 1570.0,
-    "targetLow": 990.0,
+    "targetMean": 1466.4,
+    "targetHigh": 1714.0,
+    "targetLow": 1010.0,
     "recommendationKey": "strong_buy",
     "numberOfAnalystOpinions": 10
   },
   "holders": {
-    "insidersPercent": 0.55191004,
-    "institutionsPercent": 0.24601
+    "insidersPercent": 0.55139,
+    "institutionsPercent": 0.24184999
   }
 }

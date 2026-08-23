@@ -1,41 +1,41 @@
 {
   "symbol": "ABSLAMC",
   "name": "Aditya AMC",
-  "generatedAt": "2026-08-18T16:37:07.876503+00:00",
+  "generatedAt": "2026-08-23T11:00:39.907005+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Asset Management",
     "exchange": "NSE",
     "bseCode": "543374",
     "nseSymbol": "ABSLAMC",
-    "website": null,
+    "website": "https://www.adityabirla.com/en/businesses/brands/aditya-birla-sun-life-amc-limited-abslamc/",
     "deepDiveUrl": null,
     "peerSector": "Capital Markets",
     "peerIndustry": "Asset Management Company"
   },
   "price": {
-    "current": 1017.8,
-    "change": 6.0,
-    "changePercent": 0.59300256,
-    "previousClose": 1011.8,
-    "dayLow": 1000.0,
-    "dayHigh": 1027.8,
+    "current": 1013.3,
+    "change": -5.700012,
+    "changePercent": -0.55937314,
+    "previousClose": 1019.0,
+    "dayLow": 1005.0,
+    "dayHigh": 1022.6,
     "fiftyTwoWeekLow": 708.0,
     "fiftyTwoWeekHigh": 1224.9,
-    "asOf": 1785751202
+    "asOf": 1787047202
   },
   "stats": {
-    "marketCap": 294412648448.0,
-    "trailingPE": 29.238724,
-    "forwardPE": 23.342115,
-    "priceToBook": 7.272909,
+    "marketCap": 293110939648.0,
+    "trailingPE": 29.159712,
+    "forwardPE": 23.238913,
+    "priceToBook": 7.240753,
     "bookValue": 139.944,
-    "dividendYield": 2.52,
-    "trailingEps": 34.81,
+    "dividendYield": 2.5,
+    "trailingEps": 34.75,
     "debtToEquity": 0.01577,
     "roe": 24.12548309358036,
     "roce": 30.718217885455523,
-    "return1y": 19.343973090479682,
+    "return1y": 22.92986863046626,
     "sharesOutstanding": 289263746.0
   },
   "quarterly": {
@@ -344,11 +344,11 @@
     "targetMean": 1149.5385,
     "targetHigh": 1290.0,
     "targetLow": 1031.0,
-    "recommendationKey": "buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 13
   },
   "holders": {
     "insidersPercent": 0.44819,
-    "institutionsPercent": 0.44144002
+    "institutionsPercent": 0.44542998
   }
 }

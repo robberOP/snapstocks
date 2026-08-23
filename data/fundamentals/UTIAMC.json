@@ -1,7 +1,7 @@
 {
   "symbol": "UTIAMC",
   "name": "UTI AMC",
-  "generatedAt": "2026-08-18T16:39:20.038330+00:00",
+  "generatedAt": "2026-08-23T11:03:05.689141+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Asset Management",
@@ -14,29 +14,29 @@
     "peerIndustry": "Asset Management Company"
   },
   "price": {
-    "current": 915.75,
-    "change": 12.650024,
-    "changePercent": 1.4007336,
-    "previousClose": 903.1,
-    "dayLow": 904.5,
-    "dayHigh": 917.85,
+    "current": 894.6,
+    "change": -12.700012,
+    "changePercent": -1.3997589,
+    "previousClose": 907.3,
+    "dayLow": 893.15,
+    "dayHigh": 910.0,
     "fiftyTwoWeekLow": 876.0,
     "fiftyTwoWeekHigh": 1418.0,
-    "asOf": 1785751195
+    "asOf": 1787047203
   },
   "stats": {
-    "marketCap": 117705531392.0,
-    "trailingPE": 25.543934,
-    "forwardPE": 16.013832,
-    "priceToBook": 2.6126962,
+    "marketCap": 114990833664.0,
+    "trailingPE": 24.960938,
+    "forwardPE": 15.643978,
+    "priceToBook": 2.5523536,
     "bookValue": 350.5,
-    "dividendYield": 4.43,
-    "trailingEps": 35.85,
+    "dividendYield": 4.41,
+    "trailingEps": 35.84,
     "debtToEquity": 0.03129,
     "roe": 8.971214061976234,
     "roce": 14.16562313306701,
-    "return1y": -28.15375036740421,
-    "sharesOutstanding": 128534565.0
+    "return1y": -29.860699771442693,
+    "sharesOutstanding": 128538828.0
   },
   "quarterly": {
     "periods": [
@@ -364,11 +364,11 @@
     "targetMean": 1068.7059,
     "targetHigh": 1200.0,
     "targetLow": 840.0,
-    "recommendationKey": "buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 17
   },
   "holders": {
-    "insidersPercent": 0.34739,
-    "institutionsPercent": 0.50945
+    "insidersPercent": 0.34737998,
+    "institutionsPercent": 0.52123
   }
 }

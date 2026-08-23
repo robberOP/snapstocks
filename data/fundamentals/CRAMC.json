@@ -1,7 +1,7 @@
 {
   "symbol": "CRAMC",
   "name": "Canara Robeco",
-  "generatedAt": "2026-08-18T16:37:36.263301+00:00",
+  "generatedAt": "2026-08-23T11:01:14.056110+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Asset Management",
@@ -14,23 +14,23 @@
     "peerIndustry": "Asset Management Company"
   },
   "price": {
-    "current": 261.2,
-    "change": -0.06997681,
-    "changePercent": -0.026783332,
-    "previousClose": 261.27,
-    "dayLow": 258.9,
-    "dayHigh": 265.0,
+    "current": 254.4,
+    "change": 0.44999695,
+    "changePercent": 0.17719904,
+    "previousClose": 253.95,
+    "dayLow": 251.0,
+    "dayHigh": 256.9,
     "fiftyTwoWeekLow": 214.2,
     "fiftyTwoWeekHigh": 353.4,
-    "asOf": 1785751198
+    "asOf": 1787047179
   },
   "stats": {
-    "marketCap": 52087832576.0,
-    "trailingPE": 23.853884,
-    "forwardPE": 18.92297,
-    "priceToBook": 6.9839573,
+    "marketCap": 50731790336.0,
+    "trailingPE": 23.232876,
+    "forwardPE": 18.430334,
+    "priceToBook": 6.802139,
     "bookValue": 37.4,
-    "dividendYield": 1.53,
+    "dividendYield": 1.58,
     "trailingEps": 10.95,
     "debtToEquity": 0.02358,
     "roe": 27.32612644598535,
@@ -262,11 +262,11 @@
     "targetMean": 308.75,
     "targetHigh": 325.0,
     "targetLow": 285.0,
-    "recommendationKey": "strong_buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 4
   },
   "holders": {
     "insidersPercent": 0.75001997,
-    "institutionsPercent": 0.087349996
+    "institutionsPercent": 0.08952
   }
 }

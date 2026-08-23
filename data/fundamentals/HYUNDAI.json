@@ -1,7 +1,7 @@
 {
   "symbol": "HYUNDAI",
   "name": "Hyundai Motor I",
-  "generatedAt": "2026-08-18T16:38:01.514785+00:00",
+  "generatedAt": "2026-08-23T11:01:50.956529+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Manufacturers",
@@ -14,28 +14,28 @@
     "peerIndustry": "Passenger Cars & Utility Vehicles"
   },
   "price": {
-    "current": 2207.0,
-    "change": 26.300049,
-    "changePercent": 1.206037,
-    "previousClose": 2180.7,
-    "dayLow": 2200.0,
-    "dayHigh": 2247.6,
+    "current": 2174.5,
+    "change": -11.5,
+    "changePercent": -0.526075,
+    "previousClose": 2186.0,
+    "dayLow": 2160.1,
+    "dayHigh": 2218.8,
     "fiftyTwoWeekLow": 1658.0,
     "fiftyTwoWeekHigh": 2890.0,
-    "asOf": 1785750296
+    "asOf": 1787132700
   },
   "stats": {
-    "marketCap": 1793278214144.0,
-    "trailingPE": 36.27548,
-    "forwardPE": 24.146608,
-    "priceToBook": 8.961491,
+    "marketCap": 1766870614016.0,
+    "trailingPE": 35.653385,
+    "forwardPE": 23.791029,
+    "priceToBook": 8.829525,
     "bookValue": 246.276,
     "dividendYield": 0.96,
-    "trailingEps": 60.84,
+    "trailingEps": 60.99,
     "debtToEquity": 0.05484,
     "roe": 27.137222659504978,
     "roce": 32.62312563591464,
-    "return1y": 6.077779582272932,
+    "return1y": -2.0276668724725937,
     "sharesOutstanding": 812541100.0
   },
   "quarterly": {
@@ -118,15 +118,15 @@
         null,
         537385490000.0,
         616651010000.0,
-        610938780000.0,
-        629906720000.0
+        610907280000.0,
+        629879130000.0
       ],
       "OperatingProfit": [
         null,
         53642390000.0,
         69246850000.0,
-        68485000000.0,
-        64004900000.0
+        68516500000.0,
+        64032490000.0
       ],
       "NetProfit": [
         null,
@@ -185,7 +185,7 @@
         11893470000.0,
         8332410000.0,
         8502300000.0,
-        10975620000.0
+        10975630000.0
       ],
       "TotalAssets": [
         null,
@@ -199,14 +199,14 @@
         72453470000.0,
         80874820000.0,
         118836750000.0,
-        136670350000.0
+        139199920000.0
       ],
       "Investments": [
         null,
         1040000.0,
         310000.0,
         330000.0,
-        993160000.0
+        75990000.0
       ],
       "StockholdersEquity": [
         null,
@@ -325,19 +325,23 @@
   },
   "dividends": [
     {
+      "date": "2026-08-05",
+      "amount": 21.0
+    },
+    {
       "date": "2025-08-05",
       "amount": 21.0
     }
   ],
   "analyst": {
-    "targetMean": 2279.963,
+    "targetMean": 2293.4443,
     "targetHigh": 2530.0,
     "targetLow": 1725.0,
-    "recommendationKey": "buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 27
   },
   "holders": {
     "insidersPercent": 0.825,
-    "institutionsPercent": 0.13664
+    "institutionsPercent": 0.13332
   }
 }

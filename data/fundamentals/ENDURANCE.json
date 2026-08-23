@@ -1,7 +1,7 @@
 {
   "symbol": "ENDURANCE",
   "name": "Endurance Tech.",
-  "generatedAt": "2026-08-18T16:37:45.259379+00:00",
+  "generatedAt": "2026-08-23T11:01:26.127004+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 2787.6,
-    "change": 29.300049,
-    "changePercent": 1.0622503,
-    "previousClose": 2758.3,
-    "dayLow": 2731.4,
-    "dayHigh": 2835.3,
+    "current": 2988.6,
+    "change": -29.699951,
+    "changePercent": -0.9839959,
+    "previousClose": 3018.3,
+    "dayLow": 2979.0,
+    "dayHigh": 3034.8,
     "fiftyTwoWeekLow": 2142.8,
     "fiftyTwoWeekHigh": 3079.9,
-    "asOf": 1785751197
+    "asOf": 1787133597
   },
   "stats": {
-    "marketCap": 392111783936.0,
-    "trailingPE": 41.24889,
-    "forwardPE": 27.817154,
-    "priceToBook": 5.731946,
+    "marketCap": 420384997376.0,
+    "trailingPE": 43.42633,
+    "forwardPE": 29.05508,
+    "priceToBook": 6.1452484,
     "bookValue": 486.327,
-    "dividendYield": 0.42,
-    "trailingEps": 67.58,
+    "dividendYield": 0.38,
+    "trailingEps": 68.82,
     "debtToEquity": 0.19393000000000002,
     "roe": 13.912221049523302,
     "roce": 16.295830151214297,
-    "return1y": 9.743467900159867,
+    "return1y": 19.71593632558045,
     "sharesOutstanding": 140662848.0
   },
   "quarterly": {
@@ -358,14 +358,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 2919.75,
-    "targetHigh": 3300.0,
-    "targetLow": 2500.0,
+    "targetMean": 3157.25,
+    "targetHigh": 3740.0,
+    "targetLow": 2700.0,
     "recommendationKey": "buy",
     "numberOfAnalystOpinions": 16
   },
   "holders": {
     "insidersPercent": 0.75001,
-    "institutionsPercent": 0.19900998
+    "institutionsPercent": 0.19924
   }
 }

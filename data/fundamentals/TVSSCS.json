@@ -1,7 +1,7 @@
 {
   "symbol": "TVSSCS",
   "name": "TVS Supply",
-  "generatedAt": "2026-08-18T16:39:18.201057+00:00",
+  "generatedAt": "2026-08-23T11:03:03.750668+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Integrated Freight & Logistics",
@@ -14,28 +14,28 @@
     "peerIndustry": "Logistics Solution Provider"
   },
   "price": {
-    "current": 136.9,
-    "change": 1.7899933,
-    "changePercent": 1.3248415,
-    "previousClose": 135.11,
-    "dayLow": 136.11,
-    "dayHigh": 139.18,
+    "current": 122.17,
+    "change": 0.6899948,
+    "changePercent": 0.5679904,
+    "previousClose": 121.48,
+    "dayLow": 121.25,
+    "dayHigh": 123.48,
     "fiftyTwoWeekLow": 90.32,
     "fiftyTwoWeekHigh": 146.5,
-    "asOf": 1785751195
+    "asOf": 1787047199
   },
   "stats": {
-    "marketCap": 60397543424.0,
-    "trailingPE": 52.857143,
-    "forwardPE": 26.843136,
-    "priceToBook": 2.953741,
+    "marketCap": 53898964992.0,
+    "trailingPE": 83.67808,
+    "forwardPE": 23.954903,
+    "priceToBook": 2.6359282,
     "bookValue": 46.348,
     "dividendYield": null,
-    "trailingEps": 2.59,
+    "trailingEps": 1.46,
     "debtToEquity": 1.33606,
     "roe": 5.619867223998034,
     "roce": 8.987146238113459,
-    "return1y": 8.067566756148036,
+    "return1y": -8.427559171226704,
     "sharesOutstanding": 441180027.0
   },
   "quarterly": {
@@ -339,7 +339,7 @@
     "numberOfAnalystOpinions": null
   },
   "holders": {
-    "insidersPercent": 0.66058,
-    "institutionsPercent": 0.13464
+    "insidersPercent": 0.67100996,
+    "institutionsPercent": 0.13517
   }
 }

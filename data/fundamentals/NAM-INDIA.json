@@ -1,7 +1,7 @@
 {
   "symbol": "NAM-INDIA",
   "name": "Nippon Life Ind.",
-  "generatedAt": "2026-08-18T16:38:33.564037+00:00",
+  "generatedAt": "2026-08-23T11:02:23.950989+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Asset Management",
@@ -14,29 +14,29 @@
     "peerIndustry": "Asset Management Company"
   },
   "price": {
-    "current": 1165.0,
-    "change": 3.5999756,
-    "changePercent": 0.30996862,
-    "previousClose": 1161.4,
-    "dayLow": 1161.0,
-    "dayHigh": 1178.4,
+    "current": 1170.6,
+    "change": -32.099976,
+    "changePercent": -2.6689928,
+    "previousClose": 1202.7,
+    "dayLow": 1161.3,
+    "dayHigh": 1205.0,
     "fiftyTwoWeekLow": 780.25,
     "fiftyTwoWeekHigh": 1233.5,
-    "asOf": 1785750298
+    "asOf": 1787046296
   },
   "stats": {
-    "marketCap": 744779677696.0,
-    "trailingPE": 46.230156,
-    "forwardPE": 34.95813,
-    "priceToBook": 15.955844,
+    "marketCap": 748853919744.0,
+    "trailingPE": 46.34204,
+    "forwardPE": 35.126167,
+    "priceToBook": 16.032541,
     "bookValue": 73.014,
-    "dividendYield": 1.85,
-    "trailingEps": 25.2,
+    "dividendYield": 1.79,
+    "trailingEps": 25.26,
     "debtToEquity": 0.01617,
     "roe": 32.82537120584485,
     "roce": 40.023136631516785,
-    "return1y": 47.35197203738919,
-    "sharesOutstanding": 639295897.0
+    "return1y": 53.719410049307136,
+    "sharesOutstanding": 639718037.0
   },
   "quarterly": {
     "periods": [
@@ -373,6 +373,6 @@
   },
   "holders": {
     "insidersPercent": 0.00527,
-    "institutionsPercent": 0.90102
+    "institutionsPercent": 0.90153
   }
 }

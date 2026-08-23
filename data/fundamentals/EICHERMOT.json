@@ -1,7 +1,7 @@
 {
   "symbol": "EICHERMOT",
   "name": "Eicher Motors",
-  "generatedAt": "2026-08-18T16:37:42.559737+00:00",
+  "generatedAt": "2026-08-23T11:01:22.480642+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Manufacturers",
@@ -14,28 +14,28 @@
     "peerIndustry": "2/3 Wheelers"
   },
   "price": {
-    "current": 8050.0,
-    "change": 216.5,
-    "changePercent": 2.7637708,
-    "previousClose": 7833.5,
-    "dayLow": 7852.0,
-    "dayHigh": 8056.0,
-    "fiftyTwoWeekLow": 5520.0,
+    "current": 7990.5,
+    "change": -28.0,
+    "changePercent": -0.34919247,
+    "previousClose": 8018.5,
+    "dayLow": 7947.5,
+    "dayHigh": 8060.0,
+    "fiftyTwoWeekLow": 5880.0,
     "fiftyTwoWeekHigh": 8230.0,
-    "asOf": 1785750302
+    "asOf": 1787132699
   },
   "stats": {
-    "marketCap": 2209899610112.0,
-    "trailingPE": 38.344288,
-    "forwardPE": 29.634756,
-    "priceToBook": 8.797669,
+    "marketCap": 2193565548544.0,
+    "trailingPE": 38.03551,
+    "forwardPE": 29.416136,
+    "priceToBook": 8.732643,
     "bookValue": 915.015,
-    "dividendYield": 1.05,
-    "trailingEps": 209.94,
+    "dividendYield": 1.02,
+    "trailingEps": 210.08,
     "debtToEquity": 0.02048,
     "roe": 21.972896576315282,
     "roce": 26.432207130692515,
-    "return1y": 50.62192848948399,
+    "return1y": 41.787881223735674,
     "sharesOutstanding": 274521706.0
   },
   "quarterly": {
@@ -366,7 +366,7 @@
     }
   ],
   "analyst": {
-    "targetMean": 8357.514,
+    "targetMean": 8360.433,
     "targetHigh": 9665.0,
     "targetLow": 6900.0,
     "recommendationKey": "buy",
@@ -374,6 +374,6 @@
   },
   "holders": {
     "insidersPercent": 0.49795,
-    "institutionsPercent": 0.29127002
+    "institutionsPercent": 0.29424998
   }
 }

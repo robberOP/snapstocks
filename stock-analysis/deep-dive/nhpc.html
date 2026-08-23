@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NHPC Limited — Deep-Dive — SnapStocks</title>
+<meta name="description" content="Narrative deep-dive report for NHPC Limited." />
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/layout.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+</head>
+<body>
+<div class="page-shell">
+
+  <header class="topnav">
+    <div class="container">
+      <a href="/" class="brand-mark">
+        <span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 8-10"/><path d="M15 5h6v6"/></svg></span>
+        <span class="wordmark">Snap<b>Stocks</b></span>
+      </a>
+      <nav class="nav-primary" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/macro-analysis/index.html">Macro Analysis <span class="soon-dot" title="Coming soon"></span></a>
+        <a href="/sector-analysis/index.html">Sector Analysis</a>
+        <a href="/stock-analysis/index.html" aria-current="page">Stock Analysis</a>
+      </nav>
+      <div class="nav-actions">
+        <label class="nav-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search ticker or sector…" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="nav-drawer" data-nav-drawer aria-label="Mobile">
+      <a href="/">Home</a>
+      <a href="/macro-analysis/index.html">Macro Analysis <span class="badge-soon">Soon</span></a>
+      <a href="/sector-analysis/index.html">Sector Analysis</a>
+      <a href="/stock-analysis/index.html">Stock Analysis</a>
+      <div class="drawer-sub">
+        <a href="/stock-analysis/fundamentals/template.html">— Fundamentals</a>
+        <a href="/stock-analysis/deep-dive/nhpc.html">— Deep-Dive Reports</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="content">
+    <div class="page-header">
+      <div class="container">
+        <nav class="breadcrumbs"><a href="/">Home</a><span class="sep">/</span><a href="/stock-analysis/index.html">Stock Analysis</a><span class="sep">/</span><span class="current">NHPC Limited — Deep-Dive</span></nav>
+        <nav class="subnav" aria-label="Stock Analysis views">
+          <a href="/stock-analysis/fundamentals/template.html">Fundamentals View</a>
+          <a href="/stock-analysis/deep-dive/nhpc.html" aria-current="page">Deep-Dive Reports</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="section-body container">
+      <div class="report-frame-wrap">
+        <div class="report-frame-loading"><span class="spinner-ring"></span>Loading report…</div>
+        <iframe data-report-frame src="/stock-analysis/deep-dive/reports/NHPC.html" title="NHPC Limited — deep-dive report" scrolling="no"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="cols">
+        <div><h5>Analysis</h5><ul><li><a href="/macro-analysis/index.html">Macro Analysis</a></li><li><a href="/sector-analysis/index.html">Sector Analysis</a></li><li><a href="/stock-analysis/index.html">Stock Analysis</a></li></ul></div>
+        <div><h5>Sector Analysis</h5><ul><li><a href="/sector-analysis/momentum-chart.html">Momentum Chart</a></li><li><a href="/sector-analysis/momentum-table.html">Momentum Table</a></li><li><a href="/sector-analysis/rotation.html">Rotation Graphs</a></li></ul></div>
+        <div><h5>Stock Analysis</h5><ul><li><a href="/stock-analysis/fundamentals/template.html">Fundamentals View</a></li><li><a href="/stock-analysis/deep-dive/nhpc.html">Deep-Dive Reports</a></li></ul></div>
+      </div>
+    </div>
+  </footer>
+</div>
+<script src="/assets/js/nav.js"></script>
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/report-frame.js"></script>
+</body>
+</html>

@@ -1,0 +1,901 @@
+<title>Power Grid Corporation of India Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(34px,5.4vw,52px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Power Transmission Utility / Regulated Infrastructure (Maharatna CPSE)</div>
+    <h1>Power Grid Corporation of India Limited</h1>
+    <p class="sub">NSE: POWERGRID &middot; BSE: 532898 &middot; FY2022&ndash;FY2027(Q1) performance review, BSE-filing, investor-call and market-data synthesis, as of 22&ndash;23 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> India's transmission monopoly is sitting on the biggest investment pipeline in its history &mdash; &#8377;1.75 lakh crore of work already in hand, &#8377;1.19 lakh crore under bidding, and a &#8377;15 lakh-crore-plus long-run sectoral opportunity through 2036 &mdash; and is deploying record capex (&#8377;39,967 crore in FY26 alone) to chase it. But the P&amp;L has not caught up: consolidated Q1 FY27 PAT was flat-to-down year-on-year, standalone PAT fell 7%, EPS has been essentially flat for five years (&#8377;18.09 in FY22 to &#8377;17.13 in FY26), and return on net worth has slid every single year for five years straight, from 22.1% to 15.9%. Management's own math attributes the latest quarter's stall to a quantified &#8377;560 crore regulatory-mechanics drag &mdash; transparent, but it is also the fourth of the last five quarters in which reported EPS missed Street estimates. Layered on top: a management reshuffle unusually dense even by PSU standards (new Chairman, a Director (Projects) post still on repeatedly-extended additional charge, a CFO seat that changed hands twice in seven weeks, and all three independent directors' terms lapsed without replacement, leaving the board out of compliance with SEBI's own independence norm).</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (21 Aug 26)</div><div class="v">&#8377;272.40</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;2,53,348 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;250.00 &ndash; &#8377;324.95</div></div>
+      <div class="chip"><div class="k">Q1FY27 Revenue (Consol.)</div><div class="v pos">+2.2% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT (Consol.)</div><div class="v neg">&minus;0.9% YoY</div></div>
+      <div class="chip"><div class="k">Works in Hand</div><div class="v">&#8377;1.75 lakh Cr</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">13.33x</div></div>
+      <div class="chip"><div class="k">Dividend Yield (TTM)</div><div class="v">4.50%</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage &amp; basis &mdash; please read before the numbers below:</b> The BSE filings actually present in this dataset (Announcements/AnnouncementsConv) span only <b>29 June&ndash;21 August 2026</b> &mdash; effectively one reporting cycle: the Q1 FY27 financial results (5 Aug), investor presentation (7 Aug), earnings-call transcript (14 Aug), and the FY26 Integrated Annual Report / AGM notice (29 Jul). No Q2/Q3/Q4 FY26 investor decks or earnings-call transcripts, and no FY25 (or earlier) annual report, exist in this folder, so a quarter-by-quarter narrative of management's own commentary through FY26 could not be reconstructed from primary transcripts &mdash; that gap is real and is flagged wherever it matters below. To still build a multi-period record, this report layers in: (a) the FY26 Annual Report's audited 5-year historical summary (FY22&ndash;FY26, consolidated) and its FY26-vs-FY25 Directors' Report comparison; (b) MarketData/yfinance's independently-computed quarterly income statement, which covers Q3FY25 (Dec-24) through Q1FY27 (Jun-26) but is <b>missing Q2 FY26 (Sep-25) entirely</b> and uses a slightly different EBITDA convention than the company's own "EBITDA &ndash; Gross Margin" line (flagged wherever both appear together); and (c) yfinance's Earnings History table (EPS estimate vs. actual) for the last five reported quarters. No quarterly cash-flow statement exists anywhere in the source data &mdash; only annual CFO/CFI/CFF for FY22&ndash;FY26. Consolidated figures are used as the primary basis throughout (they add Telecom/PowerTel, the smart-metering subsidiary, ~60&ndash;67 wholly-owned TBCB SPVs, and JV equity pickup to the standalone Transmission+Consultancy parent); every table states its basis explicitly.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Call insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What POWERGRID does, and how it has grown</h2></div>
+      <p class="sec-dek">India's sole central transmission utility &mdash; a regulated-return monopoly on the wires between generation and distribution, now expanding mainly through competitively-bid subsidiaries rather than its own regulated balance sheet.</p>
+
+      <p class="lede">Incorporated in 1989 as National Power Transmission Corporation and renamed Power Grid Corporation of India in 1992, POWERGRID owns and operates the backbone of India's interstate power transmission network: 1,84,960 circuit kilometres of lines and 291 substations with 6,24,016 MVA of transformation capacity as of 31 March 2026 (growing to 1,86,595 ckm / 6,34,516 MVA by 30 June 2026, per the Q1 FY27 investor deck). Three reporting segments: <b>Transmission</b> (the overwhelming majority &mdash; ~92% of standalone FY26 income), <b>Consultancy</b> (project management, DPR preparation, EV/smart-grid/BESS advisory, with a growing international footprint across ~25 countries), and <b>Telecom</b> (the PowerTel brand &mdash; optic-fibre-on-transmission-line connectivity, data-centre and 400G links, plus smart-metering subsidiary PESL, which alone contributed &#8377;220 crore in Q1 FY27). It is a Maharatna Central Public Sector Enterprise with the Government of India holding 51.34% as of June 2026; credit ratings are AAA domestically (CRISIL, CareEdge, ICRA) and investment-grade internationally, rated "at par with Sovereign" (S&amp;P BBB, Fitch BBB&minus;, Moody's Baa3).</p>
+
+      <h3>The moat: a regulated monopoly, now overlaid with competitive bidding</h3>
+      <p>Historically POWERGRID built and owned essentially all interstate transmission under the Return-Tariff Mechanism (RTM), where CERC sets Annual Fixed Cost recovery (Return on Equity + Interest on Loan + Depreciation + O&amp;M + Interest on Working Capital) under the CERC (Terms and Conditions of Tariff) Regulations, 2024, applicable to the FY2024&ndash;29 tariff block. Since the introduction of Tariff-Based Competitive Bidding (TBCB), new inter-state projects are increasingly auctioned rather than assigned, and POWERGRID's own subsidiaries now compete against private developers (Adani Energy Solutions, Sterlite Power and others) for these awards. As of 30 June 2026, TBCB accounted for 83% of POWERGRID's &#8377;1.75 lakh crore works-in-hand (RTM only 14%), and the company's cumulative tariff-based market share across all ISTS TBCB projects since the mechanism's inception stands at ~47% per the Q1 FY27 investor deck (44% per the FY26 Annual Report, dated to 31 March 2026 &mdash; the two figures differ slightly by vintage and are both reported here rather than reconciled). This is the single most important structural shift in the business model over the past several years: growth increasingly comes from winning competitively-bid SPVs (60 wholly-owned TBCB subsidiaries at FY26-end, expanding further via bolt-on SPV acquisitions in Q1 FY27) rather than automatic RTM allocation, with returns "well-calibrated" per management's own words on the Q1 FY27 call &mdash; though, as &sect;03 and &sect;08 detail, an analyst on that same call pointedly asked for TBCB-specific revenue/EBITDA/PAT disclosure that management does not currently provide, a genuine transparency gap that persists as of this report's date.</p>
+
+      <h3>Five-year growth record: asset base has more than doubled its capex run-rate, but per-share earnings have not moved</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, FY-end (Mar)</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Net worth (&#8377; Cr)</td><td>76,256</td><td>83,026</td><td>87,145</td><td>92,663</td><td>1,00,494</td></tr>
+            <tr><td>Return on net worth (%)</td><td class="neg">22.06</td><td class="neg">18.57</td><td class="neg">17.87</td><td class="neg">16.75</td><td class="neg">15.85</td></tr>
+            <tr><td>Diluted EPS (&#8377;, bonus-adjusted)</td><td>18.09</td><td>16.58</td><td>16.74</td><td>16.69</td><td>17.13</td></tr>
+            <tr><td>Book value / share (&#8377;)</td><td>81.99</td><td>89.27</td><td>93.70</td><td>99.63</td><td>108.05</td></tr>
+            <tr><td>Capex, cash basis (&#8377; Cr)</td><td>9,426</td><td>8,850</td><td>11,219</td><td>24,630</td><td>33,305</td></tr>
+            <tr><td>Transmission lines (ckm)</td><td>1,72,437</td><td>1,74,113</td><td>1,77,699</td><td>1,80,195</td><td>1,84,960</td></tr>
+            <tr><td>Transformation capacity (MVA)</td><td>4,74,457</td><td>4,99,362</td><td>5,27,446</td><td>5,51,961</td><td>6,24,016</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 Integrated Annual Report, "Historical Financial Summary (Consolidated)." Capex figures shown here are on a cash basis; FY26 capex on an accrual basis was &#8377;39,967 Cr per the Directors' Report (&sect;05).</caption>
+      </div>
+      <p>Read plainly: capex has run at 3.5x its FY22 level by FY26, and transformation capacity (MVA, which better captures HVDC/high-voltage substation additions) has compounded at ~7.1%/year &mdash; well ahead of circuit-kilometre growth (~1.6%/year), reflecting a shift toward denser, higher-capacity systems. Yet diluted EPS in FY26 (&#8377;17.13) is barely above FY22's &#8377;18.09 five years earlier, and return on net worth has fallen in every one of the five years shown, from 22.1% to 15.9% &mdash; a genuine, sustained structural decline, not a one-quarter blip. Book value per share has compounded steadily (&#8377;82.0 &rarr; &#8377;108.1, ~7.2%/yr) purely through retained-earnings accretion, which is the main reason the stock has still delivered a rising net-worth base even as per-share profit growth stalled. Section&nbsp;04 unpacks why: management's own explanation on the Q1 FY27 call is that new capitalisation initially depresses, rather than boosts, near-term reported profit under the regulated-tariff mechanics as older, high-yielding assets roll past their 12-year normative-debt-recovery window.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">A stream of TBCB win announcements and a sharply expanded borrowing limit, running alongside a leadership reshuffle and a muted market reaction to the Q1 FY27 print.</p>
+
+      <div class="news-item">
+        <div class="news-date">21 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Two more TBCB wins: &#8377;26,000 Cr Barmer HVDC + &#8377;822.91 Cr/yr Gujarat REZ (BOOT)</div>
+          <div class="news-body">POWERGRID was declared L1 bidder for the Jam Khambhaliya renewable-energy-zone ISTS scheme in Gujarat, then received the Letter of Intent for a &#8377;822.91 crore annual-tariff, 6,500 MW BOOT project the same day, alongside coverage citing a &#8377;26,000 crore Barmer Complex HVDC award. Press coverage frames the combined effect as expanding the unexecuted order backlog from &#8377;1.75 lakh crore (as disclosed 30 June) toward &#8377;2.2 lakh crore &mdash; a news-sourced figure not yet confirmed in an official investor-relations update at the time of this report.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">21 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral / mixed reaction</span>
+          <div class="news-title">Shareholders approve &#8377;40,000 Cr borrowing-limit increase, to &#8377;2.2 lakh crore</div>
+          <div class="news-body">AGM postal-ballot approval raised the Board's overall borrowing ceiling from &#8377;1.80 lakh crore to &#8377;2.20 lakh crore and domestic private-placement (bond) limits to &#8377;35,000 crore for FY27&ndash;28, funding the FY27&ndash;29 capex plan (&sect;05). The stock rallied intraday to &#8377;275.95 on the news but remained down over 4% year-to-date &mdash; a reaction this report reads as the market being unconvinced that more debt-funded capex alone resolves the RoE/EPS stagnation documented in &sect;01/&sect;04.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">18 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral (governance)</span>
+          <div class="news-title">New Director (Finance): Amol Babulal Taori, ex-HPCL</div>
+          <div class="news-body">A chartered accountant with ~30 years' experience, including crude procurement/trade and oil-price-risk management at HPCL, appointed Director (Finance) for a five-year term effective 20 August 2026 &mdash; and, per the company's own 20 Aug filing, also made CFO the same day, replacing Venkata S.V., who had held the CFO post for barely seven weeks (since 1 July 2026). See &sect;07 for the full leadership-churn picture this sits within.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">6 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Mixed</span>
+          <div class="news-title">Q1 FY27 results: consolidated PAT down 0.9% YoY, JBIC green loan signed, five TBCB wins</div>
+          <div class="news-body">Consolidated net profit of &#8377;3,598.42 Cr (&minus;0.9% YoY), total income up 2.2% to &#8377;11,696.72 Cr. Same window: a JPY 80 billion (~&#8377;4,700 Cr) JBIC green-loan agreement for the Khavda&ndash;Nagpur HVDC line, 99.80% system availability, and &#8377;7,765 Cr of Q1 capex (+11.2% YoY) &mdash; a print News coverage read as "underlying strength despite near-term margin compression," a framing this report's &sect;03&ndash;04 tabulation partly supports (the top-line and capex momentum are real) and partly complicates (the regulatory-drag mechanics behind the PAT stall need the detail in &sect;04 to actually assess).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">5 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">20 GW Rajasthan REZ transmission system commissioned</div>
+          <div class="news-body">Phase-III Part-H of the Rajasthan renewable-energy-zone evacuation system achieved commercial operation on 3 August, enabling large-scale solar/wind evacuation &mdash; directly additive to the RE-linked capacity pipeline discussed in &sect;03.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>Month-end closes ran from &#8377;242.91 (Feb-2025) up to &#8377;318.35 (Apr-2026) and back to &#8377;272.40 by 21 Aug 2026 &mdash; a stock that has been essentially range-bound around &#8377;250&ndash;300 for eighteen months despite the steady drumbeat of order wins, consistent with the market pricing the RoE/EPS-stagnation story in &sect;01/&sect;04 at least as heavily as the newsflow. Full chart in &sect;10.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, order book &amp; guidance vs. delivered</h2></div>
+      <p class="sec-dek">Revenue growth has been low-single-digit for six straight quarters even as the order book more than doubled in scope &mdash; a lag management attributes to regulatory-tariff mechanics, not demand.</p>
+
+      <h3>Quarterly trend (Consolidated)</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q3FY25 (Dec-24)</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue (yfinance basis)</td><td>11,233.0</td><td>12,275.4</td><td>11,196.2</td><td>12,395.1</td><td>11,665.6</td><td>11,496.7</td></tr>
+            <tr><td>EBITDA (yfinance basis)</td><td>10,042.9</td><td>10,509.5</td><td>9,350.5</td><td>10,810.8</td><td>9,387.7</td><td>9,738.7</td></tr>
+            <tr><td>PAT</td><td>3,861.6</td><td>4,142.9</td><td>3,630.6</td><td>4,185.0</td><td>4,546.3</td><td>3,598.4</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>4.15</td><td>4.46</td><td>3.67&ndash;3.90<sup>&Dagger;</sup></td><td>4.50</td><td>4.89</td><td>3.87</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance quarterly income statement. <b>Q2 FY26 (Sep-25 quarter) is entirely absent from this series</b> &mdash; a genuine gap in the source data, not smoothed over here. &Dagger; yfinance shows 3.67 (diluted) vs 3.90 (basic) for Q1FY26 &mdash; the company's own Q1FY27 filing separately reports 3.93 (incl. regulatory deferral movement); differences reflect methodology, not a restatement. yfinance's EBITDA convention differs from the company's own "EBITDA &ndash; Gross Margin" line used in &sect;04 (e.g. &#8377;9,350.5 Cr yfinance vs &#8377;9,527 Cr company-reported for the same Q1FY26 quarter) &mdash; both are shown, never blended into one series.</caption>
+      </div>
+      <p>Company-reported (consolidated) quarter-over-quarter: transmission charges rose from &#8377;10,620 Cr (Q1FY26) to &#8377;10,820 Cr (Q4FY26) to &#8377;10,905 Cr (Q1FY27) &mdash; a steady but modest 3% YoY / 1% QoQ pace. Total income was &#8377;11,444 Cr &rarr; &#8377;11,971 Cr &rarr; &#8377;11,697 Cr over the same three points (+2% YoY, &minus;2% QoQ). Segment-wise, Q1FY27 vs Q1FY26 (consolidated): Transmission revenue +2.2% (&#8377;10,929 Cr vs &#8377;10,695 Cr), Consultancy +27.8% (&#8377;519 Cr vs &#8377;406 Cr, on a smaller base), Telecom &minus;13.0% (&#8377;252 Cr vs &#8377;289 Cr). On a standalone basis, transmission revenue actually <em>fell</em> 1.8% YoY in Q1FY27 (&#8377;9,704 Cr vs &#8377;9,884 Cr) with segment PBIT down 6.2% &mdash; the consolidated growth is being carried by the TBCB-subsidiary and consultancy lines, not the legacy standalone RTM asset base.</p>
+
+      <h3>Order book: the growth engine is real and getting bigger</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Works in hand (30 Jun 26)</div><div class="v">&#8377;1.75 lakh Cr</div><div class="d">TBCB 83% / RTM 14% / Other 3%; &#8377;50,419 Cr is still CWIP</div></div>
+        <div class="stat"><div class="k">Bidding pipeline (31 Jul 26)</div><div class="v">&gt;&#8377;1.19 lakh Cr</div><div class="d">Under bidding &#8377;73,875 Cr + to be floated &#8377;45,620 Cr</div></div>
+        <div class="stat"><div class="k">Long-run sector opportunity</div><div class="v">&gt;&#8377;15 lakh Cr</div><div class="d">CEA 900+GW plan (~&#8377;7.9L Cr to FY36) + Brahmaputra hydro (~&#8377;6.4L Cr) + data-centre/GH2</div></div>
+        <div class="stat"><div class="k">TBCB win rate, FY27 YTD</div><div class="v">6 of 19</div><div class="d">Projects bid (ISTS+InSTS) through Jul-26, &gt;&#8377;2,200 Cr annual tariff won</div></div>
+      </div>
+      <p>FY26 alone added 9 TBCB wins (8 ISTS + 1 InSTS) and the company's first-ever BESS project (150 MW/300 MWh, Kalikiri, Andhra Pradesh) and first-ever Synchronous Condenser TBCB scheme (two units at Fatehgarh-II) &mdash; a genuine new-asset-class expansion, not just more of the same transmission lines. Post-quarter (through 21 Aug), management/press coverage adds a &#8377;26,000 Cr Barmer HVDC award and a &#8377;822.91 Cr/year Gujarat REZ BOOT project (&sect;02). Horizontally, the company has expanded from pure wires into BESS, EV charging, solar generation (first 85 MW plant commissioned at Nagda, MP, FY26) and green hydrogen-linked transmission; vertically/geographically, an incorporated Kenya SPV marks a first developer-mode international foray, alongside existing international consultancy in ~25 countries.</p>
+
+      <h3>Guidance vs. delivered</h3>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Only capex/capitalisation guidance exists &mdash; no revenue, margin or EPS target was found in any reviewed filing</b>Management's numeric guidance in this dataset is limited to capex and capitalisation figures. FY27 guidance from the Q1FY27 investor deck: <b>&#8377;37,000 Cr capex</b> and <b>&#8377;30,000 Cr capitalisation</b>. Q1FY27 delivered &#8377;7,765 Cr of capex (+11.2% YoY, ~21% of the full-year guide in one quarter, ahead of a straight-line pace) and &#8377;5,277 Cr of capitalisation (+213% YoY, ~17.6% of guidance, which management called "3.13 times" the prior-year quarter on the call). Separately, the AGM notice (29 Jul 2026, Item 8) discloses a <em>different</em> planning figure &mdash; capex of "about &#8377;40,000 crore to &#8377;45,000 crore for each financial year during 2026-27 to 2028-29" &mdash; a higher band than the IR deck's single-point &#8377;37,000 Cr FY27 number; both are reported here rather than reconciled, since the source documents themselves do not reconcile them. On last year's own guidance-equivalent: FY26 capex (accrual basis) hit a record &#8377;39,967 Cr, but capitalisation lagged materially at just &#8377;28,206 Cr &mdash; an ~&#8377;11,760 Cr conversion gap that shows up directly in a 33% jump in capital-work-in-progress (&sect;05). If that capex/capitalisation gap repeats in FY27, revenue-recognition (and therefore reported growth) will keep lagging the headline capex figures the market tends to react to.</div>
+      </div>
+
+      <h3>Earnings-surprise pattern: four misses in the last five reported quarters</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Reported</th><th>EPS estimate</th><th>Actual EPS</th><th>Surprise</th></tr></thead>
+          <tbody>
+            <tr><td>30 Jul 2025 (~Q1FY26)</td><td>4.15</td><td>3.70</td><td class="neg">&minus;10.8%</td></tr>
+            <tr><td>3 Nov 2025 (~Q2FY26)</td><td>4.24</td><td>3.28</td><td class="neg">&minus;22.6%</td></tr>
+            <tr><td>30 Jan 2026 (~Q3FY26)</td><td>4.45</td><td>4.19</td><td class="neg">&minus;5.8%</td></tr>
+            <tr><td>15 May 2026 (~Q4FY26)</td><td>4.66</td><td>8.94</td><td class="pos">+92.1%</td></tr>
+            <tr><td>5 Aug 2026 (Q1FY27)</td><td>4.10</td><td>3.98</td><td class="neg">&minus;2.9%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance Earnings History. The Q4FY26 beat is a one-off &mdash; entirely driven by a &#8377;829&ndash;832 Cr deferred-tax remeasurement benefit tied to the anticipated transition to the new Income-tax Act, 2025 regime (&sect;04), not an operating beat.</caption>
+      </div>
+      <p>Strip out the tax-driven Q4FY26 print and the pattern is four consecutive consensus misses, with the November 2025 quarter (Reuters headline: "profit decline due on higher expenses, delayed projects") the worst of the run at &minus;22.6%. This is the single clearest quantitative signal that the order-book story in this section has not yet translated into a Street-beating P&amp;L, and it is consistent with, not contradicted by, management's own regulatory-drag explanation in &sect;04.</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins &amp; profitability</h2></div>
+      <p class="sec-dek">A quantified &#8377;560 crore "regulatory drag" explains most of Q1FY27's PAT stall &mdash; and management says this is structural, not a one-off, as more capacity rolls past its 12-year normative debt-recovery window.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, &#8377; Cr / %</th><th>Q1FY26</th><th>Q4FY26</th><th>Q1FY27</th><th>YoY</th><th>QoQ</th></tr></thead>
+          <tbody>
+            <tr><td>Total income</td><td>11,444</td><td>11,971</td><td>11,697</td><td class="pos">+2%</td><td class="neg">&minus;2%</td></tr>
+            <tr><td>EBITDA &ndash; Gross Margin (co-reported)</td><td>9,527</td><td>9,831</td><td>9,581</td><td class="pos">+1%</td><td class="neg">&minus;3%</td></tr>
+            <tr><td>Depreciation</td><td>(3,130)</td><td>(3,295)</td><td>(3,128)</td><td>&minus;0.1%</td><td class="neg">&minus;5%</td></tr>
+            <tr><td>Interest / finance cost</td><td>(1,862)</td><td>(1,957)</td><td>(1,990)</td><td class="neg">+7%</td><td class="neg">+2%</td></tr>
+            <tr><td>Tax (net of DTL adj.)</td><td>(904)</td><td>+832 net benefit<sup>&dagger;</sup></td><td>(865)</td><td>&minus;4%</td><td>&mdash;</td></tr>
+            <tr><td>Profit after tax</td><td>3,631</td><td>4,546</td><td>3,598</td><td class="neg">&minus;1%</td><td class="neg">&minus;21%</td></tr>
+            <tr><td>Standalone PAT</td><td>3,653</td><td>4,553</td><td>3,411</td><td class="neg">&minus;7%</td><td class="neg">&minus;25%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1 FY27 investor presentation, "Financial Performance (Consolidated / Standalone)" slides. &dagger; Q4FY26's tax line benefited from an &#8377;829&ndash;832 Cr deferred-tax remeasurement gain tied to the anticipated Income-tax Act 2025 transition &mdash; the QoQ PAT comparison against Q4FY26 is therefore not like-for-like.</caption>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Management's own bridge: +&#8377;788 Cr of new revenue, netted down to roughly flat PAT by a &#8377;560 Cr regulatory drag</b>On the Q1FY27 call, the CMD walked through the exact mechanics: new asset commissioning should have added &#8377;788 Cr of transmission-charge revenue and ~&#8377;247 Cr of PAT year-on-year. Against that, two items subtracted about &#8377;560 Cr: (1) ~&#8377;330 Cr from the regulator's tariff design itself &mdash; CERC recognises cost-of-debt/depreciation and "unwinds" that recovery over 12 years, so tariff (and hence revenue) on assets crossing that vintage mechanically declines; and (2) ~&#8377;230 Cr from a shrinking "interest on differential tariff" item &mdash; POWERGRID earns SBI MCLR+150bps on revenue accrued between filing a tariff petition and CERC's final order, and this was unusually large in Q1FY26 as a backlog of orders was still pending, but has since normalised as CERC caught up. A further &#8377;33 Cr one-off write-back (KSK Mahanadi) present in the year-ago quarter did not repeat. Management was explicit that capitalisation of ~12-year-old vintage assets (from the 2014&ndash;16 capex cycle) will keep producing this kind of drag going forward &mdash; "that is the characteristic of the industry itself" &mdash; framing it as structural, not one-off.</div>
+      </div>
+
+      <h3>Analysts are not fully satisfied with this explanation</h3>
+      <p>On the same call, an analyst (Avendus Spark) pointed out that despite &#8377;28,000 Cr of consolidated capitalisation in the prior year, profits have "remained largely flat," and another (Ambit Capital) pressed on whether the drag should even be PAT-neutral in principle (revenue and expense both fall together under the regulated formula) &mdash; management's answer conceded there are "marginal" mismatches between notional/regulatory depreciation-interest and actual accounted figures, without fully quantifying them. A third analyst (Avendus/Ambit-adjacent, ICICI-hosted call) explicitly asked for a standalone TBCB-only P&amp;L disclosure (revenue/EBITDA/PAT), since TBCB SPVs are now the primary growth driver; the CMD acknowledged the concern ("I do appreciate the concern... we will examine that") but did not commit to a specific new disclosure or timeline. Until that exists, outside analysts cannot independently verify whether TBCB-project-level returns are holding up as management asserts.</p>
+
+      <h3>Segment margin: Telecom weakening, Transmission broadly flat</h3>
+      <p>Consolidated segment PBIT, Q1FY27 vs Q1FY26: Transmission +0.5% (&#8377;6,361 Cr vs &#8377;6,328 Cr, essentially flat despite +2.2% revenue &mdash; i.e. margin compression within the segment), Telecom &minus;30.8% (&#8377;98 Cr vs &#8377;142 Cr, on revenue down 13.0%), Consultancy roughly flat (&#8377;30.1 Cr vs &#8377;30.6 Cr despite +27.8% revenue growth, implying dilutive mix). Company-reported consolidated Operating Margin (EBIDT/Revenue from Operations, per the regulatory ratio disclosure) slipped from 85% (Q1FY26) to 84% (Q4FY26) to 83% (Q1FY27) &mdash; a small but consistent three-quarter decline. Net profit margin on the same basis: 32% &rarr; 39%<sup>&dagger;</sup> &rarr; 31% (&dagger; Q4FY26 inflated by the tax one-off above).</p>
+
+      <h3>Forward margin guidance</h3>
+      <p>None found in numeric form. Management's only forward-looking margin commentary is qualitative and directional: the regulatory drag is expected to persist as more of the FY2014&ndash;16 capitalisation vintage crosses 12 years, partially offset by new capitalisation (&#8377;30,000 Cr guided for FY27) beginning to contribute once CERC issues final tariff orders on the underlying projects. No EPS or PAT growth target for FY27 exists in this dataset.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">Debt is being raised aggressively to fund a record capex plan; working-capital ratios have tightened for four straight quarters; and a capex-to-capitalisation gap is visibly swelling capital-work-in-progress.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated</th><th>Q1FY26 (Jun-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Gross fixed assets (&#8377; Cr)</td><td>2,92,446</td><td>3,25,671<sup>*</sup></td><td>3,25,671</td></tr>
+            <tr><td>Capital work-in-progress (&#8377; Cr)</td><td>41,610</td><td>50,419</td><td>50,419</td></tr>
+            <tr><td>Total debt (&#8377; Cr)</td><td>1,30,646</td><td>1,48,009</td><td>1,45,586</td></tr>
+            <tr><td>Net worth (&#8377; Cr)</td><td>96,482</td><td>1,00,494</td><td>1,04,028</td></tr>
+            <tr><td>Debt / equity</td><td>1.35</td><td>1.47</td><td>1.40</td></tr>
+            <tr><td>Current ratio</td><td>0.86</td><td>0.62</td><td class="neg">0.57</td></tr>
+            <tr><td>Interest Service Coverage Ratio</td><td>4.64x</td><td>4.85x</td><td>4.32x</td></tr>
+            <tr><td>Debt Service Coverage Ratio</td><td>1.06x</td><td>2.25x<sup>&dagger;</sup></td><td>1.46x</td></tr>
+            <tr><td>Book value / share (&#8377;)</td><td>103.74</td><td>108.05</td><td>111.85</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1 FY27 investor presentation and financial-results filing, "Additional Information" ratio disclosures (consolidated). * Gross fixed assets shown as of 30 Jun 26 (same figure disclosed for both dates in the source table). &dagger; DSCR inflated by the Q4FY26 tax one-off flowing through reported profit.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Current ratio has fallen for four straight quarters: 0.86x &rarr; 0.62x &rarr; 0.57x</b>Working capital (current assets minus current liabilities) has been structurally negative every year since at least FY22 (&minus;&#8377;5,577 Cr to &minus;&#8377;20,474 Cr, per the 5-year annual summary) &mdash; not unusual for a regulated utility funded on committed, contracted tariff cash flows and long-term debt rather than short-cycle working capital. But the <em>trend</em> is still worth flagging: the ratio has deteriorated in every quarter shown here, and total current liabilities grew from &#8377;40,606 Cr (Mar-25) to &#8377;54,089 Cr (Mar-26) &mdash; a 33% jump in one year, roughly double net worth growth over the same period. This is consistent with, and probably substantially explained by, the rising current-maturities-of-long-term-debt load that comes with the capex ramp in this section &mdash; but it is a genuine tightening, not a static structural feature, and bears monitoring alongside the capex plan below.</div>
+      </div>
+
+      <h3>Receivables: management's own metric says "improving," the regulatory ratio disclosure says the opposite</h3>
+      <p>The Q1FY27 investor deck highlights "Robust Collections Continue": billing of &#8377;10,963 Cr against realisation of &#8377;11,404 Cr (104.03% realisation rate), with billing-basis receivable days falling sharply from 19.41 (Q1FY26) to 12.11 (Q1FY27) &mdash; management called this out explicitly on the call as a positive. Yet the company's own regulatory ratio table in the same financial-results filing shows the standard Debtors Turnover ratio (annualised revenue &divide; average trade receivables) <em>declining</em> over the same period &mdash; standalone 4.96x (Q1FY26) &rarr; 3.77x (Q4FY26) &rarr; 3.86x (Q1FY27); consolidated 5.06x &rarr; 3.97x &rarr; 4.15x &mdash; which on its face implies receivable days <em>lengthened</em>, not shortened, over the same year. These are two different receivables metrics (billing-window days vs. a turnover ratio using average trade receivables) measuring different things, and this report cannot fully reconcile them from the disclosed data alone; it is flagged here as a genuine discrepancy between management's own headline framing and the regulatory-disclosure ratio sitting in the same filing, worth independently verifying against the next quarter's balance sheet receivables figure once available.</p>
+
+      <h3>Capex plan and funding: record spend, funded increasingly by debt</h3>
+      <p>FY26 capex (accrual basis) was &#8377;39,967 Cr, the company's highest ever in a single year, but capitalisation was only &#8377;28,206 Cr &mdash; an ~&#8377;11,760 Cr gap that shows up directly as a 33% jump in capital-work-in-progress (&#8377;36,024 Cr &rarr; &#8377;47,888 Cr, FY25&rarr;FY26). FY27 guidance is &#8377;37,000 Cr capex / &#8377;30,000 Cr capitalisation (IR deck) against a wider &#8377;40,000&ndash;45,000 Cr/year FY27&ndash;29 planning band disclosed separately in the AGM notice (&sect;03). To fund this, shareholders approved raising the Board's overall borrowing ceiling from &#8377;1.80 lakh crore to &#8377;2.20 lakh crore (postal-ballot outcome, 20 Aug 2026) and domestic bond private-placement limits to &#8377;35,000 Cr for FY27&ndash;28; total outstanding borrowings stood at &#8377;1,44,556 Cr as of 31 March 2026 per the AGM notice, projected to require ~&#8377;1,09,200 Cr of fresh loan tie-ups over FY27&ndash;29 net of &#8377;51,072 Cr of scheduled repayments. On the Q1FY27 call, management confirmed that the &#8377;13,000 Cr+ of equity invested in TBCB projects (operational + under-construction) to date has been funded entirely through internal accruals, not incremental parent-level debt &mdash; a genuinely reassuring detail on capital-structure discipline at the holding-company level, even as consolidated group debt continues climbing to fund the SPVs themselves.</p>
+
+      <h3>Related-party structure: dominated by the TBCB subsidiary web, not promoter-style dealings</h3>
+      <p>The FY26 Annual Report's related-party disclosure (Note 55) runs many pages, but this reflects the sheer count of wholly-owned TBCB subsidiaries (60 at FY26-end, growing) rather than related-party red flags of the kind seen in private-sector governance failures &mdash; equity infusions into and O&amp;M service agreements with wholly-owned SPVs are structurally normal for this business model and are, by definition, consolidated away at the group level. This report did not extract a specific aggregate contingent-liability rupee figure from the annual report notes within the time available; that is flagged here as a specific data gap rather than filled with an estimate.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Operating cash flow has stayed well ahead of PAT every year, but free cash flow has been collapsing as capex outpaces even that strong operating cash generation &mdash; and no quarterly cash-flow statement exists to check the current year against.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, &#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT (attributable)</td><td>15,420</td><td>15,573</td><td>15,521</td><td>15,928</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>40,203</td><td>37,290</td><td>36,222</td><td>40,931</td></tr>
+            <tr><td>Capex (purchase of PPE)</td><td>(8,243)</td><td>(11,410)</td><td>(24,134)</td><td>(37,279)</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td>31,960</td><td>25,880</td><td>12,088</td><td class="neg">3,651</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>2.61x</td><td>2.39x</td><td>2.33x</td><td>2.57x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. No quarterly cash-flow file exists in the source data for any period &mdash; Q1FY27 cash conversion cannot be checked against the reported quarterly PAT.</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#10003;</div>
+        <div><b>Earnings-quality check: passes clean on CFO/PAT, every year shown</b>CFO has consistently run at 2.3&ndash;2.6x reported PAT every year FY23&ndash;FY26 &mdash; a very healthy, D&amp;A-driven gap typical of a capital-intensive regulated utility (depreciation is a large non-cash add-back), and there is no sign here of profit growth outrunning cash generation. This is a genuine strength: whatever is happening to reported EPS (&sect;01/&sect;04), the underlying cash-generation engine of the existing asset base is not deteriorating.</div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>But free cash flow has fallen for three straight years, and turned near-zero in FY26</b>FCF (CFO minus capex) fell from &#8377;31,960 Cr (FY23) to &#8377;3,651 Cr (FY26) &mdash; not because operating cash generation weakened (CFO was actually higher in FY26 than in FY23), but because capex nearly quadrupled over the same period (&#8377;8,243 Cr &rarr; &#8377;37,279 Cr). This is the direct cash-flow expression of the capex ramp discussed in &sect;05: POWERGRID is now investing essentially all of its operating cash flow, plus incremental debt, back into new transmission assets. That is a deliberate, disclosed growth strategy, not a distress signal &mdash; but it also means dividend cover from free cash flow alone (rather than from gross operating cash flow) has become far thinner than it was three years ago, and any further capex acceleration toward the AGM's &#8377;40,000&ndash;45,000 Cr/year band would likely push FCF negative outright unless CFO grows correspondingly.</div>
+      </div>
+
+      <p><b>Financing pattern:</b> annual financing cash flow has been consistently negative (net debt repayment plus dividends exceeding gross borrowings in most years) except for a sharp reversal in FY26, where gross debt issuance (&#8377;28,166 Cr) comfortably exceeded repayments (&#8377;15,537 Cr), funding the capex acceleration. Cash dividends paid were &#8377;8,371 Cr in FY26 (payout ratio 53% of standalone PAT per the Directors' Report) versus a TTM payout ratio of 44.07% per the MarketData/yfinance snapshot &mdash; the two figures use different measurement windows (FY26 declared vs. trailing twelve months) and are both reported here rather than reconciled to a single number.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">An unusually dense leadership reshuffle for a PSU of this size &mdash; new CMD, a Director (Projects) post on repeatedly-extended additional charge, a CFO seat that turned over twice in seven weeks, and a board that has run out of compliance with SEBI's independent-director quota since mid-April 2026.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Burra Vamsi Rama Mohan</div>
+          <div class="role">Chairman &amp; Managing Director (since ~Apr 2026); Director (Projects), additional charge</div>
+          <div class="bio">Succeeded Dr. R.K. Tyagi, whose tenure completed 31 March 2026. Also holds additional charge of Director (Projects) &mdash; extended repeatedly by Ministry of Power order, most recently for a further three months from 1 July 2026, meaning that seat has not had a permanent, dedicated incumbent for several months as of this report's date.</div>
+        </div>
+        <div class="person">
+          <div class="name">Dr. Yatindra Dwivedi</div>
+          <div class="role">Director (Personnel); held additional charge of Director (Finance) through mid-August 2026</div>
+          <div class="bio">Relinquished the Director (Finance) additional charge on 18 August 2026 upon Amol Babulal Taori's appointment. Succeeded Shri G. Ravisankar as the Finance-charge holder after Ravisankar's tenure completed 30 June 2026.</div>
+        </div>
+        <div class="person">
+          <div class="name">Amol Babulal Taori</div>
+          <div class="role">Director (Finance) &amp; CFO (from 20 Aug 2026, 5-year term)</div>
+          <div class="bio">Chartered accountant, ~30 years' experience including crude procurement/trading and oil-price-risk management at HPCL. Appointed Director (Finance) 18 Aug 2026, then also made CFO two days later on 20 Aug, replacing Venkata S.V., who had held the CFO post for only seven weeks.</div>
+        </div>
+        <div class="person">
+          <div class="name">Venkata Subrahamanayam Vallurie <span style="font-weight:400;color:var(--ink-mute);">(departed CFO role)</span></div>
+          <div class="role">Former CFO (1 Jul&ndash;20 Aug 2026); remains Chief General Manager (F&amp;A)</div>
+          <div class="bio">Was promoted internally from CGM (F&amp;A) to CFO effective 1 July 2026, then ceded the CFO title after just seven weeks when Taori was appointed. The reason for such a short tenure was not disclosed in the filings reviewed.</div>
+        </div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Board has been non-compliant with SEBI's independent-director quota since mid-April 2026, and no replacement was confirmed in this filing set</b>As of 31 March 2026, POWERGRID's ten-member Board comprised five functional directors (incl. CMD), two Government Nominee Directors, and only three Independent Directors &mdash; already short of the SEBI LODR requirement that at least 50% of the Board be independent. All three of those Independent Directors' terms then lapsed shortly after (Shiv Tapasya Paswan and Rohit Vaswani, 15/16 April 2026; Sajal Jha, 15/16 May 2026), and the Annual Report itself discloses the resulting non-compliance explicitly, attributing the gap to appointment authority resting with the Government of India/Ministry of Power rather than the company. Combined with the Director (Projects) post remaining on repeatedly-extended additional charge and the CFO seat changing hands twice in seven weeks, this reads as a genuine, disclosed governance gap at the top of the company &mdash; not a fabricated concern, but also not one this dataset shows being resolved as of 21 August 2026.</div>
+      </div>
+
+      <h3>Regulated-return business model: what it means for governance and returns</h3>
+      <p>As a Maharatna CPSE with the Government of India holding 51.34%, POWERGRID's Chairman, functional directors and (nominally) independent directors are all appointed through the government's administrative process rather than an independent nomination committee in the conventional listed-company sense &mdash; a structural feature of every GoI-controlled utility, not unique to POWERGRID, but one that the vacancy pattern above makes concretely visible. On the regulatory side, the CERC (Terms and Conditions of Tariff) Regulations, 2024 fix the Return-on-Equity component of Annual Fixed Cost recovery for the FY2024&ndash;29 tariff block on RTM assets, while TBCB assets earn whatever return the company itself bid to accept in a competitive auction &mdash; meaning incremental growth increasingly depends on POWERGRID's own bid discipline (management describes "well-calibrated" returns, &sect;01) rather than an administratively-fixed RoE, a genuine shift in the risk/return character of new capex versus the legacy RTM asset base.</p>
+
+      <h3>Auditor</h3>
+      <p>Statutory auditors are appointed by the Comptroller &amp; Auditor General of India (C&amp;AG), standard for a government company: ASA &amp; Associates LLP, Sagar &amp; Associates, Jain Paras Bilala &amp; Co., and G.D. Apte &amp; Co. as joint auditors for FY26 (ASA replacing Rama K Gupta &amp; Co. mid-year by C&amp;AG order). The Q1FY27 limited-review report carries an unqualified/unmodified conclusion; no auditor qualification, emphasis of matter, or unusual "other matters" paragraph beyond standard boilerplate about balancing-figure reconciliation for the year-end quarter was found in the reviewed filing.</p>
+
+      <h3>Performance recognition</h3>
+      <p>POWERGRID was rated "Excellent" (score 93.88) under its FY25 MoU with the Government of India &mdash; a rating it has held every year since its first MoU in FY1993-94 &mdash; and ranked first among service-sector CPSEs on dividend declaration, second on gross block and net worth, in the Public Enterprises Survey 2024-25.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other conference-call insights worth watching</h2></div>
+      <p class="sec-dek">Equipment-supply easing, an active BESS regulatory push, and an unresolved transparency ask on TBCB-level disclosure &mdash; each with the potential to move the stock independently of the headline P&amp;L.</p>
+
+      <h3>Equipment-supply constraints reported easing, prices "stabilising"</h3>
+      <p>Multiple analysts pressed on transformer and GIS-equipment supply bottlenecks that have plagued the transmission sector; management's response was that OEM capacity has been ramping (helped by POWERGRID giving manufacturers bulk, multi-project procurement visibility rather than project-by-project orders) and that recently-approved Chinese-OEM participation (4 companies cleared by the Government of India) should further ease supply. Management characterised prices as "quite stabilised" with room to improve project economics if raw-material costs cooperate &mdash; a genuine tailwind for capex execution pace if it holds, though it is management's own characterisation and not independently corroborated in this dataset.</p>
+
+      <h3>POWERGRID moving into BESS under the regulated (Section 62) route</h3>
+      <p>Following a March 2026 CERC tariff-regulation amendment permitting transmission licensees to develop integrated (battery) storage systems, POWERGRID has already obtained Northern and Western Regional Power Committee consent and filed petitions with the regulator to enter the BESS business under regulated-return terms &mdash; a new, potentially significant growth avenue layered on top of the FY26 first-BESS-project win (Kalikiri, TBCB route). No timeline or capex quantum was given; management said only that it will "mature" as the regulator and other stakeholders respond.</p>
+
+      <h3>Revenue is de-linked from actual power flow &mdash; a direct answer to a renewables-underutilisation concern</h3>
+      <p>Asked whether transmission lines built for renewable-energy evacuation sit underutilised (and dues become hard to collect) when generation projects lag, management was explicit that POWERGRID's tariff is a fixed annual charge, not a per-unit-of-power charge &mdash; revenue accrues once an asset is commissioned and deemed operational (DOCO), independent of whether the associated generator has actually come online. About &#8377;300 Cr of revenue was cited as pending recognition specifically because regulatory clearance for deemed-DOCO status on certain RTM assets is still in process &mdash; a small, quantified, near-term revenue item to watch land in coming quarters.</p>
+
+      <h3>TBCB-level disclosure: acknowledged gap, no commitment</h3>
+      <p>As covered in &sect;04, an analyst's explicit request for standalone TBCB revenue/EBITDA/PAT disclosure &mdash; given TBCB is now the primary growth driver &mdash; received an acknowledgement of the concern but no firm commitment to new disclosure. This is worth flagging as a recurring engagement point likely to resurface on subsequent calls, and a genuine limit on how precisely outside analysts can currently model the return profile of the TBCB SPV book that increasingly drives consolidated results.</p>
+
+      <h3>HVDC pipeline: ~21 projects under evaluation across multiple programmes</h3>
+      <p>Management quantified a long-run HVDC opportunity of ~21 projects (14 from the CEA's 900+ GW plan, 6 from the Brahmaputra basin hydro outlook, plus international links to Sri Lanka/Andaman/Myanmar), noting HVDC's long gestation and high unit cost mean planners weigh it carefully against BESS and 1,200kV HVAC alternatives project-by-project rather than defaulting to it.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">A well-covered, consensus "buy" stock, but the mean target implies only modest upside from CMP, and the spread between low and high targets is wide.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Recommendation</div><div class="v">Buy</div><div class="d">25 analysts tracked</div></div>
+        <div class="stat"><div class="k">Rating split</div><div class="v">4 / 10 / 8 / 1 / 2</div><div class="d">Strong Buy / Buy / Hold / Sell / Strong Sell</div></div>
+        <div class="stat"><div class="k">Mean target</div><div class="v">&#8377;321.68</div><div class="d">+18.1% vs CMP &#8377;272.40</div></div>
+        <div class="stat"><div class="k">Target range</div><div class="v">&#8377;277 &ndash; &#8377;400</div><div class="d">Low +1.7% / High +46.8% vs CMP</div></div>
+      </div>
+      <p>The rating mix has been essentially stable over the last four months tracked (strongBuy/buy/hold/sell/strongSell counts moved only from 3/11/8/1/2 to 4/10/8/1/2), i.e. no visible wave of upgrades or downgrades around the Q1FY27 print or the leadership changes documented in &sect;07 &mdash; sell-side sentiment appears to be looking through the quarter's PAT stall to the order-book story in &sect;03, though this report cannot access individual analyst notes or price-target rationale beyond the aggregated yfinance figures shown here. The wide gap between the low target (&#8377;277, barely above CMP) and the high target (&#8377;400, +47%) suggests real disagreement among covering analysts about how the RoE-decline and TBCB-disclosure questions in &sect;01/&sect;04/&sect;08 ultimately resolve.</p>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Forward P/E above trailing P/E is a small but notable signal</b>Trailing P/E (13.33x) sits below forward P/E (13.94x) &mdash; i.e. consensus expects trailing-twelve-month EPS to be slightly <em>higher</em> than the coming year's estimate, consistent with the four-out-of-five-quarter earnings-miss pattern in &sect;03 and the structural RoE decline in &sect;01, rather than analysts pricing in a clean re-acceleration.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock that has round-tripped &#8377;243&rarr;&#8377;318&rarr;&#8377;272 over eighteen months and now trades at a discount to its own five-year average multiple on almost every measure, reflecting the RoE-decline story more than the order-book story.</p>
+
+      <h3>Eighteen months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Feb 2025&ndash;Aug 2026 (NSE, via yfinance daily price history, MarketData/raw/price_history.csv). 52-week range per MarketData snapshot: &#8377;250.00 &ndash; &#8377;324.95 (intraday); every month-end close plotted sits within that band.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">13.33x</div><div class="d">Forward P/E 13.94x</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">2.52x</div><div class="d">BVPS &#8377;108.05 (FY26)</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">10.05x</div><div class="d">EV &#8377;3,99,121 Cr / TTM EBITDA &#8377;39,725 Cr</div></div>
+        <div class="stat"><div class="k">Dividend yield (TTM)</div><div class="v">4.50%</div><div class="d">Payout ~44&ndash;53% depending on window (&sect;06)</div></div>
+      </div>
+      <p>At 2.52x book against a return on net worth that has fallen to 15.85% in FY26 and is still declining, POWERGRID is being priced roughly in line with, not above, a utility earning a mid-teens RoE on a downward trajectory &mdash; not the premium multiple a stable-or-improving RoE regulated monopoly might otherwise command. The 4.50% trailing dividend yield is a genuine, PSU-typical source of total return, but with free cash flow having fallen to near-zero in FY26 (&sect;06) as capex absorbs essentially all operating cash flow, dividend growth from here likely depends on continued PAT growth (which &sect;03&ndash;04 show has stalled) or a conscious payout-ratio increase, rather than on free-cash-flow headroom.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built from the disclosed order book (&sect;03), the FY22&ndash;FY26 RoE/EPS trend (&sect;01), and management's own capex/capitalisation guidance (&sect;03/&sect;05). These are scenario illustrations only, not point forecasts &mdash; no formal management EPS or margin guidance exists in this dataset (&sect;04), and the last five quarters have shown a repeated pattern of consensus EPS misses (&sect;03).</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;230&ndash;255</div>
+          <div class="rng">&minus;16% to &minus;6% from CMP</div>
+          <ul>
+            <li>FY27 capex/capitalisation again miss the &#8377;37,000 Cr / &#8377;30,000 Cr guide the way FY26 capitalisation missed its implied pace (&sect;03) &mdash; CWIP keeps swelling faster than revenue-generating capitalisation</li>
+            <li>The ~&#8377;560 Cr/quarter regulatory drag persists or widens as more FY14&ndash;16-vintage assets cross 12 years; TBCB-level disclosure is still not provided, keeping the RoE-quality question unresolved for the Street</li>
+            <li>Current ratio keeps deteriorating past 0.55x; the independent-director non-compliance and CFO churn in &sect;07 persist without resolution, weighing on governance perception</li>
+            <li>FY27 EPS declines toward &#8377;15&ndash;16 (vs. FY26's &#8377;17.13); market de-rates to ~2.1&ndash;2.3x P/B / ~11&ndash;12x P/E on demonstrated RoE erosion</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;270&ndash;305</div>
+          <div class="rng">&minus;1% to +12% from CMP</div>
+          <ul>
+            <li>FY27 capex lands close to guidance (&#8377;35,000&ndash;40,000 Cr) with capitalisation gradually catching up as CERC clears the FY26 backlog of tariff petitions; the &#8377;1.19 lakh Cr bidding pipeline converts at roughly the historical ~44&ndash;47% TBCB win-share</li>
+            <li>The regulatory drag moderates but does not disappear; FY27 EPS roughly flat to modestly up, &#8377;17&ndash;18.5</li>
+            <li>A permanent, stable leadership team is in place by year-end (Director Projects filled substantively, board independence restored); TBCB-level disclosure remains withheld but is not itself a fresh negative catalyst</li>
+            <li>Market holds today's roughly 2.4&ndash;2.7x P/B / 13&ndash;15x P/E band; dividend yield stays the primary total-return driver</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;325&ndash;365</div>
+          <div class="rng">+19% to +34% from CMP</div>
+          <ul>
+            <li>FY27&ndash;29 capex tracks the AGM's higher &#8377;40,000&ndash;45,000 Cr/year band, and capitalisation genuinely catches up to capex (CWIP conversion improves materially), closing the FY26-style gap</li>
+            <li>Barmer HVDC (&#8377;26,000 Cr), the Gujarat REZ BOOT award, and further BESS wins scale consolidated earnings faster than the regulatory-drag headwind; TBCB-level disclosure is finally provided and reassures the Street on per-project returns</li>
+            <li>Receivables genuinely improve on both the billing-day and turnover-ratio measures (resolving the &sect;05 discrepancy in the positive direction); RoE stabilises and begins to reverse higher, toward 17%+</li>
+            <li>FY27 EPS reaches &#8377;19&ndash;20.5; market re-rates to ~2.8&ndash;3.1x P/B / ~15&ndash;17x P/E on renewed confidence in RoE trajectory</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: FY26 BVPS of &#8377;108.05 compounding at its trailing 5-year ~7.2%/year pace reaches roughly &#8377;115&ndash;117/share by FY27-end even before any re-rating; the base case above is consistent with the market continuing to pay ~2.4&ndash;2.7x that growing book rather than assuming a multiple expansion on its own.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> an unmatched, structurally protected position as India's dominant interstate transmission utility, with a AAA domestic credit profile, a genuinely enormous and growing order book (&#8377;1.75 lakh Cr in hand, &#8377;1.19 lakh Cr under bidding, &gt;&#8377;15 lakh Cr of long-run sectoral opportunity through 2036), record capex execution (&#8377;39,967 Cr in FY26, an all-time high), first-mover entries into new asset classes (BESS, Synchronous Condensers, solar generation), clean CFO/PAT conversion every year for the last four (2.3&ndash;2.6x), internal-accruals-only funding of TBCB equity investment to date, a 4.50% trailing dividend yield, an unmodified audit opinion, and a consistent "Excellent" MoU performance rating stretching back to 1993-94.</p>
+        <p style="max-width:none;"><b>What's not good:</b> return on net worth has declined every single year for five straight years (22.1% &rarr; 15.9%), diluted EPS in FY26 is barely above its FY22 level, four of the last five reported quarters missed consensus EPS (the exception being a one-off tax-driven beat), the current ratio has fallen for four consecutive quarters to 0.57x, free cash flow collapsed to near-zero in FY26 as capex absorbed essentially all operating cash flow, a &#8377;11,760 Cr capex-to-capitalisation gap in FY26 alone is visibly swelling capital-work-in-progress, management's own receivables-improvement claim is contradicted by the regulatory turnover-ratio disclosure in the very same filing, an analyst's explicit request for TBCB-level P&amp;L transparency went unanswered beyond an acknowledgement, and the leadership bench has churned unusually hard &mdash; a new CMD, a Director (Projects) seat on repeatedly-extended additional charge, a CFO who lasted seven weeks, and a board that has been out of compliance with SEBI's independent-director quota since mid-April 2026 with no replacement confirmed in this dataset.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> transparently on the mechanics, less so on the disclosure depth. The CMD walked analysts through a precise, quantified bridge (+&#8377;788 Cr revenue, &minus;&#8377;560 Cr regulatory drag, netting to roughly flat PAT) rather than deflecting the flat-profit question, and was candid that this dynamic is structural rather than one-off. But the same call surfaced an unresolved ask for TBCB-level segment disclosure that management has "appreciated" without committing to, and separate filings show a genuinely unusual concentration of near-simultaneous leadership transitions for a company of this scale and importance, without much public explanation for the CFO's unusually short seven-week tenure or the still-unfilled Director (Projects) role.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: moderate, roughly 40&ndash;50%.</b> The order-book and capex story is real, well-documented, and arguably underappreciated at 2.52x book against a AAA-rated, structurally protected monopoly &mdash; but this report's own tabulated numbers show a five-year RoE decline that has not yet troughed, a run of consensus EPS misses that predates and continues through the most recent quarter, tightening working-capital ratios, and a governance picture with more open vacancies than is comfortable for a company of this systemic importance. The dividend yield provides a floor to total return that the pure earnings story does not yet support; whether the stock re-rates meaningfully higher likely depends on capitalisation genuinely catching up to capex, and on RoE finding a bottom, both of which remain open questions as of this report's date rather than settled positives.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether FY27 capitalisation genuinely catches up toward the &#8377;30,000 Cr guide rather than repeating FY26's capex-outpacing-capitalisation gap; (2) whether return on net worth finally stabilises rather than extending its five-year decline past 15.85%; (3) whether the next 2&ndash;3 reported quarters beat, rather than miss, consensus EPS on an operating (non-tax-driven) basis; (4) whether the current ratio stabilises rather than continuing its four-quarter decline; (5) whether management follows through on TBCB-level segment disclosure, or the request quietly drops; (6) whether the Director (Projects) and independent-director vacancies are substantively filled, and whether the CFO seat stabilises after two changes in seven weeks; (7) whether the receivables discrepancy between management's billing-day metric and the regulatory turnover ratio resolves toward the more favourable reading or the less favourable one once fuller balance-sheet data is available.</div>
+      </div>
+
+      <footer>
+        Compiled from Power Grid Corporation of India Limited's BSE filings (Announcements/AnnouncementsConv, 29&nbsp;Jun&ndash;21&nbsp;Aug 2026 &mdash; the Q1 FY27 financial results, investor presentation, earnings-call transcript, AGM notice and FY26 Integrated Annual Report, plus management-change and TBCB-award filings), MarketData (Yahoo Finance via yfinance, including the full daily price-history series), and the tracked News feed (29&nbsp;May&ndash;22&nbsp;Aug 2026 window as captured). No Q2/Q3/Q4 FY26 investor decks or earnings-call transcripts, and no pre-FY26 annual report, exist in this dataset; the multi-quarter series shown throughout blend company-filed figures with independently-sourced yfinance data, and every such blend is labelled at the point it appears. Every figure is tagged to its source; where two sources disagreed or a figure could not be independently verified, that is stated in the relevant section, most notably the receivables discrepancy (&sect;05) and the two different FY27 capex-guidance figures (&sect;03). This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q3FY25','Q4FY25','Q1FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [11233.0, 12275.4, 11196.2, 12395.1, 11665.6, 11496.7];
+    var ebitda  = [10042.9, 10509.5, 9350.5, 10810.8, 9387.7, 9738.7];
+    var pat     = [3861.6, 4142.9, 3630.6, 4185.0, 4546.3, 3598.4];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA (yfinance basis)', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 52, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(v);
+        var bh = zeroY - by;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+by.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q2 FY26 (Sep-25 quarter) is not plotted &mdash; absent from the source data entirely (see coverage note above); the gap between Q1FY26 and Q3FY26 above is a genuine data gap, not a zero.</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Feb 25', 242.91], ['Mar 25', 281.16], ['Apr 25', 297.72], ['May 25', 280.58],
+      ['Jun 25', 290.41], ['Jul 25', 281.79], ['Aug 25', 267.69], ['Sep 25', 272.55],
+      ['Oct 25', 280.24], ['Nov 25', 266.95], ['Dec 25', 261.66], ['Jan 26', 253.65],
+      ['Feb 26', 298.65], ['Mar 26', 296.10], ['Apr 26', 318.35], ['May 26', 290.55],
+      ['Jun 26', 286.30], ['Jul 26', 284.25], ['Aug 26', 272.40]
+    ];
+    var W = 900, H = 220, padL = 48, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.96, maxV = Math.max.apply(null, vals) * 1.04;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Power Grid Corporation of India monthly closing share price, February 2025 to August 2026" style="width:100%;height:auto;font-size:10.5px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 2.6;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i % 2 === 0 || i === points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily NSE price history via yfinance (MarketData/raw/price_history.csv). 52-week range per MarketData snapshot: ₹250.00 &ndash; ₹324.95 (intraday extremes may fall between the monthly points plotted).</div></div>';
+  })();
+})();
+</script>

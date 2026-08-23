@@ -274,6 +274,7 @@ snapstocks/                         # Cloudflare Pages project root — deploy t
 │   ├── header.html                  # canonical nav markup — see "no build step" note below
 │   └── footer.html
 ├── scripts/
+│   ├── regenerate_site_data.py      # runs the three generators below IN ORDER — run this, not them individually
 │   ├── generate_deep_dive_shells.py # stamps out deep-dive shells + the manifest above — see §9
 │   ├── generate_stock_index.py      # builds data/stocks.json — see "Ticker search" below
 │   └── generate_fundamentals_data.py # builds data/fundamentals/*.json + fundamentals_index.json
@@ -333,9 +334,12 @@ be regenerated independently at any time by dropping a new file into
 `reports/`.
 
 Nobody hand-writes the shell file, though — `scripts/generate_deep_dive_shells.py`
-does. Workflow: drop the new report into `deep-dive/reports/`, run
-`python scripts/generate_deep_dive_shells.py` from the `snapstocks/` folder.
-For every report that doesn't already have a shell, it stamps one out (name
+does. Workflow: drop the new report into `deep-dive/reports/`, then run
+`python scripts/regenerate_site_data.py` from the `snapstocks/` folder (this
+is step 1 of that script's three — see "Fundamentals data" below for why
+running the three generators out of order is a real, already-hit bug, not
+a hypothetical one). For every report that doesn't already have a shell, it
+stamps one out (name
 pulled from the report's own first `<h1>` — that field has been reliable
 across every report seen so far; a report's `<title>` hasn't, e.g. one
 report's `<title>` says "Zaggle Ledger" while its `<h1>` says the real
@@ -378,11 +382,26 @@ yfinance pull (refreshed EOD by a separate pipeline) into the shape the
 page expects — price/valuation stats, quarterly results, annual P&L,
 balance sheet, cash flow, and a handful of computed ratios (ROCE, ROE,
 debtor days, working capital days) derived from the raw statement line
-items where those fields exist. Run it after every `Fin statements`
-refresh:
+items where those fields exist.
+
+**Run `python scripts/regenerate_site_data.py`, not this script by
+itself** — it also reads `data/stocks.json` to stamp each ticker's
+`profile.deepDiveUrl`, so if you run it before `generate_stock_index.py`
+has picked up a newly-added report, every ticker's fundamentals JSON gets
+baked with a stale `deepDiveUrl` (usually `null`) that a second, later run
+of `generate_stock_index.py` alone won't fix — nothing re-runs this script
+automatically just because `stocks.json` changed. This happened for real:
+IKS had a working deep-dive shell and a correct `stocks.json` entry, but
+its own fundamentals page still routed to the "coming soon" page because
+`data/fundamentals/IKS.json` was generated two days earlier, before the
+report existed. `regenerate_site_data.py` runs all three generators in the
+order that avoids this — see "Deep-dive reports are framed..." above and
+its file comment for the exact dependency chain. Use this script alone
+only when you're certain `data/stocks.json` is already current (e.g. after
+only a `Fin statements` refresh with no new deep-dive reports):
 
 ```
-python scripts/generate_fundamentals_data.py
+python scripts/regenerate_site_data.py
 ```
 
 It's a pure local JSON transform (no network calls), so it regenerates all
@@ -393,9 +412,10 @@ Promoter/FII/DII/Public shareholding split — were dropped rather than
 faked, since neither yfinance nor this pipeline has a mechanical source for
 them yet.
 
-`data/stocks.json` is generated, not hand-maintained — run
-`python scripts/generate_stock_index.py` (from `snapstocks/`) after
-changing the deep-dive reports or updating the mapping CSV. It merges two
+`data/stocks.json` is generated, not hand-maintained — it's step 2 of
+`regenerate_site_data.py` (run `generate_stock_index.py` alone only when
+you're deliberately updating just this file, e.g. after editing the
+mapping CSV with no new deep-dive reports involved). It merges two
 sources: the NSE symbol/sector/industry universe from stock-research's
 `sector_industry_mapping.csv` (one sibling-repo path up, at
 `../stock-research/reports/sector_momentum/input/`; pass `--mapping-csv` to
@@ -525,10 +545,11 @@ next to Momentum Chart/Table):
 shares the one live page, `stock-analysis/fundamentals/template.html`,
 which reads `?symbol=TICKER` from the URL and fetches
 `data/fundamentals/<TICKER>.json`. After the daily `Fin statements` EOD
-pull, run `python scripts/generate_fundamentals_data.py` from `snapstocks/`
-to (re)generate that JSON for every ticker plus the thin
+pull, run `python scripts/regenerate_site_data.py` from `snapstocks/` to
+(re)generate that JSON for every ticker plus the thin
 `data/fundamentals_index.json` peer/sector index — see "Fundamentals data"
-below for the full pipeline.
+below for the full pipeline, and for why this should be the three-script
+orchestrator and not `generate_fundamentals_data.py` run alone.
 
 **A new stock's deep-dive page** (see §9's "framed, not inlined" note for
 why this is two files, not one — and why the second step is a script, not a
@@ -536,14 +557,15 @@ copy-paste):
 1. Drop the generated report file into `stock-analysis/deep-dive/reports/`
    (whatever filename the generator gives it — casing doesn't need to match
    the site's kebab-case convention, since it's never linked to directly).
-2. Run `python scripts/generate_deep_dive_shells.py` from `snapstocks/`.
-   That's it — it stamps out `stock-analysis/deep-dive/<slug>.html` (slug
-   derived from the report's filename) and adds the stock to
-   `stock-analysis/index.html`'s listing via the regenerated manifest.
-   Nothing to hand-edit; nothing else to link up.
-3. Optional: link the new stock's deep-dive page from wherever else makes
-   sense — e.g. the fundamentals page's "Deep-dive report available" pill,
-   once that stock has a fundamentals page too.
+2. Run `python scripts/regenerate_site_data.py` from `snapstocks/`. That's
+   it — between its three steps it stamps out
+   `stock-analysis/deep-dive/<slug>.html` (slug derived from the report's
+   filename), adds the stock to `stock-analysis/index.html`'s listing,
+   *and* updates that ticker's fundamentals JSON so its own
+   "Deep-dive report available" pill and subnav tab point at the new
+   report instead of the "coming soon" page. Nothing to hand-edit; nothing
+   else to link up — but running only `generate_deep_dive_shells.py` here
+   leaves that last part stale (see "Fundamentals data" below).
 
 ---
 

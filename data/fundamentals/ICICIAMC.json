@@ -1,7 +1,7 @@
 {
   "symbol": "ICICIAMC",
   "name": "ICICI AMC",
-  "generatedAt": "2026-08-18T16:38:01.526096+00:00",
+  "generatedAt": "2026-08-23T11:01:51.204458+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Asset Management",
@@ -14,24 +14,24 @@
     "peerIndustry": "Asset Management Company"
   },
   "price": {
-    "current": 3099.1,
-    "change": -16.799805,
-    "changePercent": -0.5391638,
-    "previousClose": 3115.9,
-    "dayLow": 3087.1,
-    "dayHigh": 3130.0,
+    "current": 3106.0,
+    "change": -30.0,
+    "changePercent": -0.9566327,
+    "previousClose": 3136.0,
+    "dayLow": 3088.0,
+    "dayHigh": 3148.9,
     "fiftyTwoWeekLow": 2530.0,
     "fiftyTwoWeekHigh": 3611.0,
-    "asOf": 1785751194
+    "asOf": 1787047195
   },
   "stats": {
-    "marketCap": 1531756675072.0,
-    "trailingPE": 44.00881,
-    "forwardPE": 33.16448,
-    "priceToBook": 36.722675,
+    "marketCap": 1535167037440.0,
+    "trailingPE": 44.213524,
+    "forwardPE": 33.238316,
+    "priceToBook": 36.804436,
     "bookValue": 84.392,
-    "dividendYield": 0.8,
-    "trailingEps": 70.42,
+    "dividendYield": 0.79,
+    "trailingEps": 70.25,
     "debtToEquity": 0.04066,
     "roe": 79.07277814138479,
     "roce": 98.2958332222548,
@@ -314,11 +314,11 @@
     "targetMean": 3676.7222,
     "targetHigh": 4000.0,
     "targetLow": 3250.0,
-    "recommendationKey": "buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 18
   },
   "holders": {
     "insidersPercent": 0.34592,
-    "institutionsPercent": 0.58384997
+    "institutionsPercent": 0.59221
   }
 }

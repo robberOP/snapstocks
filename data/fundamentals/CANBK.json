@@ -1,7 +1,7 @@
 {
   "symbol": "CANBK",
   "name": "Canara Bank",
-  "generatedAt": "2026-08-18T16:37:28.127488+00:00",
+  "generatedAt": "2026-08-23T11:01:03.159716+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Banks - Regional",
@@ -14,28 +14,28 @@
     "peerIndustry": "Public Sector Bank"
   },
   "price": {
-    "current": 127.1,
-    "change": 2.119995,
-    "changePercent": 1.6962675,
-    "previousClose": 124.98,
-    "dayLow": 125.5,
-    "dayHigh": 127.59,
+    "current": 129.08,
+    "change": -0.020004272,
+    "changePercent": -0.015495175,
+    "previousClose": 129.1,
+    "dayLow": 128.1,
+    "dayHigh": 129.4,
     "fiftyTwoWeekLow": 103.55,
     "fiftyTwoWeekHigh": 162.89,
-    "asOf": 1785750301
+    "asOf": 1787132694
   },
   "stats": {
-    "marketCap": 1152879820800.0,
-    "trailingPE": 5.803653,
-    "forwardPE": 5.431127,
-    "priceToBook": 0.9794704,
+    "marketCap": 1170839699456.0,
+    "trailingPE": 5.894064,
+    "forwardPE": 5.54419,
+    "priceToBook": 0.99472886,
     "bookValue": 129.764,
-    "dividendYield": 3.36,
+    "dividendYield": 3.25,
     "trailingEps": 21.9,
     "debtToEquity": null,
     "roe": 16.741828570199637,
     "roce": null,
-    "return1y": 19.259465643461308,
+    "return1y": 22.03739606413862,
     "sharesOutstanding": 9070651260.0
   },
   "quarterly": {
@@ -352,14 +352,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 150.94737,
+    "targetMean": 150.4,
     "targetHigh": 170.0,
     "targetLow": 103.0,
     "recommendationKey": "buy",
-    "numberOfAnalystOpinions": 19
+    "numberOfAnalystOpinions": 20
   },
   "holders": {
     "insidersPercent": 0.64359003,
-    "institutionsPercent": 0.18367
+    "institutionsPercent": 0.18962
   }
 }

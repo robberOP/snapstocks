@@ -1,7 +1,7 @@
 {
   "symbol": "TIMKEN",
   "name": "Timken India",
-  "generatedAt": "2026-08-18T16:39:15.137445+00:00",
+  "generatedAt": "2026-08-23T11:03:00.981342+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Tools & Accessories",
@@ -14,28 +14,28 @@
     "peerIndustry": "Abrasives & Bearings"
   },
   "price": {
-    "current": 3290.5,
-    "change": 14.699951,
-    "changePercent": 0.44874385,
-    "previousClose": 3275.8,
-    "dayLow": 3246.7,
-    "dayHigh": 3317.0,
+    "current": 3231.8,
+    "change": -67.69995,
+    "changePercent": -2.0518246,
+    "previousClose": 3299.5,
+    "dayLow": 3201.0,
+    "dayHigh": 3324.0,
     "fiftyTwoWeekLow": 2800.5,
     "fiftyTwoWeekHigh": 3925.0,
-    "asOf": 1786960799
+    "asOf": 1787133595
   },
   "stats": {
-    "marketCap": 247507255296.0,
-    "trailingPE": 57.79905,
-    "forwardPE": 39.307377,
-    "priceToBook": 8.492051,
+    "marketCap": 243091914752.0,
+    "trailingPE": 56.948017,
+    "forwardPE": 38.606163,
+    "priceToBook": 8.340559,
     "bookValue": 387.48,
     "dividendYield": 0.08,
-    "trailingEps": 56.67,
+    "trailingEps": 56.75,
     "debtToEquity": 0.005,
     "roe": 14.23483698309359,
     "roce": 18.522684976492375,
-    "return1y": 15.492667122997029,
+    "return1y": 13.412474602583716,
     "sharesOutstanding": 75218734.0
   },
   "quarterly": {
@@ -373,6 +373,6 @@
   },
   "holders": {
     "insidersPercent": 0.52395,
-    "institutionsPercent": 0.33431
+    "institutionsPercent": 0.33073002
   }
 }

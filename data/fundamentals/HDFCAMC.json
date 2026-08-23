@@ -1,7 +1,7 @@
 {
   "symbol": "HDFCAMC",
   "name": "HDFC AMC",
-  "generatedAt": "2026-08-18T16:37:58.097935+00:00",
+  "generatedAt": "2026-08-23T11:01:45.044259+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Asset Management",
@@ -14,28 +14,28 @@
     "peerIndustry": "Asset Management Company"
   },
   "price": {
-    "current": 2600.6,
-    "change": -15.199951,
-    "changePercent": -0.5810823,
-    "previousClose": 2615.8,
-    "dayLow": 2562.2,
-    "dayHigh": 2644.8,
+    "current": 2525.0,
+    "change": 2.0,
+    "changePercent": 0.079270706,
+    "previousClose": 2523.0,
+    "dayLow": 2491.3,
+    "dayHigh": 2536.9,
     "fiftyTwoWeekLow": 2205.6,
     "fiftyTwoWeekHigh": 2967.25,
-    "asOf": 1785750301
+    "asOf": 1787046298
   },
   "stats": {
-    "marketCap": 1115102904320.0,
-    "trailingPE": 37.948345,
-    "forwardPE": 29.572435,
-    "priceToBook": 12.072063,
+    "marketCap": 1082686636032.0,
+    "trailingPE": 36.791492,
+    "forwardPE": 28.712757,
+    "priceToBook": 11.721126,
     "bookValue": 215.423,
-    "dividendYield": 2.06,
-    "trailingEps": 68.53,
+    "dividendYield": 2.14,
+    "trailingEps": 68.63,
     "debtToEquity": 0.023639999999999998,
     "roe": 30.969225384696237,
     "roce": 38.46365271768949,
-    "return1y": -5.553774871464903,
+    "return1y": -5.664713543806147,
     "sharesOutstanding": 428786782.0
   },
   "quarterly": {
@@ -380,6 +380,6 @@
   },
   "holders": {
     "insidersPercent": 0.56712,
-    "institutionsPercent": 0.27318
+    "institutionsPercent": 0.27345
   }
 }

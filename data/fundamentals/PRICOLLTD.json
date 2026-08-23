@@ -1,7 +1,7 @@
 {
   "symbol": "PRICOLLTD",
   "name": "Pricol Ltd",
-  "generatedAt": "2026-08-18T16:38:48.175853+00:00",
+  "generatedAt": "2026-08-23T11:02:37.056911+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 732.85,
-    "change": 36.19995,
-    "changePercent": 5.1962895,
-    "previousClose": 696.65,
-    "dayLow": 709.45,
-    "dayHigh": 740.0,
-    "fiftyTwoWeekLow": 415.1,
-    "fiftyTwoWeekHigh": 740.0,
-    "asOf": 1785751199
+    "current": 804.6,
+    "change": 4.549988,
+    "changePercent": 0.56871295,
+    "previousClose": 800.05,
+    "dayLow": 794.0,
+    "dayHigh": 808.45,
+    "fiftyTwoWeekLow": 440.85,
+    "fiftyTwoWeekHigh": 813.05,
+    "asOf": 1787133597
   },
   "stats": {
-    "marketCap": 89320849408.0,
-    "trailingPE": 33.296227,
-    "forwardPE": 22.33958,
-    "priceToBook": 7.1178126,
+    "marketCap": 98065850368.0,
+    "trailingPE": 36.572727,
+    "forwardPE": 24.526749,
+    "priceToBook": 7.8146853,
     "bookValue": 102.96,
-    "dividendYield": 0.57,
-    "trailingEps": 22.01,
+    "dividendYield": null,
+    "trailingEps": 22.0,
     "debtToEquity": 0.30215,
     "roe": 19.985815489803887,
     "roce": 25.688478265511673,
-    "return1y": 70.17832135942372,
+    "return1y": 86.79906275686972,
     "sharesOutstanding": 121881498.0
   },
   "quarterly": {
@@ -361,11 +361,11 @@
     "targetMean": 835.0,
     "targetHigh": 870.0,
     "targetLow": 800.0,
-    "recommendationKey": "strong_buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 2
   },
   "holders": {
     "insidersPercent": 0.3966,
-    "institutionsPercent": 0.24186
+    "institutionsPercent": 0.24031
   }
 }

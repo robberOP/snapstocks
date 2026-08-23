@@ -1,7 +1,7 @@
 {
   "symbol": "CSBBANK",
   "name": "CSB Bank",
-  "generatedAt": "2026-08-18T16:37:37.203531+00:00",
+  "generatedAt": "2026-08-23T11:01:15.351887+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Banks - Regional",
@@ -14,28 +14,28 @@
     "peerIndustry": "Private Sector Bank"
   },
   "price": {
-    "current": 332.8,
-    "change": 2.899994,
-    "changePercent": 0.87905246,
-    "previousClose": 329.9,
-    "dayLow": 329.65,
-    "dayHigh": 334.75,
-    "fiftyTwoWeekLow": 317.35,
+    "current": 314.6,
+    "change": -2.850006,
+    "changePercent": -0.8977811,
+    "previousClose": 317.45,
+    "dayLow": 314.2,
+    "dayHigh": 317.6,
+    "fiftyTwoWeekLow": 312.95,
     "fiftyTwoWeekHigh": 574.4,
-    "asOf": 1785751182
+    "asOf": 1787133592
   },
   "stats": {
-    "marketCap": 56402137088.0,
-    "trailingPE": 8.689295,
-    "forwardPE": 5.9146914,
-    "priceToBook": 1.1796021,
+    "marketCap": 53317648384.0,
+    "trailingPE": 8.209812,
+    "forwardPE": 5.591232,
+    "priceToBook": 1.1150928,
     "bookValue": 282.129,
     "dividendYield": null,
-    "trailingEps": 38.3,
+    "trailingEps": 38.32,
     "debtToEquity": null,
     "roe": 12.937119375068882,
     "roce": null,
-    "return1y": -21.08134262287323,
+    "return1y": -17.566863885818773,
     "sharesOutstanding": 169477587.0
   },
   "quarterly": {
@@ -328,11 +328,11 @@
     "targetMean": 393.5,
     "targetHigh": 439.0,
     "targetLow": 355.0,
-    "recommendationKey": "buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 4
   },
   "holders": {
     "insidersPercent": 0.55496,
-    "institutionsPercent": 0.15708
+    "institutionsPercent": 0.16745001
   }
 }

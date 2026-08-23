@@ -1,7 +1,7 @@
 {
   "symbol": "BANCOINDIA",
   "name": "Banco Products",
-  "generatedAt": "2026-08-18T16:37:21.222026+00:00",
+  "generatedAt": "2026-08-23T11:00:56.036016+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 657.75,
-    "change": 20.5,
-    "changePercent": 3.216948,
-    "previousClose": 637.25,
-    "dayLow": 643.6,
-    "dayHigh": 664.0,
+    "current": 622.75,
+    "change": -5.799988,
+    "changePercent": -0.92275685,
+    "previousClose": 628.55,
+    "dayLow": 621.0,
+    "dayHigh": 631.0,
     "fiftyTwoWeekLow": 502.0,
     "fiftyTwoWeekHigh": 879.8,
-    "asOf": 1785751199
+    "asOf": 1787133598
   },
   "stats": {
-    "marketCap": 94082785280.0,
-    "trailingPE": 20.439714,
+    "marketCap": 89076473856.0,
+    "trailingPE": 18.836962,
     "forwardPE": null,
-    "priceToBook": 5.5842323,
+    "priceToBook": 5.287086,
     "bookValue": 117.787,
-    "dividendYield": 2.51,
-    "trailingEps": 32.18,
+    "dividendYield": 2.55,
+    "trailingEps": 33.06,
     "debtToEquity": 0.3644,
     "roe": 28.597891137076093,
     "roce": 34.603128470744544,
-    "return1y": 12.120556032467862,
+    "return1y": 17.768438456105553,
     "sharesOutstanding": 143037300.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q1FY26",
       "Q2FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-09-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         9631400000.0,
         10313600000.0,
         7818300000.0,
-        10911000000.0
+        10911000000.0,
+        11734100000.0
       ],
       "Expenses": [
         6896300000.0,
         8055900000.0,
         9069600000.0,
         6826100000.0,
-        9256200000.0
+        9256200000.0,
+        9953200000.0
       ],
       "OperatingProfit": [
         1787700000.0,
         1575500000.0,
         1244000000.0,
         992200000.0,
-        1654800000.0
+        1654800000.0,
+        1780900000.0
       ],
       "NetProfit": [
         1535000000.0,
         1095200000.0,
         1389000000.0,
         858300000.0,
-        1474300000.0
+        1474300000.0,
+        1223800000.0
       ],
       "EPS": [
         10.73,
         7.66,
         9.71,
         6.0,
-        10.07
+        10.07,
+        8.56
       ]
     }
   },
@@ -136,11 +143,11 @@
         4816800000.0
       ],
       "EPS": [
-        10.655,
+        null,
         16.47,
         18.97,
         27.39,
-        null
+        32.17
       ],
       "SalesGrowth": [
         null,
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 38674300000.0,
-      "Expenses": 33207800000.0,
-      "OperatingProfit": 5466500000.0,
-      "NetProfit": 4816800000.0
+      "Sales": 40777000000.0,
+      "Expenses": 35105100000.0,
+      "OperatingProfit": 5671900000.0,
+      "NetProfit": 4945400000.0
     }
   },
   "balanceSheet": {
@@ -366,6 +373,6 @@
   },
   "holders": {
     "insidersPercent": 0.69953,
-    "institutionsPercent": 0.01253
+    "institutionsPercent": 0.01255
   }
 }

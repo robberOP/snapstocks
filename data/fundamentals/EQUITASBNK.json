@@ -1,7 +1,7 @@
 {
   "symbol": "EQUITASBNK",
   "name": "Equitas Sma. Fin",
-  "generatedAt": "2026-08-18T16:37:46.107036+00:00",
+  "generatedAt": "2026-08-23T11:01:27.533144+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Banks - Regional",
@@ -9,33 +9,33 @@
     "bseCode": "543243",
     "nseSymbol": "EQUITASBNK",
     "website": "https://equitas.bank.in",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/equitasbnk.html",
     "peerSector": "Banks",
     "peerIndustry": "Other Bank"
   },
   "price": {
-    "current": 76.26,
-    "change": 1.050003,
-    "changePercent": 1.396095,
-    "previousClose": 75.21,
-    "dayLow": 75.0,
-    "dayHigh": 77.0,
+    "current": 74.5,
+    "change": -1.6200027,
+    "changePercent": -2.1282222,
+    "previousClose": 76.12,
+    "dayLow": 74.5,
+    "dayHigh": 75.96,
     "fiftyTwoWeekLow": 50.0,
     "fiftyTwoWeekHigh": 83.9,
-    "asOf": 1785751199
+    "asOf": 1787115345
   },
   "stats": {
-    "marketCap": 87233536000.0,
-    "trailingPE": 17.098656,
-    "forwardPE": 8.43183,
-    "priceToBook": 1.4237175,
+    "marketCap": 85220278272.0,
+    "trailingPE": 16.445915,
+    "forwardPE": 8.237232,
+    "priceToBook": 1.3908596,
     "bookValue": 53.564,
     "dividendYield": null,
-    "trailingEps": 4.46,
+    "trailingEps": 4.53,
     "debtToEquity": 0.9424800000000001,
     "roe": 1.6830304880495837,
     "roce": null,
-    "return1y": 28.017462694156052,
+    "return1y": 40.725353102698584,
     "sharesOutstanding": 1143896368.0
   },
   "quarterly": {
@@ -111,8 +111,8 @@
         null,
         30484093000.0,
         37515631000.0,
-        41631017000.0,
-        44647166000.0
+        40662897000.0,
+        42955735000.0
       ],
       "Expenses": [
         null,
@@ -146,8 +146,8 @@
         null,
         null,
         23.066252947069803,
-        10.969790165597908,
-        7.244956326673452
+        8.389212485856895,
+        5.63864891377513
       ]
     },
     "ttm": {
@@ -337,11 +337,11 @@
     "targetMean": 86.52632,
     "targetHigh": 98.0,
     "targetLow": 64.0,
-    "recommendationKey": "strong_buy",
+    "recommendationKey": "none",
     "numberOfAnalystOpinions": 19
   },
   "holders": {
     "insidersPercent": 0.120979995,
-    "institutionsPercent": 0.53106
+    "institutionsPercent": 0.54036
   }
 }

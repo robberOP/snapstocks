@@ -1,0 +1,937 @@
+<title>Adani Power Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Power Generation / Independent Power Producer (Thermal)</div>
+    <h1>Adani Power Limited</h1>
+    <p class="sub">NSE: ADANIPOWER &middot; BSE: 533096 &middot; FY2023&ndash;FY2027(Q1) performance review, BSE-filing and earnings-call synthesis, as of 22 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> India's largest private thermal IPP (18,150 MW) is mid-way through a genuinely credible ~&#8377;2 lakh crore capacity supercycle &mdash; 23,720 MW under construction toward a target raised mid-year from 42 GW to 45 GW by FY2031-32, with 95% of existing capacity and 56% of the pipeline already tied up under long-term PPAs, a CARE rating upgrade to AA+ on 18 Aug 2026, and a blockbuster Q1 FY27 (revenue +27%, PAT to shareholders +42%). But the capex ramp has already flipped free cash flow negative in FY26 for the first time in this data set, net debt rose to &#8377;58,381 crore by June 2026, a &#8377;15,000 crore dilutive QIP was approved days after Q1 results, unit-commissioning dates have slipped by roughly two quarters twice in a row, and a chunk of the headline PAT-growth numbers management cites in prepared remarks (47% for Q1FY27, 64% for Q4FY26) are the larger pre-minority-interest figures rather than the smaller to-shareholder numbers EPS is actually based on (42% and 52% respectively) &mdash; both fully disclosed, but easy to conflate if you only listen to the call.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (21 Aug 26)</div><div class="v">&#8377;205.50</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;396,300 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;116.70 &ndash; &#8377;254.20</div></div>
+      <div class="chip"><div class="k">FY26 Revenue</div><div class="v neg">&minus;3.5% YoY</div></div>
+      <div class="chip"><div class="k">FY26 PAT (to shareholders)</div><div class="v pos">+3.0% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT (to shareholders)</div><div class="v pos">+42.0% YoY</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">27.77x</div></div>
+      <div class="chip"><div class="k">FY26 Free Cash Flow</div><div class="v neg">Turned negative</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage &amp; basis &mdash; please read before the numbers below:</b> BSE filings in this dataset (AnnouncementsConv) span 30&nbsp;Apr&ndash;21&nbsp;Aug 2026 &mdash; roughly four months &mdash; and include both earnings calls in that window (Q4FY26/FY26-annual, held 30 Apr 2026; Q1FY27, held 23 Jul 2026), two investor presentations, the Q1FY27 financial-results filing with full notes, the FY2025-26 Integrated Annual Report, and the 18 Aug 2026 CARE Ratings upgrade letter. Quarterly and annual financial trend data going further back is sourced from MarketData/yfinance (consolidated basis throughout unless stated), which has a genuine gap: <b>the Sept-2025 (Q2FY26) quarter is entirely missing</b> from the quarterly income-statement file pulled, and no quarterly cash-flow statement exists in the source data at all (only annual). Historical EPS figures are already restated for the 5-for-1 stock split (face value &#8377;10&rarr;&#8377;2, effective 22 Sept 2025) since yfinance backfills the post-split share count across all periods shown. Two distinct figures for "PAT growth" recur throughout company disclosure &mdash; profit for the whole consolidated group (pre-minority-interest split) versus profit attributable to Adani Power's own shareholders (the EPS-relevant figure) &mdash; and this report is explicit about which one is being cited in every instance, since management's own spoken remarks on two consecutive calls used the larger, group-wide number.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Call &amp; disclosure insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What Adani Power does, and how it has grown</h2></div>
+      <p class="sec-dek">A 1988-founded, Adani Group thermal-generation platform that has become India's largest private IPP largely through PPA-anchored brownfield and greenfield build-out plus opportunistic distressed-asset acquisitions.</p>
+
+      <p class="lede">Adani Power Limited generates, transmits and sells electricity from a combined installed and commissioned capacity of 18,150 MW as of FY26 &mdash; almost entirely coal-based thermal, spread across Mundra (4,620 MW, Gujarat), Tiroda (3,300 MW, Maharashtra), Kawai (1,320 MW, Rajasthan), Udupi (1,200 MW, Karnataka), Raigarh/Korba (600 MW, Chhattisgarh), Raipur (1,370 MW, Chhattisgarh), Mahan (1,200 MW, Madhya Pradesh), Tuticorin/Coastal Energen (1,200 MW, Tamil Nadu), Mirzapur (1,600 MW, Uttar Pradesh), Dahanu (500 MW, Maharashtra) and Godda (1,600 MW, Jharkhand, exporting to Bangladesh) &mdash; plus a small 40 MW solar plant at Bitta, Gujarat (MarketData/overview.md). Revenue is sold under long-term PPAs, supplemental PPAs, medium/short-term PPAs and on the merchant market, with a secondary coal-trading/import business. Chairman is Gautam Adani; Managing Director is Anil Sardana; day-to-day operations are run by Whole-time Director &amp; CEO S.&nbsp;B.&nbsp;Khyalia and CFO Dilip Jha (2026-05-29 annual report; earnings-call transcripts).</p>
+
+      <h3>FY23&ndash;FY26: growth normalising after a one-off-inflated FY24</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total revenue</td><td>38,023.0</td><td>50,051.1</td><td>56,131.8</td><td>54,152.2</td></tr>
+            <tr><td>Revenue YoY growth</td><td>&mdash;</td><td class="pos">+31.6%</td><td class="pos">+12.2%</td><td class="neg">&minus;3.5%</td></tr>
+            <tr><td>EBITDA</td><td>14,018.5</td><td>27,802.3</td><td>23,741.0</td><td>23,017.8</td></tr>
+            <tr><td>EBITDA margin</td><td>36.9%</td><td>55.5%</td><td>42.3%</td><td>42.5%</td></tr>
+            <tr><td>PAT attributable to shareholders</td><td>9,475.0</td><td>19,909.5</td><td>12,463.9</td><td>12,834.3</td></tr>
+            <tr><td>PAT YoY growth</td><td>&mdash;</td><td class="pos">+110.1%</td><td class="neg">&minus;37.4%</td><td class="pos">+3.0%</td></tr>
+            <tr><td>Diluted EPS (&#8377;, split-adjusted)</td><td>4.91</td><td>10.32</td><td>6.46</td><td>6.62</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement, consolidated. FY22 is not usable in the source (almost every line item null). EPS already restated for the Sep-2025 5-for-1 split.</caption>
+      </div>
+      <p>Read plainly, this is not a smooth growth story: FY24's blowout &minus;PAT +110%, EBITDA margin spiking to 55.5%&minus; was substantially a one-off. Group finance-income data shows FY24 carried a &#8377;5,587 crore positive net-interest swing (Total Revenue table, MarketData) tied to the regulatory carrying-cost recognitions detailed across the 22&nbsp;Jul&nbsp;2026 financial-results notes (Karnataka, Tiroda, Kawai, Udupi coal-cost compensation orders). Strip that out and FY24's "core" growth was real but far less dramatic than the headline EPS jump implies &mdash; which is exactly why FY25 EPS look like a decline (&minus;37.4%) when it was actually FY24 that was unusually flattered. FY26 growth then normalised further: revenue fell 3.5% on a subdued demand year (management's own description, see &sect;03), while EBITDA and PAT held roughly flat &mdash; evidence the two-part PPA tariff structure (fixed capacity charge + pass-through energy charge) cushions earnings even when volumes/merchant prices soften.</p>
+
+      <h3>The FY26&ndash;FY32 pivot: from a stalled-out generator to a 45 GW growth platform</h3>
+      <p>Following a long period (FY19&ndash;FY23) where capacity additions were mostly distressed-asset acquisitions rather than new-build, Adani Power's FY2025-26 Annual Report frames a targeted capacity of 41,870 MW by FY2031-32 (23,720 MW of new/expansion capacity on top of the existing 18,150 MW), funded by an estimated &#8377;2 lakh crore capex programme (Integrated Annual Report, "Letter from the MD and CEO"). By the Q1FY27 call (23 Jul 2026), management had raised this long-run target again, to <b>45 GW</b>, citing the newly acquired Jaiprakash Power Ventures stake and an additional 3 GW "planning bucket" for anticipated state PPA bids. Execution is substantially de-risked on paper: the entire 24 GW of boiler-turbine-generator (BTG) equipment for the expansion has already been ordered, and land has been secured for the full pipeline (Q1FY27 call).</p>
+
+      <h3>Inorganic growth: Vidarbha, Coastal Energen/Moxie, and the Jaiprakash Associates resolution</h3>
+      <p>Alongside organic build-out, FY26&ndash;FY27 saw three distinct distressed-asset acquisitions completed via India's Insolvency and Bankruptcy Code process: Vidarbha Industries Power Limited (600 MW, Maharashtra) became a wholly owned subsidiary 7 Jul 2025 for a &#8377;4,000 crore upfront lender payment; Coastal Energen (1,200 MW, Tamil Nadu, now Moxie Power Generation Ltd) was acquired via consortium and consolidated as a subsidiary with the Company holding a 49% stake but de-facto control; and in the Jaiprakash Associates Limited resolution (NCLT-approved 17 Mar 2026), Adani Power acquired a 24% stake in listed Jaiprakash Power Ventures Ltd (JPVL, for &#8377;2,993 crore, accounted as an associate) plus the 180 MW Churk plant and an 11.49% stake in Prayagraj Power Generation Company (for &#8377;1,200 crore) &mdash; both agreements signed 20 May 2026 (Q1FY27 financial-results filing, note 22). This pattern &mdash; buying stressed thermal capacity cheaply through CIRP rather than only greenfield-building &mdash; has been a recurring, capital-efficient growth lever for the company across several years.</p>
+
+      <h3>The moat: contracted revenue, scale, and brownfield capital efficiency</h3>
+      <p>95% of existing operating capacity (18.15 GW) is tied up under long-term/medium-term PPAs as of Q4FY26/Q1FY27, up from roughly 84% at the start of FY26 (merchant capacity fell from 16% to 5% of the portfolio over the year, per the Apr-2026 call) &mdash; a genuine and verifiable de-risking of the revenue base, not a self-reported claim. Scale (largest private thermal generator in India, per the MD's own annual-report letter) gives negotiating leverage in coal linkage/SHAKTI allocations and PPA bidding. A high share of brownfield expansion (adding units at existing sites like Korba, Raipur, Raigarh and Mahan) is explicitly cited by management as improving capital efficiency and shortening commissioning timelines versus pure greenfield builds. No independent market-share or competitor-benchmark figure was found in this dataset beyond management's own "largest private thermal IPP" framing, which is a familiar and plausible but self-reported claim.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">A run of genuinely positive items (rating upgrade, Supreme Court win, APTEL win) landed in the same three-week window as a large dilutive capital raise and international investor roadshows &mdash; and the stock has not kept pace with the news since its April&ndash;May rally.</p>
+
+      <div class="news-item">
+        <div class="news-date">22 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">APTEL appeal win against MERC order</div>
+          <div class="news-body">Adani Power won an appeal at the Appellate Tribunal for Electricity against a Maharashtra Electricity Regulatory Commission order, with the tribunal directing MERC to issue consequential orders and calculate Change-in-Law compensation using operational parameters specified by APTEL. Quantum was not disclosed, so the near-term cash impact cannot be sized from this dataset &mdash; consistent with the pattern of small, recurring regulatory disputes catalogued in &sect;05.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">21 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">International investor roadshows announced (London, Abu Dhabi)</div>
+          <div class="news-body">Management scheduled investor meetings in London (7&ndash;8 Sep) and Abu Dhabi (9 Sep 2026), timed just after the strong Q1FY27 print and the board's &#8377;15,000 crore fundraising approval &mdash; standard pre-QIP roadshow positioning ahead of an equity raise, not a new operational disclosure.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">18 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">CARE Ratings upgrade to AA+; Stable across &#8377;90,500 Cr of facilities</div>
+          <div class="news-body">CARE upgraded long-term bank facilities (&#8377;52,950 Cr, enhanced from &#8377;42,950 Cr), LT/ST facilities (&#8377;15,050 Cr) and Non-Convertible Debentures (&#8377;22,500 Cr combined across two tranches) all to CARE AA+/Stable, citing sustained financial performance, PPA-backed revenue visibility, improved fuel security and a strengthened capital structure. The Integrated Annual Report separately notes an "eight-notch upgrade since 2020" across CRISIL/ICRA/India Ratings/CARE to AA/Stable, of which this CARE action is the latest step up. Same day: the Supreme Court declined to stay a regulatory order requiring Karnataka discoms to pay Adani Power's full invoice claim (plus carrying costs and late-payment surcharge accrued since 2023) within 45 days &mdash; a genuine, court-confirmed cash-collection positive, though APTEL still has to issue a final ruling within three months.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">18 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed</span>
+          <div class="news-title">Bernstein sets Adani Power target at &#8377;220, below several peers' targets</div>
+          <div class="news-body">In a broader Adani-group price-target update, Bernstein set an Adani Power target of &#8377;220 (24 GW pipeline by FY33 as its base assumption) &mdash; noticeably more conservative than the &#8377;240&ndash;282 range other brokerages set around the same time (&sect;09), and a smaller pipeline figure (24 GW vs. management's own newly-raised 45 GW target). Worth reading against the other three "Overweight/Outperform" calls in the 22&ndash;24 Jul window rather than in isolation.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">5 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">NCLT approves 9-subsidiary merger into the parent</div>
+          <div class="news-body">NCLT Ahmedabad approved amalgamating nine wholly owned subsidiaries (APDL, KPGL, RFML, MFML, OTEL, KPL, ATEMPPL, MTEUPPL, VIPL) into Adani Power Limited with an appointed date of 1 Apr 2025, simplifying the corporate structure and reducing inter-company transactions; one subsidiary (Vidarbha Industries Power) remains pending before the Mumbai NCLT bench (financial-results filing, note 20). A housekeeping positive for financial-reporting clarity, not a cash-generative event.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">4 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Promoter entity sells &#8377;2,627 Cr of shares to Adani Infra (intra-group)</div>
+          <div class="news-body">A promoter-group entity transferred shares worth &#8377;2,627 crore to Adani Infra, a related affiliate. This is an intra-promoter-group transfer with no direct operational or valuation impact disclosed, and no change to the 71.74% overall promoter/insider holding reported in MarketData &mdash; but any promoter-level share movement in an Adani Group company is worth tracking given the group's history of market scrutiny (&sect;07).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">22&ndash;24 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Q1FY27 results and &#8377;15,000 Cr QIP approval, same board meeting</div>
+          <div class="news-body">Board approved Q1FY27 results (revenue &#8377;18,902 Cr reported, +34% YoY; PAT to shareholders &#8377;4,806 Cr, +42% YoY &mdash; management's own spoken figure of "47%" uses the larger pre-minority total-group PAT, see &sect;04) alongside a &#8377;15,000 crore QIP fundraising approval and an increase in the borrowing-limit ceiling from &#8377;75,000 Cr to &#8377;1,00,000 Cr. Three global brokerages (HDFC Sky, and two others per the 23 Jul news item) issued Overweight/Outperform ratings with targets of &#8377;220&ndash;275 in direct response.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape</b>Month-end closing price ran from &#8377;95.79 (Feb-2025) up to &#8377;150.43 by Mar-2026, then jumped a further 47% in a single month to &#8377;221.85 (Apr-2026) around the Q4FY26 results, peaked at &#8377;243.37 (May-2026), and has since drifted back to &#8377;205.50 (21 Aug-2026) even as Q1FY27 results, the CARE upgrade and the Supreme Court win all landed favourably in between. The most plausible reading, consistent with the data in this report: the post-results rally had priced in a great deal of good news quickly, and the subsequent pullback coincides with the QIP dilution overhang (approved 22 Jul, shareholder-ratified 14 Aug) and a still-not-fully-resolved US DOJ/SEC matter involving a non-executive director (&sect;07) &mdash; not with any deterioration in the operating numbers themselves. Full chart in &sect;10.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, capacity tie-ups &amp; guidance</h2></div>
+      <p class="sec-dek">Revenue growth decelerated sharply into FY26 on genuinely subdued national power demand, then snapped back hard in Q1FY27 on record heat &mdash; capacity-commissioning guidance has slipped by roughly two quarters, twice, even as the long-run capacity target was raised.</p>
+
+      <h3>Quarterly trend</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q2FY26<sup>&Dagger;</sup></th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue</td><td>14,237.4</td><td>14,109.1</td><td>n/a</td><td>12,451.4</td><td>14,223.1</td><td>18,901.9</td></tr>
+            <tr><td>EBITDA</td><td>5,110.8</td><td>6,149.8</td><td>n/a</td><td>4,781.3</td><td>6,498.5</td><td>8,486.8</td></tr>
+            <tr><td>EBITDA margin</td><td>35.9%</td><td>43.6%</td><td>n/a</td><td>38.4%</td><td>45.7%</td><td>44.9%</td></tr>
+            <tr><td>PAT (to shareholders)</td><td>2,637.0</td><td>3,384.9</td><td>n/a</td><td>2,479.6</td><td>4,017.1</td><td>4,805.7</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>1.32</td><td>1.72</td><td>n/a</td><td>1.29</td><td>2.08</td><td>2.49</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance quarterly income statement, cross-checked against the 22&nbsp;Jul&nbsp;2026 financial-results filing for Q1FY26/Q4FY26/Q1FY27 (all three reconcile exactly). &Dagger; Q2FY26 (quarter ended 30 Sep 2025) is entirely absent from the yfinance quarterly file pulled &mdash; a genuine gap in the source data, not silently estimated.</caption>
+      </div>
+      <p>The pattern management itself describes: FY26 was "marked by weather-induced demand volatility" &mdash; an early, extended monsoon lasting almost to November plus a mild winter suppressed both volumes and merchant prices through Q2&ndash;Q3FY26 (the visible EBITDA-margin trough at 38.4% in the December quarter), before a genuine demand revival from March 2026 and a record-hot Q1FY27 (national peak demand 271 GW in May 2026, energy consumption +8.4% YoY) drove the strongest quarter in the company's history. Consolidated PLF moved from 74% (Q4FY26) to 78% (Q1FY27, vs. 67% a year earlier); full-year FY26 PLF was 66.5% on total sales of 99.1 billion units (+3.4% YoY, "broadly stable" per CFO commentary, well below the double-digit growth of FY24).</p>
+
+      <h3>Capacity tie-ups: the strongest, most verifiable part of the story</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Existing capacity under PPA</div><div class="v">95%</div><div class="d">of 18.15 GW, up from ~84% at start of FY26</div></div>
+        <div class="stat"><div class="k">Expansion capacity tied up</div><div class="v">13.3 GW</div><div class="d">of 23.7 GW under construction (56%)</div></div>
+        <div class="stat"><div class="k">Open bids in the market</div><div class="v">~13.8 GW</div><div class="d">UP, Rajasthan, Uttarakhand, West Bengal, Gujarat</div></div>
+      </div>
+      <p>10.4 GW of expansion capacity was tied up under long-term PPAs during FY26 alone, including a headline 1,600 MW letter-of-award from Maharashtra DISCOM (MSEDCL) at &#8377;5.30/unit (&#8377;4.11 capacity charge + &#8377;1.19 energy charge), formally signed as a 25-year power supply agreement on 15 Jul 2026. Management's historical strike rate on competitive PPA bids is roughly two-thirds (per a Morgan Stanley analyst question on the Q1FY27 call, not disputed by management), which if it holds on the current ~13.8 GW of open bids would imply roughly another 9 GW of tie-ups over the next several quarters. Merchant exposure has fallen from 16% to 5% of the existing portfolio over FY26 &mdash; a genuine, quantifiable de-risking, not a promotional claim.</p>
+
+      <h3>Guidance vs. actual: capacity-commissioning dates have slipped, capex guidance has not</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Metric</th><th>Guided on Apr-30-2026 call (Q4FY26)</th><th>Guided on Jul-23-2026 call (Q1FY27)</th><th>Read</th></tr></thead>
+          <tbody>
+            <tr><td>Korba Phase-II (1.32 GW) commissioning</td><td>Unit 1 in Q2 (Jun&ndash;Sep); Unit 2 "before year-end"</td><td>"Before December end this year" (i.e., Q3 target, no split by unit given)</td><td class="neg">Slipped</td></tr>
+            <tr><td>Mahan Phase-II (1.6 GW) commissioning</td><td>Base case: last quarter of FY27; worst case Q1FY28</td><td>Unit 1 explicitly "Q1 of next year" (FY28); Unit 2 ~6 months later, "trying" for Q2FY28</td><td class="neg">Slipped</td></tr>
+            <tr><td>FY27 expansion capex</td><td>~&#8377;25,000 Cr</td><td>~&#8377;25,000 Cr (reaffirmed)</td><td class="pos">Held</td></tr>
+            <tr><td>FY28 expansion capex</td><td>~&#8377;33,000 Cr</td><td>~&#8377;33,000 Cr (reaffirmed); FY29+ "more than &#8377;35,000 Cr" added</td><td class="pos">Held</td></tr>
+            <tr><td>Long-run target capacity</td><td>42 GW by FY31-32 ("on track")</td><td>Raised to 45 GW, same FY31-32 timeline</td><td class="pos">Raised</td></tr>
+            <tr><td>Net debt / EBITDA ceiling</td><td>Not explicitly stated</td><td>"Will not cross 3x," currently "slightly higher than 2x"</td><td class="pos">New, and consistent with FY26 disclosed 2.12x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: earnings-call transcripts, 30 Apr 2026 and 23 Jul 2026.</caption>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>How to read the commissioning slippage</b>Management's own framing (IR head Nishit Dave, Apr-2026 call) is that unit-level dates are "deferring by an average of 6 months" spread across the multi-year pipeline, with the aggregate FY31-32 target unaffected &mdash; and the fact that the long-run target was raised (42&rarr;45 GW) rather than cut two calls later is a real, checkable data point supporting that framing. But two consecutive quarters of the same two projects (Korba, Mahan) sliding to later, vaguer windows is a genuine execution-risk signal worth tracking distinct from the capex-guidance consistency, which has held exactly as stated across both calls.</div>
+      </div>
+
+      <h3>Geography, diversification &amp; new lines</h3>
+      <p>All confirmed FY26&ndash;FY27 order/PPA wins in this dataset are domestic (Maharashtra, Tamil Nadu, Bangladesh export via Godda). Horizontal/vertical expansion beyond core coal thermal is real but still nascent: an SPV incorporated for a 570 MW Bhutan hydro project (PPA terms not yet finalised as of Jul-2026); multiple Adani Atomic Energy Limited subsidiaries incorporated between Feb and Jun 2026 for prospective nuclear power projects (target raised from 5 GW to 10 GW by 2035 on the Q1FY27 call, entirely contingent on government rules not yet notified under the relevant Act); and continued small-scale coal-trading. None of the hydro or nuclear initiatives contribute revenue yet, and management was explicit on both calls that capital allocation and timelines for nuclear cannot be finalised until the Government of India issues implementing rules.</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">Core EBITDA margins are healthy and PPA-cushioned, but a recurring pattern of one-off items (regulatory carrying-cost recognitions, a light Q4FY26 tax quarter, a Q1FY27 prior-period revenue true-up) flatters several of the headline growth numbers management cites.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>EBITDA margin</td><td>36.9%</td><td>55.5%</td><td>42.3%</td><td>42.5%</td></tr>
+            <tr><td>PAT margin (to shareholders)</td><td>24.9%</td><td>39.8%</td><td>22.2%</td><td>23.7%</td></tr>
+            <tr><td>Return on equity (own calc., year-end basis)</td><td>31.7%</td><td>46.1%</td><td>22.1%</td><td>19.8%</td></tr>
+            <tr><td>Return on capital employed (EBIT/invested capital)</td><td>14.9%</td><td>30.8%</td><td>20.6%</td><td>15.6%</td></tr>
+            <tr><td>Interest coverage (EBIT / interest expense)</td><td>3.52x</td><td>7.75x</td><td>6.32x</td><td>6.25x</td></tr>
+            <tr><td>Net interest + other non-op. income as % of PBT</td><td>6.5%</td><td class="neg">27.5%</td><td>&minus;5.3%</td><td>&minus;1.9%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement/balance sheet; ratios computed per Fundamental_Analysis.md conventions. ROE/ROCE use year-end (not average) denominators &mdash; a methodological simplification, flagged rather than silently smoothed.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>FY24's blowout year was substantially non-operating</b>27.5% of FY24's pre-tax profit came from net interest income and other non-operating income &mdash; primarily one-off recognition of carrying costs and regulatory compensation on multi-year coal-cost disputes (Tiroda, Kawai, Udupi; detailed in the FY26 results-filing notes as still-ongoing matters). ROE and ROCE both peaked in FY24 (46.1% and 30.8% respectively) and have normalised sharply lower since &mdash; FY26 ROE of 19.8% and ROCE of 15.6% are healthy for a capital-intensive utility but roughly half FY24's level. Anyone anchoring "normal" profitability to FY24 will be systematically disappointed by every year since; FY25&ndash;FY26 is the more representative run-rate.</div>
+      </div>
+
+      <h3>The "which PAT number" problem</h3>
+      <p>Adani Power's consolidated P&amp;L reports two distinct profit figures each quarter: total group net profit (before splitting out minority/non-controlling interests) and profit attributable to the Company's own shareholders (the smaller number, and the one diluted EPS is calculated from). On both of the last two calls, management's prepared remarks cited the larger, group-wide growth rate:</p>
+      <div class="twrap">
+        <table>
+          <thead><tr><th></th><th>Cited on call (group PAT, pre-minority)</th><th>To-shareholders PAT (EPS basis)</th></tr></thead>
+          <tbody>
+            <tr><td>Q4FY26 PAT growth YoY</td><td>"+64%" (&#8377;4,271 Cr vs. &#8377;2,599 Cr)</td><td class="neg">+52.3% (&#8377;4,017 Cr vs. &#8377;2,637 Cr)</td></tr>
+            <tr><td>Q1FY27 PAT growth YoY</td><td>"+47%" (&#8377;4,867 Cr vs. &#8377;3,305 Cr)</td><td class="neg">+42.0% (&#8377;4,806 Cr vs. &#8377;3,385 Cr)</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: earnings-call transcripts (spoken figures) cross-checked against the 22&nbsp;Jul&nbsp;2026 financial-results filing's "Net Profit attributable to: Equity holders of the parent" and "Non-Controlling interests" line items, which sum exactly to the total group figure in both quarters &mdash; a clean internal-consistency check.</caption>
+      </div>
+      <p>Both figures are fully and correctly disclosed in the filed results tables &mdash; this is not misstatement. But a listener relying only on the spoken headline in either call would overstate shareholder profit growth by 5&ndash;12 percentage points. Non-controlling interest itself jumped sharply in FY26 (from &#8377;8.5 Cr in Q3FY26 to &#8377;254 Cr in Q4FY26) because Moxie Power's Unit 2 signed a new PPA with Tamil Nadu mid-year, converting a previously merchant, wholly-attributed unit into one where 51% of profit is now carved out to minority shareholders &mdash; a real, disclosed mechanical driver, not a red flag in itself, but the reason group and to-shareholder growth rates now diverge more than they used to.</p>
+
+      <h3>Other one-off items worth separating from the run-rate</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Q4FY26 tax:</b> Reuters headlined the quarter's profit jump as driven by "a one-time tax gain" (29 Apr 2026); the filed tax-provision line shows current tax of just &#8377;112.58 Cr in the March-2026 quarter versus &#8377;899.18 Cr a year earlier and &#8377;456.93 Cr the prior quarter &mdash; a genuinely light tax quarter that inflated Q4FY26 PAT growth beyond what operating performance alone would explain.</li>
+        <li><b>Q1FY27 prior-period revenue:</b> &#8377;1,386 Cr of "reported" revenue/EBITDA in Q1FY27 was a one-time net recognition of prior-period revenue (retrospective GUVNL base-rate revision effective back to Oct 2018). Management was transparent about this, consistently distinguishing "continuing" (&#8377;17,936 Cr total income, EBITDA &#8377;6,983 Cr, +22% YoY) from "reported" (&#8377;19,322 Cr, EBITDA &#8377;8,369 Cr, +36% YoY) throughout the call &mdash; the continuing basis is the more decision-useful figure for run-rate purposes.</li>
+      </ul>
+
+      <h3>Forward margin guidance</h3>
+      <p>No explicit forward EBITDA-margin target was given on either call. The one long-dated marker offered: CEO Khyalia's answer to an analyst question that consolidated EBITDA should "conservatively" reach &#8377;50,000 Cr by FY2031, "or even 2030" in a best case &mdash; against FY26 continuing EBITDA of &#8377;21,285 Cr, that implies roughly a 19&ndash;24% EBITDA CAGR over the intervening years (this report's own computation from the stated target, not a management-disclosed CAGR). HDFC Sky's post-Q1FY27 note independently estimates 18.8%/19.2% revenue/EBITDA CAGR through FY29 &mdash; a reasonably close external cross-check on the lower end of that range.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">Leverage troughed in FY25 and is now rising again as the capex supercycle begins &mdash; funded by a mix of NCDs, bank debt, a newly approved &#8377;15,000 Cr QIP, and a capital-commitments backlog that nearly doubled year-on-year.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Total equity (net worth)</td><td>29,875.7</td><td>43,145.0</td><td>56,347.1</td><td>64,936.9</td></tr>
+            <tr><td>Total debt</td><td>42,180.6</td><td>34,431.1</td><td>39,356.3</td><td>54,518.8</td></tr>
+            <tr><td>Debt / equity</td><td>1.41x</td><td>0.80x</td><td>0.70x</td><td>0.84x</td></tr>
+            <tr><td>Net debt (yfinance)</td><td>n/a</td><td>33,136.1</td><td>37,890.4</td><td>52,520.8</td></tr>
+            <tr><td>Total assets</td><td>85,821.3</td><td>92,324.8</td><td>112,918.0</td><td>142,280.0</td></tr>
+            <tr><td>Capital commitments (contracted, not provided for)</td><td>n/a</td><td>n/a</td><td>40,126.2</td><td>78,566.8</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet; capital commitments from the 2026-05-29 Annual Report, Note 47(b) (consolidated). Company's own quarterly ratio disclosure (Jun-2026 financial results) separately confirms consolidated debt/equity of 0.82x as at 30 Jun 2026, consistent with this trend.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Leverage is turning back up as the capex supercycle starts, exactly as the FY24-vs-FY26 EBITDA comparison would predict</b>Debt/equity fell from 1.41x (FY23) to 0.70x (FY25) as the company delevered post-COGS-shock years, then rose back to 0.84x in FY26 and 0.82x-0.92x (consolidated/standalone) by Jun-2026 as the &#8377;2 lakh crore capex programme began drawing debt in earnest &mdash; a &#8377;7,500 Cr secured NCD issued in Q4FY26 alone, per the Apr-2026 call. Capital commitments (contracted-but-unspent capex) nearly doubled year-on-year to &#8377;78,567 Cr, directly foreshadowing further debt/equity draws over FY27&ndash;28. Management's own stated ceiling &mdash; net debt/EBITDA "will not cross 3x" &mdash; provides a checkable guardrail; current levels (2.12x FY26, "slightly higher than 2x" as of Jun-2026) leave roughly 0.9&ndash;1x of headroom before that ceiling would bind.</div>
+      </div>
+
+      <h3>Funding the gap: NCDs, bank debt, and now a &#8377;15,000 Cr QIP</h3>
+      <p>The Board approved raising up to &#8377;15,000 crore via QIP or other permissible equity mode on 22 Jul 2026 (same meeting as Q1FY27 results), alongside raising the Companies Act borrowing-limit ceiling from &#8377;75,000 Cr to &#8377;1,00,000 Cr; both were ratified by shareholders at a nine-minute EGM on 14 Aug 2026 (99%+ approval implied by the brevity, though exact vote tallies were not captured in this filing). No issue price, timeline or use-of-proceeds breakdown beyond "supporting the 45 GW expansion" has been disclosed as of this report's date &mdash; this is an enabling resolution, not an executed raise, and CFO Dilip Jha was explicit on the Q1FY27 call that the company would "come out with our plans... as and when there is a need." At the current market cap of &#8377;396,300 Cr, a &#8377;15,000 Cr raise implies roughly 3.5&ndash;4% dilution depending on issue pricing &mdash; modest in isolation, but a genuine signal that internal accruals alone are no longer sufficient to fund the pace of expansion management has committed to (confirmed directly in &sect;06).</p>
+
+      <h3>Contingent liabilities: modest and shrinking; capital commitments: large and doubling</h3>
+      <p>Total disclosed contingent liabilities (claims not acknowledged as debts &mdash; income tax, customs duty, transmission-line relinquishment, GST, water-charge penalties) fell from &#8377;1,140.7 Cr (Mar-2025) to &#8377;707.3 Cr (Mar-2026), a genuinely reassuring trend relative to a &#8377;1.4 lakh crore-plus balance sheet (Annual Report, Note 47(a)). These are overwhelmingly small, long-running regulatory/tax disputes (Raipur TPP customs classification, Mundra TPP CST matter, Godda water-charge penalty) rather than anything balance-sheet-threatening. The much larger number to watch is capital commitments &mdash; &#8377;78,567 Cr of contracted-but-unexecuted capex as at Mar-2026, nearly double the &#8377;40,126 Cr a year earlier &mdash; which is the real forward funding obligation implied by the 45 GW build-out.</p>
+
+      <h3>Credit rating trajectory: a genuine, independently verified positive</h3>
+      <p>CARE Ratings upgraded Adani Power to AA+/Stable across its entire &#8377;90,500 Cr rated debt portfolio on 18 Aug 2026, up from AA/Stable, citing sustained financial and operational performance, diversified portfolio, PPA-backed revenue visibility, improved fuel security and a strengthened capital structure. The Annual Report separately notes an "eight-notch upgrade since 2020" across all four major domestic rating agencies (CRISIL, ICRA, India Ratings, CARE) to AA/Stable as the pre-Aug-2026 baseline &mdash; this CARE action is the most recent step beyond that baseline. A rising credit rating during a period of rising absolute debt is a meaningful, third-party-verified signal that lenders view the leverage increase as well-matched to contracted cash flows, not as deteriorating credit quality.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Free cash flow turned negative in FY26 for the first time in this data set &mdash; not because operating cash generation weakened, but because capex nearly doubled year-on-year and has now outrun it.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Cash from operations (CFO)</td><td>8,430.5</td><td>14,170.1</td><td>21,501.1</td><td>20,513.7</td></tr>
+            <tr><td>Capex</td><td>&minus;3,243.7</td><td>&minus;2,602.5</td><td>&minus;11,559.0</td><td>&minus;23,350.1</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td>5,186.9</td><td>11,567.7</td><td>9,942.1</td><td class="neg">&minus;2,836.4</td></tr>
+            <tr><td>Capex / D&amp;A</td><td>0.98x</td><td>0.66x</td><td>2.68x</td><td>5.12x</td></tr>
+            <tr><td>CFO / Group PAT</td><td>0.79x</td><td>0.68x</td><td>1.66x</td><td>1.58x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. No quarterly cash-flow statement exists in the source data at all, so Q1FY27's cash conversion cannot be checked independently of the P&amp;L.</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#10003;</div>
+        <div><b>Earnings quality passes clean &mdash; the FCF story is a capex story, not a collections story</b>CFO has tracked or exceeded group PAT in three of the last four years (0.79x, 0.68x, 1.66x, 1.58x) &mdash; there is no sign of profit growth outrunning cash collection, and the one weak year (FY24, 0.68x) is the same year flagged in &sect;04 as inflated by non-cash-adjacent regulatory income recognition, so a slightly lower CFO/PAT ratio that year is consistent with, not contradictory to, the earlier finding. FY26's negative free cash flow (&minus;&#8377;2,836 Cr) is entirely a function of capex (&#8377;23,350 Cr, +102% YoY) outpacing a still-healthy &#8377;20,514 Cr of operating cash flow &mdash; capex/D&amp;A of 5.1x is unambiguous evidence of real, aggressive capacity expansion, not maintenance spend or financial engineering.</div>
+      </div>
+
+      <p><b>Read plainly:</b> Adani Power is now in the capital-intensive build phase of its stated growth plan, and free cash flow will very likely stay negative through FY27&ndash;FY28 given the reaffirmed &#8377;25,000 Cr and &#8377;33,000 Cr capex guidance for those years (&sect;03) against a CFO base of roughly &#8377;20,000 Cr/year. Management's own words on the Apr-2026 call are explicit about this: "the majority portion of expansion [is] being funded from internal accruals... the interim gap... [funded] from the domestic capital market or domestic banks" &mdash; and by Jul-2026 that interim-gap financing had expanded to include the &#8377;15,000 Cr QIP (&sect;05). This is a normal, disclosed financing pattern for a utility mid-expansion, not a red flag on its own &mdash; but it does mean the "we could be debt-free by FY32-33" aspiration voiced on the Apr-2026 call is conditional on execution staying broadly on the guided capex/commissioning schedule, which &sect;03 shows has already slipped at the unit level twice.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">A stable, professionally-run executive team distinct from the Adani family's day-to-day operating roles, a clean-opinion Big-Four-network auditor, and two legacy litigation/regulatory overhangs that are both trending toward resolution but are not fully closed.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Gautam Adani</div>
+          <div class="role">Chairman</div>
+          <div class="bio">Group founder and Chairman; not in an executive/day-to-day operating role at Adani Power specifically &mdash; the Letter to Shareholders in the FY26 Annual Report is authored by the Managing Director and CEO, not the Chairman directly.</div>
+        </div>
+        <div class="person">
+          <div class="name">Anil Sardana</div>
+          <div class="role">Managing Director</div>
+          <div class="bio">Co-signatory of the FY26 "Letter from the MD and CEO," emphasising operational discipline, brownfield capital efficiency and the ENOC digital-monitoring platform. A professional (non-family) MD, consistent with Adani Group's practice of professional management layers beneath the family chairmanship at several listed entities.</div>
+        </div>
+        <div class="person">
+          <div class="name">S. B. Khyalia</div>
+          <div class="role">Whole-time Director &amp; Chief Executive Officer</div>
+          <div class="bio">Leads both earnings calls in this dataset; consistent, detailed, and generally direct in fielding analyst questions on PPA tariffs, capex timing and project-level delays &mdash; including volunteering the Korba/Mahan slippage rather than waiting to be asked.</div>
+        </div>
+        <div class="person">
+          <div class="name">Dilip Jha</div>
+          <div class="role">Chief Financial Officer</div>
+          <div class="bio">Consistently distinguishes "continuing" from "reported" figures on both calls (&sect;04) and is explicit about funding-gap mechanics (FFO vs. capex, debt-market bridge financing, QIP enabling resolution) &mdash; a generally transparent standard of financial disclosure, notwithstanding the "which PAT number" framing issue flagged in &sect;04.</div>
+        </div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Two legacy Adani Group overhangs, both disclosed and both trending toward resolution but neither fully closed</b>(1) A non-executive director of the Company (not named in this filing, and the Company itself is explicitly stated as "not been named") faces a US DOJ indictment (securities/wire fraud conspiracy) and a related SEC civil complaint. As of the Q1FY27 results filing (22 Jul 2026, note 16), the SEC had filed for entry of a consent final judgment (without the director admitting or denying the allegations, 15 May 2026) and DOJ had moved to dismiss the indictment with prejudice (18 May 2026) &mdash; both filed but still pending court approval at the Eastern District of New York as of the filing date. (2) Separately, SEBI closed two Show Cause Notices relating to the 2023 short-seller-report allegations on 18 Sep 2025 with "no non-compliance" found and no penalty &mdash; a fully resolved legacy matter, cited here as the positive counterpoint to (1). Neither matter names Adani Power itself as a respondent, and the Company's own conclusion (management's, per the filing) is "no material consequences thereof as on reporting date" &mdash; a reasonable characterisation on the facts disclosed, but investors should track the EDNY court's final action on the pending consent judgment/dismissal motion rather than treating the matter as closed.</div>
+      </div>
+
+      <h3>Auditor, fees &amp; related-party disclosure</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>Statutory auditor:</b> S R B C &amp; CO LLP (an EY-network firm) issued unmodified review conclusions on both the Q1FY27 standalone and consolidated results (22 Jul 2026) &mdash; no qualification or emphasis of matter identified in the sections reviewed.</li>
+        <li><b>Auditor fees:</b> &#8377;5.39 Cr FY26 (audit &#8377;4.17 Cr + other services &#8377;1.05 Cr + expenses &#8377;0.17 Cr) vs. &#8377;5.10 Cr FY25 &mdash; a modest, unremarkable increase, not scaled in a way that would suggest fee-driven opinion-shopping risk.</li>
+        <li><b>Related-party transactions:</b> the Annual Report states all RPTs during FY26 were at arm's length, in the ordinary course of business, and reviewed by an Audit Committee composed solely of Independent Directors, with no Section 188(1) contracts requiring AOC-2 disclosure. No aggregate RPT-to-revenue ratio was disclosed in the sections reviewed for this report.</li>
+        <li><b>Promoter pledge:</b> no promoter share-pledge disclosure was found anywhere in this dataset &mdash; a clean signal on this specific governance dimension, though absence of evidence in a partial dataset is not the same as a confirmed zero.</li>
+      </ul>
+
+      <h3>Ownership</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Promoter / insider holding</div><div class="v">71.74%</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">18.92%</div><div class="d">133 institutions on record</div></div>
+        <div class="stat"><div class="k">Free float</div><div class="v">~28.2%</div><div class="d">5.44 Bn of 19.28 Bn shares</div></div>
+      </div>
+      <p>A heavily promoter-concentrated register even by Indian large-cap standards, with institutional ownership at a respectable but not dominant 18.9% across 133 institutions. The upcoming QIP (&sect;05) would, if fully subscribed by new institutional investors, modestly dilute promoter concentration and broaden the institutional base &mdash; a plausible secondary motivation for the raise beyond pure capex funding, though not one management stated explicitly.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other call &amp; disclosure insights worth watching</h2></div>
+      <p class="sec-dek">Nuclear and international hydro remain pre-revenue optionality; the Bangladesh receivable situation is genuinely improving; and a RE-RTC "trading platform" structure with sister company PTSL adds a layer of complexity worth understanding before assuming it changes Adani Power's own risk profile.</p>
+
+      <h3>Bangladesh (Godda/BPDB) receivables: real improvement, still unresolved on the disputed portion</h3>
+      <p>Godda TPP's export PPA with Bangladesh Power Development Board has been a multi-year overhang. Management confirmed on the Q1FY27 call that receivables have "significantly reduced" quarter-on-quarter, running at roughly USD 100 million/month in regular collections against a ~USD 400 million balance as of June-2026 (down from an "all-time high" a year earlier). The disputed portion of the receivable remains under a Singapore International Arbitration Centre-appointed expert process, with both parties having signed an appointment agreement as of the Apr-2026 call &mdash; a formal resolution mechanism now in motion, but not yet concluded. Company policy, confirmed by the CEO, is to recognise as revenue only the undisputed portion.</p>
+
+      <h3>The RE-RTC "trading platform" with PTSL: added complexity, contained risk to Adani Power itself</h3>
+      <p>A 2,500 MW round-the-clock (RTC) renewable-energy supply contract with MSEDCL, intermediated through a group trading platform (referenced as PTSL, an Adani Energy-linked entity), drew repeated analyst questions across both calls. Management's clarification: Adani Power's own contribution is limited to small residual/untied thermal capacity (estimated at 1&ndash;1.5% of its portfolio) supplied into the platform at ordinary PPA-like capacity-charge economics; the requirement to blend in renewable/battery/pumped-storage sources to make the supply "round-the-clock" is an exposure borne by PTSL as the intermediary, not by Adani Power directly. On the facts disclosed, this looks like a modest, well-structured revenue contribution rather than a hidden risk transfer &mdash; but the multiple rounds of analyst clarification needed across two consecutive calls suggest the structure is not fully intuitive even to close followers of the stock.</p>
+
+      <h3>Nuclear and Bhutan hydro: real optionality, zero revenue contribution, no committed capital yet</h3>
+      <p>Management raised its own nuclear ambition mid-year (5 GW &rarr; 10 GW by 2035) and has incorporated multiple Adani Atomic Energy Limited subsidiaries, but was explicit on both calls that technology choice (domestic NPCIL vs. imported), site finalisation, and capital allocation are all contingent on government rules not yet notified under the relevant Act &mdash; management's own estimate of execution time from planning to commissioning is "at least 5 years" once rules are issued. The 570 MW Bhutan hydro SPV is similarly pre-PPA. Both are credible long-dated optionality worth tracking but should not be modelled into any FY27&ndash;FY29 earnings forecast.</p>
+
+      <h3>Brand recognition</h3>
+      <p>Adani Power was ranked India's most valued energy brand by Brand Finance (USD 1.8 billion brand value, AAA brand rating) per the Q1FY27 call &mdash; a third-party validation of brand strength, though brand-value rankings of this kind are a soft signal relative to the hard operating and financial data elsewhere in this report.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">Broad, actively bullish coverage with a mean target implying meaningful upside from CMP &mdash; though even the lowest published target still sits above the current price, worth reading with some caution given the recent post-rally pullback.</p>
+
+      <div class="stat-row">
+        <div class="stat"><div class="k">Analysts covering</div><div class="v">9</div><div class="d">up from 7 two months ago</div></div>
+        <div class="stat"><div class="k">Rating mix (current)</div><div class="v">2 SB / 6 B / 1 H</div><div class="d">Strong Buy / Buy / Hold; 0 Sell</div></div>
+        <div class="stat"><div class="k">Target range</div><div class="v">&#8377;220 &ndash; &#8377;282</div><div class="d">Low / High</div></div>
+        <div class="stat"><div class="k">Target mean / median</div><div class="v">&#8377;252.6 / &#8377;257.0</div><div class="d">+22.9% / +25.1% vs. CMP &#8377;205.50</div></div>
+      </div>
+      <p>MarketData/yfinance shows analyst sentiment improving over the two months to Aug-2026: coverage grew from 7 to 9 analysts, and a "Strong Sell" rating present one and two months ago had dropped off the roster entirely by the most recent snapshot. Notable individual data points from News: HDFC Sky raised its target to &#8377;240 post-Q1FY27 (lifting its FY28 EV/EBITDA multiple assumption from 14x to 19x, citing 42.1% EBITDA margin and 25.7% PAT margin on a continuing basis, plant availability of 96% vs. 89% YoY, and 18.8%/19.2% revenue/EBITDA CAGR estimates through FY29); three brokerages issued Overweight/Outperform calls with targets of &#8377;220&ndash;275 in the same window; and Bernstein set a more conservative &#8377;220 target on 18 Aug 2026, using a smaller 24 GW-by-FY33 pipeline assumption than management's own newly-raised 45 GW target.</p>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>A caution on the target-vs-price gap</b>The current price (&#8377;205.50) sits below even the lowest disclosed analyst target (&#8377;220) &mdash; a configuration that can mean the stock is genuinely under-appreciated after its post-May pullback, or that not every covering analyst has yet re-priced their model for the QIP dilution (approved 22 Jul, ratified 14 Aug) and the still-open US DOJ/SEC matter (&sect;07), both of which post-date some of the underlying target-setting research. Treat the headline "+23% to mean target" upside as directionally informative rather than a precise, fully current consensus.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock that rallied 61% in two months on strong results, gave back a third of that gain into a dilutive capital raise, and now trades near the low end of its own analyst target range at a still-full 27.8x trailing earnings.</p>
+
+      <h3>Twenty months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Jan 2025&ndash;Aug 2026 (NSE, via yfinance daily price history, split-adjusted). The 52-week high of &#8377;254.20 (intraday) sits modestly above the May-2026 month-end close of &#8377;243.37.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">27.77x</div><div class="d">Implied TTM EPS &#8776;&#8377;7.40</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">25.88x</div><div class="d">Implied forward EPS &#8776;&#8377;7.94</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">6.10x</div><div class="d">Book value/share &#8377;33.67</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">20.47x</div><div class="d">On TTM EBITDA</div></div>
+      </div>
+      <p>At 27.8x trailing and 25.9x forward earnings, Adani Power is priced as a growth utility, not a yield/value play &mdash; consistent with zero dividend (0% payout ratio) and management's explicit preference to reinvest all surplus into the capacity build rather than distribute it. The valuation already embeds a meaningful chunk of the 45 GW growth story; the question for a prospective buyer is less "is the growth real" (this report's own numbers say substantially yes, subject to the commissioning-slippage caveat in &sect;03) and more "is it already in the price" (partially, given the stock sits mid-way between its 52-week low and high, and below its own analyst target range's low end).</p>
+
+      <h3>Bear / base / bull, illustrative FY27E&ndash;FY28E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built from the guided capex/capacity schedule (&sect;03), the disclosed analyst CAGR estimates (&sect;09), and this report's own tabulated leverage/margin trends (&sect;04&ndash;06). These are scenario illustrations, not point forecasts &mdash; management gives no formal EPS or margin guidance for FY27/FY28 in this dataset.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;150&ndash;175</div>
+          <div class="rng">&minus;27% to &minus;15% from CMP</div>
+          <ul>
+            <li>Korba/Mahan slip further (a third round of guidance revisions), pushing incremental EBITDA contribution into FY29; net debt/EBITDA drifts toward the stated 3x ceiling as capex continues to outpace CFO</li>
+            <li>QIP prices at a discount and/or the market reads it as evidence internal accruals were never going to be sufficient, pressuring the multiple; demand growth reverts to FY26's subdued 0.8% pace</li>
+            <li>The pending US DOJ/SEC consent judgment or dismissal motion (&sect;07) draws renewed scrutiny before EDNY approval, reviving group-wide risk-premium pressure last seen after the 2023 short-seller report</li>
+            <li>FY27 to-shareholder PAT grows only high-single-digits; market de-rates to ~18&ndash;20x trailing earnings on demonstrated execution risk</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;230&ndash;260</div>
+          <div class="rng">+12% to +27% from CMP</div>
+          <ul>
+            <li>Korba Phase-II commissions by Q3FY27 as most-recently guided; Mahan Phase-II slips into early FY28 as guided but the FY31-32 45 GW target stays intact; PPA tie-up on the pipeline continues near the ~2/3 historical strike rate</li>
+            <li>Revenue/EBITDA grow roughly in line with the 18.8%/19.2% CAGR HDFC Sky estimates through FY29; net debt/EBITDA holds in the 2&ndash;2.5x band management has guided</li>
+            <li>QIP executes at a reasonable valuation, funding the capex gap without a disruptive discount; the US DOJ/SEC matter resolves via the pending consent judgment/dismissal without incident</li>
+            <li>Market holds roughly its current 25&ndash;28x forward multiple, consistent with the analyst mean target of &#8377;252.6</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;290&ndash;320</div>
+          <div class="rng">+41% to +56% from CMP</div>
+          <ul>
+            <li>State resource-adequacy bids (UP, Rajasthan, Uttarakhand, West Bengal, Gujarat &mdash; ~13.8 GW) convert faster than the historical ~2/3 strike rate given record 271 GW peak demand and thermal's re-affirmed role as baseload; commissioning delays stop recurring</li>
+            <li>Jaiprakash-related assets (JPVL associate stake, Churk, Prayagraj) integrate faster and more accretively than modeled; nuclear rules are notified, unlocking a credible multi-GW pipeline the market starts to price in as optionality</li>
+            <li>Net debt/EBITDA stays comfortably under 2.5x through the capex peak; a further ratings upgrade (AA+&rarr;AAA-adjacent trajectory) lowers borrowing costs</li>
+            <li>Market re-rates toward 30x+ forward earnings on de-risked, long-duration contracted cash flow, and the stock re-tests/exceeds its 52-week high of &#8377;254.20</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: &#8377;33.67/share book value at 6.10x P/B is a rich multiple for a regulated-adjacent utility balance sheet; even the base case above assumes the market continues to pay a growth premium on ROE (19.8% FY26, &sect;04) rather than a pure asset-value multiple &mdash; a meaningfully more demanding bar than book-value investing typically implies.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> 95% of existing capacity and 56% of the under-construction pipeline are already tied up under long-term PPAs &mdash; the single strongest, most independently verifiable de-risking fact in this report; capex has run 5.1x depreciation in FY26, unambiguous evidence of real capacity build rather than financial engineering; CFO has tracked or exceeded PAT in three of the last four years with no earnings-quality red flag; contingent liabilities are small and shrinking; the CARE upgrade to AA+ on the entire &#8377;90,500 Cr debt book is a genuine, independently verified credit-quality positive; a professionally-run executive team (MD, CEO, CFO distinct from the Adani family Chairman) delivers detailed, generally transparent disclosure, including proactively flagging its own commissioning delays; the long-run capacity target was raised (42&rarr;45 GW), not cut, even as near-term unit dates slipped; and Q1FY27 delivered the company's strongest quarter on record on genuinely strong demand, not accounting effects alone.</p>
+        <p style="max-width:none;"><b>What's not good:</b> free cash flow turned negative in FY26 for the first time in this data set and will very likely stay negative through FY27&ndash;28 on guided capex; net debt/equity has already reversed its multi-year decline and is rising again; a &#8377;15,000 Cr dilutive QIP was approved days after a blowout quarter, with no price or timeline yet disclosed; unit-level commissioning dates (Korba, Mahan) have slipped by roughly two quarters on two consecutive calls; management's own spoken PAT-growth figures on both recent calls used the larger, pre-minority-interest group number rather than the smaller to-shareholder figure EPS is based on (a 5&ndash;12 percentage-point gap both times); FY24's headline profitability was substantially inflated by one-off regulatory income recognition, meaning several multi-year growth comparisons look worse than the underlying business actually is; and a non-executive director's US DOJ/SEC matter, while not naming the Company, remains formally unresolved pending EDNY court action.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> candidly on operational specifics &mdash; volunteering commissioning delays, consistently separating "continuing" from "reported" figures, and giving direct, numbers-backed answers to detailed analyst questions on tariffs, PLF and funding mix across two full transcripts. Less carefully on framing &mdash; leading with the larger pre-minority PAT growth number in prepared remarks twice running, and pairing the QIP approval announcement with the same board meeting as strong Q1 results, a sequencing that tends to soften how a dilutive raise reads. Neither is dishonest (every underlying figure is disclosed correctly in the filed tables), but both reward reading the primary filings rather than relying on the spoken headline.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: moderate, roughly 45&ndash;55%.</b> The contracted-revenue base and capacity roadmap are genuinely strong and independently checkable, and Q1FY27 shows the operating business executing well on demand &mdash; but the stock is no longer cheap (27.8x trailing, 6.1x book), free cash flow has just turned negative for the first time in this data set, a dilutive raise is pending with no disclosed terms, and the commissioning-slippage pattern needs to stop repeating for the FY31-32 target to stay credible on its current, twice-revised timeline. This is a "quality growth story, already partly priced" setup more than a clear mispricing in either direction.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether Korba Phase-II actually commissions by the newly-guided Q3FY27 window, or slips a third time &mdash; a third slip would meaningfully weaken confidence in the FY31-32 45 GW timeline; (2) QIP pricing and terms once disclosed &mdash; a well-priced, oversubscribed raise would validate the "bridge financing" framing, a discounted or undersubscribed one would not; (3) net debt/EBITDA trend over the next two-to-three quarters relative to the stated 3x ceiling; (4) free cash flow trajectory &mdash; a second consecutive negative-FCF year would confirm the multi-year capex-outrunning-CFO pattern rather than a one-off; (5) final EDNY court action on the pending US DOJ/SEC consent judgment and dismissal motion; (6) whether the ~2/3 historical PPA-bid strike rate holds on the current 13.8 GW of open state bids.</div>
+      </div>
+
+      <footer>
+        Compiled from Adani Power Limited's BSE filings (AnnouncementsConv, dated 30&nbsp;Apr&ndash;21&nbsp;Aug 2026 &mdash; two earnings-call transcripts, two investor presentations, the Q1FY27 financial-results filing with full notes, the FY2025-26 Integrated Annual Report, and the 18&nbsp;Aug&nbsp;2026 CARE Ratings upgrade letter), MarketData (Yahoo Finance via yfinance, fetched 22&nbsp;Aug&nbsp;2026 17:48 IST, including the full daily price-history series), and the tracked News feed (4&ndash;22 Aug 2026, plus select Jul-2026 items for results-day context). The Sept-2025 (Q2FY26) quarter is absent from the yfinance quarterly file and no quarterly cash-flow statement exists in the source data at all &mdash; both stated explicitly wherever they affect a figure below, rather than estimated or silently omitted. Every figure is tagged to its source; where two disclosure bases disagreed (e.g., group vs. to-shareholder PAT, continuing vs. reported revenue), both are shown and reconciled rather than only the more flattering one. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [14237.4, 14109.1, 12451.4, 14223.1, 18901.9];
+    var ebitda  = [5110.8, 6149.8, 4781.3, 6498.5, 8486.8];
+    var pat     = [2637.0, 3384.9, 2479.6, 4017.1, 4805.7];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT (to shareholders)', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 52, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv).toLocaleString()+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v.toLocaleString()+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q2FY26 (Sep-25) is not plotted — that quarter is absent from the yfinance quarterly file pulled for this report; see the coverage note above.</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Jan 25', 102.64], ['Feb 25', 95.79], ['Mar 25', 101.86], ['Apr 25', 106.41],
+      ['May 25', 108.76], ['Jun 25', 117.15], ['Jul 25', 117.62], ['Aug 25', 120.13],
+      ['Sep 25', 144.65], ['Oct 25', 157.85], ['Nov 25', 147.49], ['Dec 25', 142.99],
+      ['Jan 26', 135.38], ['Feb 26', 140.11], ['Mar 26', 150.43], ['Apr 26', 221.85],
+      ['May 26', 243.37], ['Jun 26', 223.77], ['Jul 26', 211.31], ['Aug 26', 205.50]
+    ];
+    var W = 900, H = 220, padL = 48, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Adani Power Limited monthly closing share price, January 2025 to August 2026" style="width:100%;height:auto;font-size:10.5px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 2.6;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i % 2 === 0 || i === points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily NSE price history via yfinance, split-adjusted. 52-week high/low per MarketData snapshot: ₹254.20 / ₹116.70 (intraday extremes may fall between the monthly points plotted).</div></div>';
+  })();
+})();
+</script>

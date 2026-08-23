@@ -1,0 +1,1027 @@
+<title>Adani Green Energy Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Renewable Energy Generation (Solar / Wind / Hybrid / Storage) &mdash; Utilities</div>
+    <h1>Adani Green Energy Limited</h1>
+    <p class="sub">NSE: ADANIGREEN &middot; BSE: 541450 &middot; FY2025&ndash;FY2027(Q1) performance review, BSE-filing, earnings-call and press-release synthesis, as of 22 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> AGEL keeps proving it can build faster than almost anyone else in renewables &mdash; 5.1 GW of greenfield capacity added in FY26 (the largest annual addition outside China, for the second year running), 20.1 GW operational by Q1FY27, and Q1FY27 revenue/EBITDA up 29%/33% YoY. But the numbers immediately beneath that headline are far bumpier: consolidated group PAT was effectively <b>flat</b> in FY26 (&#8377;1,987 Cr vs &#8377;2,001 Cr) despite 23% EBITDA growth, one of the last five quarters (Q3FY26) printed an outright loss at the parent level, free cash flow has been negative in both FY25 and FY26 as &#8377;26,000+ Cr/year of capex outruns operating cash, curtailment cost the company an admitted &#8377;1,300&ndash;1,500 Cr of FY26 EBITDA that management still won't promise is "permanently behind" it, and roughly 4 GW of previously open/merchant capacity plus growing battery-storage volume has just been locked into 25-year fixed-price contracts with sister company Adani Energy Solutions &mdash; a related-party restructuring that Bernstein, in a maintained Underperform, has explicitly read as transferring shareholder upside away from AGEL. A long-running US DOJ/SEC matter against certain directors (not the Company) is trending toward settlement but was still formally unresolved as of the Q1FY27 filing. The stock trades at 126x trailing earnings with a Street split between an &#8377;980 bear case and an &#8377;1,800 bull case.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (21 Aug 26)</div><div class="v">&#8377;1,320.00</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;2,17,427 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;765.0 &ndash; &#8377;1,631.5</div></div>
+      <div class="chip"><div class="k">Q1FY27 Revenue (Power Supply)</div><div class="v pos">+29% YoY</div></div>
+      <div class="chip"><div class="k">FY26 Group PAT</div><div class="v neg">&minus;0.7% YoY</div></div>
+      <div class="chip"><div class="k">FY26 EBITDA Margin</div><div class="v">91.2%</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">126.6x</div></div>
+      <div class="chip"><div class="k">FY25&ndash;FY26 Free Cash Flow</div><div class="v neg">Negative, both years</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage &amp; basis &mdash; please read before the numbers below:</b> BSE filings reviewed in this dataset span 25&nbsp;Apr&ndash;22&nbsp;Aug 2026 &mdash; which, in practice, gives full earnings-call transcripts and investor presentations for only <b>two</b> reporting periods: the FY26/Q4FY26 results (equity + fixed-income calls, 24 Apr 2026) and Q1FY27 (22 Jul 2026, transcript filed 27 Jul). No transcript, investor presentation or management commentary was found in this dataset for Q1&ndash;Q3 FY26 (Jun/Sep/Dec 2025) &mdash; a real gap, flagged rather than papered over. Where those quarters' <em>numbers</em> are shown (§03&ndash;04), they are sourced independently from MarketData/yfinance's quarterly financial series, which spans Q4FY25 through Q1FY27 with one clean internal gap (Q2FY26 EBITDA/PAT are null in that source) and one figure (Q4FY25 revenue) also null &mdash; both stated explicitly wherever they matter rather than estimated. All P&amp;L, balance-sheet and cash-flow figures are <b>consolidated</b> (Group) unless explicitly marked standalone; the FY26 Annual Report's Schedule-III ratio disclosures (current ratio, debt-equity, ROE, coverage ratios) are standalone-only in the source &mdash; that entity is essentially a holding/EPC/equipment-trading company, not representative of the ~280-subsidiary consolidated group's actual project-level economics, and this report says so explicitly wherever a standalone ratio is used. Figures from management's own forward framing (e.g. "run-rate EBITDA") are distinguished throughout from audited P&amp;L figures, since the two are not directly comparable.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Other call insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What AGEL does, and how it has grown</h2></div>
+      <p class="sec-dek">India's largest renewable-energy generator by operating capacity &mdash; a pure-play solar/wind/hybrid IPP now adding battery storage and pumped hydro, built through a web of roughly 280 project-level subsidiaries under one listed holding company.</p>
+
+      <p class="lede">Adani Green Energy Limited (AGEL, CIN L40106GJ2015PLC082007) develops, owns and operates utility-scale, grid-connected renewable generation and storage assets across 12 Indian states &mdash; solar (14.2 GW), wind (2.7 GW) and solar-wind hybrid (3.3 GW) plants, plus a fast-growing battery energy storage (BESS) fleet and an early-stage pumped hydro storage (PSP) programme. As of Q1FY27 (30 June 2026) operational capacity stood at 20.1 GW, up 27% YoY, alongside 3.55 GWh of installed BESS capacity. The listed entity itself (standalone) is essentially a holding/EPC/equipment-trading company that reports "only one reportable business segment" under Ind&nbsp;AS-108; the actual generation assets sit inside dozens of wholly-owned and step-down subsidiary SPVs (the Q1FY27 consolidated financial results list 39 audited-by-joint-auditor subsidiaries, 41 audited-by-other-auditor subsidiaries, 102 unaudited/immaterial subsidiaries, and 1 joint venture plus 2 associate companies &mdash; a genuinely sprawling structure, disclosed in full in each quarterly filing's Annexure).</p>
+
+      <h3>FY25&ndash;FY26: EBITDA and energy sales growing faster than reported group profit</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr unless noted</th><th>FY25</th><th>FY26</th><th>YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from Power Supply</td><td>&asymp;9,510<sup>&dagger;</sup></td><td>11,602</td><td class="pos">+22%</td></tr>
+            <tr><td>EBITDA from Power Supply (co-defined)</td><td>&asymp;8,833<sup>&Dagger;</sup></td><td>10,865</td><td class="pos">+23%</td></tr>
+            <tr><td>EBITDA margin (power supply)</td><td>&asymp;92.9%</td><td>91.2%</td><td>&mdash;</td></tr>
+            <tr><td>Consolidated Total Income</td><td>12,422</td><td>13,819</td><td class="pos">+11.2%</td></tr>
+            <tr><td>Group PAT (incl. NCI)</td><td>2,001</td><td>1,987</td><td class="neg">&minus;0.7%</td></tr>
+            <tr><td>PAT attributable to AGEL shareholders</td><td>1,444</td><td>1,652</td><td class="pos">+14.4%</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>8.37</td><td>9.65</td><td class="pos">+15.3%</td></tr>
+            <tr><td>Operational capacity (GW)</td><td>14.2</td><td>19.3</td><td class="pos">+35%</td></tr>
+            <tr><td>Energy sales (Bn units)</td><td>28.1</td><td>37.6</td><td class="pos">+34%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: consolidated FY26 Annual Report P&amp;L (§01 of this table), Q4FY26 equity/debt earnings-call transcripts (24 Apr 2026, revenue/EBITDA growth % and capacity/energy-sales figures as stated by management). &dagger;&Dagger; FY25 revenue and EBITDA "from Power Supply" are not separately disclosed line items in the source &mdash; both are back-calculated from the FY26 absolute figure and management's own stated YoY growth % (11,602/1.22 and 10,865/1.23), shown as implied rather than directly filed. All other rows are directly sourced.</caption>
+      </div>
+      <p>Read carefully, FY26 was two different stories stacked on top of each other. Operationally it was an unambiguous record year: the largest greenfield capacity addition outside China for the second consecutive year, 34% energy-sales growth, and a "power supply" EBITDA line up 23%. But at the <em>consolidated group</em> level, reported PAT was essentially flat (&minus;0.7%) &mdash; because finance costs, depreciation and minority-interest movements all grew faster than the operating profit did. The distinction between "AGEL shareholders' PAT" (+14.4%, genuinely good) and "group PAT including non-controlling interests" (flat) is not cosmetic: it is the difference between the operating story management leads with on calls and what the consolidated P&amp;L actually shows for the year. §04 unpacks exactly what happened between EBITDA and the bottom line.</p>
+
+      <h3>The 2030 target and the Khavda mega-project</h3>
+      <p>AGEL's stated long-run target is 50 GW of renewable capacity plus 5 GW/30 GWh of pumped storage and 50 GWh of battery storage by 2030, up from 20.1 GW today. The centrepiece is <b>Khavda</b>, Gujarat &mdash; a planned 30 GW site spanning 538 sq km (management describes it as "nearly five times the size of Paris"), where operational capacity reached 10.3 GW as of Q1FY27 (up from 5.6 GW a year earlier), with management targeting the full 30 GW there by 2029. Within Khavda, AGEL has also built what it calls one of the world's largest single-location BESS deployments (3.55 GWh installed as of Q1FY27) and is developing a maiden 500 MW pumped-storage project at Chitravathi, Andhra Pradesh, targeted for commissioning within FY27.</p>
+
+      <h3>The moat, as far as this dataset can verify it</h3>
+      <p>Management repeatedly claims sector leadership and an "industry-leading" 91&ndash;94% EBITDA margin; no independent competitor benchmark or third-party market-share verification was found anywhere in this dataset, so that framing is self-reported and treated here as a claim, not a confirmed fact. What <em>is</em> independently verifiable: capacity-addition execution that genuinely outpaces peers on the metrics disclosed (5.1 GW added in FY26, described by management as "the highest greenfield annual capacity extension globally by any company outside China"); an inaugural investment-grade international credit rating (JCR BBB+/Stable, "equivalent to India's sovereign rating," per the April 2026 call); "Must Run" status for renewable generation under the Electricity Act, 2003; a disclosed US$3.4 billion revolving construction-financing facility intended to keep growth "fully funded"; and a large land bank (management cites ~250,000 acres of resource-rich sites). Whether that combination constitutes a durable moat versus simply being the best-capitalised first mover in a policy-driven, still-nascent Indian renewables buildout is a judgment call this dataset cannot fully settle independently &mdash; and §07&ndash;08 below show that AGEL's own group structure (its relationship with sister company Adani Energy Solutions Limited, AESL) is itself now a live variable in how much of that execution accrues to AGEL shareholders specifically.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">A month dominated by dueling analyst calls &mdash; three fresh bullish initiations against one sharply bearish maintained rating, all citing largely the same facts.</p>
+
+      <div class="news-item">
+        <div class="news-date">22 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Investor roadshow schedule announced (Mumbai, Chennai, London)</div>
+          <div class="news-body">Routine Reg. 30 disclosure of upcoming investor meetings for late Aug/early Sept 2026, including the company's annual London event. No new operating or financial data.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">21 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Morgan Stanley initiates Overweight, PT &#8377;1,525 (+17.3%)</div>
+          <div class="news-body">Projects 49% EPS CAGR through FY2031 and contracted capacity growing from 20.1 GW to 38 GW by FY2031, while explicitly flagging three risks: a data-centre demand slowdown, evacuation/transmission delays, and reduced capital-market access &mdash; the same evacuation constraint management itself has repeatedly flagged on calls (§03, §08).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">18 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed &mdash; bearish for AGEL specifically</span>
+          <div class="news-title">Bernstein cuts AGEL target to &#8377;980, raises three group peers</div>
+          <div class="news-body">In the same note that raised Adani Ports' target, Bernstein cut its AGEL FY27 EBITDA estimate by 10% on lower contracted tariffs and an extended capacity timeline (to 2030), setting a &#8377;980 target &mdash; the lowest of any brokerage figure found in this dataset, a full 26% below CMP.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">10 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Khavda reaches 9.4 GW operational (as of 31 Mar 2026), on track for 30 GW by 2029</div>
+          <div class="news-body">35% site completion in 36 months, with 5.1 GW added in FY26 alone &mdash; consistent with the capacity data in §01 and §03.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">7 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish, with caveats</span>
+          <div class="news-title">Axis Capital initiates Buy (+23%); Elara Capital initiates Accumulate (+9%)</div>
+          <div class="news-body">Axis projects 27% EBITDA CAGR through FY32 and &#8377;20,000+ Cr/yr operating cash flow by FY32 (funding 12+ GW of annual capacity additions); Elara projects 30% EBITDA CAGR / 42% PAT CAGR over FY26&ndash;29E. Both explicitly flag a one-year delay risk to the FY30 targets on transmission-connectivity grounds &mdash; the same evacuation risk recurring across nearly every brokerage note in this window.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">4 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral / governance note</span>
+          <div class="news-title">Adani Infra buys 1.03% AGEL stake from Ardour Investment Holding at &#8377;1,400/share</div>
+          <div class="news-body">An intra-promoter-group transfer (Adani Infra's stake rises from 1.31% to 2.34%), consistent in price with a prior June transaction. Does not change public float or bring in new capital; adds to an already very concentrated 82.27% insider/promoter holding (§07).</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">1 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Bullish per source, treated with caution here</span>
+          <div class="news-title">AGEL shifts ~4 GW of portfolio to long-term AESL supply agreements</div>
+          <div class="news-body">Confirms the related-party restructuring discussed in §01/§07/§08: 25-year fixed solar/wind and 15-year fixed battery-storage contracts with sister company Adani Energy Solutions Limited (AESL), which is itself only ~350 MW contracted with end customers so far. The News source's own bullish framing (predictable, annuity-like revenue) is only half the story &mdash; see the Bernstein item below and §07 for the other half.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">24 Jul 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Jefferies trims target &#8377;1,730&rarr;&#8377;1,695, maintains Buy</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">23 Jul 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">Shares fall 6% to a two-month low as Bernstein maintains Underperform</div>
+          <div class="news-body">Bernstein's note called AGEL "the best executor in renewables" while maintaining Underperform on structural grounds: the company has allocated its entire ~4 GW merchant generation pool and 10 GWh of battery storage to AESL at fixed tariffs, which Bernstein reads as transferring a "reasonable part of the upside" away from AGEL shareholders. Separately the same day, JM Financial trimmed its target following the Q1 results (headline-only, no article text retrieved), while ICICI Securities raised its target 25% and stayed bullish (also headline-only) &mdash; illustrating a genuinely split analyst reaction to the identical set of Q1FY27 numbers.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">22 Jul 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Strong results, weak stock reaction</span>
+          <div class="news-title">Q1FY27 results: net profit &#8377;983 Cr (+19.3% group), stock falls 4.5% on the day</div>
+          <div class="news-body">20.1 GW capacity milestone crossed, 27% YoY capacity growth, 1,972 MWh of BESS commissioned in the quarter &mdash; yet the stock fell nearly 4.5% the same day, a disconnect this report reads as the market reacting to the EPS miss vs. consensus (§04, §09) and/or the newly disclosed AESL restructuring, rather than to the headline growth numbers.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">21 Jul 2026</div>
+        <div>
+          <span class="pill bear"><span class="d"></span>Bearish</span>
+          <div class="news-title">Supreme Court petition challenges dismissed CBI-probe plea over alleged &#8377;2,029 Cr bribery</div>
+          <div class="news-body">A petition escalated to the Supreme Court after the Bombay High Court dismissed (Mar 2025) a plea seeking a CBI investigation into alleged bribery to secure state power-purchase agreements, based on the same underlying facts as the Nov 2024 US indictment (§07). A live, independent litigation thread separate from the US proceedings.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">1 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">AGEL surpasses 20 GW; FY26 capacity mix disclosed: 14.2 GW solar / 2.7 GW wind / 3.3 GW hybrid</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">24 Apr 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">FY26/Q4 results: EBITDA +23% to &#8377;10,865 Cr, 91% margin, JCR BBB+ rating secured</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>A May 2026 news headline reads more definitively than the underlying filings support</b>An 18 May 2026 Associated Press headline stated the "US prosecutors drop fraud charges against Gautam Adani." The Company's own Q1FY27 filing (§07) tells a more precise, still-pending story: the SEC filed for entry of a <em>final consent judgment</em> (15 May 2026, with civil monetary penalties, no admission/denial) and the DOJ filed a <em>motion to dismiss</em> the indictment with prejudice (18 May 2026) &mdash; both still awaiting formal EDNY court approval as of the 22 July 2026 filing date. Directionally the same story, but "dropped" overstates how final the matter was as of this dataset's most recent filing.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, capacity growth &amp; guidance</h2></div>
+      <p class="sec-dek">Record capacity growth, a genuine quarterly loss buried in the trailing-twelve-month trend, and an FY27 capacity/BESS pace that is running well behind the annual guidance after one quarter.</p>
+
+      <h3>Quarterly trend</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q1FY26 (Jun-25)</th><th>Q2FY26 (Sep-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue (yfinance basis)</td><td>3,741</td><td>2,824</td><td>2,433</td><td>3,328</td><td>4,323</td></tr>
+            <tr><td>EBITDA (yfinance basis)</td><td>3,231</td><td>n/a<sup>&sect;</sup></td><td>2,449</td><td>2,999</td><td>4,215</td></tr>
+            <tr><td>PAT attributable to parent</td><td>713</td><td>n/a<sup>&sect;</sup></td><td class="neg">&minus;41</td><td>397</td><td>845</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>4.26</td><td>n/a</td><td class="neg">&minus;0.38</td><td>2.33</td><td>5.05</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance quarterly income statement. &sect; Q2FY26 (Sep-25) EBITDA and PAT are null in the source data &mdash; a genuine gap, left as n/a rather than estimated; revenue for that quarter is available and shown. Company-filed figures independently available for Q1FY26, Q4FY26 and Q1FY27 (Total Income basis: &#8377;4,006 / &#8377;3,727 / &#8377;4,663 Cr; PAT-to-parent: &#8377;713 / &#8377;397 / &#8377;845 Cr) reconcile closely with this yfinance series on PAT, confirming the trend even though the two sources define "revenue" slightly differently (yfinance nets certain items the company's own Total Income line does not).</caption>
+      </div>
+      <p>The trailing twelve months contain a genuine loss quarter: Q3FY26 (Dec-25) printed a parent-level net loss of &#8377;41 Cr, reported at the time (per News/overview.md headlines) as driven by "higher finance costs." That is not visible in the FY26 <em>annual</em> figures in §01, which smooth it into a still-positive full-year number &mdash; a reminder that AGEL's quarterly earnings are considerably more volatile than the annual headline suggests, and that the Q1FY27 print (+18.5% PAT growth to parent) followed a base period that included one loss-making and one merely-modest quarter, not a clean prior-year comparable.</p>
+
+      <h3>Q1FY27 delivered vs. FY26 delivered</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">FY26 capacity added</div><div class="v">5.1 GW</div><div class="d">+35% YoY; largest greenfield addition outside China, 2nd year running</div></div>
+        <div class="stat"><div class="k">FY26 energy sales</div><div class="v">37.6 Bn units</div><div class="d">+34% YoY</div></div>
+        <div class="stat"><div class="k">Q1FY27 capacity added</div><div class="v">848 MW</div><div class="d">In-quarter; cumulative 20.1 GW (+27% YoY)</div></div>
+        <div class="stat"><div class="k">Q1FY27 energy sales</div><div class="v">13,657 Mn units</div><div class="d">+30% YoY</div></div>
+      </div>
+
+      <h3>PPA mix and realized pricing</h3>
+      <p>As of the April 2026 call, AGEL's 19.3 GW operating base broke down as: 9.7 GW fully under long-term PPA; 5.3 GW classified "infirm" &mdash; PPA-designated capacity selling into the merchant market only until evacuation infrastructure is ready, at which point it converts automatically; and 4.2 GW pure merchant capacity awaiting long-term contracting. Total signed PPA pipeline stood at 28 GW. Management's blended average PPA rate across the book was &#8377;3.10/unit; new contracting guidance given in April was &#8377;2.60&ndash;2.80/unit for solar and &#8377;3.70&ndash;3.80/unit for wind. By the July Q1FY27 call, the benchmark rates cited for the new AESL offtake agreements had come in at roughly &#8377;2.7 (solar) and &#8377;3.4&ndash;3.5 (wind) &mdash; solar in line with April guidance, but wind roughly 5&ndash;8% <em>below</em> the range guided three months earlier, a modest miss worth flagging rather than smoothing over. Infirm/merchant realization in Q1FY27 was cited at roughly &#8377;2.5/unit, "including RECs."</p>
+
+      <h3>Guidance vs. actual: capacity and BESS pace</h3>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Q1FY27 pace implies a steep back-half ramp is required on both fronts</b>Management guided (Apr 2026, reiterated Jul 2026) to 4.5&ndash;5.0 GW of FY27 greenfield capacity and "north of 10,000 MWh" (10+ GWh) of cumulative BESS capacity by FY27-end. Q1FY27 delivered only 848 MW of the ~4.5&ndash;5.0 GW annual target (roughly 17&ndash;19% of the low end, in the first of four quarters) and BESS capacity of 3.55 GWh cumulative &mdash; about a third of the 10+ GWh target. Management's own explanation ties both to evacuation-infrastructure timing (7 GW of new Khavda transmission capacity expected online by Dec 2026, another ~7 GW by Mar 2027) rather than execution capability &mdash; the company states its own execution capacity is 7&ndash;8 GW/year, well above the 4.5&ndash;5.0 GW it is choosing to build to avoid repeating last year's evacuation bottleneck. That explanation is plausible and consistent with management's own prior candour about curtailment (§08), but it is still a guided target that is currently running behind its own pacing after one quarter.</div>
+      </div>
+
+      <h3>Segment mix, geography &amp; expansion</h3>
+      <p>Capacity mix as of FY26: 14.2 GW solar, 2.7 GW wind, 3.3 GW hybrid, spread across 12 Indian states &mdash; entirely domestic; no export revenue or new-country market entry was found in this dataset, despite two wholly-owned subsidiaries named "Adani Renewable Energy Middle East Limited" and "AGEL Global IFSC Limited" appearing in the FY26 consolidated entity list with no disclosed revenue. <b>Horizontal expansion</b> is clear: from solar/wind/hybrid generation into battery storage (BESS) and now pumped hydro storage (PSP, first project targeted for FY27). <b>Vertical expansion</b> is limited: AGEL develops and operates its own assets (via its in-house Energy Network Operations Center for O&amp;M) but does not manufacture its own panels or turbines &mdash; module/cell manufacturing sits in a separate group entity (Mundra Solar Energy Limited appears in AGEL's own consolidated accounts only as an <em>associate</em>, not a subsidiary). AGEL's self-reported claim of a 14% share of India's utility-scale solar capacity (News, 1 Jul 2026) has no independent third-party verification in this dataset.</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">Best-in-class EBITDA margins mask a much rougher story beneath the line: finance costs, depreciation, deferred tax and minority interest together consumed almost all of FY26's EBITDA growth at the consolidated level.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %</th><th>Q1FY26</th><th>Q4FY26</th><th>Q1FY27</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>EBITDA margin (power supply, co-defined)</td><td>93%</td><td>91%</td><td>94%</td><td>&asymp;92.9%</td><td>91.2%</td></tr>
+            <tr><td>Net margin (PAT-to-parent / Total Income)</td><td>17.8%</td><td>10.7%</td><td>18.1%</td><td>11.6%</td><td>12.0%</td></tr>
+            <tr><td>Finance costs (net)</td><td>1,525</td><td>1,626</td><td>2,001</td><td>5,492</td><td>6,484</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>767</td><td>885</td><td>1,026</td><td>2,498</td><td>3,372</td></tr>
+            <tr><td>Share of JV/Associate profit</td><td>117</td><td>82</td><td>58</td><td>444</td><td>417</td></tr>
+            <tr><td>Non-controlling interest (NCI) share of profit</td><td>111</td><td>117</td><td>138</td><td>557</td><td>335</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: consolidated quarterly financial-results filings (Q1FY26, Q4FY26, Q1FY27) and FY26 Annual Report consolidated P&amp;L.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>FY26 group PAT was flat despite 23% EBITDA growth &mdash; the single most important number in this section</b>EBITDA from power supply grew 23% YoY in FY26, but consolidated Total Income grew only 11.2% (not 22% &mdash; that 22% figure is specific to the "power supply" revenue sub-line; broader Revenue from Operations grew 15.3% and Other Income actually <em>fell</em> 26%, from &#8377;1,210 Cr to &#8377;891 Cr), and group PAT including non-controlling interests was essentially flat (&#8377;2,001 Cr &rarr; &#8377;1,987 Cr, &minus;0.7%). Finance costs (+18.0%) and depreciation (+35.0%) both grew faster than the group's operating profit could absorb at the same pace all year. The one genuinely good offsetting fact: NCI's absolute share of profit <em>fell</em> 40% (&#8377;557 Cr &rarr; &#8377;335 Cr FY25&rarr;FY26), which is why PAT attributable to AGEL shareholders specifically still grew a healthy 14.4% even as the group total didn't move. Whether NCI's declining share persists or reverses (new JV-partnered SPVs, e.g. the TotalEnergies joint ventures disclosed in the FY26 audit's Key Audit Matters, are still ramping) is worth watching each quarter.</div>
+      </div>
+
+      <h3>The curtailment and merchant-realization drag, quantified by management</h3>
+      <p>On the April 2026 call, Executive Director Sagar Adani gave an unusually specific number: AGEL lost <b>&#8377;500 Cr</b> of FY26 EBITDA to grid curtailment, plus a further <b>&#8377;800&ndash;1,000 Cr</b> from realizing below long-term contracted rates on infirm/merchant power &mdash; a combined <b>&#8377;1,300&ndash;1,500 Cr</b> EBITDA headwind for the year, which management at the time characterized largely as a "one-time" consequence of FY26's deliberately aggressive merchant-capacity build (done to lock in ISTS transmission-charge waivers before they expired). Three months later, on the July Q1FY27 call, curtailment was still cited as reducing EBITDA by <b>5&ndash;7%</b> in the current quarter, with management guiding that the issue should ease only "by the end of this calendar year" &mdash; i.e., a real, ongoing cost, not fully resolved as the April framing implied, even if the company's own transcript is admirably candid that "I don't think anyone can say this issue is permanently behind us" (§08).</p>
+
+      <h3>Deferred tax and minority-interest volatility add further quarter-to-quarter noise</h3>
+      <p>Q1FY27's deferred tax line swung to a &#8377;214 Cr <em>charge</em>, versus a &#8377;12 Cr deferred tax <em>credit</em> in Q4FY26 &mdash; a meaningful, non-operating swing that dented reported EPS growth relative to pre-tax profit growth in the latest quarter. Combined with the NCI volatility above, AGEL's quarter-to-quarter EPS is driven by a genuinely wide set of below-EBITDA moving parts, not just the operating business &mdash; a pattern consistent with the persistent, large negative earnings surprises documented in §09.</p>
+
+      <h3>Forward margin framing (management's own, not audited)</h3>
+      <p>No explicit forward EBITDA-margin percentage target was given in either transcript beyond "sustaining industry-leading" levels via O&amp;M efficiency. CFO Saurabh Shah did offer two specific, quantified forward metrics on the Q1FY27 call: a BESS EBITDA thumb-rule of <b>&#8377;25&ndash;30 lakh per MWh</b> of installed capacity, and a company-wide <b>"run-rate" EBITDA</b> figure of roughly <b>&#8377;17,000 Cr currently, targeted at &#8377;21,000 Cr by FY27-end</b>. Both are management's own annualized, forward-looking framing devices &mdash; not the audited quarterly/annual EBITDA reported in the P&amp;L above &mdash; and this report treats them as directional guidance rather than comparable actuals.</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">A ~29% larger balance sheet in one year, funded by a large promoter warrant conversion plus continued heavy debt issuance &mdash; leverage keeps climbing in absolute terms even as the equity base improved.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY25 (Mar-25)</th><th>FY26 (Mar-26)</th><th>YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Total assets</td><td>1,11,398</td><td>1,44,097</td><td class="pos">+29.4%</td></tr>
+            <tr><td>Property, plant &amp; equipment</td><td>76,218</td><td>97,070</td><td class="pos">+27.4%</td></tr>
+            <tr><td>Capital work in progress</td><td>14,479</td><td>19,016</td><td class="pos">+31.3%</td></tr>
+            <tr><td>Total equity</td><td>22,573</td><td>29,879</td><td class="pos">+32.4%</td></tr>
+            <tr><td>&nbsp;&nbsp;&ndash; attributable to AGEL shareholders</td><td>12,137</td><td>19,965</td><td class="pos">+64.5%</td></tr>
+            <tr><td>&nbsp;&nbsp;&ndash; non-controlling interests</td><td>10,436</td><td>9,914</td><td class="neg">&minus;5.0%</td></tr>
+            <tr><td>Total borrowings (current + non-current)</td><td>77,476</td><td>98,373</td><td class="neg">+27.0%</td></tr>
+            <tr><td>Supplier credit</td><td>593</td><td>2,105</td><td class="neg">+255%</td></tr>
+            <tr><td>Cash &amp; cash equivalents</td><td>2,212</td><td>1,735</td><td class="neg">&minus;21.6%</td></tr>
+            <tr><td>Net debt (yfinance)</td><td>75,264</td><td>96,638</td><td class="neg">+28.4%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 Annual Report consolidated balance sheet; net debt from MarketData/yfinance annual balance sheet (independently cross-checks against Total borrowings less Cash above).</caption>
+      </div>
+
+      <h3>The &#8377;7,012 Cr warrant conversion &mdash; the main driver of the improved equity base</h3>
+      <p>In December 2023/January 2024, AGEL issued 6.31 crore warrants on a preferential basis to a promoter-group entity at &#8377;1,480.75/warrant (aggregate consideration &#8377;9,350 Cr). These were called up progressively and fully converted to equity shares during FY26, bringing in &#8377;7,012 Cr of cash (per the consolidated cash-flow statement), stated as used for debt repayment, subsidiary investment and general corporate purposes. This single transaction is the primary reason parent-attributable equity rose 64.5% YoY and the standalone Debt-Equity ratio improved from 2.32x to 1.30x (per the FY26 Annual Report's own Schedule-III ratio disclosure, <b>standalone basis only</b>) &mdash; a genuinely positive capital-structure event, but a one-off rather than a repeatable source of deleveraging.</p>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Leverage is still growing quickly in absolute terms</b>Even after the warrant conversion, consolidated total borrowings rose 27.0% YoY (&#8377;77,476 Cr &rarr; &#8377;98,373 Cr) and net debt rose 28.4% &mdash; both broadly tracking the 29.4% asset growth, so relative leverage intensity hasn't obviously worsened, but the absolute debt load keeps climbing at nearly the same pace as the asset base, meaning continued market access for both debt and equity remains structurally necessary (§06). Supplier credit &mdash; effectively vendor-financed working capital &mdash; also jumped 255% (&#8377;593 Cr &rarr; &#8377;2,105 Cr), an additional, less visible source of capex funding worth tracking.</div>
+      </div>
+
+      <h3>FY27 capex guidance vs. Q1 delivered</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">FY27 capex guidance</div><div class="v">&#8377;40,000&ndash;42,000 Cr</div><div class="d">Given Apr 2026, reiterated at &#8377;42,000 Cr in Jul 2026</div></div>
+        <div class="stat"><div class="k">FY26 actual capex</div><div class="v">&#8377;26,097 Cr</div><div class="d">Implies a ~61% YoY step-up guided for FY27</div></div>
+        <div class="stat"><div class="k">Q1FY27 capex incurred</div><div class="v">&#8377;8,826 Cr</div><div class="d">+41% YoY; annualizes to &asymp;&#8377;35,300 Cr &mdash; below the full-year guide</div></div>
+      </div>
+      <p>Q1FY27's capex run-rate, if repeated flat across the year, would land roughly 16% short of the &#8377;42,000 Cr guidance &mdash; consistent with the back-half-loaded capacity/BESS ramp flagged in §03, but a gap worth watching in subsequent quarters rather than assuming will self-correct.</p>
+
+      <h3>Standalone ratio disclosure (Schedule III) &mdash; explicitly not representative of the consolidated group</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th></th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Current ratio</td><td>0.69x</td><td class="neg">0.61x</td></tr>
+            <tr><td>Debt-equity ratio</td><td>2.32x</td><td class="pos">1.30x</td></tr>
+            <tr><td>Debt service coverage ratio</td><td class="neg">0.38x</td><td>7.60x</td></tr>
+            <tr><td>Return on equity</td><td>8.32%</td><td class="neg">5.23%</td></tr>
+            <tr><td>Trade receivables turnover</td><td>5.75x</td><td>5.19x</td></tr>
+            <tr><td>Trade payables turnover</td><td>10.21x</td><td>5.72x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 Annual Report, Note 45 "Ratio Analysis" (standalone financial statements only &mdash; no consolidated equivalent table was found in the source). The FY25 debt-service coverage figure of 0.38x reflects a large bond repayment/maturity lump in that year, not ongoing distress; both ratios should be read as one-off-affected rather than trend-representative.</caption>
+      </div>
+      <p><b>Caveat, stated plainly:</b> the standalone entity is a holding/EPC/equipment-trading company with minimal own generation (its "Power Supply" revenue line is under &#8377;10 Cr/quarter) &mdash; these ratios describe that holding company's own liquidity and leverage, not the ~280-subsidiary consolidated group's actual project-finance economics, where leverage is typically 75&ndash;85% debt-funded at the SPV level by design (standard for utility-scale renewable IPPs globally). No consolidated Schedule-III ratio table was found anywhere in this dataset &mdash; a genuine disclosure gap, flagged rather than filled with an estimate.</p>
+
+      <h3>Credit rating</h3>
+      <p>AGEL secured an inaugural international rating of <b>JCR BBB+/Stable</b> from Japan Credit Rating Agency in FY26, described by management as "equivalent to India's sovereign credit rating" &mdash; a genuine capital-markets access milestone. Management stated on the April 2026 call that it expects "downward pressure" on its blended cost of debt (cited then at 8.9%) as a result, though no updated blended cost-of-debt figure was disclosed on the July Q1FY27 call.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Free cash flow has been negative in every year for which data exists &mdash; structurally normal for a renewable IPP mid-buildout, but a real, ongoing dependency on capital-markets access, not a discretionary choice.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY25</th><th>FY26</th><th>YoY</th></tr></thead>
+          <tbody>
+            <tr><td>Cash from operations (CFO)</td><td>8,957</td><td>10,135</td><td class="pos">+13.2%</td></tr>
+            <tr><td>Capex (PP&amp;E + intangibles)</td><td>&minus;24,776</td><td>&minus;26,097</td><td>+5.3%</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="neg">&minus;15,819</td><td class="neg">&minus;15,962</td><td>&mdash;</td></tr>
+            <tr><td>Cash from investing (CFI)</td><td>&minus;19,827</td><td>&minus;26,227</td><td>+32.3%</td></tr>
+            <tr><td>Cash from financing (CFF)</td><td>+11,475</td><td>+15,615</td><td>+36.1%</td></tr>
+            <tr><td>Net change in cash</td><td>+605</td><td>&minus;477</td><td>&mdash;</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: FY26 Annual Report consolidated statement of cash flows. Free cash flow independently cross-checks exactly against MarketData/yfinance's own "Free Cash Flow" line (&minus;15,819 / &minus;15,962) &mdash; a clean internal-consistency pass.</caption>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>CFO grew slower than EBITDA in FY26 &mdash; a mild, not alarming, earnings-quality note</b>CFO grew 13.2% while power-supply EBITDA grew 23% &mdash; the gap is mostly explained by a &#8377;634 Cr working-capital <em>use</em> of cash in FY26 versus a &#8377;133 Cr working-capital <em>source</em> in FY25 (driven by growth in other assets and other financial assets, per the cash-flow note). This is a real, quantifiable divergence worth tracking, though nowhere near the scale of a receivables-driven red flag &mdash; AGEL's core business (long-term PPA power sales to DISCOMs/government-backed counterparties) does not carry the receivables-quality risk profile of, say, a project-milestone-billing business.</div>
+      </div>
+
+      <p><b>Capex growth (+5.3%) lagged capacity growth (+35% GW) and energy-sales growth (+34%) by a wide margin in FY26</b> &mdash; plausibly explained by a falling blended cost per MW as the mix shifts toward lower-cost solar-heavy Khavda capacity, or by a lag between capex spend and commissioning (spend in one year often capitalizes into capacity the following year), but this dataset cannot independently confirm which explanation dominates; it is presented here as an interesting pattern rather than an asserted cause.</p>
+
+      <p>Free cash flow has been negative in both years shown, funded by continuous debt issuance (&#8377;37,391 Cr gross debt raised in FY26 against &#8377;19,905 Cr repaid) and the one-off &#8377;7,012 Cr warrant-conversion equity inflow. That is standard, even expected, for a renewable IPP in an aggressive multi-year capacity build-out &mdash; but it does mean AGEL's growth remains entirely externally funded, not self-funding, and no formal free-cash-flow or "self-funding by year X" target was found anywhere in either available transcript. Management's own forward cash commentary is expressed exclusively in EBITDA run-rate terms (§04), not FCF terms &mdash; a disclosure gap worth noting given how central continued capital-markets access is to the whole growth story, particularly against the backdrop of the still-unresolved US litigation matter (§07).</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">An experienced, execution-focused leadership team; a board that is majority-independent but chaired by the promoter with no Lead Independent Director; and a still-pending US legal matter now trending toward settlement.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Gautam S. Adani</div>
+          <div class="role">Chairman (Promoter, non-independent, non-executive)</div>
+          <div class="bio">Group founder and Chairman. Board Chair role is explicitly disclosed as promoter/non-independent/non-executive in the FY26 Annual Report's governance section; the company states it has no Lead Independent Director.</div>
+        </div>
+        <div class="person">
+          <div class="name">Vneet S. Jaain</div>
+          <div class="role">Managing Director (re-appointed for 5 years w.e.f. 10 Jul 2025)</div>
+          <div class="bio">Signs off on the annual and quarterly financial statements alongside the CEO and CFO.</div>
+        </div>
+        <div class="person">
+          <div class="name">Sagar R. Adani</div>
+          <div class="role">Executive Director</div>
+          <div class="bio">The primary voice on both available earnings calls (Apr and Jul 2026), fielding almost all analyst questions on capex, PPA pricing, curtailment and the AESL restructuring directly and in detail.</div>
+        </div>
+        <div class="person">
+          <div class="name">Ashish Khanna</div>
+          <div class="role">Chief Executive Officer</div>
+        </div>
+        <div class="person">
+          <div class="name">Saurabh Shah</div>
+          <div class="role">Chief Financial Officer</div>
+        </div>
+        <div class="person">
+          <div class="name">Rajat Seksaria</div>
+          <div class="role">Chief Executive Officer &mdash; Battery Storage</div>
+          <div class="bio">A newly prominent, dedicated segment-leadership role on the Q1FY27 call, reflecting BESS's rising weight in the business; management confirmed BESS results will start being reported as a separate line item going forward.</div>
+        </div>
+        <div class="person">
+          <div class="name">Pragnesh Darji</div>
+          <div class="role">Company Secretary</div>
+        </div>
+        <div class="person">
+          <div class="name">Poly Singh Arora</div>
+          <div class="role">Chief People Officer (appointed 22 Jul 2026)</div>
+          <div class="bio">New Senior Management Personnel-level HR hire, focused on talent and culture as headcount scales with the capacity build-out.</div>
+        </div>
+      </div>
+
+      <h3>Board composition</h3>
+      <p>Per the FY26 Annual Report's own governance disclosure: excluding the Board Chair (promoter, non-independent, non-executive), the Board comprises ~55% Independent Directors; the Company states it has no Lead Independent Director. A dedicated Corporate Responsibility Committee (ESG oversight) is 100% Independent Directors.</p>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>The US DOJ/SEC matter: trending toward resolution, but formally still open as of the latest filing</b>In FY25, the Company disclosed that a US indictment (Nov 2024, Eastern District of New York) and a related SEC civil complaint named certain of its directors &mdash; per the Company's own wording, "two of the executive directors and one of the non-executive directors" &mdash; on securities-fraud, wire-fraud-conspiracy and disclosure-related counts. <b>The Company itself was not named as a defendant in either proceeding.</b> An independent legal review commissioned by the Company in FY25 found no non-compliance. As of the Q1FY27 filing (22 Jul 2026): the SEC filed a request for entry of a final consent judgment (15 May 2026, civil monetary penalties, no admission/denial) and the DOJ filed a motion to dismiss the indictment with prejudice (18 May 2026) &mdash; <b>both still pending EDNY court approval</b> as of this dataset's latest filing. Both the FY26 statutory audit and the Q1FY27 limited review carry an unmodified/clean opinion with an <em>Emphasis of Matter</em> (not a qualification) on this matter. Separately, a Supreme Court petition (filed ~21 Jul 2026, News) challenges a dismissed Bombay High Court plea seeking a CBI probe into alleged &#8377;2,029 Cr bribery tied to the same underlying facts &mdash; a live, independent legal thread this report cannot resolve from the data available.</div>
+      </div>
+
+      <h3>Auditors</h3>
+      <p>Joint statutory auditors S R B C &amp; CO LLP (EY network affiliate) and Shah Dhandharia &amp; Co LLP issued unmodified opinions on both the FY26 audited standalone/consolidated financial statements and the Q1FY27 limited review, in both cases with the Emphasis of Matter noted above. No auditor change, qualification, or going-concern note was found in this dataset.</p>
+
+      <h3>Ownership &amp; the AESL-related governance question</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Insider / promoter holding</div><div class="v">82.27%</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">16.98%</div></div>
+        <div class="stat"><div class="k">Float</div><div class="v">33.5 Cr sh.</div><div class="d">of 164.7 Cr shares outstanding</div></div>
+      </div>
+      <p>The single most consequential governance item in this filing window is the AESL related-party restructuring described in §01/§03/§08: roughly 4 GW of previously merchant/open renewable capacity, plus growing battery-storage volume, has been contracted to sister company Adani Energy Solutions Limited on 25-year (RE) and 15-year (BESS) fixed-price, "arm's-length, market-linked" terms, approved by the Board and Audit Committee per management's statements on the July call. Management frames this explicitly as risk reduction &mdash; trading upside volatility for predictable, contracted returns matching AGEL's own stated ~15&ndash;16% hurdle-IRR targets. Bernstein's maintained Underperform rating reads the identical facts as a value transfer to AESL. This report does not have the data to independently adjudicate which reading is correct, but notes the scale is large enough (a meaningful share of AGEL's non-DISCOM-contracted capacity) that it is not a minor related-party footnote &mdash; it is now a structural feature of how AGEL's growth converts (or doesn't) to shareholder value, and belongs in every subsequent quarter's review of this stock.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other conference-call insights</h2></div>
+      <p class="sec-dek">Candid disclosure on curtailment risk, quantified battery-storage unit economics, and a group-wide division of labour crystallizing around AESL as the customer-facing entity.</p>
+
+      <h3>Management's own candour on curtailment risk is unusually direct</h3>
+      <blockquote>
+        "So, if your question to me is that does this ensure that there will never be curtailment going forward, that everything will be hunky dory and run smoothly&hellip; I don't think that one or anyone can say that this issue is permanently behind us."
+        <cite>&mdash; Sagar Adani, Executive Director, Q4FY26 equity earnings call, 24 Apr 2026</cite>
+      </blockquote>
+      <p>That admission is worth weighing against the more upbeat framing used elsewhere on the same call and reiterated in the Q1FY27 call ("we do expect that by the end of this calendar year&hellip; there should not be any curtailment"). Both statements are on the record; the more cautious one is the more analytically useful, since it is the one management is willing to stand behind even under direct questioning.</p>
+
+      <h3>Battery-storage unit economics, quantified</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">BESS capex thumb-rule</div><div class="v">&#8377;1.5 Cr / MWh</div></div>
+        <div class="stat"><div class="k">BESS EBITDA thumb-rule</div><div class="v">&#8377;25&ndash;30 lakh / MWh</div></div>
+        <div class="stat"><div class="k">Target hurdle IRR</div><div class="v">15&ndash;16%</div></div>
+        <div class="stat"><div class="k">Arbitrage spread cited</div><div class="v">&#8377;4&ndash;5 / unit</div><div class="d">Charge ~&#8377;2.5 off-peak, discharge at evening peak</div></div>
+      </div>
+      <p>Management (Rajat Seksaria, CEO Battery Storage) was candid that cycle-count economics remain unproven at scale in India: "there will be one or two years before we would know whether we are able to do one cycle more than one cycle&hellip; that's something which we are studying." This is a genuinely new, still-developing part of the business whose economics are being learned in real time rather than modeled with confidence &mdash; a reasonable caveat for anyone valuing the ~50 GWh 2030 BESS target on today's thumb-rules.</p>
+
+      <h3>AESL is becoming the group's customer-facing "energy solutions" layer</h3>
+      <p>Multiple Q1FY27 answers converged on the same structural point: AGEL is deliberately stepping back from direct C&amp;I/data-center customer relationships, ceding that role to AESL, while AGEL itself "concentrate[s] more on operational excellence, project execution, deploying the CapEx more efficiently." When asked about Adani Power's participation in a round-the-clock (RTC) renewable tender, management declined to comment on a sister company but confirmed the group's stated principle: individual generating companies (like AGEL) supply capacity, while AESL blends sources and manages the end-customer/DISCOM relationship. This is a coherent group strategy, but it also means AGEL's own investor-facing growth story increasingly depends on AESL's separate ability to contract that capacity out &mdash; a dependency worth tracking via AESL's own disclosures going forward, not just AGEL's.</p>
+
+      <h3>Structural demand tailwind flagged, not yet in the numbers</h3>
+      <p>Both AGEL management (Q1FY27 call) and Morgan Stanley's initiation note (§02, §09) cite rising AI/data-center-driven power demand as a structural tailwind. No AGEL disclosure in this dataset yet quantifies data-center-specific contracted volume or revenue &mdash; it remains a forward narrative rather than a booked number as of Q1FY27.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">A genuinely split Street &mdash; and a persistent pattern of missing consensus EPS by a wide margin, quarter after quarter.</p>
+
+      <div class="stat-row">
+        <div class="stat"><div class="k">Consensus recommendation</div><div class="v">Buy</div><div class="d">9 analysts (yfinance)</div></div>
+        <div class="stat"><div class="k">Mean price target</div><div class="v">&#8377;1,583</div><div class="d">+20% vs CMP &#8377;1,320</div></div>
+        <div class="stat"><div class="k">Target range</div><div class="v">&#8377;980 &ndash; &#8377;1,800</div><div class="d">Bernstein low, high-end unnamed in yfinance</div></div>
+      </div>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Brokerage</th><th>Rating</th><th>Target</th><th>Basis cited</th></tr></thead>
+          <tbody>
+            <tr><td>Morgan Stanley</td><td>Overweight</td><td>&#8377;1,525 (+17.3%)</td><td>49% EPS CAGR to FY31; contracted capacity 20.1&rarr;38 GW by FY31</td></tr>
+            <tr><td>Axis Capital</td><td>Buy</td><td>+23% upside</td><td>27% EBITDA CAGR to FY32; &#8377;20,000+ Cr/yr OCF by FY32</td></tr>
+            <tr><td>Elara Capital</td><td>Accumulate</td><td>+9% upside</td><td>30% EBITDA / 42% PAT CAGR, FY26&ndash;29E</td></tr>
+            <tr><td>Jefferies</td><td>Buy</td><td>&#8377;1,695 (trimmed from &#8377;1,730)</td><td>Not detailed in source</td></tr>
+            <tr><td>ICICI Securities</td><td>Bullish</td><td>Raised 25% (exact figure not retrieved)</td><td>Headline-only source</td></tr>
+            <tr><td>JM Financial</td><td>&mdash;</td><td>Trimmed post-Q1 (exact figure not retrieved)</td><td>Headline-only source</td></tr>
+            <tr><td>Bernstein</td><td class="neg">Underperform</td><td class="neg">&#8377;980 (&minus;26%)</td><td>AESL related-party value transfer (§07); "best executor" but structurally bearish</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: News feed, 24 Jul&ndash;21 Aug 2026, plus MarketData/yfinance analyst summary. Targets not independently re-derived by this report.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>AGEL has missed consensus quarterly EPS in every one of the last six reported quarters</b>Per MarketData/yfinance's earnings-history table: Q1FY27 (est. &#8377;5.43 vs. actual &#8377;5.06, &minus;6.8% surprise), Q4FY26 (&#8377;3.60 vs. &#8377;2.89, &minus;19.7%), Q3FY26 (&#8377;5.45 vs. &minus;&#8377;0.31 &mdash; a swing to an actual loss against a positive estimate, &minus;105.6%), Q2FY26 (&#8377;8.08 vs. &#8377;3.98, &minus;50.8%), Q1FY26 (&#8377;7.11 vs. &#8377;4.34, &minus;39.0%), Q4FY25 (&#8377;3.43 vs. &#8377;1.91, &minus;44.4%). Every single one of the last six quarters missed, several by more than 40%. (Note: yfinance's own "reported EPS" in this table does not always exactly match the company-filed basic EPS used elsewhere in this report &mdash; e.g. Q4FY26 shows &#8377;2.89 here vs. &#8377;2.33 in the company's own P&amp;L, likely a normalized/adjusted-EPS methodology difference &mdash; but the <em>direction and persistence</em> of the miss pattern is the point, not the exact magnitude.) A "Buy" consensus that has been unable to correctly model AGEL's own quarterly EPS six times running is a genuine reason to discount the precision, if not necessarily the direction, of the Street's forward estimates.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock that has round-tripped from &#8377;774 to &#8377;1,631 and back to &#8377;1,320 within eighteen months, now trading at 126x trailing and 44x forward earnings against a genuinely split analyst community.</p>
+
+      <h3>Eighteen months of price action</h3>
+      <div id="pchart"></div>
+      <p style="font-size:13px; color:var(--ink-mute); margin-top:-8px;">Month-end closing price, Feb 2025&ndash;Aug 2026 (NSE, via yfinance daily price history). The 52-week intraday range (&#8377;765.0&ndash;&#8377;1,631.5) extends beyond every month-end close plotted, consistent with the sharp swings around each results/curtailment/litigation news cycle documented in §02&ndash;04.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">126.6x</div></div>
+        <div class="stat"><div class="k">Forward P/E</div><div class="v">44.3x</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">11.3x</div><div class="d">Book value/share &#8377;117.11 (yfinance)</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">27.9x</div><div class="d">EV &#8377;3,26,813 Cr (net-debt heavy)</div></div>
+      </div>
+      <p>The 126x trailing multiple is inflated less by an unusually rich "clean" valuation and more by trailing EPS itself being depressed by the Q3FY26 loss quarter and the deferred-tax/NCI volatility documented in §04 &mdash; the 44x forward multiple is the more decision-relevant number, and it still prices in a lot of the growth story working out broadly as guided. A rough book-value cross-check: parent-attributable equity of &#8377;19,965 Cr over &sim;164.7 Cr diluted shares implies book value/share of roughly &#8377;121 (close to yfinance's independently stated &#8377;117.11, likely a small share-count/date difference) &mdash; at CMP &#8377;1,320, that's a P/B of ~10.9&ndash;11.3x either way, a rich multiple typical of a high-growth infrastructure story, leaving little valuation cushion if execution disappoints.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built directly from the range of analyst estimates in §09 and the company's own guidance in §03&ndash;05 &mdash; not this report's own proprietary model. Given six consecutive quarters of consensus EPS misses (§09), treat all three cases as illustrative ranges, not point forecasts.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;950&ndash;1,100</div>
+          <div class="rng">&minus;28% to &minus;17% from CMP</div>
+          <ul>
+            <li>Bernstein's read on the AESL restructuring proves correct &mdash; AGEL's own upside is durably capped by the fixed-price offtake, and FY27 EBITDA growth undershoots even the already-cut estimate</li>
+            <li>Curtailment/evacuation delays persist past calendar 2026 (per the Morgan Stanley and Axis/Elara risk flags in §02); capacity and BESS additions land at or below the low end of guidance, echoing Q1's slow pace (§03)</li>
+            <li>FY27 capex again undershoots the &#8377;42,000 Cr guide (consistent with Q1's ~&#8377;35,300 Cr annualized run-rate); leverage keeps outrunning FCF (§05&ndash;06) without a repeat equity infusion</li>
+            <li>Consensus EPS misses continue; market de-rates the forward multiple toward the low-30s&times;</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;1,500&ndash;1,700</div>
+          <div class="rng">+14% to +29% from CMP</div>
+          <ul>
+            <li>Capacity reaches ~24&ndash;25 GW by FY27-end (guided 4.5&ndash;5.0 GW addition, requiring the guided back-half evacuation-driven ramp to materialize); BESS approaches but plausibly falls somewhat short of the 10+ GWh target</li>
+            <li>FY27 EBITDA growth in the low-to-mid 20s% (blending Q1's +33% print, Bernstein's 10%-cut estimate, and Axis/Elara's 27&ndash;30% CAGR views); parent PAT growth in the mid-teens to low-20s%, roughly tracking FY26's +14.4% pattern as finance-cost growth keeps pace with EBITDA</li>
+            <li>Curtailment drag eases toward year-end as guided, without being fully eliminated</li>
+            <li>Multiple holds broadly in line with the current 44x forward P/E, consistent with the yfinance mean target (&#8377;1,583) and Jefferies' &#8377;1,695</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;1,800&ndash;2,050</div>
+          <div class="rng">+36% to +55% from CMP</div>
+          <ul>
+            <li>Both tranches of Khavda evacuation capacity (7 GW by Dec-26, another ~7 GW by Mar-27) land on schedule; curtailment drag unwinds faster than guided; capacity execution accelerates toward the company's own stated 7&ndash;8 GW/year capability</li>
+            <li>BESS hits or exceeds the 10+ GWh FY27 target with premium unit economics (top of the &#8377;25&ndash;30 lakh/MWh EBITDA range); AESL successfully contracts the offtake to end customers faster than its current ~350 MW pace, validating rather than capping AGEL's growth story</li>
+            <li>Data-center/AI-driven C&amp;I demand (§08) converts to booked volume faster than modeled</li>
+            <li>Market re-rates toward Morgan Stanley's 49% EPS-CAGR-to-FY31 framing and the top of the disclosed target range (&#8377;1,800)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> execution at a scale few peers globally can match &mdash; 5.1 GW of greenfield capacity added in FY26, the largest outside China for the second consecutive year, with Q1FY27 sustaining 27% capacity growth and 29%/33% revenue/EBITDA growth; an industry-leading, if self-reported, 91&ndash;94% EBITDA margin; a genuine capital-structure win in the &#8377;7,012 Cr promoter warrant conversion that materially improved the standalone debt-equity ratio; an inaugural investment-grade international credit rating (JCR BBB+); AGEL-shareholder-attributable PAT that actually grew a healthy 14.4% in FY26 even as the consolidated group total was flat; a majority-independent board; a clean, unmodified audit opinion across every period reviewed; and management that is, on the record, unusually candid about curtailment risk not being "permanently behind" the business even while also promoting a more upbeat public narrative.</p>
+        <p style="max-width:none;"><b>What's not good:</b> consolidated group PAT was essentially flat in FY26 (&minus;0.7%) despite 23% EBITDA growth, as finance costs and depreciation grew faster than operating profit could absorb; one of the last five quarters (Q3FY26) printed an outright parent-level loss; free cash flow has been deeply negative in both FY25 and FY26, funded entirely by continued debt and equity issuance with no formal FCF or self-funding target disclosed; curtailment cost an admitted &#8377;1,300&ndash;1,500 Cr of FY26 EBITDA and remains a 5&ndash;7% ongoing drag as of Q1FY27; both FY27 capacity/BESS pace and the FY27 capex run-rate are tracking behind their own guided schedules after one quarter; consolidated total borrowings grew 27% YoY even after the warrant-conversion equity infusion; no consolidated Schedule-III leverage/coverage ratio table exists in the source, only a standalone one that materially understates the group's true project-level leverage; a large, newly disclosed related-party restructuring has locked ~4 GW of previously open capacity into 25-year fixed-price contracts with sister company AESL, which at least one independent analyst reads as a direct transfer of shareholder upside; a US DOJ/SEC matter against certain directors remains formally unresolved even as it trends toward settlement, alongside a separate, live Supreme Court petition over alleged state-contract bribery; and the stock has missed consensus quarterly EPS in every one of the last six reported quarters.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> candidly on operating risk (the curtailment admission, the detailed BESS-economics disclosure, the transparent quantification of the FY26 EBITDA headwind) but with noticeably less transparency on group-level profit quality &mdash; neither transcript in this dataset directly addresses why consolidated PAT was flat in a 23%-EBITDA-growth year, why Q3FY26 swung to a loss, or how the AESL restructuring's pricing was benchmarked beyond "arm's length." The company has also chosen, in this same window, to convert a large share of its open/merchant upside into fixed-price related-party contracts precisely when merchant realizations and AI/data-center demand tailwinds are becoming more topical &mdash; a strategic choice management frames as risk reduction and at least one major broker reads as value transfer, and this report cannot fully adjudicate between the two from the data available.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: moderate, roughly 45&ndash;55%.</b> The physical execution story is real and independently corroborated by multiple fresh bull initiations (Morgan Stanley, Axis, Elara) built on management's own capacity/BESS targets. But this report's own tabulated numbers show a materially bumpier underlying business than the headline growth rates suggest: flat consolidated group profit in FY26, a genuine loss quarter within the trailing twelve months, persistently negative free cash flow, capacity and capex pacing that is already behind its own FY27 schedule after one quarter, a still-open US legal matter, and a related-party restructuring an independent broker has explicitly flagged as value-diluting. None of these is individually disqualifying for a business at this stage of a capital-intensive infrastructure build-out &mdash; but together they explain why the Street itself is split between an &#8377;980 bear case and an &#8377;1,800 bull case on the same set of facts, and why this report leans toward the base case (§10) rather than either extreme.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether Q2/Q3 FY27 capacity and BESS additions accelerate to close the gap to full-year guidance, or whether the Q1 shortfall persists past the guided Dec-26/Mar-27 evacuation-capacity dates; (2) whether consolidated group PAT (not just parent-attributable PAT) resumes growing in line with EBITDA, or whether finance-cost/NCI/deferred-tax volatility keeps decoupling the two; (3) whether curtailment's EBITDA drag actually falls below the 5&ndash;7% Q1FY27 level by calendar year-end 2026 as guided; (4) whether AESL successfully converts its ~350 MW contracted base toward the ~4 GW+ it has committed to purchase from AGEL &mdash; a direct test of whether the related-party restructuring is value-neutral or value-diluting; (5) free cash flow trajectory &mdash; a narrowing FCF deficit (not necessarily positive FCF, which is not realistic mid-buildout) would meaningfully de-risk the capital-markets dependency flagged in §06; (6) formal court resolution of the US DOJ/SEC matter, and the outcome of the separate Supreme Court petition.</div>
+      </div>
+
+      <footer>
+        Compiled from Adani Green Energy Limited's BSE filings (AnnouncementsConv, dated 25&nbsp;Apr&ndash;22&nbsp;Aug 2026 &mdash; financial-results outcome letters, the FY26 Integrated Annual Report, Q4FY26 and Q1FY27 earnings-call transcripts, investor presentations, press releases, and litigation/US-matter update filings), MarketData (Yahoo Finance via yfinance, fetched 22&nbsp;Aug&nbsp;2026, including the full daily price-history series and quarterly/annual financial statements), and the tracked News feed (24&nbsp;Apr&ndash;22&nbsp;Aug 2026). No earnings-call transcript or investor presentation was found in this dataset for Q1&ndash;Q3 FY26; those quarters' figures are sourced solely from MarketData/yfinance and flagged accordingly wherever used. Every figure is tagged to its source; where a figure could not be independently verified or a source disagreed with another, that is stated explicitly in the relevant section rather than resolved by assumption. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q1FY26','Q2FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [3741, 2824, 2433, 3328, 4323];
+    var ebitda  = [3231, null, 2449, 2999, 4215];
+    var pat     = [713, null, -41, 397, 845];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT (to parent)', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var allVals = revenue.concat(ebitda.filter(function(v){return v!=null;})).concat(pat.filter(function(v){return v!=null;}));
+    var maxV = Math.max.apply(null, allVals) * 1.12;
+    var minV = Math.min(0, Math.min.apply(null, allVals)) * 1.15;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        if(v == null){
+          svg += '<text x="'+(bx+barW/2).toFixed(1)+'" y="'+(zeroY-4)+'" text-anchor="middle" fill="'+css('--ink-mute')+'" font-size="9">n/a</text>';
+          return;
+        }
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q2FY26 (Sep-25) EBITDA and PAT are not available in the source data (yfinance gap) — revenue for that quarter is shown, profit lines are marked n/a rather than estimated. Q3FY26 (Dec-25) PAT of −₹41 Cr is a genuine parent-level loss quarter.</div></div>';
+  })();
+
+  // ---------- Price line chart ----------
+  (function(){
+    var el = document.getElementById('pchart');
+    var points = [
+      ['Feb 25', 774.40], ['Mar 25', 948.65], ['Apr 25', 900.70], ['May 25', 1014.35],
+      ['Jun 25', 1025.60], ['Jul 25', 984.70], ['Aug 25', 913.50], ['Sep 25', 1026.85],
+      ['Oct 25', 1140.00], ['Nov 25', 1048.20], ['Dec 25', 1015.10], ['Jan 26', 852.30],
+      ['Feb 26', 947.35], ['Mar 26', 806.90], ['Apr 26', 1227.15], ['May 26', 1475.40],
+      ['Jun 26', 1492.20], ['Jul 26', 1383.00], ['Aug 26', 1320.00]
+    ];
+    var W = 900, H = 220, padL = 48, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = Math.min.apply(null, vals) * 0.94, maxV = Math.max.apply(null, vals) * 1.05;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Adani Green Energy Limited monthly closing share price, February 2025 to August 2026" style="width:100%;height:auto;font-size:10.5px;">';
+    svg += '<defs><linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#pfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 2.6;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': ₹'+p[1]+'</title></circle>';
+      if(i % 2 === 0 || i === points.length-1){
+        svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0].replace(' 26','').replace(' 25','')+'</text>';
+      }
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Month-end closing prices from daily NSE price history via yfinance. 52-week high/low per MarketData snapshot: ₹1,631.50 / ₹765.00 (intraday extremes may fall between the monthly points plotted).</div></div>';
+  })();
+})();
+</script>

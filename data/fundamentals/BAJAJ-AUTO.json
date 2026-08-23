@@ -1,7 +1,7 @@
 {
   "symbol": "BAJAJ-AUTO",
   "name": "Bajaj Auto",
-  "generatedAt": "2026-08-18T16:37:19.803414+00:00",
+  "generatedAt": "2026-08-23T11:00:54.032055+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Manufacturers",
@@ -14,29 +14,29 @@
     "peerIndustry": "2/3 Wheelers"
   },
   "price": {
-    "current": 11856.0,
-    "change": 335.5,
-    "changePercent": 2.9122,
-    "previousClose": 11520.5,
-    "dayLow": 11456.0,
-    "dayHigh": 11856.0,
-    "fiftyTwoWeekLow": 7858.5,
-    "fiftyTwoWeekHigh": 11856.0,
-    "asOf": 1785750302
+    "current": 11645.0,
+    "change": 38.0,
+    "changePercent": 0.32738864,
+    "previousClose": 11607.0,
+    "dayLow": 11534.0,
+    "dayHigh": 11722.0,
+    "fiftyTwoWeekLow": 8491.5,
+    "fiftyTwoWeekHigh": 11863.0,
+    "asOf": 1787132700
   },
   "stats": {
-    "marketCap": 3255393583104.0,
-    "trailingPE": 28.195005,
-    "forwardPE": 25.096655,
-    "priceToBook": 8.533499,
+    "marketCap": 3200090636288.0,
+    "trailingPE": 27.714972,
+    "forwardPE": 24.650011,
+    "priceToBook": 8.381629,
     "bookValue": 1389.348,
-    "dividendYield": 1.3,
-    "trailingEps": 420.5,
+    "dividendYield": 1.29,
+    "trailingEps": 420.17,
     "debtToEquity": 0.56352,
     "roe": 27.668450676877494,
     "roce": 26.119347677102965,
-    "return1y": 47.92806120145711,
-    "sharesOutstanding": 274577733.0
+    "return1y": 42.69684019341972,
+    "sharesOutstanding": 274803838.0
   },
   "quarterly": {
     "periods": [
@@ -346,7 +346,7 @@
     "numberOfAnalystOpinions": 40
   },
   "holders": {
-    "insidersPercent": 0.60963,
-    "institutionsPercent": 0.17968
+    "insidersPercent": 0.60964,
+    "institutionsPercent": 0.17913
   }
 }

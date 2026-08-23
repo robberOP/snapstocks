@@ -1,7 +1,7 @@
 {
   "symbol": "PTC",
   "name": "PTC India",
-  "generatedAt": "2026-08-18T16:38:49.120286+00:00",
+  "generatedAt": "2026-08-23T11:02:37.689017+00:00",
   "profile": {
     "sector": "Utilities",
     "industry": "Utilities - Independent Power Producers",
@@ -9,33 +9,33 @@
     "bseCode": "532524",
     "nseSymbol": "PTC",
     "website": "https://www.ptcindia.com",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/ptc.html",
     "peerSector": "Power",
     "peerIndustry": "Power Trading"
   },
   "price": {
-    "current": 180.11,
-    "change": 4.5899963,
-    "changePercent": 2.6150844,
-    "previousClose": 175.52,
-    "dayLow": 175.9,
-    "dayHigh": 182.2,
+    "current": 156.56,
+    "change": -0.4900055,
+    "changePercent": -0.31200603,
+    "previousClose": 157.05,
+    "dayLow": 156.15,
+    "dayHigh": 157.79,
     "fiftyTwoWeekLow": 149.59,
     "fiftyTwoWeekHigh": 229.51,
-    "asOf": 1785751200
+    "asOf": 1787306402
   },
   "stats": {
-    "marketCap": 53314060288.0,
-    "trailingPE": 8.79873,
-    "forwardPE": 13.644697,
-    "priceToBook": 0.8910955,
+    "marketCap": 46343061504.0,
+    "trailingPE": 9.118229,
+    "forwardPE": 11.860606,
+    "priceToBook": 0.7745817,
     "bookValue": 202.122,
-    "dividendYield": 8.38,
-    "trailingEps": 20.47,
+    "dividendYield": 18.2,
+    "trailingEps": 17.17,
     "debtToEquity": 0.25059000000000003,
     "roe": 10.12628808665105,
     "roce": 15.257959507153092,
-    "return1y": -0.8818839320127873,
+    "return1y": -6.423662665687034,
     "sharesOutstanding": 296008321.0
   },
   "quarterly": {
@@ -45,7 +45,8 @@
       "Q1FY26",
       "Q2FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
@@ -53,48 +54,54 @@
       "2025-06-30T00:00:00",
       "2025-09-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
         null,
-        28869300000.0,
+        null,
         39763100000.0,
         54211500000.0,
         33637300000.0,
-        38599700000.0
+        38599700000.0,
+        47306600000.0
       ],
       "Expenses": [
         null,
-        27371700000.0,
+        null,
         37720200000.0,
         52052300000.0,
         32050200000.0,
-        37175900000.0
+        37175900000.0,
+        45862900000.0
       ],
       "OperatingProfit": [
         null,
-        1497600000.0,
+        null,
         2042900000.0,
         2159200000.0,
         1587100000.0,
-        1423800000.0
+        1423800000.0,
+        1443700000.0
       ],
       "NetProfit": [
         null,
-        3515100000.0,
+        null,
         1950500000.0,
         1911900000.0,
         1140500000.0,
-        1053400000.0
+        1053400000.0,
+        979900000.0
       ],
       "EPS": [
         null,
-        11.88,
+        null,
         6.59,
         6.46,
         3.85,
-        3.56
+        3.56,
+        3.31
       ]
     }
   },
@@ -143,11 +150,11 @@
         6056300000.0
       ],
       "EPS": [
-        17.1,
+        null,
         15.05,
         16.11,
         30.41,
-        null
+        20.46
       ],
       "SalesGrowth": [
         null,
@@ -158,10 +165,10 @@
       ]
     },
     "ttm": {
-      "Sales": 166211600000.0,
-      "Expenses": 158998600000.0,
-      "OperatingProfit": 7213000000.0,
-      "NetProfit": 6056300000.0
+      "Sales": 173755100000.0,
+      "Expenses": 167141300000.0,
+      "OperatingProfit": 6613800000.0,
+      "NetProfit": 5085700000.0
     }
   },
   "balanceSheet": {
@@ -332,6 +339,10 @@
   },
   "dividends": [
     {
+      "date": "2026-08-10",
+      "amount": 23.0
+    },
+    {
       "date": "2026-02-20",
       "amount": 3.0
     },
@@ -358,10 +369,6 @@
     {
       "date": "2021-11-25",
       "amount": 2.0
-    },
-    {
-      "date": "2021-09-08",
-      "amount": 5.5
     }
   ],
   "analyst": {
@@ -373,6 +380,6 @@
   },
   "holders": {
     "insidersPercent": 0.21694,
-    "institutionsPercent": 0.24599001
+    "institutionsPercent": 0.25737
   }
 }

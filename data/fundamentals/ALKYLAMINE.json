@@ -1,7 +1,7 @@
 {
   "symbol": "ALKYLAMINE",
   "name": "Alkyl Amines",
-  "generatedAt": "2026-08-18T16:37:12.241703+00:00",
+  "generatedAt": "2026-08-23T11:00:45.369966+00:00",
   "profile": {
     "sector": "Basic Materials",
     "industry": "Specialty Chemicals",
@@ -9,33 +9,33 @@
     "bseCode": "506767",
     "nseSymbol": "ALKYLAMINE",
     "website": "https://alkylamines.com",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/alkylamine.html",
     "peerSector": "Chemicals & Petrochemicals",
     "peerIndustry": "Specialty Chemicals"
   },
   "price": {
-    "current": 1824.4,
-    "change": 38.80005,
-    "changePercent": 2.172942,
-    "previousClose": 1785.6,
-    "dayLow": 1785.9,
-    "dayHigh": 1845.0,
+    "current": 1956.1,
+    "change": 61.5,
+    "changePercent": 3.2460678,
+    "previousClose": 1894.6,
+    "dayLow": 1878.0,
+    "dayHigh": 1990.0,
     "fiftyTwoWeekLow": 1212.0,
-    "fiftyTwoWeekHigh": 2340.1,
-    "asOf": 1785751198
+    "fiftyTwoWeekHigh": 2201.9,
+    "asOf": 1787133599
   },
   "stats": {
-    "marketCap": 93311082496.0,
-    "trailingPE": 51.859013,
-    "forwardPE": 41.24492,
-    "priceToBook": 6.0851064,
+    "marketCap": 100047036416.0,
+    "trailingPE": 44.507393,
+    "forwardPE": 42.401012,
+    "priceToBook": 6.5243783,
     "bookValue": 299.814,
     "dividendYield": 0.76,
-    "trailingEps": 35.18,
+    "trailingEps": 43.95,
     "debtToEquity": null,
     "roe": 11.7388032778033,
     "roce": 14.537520656433243,
-    "return1y": -16.85781239169475,
+    "return1y": -5.120244161690687,
     "sharesOutstanding": 51146177.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         3860500000.0,
         4055300000.0,
         3540000000.0,
-        3869100000.0
+        3869100000.0,
+        5280100000.0
       ],
       "Expenses": [
         3184600000.0,
         3358500000.0,
         3468500000.0,
         3045300000.0,
-        3341100000.0
+        3341100000.0,
+        4122500000.0
       ],
       "OperatingProfit": [
         527400000.0,
         502000000.0,
         586800000.0,
         494700000.0,
-        528000000.0
+        528000000.0,
+        1157600000.0
       ],
       "NetProfit": [
         437600000.0,
         460200000.0,
         494400000.0,
         422600000.0,
-        453700000.0
+        453700000.0,
+        946300000.0
       ],
       "EPS": [
         8.55,
         8.99,
         9.65,
         8.25,
-        8.86
+        8.86,
+        18.47
       ]
     }
   },
@@ -143,10 +150,10 @@
       ]
     },
     "ttm": {
-      "Sales": 15324900000.0,
-      "Expenses": 13213400000.0,
-      "OperatingProfit": 2111500000.0,
-      "NetProfit": 1830900000.0
+      "Sales": 16744500000.0,
+      "Expenses": 13977400000.0,
+      "OperatingProfit": 2767100000.0,
+      "NetProfit": 2317000000.0
     }
   },
   "balanceSheet": {
@@ -345,10 +352,10 @@
     }
   ],
   "analyst": {
-    "targetMean": 1606.6666,
-    "targetHigh": 2032.0,
+    "targetMean": 1727.3334,
+    "targetHigh": 2164.0,
     "targetLow": 1068.0,
-    "recommendationKey": "none",
+    "recommendationKey": "hold",
     "numberOfAnalystOpinions": 3
   },
   "holders": {

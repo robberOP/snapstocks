@@ -1,7 +1,7 @@
 {
   "symbol": "M&M",
   "name": "M & M",
-  "generatedAt": "2026-08-18T16:38:26.184928+00:00",
+  "generatedAt": "2026-08-23T11:02:17.560246+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Manufacturers",
@@ -14,28 +14,28 @@
     "peerIndustry": "Passenger Cars & Utility Vehicles"
   },
   "price": {
-    "current": 3428.6,
-    "change": 30.100098,
-    "changePercent": 0.88568777,
-    "previousClose": 3398.5,
-    "dayLow": 3386.2,
-    "dayHigh": 3465.0,
+    "current": 3415.0,
+    "change": -6.5,
+    "changePercent": -0.18997516,
+    "previousClose": 3421.5,
+    "dayLow": 3371.1,
+    "dayHigh": 3425.6,
     "fiftyTwoWeekLow": 2896.0,
     "fiftyTwoWeekHigh": 3839.9,
-    "asOf": 1785750303
+    "asOf": 1787132701
   },
   "stats": {
-    "marketCap": 4116933509120.0,
-    "trailingPE": 20.84382,
-    "forwardPE": 21.73987,
-    "priceToBook": 4.115843,
+    "marketCap": 4100602986496.0,
+    "trailingPE": 20.794008,
+    "forwardPE": 21.677267,
+    "priceToBook": 4.099517,
     "bookValue": 833.025,
-    "dividendYield": 0.97,
-    "trailingEps": 164.49,
+    "dividendYield": 0.96,
+    "trailingEps": 164.23,
     "debtToEquity": 1.25278,
     "roe": 18.366831782341627,
     "roce": 17.137685718606814,
-    "return1y": 8.289228566980448,
+    "return1y": 5.679635185012117,
     "sharesOutstanding": 1200762264.0
   },
   "quarterly": {
@@ -358,14 +358,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 4155.1177,
+    "targetMean": 4171.486,
     "targetHigh": 4875.0,
     "targetLow": 3508.0,
     "recommendationKey": "strong_buy",
-    "numberOfAnalystOpinions": 34
+    "numberOfAnalystOpinions": 35
   },
   "holders": {
-    "insidersPercent": 0.25285,
-    "institutionsPercent": 0.51545
+    "insidersPercent": 0.25214002,
+    "institutionsPercent": 0.53262
   }
 }

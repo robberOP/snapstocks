@@ -1,0 +1,906 @@
+<title>ACME Solar Holdings Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Renewable Energy / Independent Power Producer &mdash; Solar, Wind, FDRE &amp; Battery Storage</div>
+    <h1>ACME Solar Holdings Limited</h1>
+    <p class="sub">NSE: ACMESOLAR &middot; BSE: 544283 &middot; FY2023&ndash;FY2027(Q1) performance review, BSE-filing and earnings-call synthesis, as of 22 August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> ACME Solar has turned a rough legacy receivables book (181 days of sales outstanding in FY23) into a 14&ndash;20-day cash-discount machine by shifting almost entirely to central offtakers, while becoming the earliest and largest merchant battery-storage (BESS) operator in India &mdash; management claims roughly 40% of the country's commissioned BESS capacity &mdash; capturing peak-power tariff arbitrage at 80&ndash;82% EBITDA margins on top of an 88&ndash;92%-margin core solar/wind book. Revenue from operations grew 44% in FY26 and 63% YoY again in Q1FY27, and BESS commissioning guidance has been raised, not cut, twice in three months. But the growth is expensive and imperfectly cash-backed: FY26 operating cash flow <em>fell</em> 19% even as PAT nearly doubled, 71% of FY26 pre-tax profit came from treasury/DSRA interest rather than power sales, net debt more than doubled to &#8377;16,757 Cr before a &#8377;2,763 Cr June-2026 QIP diluted existing holders by roughly 16.5%, and the stock's most senior finance and R&amp;D executives both departed within a seven-week window even as a BESS facility fire made national headlines in July. At 41x trailing earnings and near a 52-week high, this is a real execution story still being asked to prove it can fund itself.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (22 Aug 26)</div><div class="v">&#8377;401.60</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;28,364.67 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;195.90 &ndash; &#8377;411.30</div></div>
+      <div class="chip"><div class="k">FY26 Revenue (ops)</div><div class="v pos">+44.0% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 Revenue</div><div class="v pos">+63.3% YoY</div></div>
+      <div class="chip"><div class="k">Q1FY27 PAT</div><div class="v pos">+79.9% YoY</div></div>
+      <div class="chip"><div class="k">Trailing P/E</div><div class="v">40.98x</div></div>
+      <div class="chip"><div class="k">FY26 CFO</div><div class="v neg">&minus;19.0% YoY (PAT +98%)</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage &mdash; please read before the numbers below:</b> The BSE filing archive available for this note (AnnouncementsConv) spans only <b>10 May 2026 &ndash; 13 Aug 2026</b> &mdash; roughly 3.5 months. No annual report (Reg. 34(1) filing), and no investor presentation, earnings-call transcript or results filing for any quarter before Q4/FY26 is present in this dataset, so all qualitative management commentary in this report is anchored to exactly two earnings calls: Q4 &amp; FY26 (held 8 May 2026, transcript filed 14 May 2026) and Q1 FY27 (held 30 Jul 2026, transcript filed 4 Aug 2026), plus the 29 Jul 2026 Q1FY27 investor presentation and financial-results filing. Quantitative trend data, however, extends further back via MarketData/yfinance's own independently computed annual (FY22&ndash;FY26; FY22 is mostly null) and quarterly (Mar-25, Jun-25, Dec-25, Mar-26, Jun-26) statement series. <b>Note explicitly: the Sep-2025 quarter (Q2 FY26) is missing entirely</b> from both the yfinance quarterly series and the BSE filing window &mdash; every quarterly trend line in this report skips that quarter rather than estimating it, and is labelled accordingly. No quarterly cash-flow statement exists in the source data at all (only annual). <b>Basis:</b> all figures are <b>consolidated</b> (the power-sale business) unless explicitly marked standalone (the in-house EPC-contracting entity, whose EPC billing to subsidiaries is eliminated on consolidation and is not representative of power-sale economics &mdash; see &sect;02 for a case where a news aggregator conflated the two). No related-party-transaction schedule or full board/committee composition could be verified in this dataset for lack of an annual report &mdash; flagged as a skipped check, not silently omitted.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Other call insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What ACME Solar does, and how it has grown</h2></div>
+      <p class="sec-dek">A pure-play renewable IPP that has spent the past two years compounding capacity, then spent the past two quarters compounding a second, higher-margin business &mdash; battery storage &mdash; on top of it.</p>
+
+      <p class="lede">ACME Solar Holdings Limited (formerly ACME Solar Holdings Private Limited, CIN L40106HR2015PLC102129) is a Gurugram-headquartered independent power producer that develops, builds, owns and operates utility-scale grid-connected solar, wind, hybrid and Firm Dispatchable Renewable Energy (FDRE) projects across India, with an in-house EPC and O&amp;M division that constructs and maintains its own plants. It is a subsidiary of ACME Cleantech Solutions Limited (promoter group holding 71.40% as of the Q1FY27 investor presentation), and its Chairman &amp; Managing Director, Manoj Kumar Upadhyay, is the ACME Group founder. Note: the yfinance business-summary field describes an operational base of "2,540 MW" &mdash; that figure is stale; the company's own Q1FY27 disclosure puts operational contracted capacity at <b>2,990 MW</b>, and this report uses the company's own current figures throughout.</p>
+
+      <h3>Portfolio today: 8,070 MW, split across three stages</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Operational</div><div class="v">2,990 MW</div><div class="d">+ ~3.62 GWh BESS commissioned; weighted avg. tariff &#8377;3.41/kWh</div></div>
+        <div class="stat"><div class="k">Under construction, PPA signed</div><div class="v">3,880 MW</div><div class="d">+ ~15 GWh BESS entailed; up from 3,280 MW in May-26</div></div>
+        <div class="stat"><div class="k">Under construction, LOA awarded (PPA pending)</div><div class="v">1,200 MW</div><div class="d">+ ~5 GWh BESS</div></div>
+      </div>
+      <p>Total contracted+pipeline portfolio stands at 8,070 MW (~14 GWp of generation plus ~20 GWh of BESS as currently configured), of which 6,870 MW now has a signed PPA. Management's own long-range target, restated in the Jul-26 investor presentation, is <b>10 GW generation capacity plus 25 GWh of BESS by 2030</b> &mdash; framed as a 35% capacity CAGR from today's base &mdash; and on the Q1FY27 call management said it "contemplates increasing our target beyond 10 gigawatt," i.e. the 2030 ambition itself may be revised up further, not down.</p>
+
+      <h3>The BESS pivot: the real story of the last two quarters</h3>
+      <p>Historically ACME was a conventional solar/wind IPP selling fixed-tariff power under 25-year PPAs to state and central offtakers. Starting in FY26, the company began an aggressive early-deployment strategy for battery storage: installing batteries at already-energised substations ahead of the associated solar plant's own grid connectivity, and using them to arbitrage the spread between cheap daytime/off-peak power and expensive evening peak power on the merchant/short-term market (DEEP portal, HP-TAM). Commissioned BESS capacity went from essentially nil to ~2.3 GWh by the FY26 year-end (May-26 call) to ~3.62 GWh by Q1FY27 (Aug-26 call) &mdash; management's own claim is that this represents <b>roughly 40% of India's total cumulative commissioned BESS capacity</b>, "one of the highest in the country." This is a self-reported figure with no independent market-share data found in this dataset, but it is directionally consistent with the scale of ACME's own commissioning relative to a nascent national base (management itself notes "whatever capacity is there in India has come up in the last 6 months").</p>
+
+      <h3>Moat, such as it is evidenced</h3>
+      <p>Three things are independently checkable from the filings: (1) a portfolio overwhelmingly connected to the Central Transmission Utility (CTU) grid rather than state grids &mdash; management describes this as a deliberate design choice that shields the company from state-level curtailment risk and gives it a regulatory-protected payment mechanism, with only a legacy Gujarat wind asset and one small 550 MWh Andhra Pradesh project on state infrastructure; (2) an offtaker book concentrated with central, government-backed counterparties (SECI, NTPC, SJVN, NHPC) at 84% of the total portfolio, versus 67% of the currently-operational book &mdash; explicitly cited by management as the driver of the DSO collapse discussed in &sect;05; and (3) in-house EPC/O&amp;M capability, which management describes using on the Q1FY27 call as the mechanism for a genuinely clever capital-efficiency tactic &mdash; deliberately deferring module/solar-side capex at sites where grid connectivity is delayed, installing only the battery and non-module balance-of-plant early, and capturing merchant BESS revenue while avoiding interest-during-construction drag on undeployed solar capex (see &sect;08). None of this is independently benchmarked against competitors in this dataset (no named-competitor comparison, market-share table, or third-party ranking was found) &mdash; every scale and "leading" claim here traces to management's own disclosure.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">Every dated item in the tracked News feed (26 May &ndash; 12 Aug 2026), each cross-checked against the tabulated numbers rather than taken at face value.</p>
+
+      <div class="news-item">
+        <div class="news-date">12 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">&#8377;2,147 Cr domestic refinancing redeems offshore dollar bonds; &#8377;8,198 Cr raised this fiscal so far</div>
+          <div class="news-body">A 12-SPV, 450 MW Restricted Group structure refinanced existing NCDs and an underlying offshore dollar-bond structure via National Bank for Financing Infrastructure and Development (NaBFID), cutting the borrowing cost by ~150 bps and earning a provisional CARE AA- rating on the RG structure. Corroborated: the Q1FY27 call separately disclosed &#8377;6,000+ Cr of fresh debt tie-up for 700 MW of under-construction FDRE projects with REC/PFC, and the weighted average cost of debt on operational projects is now 8.4% &mdash; both consistent with a company actively re-optimising its debt stack rather than simply piling on new borrowing. Genuinely positive for interest cost, though it does not reduce the absolute debt load discussed in &sect;05.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">9 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish (management guidance, restated from the Q1FY27 call)</span>
+          <div class="news-title">FY27 capex guided to &#8377;15,000&ndash;20,000 Cr; 10 GWh BESS and 1.5 GW firm capacity targeted</div>
+          <div class="news-body">This item simply repeats management's own Q1FY27-call guidance (&sect;03) &mdash; PPAs signed on ~4,000 MW (company's own more precise figure: 3,880 MW), a 5,080 MW pipeline, and a capex plan more than <b>2.8x</b> FY26's actual capex spend of &#8377;5,321 Cr. Directionally bullish if delivered, but entirely execution-dependent &mdash; see &sect;05 for how far behind schedule the company's own June-2026 QIP debt-repayment object is already running, a useful gut-check on how quickly large guided numbers actually convert to spend.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">7 Aug 2026</div>
+        <div>
+          <span class="pill mixed"><span class="d"></span>Mixed &mdash; headline overstates the picture</span>
+          <div class="news-title">Aggregator reports "701.78% revenue growth, 14,869.62% profit growth" &mdash; this is the standalone EPC entity, not the power business</div>
+          <div class="news-body">A financial-news aggregator's summary of the Jun-26 quarter cites standalone net sales of &#8377;2,266.31 Cr (+701.78% YoY) and standalone PAT of &#8377;121.70 Cr (+14,869.62% YoY, EPS &#8377;1.92). Both figures are real and match the standalone financial-results filing &mdash; but standalone reflects only the in-house EPC contracting ACME performs for its own subsidiaries, whose volume swings with the pace of internal construction billing, not with underlying power-sale economics. The number that actually matters for the listed group's earnings power is <b>consolidated</b> PAT of &#8377;235 Cr, up a still-strong but far more moderate <b>79.9% YoY</b> (&sect;03&ndash;04). Flagged here explicitly because a reader relying on the headline alone would materially overstate the group's growth rate.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">7 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">&#8377;3,405 Cr PFC financing for a 250 MW FDRE Rajasthan&ndash;Gujarat project, 25-year PPA at &#8377;4.33/unit</div>
+          <div class="news-body">Sole-lender, 19-year-repayment structure from Power Finance Corporation, project financing raised in FY26 (prior to the &#8377;8,198 Cr FY-to-date figure cited on 12 Aug) put at &#8377;6,051 Cr at that point. Consistent with the pattern of continuous, diversified project-level debt tie-ups (REC, PFC, NaBFID, multiple banks) that underpins the AA-/Stable group rating discussed in &sect;05.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">30 Jul 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Q1FY27 results: record revenue and EBITDA, improving net debt and DSO</div>
+          <div class="news-body">Matches this report's own tabulation in &sect;03&ndash;05: revenue &#8377;954 Cr (record), EBITDA &#8377;831 Cr (record), DSO down to 14&ndash;20 days, net debt/TTM EBITDA improved to 2.9x from 4.2x a year earlier. The "improving net debt" framing is accurate on a ratio basis but should be read alongside &sect;05's finding that the improvement is driven substantially by the June-2026 QIP equity infusion rather than organic EBITDA catching up to a debt load that itself grew sharply through FY26.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2 Jun 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">QIP launched at &#8377;294.13 floor price; incremental BESS capacity commissioned in Rajasthan; "Q4 revenue and profit growth of 13% YoY" cited</div>
+          <div class="news-body">The QIP floor-price detail and BESS commissioning progress are corroborated directly by company filings (&sect;05). The cited "13% YoY" growth figure does not match Q4FY26 revenue growth as management itself reported it on the May-26 call (+31% YoY) &mdash; it is much closer to Q4FY26 <em>PAT</em> growth on a yfinance-computed basis (&#8377;138 Cr vs &#8377;123 Cr a year earlier &asymp; +12.2%). Likely an aggregator imprecision (conflating a profit metric with "revenue and profit growth" as a single figure) rather than an error in the company's own disclosure &mdash; flagged for transparency rather than corrected silently.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">26 May 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">Stock rose ~1% on a new SECI power purchase agreement</div>
+          <div class="news-body">A concrete order win, but the muted 1% price reaction (per the source's own rationale) suggests the market already treats continued PPA wins as routine for this company at this point in its growth cycle &mdash; consistent with a steady cadence of order announcements seen throughout this filing window (&sect;03).</div>
+        </div>
+      </div>
+
+      <div class="callout flag" style="margin-top:24px;">
+        <div class="icon">&#9888;</div>
+        <div><b>Not flagged in News, but material: a BESS facility fire on 13 Jul 2026</b>ACME's own filings (not News/news.md, which does not carry this item) disclose a fire at the ACME Suryodaya BESS facility in Pokhran, Rajasthan on 13 Jul 2026. A same-week media statement (17 Jul) called social-media claims of damage to 13 BESS containers "grossly incorrect," stating only four power-conversion-system (PCS) units were affected by an electrical short circuit, with no damage to battery containers themselves and an estimated revenue loss of just &#8377;20 lakh. The Q1FY27 call (30 Jul) opened with a detailed, proactive root-cause disclosure &mdash; short circuit in AC cabling between transformer and PCS &mdash; plus a specific remediation list (AI-based fire detection, arc-flash sensors, aerosol suppression, enhanced fire barriers). Financially immaterial as disclosed; read as a disclosure-quality positive (fast, specific, quantified) but also a genuine reminder that a rapidly scaling BESS fleet carries real physical/safety tail risk that bears monitoring as capacity roughly triples over FY27.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, segments &amp; guidance vs. delivered</h2></div>
+      <p class="sec-dek">Revenue re-accelerated sharply in FY26 and again in Q1FY27, powered by capacity additions, a record CUF and a new, high-margin BESS revenue line &mdash; and management has raised its own BESS guidance twice, not cut it.</p>
+
+      <h3>Quarterly trend (consolidated, &#8377; Cr, incl. other income &mdash; company's own basis)</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Total revenue (incl. other income)</td><td>539</td><td>584</td><td>617</td><td>705</td><td>954</td></tr>
+            <tr><td>Revenue YoY growth</td><td>n/a</td><td class="pos">+8.3%</td><td>n/a<sup>&dagger;</sup></td><td class="pos">+30.7%</td><td class="pos">+63.3%</td></tr>
+            <tr><td>EBITDA</td><td>474</td><td>531</td><td>565</td><td>636</td><td>831</td></tr>
+            <tr><td>EBITDA margin</td><td>87.9%</td><td>90.9%</td><td>91.5%</td><td>90.2%</td><td>87.1%</td></tr>
+            <tr><td>PAT</td><td>123</td><td>131</td><td>114</td><td>138</td><td>235</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>2.14</td><td>2.14</td><td>1.87</td><td>2.27</td><td>3.67</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Q1FY27 investor presentation (Q1FY27/Q4FY26/Q1FY26 columns, company's own basis incl. other income) and MarketData/yfinance quarterly income statement (Q4FY25, Q3FY26, EPS series). &dagger; <b>Q2FY26 (Sep-25 quarter) is missing entirely</b> from both the yfinance quarterly series and the BSE filing window &mdash; not estimated, left blank. Q1FY27 diluted EPS growth of +71.5% YoY (&#8377;2.14&rarr;&#8377;3.67) independently matches MarketData's own trailing "Earnings Growth YoY" field (71.50%) &mdash; a clean internal consistency check. Q1FY27 revenue growth of +63.3% and PAT growth of +79.9% are management's own stated figures, matching this report's independent recomputation from the tabulated figures.</caption>
+      </div>
+      <p>The pattern: modest ~8% growth into Q1FY26, a step back to essentially flat by Q3FY26 (Dec-25, on a YoY basis this report could not fully verify given the Q2FY26 gap), then a sharp re-acceleration into Q4FY26 (+31%) and Q1FY27 (+63%) as new capacity (the Sikar solar plant, new wind assets) and the BESS ramp both landed. Q1FY27 also marks the highest-ever quarterly CUF in company history at 30.9%, up from 28.5% a year earlier &mdash; management attributes this to a combination of higher irradiation, plant performance and continuous "repowering" of existing assets, not merely new capacity.</p>
+
+      <h3>Segment mix: BESS is now a meaningful, high-margin second engine</h3>
+      <p>Of Q1FY27's &#8377;954 Cr total revenue, <b>&#8377;226 Cr (23.7%) came from BESS power sales</b> &mdash; 85% from short-term contracts, 15% from pure merchant sales &mdash; against a BESS cost of power of &#8377;39 Cr, yielding an 82% BESS EBITDA margin (management notes this is lower than the core RE portfolio's 88&ndash;91% because purchased charging power sits in operating expenses). Management disclosed short-term BESS contracts locking in <b>&#8377;1,400+ Cr of revenue for partial FY27 BESS capacity</b>, describing roughly 70&ndash;80% of the targeted 10 GWh as already contracted, with an explicit "upward bias" as the remaining ~20% gets tied up. Pressed by analysts on durability, management would only underwrite this &#8377;1,400 Cr+ run-rate for "the next 2, 3 years" based on its own demand-supply modelling (see &sect;08), not longer &mdash; a genuinely candid, non-promotional answer worth noting.</p>
+
+      <h3>Offtaker mix and geography</h3>
+      <p>The <b>operational</b> portfolio's offtaker split is 67% central (SECI/NTPC/SJVN/NHPC), 5% GUVNL, 28% other state DISCOMs; the <b>total</b> 8,070 MW portfolio's split is far more central-weighted at 84%/2%/14% &mdash; i.e. every incremental MW being added skews further toward central, government-backed counterparties, which management explicitly ties to the DSO improvement in &sect;05. Geographically the operational book remains heavily Rajasthan-concentrated (2,250 MW of the 2,990 MW operational total, or ~75%, per the operational-portfolio project table), with smaller legacy assets in Gujarat, Madhya Pradesh, Odisha, Chhattisgarh, Punjab, Andhra Pradesh, Bihar, Uttar Pradesh, Karnataka and Telangana. Under-construction projects add exposure to more states (Rajasthan again, plus new sites tied to specific CTU substations), but the near-term revenue base stays Rajasthan-heavy, which is also where the bulk of the country's curtailment risk on state-connected infrastructure sits (though ACME's own CTU-first connectivity strategy is designed specifically to avoid that &mdash; see &sect;01).</p>
+
+      <h3>Guidance vs. delivered</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">BESS commissioning guidance</div><div class="v pos">Upgraded twice</div><div class="d">"10 GWh by CY2027" (May-26 call framing) &rarr; "more than 10 GWh by FY27" (Aug-26 call) &mdash; ~3-quarter acceleration, management's own words</div></div>
+        <div class="stat"><div class="k">FY27 capex guidance</div><div class="v pos">&#8377;15,000&ndash;20,000 Cr</div><div class="d">vs. FY26 actual capex of &#8377;5,321 Cr &mdash; more than 2.8x step-up</div></div>
+        <div class="stat"><div class="k">FY27 new generation capacity</div><div class="v">1.5 GW</div><div class="d">Unchanged across both calls &mdash; consistent guidance</div></div>
+        <div class="stat"><div class="k">Core (ex-BESS) EBITDA margin band</div><div class="v pos">Delivered in-range</div><div class="d">Guided 88&ndash;92%; Q1FY27 ex-BESS margin came in at 91%, per management</div></div>
+      </div>
+      <p>This is a genuinely clean guidance track record within the short window this dataset covers: every forward figure management has given has either been hit or explicitly raised, none has been cut. The one caveat is that none of it is externally audited guidance in the sell-side sense (no formal guidance document was found, only call commentary) and the track record spans only two quarters of observation.</p>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">Core operating margins have held up remarkably well through a period of rapid capacity build &mdash; but a large and growing share of reported profit is treasury income, not power-sale economics.</p>
+
+      <h3>Annual trend (consolidated, &#8377; Cr)</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr / %</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>1,294.40</td><td>1,318.85</td><td>1,405.13</td><td>2,022.96</td></tr>
+            <tr><td>Revenue YoY growth</td><td>n/a</td><td class="pos">+1.9%</td><td class="pos">+6.5%</td><td class="pos">+44.0%</td></tr>
+            <tr><td>Normalized EBITDA<sup>&dagger;</sup></td><td>1,232.30</td><td>1,231.79</td><td>1,405.54</td><td>2,265.04</td></tr>
+            <tr><td>Reported PAT</td><td class="neg">&minus;3.14</td><td>697.80</td><td>252.11</td><td>498.92</td></tr>
+            <tr><td>Normalized PAT<sup>&dagger;&dagger;</sup></td><td class="neg">&minus;31.21</td><td>127.82</td><td>267.68</td><td>496.95</td></tr>
+            <tr><td>Normalized PAT YoY growth</td><td>n/a</td><td>n/m</td><td class="pos">+109.5%</td><td class="pos">+85.6%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual income statement, cross-checked against the audited FY26 consolidated financial-results filing (revenue from ops &#8377;2,023.38 Cr, PAT &#8377;497.89 Cr &mdash; both reconcile closely). &dagger; "Normalized EBITDA" strips a large one-off (&#8377;742.85 Cr of "Total Unusual Items" in FY24, tied to a &#8377;1,250.36 Cr business/investment disposal that year per the cash-flow statement) &mdash; raw reported EBITDA is not comparable across years because of this and is not shown. &dagger;&dagger; Reported FY24 PAT of &#8377;697.80 Cr is overwhelmingly a one-off gain; normalized FY24 profit of &#8377;127.82 Cr is the more representative run-rate, and the FY25/FY26 growth rates above are computed on that normalized base.</caption>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Read FY24's headline PAT with real caution</b>FY24's reported PAT of &#8377;697.80 Cr looks like a standout year, but normalized profit that year was only &#8377;127.82 Cr &mdash; the gap is a one-off gain from a business/investment disposal (a &#8377;1,250 Cr "sale of business" appears in the FY24 investing cash flow). Judged on the normalized base, FY24&rarr;FY25&rarr;FY26 profit growth (+109.5%, then +85.6%) is a genuinely clean, accelerating trend &mdash; but anyone reading only the reported PAT row would draw the wrong conclusion about which year was actually strongest operationally.</div>
+      </div>
+
+      <h3>Quarterly margin drivers</h3>
+      <p>EBITDA margin (company basis, incl. other income) has stayed in a tight 87&ndash;92% band across every quarter shown in &sect;03, with the Q1FY27 dip to 87.1% explained entirely by mix: BESS runs at an 82% margin (purchased charging power sits in opex) against 88&ndash;91% for the core RE book, so a rising BESS revenue share mechanically pulls the blend down even as both underlying businesses are performing well. Management's own forward framing, given directly in response to an analyst question on the Aug-26 call, is a core (ex-BESS) EBITDA margin band of <b>88&ndash;92%</b>, seasonally softer in the September quarter historically (~88&ndash;89%), with BESS margin guided at 80&ndash;82%. PAT margin has been more volatile quarter to quarter (18.4% in Q3FY26 to 24.6% in Q1FY27) reflecting the finance-cost and depreciation drag from the capex ramp (see below) moving faster than revenue in some quarters.</p>
+
+      <h3>Below the EBITDA line: finance cost and depreciation are both scaling with the balance sheet</h3>
+      <p>Finance costs rose from &#8377;233 Cr (Q1FY26) to &#8377;344 Cr (Q1FY27), up 47.6% YoY; depreciation rose from &#8377;108 Cr to &#8377;155 Cr, up 43.5% YoY &mdash; both tracking the debt-funded capex build documented in &sect;05, and both growing faster than EBITDA's Q1FY27 YoY growth of 56.5%, though slower than PAT's headline 79.9% growth (which benefited from a lower effective tax drag this quarter and other-income timing). On the May-26 call, management disclosed the battery-specific slice of this: ~&#8377;32 Cr of finance cost and ~&#8377;27 Cr of depreciation in that quarter tied specifically to newly commissioned BESS assets, depreciated on a 20-year policy.</p>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Other income is a large, and in FY26 dominant, share of pre-tax profit</b>FY26 other income was &#8377;483.70 Cr against a PBT of &#8377;676.82 Cr &mdash; <b>71.4% of pre-tax profit</b>. Management describes this as "primarily comprises recurring interest income from cash generated from power sales at SPV until it is upstream to ASHL," plus recurring interest on DSRA (debt-service reserve account) balances required by lender covenants &mdash; i.e., genuinely recurring treasury income on cash the group is contractually required to hold, not a one-off. Even so, it is non-power-sale income, and its scale means a meaningful share of FY26's headline profit growth reflects large cash balances (built up from the Nov-2024 IPO and heavy project-debt draws) earning interest, not core electricity-sale economics. The share fell to a still-material 29.1% of PBT in Q1FY27 (&#8377;96.27 Cr of &#8377;331.46 Cr) as the operating business scaled faster than the cash balance &mdash; a positive trend worth watching for continuation.</div>
+      </div>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">A genuinely dramatic collection-cycle turnaround sits alongside a debt load that more than doubled in FY26 &mdash; brought back under control, for now, by a large June-2026 equity raise whose own use-of-proceeds schedule is already running behind plan.</p>
+
+      <h3>Days sales outstanding: a structural turnaround, not a blip</h3>
+      <div id="dsochart"></div>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Net worth (equity)</td><td>1,900.56</td><td>2,590.87</td><td>4,510.58</td><td>5,061.48</td><td>8,067<sup>&dagger;</sup></td></tr>
+            <tr><td>Total debt</td><td>9,013.55</td><td>8,536.35</td><td>10,975.70</td><td>19,896.30</td><td>n/a</td></tr>
+            <tr><td>Net debt</td><td>8,254.23</td><td>7,908.43</td><td>9,170.95</td><td>16,757.10</td><td>12,600<sup>&dagger;</sup></td></tr>
+            <tr><td>Total assets</td><td>12,187.00</td><td>13,399.80</td><td>18,403.70</td><td>28,540.30</td><td>n/a</td></tr>
+            <tr><td>DSO, as billed (days)</td><td>181</td><td>93</td><td>42</td><td>20</td><td>14&ndash;20<sup>&Dagger;</sup></td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual balance sheet (FY23&ndash;FY26); &dagger; Q1FY27 net worth/net debt from the Q1FY27 investor presentation's YoY capital-structure chart (not directly comparable line items to the annual yfinance series, which only carries Mar-25/Mar-26 quarterly snapshots). &Dagger; DSO chart in the investor presentation shows 20 days as-billed for Q1FY27 (14 days excluding BESS receivables; 37 days if BESS receivables are included) &mdash; presented as a range to capture this nuance rather than picking one number.</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#10003;</div>
+        <div><b>The collection-cycle turnaround is real, large, and independently explained</b>Days-sales-outstanding fell from 181 (FY23) to 93 (FY24) to 42 (FY25) to 20 (FY26) &mdash; a genuine structural improvement, not a one-off. Management's explanation, given directly in response to an analyst question on the May-26 call, is fully consistent with the numbers: legacy high receivable days were concentrated in a handful of state DISCOMs (notably Andhra Pradesh and Telangana) that had payment issues now resolved under a Late Payment Surcharge (LPS) regulatory mechanism, while central offtakers (SECI/NTPC/SJVN/NHPC) pay in roughly 6&ndash;10 days to capture an available cash discount. As the portfolio mix continues shifting toward 84% central offtakers (&sect;03), management expects DSO to compress further still.</div>
+      </div>
+
+      <h3>Debt, leverage and the June-2026 QIP</h3>
+      <p>Total debt more than doubled in FY26 (&#8377;10,976 Cr&rarr;&#8377;19,896 Cr, +81.3%), funding the sharp capex step-up (&sect;06). ACME closed a Qualified Institutions Placement on 1&ndash;4 Jun 2026 at a floor price of &#8377;294.13/share (issued at &#8377;279.50, a ~5% discount within the permitted band), raising <b>&#8377;2,762.9 Cr net</b> via 10.02 Cr new shares &mdash; roughly <b>16.5% dilution</b> against the pre-QIP ~60.6 Cr shares outstanding. The stated purpose was 76% debt repayment / 24% general corporate purposes. As of the Q1FY27 financial results (30 Jun 2026), only <b>&#8377;411.0 Cr of the &#8377;2,100 Cr debt-repayment object had actually been utilised &mdash; 19.6%</b> &mdash; while the general-corporate-purposes object was 99.6% utilised (&#8377;660 Cr of &#8377;663 Cr). Net debt/TTM EBITDA improved from 4.2x (Q1FY26) to 2.9x (Q1FY27) and net debt/net worth from 1.7x to 1.6x, but the QIP inflow is explicitly cited by the company's own investor presentation as the driver of both improvements &mdash; not organic EBITDA catch-up to the FY26 debt build. Cash RoE fell from 23.0% to 17.3% over the same period for the identical reason (larger equity denominator) &mdash; a mechanical near-term ROE dilution from delevering that investors should not mistake for a deterioration in underlying returns.</p>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>QIP debt-repayment proceeds are being deployed much slower than the capex guidance implies urgency for</b>Only 19.6% of the &#8377;2,100 Cr debt-repayment object was used in the QIP's first month on the books. This is not necessarily a red flag on its own (large debt repayments are often timed to specific facility maturities or prepayment windows), but it sits in tension with a FY27 capex guidance of &#8377;15,000&ndash;20,000 Cr that implies the company needs every lever &mdash; debt paydown, fresh borrowing, and internal accruals &mdash; moving in parallel and on schedule. Worth checking again at the Q2FY27 results.</div>
+      </div>
+
+      <h3>Debt vs. EBITDA growth, and the book-value data gap</h3>
+      <p>FY25&rarr;FY26 total debt grew 81.3% while normalized EBITDA grew a slower 61.2% (&#8377;1,405.54 Cr&rarr;&#8377;2,265.04 Cr) &mdash; leverage genuinely outran earnings power on an absolute basis during FY26, even though the post-QIP ratio improved by Q1FY27 as noted above. Separately: MarketData's own "Book Value / Share" field (&#8377;83.56, used in the &sect;10 P/B multiple) is computed from the <em>pre-QIP</em> Mar-26 balance sheet (&#8377;5,061.48 Cr net worth &divide; 60.54 Cr shares &asymp; &#8377;83.6, an exact match) &mdash; it has not yet been updated for the June-2026 QIP. Using the Q1FY27 investor-presentation net worth of &#8377;8,067 Cr against ~70.6 Cr post-QIP shares outstanding implies a current book value closer to <b>&#8377;114/share</b>, and a correspondingly lower current P/B of roughly <b>3.5x</b> rather than the stale 4.81x figure &mdash; flagged explicitly in &sect;10.</p>
+
+      <h3>Capex vs. depreciation: unambiguous, accelerating capacity build</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Capex (purchase of PPE)</td><td>768.78</td><td>2,822.69</td><td>3,265.99</td><td>5,321.20</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>484.80</td><td>308.14</td><td>287.31</td><td>467.90</td></tr>
+            <tr><td>Capex / D&amp;A</td><td>1.6x</td><td>9.2x</td><td>11.4x</td><td>11.4x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow and income statements.</caption>
+      </div>
+      <p>Capex has run 9&ndash;11x depreciation every year since FY24, unambiguous evidence of real, accelerating capacity expansion rather than maintenance-only spend &mdash; entirely consistent with the guided FY27 step-up to &#8377;15,000&ndash;20,000 Cr (Q1FY27 alone already spent &#8377;2,958 Cr, ~56% of the full FY26 total). Note management separately cited "&#8377;6,445 Cr of capex incurred during FY26" on the May-26 call, a higher figure than the &#8377;5,321 Cr cash-flow-statement capex shown above &mdash; likely reflecting an accrual/commitment basis rather than cash actually paid; the discrepancy is flagged rather than reconciled, since the underlying methodology wasn't disclosed.</p>
+
+      <h3>Credit ratings and financing access</h3>
+      <p>Group-level ratings of AA-/Stable have been re-affirmed by both ICRA (Apr-26) and CRISIL (Jan-26). Project-level ratings vary with maturity: the operational 300 MW Heergarh project carries ICRA AA-; 150 MW of operational wind assets (Pokhran, Eco Clean) carry CRISIL A+; the under-construction 150 MW Platinum Urja FDRE project carries ICRA A-. Financing relationships span REC, PFC, NaBFID and multiple commercial banks, with debt now tied up for ~85% of the PPA-signed under-construction portfolio &mdash; a genuinely diversified funding base for a company of this scale, though one still highly dependent on continued access to large-ticket project debt to hit its own capex guidance.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">FY26 operating cash flow fell even as profit nearly doubled &mdash; a genuine earnings-quality flag, though management's own explanation (capex-linked supplier advances, not slipping receivables) is corroborated by the DSO data in &sect;05.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Normalized PAT</td><td class="neg">&minus;31.21</td><td>127.82</td><td>267.68</td><td>496.95</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>1,263.48</td><td>1,434.17</td><td>1,543.02</td><td class="neg">1,248.59</td></tr>
+            <tr><td>CFO YoY growth</td><td>n/a</td><td class="pos">+13.5%</td><td class="pos">+7.6%</td><td class="neg">&minus;19.0%</td></tr>
+            <tr><td>Capex</td><td class="neg">&minus;768.78</td><td class="neg">&minus;2,822.69</td><td class="neg">&minus;3,265.99</td><td class="neg">&minus;5,321.20</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td>494.70</td><td class="neg">&minus;1,388.52</td><td class="neg">&minus;1,722.97</td><td class="neg">&minus;4,072.61</td></tr>
+            <tr><td>Financing cash flow (CFF)</td><td>215.43</td><td>215.78</td><td>3,408.22</td><td>7,015.46</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: MarketData/yfinance annual cash-flow statement. No quarterly cash-flow statement exists in the source data, so the effect of Q1FY27's improved DSO on quarterly CFO could not be checked directly &mdash; flagged as a genuine gap.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Earnings-quality check: CFO and PAT diverged sharply in FY26</b>Normalized PAT grew 85.6% in FY26 while CFO <em>fell</em> 19.0% &mdash; a clear divergence the skill's cross-statement check is designed to catch. Importantly, this is <b>not</b> a receivables-quality problem: &sect;05 shows DSO improved sharply over the same period, the opposite of what a channel-stuffing or slipping-collections story would look like. On the May-26 call, an analyst (Aniket Mittal, SBI Mutual Fund) asked management directly about a sharp rise in non-current assets pulling cash flow down; CFO Arun Chopra and CEO Nikhil Dhingra attributed it to <b>capital advances of roughly &#8377;323 Cr</b> paid to battery and wind-turbine suppliers (typically 10% upfront on batteries, 20% on turbines, against a bank guarantee) ahead of delivery &mdash; a direct, specific, and credible explanation tied to the capex ramp rather than a vague or evasive answer. The mechanical driver in the cash-flow statement is consistent: "Change in Other Current Assets" swung to &minus;&#8377;304.56 Cr in FY26 from +&#8377;130.40 Cr in FY25, and overall working-capital change flipped from +&#8377;409.32 Cr to &minus;&#8377;584.26 Cr. Read together, this looks like a timing effect of aggressive forward procurement rather than a deteriorating core business &mdash; but it is exactly the kind of divergence worth re-checking at the next annual print to confirm it doesn't recur or worsen.</div>
+      </div>
+
+      <p>Free cash flow has been negative every year since FY24 and has worsened each year (&minus;&#8377;1,389 Cr, &minus;&#8377;1,723 Cr, &minus;&#8377;4,073 Cr), funded almost entirely by external capital &mdash; debt draws every year, plus the Nov-2024 IPO (FY25 equity issuance of &#8377;2,293 Cr) and the Jun-2026 QIP (which lands in FY27, not shown in the FY26 column above). This is a normal, even expected, pattern for a young IPP in an aggressive multi-year capacity build phase &mdash; it is not by itself a red flag &mdash; but it does mean the current growth plan is not close to self-funding, and the company's own guided FY27 capex of &#8377;15,000&ndash;20,000 Cr all but guarantees continued reliance on fresh debt and/or equity over the next several quarters. No forward CFO or FCF guidance was found in either earnings call.</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; governance</h2></div>
+      <p class="sec-dek">Two senior departures within about seven weeks, a joint-auditor change, and a BESS fire handled with unusually prompt disclosure &mdash; against an annual-report gap that leaves related-party and board-composition checks unverifiable in this dataset.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Manoj Kumar Upadhyay</div>
+          <div class="role">Chairman &amp; Managing Director; Promoter (ACME Group founder)</div>
+          <div class="bio">Founder of the wider ACME Group (parent ACME Cleantech Solutions Limited holds 71.40% of ACME Solar Holdings). Active and detailed on both earnings calls reviewed &mdash; personally fielded technical questions on grid curtailment, BESS economics and sector demand forecasts alongside the CEO and CFO.</div>
+        </div>
+        <div class="person">
+          <div class="name">Nikhil Dhingra</div>
+          <div class="role">Chief Executive Officer</div>
+          <div class="bio">Led both reviewed earnings calls' Q&amp;A in detail, with granular, specific answers on capex deferral tactics, curtailment quantification (to the nearest &#8377; crore) and BESS contracting mechanics &mdash; a level of operational detail consistent with close day-to-day involvement in execution.</div>
+        </div>
+        <div class="person">
+          <div class="name">Arun Chopra</div>
+          <div class="role">Chief Financial Officer (appointed May 2026)</div>
+          <div class="bio">Succeeded Rajat Kumar Singh, who "decided to pursue career opportunities outside of ACME." The transition was disclosed transparently at the very start of the May-26 call, with the outgoing CFO thanked by name and the incoming CFO immediately handed the results walkthrough &mdash; an orderly handover on its face.</div>
+        </div>
+        <div class="person">
+          <div class="name">Ankit Verma</div>
+          <div class="role">Director &amp; Head, Corporate Finance</div>
+          <div class="bio">Delivered the entire opening-remarks section of the Q1FY27 call in place of the CEO &mdash; a notable change in call structure from the May-26 call &mdash; and fielded most quantitative Q&amp;A on BESS economics and capital structure.</div>
+        </div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Two senior exits within seven weeks, both framed as voluntary</b>Beyond the CFO transition above, Rishi Kumar Mishra, Senior Vice President&ndash;Research &amp; Development (a disclosed Senior Management Personnel), resigned effective 25 Jun 2026 "on account of pursuing external career opportunities" &mdash; no successor was disclosed in this filing window. Two KMP/SMP-level departures in quick succession is worth tracking as a pattern, even though each is individually framed as a normal, voluntary career move and the CFO seat was filled immediately and transparently.</div>
+      </div>
+
+      <h3>Auditors</h3>
+      <p>Joint statutory auditors for Q1FY27 (standalone and consolidated) were Walker Chandiok &amp; Co LLP and A Prasad &amp; Associates, both issuing unmodified/clean review conclusions with no qualification found. Notably, the <b>prior-year comparative quarter (Q1FY26) was reviewed by Walker Chandiok jointly with a different second auditor, S. Tekriwal &amp; Associates</b> &mdash; i.e. the joint statutory auditor pairing changed between FY26 and FY27. No explanation for this change was found in the filings reviewed; flagged as a fact worth verifying against the (unavailable in this dataset) annual report or AGM minutes rather than assumed benign.</p>
+
+      <h3>Ownership</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Promoter / insider holding</div><div class="v">71.66%</div><div class="d">Parent: ACME Cleantech Solutions Limited, 71.40%</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">19.47%</div><div class="d">49 institutions incl. Nippon, HDFC, SBI, ICICI Pru, Tata, Kotak MFs</div></div>
+        <div class="stat"><div class="k">Free float</div><div class="v">~18.0 Cr sh.</div><div class="d">of ~70.6 Cr shares outstanding (~25.5%)</div></div>
+      </div>
+      <p>A conventional, promoter-majority Indian-listed structure with a genuinely diversified institutional register for a company barely two years past IPO. Shareholders also approved (via May-2026 postal ballot, special resolutions) amendments to the ACME Employee Stock Option Plan 2024 to permit option grants to employees of subsidiary/holding companies &mdash; routine scheme administration, though it adds to the potential future dilution overhang alongside the QIP already completed. <b>No annual report (Reg. 34(1) filing) was available in this dataset</b>, so board composition, committee structure, independent-director bios, and related-party-transaction schedules could not be independently verified here &mdash; explicitly flagged as a skipped check per this report's methodology, not silently assumed clean.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other call insights worth watching</h2></div>
+      <p class="sec-dek">A capital-efficiency tactic worth flagging as a genuine strength, a candid limit on how far management will underwrite the merchant-BESS story, and a regulatory backdrop that keeps tilting in ACME's favour.</p>
+
+      <h3>Deliberate capex deferral to protect returns</h3>
+      <p>On the May-26 call, management described explicitly holding back module procurement (and the associated interest-during-construction cost) at sites where grid connectivity (LTOA/GNA) is delayed by the transmission utility, while still energising the battery and non-module balance-of-plant early to capture merchant BESS revenue in the interim. CEO Nikhil Dhingra: "we are deferring the capex also on the solar side... there is no reason to do a solar capex until your LTOA is operational... which is helping us improve our returns." This is a genuinely sophisticated capital-discipline behaviour, not just a growth narrative &mdash; worth crediting as a real operating strength.</p>
+
+      <h3>Management's own limit on the merchant-BESS story</h3>
+      <p>Repeatedly pressed by analysts on how long the current BESS tariff arbitrage (management cited realizations of &#8377;8&ndash;10/unit against a purchase cost near &#8377;2/unit) can persist, management's answer was consistently bounded: confident for "the next 2, 3 years" based on its own demand-supply modelling (an estimated 200&ndash;500 GWh of national peak-power storage need against a currently tiny installed base), explicitly declining to forecast further out and noting that competitors (implicitly Adani and others) are already replicating the same early-BESS strategy. This is a credible, non-promotional answer that also functions as its own risk disclosure: the highest-margin part of the current growth story has a management-acknowledged shelf life.</p>
+
+      <h3>Regulatory tailwinds, catalogued across both calls</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px; padding-left:18px;">
+        <li>SECI designated sole Renewable Energy Implementing Agency (REIA) by MNRE, intended to streamline and speed up the bid-to-PPA cycle industry-wide.</li>
+        <li>MoP extended graded ISTS-charge waiver protection (Jul-25 to Jun-28) for projects delayed by transmission unreadiness, for PPAs signed by 30 Jun 2026 &mdash; direct financial-risk mitigation for ACME's own delayed-substation exposure.</li>
+        <li>CERC introduced a free-exit/merchant-conversion option for LOA holders without a signed PPA within 12 months &mdash; management frames this as net-positive for ACME (most of its own LOAs are already converted to signed PPAs, so it stands to gain from connectivity freed up elsewhere).</li>
+        <li>CTU began granting BESS connectivity under a Right-of-First-Refusal route, and CEA mandated grid-forming inverters for BESS projects &mdash; both raise the bar for scale and capital access, which management frames (self-servingly, but plausibly) as favouring large, well-capitalised incumbents like ACME over smaller entrants.</li>
+      </ul>
+
+      <h3>Currency hedging on battery procurement</h3>
+      <p>Management disclosed more than $300 million hedged against dollar-denominated battery procurement, with locked-in rates around $89&ndash;93/kWh-equivalent, insulating the cost base of its 15+ GWh of ordered battery supply (from CATL and Hithium, among others) from further rupee depreciation &mdash; a specific, quantified risk-management disclosure rather than a generic reassurance.</p>
+
+      <h3>Data centre demand: acknowledged, not yet monetised</h3>
+      <p>Asked directly about data-centre power demand, management confirmed active team-building and exploration but was explicit that "the profitability metrics" are still being worked out on both cost and pricing, declining to commit to a segment entry until returns are clear. Treated here as a real optionality, not a near-term revenue driver.</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">A strong consensus buy rating with a real, recent split of opinion &mdash; and a beat-heavy earnings-surprise history.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Consensus rating</div><div class="v">Strong Buy</div><div class="d">1 strong buy + 9 buy + 1 strong sell (11 analysts)</div></div>
+        <div class="stat"><div class="k">Mean target</div><div class="v">&#8377;423.18</div><div class="d">Median &#8377;427 &middot; range &#8377;374&ndash;460</div></div>
+        <div class="stat"><div class="k">Upside to mean target</div><div class="v pos">+5.4%</div><div class="d">vs. CMP &#8377;401.60</div></div>
+        <div class="stat"><div class="k">EPS surprise, last 5 qtrs</div><div class="v pos">4 beats, 1 miss</div><div class="d">Jul-26 +39.4%, Jan-26 +33.6%, Nov-25 +14.3%, Jul-25 +22.9%; May-26 &minus;12.5%</div></div>
+      </div>
+      <p>The consensus has not been static: three and two months ago, all 11 covering analysts rated the stock a plain "buy" (0 strong buy / 11 buy / 0 hold / 0 sell / 0 strong sell). In the most recent month, the distribution split &mdash; one analyst upgraded to strong buy, but a strong sell rating also appeared for the first time in this data window, coinciding with the stock's run to new highs. This is a real divergence of professional opinion worth taking at face value rather than smoothing into a single "strong buy" headline: someone with full visibility into this company is currently betting against it even as the majority stay bullish. The earnings-beat pattern (four beats, one miss, across the last five reported quarters) is a genuinely strong track record, though the one miss (the Q4FY26 print in May-26, &minus;12.5% vs. the EPS estimate) is a reminder that the beat streak is not unbroken.</p>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock trading near its 52-week high on rich trailing multiples, priced for a growth trajectory that management's own guidance supports directionally but has not yet delivered on a full-year basis.</p>
+
+      <h3>Valuation today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">40.98x</div><div class="d">On TTM diluted EPS, using trailing-period weighted-average shares</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">4.81x (stale)</div><div class="d">&asymp;3.5x on the current, post-QIP book value &mdash; see &sect;05</div></div>
+        <div class="stat"><div class="k">Price / Sales (TTM)</div><div class="v">9.94x</div></div>
+        <div class="stat"><div class="k">EV / EBITDA</div><div class="v">15.42x</div><div class="d">On TTM EBITDA of &#8377;2,542.59 Cr</div></div>
+      </div>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>A data oddity worth flagging, not building a forecast on</b>MarketData's forward P/E field shows 16.13x against the trailing 40.98x &mdash; implying, if taken literally, consensus forward EPS of roughly &#8377;24.9 versus the trailing figure of &#8377;9.80, i.e. profit growth of well over 2x in the next reporting period. That is a larger single-period jump than anything in this company's own guidance supports directly, and the source of the underlying analyst estimate (which fiscal year, how many analysts) could not be verified in this dataset. Treated here as a possible data-vintage or methodology artifact rather than a reliable forecast &mdash; the scenario ranges below are built independently from the company's own guided operating metrics instead.</div>
+      </div>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built from management's own guided operating metrics (&sect;03&ndash;05: FY27 capex &#8377;15,000&ndash;20,000 Cr, 10+ GWh BESS, 1.5 GW new generation capacity, &#8377;1,400 Cr+ BESS revenue lock-in, 87&ndash;92% EBITDA margin band) and the analyst target range in &sect;09. These are this report's own scenario constructions, not company or sell-side point forecasts &mdash; treat as illustrative ranges, not price targets.</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;300&ndash;360</div>
+          <div class="rng">&minus;25% to &minus;10% from CMP</div>
+          <ul>
+            <li>Transmission/GNA delays push a material share of the guided 1.5 GW and 10 GWh BESS commissioning into FY28, as has already happened once (BESS guidance was pushed forward in timing terms, but generation-side GNA delays remain a live, management-acknowledged risk)</li>
+            <li>Merchant BESS spreads compress faster than management's own "2, 3 year" window as competitors (Adani and others) scale the same playbook, pressuring the highest-margin revenue line</li>
+            <li>FY26's CFO/PAT divergence recurs or worsens; a further, more dilutive capital raise is needed as the debt-repayment QIP object continues to lag its own schedule</li>
+            <li>Multiple compresses toward 25&ndash;28x trailing earnings on demonstrated execution risk and the newly-appeared strong-sell rating gaining conviction</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;400&ndash;470</div>
+          <div class="rng">&minus;0% to +17% from CMP</div>
+          <ul>
+            <li>BESS commissioning lands close to the guided 10+ GWh by FY27-end, generation capacity additions land close to 1.5 GW subject to typical ~6-month CTU substation delays management itself describes as normal</li>
+            <li>Revenue growth moderates from Q1FY27's 63% pace but stays well above FY25's single-digit rate as new capacity phases in through the year; EBITDA margin holds in the 87&ndash;91% band</li>
+            <li>Other income share of PBT continues normalising downward as the operating business outgrows the cash balance; CFO recovers toward tracking PAT growth more closely</li>
+            <li>Stock broadly tracks the current sell-side target range (&#8377;374&ndash;460, mean &#8377;423)</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;500&ndash;600</div>
+          <div class="rng">+25% to +49% from CMP</div>
+          <ul>
+            <li>BESS commissioning guidance is raised a third time (as happened once already between the two calls in this dataset); the ~20% of 10 GWh still uncontracted gets locked in at similar or better realizations, pushing BESS revenue toward the &#8377;2,000&ndash;2,500 Cr level analysts probed for on the Q1FY27 call</li>
+            <li>2030 target of 10 GW / 25 GWh is itself revised upward, as management explicitly floated on the Q1FY27 call ("we contemplate to increase our target beyond 10 gigawatt")</li>
+            <li>Data centre/C&amp;I optionality converts to a disclosed, profitable revenue stream</li>
+            <li>Market sustains a premium multiple on the growth trajectory and re-rates toward the current EV/EBITDA (15.4x) holding even as the earnings base grows</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via book value: on the current, post-QIP book value of roughly &#8377;114/share (&sect;05), even the bear case above implies a P/B floor near 2.6&ndash;3.2x &mdash; not a cheap floor for a business still generating negative free cash flow, but meaningfully less extreme than the stale, pre-QIP 4.81x headline multiple suggests.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuinely rare combination for an Indian IPP &mdash; DSO collapsed from 181 to 20 days as the book shifted toward central, cash-discounting offtakers; core EBITDA margins have held an 87&ndash;92% band through a period of very fast capacity build; the company appears to be the largest single BESS operator in the country by its own account, monetising early-mover merchant arbitrage at 80%+ margins while a genuinely sophisticated capex-deferral tactic protects returns on delayed sites; guidance on BESS commissioning has been raised twice, not cut, within this three-month window; and financing access (REC, PFC, NaBFID, AA-/Stable ratings) remains diversified and improving on cost. <b>What's not good:</b> FY26 operating cash flow fell 19% even as normalized PAT rose 85.6%, a real earnings-quality flag even if management's supplier-advance explanation is credible and corroborated by the DSO data; 71% of FY26 pre-tax profit was non-power-sale treasury/DSRA interest income; total debt more than doubled in FY26 before being partially offset by a 16.5%-dilutive QIP whose own debt-repayment proceeds are being deployed well behind schedule; free cash flow has been negative and worsening for three straight years with no path to self-funding disclosed; two senior executives (CFO, SVP R&amp;D) departed within seven weeks of each other; the joint statutory auditor pairing changed year-on-year without explanation in this dataset; and a BESS facility fire in July, while financially immaterial as disclosed, is a live reminder of physical risk in a fleet that is roughly tripling in size this year. <b>How management has navigated it:</b> candidly and specifically on the earnings calls reviewed &mdash; granular, numbers-backed answers to hard questions on curtailment, cash-flow divergence, BESS margin sustainability and capex deferral, plus a fast, detailed, quantified disclosure of the July fire incident rather than a vague statement. Guidance has consistently moved in the direction of "more/sooner," never "less/later," across the two-quarter window this report can observe.</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the growth and execution story keeps delivering against its own guidance over the next 12 months: moderately favourable, roughly 55&ndash;65%.</b> The operating fundamentals &mdash; DSO, margin resilience, BESS scale, financing access &mdash; are stronger and more independently corroborated than the market's occasional "priced-for-perfection" framing might suggest at 41x trailing earnings. But the earnings-quality flag on cash flow, the still-heavy absolute debt load, the recurring dilution pattern, the management-acknowledged shelf life on merchant BESS spreads, and a valuation sitting near a 52-week high with a newly-appeared strong-sell rating in the mix all argue against treating this as a low-risk compounder. This reads as a name to own selectively through the execution window rather than to chase at the current multiple without a plan for what happens if a single guided milestone (a GNA delay, a BESS spread compression, a weaker annual CFO print) slips.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether FY27's full-year CFO/PAT relationship normalizes back toward the FY24&ndash;FY25 pattern of near-parallel growth, or whether the FY26 divergence recurs &mdash; the single biggest quantitative flag in this note; (2) whether the QIP's debt-repayment object catches up to its own schedule, and whether FY27 capex actually lands in the guided &#8377;15,000&ndash;20,000 Cr range rather than slipping; (3) whether BESS commissioning guidance is raised a further time or, for the first time, missed; (4) whether other income's share of PBT keeps falling as it did quarter-on-quarter into Q1FY27, evidence the core power-sale business is genuinely outgrowing treasury income rather than merely diluting it with a bigger balance sheet; (5) any further senior-management departure, or lack thereof, following the CFO and SVP R&amp;D exits; (6) whether merchant BESS realizations hold through the FY27 monsoon/El Nino-normalization window analysts specifically probed management on.</div>
+      </div>
+
+      <footer>
+        Compiled from ACME Solar Holdings Limited's BSE filings (Announcements/AnnouncementsConv, 10 May&ndash;13 Aug 2026 &mdash; two earnings-call transcripts, one investor presentation, one financial-results filing, QIP and acquisition intimations, award-of-order and management-change filings, monitoring-agency and deviation-statement reports, and a postal-ballot notice), MarketData (Yahoo Finance via yfinance, fetched 22 Aug 2026 15:47 IST, including annual and quarterly statement series back to FY22), and the tracked News feed (26 May&ndash;12 Aug 2026, plus one item from 17 Nov 2025 outside the primary filing window). No annual report and no quarterly materials prior to Q4/FY26 were available in this dataset; the Sep-2025 quarter (Q2FY26) and all quarterly cash-flow data are genuine gaps, flagged wherever they affect a figure below rather than estimated. Every figure is tagged to its source; where two sources disagreed or a figure could not be independently verified, that is stated in the relevant section. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / EBITDA / PAT) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [539, 584, 617, 705, 954];
+    var ebitda  = [474, 531, 565, 636, 831];
+    var pat     = [123, 131, 114, 138, 235];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'EBITDA', color:'var(--chart-3)', data:ebitda},
+      {label:'PAT', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 46, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly revenue, EBITDA and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var by = y(Math.max(v,0));
+        var bh = Math.abs(y(v) - zeroY);
+        var top = v>=0 ? y(v) : zeroY;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q2FY26 (Sep-25 quarter) is not plotted — missing from both the yfinance quarterly series and this filing window; not estimated. Figures are company/yfinance basis incl. other income; see §03 table for sourcing.</div></div>';
+  })();
+
+  // ---------- DSO trend chart ----------
+  (function(){
+    var el = document.getElementById('dsochart');
+    if(!el) return;
+    var points = [['FY23',181], ['FY24',93], ['FY25',42], ['FY26',20], ['Q1FY27',20]];
+    var W = 900, H = 220, padL = 48, padR = 16, padT = 18, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var vals = points.map(function(p){return p[1];});
+    var minV = 0, maxV = Math.max.apply(null, vals) * 1.12;
+
+    function x(i){ return padL + (plotW/(points.length-1))*i; }
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+
+    var path = points.map(function(p,i){ return (i===0?'M':'L') + x(i).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = path + ' L ' + x(points.length-1).toFixed(1) + ' ' + (padT+plotH) + ' L ' + x(0).toFixed(1) + ' ' + (padT+plotH) + ' Z';
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Days sales outstanding, FY23 to Q1FY27" style="width:100%;height:auto;font-size:10.5px;">';
+    svg += '<defs><linearGradient id="dfade" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="'+css('--chart-1')+'" stop-opacity="0.22"/>' +
+      '<stop offset="100%" stop-color="'+css('--chart-1')+'" stop-opacity="0"/></linearGradient></defs>';
+
+    var steps=4;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+
+    svg += '<path d="'+area+'" fill="url(#dfade)" stroke="none"/>';
+    svg += '<path d="'+path+'" fill="none" stroke="'+css('--chart-1')+'" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    points.forEach(function(p,i){
+      var r = (i===points.length-1) ? 4.5 : 2.6;
+      svg += '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(p[1]).toFixed(1)+'" r="'+r+'" fill="'+css('--surface')+'" stroke="'+css('--chart-1')+'" stroke-width="2"><title>'+p[0]+': '+p[1]+' days</title></circle>';
+      svg += '<text x="'+x(i).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+p[0]+'</text>';
+    });
+
+    svg += '</svg>';
+    el.innerHTML = '<div class="card">' + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Days sales outstanding, as billed, from the Q1FY27 investor presentation\'s own DSO chart. Q1FY27 point shown as 20 days (total, as billed); 14 days excluding BESS receivables, 37 days including them — see §05 caption.</div></div>';
+  })();
+})();
+</script>

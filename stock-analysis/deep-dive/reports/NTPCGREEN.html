@@ -1,0 +1,876 @@
+<title>NTPC Green Energy Limited</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff;
+    --page:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f7fc;
+    --ink:#0b1220;
+    --ink-soft:#4b5567;
+    --ink-mute:#8892a6;
+    --border:#e4e8f1;
+    --border-strong:#cbd3e3;
+
+    --accent:#3366ff;
+    --accent-ink:#1a3fb8;
+    --accent-tint:#eef3ff;
+    --accent-tint-strong:#dce7ff;
+
+    --ai:#7c5cfc;
+    --ai-tint:#f3efff;
+
+    --good:#1a9850;
+    --good-tint:#e3f7ea;
+    --warn:#b9790a;
+    --warn-tint:#fdf1e0;
+    --critical:#d8342a;
+    --critical-tint:#fce7e5;
+
+    --mixed:#8b3fe8;
+    --mixed-tint:#f1ebff;
+
+    --chart-1:#2f6fed;
+    --chart-2:#e08e0b;
+    --chart-3:#0ea5a8;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-pill:999px;
+    --shadow: 0 1px 2px rgba(16,31,94,.05), 0 6px 20px -8px rgba(16,31,94,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#0a0e1a;
+      --page:#0a0e1a;
+      --surface:#10162a;
+      --surface-2:#0d1220;
+      --ink:#f2f5fc;
+      --ink-soft:#b7c0d6;
+      --ink-mute:#7c879e;
+      --border:#232b42;
+      --border-strong:#33405f;
+
+      --accent:#3366ff;
+      --accent-ink:#a9c0ff;
+      --accent-tint:#101f3d;
+      --accent-tint-strong:#17284a;
+
+      --ai:#9472ff;
+      --ai-tint:#1e1833;
+
+      --good:#3ddc84;
+      --good-tint:#113322;
+      --warn:#e0a83c;
+      --warn-tint:#2b2415;
+      --critical:#ff6b5e;
+      --critical-tint:#341613;
+
+      --mixed:#9457ee;
+      --mixed-tint:#241a3d;
+
+      --chart-1:#4c86ff;
+      --chart-2:#c97a16;
+      --chart-3:#1d9c99;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0a0e1a;
+    --page:#0a0e1a;
+    --surface:#10162a;
+    --surface-2:#0d1220;
+    --ink:#f2f5fc;
+    --ink-soft:#b7c0d6;
+    --ink-mute:#7c879e;
+    --border:#232b42;
+    --border-strong:#33405f;
+
+    --accent:#3366ff;
+    --accent-ink:#a9c0ff;
+    --accent-tint:#101f3d;
+    --accent-tint-strong:#17284a;
+
+    --ai:#9472ff;
+    --ai-tint:#1e1833;
+
+    --good:#3ddc84;
+    --good-tint:#113322;
+    --warn:#e0a83c;
+    --warn-tint:#2b2415;
+    --critical:#ff6b5e;
+    --critical-tint:#341613;
+
+    --mixed:#9457ee;
+    --mixed-tint:#241a3d;
+
+    --chart-1:#4c86ff;
+    --chart-2:#c97a16;
+    --chart-3:#1d9c99;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 30px -10px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+  }
+  ::selection{ background:var(--accent-tint-strong); }
+  h1,h2,h3,h4{
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    line-height:1.18;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;
+  }
+  .tab{ font-variant-numeric: tabular-nums; }
+  table{ font-variant-numeric: tabular-nums; }
+
+  .pos::before, td.pos::before, .chip .v.pos::before, .metric .d.pos::before{ content:"▲ "; }
+  .neg::before, td.neg::before, .chip .v.neg::before, .metric .d.neg::before{ content:"▼ "; }
+
+  .ai-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--radius-pill);
+    font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:none; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--ai)); margin-right:8px; vertical-align:1px;
+  }
+  .ai-pill::before{ content:"✦"; font-size:10px; }
+
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 236px minmax(0,1fr);
+    gap:0 44px;
+    padding: 0 24px 80px;
+  }
+  @media (max-width: 880px){
+    .shell{ grid-template-columns: 1fr; }
+    .toc{ position:static !important; order:2; }
+  }
+
+  .cover{
+    grid-column: 1 / -1;
+    padding: 46px 0 30px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:12.5px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+    margin-bottom:14px;
+  }
+  .cover-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(38px,6vw,58px);
+    letter-spacing:-0.01em;
+  }
+  .cover .sub{
+    font-size:17px; color:var(--ink-soft); max-width:62ch; margin-top:12px;
+  }
+  .thesis{
+    margin-top:22px;
+    padding:16px 20px;
+    background:var(--accent-tint);
+    border:1px solid var(--accent-tint-strong);
+    border-radius:var(--radius-md);
+    font-size:15.5px;
+    color:var(--ink);
+    max-width:78ch;
+  }
+  .thesis b{ color:var(--accent-ink); }
+  .chips{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .chip{
+    background:var(--surface);
+    padding:14px 16px;
+  }
+  .chip .k{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .chip .v{ font-size:19px; font-weight:700; margin-top:4px;}
+  .chip .v.neg{ color:var(--critical); }
+  .chip .v.pos{ color:var(--good); }
+  .coverage-note{
+    margin-top:20px; font-size:13px; color:var(--ink-mute); max-width:80ch;
+    border-left:2px solid var(--border-strong); padding-left:12px;
+  }
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding-top:6px;
+  }
+  .toc-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-mute); margin-bottom:10px; font-weight:700;}
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .toc a{
+    display:flex; gap:10px; text-decoration:none; color:var(--ink-soft);
+    padding:7px 8px; border-radius:var(--radius-sm); font-size:13.5px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .toc a:hover{ background:var(--surface-2); color:var(--ink); }
+  .toc a .n{ color:var(--ink-mute); font-variant-numeric:tabular-nums; min-width:16px;}
+
+  main{ min-width:0; }
+  section{ margin-bottom:56px; scroll-margin-top:24px; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{ color:var(--accent); font-size:15px; font-weight:700;}
+  section h2{ font-size:26px; }
+  .sec-dek{ color:var(--ink-soft); font-size:15px; margin:8px 0 22px; max-width:74ch;}
+
+  h3{ font-size:18px; margin:28px 0 10px; letter-spacing:-.01em; }
+  p{ margin:0 0 14px; max-width:70ch; color:var(--ink); }
+  .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .twrap{ overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:14px 0 20px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:13.6px; }
+  th,td{ padding:9px 13px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap;}
+  th:first-child,td:first-child{ text-align:left; white-space:normal; min-width:150px;}
+  thead th{
+    background:var(--surface-2); color:var(--ink-mute); font-weight:600;
+    text-transform:uppercase; font-size:10.8px; letter-spacing:.05em;
+    position:sticky; top:0;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr.total td{ font-weight:700; background:var(--surface-2); }
+  td.pos{ color:var(--good); }
+  td.neg{ color:var(--critical); }
+  caption{ caption-side:bottom; text-align:left; font-size:12px; color:var(--ink-mute); padding:8px 13px; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 10px 3px 8px;
+    border-radius:99px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .pill .d{ width:6px; height:6px; border-radius:50%; }
+  .pill.bull{ background:var(--good-tint); color:var(--good); }
+  .pill.bull .d{ background:var(--good); }
+  .pill.bear{ background:var(--critical-tint); color:var(--critical); }
+  .pill.bear .d{ background:var(--critical); }
+  .pill.mixed{ background:var(--mixed-tint); color:var(--mixed); }
+  .pill.mixed .d{ background:var(--mixed); }
+  .pill.neutral{ background:var(--surface-2); color:var(--ink-mute); border:1px solid var(--border); }
+  .pill.neutral .d{ background:var(--ink-mute); }
+
+  .news-item{
+    display:grid; grid-template-columns:112px 1fr; gap:18px;
+    padding:18px 0; border-top:1px solid var(--border);
+  }
+  .news-item:first-of-type{ border-top:none; }
+  .news-date{ font-size:13px; color:var(--ink-mute); padding-top:2px; font-weight:600;}
+  .news-title{ font-size:15.5px; font-weight:700; margin:2px 0 6px; }
+  .news-body{ font-size:14px; color:var(--ink-soft); }
+
+  blockquote{
+    margin:18px 0; padding:4px 0 4px 20px; border-left:3px solid var(--border-strong);
+    font-style:italic; font-size:16px; color:var(--ink);
+    max-width:72ch;
+  }
+  blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-mute); font-family:-apple-system,sans-serif;}
+
+  .callout{
+    display:flex; gap:12px; padding:15px 18px; border-radius:var(--radius-md); margin:16px 0;
+    border:1px solid var(--border); font-size:14px;
+  }
+  .callout .icon{ font-size:16px; line-height:1.5;}
+  .callout.flag{ background:var(--critical-tint); border-color: color-mix(in srgb, var(--critical) 30%, var(--border)); }
+  .callout.flag .icon{ color:var(--critical); }
+  .callout.note{ background:var(--accent-tint); border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+  .callout.note .icon{ color:var(--accent); }
+  .callout.pass{ background:var(--good-tint); border-color: color-mix(in srgb, var(--good) 30%, var(--border)); }
+  .callout.pass .icon{ color:var(--good); }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0;}
+  .stat{ padding:14px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .stat .k{ font-size:11.5px; text-transform:uppercase; color:var(--ink-mute); letter-spacing:.06em;}
+  .stat .v{ font-size:22px; font-weight:700; margin-top:4px;}
+  .stat .d{ font-size:12.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .case-card{ border-radius:var(--radius-lg); padding:20px 20px 18px; border:1px solid var(--border); background:var(--surface);}
+  .case-card h4{ font-family:-apple-system,sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .case-card .px{ font-size:30px; font-weight:700; margin-bottom:4px;}
+  .case-card .rng{ font-size:12.5px; color:var(--ink-mute); margin-bottom:14px;}
+  .case-card ul{ margin:0; padding-left:18px; font-size:13.6px; color:var(--ink-soft); }
+  .case-card li{ margin-bottom:6px; }
+  .case-card.bear{ border-top:4px solid var(--critical); }
+  .case-card.base{ border-top:4px solid var(--border-strong); }
+  .case-card.bull{ border-top:4px solid var(--good); }
+
+  .roster{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .person{ padding:15px 16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface);}
+  .person .name{ font-weight:700; font-size:14.5px;}
+  .person .role{ font-size:12px; color:var(--accent-ink); font-weight:600; margin:2px 0 8px;}
+  .person .bio{ font-size:12.8px; color:var(--ink-soft); line-height:1.5;}
+
+  footer{
+    grid-column:1/-1; margin-top:20px; padding-top:24px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-mute); max-width:90ch;
+  }
+
+  .kicker{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); font-weight:700; margin: 4px 0 2px;}
+
+  svg text{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+</style>
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow"><span class="dot"></span>Equity Research Note &middot; Renewable Power Generation (Solar / Wind / Storage) &middot; PSU-Promoted</div>
+    <h1>NTPC Green Energy Limited</h1>
+    <p class="sub">NSE / BSE: NTPCGREEN (544289) &middot; FY2023&ndash;FY2027(Q1) performance review, BSE-filing, Annual Report and press-release synthesis, as of 22&nbsp;August 2026.</p>
+    <div class="thesis">
+      <b>The one-line story:</b> NGEL rode a genuine, well-documented capacity build &mdash; installed capacity up 70.7% YoY to 10,076 MW, generation up 111.5% &mdash; to 29.4% consolidated revenue growth in FY26, but the growth is lumpier and more leveraged than the headline suggests: capacity utilisation actually <em>fell</em> (24.07%&rarr;22.48%) on weather and grid curtailment, a joint-venture equity-method loss knocked one quarter's (Dec-25) net margin down to just 2.65%, other income collapsed &minus;31% as IPO-deposit interest ran out, finance costs and depreciation are compounding faster than revenue, and standalone (parent-only) profit actually <em>fell</em> 17.0% even as consolidated profit rose 10.0% on subsidiary/JV consolidation. Debt/equity nearly doubled to 1.54x against a further &#8377;5,000&nbsp;crore FY27 borrowing authorisation and a &#8377;24,391&nbsp;crore capital commitment already on the books. No dividend was paid, and none is planned while the capex programme runs. The stock trades at 4.1x book and 147x trailing earnings for a business currently generating roughly a 2.8% return on equity, with the Government of India/NTPC still holding about 89% of the company and only ~11% of shares in free float.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="k">CMP (22 Aug 26)</div><div class="v">&#8377;91.43</div></div>
+      <div class="chip"><div class="k">Market Cap</div><div class="v">&#8377;77,041.93 Cr</div></div>
+      <div class="chip"><div class="k">52-Wk Range</div><div class="v" style="font-size:15px;">&#8377;84.00 &ndash; &#8377;119.95</div></div>
+      <div class="chip"><div class="k">FY26 Consol. Revenue</div><div class="v pos">+29.4% YoY</div></div>
+      <div class="chip"><div class="k">FY26 Consol. PAT</div><div class="v pos">+10.0% YoY</div></div>
+      <div class="chip"><div class="k">FY26 Standalone PAT</div><div class="v neg">&minus;17.0% YoY</div></div>
+      <div class="chip"><div class="k">Trailing / Forward P/E</div><div class="v">147.5x / 32.6x</div></div>
+      <div class="chip"><div class="k">Consol. Debt/Equity</div><div class="v neg">0.97x &rarr; 1.54x</div></div>
+    </div>
+    <div class="coverage-note">
+      <b>Data coverage, basis and a stated gap &mdash; please read before the numbers below:</b> BSE filings in this dataset (Announcements/AnnouncementsConv) span 18&nbsp;Mar&ndash;22&nbsp;Aug 2026 (49 filings) &mdash; there is no earlier filing history in this pipeline despite the company's IPO having closed in November 2024, so this report cannot independently verify anything before FY2024-25 from primary filings. Only <b>two</b> Financial Results filings exist in this window: the audited Q4/FY26 results (22 May 2026) and the unaudited Q1FY27 results (22 July 2026) &mdash; both with clean, machine-readable P&amp;L tables (a genuine advantage over some other companies' scanned-PDF filings), each carrying an unmodified/clean auditor opinion. The FY2025-26 Annual Report (filed 5 Aug 2026, 19,255 lines converted) supplies the Management Discussion &amp; Analysis, related-party, contingent-liability and commitment disclosures used throughout. <b>Explicitly confirmed:</b> no earnings-call transcript and no investor-presentation deck exist anywhere in this company's dataset &mdash; sections 3/4/8 below lean on the financial-results filings, the Annual Report's MD&amp;A, press releases and News instead; no management quote in this report is fabricated. <b>A real data gap:</b> Q2FY26 (Sep-2025 quarter) is missing from both the BSE filings (only 2 quarterly results exist) and MarketData/yfinance's own quarterly series &mdash; every quarterly table below shows it as n/a rather than estimating it. Figures are tagged standalone vs. consolidated throughout; consolidated is used as the default basis per this report's own methodology unless stated otherwise. Where the Annual Report's MD&amp;A revenue figure and yfinance's independently-pulled figure differ by a small, explainable margin (government-grant revenue recognition), both are shown rather than silently reconciled.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#business"><span class="n">01</span>Business &amp; moat</a></li>
+      <li><a href="#news"><span class="n">02</span>Recent newsflow</a></li>
+      <li><a href="#sales"><span class="n">03</span>Sales &amp; segments</a></li>
+      <li><a href="#margins"><span class="n">04</span>Margins &amp; profitability</a></li>
+      <li><a href="#balance-sheet"><span class="n">05</span>Balance sheet</a></li>
+      <li><a href="#cashflow"><span class="n">06</span>Cash flow quality</a></li>
+      <li><a href="#management"><span class="n">07</span>Management &amp; governance</a></li>
+      <li><a href="#callinsights"><span class="n">08</span>Disclosure insights</a></li>
+      <li><a href="#analysts"><span class="n">09</span>Analyst coverage</a></li>
+      <li><a href="#outlook"><span class="n">10</span>Outlook &amp; valuation</a></li>
+      <li><a href="#verdict"><span class="n">11</span>Bottom line</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- 01 BUSINESS -->
+    <section id="business">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What NGEL does, and how it has grown</h2></div>
+      <p class="sec-dek">The dedicated renewable-energy arm of NTPC Limited &mdash; India's largest power generator &mdash; built almost entirely since incorporation in 2022, now sitting on a 26,544 MW portfolio just four years later.</p>
+
+      <p class="lede">NTPC Green Energy Limited (NGEL) was incorporated in April 2022 as the renewable-energy vehicle of the NTPC Group, listed via a &#8377;10,000 crore fresh-issue IPO that completed in FY2024-25 (92,63,29,669 new equity shares at &#8377;10 face value; proceeds fully utilised by 30 September 2025 per the company's own financial-results notes). It develops, builds, owns and operates utility-scale solar, wind, hybrid, battery-storage (BESS), pumped-storage and firm-and-dispatchable renewable energy (FDRE) projects across India, and separately earns a small consultancy/project-management/supervision fee stream (&#8377;21.99 Cr in FY26, consolidated &mdash; MD&amp;A). The Company is run lean: MarketData lists just 261 full-time employees for a business that closed FY26 with a &#8377;60,382 Cr consolidated balance sheet &mdash; consistent with an asset-owning developer that relies on EPC contractors and subsidiaries/JVs rather than an in-house construction workforce.</p>
+
+      <h3>Scale, FY25&rarr;FY26: crossed 10 GW operational</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Total portfolio (31 Mar 2026)</div><div class="v">26,544 MW</div><div class="d">Operational + contracted/awarded, per Annual Report MD&amp;A</div></div>
+        <div class="stat"><div class="k">Operational capacity</div><div class="v pos">10,076 MW</div><div class="d">vs 5,902 MW (31 Mar 2025) &mdash; +70.72% YoY</div></div>
+        <div class="stat"><div class="k">Contracted &amp; awarded</div><div class="v">16,468 MW</div><div class="d">Beyond the operational base</div></div>
+        <div class="stat"><div class="k">MoU/term-sheet pipeline</div><div class="v">3,426 MW</div><div class="d">Additional to the 26,544 MW portfolio figure</div></div>
+      </div>
+      <p>FY26 capacity additions were 4,174 MW versus 2,977 MW in FY25 (+40.21% YoY), and generation rose to 14,596 million units (MU) from 6,901 MU (+111.51% YoY) &mdash; both figures sourced directly from the Annual Report's "Key Operational Highlights" table. Major projects driving this include the Khavda and Bhadla solar parks (Gujarat/Rajasthan) and the Pudimadaka Green Hydrogen Hub (Andhra Pradesh). Section&nbsp;03 shows that this capacity growth converted to revenue growth, but that a falling capacity-utilisation factor (CUF) meant the conversion was less efficient in FY26 than FY25 &mdash; a nuance the MW-growth headline alone would miss.</p>
+
+      <h3>The moat: NTPC parentage, project-execution scale, and a AAA balance sheet &mdash; not a technology edge</h3>
+      <p>No independent market-share ranking specific to NGEL was found in any reviewed filing; the Annual Report cites India's move to 3rd globally in installed renewable capacity (IRENA, Dec-2025 data) as sector context, not a company-specific claim, and this report treats it as such. What is independently verifiable: NGEL's non-convertible debentures and long-term loans carry the highest domestic ratings (CRISIL AAA/Stable, IND AAA/Stable) &mdash; a genuine, hard-to-replicate funding-cost advantage flowing directly from NTPC/Government of India parentage; access to central and state counterparties (SECI, state DISCOMs, state gencos) through a partnership-led JV model (six subsidiaries, four joint ventures as at 31 March 2026); and a demonstrated ability to win competitive tenders across solar, wind and now battery storage (Section&nbsp;03). Whether this adds up to a durable competitive moat versus other well-capitalised renewable developers (Adani Green, Tata Power Renewables, ReNew, JSW Energy et al.) is not something this dataset can independently benchmark &mdash; no peer-comparison data was available in the sources reviewed.</p>
+
+      <h3>Diversification beyond plain-vanilla solar/wind</h3>
+      <p>The FY26 Annual Report describes several new-business initiatives still at an early, non-revenue-generating stage: a 100 MWh Vanadium Redox Flow Battery (VRFB) pilot at Khavda (via subsidiary NTPC Renewable Energy Ltd); a 100 MW Agri-Photovoltaic (AgriPV) EPC tender; and an expanding Commercial &amp; Industrial (C&amp;I) push targeting data-centre demand, evidenced by MoUs with CtrlS Data Centre (up to 2 GW, 31 Oct 2025) and Nxtra Data Limited (up to 500 MW, 24 Mar 2026) plus a signed 1,200 MW bilateral solar PPA with PTC India Limited (3 Jul 2026, Section&nbsp;03). None of these are yet reflected in the P&amp;L in any quantifiable way in this dataset &mdash; they are pipeline/optionality, not delivered revenue, and this report treats them accordingly.</p>
+    </section>
+
+    <!-- 02 NEWS -->
+    <section id="news">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Newsflow, most recent first</h2></div>
+      <p class="sec-dek">A steady cadence of competitive-tender wins and routine governance filings from the tracked News feed (5 Mar&ndash;22 Aug 2026) &mdash; genuinely positive on order intake, though none of it yet resolves the margin and leverage questions in &sect;04&ndash;05.</p>
+
+      <div class="news-item">
+        <div class="news-date">22 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">500 MW SECI peak-power win at &#8377;6/kWh, on top of a 200 MW/800 MWh BESS win</div>
+          <div class="news-body">Subsidiary NTPC Renewable Energy Ltd (NTPC REL) won 500 MW in SECI's Assured Peak Power tender (FDRE-IX, 6,000 MWh / 1,500 MW &times; 4 hrs) at a discovered tariff of &#8377;6.00/kWh, e-reverse auction concluded 21 Aug 2026 (BSE filing, 22 Aug). This follows the 200 MW/800 MWh West Bengal BESS win below by two weeks &mdash; a genuine, back-to-back expansion into the higher-value storage/dispatchable-power segment, not just incremental solar/wind capacity.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">22 Aug 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">E-voting scrutinizer replaced ahead of 4th AGM (28 Aug 2026)</div>
+          <div class="news-body">Routine administrative change (J.K. Gupta &amp; Associates &rarr; CS Naresh Kumar Sinha &amp; Associates) with no disclosed compliance or strategic implication.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">10 Aug 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">Confirmation of the 500 MW SECI and 200 MW/800 MWh BESS wins</div>
+          <div class="news-body">News coverage of the same two order wins reflected in the 7&ndash;22 Aug BSE filings, framed as "momentum" across both renewable power and storage.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">22 May 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">FY26 results: consolidated PAT up to &#8377;521.35 Cr &mdash; but standalone PAT fell to &#8377;405.97 Cr</div>
+          <div class="news-body">News flagged the divergence explicitly: consolidated profit rose on subsidiary/JV consolidation even as the standalone (parent) entity's own profit declined, alongside board approval of &#8377;5,000 Cr in fresh FY27 borrowing and a renewable-energy JV (CtrlS Datacenters). This report's own &sect;03&ndash;04 tabulation independently confirms both directions of that divergence from the primary financial-results filing.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">17 Mar 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">HDFC Securities initiates Buy, target &#8377;121</div>
+          <div class="news-body">The only named brokerage rating found in this dataset (Section&nbsp;09). Target implies meaningful upside from the CMP at the time; the stock's 52-week range (&#8377;84&ndash;&#8377;119.95, Section&nbsp;10) shows it has not sustainably traded above this target level since.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">10 Mar 2026</div>
+        <div>
+          <span class="pill bull"><span class="d"></span>Bullish</span>
+          <div class="news-title">270 MW of additional solar capacity commissioned in Gujarat</div>
+          <div class="news-body">Concrete operational progress consistent with the capacity-addition pace documented in &sect;01/&sect;03.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">5 Mar 2026</div>
+        <div>
+          <span class="pill neutral"><span class="d"></span>Neutral</span>
+          <div class="news-title">RTA transitioned from KFin Technologies to Beetal Financial &amp; Computer Services</div>
+          <div class="news-body">Routine administrative change, no operational or financial implication disclosed.</div>
+        </div>
+      </div>
+
+      <div class="callout note" style="margin-top:24px;">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the tape against the newsflow</b>Every dated news item in this feed that touches operations is bullish or neutral &mdash; a steady stream of competitive-tender wins (SECI, WBSEDCL, MPPMCL) and capacity commissioning. None of it is false, but none of it, on its own, explains the CUF decline, the Q3FY26 margin collapse, or the standalone-vs-consolidated profit divergence documented in &sect;03&ndash;04 below, because none of those items originate from a management call or investor deck this report could draw on (see the coverage note above). Order-win press releases are a genuine positive signal for revenue visibility, but they are not a substitute for the quarter-by-quarter numbers.</div>
+      </div>
+    </section>
+
+    <!-- 03 SALES -->
+    <section id="sales">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Sales, order wins &amp; guidance vs. actual</h2></div>
+      <p class="sec-dek">Genuine 29.4% consolidated revenue growth in FY26, powered by capacity additions &mdash; but a falling CUF, a single dud quarter, and a standalone entity that actually shrank complicate the headline.</p>
+
+      <h3>Quarterly trend (Consolidated)</h3>
+      <div id="qchart"></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>&#8377; Cr</th><th>Q3FY25 (Dec-24)</th><th>Q4FY25 (Mar-25)</th><th>Q1FY26 (Jun-25)</th><th>Q2FY26 (Sep-25)</th><th>Q3FY26 (Dec-25)</th><th>Q4FY26 (Mar-26)</th><th>Q1FY27 (Jun-26)</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>505.08<sup>&dagger;</sup></td><td>622.27</td><td>680.21</td><td class="neg">n/a</td><td>653.29</td><td>912.63</td><td>1,106.86</td></tr>
+            <tr><td>Other income</td><td>n/a</td><td>129.23</td><td>71.48</td><td class="neg">n/a</td><td>30.93</td><td>29.86</td><td>14.79</td></tr>
+            <tr><td>Profit before tax</td><td>n/a</td><td>307.02</td><td>277.10</td><td class="neg">n/a</td><td>36.67</td><td>247.26</td><td>368.32</td></tr>
+            <tr><td>PAT (owners of parent)</td><td>65.61<sup>&dagger;</sup></td><td>233.22</td><td>220.48</td><td class="neg">n/a</td><td class="neg">17.46</td><td>197.05</td><td>304.84</td></tr>
+            <tr><td>Diluted EPS (&#8377;)</td><td>n/a</td><td>0.28</td><td>0.26</td><td class="neg">n/a</td><td>0.02</td><td>0.23</td><td>0.36</td></tr>
+            <tr><td>Net profit margin (%)</td><td>n/a</td><td>37.48</td><td>32.41</td><td class="neg">n/a</td><td class="neg">2.65</td><td>21.60</td><td>27.54</td></tr>
+            <tr><td>JV share of profit/(loss)</td><td>n/a</td><td>0.15</td><td>17.96</td><td class="neg">n/a</td><td class="neg">&minus;31.95</td><td>17.96</td><td>29.04</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: BSE financial-results filings (22 May 2026, 22 Jul 2026) for Q3FY26&ndash;Q1FY27 and Q4FY25/Q1FY26 comparatives; &dagger; Q3FY25 (Dec-24) revenue/PAT from MarketData/yfinance only (not independently re-derived from a BSE filing in this dataset). <b>Q2FY26 (Sep-25) is a genuine gap</b> &mdash; absent from both the two BSE financial-results filings available (which only carry Q1FY26/Q4FY26/Q1FY27 and their comparatives) and from yfinance's own quarterly series. Shown as n/a rather than estimated, per this report's methodology.</caption>
+      </div>
+      <p>Revenue grew in every quarter shown, including a standout Q1FY27 (&#8377;1,106.86 Cr, +62.7% YoY per MarketData's TTM growth figure) &mdash; but profit did not move in a straight line. Q3FY26 (Dec-25) is the outlier: revenue held up (&#8377;653.29 Cr, actually above Q1FY26), yet PAT collapsed to just &#8377;17.46 Cr and net margin to 2.65%, the weakest quarter in this table by a wide margin. The direct, quantifiable driver is visible in the same filing: the Company's share of joint-venture profit swung from +&#8377;17.96 Cr (Q4FY26) to a <b>&minus;&#8377;31.95 Cr loss</b> in Q3FY26 &mdash; a roughly &#8377;50 Cr swing at the JV line alone, which by itself accounts for most of the quarter's profit shortfall. This is consistent with, though not conclusively proven by, the Annual Report's own explanation for full-year softness: "Capacity Utilization Factor (CUF) was lower at 22.48% as compared to 24.07% during FY 2024-25 primarily due to lower solar irradiation/wind speeds and grid curtailment" &mdash; a plausible read is that one or more JV assets (most likely within the ONGC-NTPC Green JV, whose Ayana Renewable Power subsidiary appears repeatedly in this quarter's press releases) had a particularly weak December quarter for weather/curtailment reasons.</p>
+
+      <h3>Standalone vs. consolidated: growth is happening below the parent, not at it</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>FY26 vs FY25, ₹ Cr</th><th>Standalone</th><th>Consolidated</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>1,966.67 <span style="color:var(--critical)">(&minus;2.76%)</span></td><td>2,858.42 <span style="color:var(--good)">(+29.36%)</span></td></tr>
+            <tr><td>Profit before tax</td><td>549.68 <span style="color:var(--critical)">(&minus;17.68%)</span></td><td>682.66 <span style="color:var(--good)">(+4.60%)</span></td></tr>
+            <tr><td>Profit for the period</td><td>405.97 <span style="color:var(--critical)">(&minus;17.02%)</span></td><td>521.35 <span style="color:var(--good)">(+9.96%)</span></td></tr>
+          </tbody>
+        </table>
+        <caption>Source: BSE financial-results filing, 22 May 2026 (audited FY26 vs FY25).</caption>
+      </div>
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>The parent company's own revenue and profit shrank in FY26</b>NGEL the standalone legal entity &mdash; the one whose shares actually trade &mdash; posted a <em>declining</em> top and bottom line in FY26 (revenue &minus;2.76%, PAT &minus;17.02%), even as every headline growth number (consolidated revenue +29.4%, capacity +70.7%, generation +111.5%) points up. The entire consolidated growth story is happening inside subsidiaries and JVs &mdash; principally NTPC Renewable Energy Ltd (100%-owned) and the ONGC-NTPC Green JV (50%-owned) &mdash; where NGEL shareholders capture only their proportionate economic share, and in the JV case, share the downside too (as Q3FY26 showed). A reader relying only on the consolidated headline would miss that the entity actually issuing the shares is, on its own numbers, not currently growing.</div>
+      </div>
+
+      <h3>Order wins in this filing window (forward revenue visibility, not yet booked revenue)</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">SECI Peak Power (FDRE-IX)</div><div class="v">500 MW</div><div class="d">&#8377;6.00/kWh, 21 Aug 2026, via NTPC REL</div></div>
+        <div class="stat"><div class="k">WBSEDCL Standalone BESS</div><div class="v">200 MW / 800 MWh</div><div class="d">&#8377;4.35 lakh/MW/month, 7 Aug 2026</div></div>
+        <div class="stat"><div class="k">SECI Wind (Tranche-XX)</div><div class="v">50 MW</div><div class="d">&#8377;3.85/kWh, 15 Jul 2026, via Ayana (ONGPL subsidiary)</div></div>
+        <div class="stat"><div class="k">MPPMCL Wind</div><div class="v">193 MW</div><div class="d">&#8377;4.17/kWh, 30 Jun 2026, via Ayana</div></div>
+        <div class="stat"><div class="k">PTC India bilateral PPA</div><div class="v">1,200 MW solar</div><div class="d">Signed 3 Jul 2026, via NTPC REL</div></div>
+        <div class="stat"><div class="k">Defence-land solar+BESS</div><div class="v">250 MW</div><div class="d">Sitapur, UP; approved by Raksha Mantri, 9 Jun 2026</div></div>
+      </div>
+      <p>Combined new contracted/PPA capacity disclosed across this roughly five-month window exceeds 2.1 GW, on top of the 16,468 MW already contracted/awarded at FY26-end. Tariffs discovered in competitive auctions ranged &#8377;3.85&ndash;6.00/kWh for energy and &#8377;4.35 lakh/MW/month for standalone storage capacity &mdash; useful reference points, though this report has no independent basis (no peer tender data reviewed) to judge whether these tariffs are attractive or thin relative to NGEL's cost of capital and construction cost per MW.</p>
+
+      <h3>Geography, segments and expansion</h3>
+      <p>NGEL discloses no segment breakdown: the Annual Report states plainly it "does not have any separate reportable segments in accordance with Ind AS 108" because it is "engaged primarily in the business of power generation from renewable energy sources" &mdash; a single-segment business by the company's own accounting treatment, which means no revenue-by-technology (solar vs wind vs storage) or revenue-by-state split exists in any filing reviewed. All disclosed projects are domestic (India); no export revenue or overseas project was found. <b>Horizontal expansion</b> is real: from solar/wind generation into standalone battery storage (BESS), FDRE/peak-power products, and early C&amp;I/data-centre offtake. <b>Vertical/new-technology expansion</b> is nascent: VRFB storage and AgriPV are pilot-stage per the Annual Report's own description, not yet revenue-contributing.</p>
+
+      <h3>Guidance vs. actual</h3>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>No formal quarterly sales/margin guidance exists in this dataset</b>With no earnings call or investor presentation anywhere in the sources reviewed, NGEL's only forward-looking numeric commitments found are capital-raising authorisations (Section&nbsp;05) rather than sales or margin targets. The one qualitative outlook statement, from the Annual Report's MD&amp;A ("NGEL enters FY 2026-27 with a significantly scaled operating base... The Company's immediate focus will remain on disciplined project execution, timely commissioning, capital-efficient scale-up"), is directional rather than numeric and cannot be scored as a beat or miss. This is a genuine limitation on how far this report's guidance-vs-actual check (required by this report's own methodology) can be run for NGEL.</div>
+      </div>
+    </section>
+
+    <!-- 04 MARGINS -->
+    <section id="margins">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Margins, expenses &amp; profitability</h2></div>
+      <p class="sec-dek">Operating EBITDA margins are genuinely excellent for the core generation business (~87%) &mdash; but rising finance costs and depreciation, a fading other-income tailwind, and one bad JV quarter mean profit growth is running well behind capacity growth.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, ₹ Cr / %</th><th>FY25</th><th>FY26</th><th>% chg</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue from operations</td><td>2,209.64</td><td>2,858.42</td><td class="pos">+29.36%</td></tr>
+            <tr><td>Other income</td><td>256.06</td><td>176.70</td><td class="neg">&minus;30.99%</td></tr>
+            <tr><td>EBITDA (reported)</td><td>2,172.79</td><td>2,651.76</td><td class="pos">+22.04%</td></tr>
+            <tr><td>Operating EBITDA</td><td>1,916.73</td><td>2,475.06</td><td class="pos">+29.13%</td></tr>
+            <tr><td>Operating EBITDA margin</td><td>86.74%</td><td>86.59%</td><td>&minus;0.15pp</td></tr>
+            <tr><td>Finance costs</td><td>760.68</td><td>887.00</td><td class="neg">+16.61%</td></tr>
+            <tr><td>Depreciation &amp; amortisation</td><td>758.25</td><td>1,101.95</td><td class="neg">+45.33%</td></tr>
+            <tr><td>Profit before tax</td><td>652.63</td><td>682.66</td><td class="pos">+4.60%</td></tr>
+            <tr><td>PAT (owners of parent)</td><td>475.48</td><td>522.60</td><td class="pos">+9.90%</td></tr>
+            <tr><td>Interest coverage (EBIT/finance cost)</td><td>2.62x</td><td>2.83x</td><td class="pos">+8.02%</td></tr>
+            <tr><td>Debt-service coverage ratio</td><td>1.38x</td><td>1.58x</td><td class="pos">+14.49%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Annual Report MD&amp;A "Key Financial Highlights" and "Key Ratios" tables (consolidated), FY26 vs FY25.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Operating profit is growing in line with capacity &mdash; but nearly all of that growth is being absorbed below the EBITDA line</b>Operating EBITDA grew a healthy 29.13% in FY26, essentially matching capacity growth, and Operating EBITDA margin held almost flat (86.74%&rarr;86.59%) &mdash; the core generation business itself is not deteriorating. But PBT grew only 4.60% and PAT (owners) only 9.90%, because finance costs (+16.61%) and especially depreciation (+45.33%, as newly commissioned assets began depreciating) grew far faster than EBITDA. Other income &mdash; overwhelmingly interest earned on unutilised IPO proceeds &mdash; fell 30.99% as those proceeds were fully deployed by September 2025 (financial-results notes), removing a tailwind that had cushioned prior-period profit. This is a classic capital-intensive build-out signature, not obviously a red flag on its own, but it does mean profit growth will keep lagging capacity growth for as long as the capex programme (Section&nbsp;05) keeps adding to the depreciation and interest base faster than new capacity generates incremental EBITDA.</div>
+      </div>
+
+      <h3>YoY margin compression shows up even in the strongest quarter</h3>
+      <p>Q1FY27 posted the highest quarterly consolidated PAT in this dataset (&#8377;304.84 Cr, EPS &#8377;0.36, +38.5% YoY per MarketData's own earnings-growth figure) &mdash; a genuinely strong quarter in absolute terms. Yet on a margin basis it was weaker than the prior-year comparable: consolidated operating margin fell from 69.05% (Q1FY26) to 62.32% (Q1FY27), and net margin fell from 32.41% to 27.54%, even as the standalone entity's own figures moved the same way (net margin 29.49%&rarr;26.78%). The absolute profit grew because revenue grew faster than margin compressed &mdash; but a reader looking only at the "+38.5% earnings growth" headline would miss that per-rupee-of-revenue profitability is trending down, driven by the same finance-cost/depreciation dynamic as the FY26 annual numbers: standalone finance costs alone rose from &#8377;164.23 Cr (Q1FY26) to &#8377;154.66 Cr... <span style="color:var(--ink-mute)">(consolidated finance cost Q1FY27 &#8377;321.51 Cr vs Q1FY26 &#8377;192.56 Cr, +67% YoY)</span> &mdash; consolidated finance costs are rising considerably faster than consolidated revenue (+67% vs +62.7%), a gap this report flags as worth monitoring rather than dismisses.</p>
+
+      <h3>Forward margin guidance</h3>
+      <p>None found in numeric form. The Annual Report's outlook language ("disciplined project execution, timely commissioning, capital-efficient scale-up") is the only forward margin-adjacent statement in this dataset; there is no earnings call or analyst day to extract a specific EBITDA-margin or PAT-growth target from (Section&nbsp;03, &sect;09).</p>
+    </section>
+
+    <!-- 05 BALANCE SHEET -->
+    <section id="balance-sheet">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Balance sheet &amp; capital allocation</h2></div>
+      <p class="sec-dek">A AAA-rated, genuinely fast-scaling balance sheet &mdash; total assets up 33% YoY &mdash; funded increasingly by debt rather than equity, with a &#8377;24,391 Cr capital commitment on the books against only &#8377;5,000 Cr of newly authorised FY27 borrowing so far.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, ₹ Cr</th><th>FY25</th><th>FY26</th><th>% chg</th></tr></thead>
+          <tbody>
+            <tr><td>Total assets</td><td>45,421.44</td><td>60,381.79</td><td class="pos">+33.0%</td></tr>
+            <tr><td>Net PPE</td><td>21,815.93</td><td>39,200.27</td><td class="pos">+79.7%</td></tr>
+            <tr><td>Capital work-in-progress</td><td>13,983.44</td><td>14,193.32</td><td>+1.5%</td></tr>
+            <tr><td>Equity attributable to owners</td><td>18,440.34</td><td>18,965.19</td><td>+2.85%</td></tr>
+            <tr><td>Non-controlling interests</td><td>91.84</td><td>224.04</td><td>+143.9%</td></tr>
+            <tr><td>Total debt (MarketData)</td><td>19,441.00</td><td>31,716.14</td><td class="neg">+63.2%</td></tr>
+            <tr><td>Debt/equity (company ratio)</td><td>0.97x</td><td>1.54x</td><td class="neg">+58.8%</td></tr>
+            <tr><td>Current liabilities</td><td>4,672.81</td><td>6,207.33</td><td>+32.9%</td></tr>
+            <tr><td>Total assets, total debt/total assets</td><td>0.40x</td><td>0.48x</td><td class="neg">+20%</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Annual Report consolidated balance sheet and Key Ratios table; total debt from MarketData/yfinance annual balance sheet.</caption>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Debt/equity nearly doubled in one year, and equity itself barely grew</b>Owners' equity grew only 2.85% (18,440&rarr;18,965 Cr) &mdash; essentially just the FY26 retained profit, since no dividend was paid and no fresh equity was raised in FY26 (the IPO equity issuance was FY25). Total debt, by contrast, grew 63.2% (19,441&rarr;31,716 Cr, MarketData), pushing the company's own debt-equity ratio from 0.97x to 1.54x &mdash; a 58.8% jump the Annual Report itself attributes explicitly to "significant increase in borrowings availed to finance the Company's ongoing renewable energy projects." With no dividend and no further disclosed equity issuance in this dataset, every incremental rupee of FY26/FY27 capex is being funded overwhelmingly by debt, not equity &mdash; a trajectory that is sustainable only as long as EBITDA growth (Section&nbsp;04, currently ~29%/yr) keeps pace with the debt growth funding it.</div>
+      </div>
+
+      <h3>Forward capex: a large gap between committed spend and authorised funding</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Capital commitments (PPE)</div><div class="v">&#8377;24,390.73 Cr</div><div class="d">Contracted, not yet spent, as at 31 Mar 2026 (up from &#8377;20,214.10 Cr FY25)</div></div>
+        <div class="stat"><div class="k">Further JV investment commitments</div><div class="v">&#8377;974.95 Cr</div><div class="d">Up from &#8377;178.40 Cr FY25</div></div>
+        <div class="stat"><div class="k">FY27 borrowing authorised</div><div class="v">&#8377;5,000 Cr</div><div class="d">Board-approved 22 May 2026, NCD/bond issuance, one FY only</div></div>
+        <div class="stat"><div class="k">FY26 NCD raised</div><div class="v">&#8377;1,500 Cr</div><div class="d">Series 1, private placement, listed NSE 12 Nov 2025</div></div>
+      </div>
+      <p>The gap is stark: &#8377;24,391 Cr of PPE contractually committed, against a single, newly-approved &#8377;5,000 Cr FY27 NCD/bond authorisation &mdash; roughly one-fifth of the committed spend. This is not necessarily alarming on its own (the company also draws term loans and other bank facilities not separately quantified in this authorisation, and FY26's actual debt issuance per the cash-flow statement was &#8377;15,731.88 Cr, well above the FY26-equivalent &#8377;1,500 Cr NCD figure, implying most funding comes through channels this specific board resolution doesn't capture) &mdash; but it does mean the &#8377;5,000 Cr figure by itself materially understates the total external funding NGEL's committed pipeline will require over the coming 1&ndash;2 years, and this report found no single filing that quantifies total planned FY27/FY28 funding needs end-to-end.</p>
+
+      <h3>Dividend policy: explicitly suspended for the capex build-out</h3>
+      <p>NGEL paid no dividend in FY26 (or, per the Annual Report, in any year since incorporation), and states the reason plainly: "Company's subsidiaries and joint ventures have significant capital expenditure (capex) plans that will require substantial equity infusion in the coming years. Keeping in view of the same, no dividend is proposed for FY 2025-26." The Annual Report separately flags this as a deviation from the DPE (Department of Public Enterprises) Guidelines on Corporate Governance for CPSEs, which ordinarily expect a dividend from profitable central PSUs &mdash; an explicitly disclosed, reasoned exception rather than a silent lapse, but still a real opportunity cost for shareholders relative to peer PSUs that do pay.</p>
+
+      <h3>Related-party transactions and contingent liabilities: both immaterial in scale</h3>
+      <p>Disclosed FY26 related-party transactions with holding company NTPC Ltd were modest relative to the balance sheet: sale of goods/services of &#8377;35.32 Cr and purchases of &#8377;0.08 Cr (Ind AS 24 note), alongside a &#8377;11.99 Cr advance to NTPC GE Power Services Pvt Ltd (a JV of the holding company, down from &#8377;60.44 Cr in FY25). None of this rises to a scale (relative to &#8377;2,858 Cr consolidated revenue) that this report would flag as a governance concern on its own; see &sect;07 for the separate, more consequential related-party dynamic (shared KMP between NGEL and parent NTPC Ltd). Contingent liabilities are a single, unquantifiable Power Grid Corporation transmission-charges dispute that management judges immaterial; contingent <em>assets</em> (change-in-law compensation claims for safeguard duty/GST increases) total an estimated &#8377;91.44 Cr not yet recognised as revenue &mdash; a modest potential upside, not a risk.</p>
+
+      <h3>Auditor: clean opinion, both statements, both quarters reviewed</h3>
+      <p>Statutory auditor P.R. Mehra &amp; Co. issued an <b>unmodified/clean opinion</b> on both standalone and consolidated FY26 annual financial statements (audit) and on both standalone and consolidated Q1FY27 results (limited review) &mdash; no qualification, emphasis of matter, or auditor change found anywhere in this dataset. The FY26 audited accounts remain subject to review by the Comptroller and Auditor General of India under Section 143(6) of the Companies Act, standard for a Government-controlled entity.</p>
+    </section>
+
+    <!-- 06 CASH FLOW -->
+    <section id="cashflow">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cash flow quality</h2></div>
+      <p class="sec-dek">Operating cash generation is genuinely strong and growing faster than reported profit &mdash; but free cash flow is deeply and increasingly negative, funded almost entirely by debt, as capex continues to run more than 13x depreciation.</p>
+
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Consolidated, ₹ Cr</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>PAT (owners of parent)</td><td>475.48</td><td>522.60</td></tr>
+            <tr><td>Cash from operations (CFO)</td><td>2,050.81</td><td>2,386.20</td></tr>
+            <tr><td>CFO / PAT conversion</td><td>4.31x</td><td>4.57x</td></tr>
+            <tr><td>Cash from investing (CFI)</td><td class="neg">&minus;17,845.09</td><td class="neg">&minus;12,116.83</td></tr>
+            <tr><td>Cash from financing (CFF)</td><td>15,714.70</td><td>9,796.20</td></tr>
+            <tr><td>Capex (PPE + CWIP purchase)</td><td class="neg">&minus;12,036.99</td><td class="neg">&minus;15,264.46</td></tr>
+            <tr class="total"><td>Free cash flow (CFO &minus; capex)</td><td class="neg">&minus;9,986.18</td><td class="neg">&minus;12,879.6</td></tr>
+            <tr><td>Capex / Depreciation</td><td>15.9x</td><td>13.9x</td></tr>
+          </tbody>
+        </table>
+        <caption>Source: Annual Report consolidated cash-flow statement; capex/depreciation and FCF cross-checked against MarketData/yfinance annual cash-flow (matches to within rounding).</caption>
+      </div>
+
+      <div class="callout pass">
+        <div class="icon">&#9679;</div>
+        <div><b>Earnings-quality check: passes clean, and unusually well</b>CFO/PAT conversion is 4.31x&ndash;4.57x, well above the 1.0x baseline this report's methodology treats as a floor for healthy conversion. This is not a red flag in NGEL's case &mdash; it is the expected signature of a capital-intensive generation business where depreciation (&#8377;1,101.95 Cr FY26) is a very large non-cash charge that depresses reported PAT well below actual cash generated. If anything, this is a genuine positive: the underlying generation assets are throwing off substantially more cash than the accounting profit line suggests, and CFO itself grew 16.3% YoY, comfortably ahead of PAT's 9.9% growth &mdash; cash generation is not lagging the profit trend, it is running ahead of it.</div>
+      </div>
+
+      <div class="callout flag">
+        <div class="icon">&#9888;</div>
+        <div><b>Free cash flow is deeply negative and getting more so &mdash; by construction, not by problem</b>FCF was &minus;&#8377;9,986 Cr in FY25 and &minus;&#8377;12,880 Cr in FY26, as capex (&#8377;15,264 Cr FY26, +26.8% YoY) continues to run nearly 14x depreciation &mdash; unambiguous evidence of real, ongoing capacity expansion (Section&nbsp;01), not asset-stripping or maintenance-only spend. But it also means NGEL is nowhere near self-funding: every year's capex gap has been bridged by financing cash flow (+&#8377;9,796 Cr FY26, +&#8377;15,715 Cr FY25) &mdash; increasingly debt rather than the FY25 IPO-equity-driven mix (Section&nbsp;05). Until capacity additions decelerate or CFO scales enough to cover capex on its own, the business will remain externally funded, and its cost of that funding (finance costs, already growing faster than revenue per &sect;04) is the single biggest swing factor in future profit.</div>
+      </div>
+
+      <p><b>Management commentary on cash generation:</b> the Annual Report's only relevant statement is brief: "Despite higher borrowing levels, strong operating cash flows enabled comfortable servicing of debt obligations." This is consistent with the debt-service coverage ratio improving from 1.38x to 1.58x FY25&rarr;FY26 (Section&nbsp;04) &mdash; a genuine, verifiable claim, though DSCR above 1.0x but below ~2x still leaves relatively thin headroom for a company simultaneously planning to add another &#8377;24,391 Cr of committed capex (Section&nbsp;05).</p>
+    </section>
+
+    <!-- 07 MANAGEMENT -->
+    <section id="management">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Management, board &amp; parent-subsidiary governance</h2></div>
+      <p class="sec-dek">An experienced, stable core executive team since September 2024 &mdash; but one that simultaneously holds office at parent NTPC Ltd, a full independent-director board turnover just six months after appointment, and a shareholder register still 89% controlled by the Government/NTPC.</p>
+
+      <div class="roster">
+        <div class="person">
+          <div class="name">Gurdeep Singh</div>
+          <div class="role">Chairman &amp; Managing Director, w.e.f. 09.09.2024</div>
+          <div class="bio">36+ years in the power/energy sector across PowerGen, CESC, AES, IDFC and GSECL/DVC leadership roles, per the Annual Report's own disclosed profile. In office since September 2024, providing continuity through the IPO and the FY26 scale-up.</div>
+        </div>
+        <div class="person">
+          <div class="name">Jaikumar Srinivasan</div>
+          <div class="role">Director (Finance), w.e.f. 09.09.2024</div>
+          <div class="bio">Previously a Non-Executive Director on the NGEL board (09.08.2022&ndash;08.09.2024) before moving into the whole-time Finance role at the same time as the CMD appointment &mdash; internal promotion, not an external hire.</div>
+        </div>
+        <div class="person">
+          <div class="name">K. Shanmugha Sundaram</div>
+          <div class="role">Director (Projects), w.e.f. 09.09.2024; previously Chairman (11.01.2024&ndash;08.09.2024)</div>
+          <div class="bio">37+ years in project management, execution and commissioning of greenfield/brownfield power projects; joined NTPC Ltd in 1988 as a Graduate Engineer Trainee &mdash; a career NTPC-Group insider now running NGEL's execution function.</div>
+        </div>
+        <div class="person">
+          <div class="name">Neeraj Sharma</div>
+          <div class="role">Chief Financial Officer, w.e.f. 12.05.2023</div>
+          <div class="bio">The one senior finance/executive role with no change disclosed anywhere in this dataset &mdash; continuity through the IPO, the FY26 results and the Q1FY27 results.</div>
+        </div>
+      </div>
+
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Parent-subsidiary structure: shared leadership, by design, not by lapse</b>NGEL is explicitly disclosed as "A Subsidiary of NTPC Limited" on every filing letterhead in this dataset, and the Annual Report separately confirms that "Shri Gurdeep Singh, Chairman and Managing Director (CMD), Shri Jaikumar Srinivasan, Director (Finance), and Shri K. Shanmugha Sundaram, Director (Projects) of NTPC Limited shall hold additional charge of the posts of Chairman..." at NGEL &mdash; i.e., NGEL's top three executive roles are held by NTPC Limited officers on additional charge, not by NGEL-dedicated hires. This is a completely standard structure for a PSU-promoted, recently-listed subsidiary, and it brings real benefits (Section&nbsp;01's AAA credit rating, execution-capability transfer from a much larger parent) &mdash; but it also means the people running NGEL's day-to-day capital-allocation and tendering decisions answer, structurally, to the same parent organisation that owns ~89% of NGEL's shares, a standard minority-shareholder-alignment consideration for any PSU-subsidiary IPO.</div>
+      </div>
+
+      <h3>CEO turnover and a fast independent-director board reset</h3>
+      <ul style="max-width:74ch; color:var(--ink-soft); font-size:14.5px;">
+        <li><b>CEO:</b> Rajiv Gupta (02.03.2024&ndash;09.05.2025) was replaced by Sarit Maheshwari, effective 10.05.2025 &mdash; no reason for the change was found in this dataset. Maheshwari received an external "Pioneer of Energy Transformation" award noted in the Annual Report (a self-reported credential, not independently verified here).</li>
+        <li><b>Company Secretary:</b> Manish Kumar (until 25.03.2026) was replaced by Deepak C. S. (from 25.03.2026, 25+ years of secretarial/compliance experience per the appointment filing) &mdash; a routine, disclosed transition.</li>
+        <li><b>Independent directors &mdash; a full reset within six months:</b> the original three independent directors (Viveka Nand Paswan, Bimal Chand Oswal, Smt. Sajal Jha), all appointed 04&ndash;05 November 2024 around IPO time, all ceased to hold office by 08 May 2025 &mdash; a term of roughly six months. They were replaced by an entirely new set (Deepak Babu, Brajesh Kumar Singh, Ms. Phalguni Patra) from 14 May 2025. This report found no stated reason for the wholesale turnover in the materials reviewed; it may reflect a standard practice of appointing interim independent directors ahead of an IPO and formalising a permanent board shortly after listing, but that explanation is this report's own inference, not a disclosed fact, and is flagged as such.</li>
+      </ul>
+
+      <h3>Ownership: still overwhelmingly Government/NTPC-controlled</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Insider/promoter holding</div><div class="v">89.01%</div><div class="d">MarketData, as of latest snapshot</div></div>
+        <div class="stat"><div class="k">Institutional holding</div><div class="v">6.25%</div><div class="d">58 institutions on record</div></div>
+        <div class="stat"><div class="k">Free float</div><div class="v">~930.9M sh.</div><div class="d">of 8,426.3M shares outstanding (~11.0%)</div></div>
+      </div>
+      <p>An overwhelmingly Government/NTPC-controlled register even after the IPO diluted a portion of the equity &mdash; consistent with a large PSU subsidiary listing that raised primary capital (fresh issue only, no offer-for-sale disclosed in this dataset) rather than a full privatisation. The thin free float (~11%) is a structural factor behind the stock's relatively narrow 52-week range (Section&nbsp;10) and also means any future Government stake-sale (a standard PSU divestment lever) would represent a supply overhang this report has no visibility into scheduling.</p>
+    </section>
+
+    <!-- 08 CALL INSIGHTS -->
+    <section id="callinsights">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Other disclosure insights</h2></div>
+      <p class="sec-dek">With no earnings call or investor deck to draw on, the most informative signals in this dataset come from the pattern and pace of BSE filings themselves.</p>
+
+      <h3>A genuinely diversifying counterparty base</h3>
+      <p>The FY26/Q1FY27 order-win filings (Section&nbsp;03) span four different tender counterparties &mdash; SECI (central), WBSEDCL and MPPMCL (state DISCOMs), and a bilateral PPA with PTC India &mdash; plus a unique defence-land project directly approved by the Union Defence Minister. This spread across central-tender, state-DISCOM and bilateral-PPA revenue streams is a genuine diversification of offtake counterparty risk, evidenced directly rather than merely claimed by management, though this report has no data on customer concentration (e.g., what % of FY26 actual billed revenue came from SECI vs state DISCOMs) to quantify how diversified the existing operating book already is.</p>
+
+      <h3>The CtrlS/data-centre JV: optionality, not yet revenue</h3>
+      <p>The 22 May 2026 board meeting that approved FY26 results also approved incorporating a joint venture with CtrlS Datacenters Limited, and the Annual Report separately lists MoUs with Nxtra Data and ENEOS Corporation (green methanol/hydrogen). These position NGEL for the data-centre power-demand theme increasingly visible in Indian power-sector commentary, but every one of these remains at MoU/incorporation stage in this dataset &mdash; none has a disclosed capacity, tariff or revenue-start date, and this report treats them as pipeline optionality only.</p>
+
+      <h3>Filing cadence and completeness</h3>
+      <p>Of the 49 filings in this dataset, roughly half are press releases or "General" operational-milestone disclosures (commercial-operation-date declarations for specific project tranches) rather than financial or governance filings &mdash; a high-frequency disclosure cadence consistent with an actively commissioning developer, and one that gives this report reasonable confidence in the completeness of the capacity-addition narrative in Section&nbsp;01, even though the financial-results filing history itself is short (Section&nbsp;03's coverage note).</p>
+    </section>
+
+    <!-- 09 ANALYSTS -->
+    <section id="analysts">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Analyst coverage</h2></div>
+      <p class="sec-dek">Modest but real sell-side coverage, split roughly down the middle between bulls and bears &mdash; a "hold" consensus with a wide range of individual views underneath it.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Consensus recommendation</div><div class="v">Hold</div><div class="d">7 analysts (MarketData)</div></div>
+        <div class="stat"><div class="k">Rating split</div><div class="v">2 / 2 / 0 / 1 / 2</div><div class="d">Strong Buy / Buy / Hold / Sell / Strong Sell</div></div>
+        <div class="stat"><div class="k">Target mean / median</div><div class="v">&#8377;103.71 / &#8377;101.00</div><div class="d">~13.4% / ~10.5% above CMP &#8377;91.43</div></div>
+        <div class="stat"><div class="k">Target low / high</div><div class="v">&#8377;85.00 / &#8377;126.00</div><div class="d">&minus;7.0% to +37.8% vs CMP</div></div>
+      </div>
+      <p>The 2/2/0/1/2 split (strong-buy/buy/hold/sell/strong-sell) is unusually bimodal for a "hold"-labelled consensus &mdash; four analysts effectively bullish, three effectively bearish, and literally none neutral. That is a genuine disagreement among covering analysts, not a converged view, and this report has no access to the individual houses' models to know what's driving the split (most plausibly, differing views on how fast finance-cost/depreciation drag normalises against capacity growth &mdash; exactly the tension flagged in &sect;04). The one named call in this dataset, HDFC Securities' Buy initiation at a &#8377;121 target (16 Mar 2026, Section&nbsp;02), sits close to the street-high &#8377;126 and well above both the mean target and the CMP; the stock's 52-week high of &#8377;119.95 shows it briefly approached but did not sustain that level.</p>
+      <div class="callout note">
+        <div class="icon">&#9679;</div>
+        <div><b>Reading the target range against this report's own numbers</b>At CMP &#8377;91.43, the market is already priced roughly in line with the mean analyst target once the typical target-price time horizon (12 months) is discounted back &mdash; i.e., the "hold" label is arguably the more informative signal here than any single house's number, given the split. Section&nbsp;10 builds this report's own scenario range independently of the consensus target, given the absence of visible analyst methodology to check against.</div>
+      </div>
+    </section>
+
+    <!-- 10 OUTLOOK -->
+    <section id="outlook">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Outlook, valuation &amp; scenarios</h2></div>
+      <p class="sec-dek">A stock trading near the bottom of its 52-week range, at a rich book-value multiple for a business currently earning a mid-single-digit percentage return on that book.</p>
+
+      <h3>Where the stock sits today</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="k">CMP vs 52-wk range</div><div class="v">&#8377;91.43</div><div class="d">Range &#8377;84.00&ndash;&#8377;119.95; CMP sits ~24% below the high, ~9% above the low</div></div>
+        <div class="stat"><div class="k">50-day / 200-day average</div><div class="v">&#8377;93.58 / &#8377;95.85</div><div class="d">CMP trading modestly below both moving averages</div></div>
+        <div class="stat"><div class="k">Trailing P/E</div><div class="v">147.5x</div><div class="d">On FY26 consolidated EPS &#8377;0.62</div></div>
+        <div class="stat"><div class="k">Price / Book</div><div class="v">4.13x</div><div class="d">Book value/share &#8377;22.14</div></div>
+      </div>
+      <p>Computed return on equity (FY26 consolidated PAT &#8377;522.60 Cr / average owners' equity &#8377;18,702.77 Cr, this report's own calculation from the balance-sheet table in &sect;05, since MarketData's own ROE field returned N/A) is approximately <b>2.8%</b>. That is a striking gap against the 4.13x P/B multiple the market currently assigns &mdash; investors are paying roughly 4x book for a business currently converting that book into single-digit-percentage annual returns, which is only rational if the market expects ROE to expand materially over the next several years as the capex programme matures and finance-cost/depreciation drag eases relative to a larger revenue base. MarketData's own forward P/E of 32.6x (vs 147.5x trailing) embeds exactly that assumption &mdash; implying consensus forward EPS around &#8377;2.81, roughly 4.5x FY26's actual &#8377;0.62. This report treats that implied jump as an aggressive assumption worth naming explicitly rather than adopting uncritically; the scenario range below is this report's own, independently built from the disclosed capacity/margin trend rather than backed into from the quoted forward multiple.</p>
+
+      <h3>Bear / base / bull, illustrative FY27E scenarios</h3>
+      <p style="font-size:13.5px; color:var(--ink-mute);">Built from the disclosed capacity-growth, margin and leverage trends in &sect;03&ndash;05. These are scenario illustrations only, not point forecasts &mdash; there is no numeric management guidance in this dataset (&sect;03) and the analyst consensus itself is split roughly down the middle (&sect;09).</p>
+      <div class="grid-3">
+        <div class="case-card bear">
+          <h4>Bear case</h4>
+          <div class="px">&#8377;62&ndash;74</div>
+          <div class="rng">&minus;32% to &minus;19% from CMP</div>
+          <ul>
+            <li>CUF stays depressed (weather/curtailment persist, per FY26's 22.48% print); another JV or subsidiary posts a Q3FY26-style loss quarter</li>
+            <li>Finance costs keep outpacing revenue growth as the debt/equity ratio pushes past 1.8&ndash;2.0x on the &#8377;24,391 Cr committed capex; DSCR compresses back toward 1.2&ndash;1.3x</li>
+            <li>FY27E consolidated PAT roughly flat to down (&#8377;480&ndash;550 Cr); ROE stays near 2.5&ndash;3%; market de-rates toward 2.7&ndash;3.2x P/B on demonstrated execution/leverage risk against an estimated FY27E book value/share of ~&#8377;23</li>
+          </ul>
+        </div>
+        <div class="case-card base">
+          <h4>Base case</h4>
+          <div class="px">&#8377;92&ndash;104</div>
+          <div class="rng">+1% to +14% from CMP</div>
+          <ul>
+            <li>Capacity continues scaling toward the 26,544 MW disclosed portfolio; CUF stabilises near FY26's level; the Q3FY26-style JV shock does not repeat every quarter</li>
+            <li>FY27E consolidated PAT of &#8377;650&ndash;780 Cr (EPS &#8377;0.77&ndash;0.93 on ~842.6 Cr diluted shares), ROE improving to ~3.3&ndash;4.0%</li>
+            <li>Market broadly holds the current ~4x P/B growth premium on an estimated FY27E book value/share of ~&#8377;23.5&ndash;24</li>
+          </ul>
+        </div>
+        <div class="case-card bull">
+          <h4>Bull case</h4>
+          <div class="px">&#8377;115&ndash;132</div>
+          <div class="rng">+26% to +44% from CMP</div>
+          <ul>
+            <li>Execution accelerates toward the full 26,544 MW portfolio faster than the FY26 pace; storage/FDRE/C&amp;I diversification (Section&nbsp;01/03) begins contributing measurable revenue; JV losses do not recur</li>
+            <li>FY27E consolidated PAT reaches &#8377;950&ndash;1,100 Cr (EPS &#8377;1.13&ndash;1.31), ROE approaches ~4.7&ndash;5.5% as finance-cost growth decelerates relative to a larger EBITDA base</li>
+            <li>Market sustains or modestly expands the P/B growth premium (~4.3&ndash;4.6x) on an estimated FY27E book value/share of ~&#8377;24, roughly consistent with the street-high &#8377;126 target and HDFC Securities' &#8377;121 initiation level (&sect;09)</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-mute);">Cross-check via P/E: even the bull case's EPS (&#8377;1.13&ndash;1.31) implies a forward P/E of roughly 88&ndash;117x at the bull-case price &mdash; still a rich multiple by conventional standards, underscoring that this stock's valuation case rests almost entirely on multi-year capacity/earnings compounding from a genuinely large committed pipeline (&#8377;24,391 Cr, &sect;05), not on near-term earnings power.</p>
+    </section>
+
+    <!-- 11 VERDICT -->
+    <section id="verdict">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Bottom line</h2></div>
+      <div class="card">
+        <p style="max-width:none;"><b>What's good:</b> a genuinely large, verifiable capacity build (operational capacity +70.7% YoY to 10,076 MW, generation +111.5%) backed by AAA-rated debt and NTPC/Government parentage; core Operating EBITDA margins near 87% and essentially flat despite the scale-up, showing the underlying generation business is not deteriorating; operating cash flow that is growing faster than reported profit and converting at 4.3&ndash;4.6x PAT, a genuinely clean earnings-quality signature for a capital-intensive business; unmodified/clean audit opinions on every financial statement reviewed; stable CFO tenure through the IPO and scale-up period; a diversifying counterparty base (SECI, multiple state DISCOMs, a bilateral PPA, a unique defence-land project) and early, credible optionality in storage, FDRE and data-centre-driven C&amp;I demand; and a &#8377;24,391 Cr committed capital pipeline that provides multi-year revenue visibility if executed on schedule.</p>
+        <p style="max-width:none;"><b>What's not good:</b> capacity utilisation actually fell in FY26 (24.07%&rarr;22.48%) on weather/curtailment, meaning revenue growth partly outran actual generation efficiency; a joint-venture equity-method loss (&minus;&#8377;31.95 Cr) drove one quarter's (Dec-25) net margin down to just 2.65%, the kind of single-quarter shock this report has no forward visibility into recurring or not; the standalone parent entity's own revenue and profit both <em>declined</em> in FY26 (&minus;2.76%, &minus;17.02%) even as consolidated headlines rose, meaning all growth currently sits inside subsidiaries/JVs where NGEL shareholders capture only a proportionate, sometimes-volatile share; other income (largely IPO-deposit interest) fell 31% as that one-off tailwind expired; finance costs and depreciation are both compounding faster than revenue, capping PAT growth well below capacity growth; debt/equity nearly doubled to 1.54x against a committed capex bill nearly 5x the newly authorised FY27 borrowing; free cash flow is deeply negative and widening (&minus;&#8377;12,880 Cr FY26); no dividend has been or will be paid while the capex programme runs; three independent directors turned over entirely within six months of appointment with no stated reason found in this dataset; and the company's top three executive roles are held on additional charge by NTPC Limited officers, a standard but real minority-alignment consideration given the Government/NTPC's ~89% ownership.</p>
+        <p style="max-width:none;"><b>How management has navigated it:</b> operationally, competently and verifiably &mdash; the capacity-addition and generation figures in the Annual Report are specific, consistent with the flow of commercial-operation-date filings throughout the year, and cross-check cleanly against MarketData's independently-pulled figures. On disclosure, management has been transparent about the things it chooses to disclose (the CUF decline, the dividend-suspension rationale, the DPE-guideline deviation are all stated plainly rather than buried), but there is no channel in this dataset &mdash; no earnings call, no investor deck &mdash; through which management explains the Q3FY26 margin shock, the standalone-vs-consolidated divergence, or gives the market any numeric forward guidance to hold it to. That absence is itself the most actionable governance observation in this report: for a &#8377;77,000+ Cr market-cap, recently-IPO'd company, the lack of a standing quarterly analyst-engagement channel in the sources reviewed is unusual and worth the reader independently verifying (it may simply be a gap in this specific data-collection pipeline rather than in NGEL's actual investor-relations practice).</p>
+        <p style="max-width:none;"><span class="ai-pill">AI-Synthesized View</span><b>Likelihood the next 12 months resolve in the bulls' favour from today's starting price: roughly even odds, 40&ndash;50%.</b> The capacity-growth story is real and independently verifiable, the balance sheet carries the highest domestic credit rating, and cash generation is genuinely ahead of reported profit &mdash; but this report's own tabulated numbers show a business whose profit growth is structurally capped by rising finance costs and depreciation for as long as the capex programme runs, whose consolidated headline growth is not matched at the standalone parent level, and whose quarterly earnings can swing sharply on a single JV's weather-driven performance. None of these are fatal for a young, capex-heavy PSU renewable developer scaling into a genuinely large committed pipeline &mdash; but they are exactly the kind of dynamics a standing analyst call would normally probe management on every quarter, and this dataset shows no evidence that channel currently exists.</p>
+      </div>
+
+      <div class="callout note" style="margin-top:18px;">
+        <div class="icon">&#9679;</div>
+        <div><b>What would move this view</b>Watch, in order of weight: (1) whether CUF recovers toward or past FY25's 24.07% in FY27, or stays depressed &mdash; the single biggest lever on revenue-per-MW; (2) whether the Q3FY26 JV-loss pattern recurs in any FY27 quarter, or proves a one-off weather/curtailment event; (3) whether debt/equity growth (0.97x&rarr;1.54x in one year) decelerates as the &#8377;24,391 Cr commitment gets funded, or keeps accelerating past 2x; (4) whether standalone (parent-level) revenue and profit stabilise or keep declining, since that is the entity whose shares actually trade; (5) whether finance-cost growth (+16.6% FY26, +67% YoY at the consolidated Q1FY27 level) decelerates relative to revenue growth, or keeps outrunning it; (6) whether NGEL initiates any earnings-call or investor-day cadence that would let this kind of analysis be checked against management's own explanation each quarter, rather than reconstructed entirely from filings.</div>
+      </div>
+
+      <footer>
+        Compiled from NTPC Green Energy Limited's BSE filings (Announcements/AnnouncementsConv, 49 filings dated 18&nbsp;Mar&ndash;22&nbsp;Aug 2026 &mdash; two Financial Results filings with clean machine-readable P&amp;L tables, the FY2025-26 Annual Report/Reg. 34(1) filing dated 5&nbsp;Aug 2026, board-meeting outcomes, order-award press releases, management-change filings and routine governance disclosures), MarketData (Yahoo Finance via yfinance, fetched 22&ndash;23&nbsp;Aug&nbsp;2026, IST), and the tracked News feed (5&nbsp;Mar&ndash;22&nbsp;Aug 2026). No earnings-call transcript or investor-presentation deck exists anywhere in this company's dataset; every management view attributed in this report traces to a specific filing, MD&amp;A passage or press release, never to a fabricated quote. The Q2FY26 (Sep-2025) quarter is absent from every source reviewed and is shown as n/a throughout rather than estimated. Every figure is tagged to its source and basis (standalone vs. consolidated); where a figure could not be independently verified or two sources showed a small, explainable gap, that is stated in the relevant section rather than silently reconciled. This is a research synthesis for informational purposes, not investment advice.
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  // ---------- Quarterly bar chart (Revenue / PAT, consolidated) ----------
+  (function(){
+    var el = document.getElementById('qchart');
+    var quarters = ['Q4FY25','Q1FY26','Q3FY26','Q4FY26','Q1FY27'];
+    var revenue = [622.27, 680.21, 653.29, 912.63, 1106.86];
+    var pat     = [233.22, 220.48, 17.46, 197.05, 304.84];
+    var series = [
+      {label:'Revenue', color:'var(--chart-1)', data:revenue},
+      {label:'PAT (owners)', color:'var(--chart-2)', data:pat}
+    ];
+    var W = 900, H = 300, padL = 52, padR = 12, padT = 16, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var groupW = plotW / quarters.length;
+    var barW = groupW / (series.length + 1.6);
+    var maxV = Math.max.apply(null, revenue) * 1.12;
+    var minV = 0;
+
+    function y(v){ return padT + plotH - ((v-minV)/(maxV-minV))*plotH; }
+    var zeroY = y(0);
+
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Quarterly consolidated revenue and PAT" style="width:100%;height:auto;font-size:11px;">';
+
+    var steps = 5;
+    for(var g=0; g<=steps; g++){
+      var gv = minV + ((maxV-minV)/steps)*g;
+      var gy = y(gv);
+      svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+gy+'" y2="'+gy+'" stroke="'+css('--border')+'" stroke-width="1"/>';
+      svg += '<text x="'+(padL-8)+'" y="'+(gy+3)+'" text-anchor="end" fill="'+css('--ink-mute')+'">'+Math.round(gv)+'</text>';
+    }
+    svg += '<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="'+css('--border-strong')+'" stroke-width="1.4"/>';
+
+    quarters.forEach(function(q, qi){
+      var gx = padL + qi*groupW;
+      series.forEach(function(s, si){
+        var v = s.data[qi];
+        var bx = gx + (groupW - series.length*barW)/2 + si*barW;
+        var top = y(v);
+        var bh = zeroY - top;
+        svg += '<rect x="'+bx.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+(barW-3).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+s.color+'"><title>'+s.label+' '+q+': ₹'+v+' Cr</title></rect>';
+      });
+      svg += '<text x="'+(gx+groupW/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="'+css('--ink-mute')+'">'+q+'</text>';
+    });
+
+    svg += '</svg>';
+
+    var legend = '<div style="display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-soft);">' +
+      series.map(function(s){
+        return '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:3px;background:'+s.color+';display:inline-block;"></span>'+s.label+' (₹ Cr)</span>';
+      }).join('') + '</div>';
+
+    el.innerHTML = '<div class="card">' + legend + svg + '<div style="font-size:11.5px;color:var(--ink-mute);margin-top:4px;">Q2FY26 (Sep-25) omitted from this chart — no source in this dataset carries that quarter (see §03 table and coverage note). Q3FY26 (Dec-25) PAT of ₹17.46 Cr is barely visible at this scale — that is the point being illustrated.</div></div>';
+  })();
+})();
+</script>

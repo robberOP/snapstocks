@@ -1,7 +1,7 @@
 {
   "symbol": "TVSMOTOR",
   "name": "TVS Motor Co.",
-  "generatedAt": "2026-08-18T16:39:18.094170+00:00",
+  "generatedAt": "2026-08-23T11:03:03.579193+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Manufacturers",
@@ -14,28 +14,28 @@
     "peerIndustry": "2/3 Wheelers"
   },
   "price": {
-    "current": 4389.0,
-    "change": 75.8999,
-    "changePercent": 1.7597529,
-    "previousClose": 4313.1,
-    "dayLow": 4281.9,
-    "dayHigh": 4389.0,
-    "fiftyTwoWeekLow": 2882.6,
-    "fiftyTwoWeekHigh": 4389.0,
-    "asOf": 1785750302
+    "current": 4361.1,
+    "change": 4.300293,
+    "changePercent": 0.09870302,
+    "previousClose": 4356.8,
+    "dayLow": 4342.1,
+    "dayHigh": 4394.9,
+    "fiftyTwoWeekLow": 3221.2,
+    "fiftyTwoWeekHigh": 4475.0,
+    "asOf": 1787132698
   },
   "stats": {
-    "marketCap": 2085768003584.0,
-    "trailingPE": 60.932945,
-    "forwardPE": 38.440033,
-    "priceToBook": 62.420887,
+    "marketCap": 2072509153280.0,
+    "trailingPE": 60.302822,
+    "forwardPE": 38.170605,
+    "priceToBook": 62.02409,
     "bookValue": 70.313,
     "dividendYield": 0.28,
-    "trailingEps": 72.03,
+    "trailingEps": 72.32,
     "debtToEquity": 3.0608999999999997,
     "roe": 31.558459889693392,
     "roce": 28.82105059808603,
-    "return1y": 57.19683111523059,
+    "return1y": 44.89763554830489,
     "sharesOutstanding": 474960087.0
   },
   "quarterly": {
@@ -365,14 +365,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 4186.1577,
-    "targetHigh": 5300.0,
-    "targetLow": 2370.0,
+    "targetMean": 4205.184,
+    "targetHigh": 5425.0,
+    "targetLow": 2470.0,
     "recommendationKey": "buy",
     "numberOfAnalystOpinions": 38
   },
   "holders": {
     "insidersPercent": 0.52206004,
-    "institutionsPercent": 0.30532
+    "institutionsPercent": 0.29552
   }
 }

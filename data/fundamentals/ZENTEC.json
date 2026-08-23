@@ -1,7 +1,7 @@
 {
   "symbol": "ZENTEC",
   "name": "Zen Technologies",
-  "generatedAt": "2026-08-18T16:39:24.900503+00:00",
+  "generatedAt": "2026-08-23T11:03:15.078259+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
@@ -14,29 +14,29 @@
     "peerIndustry": "Aerospace & Defense"
   },
   "price": {
-    "current": 1656.4,
-    "change": 32.200073,
-    "changePercent": 1.982519,
-    "previousClose": 1624.2,
-    "dayLow": 1624.0,
-    "dayHigh": 1673.5,
+    "current": 1926.3,
+    "change": 17.200073,
+    "changePercent": 0.900952,
+    "previousClose": 1909.1,
+    "dayLow": 1885.6,
+    "dayHigh": 1960.6,
     "fiftyTwoWeekLow": 1223.0,
-    "fiftyTwoWeekHigh": 2024.0,
-    "asOf": 1785751194
+    "fiftyTwoWeekHigh": 2043.7,
+    "asOf": 1787306402
   },
   "stats": {
-    "marketCap": 148973469696.0,
-    "trailingPE": 82.90291,
-    "forwardPE": 31.622757,
-    "priceToBook": 8.2885895,
+    "marketCap": 173255540736.0,
+    "trailingPE": 96.170746,
+    "forwardPE": 36.775486,
+    "priceToBook": 9.639163,
     "bookValue": 199.841,
-    "dividendYield": 0.06,
-    "trailingEps": 19.98,
+    "dividendYield": 0.05,
+    "trailingEps": 20.03,
     "debtToEquity": 0.0095,
     "roe": 10.240634821013778,
-    "roce": 15.463442669758361,
-    "return1y": 3.270693346470335,
-    "sharesOutstanding": 89938096.0
+    "roce": 15.373225117280048,
+    "return1y": 35.57326953300216,
+    "sharesOutstanding": 89942136.0
   },
   "quarterly": {
     "periods": [
@@ -117,16 +117,16 @@
       "Expenses": [
         null,
         1522913000.0,
-        2653512000.0,
-        6155315000.0,
-        4648358000.0
+        2651165000.0,
+        6040037000.0,
+        4646029000.0
       ],
       "OperatingProfit": [
         null,
         665549000.0,
-        1745008000.0,
-        3581101000.0,
-        2228542000.0
+        1747355000.0,
+        3696379000.0,
+        2230871000.0
       ],
       "NetProfit": [
         null,
@@ -199,14 +199,14 @@
         715316000.0,
         966342000.0,
         1345027000.0,
-        1666041000.0
+        1692351000.0
       ],
       "Investments": [
         null,
         445043000.0,
         232721000.0,
-        2166401000.0,
-        3289941000.0
+        165318000.0,
+        3198088000.0
       ],
       "StockholdersEquity": [
         null,
@@ -219,7 +219,7 @@
         null,
         3320357000.0,
         6183427000.0,
-        16039857000.0,
+        18040940000.0,
         15541698000.0
       ],
       "CurrentLiabilities": [
@@ -297,8 +297,8 @@
         null,
         22.308114810915047,
         38.82948231560028,
-        23.07131701950026,
-        15.463442669758361
+        23.44700681919035,
+        15.373225117280048
       ],
       "ROE": [
         null,
@@ -318,12 +318,16 @@
         null,
         320.03075219035105,
         289.14083941871354,
-        509.84418855973286,
+        584.8610422972888,
         731.7645726999084
       ]
     }
   },
   "dividends": [
+    {
+      "date": "2026-08-21",
+      "amount": 1.0
+    },
     {
       "date": "2025-08-14",
       "amount": 2.0
@@ -351,10 +355,6 @@
     {
       "date": "2019-09-12",
       "amount": 0.3
-    },
-    {
-      "date": "2018-09-19",
-      "amount": 0.1
     }
   ],
   "analyst": {
@@ -365,7 +365,7 @@
     "numberOfAnalystOpinions": 6
   },
   "holders": {
-    "insidersPercent": 0.49912998,
-    "institutionsPercent": 0.10876001
+    "insidersPercent": 0.4991,
+    "institutionsPercent": 0.11455
   }
 }

@@ -1,7 +1,7 @@
 {
   "symbol": "IKS",
   "name": "Inventurus Knowl",
-  "generatedAt": "2026-08-18T16:38:04.248181+00:00",
+  "generatedAt": "2026-08-23T11:01:55.517163+00:00",
   "profile": {
     "sector": "Healthcare",
     "industry": "Health Information Services",
@@ -9,34 +9,34 @@
     "bseCode": "544309",
     "nseSymbol": "IKS",
     "website": "https://ikshealth.com",
-    "deepDiveUrl": null,
+    "deepDiveUrl": "/stock-analysis/deep-dive/iks.html",
     "peerSector": "IT - Services",
     "peerIndustry": "IT Enabled Services"
   },
   "price": {
-    "current": 1846.4,
-    "change": -2.5,
-    "changePercent": -0.13521554,
-    "previousClose": 1848.9,
-    "dayLow": 1839.3,
-    "dayHigh": 1858.0,
+    "current": 1812.3,
+    "change": -49.299927,
+    "changePercent": -2.6482556,
+    "previousClose": 1861.6,
+    "dayLow": 1800.0,
+    "dayHigh": 1876.2,
     "fiftyTwoWeekLow": 1262.0,
     "fiftyTwoWeekHigh": 1933.0,
-    "asOf": 1785751194
+    "asOf": 1787133597
   },
   "stats": {
-    "marketCap": 309730803712.0,
-    "trailingPE": 43.60888,
-    "forwardPE": 31.407915,
-    "priceToBook": 11.032439,
+    "marketCap": 304026845184.0,
+    "trailingPE": 40.561775,
+    "forwardPE": 26.583057,
+    "priceToBook": 10.828689,
     "bookValue": 167.361,
     "dividendYield": null,
-    "trailingEps": 42.34,
+    "trailingEps": 44.68,
     "debtToEquity": 0.26873,
     "roe": 25.767604670604666,
     "roce": 29.569847314703097,
-    "return1y": 16.860761038864716,
-    "sharesOutstanding": 167748478.0
+    "return1y": 20.569946605306832,
+    "sharesOutstanding": 167757449.0
   },
   "quarterly": {
     "periods": [
@@ -44,14 +44,16 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         7239560000.0,
         7400950000.0,
         8149500000.0,
-        8576520000.0
+        8576520000.0,
+        8936290000.0
       ],
       "Expenses": [
         5034550000.0,
         5261130000.0,
         5302470000.0,
         5653940000.0,
-        5914850000.0
+        5914850000.0,
+        6329780000.0
       ],
       "OperatingProfit": [
         1537060000.0,
         1978430000.0,
         2098480000.0,
         2495560000.0,
-        2661670000.0
+        2661670000.0,
+        2606510000.0
       ],
       "NetProfit": [
         1296750000.0,
         1478020000.0,
         1515390000.0,
         1833280000.0,
-        2059680000.0
+        2059680000.0,
+        1937410000.0
       ],
       "EPS": [
         7.6,
         8.7,
         8.85,
         10.73,
-        12.06
+        12.06,
+        11.32
       ]
     }
   },
@@ -151,10 +158,10 @@
       ]
     },
     "ttm": {
-      "Sales": 31366530000.0,
-      "Expenses": 22132390000.0,
-      "OperatingProfit": 9234140000.0,
-      "NetProfit": 6886370000.0
+      "Sales": 33063260000.0,
+      "Expenses": 23201040000.0,
+      "OperatingProfit": 9862220000.0,
+      "NetProfit": 7345760000.0
     }
   },
   "balanceSheet": {
@@ -325,14 +332,14 @@
   },
   "dividends": [],
   "analyst": {
-    "targetMean": 1897.875,
-    "targetHigh": 2070.0,
-    "targetLow": 1670.0,
-    "recommendationKey": "none",
+    "targetMean": 1960.625,
+    "targetHigh": 2170.0,
+    "targetLow": 1680.0,
+    "recommendationKey": "buy",
     "numberOfAnalystOpinions": 8
   },
   "holders": {
-    "insidersPercent": 0.73335,
-    "institutionsPercent": 0.08911
+    "insidersPercent": 0.70976996,
+    "institutionsPercent": 0.099309996
   }
 }

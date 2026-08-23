@@ -1,7 +1,7 @@
 {
   "symbol": "SHRIPISTON",
   "name": "Shriram Pistons",
-  "generatedAt": "2026-08-18T16:39:00.827092+00:00",
+  "generatedAt": "2026-08-23T11:02:48.748366+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 4524.4,
-    "change": 129.1997,
-    "changePercent": 2.9395635,
-    "previousClose": 4395.2,
-    "dayLow": 4430.4,
-    "dayHigh": 4547.0,
-    "fiftyTwoWeekLow": 2301.2,
-    "fiftyTwoWeekHigh": 4547.0,
-    "asOf": 1785751200
+    "current": 4454.0,
+    "change": -55.100098,
+    "changePercent": -1.2219754,
+    "previousClose": 4509.1,
+    "dayLow": 4411.4,
+    "dayHigh": 4521.0,
+    "fiftyTwoWeekLow": 2485.0,
+    "fiftyTwoWeekHigh": 4589.0,
+    "asOf": 1787133595
   },
   "stats": {
-    "marketCap": 199299022848.0,
-    "trailingPE": 36.120068,
-    "forwardPE": 23.675562,
-    "priceToBook": 6.8724365,
-    "bookValue": 658.34,
-    "dividendYield": 0.23,
-    "trailingEps": 125.26,
+    "marketCap": 196197908480.0,
+    "trailingPE": 34.78057,
+    "forwardPE": 23.307169,
+    "priceToBook": 6.7628713,
+    "bookValue": 658.596,
+    "dividendYield": 0.22,
+    "trailingEps": 128.06,
     "debtToEquity": null,
     "roe": 19.04461198219712,
     "roce": 18.00887390445145,
-    "return1y": 91.53614703142848,
+    "return1y": 85.95865353393224,
     "sharesOutstanding": 44049824.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         9884000000.0,
         9633000000.0,
         10232000000.0,
-        14558000000.0
+        14558000000.0,
+        14744000000.0
       ],
       "Expenses": [
         7082000000.0,
         8063000000.0,
         7997000000.0,
         8502000000.0,
-        12396000000.0
+        12396000000.0,
+        12698000000.0
       ],
       "OperatingProfit": [
         1397000000.0,
         1821000000.0,
         1636000000.0,
         1730000000.0,
-        2162000000.0
+        2162000000.0,
+        2046000000.0
       ],
       "NetProfit": [
         1198000000.0,
         1465000000.0,
         1337000000.0,
         1230000000.0,
-        1563000000.0
+        1563000000.0,
+        1444000000.0
       ],
       "EPS": [
         27.22,
         33.27,
         30.35,
         27.93,
-        35.47
+        35.47,
+        32.78
       ]
     }
   },
@@ -143,10 +150,10 @@
       ]
     },
     "ttm": {
-      "Sales": 44307000000.0,
-      "Expenses": 36958000000.0,
-      "OperatingProfit": 7349000000.0,
-      "NetProfit": 5595000000.0
+      "Sales": 49167000000.0,
+      "Expenses": 41593000000.0,
+      "OperatingProfit": 7574000000.0,
+      "NetProfit": 5574000000.0
     }
   },
   "balanceSheet": {
@@ -353,6 +360,6 @@
   },
   "holders": {
     "insidersPercent": 0.67016,
-    "institutionsPercent": 0.13763
+    "institutionsPercent": 0.13454
   }
 }

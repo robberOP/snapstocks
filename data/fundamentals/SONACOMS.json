@@ -1,7 +1,7 @@
 {
   "symbol": "SONACOMS",
   "name": "Sona BLW Precis.",
-  "generatedAt": "2026-08-18T16:39:03.373923+00:00",
+  "generatedAt": "2026-08-23T11:02:51.135820+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,29 +14,29 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 785.0,
-    "change": 15.599976,
-    "changePercent": 2.0275507,
-    "previousClose": 769.4,
-    "dayLow": 768.05,
-    "dayHigh": 785.0,
+    "current": 823.5,
+    "change": -0.5,
+    "changePercent": -0.06067961,
+    "previousClose": 824.0,
+    "dayLow": 816.5,
+    "dayHigh": 829.75,
     "fiftyTwoWeekLow": 402.3,
-    "fiftyTwoWeekHigh": 785.0,
-    "asOf": 1785750297
+    "fiftyTwoWeekHigh": 836.9,
+    "asOf": 1787132702
   },
   "stats": {
-    "marketCap": 488817262592.0,
-    "trailingPE": 70.3405,
-    "forwardPE": 46.76051,
-    "priceToBook": 8.159065,
+    "marketCap": 513773928448.0,
+    "trailingPE": 73.4612,
+    "forwardPE": 48.94229,
+    "priceToBook": 8.559223,
     "bookValue": 96.212,
-    "dividendYield": 0.47,
-    "trailingEps": 11.16,
+    "dividendYield": 0.44,
+    "trailingEps": 11.21,
     "debtToEquity": 0.07213,
     "roe": 10.70007078512994,
     "roce": 13.174673701153647,
-    "return1y": 67.87238011031609,
-    "sharesOutstanding": 622697138.0
+    "return1y": 84.75319888595885,
+    "sharesOutstanding": 623890650.0
   },
   "quarterly": {
     "periods": [
@@ -358,14 +358,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 760.2353,
+    "targetMean": 764.94446,
     "targetHigh": 900.0,
     "targetLow": 550.0,
     "recommendationKey": "buy",
-    "numberOfAnalystOpinions": 17
+    "numberOfAnalystOpinions": 18
   },
   "holders": {
-    "insidersPercent": 0.27977,
-    "institutionsPercent": 0.59394
+    "insidersPercent": 0.27923,
+    "institutionsPercent": 0.59698004
   }
 }

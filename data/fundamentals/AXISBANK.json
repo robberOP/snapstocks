@@ -1,7 +1,7 @@
 {
   "symbol": "AXISBANK",
   "name": "Axis Bank",
-  "generatedAt": "2026-08-18T16:37:19.408812+00:00",
+  "generatedAt": "2026-08-23T11:00:53.338842+00:00",
   "profile": {
     "sector": "Financial Services",
     "industry": "Banks - Regional",
@@ -14,29 +14,29 @@
     "peerIndustry": "Private Sector Bank"
   },
   "price": {
-    "current": 1272.0,
-    "change": 42.5,
-    "changePercent": 3.4566898,
-    "previousClose": 1229.5,
-    "dayLow": 1230.5,
-    "dayHigh": 1272.0,
+    "current": 1235.0,
+    "change": -8.0,
+    "changePercent": -0.6436042,
+    "previousClose": 1243.0,
+    "dayLow": 1224.0,
+    "dayHigh": 1245.0,
     "fiftyTwoWeekLow": 1042.5,
     "fiftyTwoWeekHigh": 1418.3,
-    "asOf": 1785750301
+    "asOf": 1787132700
   },
   "stats": {
-    "marketCap": 3957655339008.0,
-    "trailingPE": 14.309821,
-    "forwardPE": 10.055336,
-    "priceToBook": 1.7727062,
+    "marketCap": 3844438228992.0,
+    "trailingPE": 13.896703,
+    "forwardPE": 9.762846,
+    "priceToBook": 1.7211416,
     "bookValue": 717.547,
     "dividendYield": 0.08,
-    "trailingEps": 88.89,
+    "trailingEps": 88.87,
     "debtToEquity": null,
     "roe": 12.270005838574912,
     "roce": null,
-    "return1y": 19.618587915705834,
-    "sharesOutstanding": 3111364407.0
+    "return1y": 15.7042297817348,
+    "sharesOutstanding": 3112905417.0
   },
   "quarterly": {
     "periods": [
@@ -352,14 +352,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 1586.675,
+    "targetMean": 1584.425,
     "targetHigh": 1780.0,
     "targetLow": 1430.0,
     "recommendationKey": "strong_buy",
     "numberOfAnalystOpinions": 40
   },
   "holders": {
-    "insidersPercent": 0.02831,
-    "institutionsPercent": 0.70436996
+    "insidersPercent": 0.03328,
+    "institutionsPercent": 0.71276003
   }
 }

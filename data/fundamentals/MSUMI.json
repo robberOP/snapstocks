@@ -1,7 +1,7 @@
 {
   "symbol": "MSUMI",
   "name": "Motherson Wiring",
-  "generatedAt": "2026-08-18T16:38:32.870578+00:00",
+  "generatedAt": "2026-08-23T11:02:23.466761+00:00",
   "profile": {
     "sector": "Consumer Cyclical",
     "industry": "Auto Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 41.48,
-    "change": 0.86999893,
-    "changePercent": 2.1423268,
-    "previousClose": 40.61,
-    "dayLow": 40.75,
-    "dayHigh": 42.22,
+    "current": 39.26,
+    "change": -1.0600014,
+    "changePercent": -2.6289716,
+    "previousClose": 40.32,
+    "dayLow": 39.12,
+    "dayHigh": 40.59,
     "fiftyTwoWeekLow": 35.7,
     "fiftyTwoWeekHigh": 53.59,
-    "asOf": 1785751200
+    "asOf": 1787133602
   },
   "stats": {
-    "marketCap": 275081330688.0,
-    "trailingPE": 44.12766,
-    "forwardPE": 28.336235,
-    "priceToBook": 12.723927,
+    "marketCap": 260359045120.0,
+    "trailingPE": 41.765957,
+    "forwardPE": 26.706938,
+    "priceToBook": 12.042944,
     "bookValue": 3.26,
-    "dividendYield": 1.43,
+    "dividendYield": 1.44,
     "trailingEps": 0.94,
     "debtToEquity": 0.10788,
     "roe": 28.921682009529537,
     "roce": 35.44123797574237,
-    "return1y": 7.958088517083691,
+    "return1y": 8.617164696985471,
     "sharesOutstanding": 6631661898.0
   },
   "quarterly": {
@@ -44,14 +44,16 @@
       "Q4FY25",
       "Q1FY26",
       "Q3FY26",
-      "Q4FY26"
+      "Q4FY26",
+      "Q1FY27"
     ],
     "periodDates": [
       "2024-12-31T00:00:00",
       "2025-03-31T00:00:00",
       "2025-06-30T00:00:00",
       "2025-12-31T00:00:00",
-      "2026-03-31T00:00:00"
+      "2026-03-31T00:00:00",
+      "2026-06-30T00:00:00"
     ],
     "rows": {
       "Sales": [
@@ -59,35 +61,40 @@
         25003100000.0,
         24808400000.0,
         28658400000.0,
-        33281800000.0
+        33281800000.0,
+        33838500000.0
       ],
       "Expenses": [
         20916300000.0,
         22766900000.0,
         22857700000.0,
         26600200000.0,
-        31114400000.0
+        31114400000.0,
+        31857400000.0
       ],
       "OperatingProfit": [
         1906200000.0,
         2236200000.0,
         1950700000.0,
         2058200000.0,
-        2167400000.0
+        2167400000.0,
+        1981100000.0
       ],
       "NetProfit": [
         1399800000.0,
         1649300000.0,
         1431000000.0,
         1494400000.0,
-        1673000000.0
+        1673000000.0,
+        1453200000.0
       ],
       "EPS": [
         0.21,
         0.25,
-        0.146667,
+        0.22,
         0.23,
-        0.25
+        0.25,
+        0.22
       ]
     }
   },
@@ -143,10 +150,10 @@
       ]
     },
     "ttm": {
-      "Sales": 111751700000.0,
-      "Expenses": 103339200000.0,
-      "OperatingProfit": 8412500000.0,
-      "NetProfit": 6247700000.0
+      "Sales": 120587100000.0,
+      "Expenses": 112429700000.0,
+      "OperatingProfit": 8157400000.0,
+      "NetProfit": 6051600000.0
     }
   },
   "balanceSheet": {
@@ -337,14 +344,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 48.61538,
+    "targetMean": 48.57143,
     "targetHigh": 60.0,
-    "targetLow": 39.0,
-    "recommendationKey": "buy",
-    "numberOfAnalystOpinions": 13
+    "targetLow": 38.0,
+    "recommendationKey": "strong_buy",
+    "numberOfAnalystOpinions": 14
   },
   "holders": {
     "insidersPercent": 0.61749,
-    "institutionsPercent": 0.21008
+    "institutionsPercent": 0.20597
   }
 }

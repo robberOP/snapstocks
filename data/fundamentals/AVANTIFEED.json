@@ -1,7 +1,7 @@
 {
   "symbol": "AVANTIFEED",
   "name": "Avanti Feeds",
-  "generatedAt": "2026-08-18T16:37:18.794951+00:00",
+  "generatedAt": "2026-08-23T11:00:52.598271+00:00",
   "profile": {
     "sector": "Consumer Defensive",
     "industry": "Packaged Foods",
@@ -14,28 +14,28 @@
     "peerIndustry": "Animal Feed"
   },
   "price": {
-    "current": 907.3,
-    "change": 7.700012,
-    "changePercent": 0.8559373,
-    "previousClose": 899.6,
-    "dayLow": 901.0,
-    "dayHigh": 931.9,
+    "current": 866.15,
+    "change": -9.449951,
+    "changePercent": -1.0792544,
+    "previousClose": 875.6,
+    "dayLow": 862.1,
+    "dayHigh": 883.5,
     "fiftyTwoWeekLow": 614.25,
     "fiftyTwoWeekHigh": 1593.8,
-    "asOf": 1785751198
+    "asOf": 1787047202
   },
   "stats": {
-    "marketCap": 123615657984.0,
-    "trailingPE": 20.416292,
-    "forwardPE": 18.592213,
-    "priceToBook": 3.7618268,
+    "marketCap": 118009159680.0,
+    "trailingPE": 22.277521,
+    "forwardPE": 17.748976,
+    "priceToBook": 3.5912118,
     "bookValue": 241.186,
-    "dividendYield": 1.11,
-    "trailingEps": 44.44,
+    "dividendYield": 1.14,
+    "trailingEps": 38.88,
     "debtToEquity": 0.00357,
     "roe": 18.443512303025127,
     "roce": 23.49265346921086,
-    "return1y": 32.71059450856148,
+    "return1y": 38.4178953901065,
     "sharesOutstanding": 136245630.0
   },
   "quarterly": {
@@ -325,6 +325,10 @@
   },
   "dividends": [
     {
+      "date": "2026-08-07",
+      "amount": 10.0
+    },
+    {
       "date": "2025-08-07",
       "amount": 9.0
     },
@@ -351,10 +355,6 @@
     {
       "date": "2020-03-05",
       "amount": 5.0
-    },
-    {
-      "date": "2019-07-30",
-      "amount": 4.0
     }
   ],
   "analyst": {
@@ -366,6 +366,6 @@
   },
   "holders": {
     "insidersPercent": 0.70921,
-    "institutionsPercent": 0.09187999
+    "institutionsPercent": 0.10511
   }
 }

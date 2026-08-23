@@ -1,7 +1,7 @@
 {
   "symbol": "ARE&M",
   "name": "Amara Raja Ener.",
-  "generatedAt": "2026-08-18T16:37:15.337041+00:00",
+  "generatedAt": "2026-08-23T11:00:48.619048+00:00",
   "profile": {
     "sector": "Industrials",
     "industry": "Electrical Equipment & Parts",
@@ -14,28 +14,28 @@
     "peerIndustry": "Auto Components & Equipments"
   },
   "price": {
-    "current": 932.3,
-    "change": 21.849976,
-    "changePercent": 2.3999095,
-    "previousClose": 910.45,
-    "dayLow": 912.0,
-    "dayHigh": 939.4,
+    "current": 935.8,
+    "change": -9.900024,
+    "changePercent": -1.0468462,
+    "previousClose": 945.7,
+    "dayLow": 929.1,
+    "dayHigh": 952.8,
     "fiftyTwoWeekLow": 670.0,
     "fiftyTwoWeekHigh": 1057.85,
-    "asOf": 1785751198
+    "asOf": 1787047202
   },
   "stats": {
-    "marketCap": 170634543104.0,
-    "trailingPE": 19.0343,
-    "forwardPE": 16.158634,
-    "priceToBook": 2.1068687,
+    "marketCap": 171275124736.0,
+    "trailingPE": 18.563776,
+    "forwardPE": 15.990246,
+    "priceToBook": 2.1147783,
     "bookValue": 442.505,
-    "dividendYield": 1.16,
-    "trailingEps": 48.98,
+    "dividendYield": 1.12,
+    "trailingEps": 50.41,
     "debtToEquity": 0.05015,
     "roe": 11.060308977942848,
     "roce": 14.22613488408471,
-    "return1y": -4.502793555946704,
+    "return1y": 0.13880422458093106,
     "sharesOutstanding": 183025364.0
   },
   "quarterly": {
@@ -140,7 +140,7 @@
         39.93,
         51.05,
         51.62,
-        null
+        48.95
       ],
       "SalesGrowth": [
         null,
@@ -358,14 +358,14 @@
     }
   ],
   "analyst": {
-    "targetMean": 959.8461,
-    "targetHigh": 1150.0,
-    "targetLow": 800.0,
+    "targetMean": 1014.53845,
+    "targetHigh": 1195.0,
+    "targetLow": 850.0,
     "recommendationKey": "hold",
     "numberOfAnalystOpinions": 13
   },
   "holders": {
     "insidersPercent": 0.33282003,
-    "institutionsPercent": 0.30119
+    "institutionsPercent": 0.30389
   }
 }
